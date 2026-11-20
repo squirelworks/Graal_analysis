@@ -12,6 +12,8 @@ as captured (protocol/relay-1998.md, client-internals/live-trace-early.md).
 
   relay98.py HOST PORT [--nl] [--fakepeer=ID]
     --nl          send `NL` after `NR` (the 1.1.9 server's local-levels mode)
+    --fakec       send `C<fake>` before `+<fake>`, as the real server does for every room member
+    --fakedelay=S announce the fake peer S seconds after the join instead of at once
     --fakepeer=N   announce a peer with id N (sent as 8 digits) (`+IDdef`) in every room a client joins, and confirm the client's
                   `P ID`. A client only answers `+` with `P` just after it joins a room, so this is how a
                   probe gets a partner whose `D` lines (injected by gen5probe) the client will take.
@@ -20,6 +22,9 @@ import select, socket, sys, time
 
 ARGS = [a for a in sys.argv[1:] if not a.startswith('--')]
 NL = '--nl' in sys.argv
+FAKEC = '--fakec' in sys.argv  # send C<fake> (partnership reset) before +<fake>, as the 1.1.9 server does for room members
+FAKEDELAY = next((float(a.split('=', 1)[1]) for a in sys.argv if a.startswith('--fakedelay=')), 0.0)
+PENDING = []  # (when, conn, room) fake-peer announcements still to send
 FAKE = next(('%08d' % int(a.split('=', 1)[1]) for a in sys.argv if a.startswith('--fakepeer=')), None)  # id as 8 digits
 HOST, PORT = ARGS[0], int(ARGS[1])
 T0 = time.monotonic()
@@ -77,7 +82,11 @@ def line_in(c, line):
             c.send('C' + o.id)
         for o in room_of(c):
             c.send('+' + o.id + 'def'); o.send('+' + c.id + 'def')
-        if FAKE:
+        if FAKE and FAKEDELAY:
+            PENDING.append((time.monotonic() + FAKEDELAY, c, c.room))
+        elif FAKE:
+            if FAKEC:
+                c.send('C' + FAKE)
             c.send('+' + FAKE + 'def')
     elif k == 'P' and FAKE and rest[:8] == FAKE:
         c.send('P' + FAKE)
@@ -100,7 +109,15 @@ def main():
     L = socket.socket(); L.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1); L.bind((HOST, PORT)); L.listen(16)
     log('relay98 listening', HOST, PORT, 'NL' if NL else '')
     while True:
-        r, _, _ = select.select([L] + [c.s for c in conns.values()], [], [], 1)
+        r, _, _ = select.select([L] + [c.s for c in conns.values()], [], [], 0.2)
+        for item in list(PENDING):  # a delayed fake peer, as a second client joining later would be
+            when, c, room = item
+            if time.monotonic() >= when:
+                PENDING.remove(item)
+                if c.s in conns and c.room == room:
+                    if FAKEC:
+                        c.send('C' + FAKE)
+                    c.send('+' + FAKE + 'def')
         for s in r:
             if s is L:
                 cs, _ = L.accept(); c = Conn(cs); conns[cs] = c; log(c.id, 'open'); continue

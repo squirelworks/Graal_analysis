@@ -23,7 +23,7 @@ if [ $GEN = 2 ]; then
   ./E sh -c "setsid nohup python3 $T/../gen5probe.py $LO1 14812 $LO2 14812 $O/proxy.log w$B $F/run/ctl.sock > $O/proxy.out 2>&1 &"
 else
   NLF=""; case $B in 14th|15th|11|119) NLF=--nl;; esac   # the 1.1.9 server's local-levels mode
-  ./E sh -c "setsid nohup python3 $T/../relay98.py $LO2 14802 $NLF --fakepeer=9900 > $O/relay.log 2>&1 &"
+  ./E sh -c "setsid nohup python3 $T/../relay98.py $LO2 14802 $NLF --fakepeer=9900 ${RELAYARGS:-} > $O/relay.log 2>&1 &"
   ./E sh -c "setsid nohup python3 $T/../gen5probe.py $LO1 14802 $LO2 14802 $O/proxy.log w$B $F/run/ctl.sock > $O/proxy.out 2>&1 &"
 fi
 sleep 3

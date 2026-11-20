@@ -65,15 +65,45 @@ WIDTHS = [('c', 'c:3'), ('s', 's:90'), ('i3', 'i3:11610'), ('i5', 'i5:190229850'
 
 
 def rows3():
-    """Gen-2 own-prop sweep: props 0-40, each with five layouts, the bomb canary behind it.
-    The layout whose canary lands is the one the build reads; none landing = longer/compound or
-    the end of the build's prop table (it stops reading the message there)."""
+    """Gen-2 own-prop sweep: props 0-40, each with six layouts, the bomb canary behind it.
+    The layout whose canary lands is the one the build reads; none landing = compound or longer,
+    or past the end of the build's prop table (it stops reading the message there).
+    Prop 2 (current hearts) skips the layouts whose first byte means 0 hearts (they kill the player),
+    and props 15 and 16 (X, Y) go last: a small X or Y scrolls the HUD over bright tiles."""
     r = []
-    for p in range(0, 41):
-        if p == 5:
-            continue  # the canary prop itself
+    order = [p for p in range(0, 41) if p not in (5, 15, 16)] + [15, 16]
+    for p in order:
         for wn, val in WIDTHS:
+            if p == 2 and wn in ('s', 'i3', 'i5'):
+                continue
             r.append(('w%02d-%s' % (p, wn), '9 c:%d %s %s' % (p, val, CAN)))
+    return r
+
+
+def rows5():
+    """Targeted compound layouts for the props the width sweep could not place (8-11, 13, 23),
+    from the server-source encodings in player-props.md, each followed by the bombs canary."""
+    r = []
+    add = lambda n, v: r.append((n, '9 %s %s' % (v, CAN)))
+    add('p08-pow-img', 'c:8 c:31 str:abcdef')        # swordpower 1 + 30, then image
+    add('p08-pow', 'c:8 c:31')
+    add('p09-pow-img', 'c:9 c:11 str:abcdef')        # shieldpower 1 + 10, then image
+    add('p09-pow', 'c:9 c:11')
+    add('p10-len-img', 'c:10 c:16 t:abcdef')         # bow: 10 + len, then the image bytes
+    add('p10-pow', 'c:10 c:3')
+    add('p11-len-img', 'c:11 c:106 t:abcdef')        # head: len + 100, then the image bytes
+    add('p11-num', 'c:11 c:3')
+    add('p13-4', 'c:13 c:1 c:2 c:3 c:4')             # four colours
+    add('p13-5', 'c:13 c:1 c:2 c:3 c:4 c:5')         # five colours
+    add('p13-3', 'c:13 c:1 c:2 c:3')
+    add('p23-zero', 'c:23 c:0')
+    add('p23-one', 'c:23 c:1')
+    add('p23-n4', 'c:23 c:4 c:1 c:2 c:3 c:4')        # a count, then that many bytes
+    add('p23-rgba', 'c:23 c:1 c:2 c:3 c:4')          # four bytes
+    # tie-breakers: "count, then count bytes" lands n2 and n1; "nonzero, then 4 bytes" lands nz9 only
+    add('p23-n2', 'c:23 c:2 c:1 c:2')
+    add('p23-n1', 'c:23 c:1 c:7')
+    add('p23-nz9', 'c:23 c:9 c:1 c:2 c:3 c:4')
     return r
 
 
@@ -223,7 +253,7 @@ def replies(d, gen):
             out[cur].append('closed'); continue
         if not cur or ' C>S ' not in line:
             continue
-        if gen in (2, 3):
+        if gen in (2, 3, 5):
             m = re.search(r'C>S id=(-?\d+)', line)
             if m:
                 out[cur].append(m.group(1))
@@ -249,7 +279,7 @@ WORDS = {'ok': 'canary landed', 'ignored-rest': 'rest of message/frame dropped; 
 
 def tsvrow(gen, client, date, r):
     n, sp, c, post, alive, rep, v, run = r
-    if gen in (2, 3):
+    if gen in (2, 3, 5):
         t = sp.split(' | ')[0].split(); pk = t[0] if t[0] != 'raw' else 'raw'
         pr = t[1][2:] if pk == '9' and len(t) > 1 and t[1].startswith('c:') else '-'
     else:
@@ -267,8 +297,8 @@ def read(gen, d):
         if len(p) == 2:
             marks[p[0]] = p[1]
     rep = replies(d, gen)
-    rows = rows2() if gen == 2 else rows3() if gen == 3 else rows1()
-    if gen in (2, 3):
+    rows = rows2() if gen == 2 else rows3() if gen == 3 else rows5() if gen == 5 else rows1()
+    if gen in (2, 3, 5):
         from PIL import Image
         box = autobox(d)
         if not box:
@@ -279,7 +309,7 @@ def read(gen, d):
         if n not in marks:
             continue
         st = marks[n]; alive = st.startswith('alive')
-        if gen in (2, 3):
+        if gen in (2, 3, 5):
             c = boxv(d, n, box, rl, rd) if alive else '-'
             ps = marks.get(n + '-post', '')
             post = boxv(d, n + '-post', box, rl, rd) if ps.startswith('alive') else '-'
@@ -300,13 +330,13 @@ def read(gen, d):
 def main():
     a = sys.argv[1:]
     gen = int(a[1])
-    rows = rows2() if gen == 2 else rows3() if gen == 3 else rows4() if gen == 4 else rows1()
+    rows = rows2() if gen == 2 else rows3() if gen == 3 else rows4() if gen == 4 else rows5() if gen == 5 else rows1()
     if a[0] == 'rows':
         for i, (n, _) in enumerate(rows):
             print(i, n)
     elif a[0] == 'plan':
         sel = pick(rows, a[2], a[3] if len(a) > 3 else None)
-        print('\n'.join(plan2(sel) if gen == 2 else plan2(sel, post=False) if gen == 3 else plan4(sel) if gen == 4 else plan1(sel)))
+        print('\n'.join(plan2(sel) if gen == 2 else plan2(sel, post=False) if gen in (3, 5) else plan4(sel) if gen == 4 else plan1(sel)))
     elif a[0] == 'read':
         for d in a[2:]:
             read(gen, d)

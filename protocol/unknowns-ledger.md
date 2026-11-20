@@ -25,8 +25,8 @@ Status words:
 | Wire bytes (NUL and high bytes inside a message) | 2 | 0 | 0 |
 | Baddy types | 1 | 0 | 0 |
 | Other streams and clients (other-player, injected player, NPC, baddy props, 2.00–2.17; 6.1.1.3, 6.037, 2.19–2.21, mobile) | 5 | 0 | 4 |
-| Early clients, gen 1 relay and gen 2 GSERV/GNW (1st Graal to 1.39) | 8 | 5 | 0 |
-| **Total** | **32** | **7** | **4** |
+| Early clients, gen 1 relay and gen 2 GSERV/GNW (1st Graal to 1.39) | 12 | 3 | 0 |
+| **Total** | **36** | **5** | **4** |
 
 **Early clients (2026-11-19, [`early-clients-probe-2026-11-19.md`](early-clients-probe-2026-11-19.md)):** gen-2 parse rules, `PLI_PACKETCOUNT` cadence, prop 31 as the UDP port, own-prop widths per build, and the relay join, pairing, `I` and line-length rules on 18 betas.
 
@@ -104,8 +104,10 @@ From [`early-clients-probe-2026-11-19.md`](early-clients-probe-2026-11-19.md); r
 | Relay pairing and state push | resolved | `+` answered with `P` only when unpartnered; the server's `P` triggers a `D` push whose types grow by build (`Y` from 4th alpha, `7` from 10th) |
 | Relay `I` (own id) | resolved | 8 decimal digits; shorter ignored; sender id = id mod 16384 |
 | Relay line length | resolved | 10th–15th and 1.1 reset the connection on a 1104-byte line; 1st–9th and 1.1.9 keep it |
-| `PLO_OTHERPLPROPS` player-id width on 1.35 vs 1.36 | open | neither id form drew a player on 1.34–1.37; needs a second real client |
-| Own props with no simple layout (23 on 1.34–1.39, and the `—` cells) | open | sweep two-field layouts (byte + byte, byte + GSHORT) |
-| 1.1.9 state push to a fake peer | open | answers the join `+` with `P` but pushes nothing and ignores later lobby lines; a real second 1.1.9 does get a push |
-| 1.21 | open | different start form; tree prepared (1.28b2 image folders), login not attempted |
-| 5th Graal alpha, 9th Graal alpha | open | never reached the relay in two tries each (9th alpha needed `commands.rtf` first) |
+| `PLO_OTHERPLPROPS` player-id width on 1.35 vs 1.36 | resolved | with the viewer's level (prop 20) in the message, 1.35 draws only the one-byte-id form and 1.36/1.39 only the GSHORT form; 1.28b2 draws neither (open below) |
+| Own props with no simple layout (8–11, 13, 23) | resolved | 8/9: byte, image string when ≥ 30/≥ 10; 10/11: byte, raw image bytes when ≥ 10/≥ 100; 13: five bytes everywhere (1.28b2–1.32 stop at colour index 90); 23: zero, or nonzero + four bytes |
+| 1.1.9 state push to a fake peer | open | answers `+` only right at its join (also with `C` first, never when 2–10 s late) and never pushes to a fake peer; a real second 1.1.9 gets a push |
+| 1.21 | resolved | combo start form with account/password, needs the 1.28b2 image folders; same parse rules as 1.28b2–1.39, reads props 0–24 |
+| 5th Graal alpha, 9th Graal alpha | resolved | archives lack levels/graphics; with the data files supplied both reach the relay and pair. Without its start level the 5th alpha closes both relay sockets at once |
+| 1.28b2 drawing an injected other player | open | no form tried was drawn |
+| 9th Graal leaving the bare `G5` room | open | needs its web start level from the historical host |

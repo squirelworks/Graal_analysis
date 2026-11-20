@@ -4523,3 +4523,341 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-20	win-5.24r4 (wine)	input	34	-	Alt+Return	-	yes	34 check for pics1.png	the display-mode toggle reloads tiles	fzk-kc524b	K16
 2026-11-20	win-5.24r4 (wine)	input	157	-	a, Space, Right into a wall	-	yes	157 with the gani name the first time each gani is used, plus 34 for its .gani	a = grab, Space = sword, walking into a wall = push	fzk-kc524b	K05-K10
 2026-11-20	win-5.24r4 (wine)	input	34	-	Escape	-	yes	34 checks for guiblue_window.png and guiblue_button.png	Escape opens a GUI window (not the 2.x quit box)	fzk-kc524b	K18
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	3	9 c:3 i3:4321 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	p3-i3
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	4	9 c:4 c:7 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	p4-c
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	0	9 c:0 str:probe c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	p0-str
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	12	9 c:12 str:hi c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	p12-str
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	40	9 c:40 c:1 c:5 c:99	no	yes	none	same as 1.28b2-1.39 (see early-clients note) [ignored-rest]	w121-row	p40-c1
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	50	9 c:50 c:1 c:5 c:99	no	yes	none	same as 1.28b2-1.39 (see early-clients note) [ignored-rest]	w121-row	p50-c1
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	83	9 c:83 i5:1234 c:5 c:99	no	yes	none	same as 1.28b2-1.39 (see early-clients note) [ignored-rest]	w121-row	p83-i5
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	90	9 c:90 i3:300000 c:5 c:99	no	yes	none	same as 1.28b2-1.39 (see early-clients note) [ignored-rest]	w121-row	p90-i3
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	42	-	42 | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	plo42-empty
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	42	-	42 c:1 | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	plo42-c1
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	42	-	42 t:"probe body 0123456789" | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	plo42-text
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	42	-	42 hex:ff00ff00 | 9 c:5 c:99	no	yes	none	same as 1.28b2-1.39 (see early-clients note) [ignored-rest]	w121-row	plo42-bin
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	60	-	60 | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	plo60-empty
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	60	-	60 c:1 | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	plo60-c1
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	60	-	60 t:"probe body 0123456789" | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	plo60-text
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	60	-	60 hex:ff00ff00 | 9 c:5 c:99	no	yes	none	same as 1.28b2-1.39 (see early-clients note) [ignored-rest]	w121-row	plo60-bin
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	110	-	110 | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	plo110-empty
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	110	-	110 c:1 | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	plo110-c1
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	110	-	110 t:"probe body 0123456789" | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	plo110-text
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	110	-	110 hex:ff00ff00 | 9 c:5 c:99	no	yes	none	same as 1.28b2-1.39 (see early-clients note) [ignored-rest]	w121-row	plo110-bin
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	30	-	30 | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	plo30-empty
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	0	9 c:0 hex:23610062 c:5 c:99	no	yes	none	same as 1.28b2-1.39 (see early-clients note) [ignored-rest]	w121-row	nul-nick
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	0	9 c:0 hex:2361ff62 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	high-nick
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	12	9 c:12 hex:2100 c:5 c:99	no	yes	none	same as 1.28b2-1.39 (see early-clients note) [ignored-rest]	w121-row	nul-chat
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	5	9 c:5 b:0 | 9 c:5 c:99	no	yes	none	same as 1.28b2-1.39 (see early-clients note) [ignored-rest]	w121-row	raw0-bombs
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	3	9 c:3 hex:ffffff c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	high-rupees
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	-32	-	-32 t:junk | 9 c:5 c:99	no	yes	none	same as 1.28b2-1.39 (see early-clients note) [ignored-rest]	w121-row	id00
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	-1	-	-1 t:junk | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	id1f
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	95	-	95 t:junk | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	id7f
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	223	-	223 t:junk | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	idff
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	raw	-	raw hex:0a | 9 c:5 c:99	no	yes	none	same as 1.28b2-1.39 (see early-clients note) [ignored-rest]	w121-row	emptyline
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	4	9 c:4 c:7 hex:0d | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	cr-in-props
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	0	9 c:0 b:255 rep:223:A c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	nick-223
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	3	9 c:3 | 9 c:5 c:99	yes	yes	none	same as 1.28b2-1.39 (see early-clients note) [ok]	w121-row	trunc-prop
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	0	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 0 read as str	w121-sweep	w00
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	1	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 1 read as c	w121-sweep	w01
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	2	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 2 read as c	w121-sweep	w02
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	3	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 3 read as i3	w121-sweep	w03
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	4	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 4 read as c	w121-sweep	w04
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	6	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 6 read as c	w121-sweep	w06
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	7	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 7 read as c	w121-sweep	w07
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	8	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 8 read as c	w121-sweep	w08
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	9	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 9 read as c	w121-sweep	w09
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	10	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 10 read as c	w121-sweep	w10
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	11	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 11 read as c	w121-sweep	w11
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	12	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 12 read as str	w121-sweep	w12
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	13	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 13 read as i5	w121-sweep	w13
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	14	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 14 read as c	w121-sweep	w14
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	15	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 15 read as c	w121-sweep	w15
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	16	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 16: unreadable (a small X/Y scrolls the HUD over bright tiles)	w121-sweep	w16
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	17	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 17 read as c	w121-sweep	w17
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	18	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 18 read as c	w121-sweep	w18
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	19	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 19 read as c	w121-sweep	w19
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	20	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 20 read as str	w121-sweep	w20
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	21	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 21 read as str	w121-sweep	w21
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	22	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 22 read as c	w121-sweep	w22
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	23	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 23: no simple layout or past the last prop (message ends)	w121-sweep	w23
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	24	width sweep c/s/i3/i5/str/cstr + bombs canary	yes	yes	none	own prop 24 read as i3	w121-sweep	w24
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	25	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 25: no simple layout or past the last prop (message ends)	w121-sweep	w25
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	26	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 26: no simple layout or past the last prop (message ends)	w121-sweep	w26
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	27	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 27: no simple layout or past the last prop (message ends)	w121-sweep	w27
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	28	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 28: no simple layout or past the last prop (message ends)	w121-sweep	w28
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	29	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 29: no simple layout or past the last prop (message ends)	w121-sweep	w29
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	30	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 30: no simple layout or past the last prop (message ends)	w121-sweep	w30
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	31	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 31: no simple layout or past the last prop (message ends)	w121-sweep	w31
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	32	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 32: no simple layout or past the last prop (message ends)	w121-sweep	w32
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	33	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 33: no simple layout or past the last prop (message ends)	w121-sweep	w33
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	34	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 34: no simple layout or past the last prop (message ends)	w121-sweep	w34
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	35	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 35: no simple layout or past the last prop (message ends)	w121-sweep	w35
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	36	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 36: no simple layout or past the last prop (message ends)	w121-sweep	w36
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	37	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 37: no simple layout or past the last prop (message ends)	w121-sweep	w37
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	38	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 38: no simple layout or past the last prop (message ends)	w121-sweep	w38
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	39	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 39: no simple layout or past the last prop (message ends)	w121-sweep	w39
+2026-11-20	win-1.21 (gen 2, GSERV007)	s2c	9	40	width sweep c/s/i3/i5/str/cstr + bombs canary	no	yes	none	own prop 40: no simple layout or past the last prop (message ends)	w121-sweep	w40
+2026-11-20	win-1.21 (gen 2)	s2c	9	8	9 c:8 c:31 str:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w121-compound	p08-pow-img
+2026-11-20	win-1.21 (gen 2)	s2c	9	8	9 c:8 c:31 c:5 c:99	no	yes	none	compound layout row: canary lost	w121-compound	p08-pow
+2026-11-20	win-1.21 (gen 2)	s2c	9	9	9 c:9 c:11 str:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w121-compound	p09-pow-img
+2026-11-20	win-1.21 (gen 2)	s2c	9	9	9 c:9 c:11 c:5 c:99	no	yes	none	compound layout row: canary lost	w121-compound	p09-pow
+2026-11-20	win-1.21 (gen 2)	s2c	9	10	9 c:10 c:16 t:abcdef c:5 c:99	yes	yes	none	compound layout row: canary landed	w121-compound	p10-len-img
+2026-11-20	win-1.21 (gen 2)	s2c	9	10	9 c:10 c:3 c:5 c:99	yes	yes	25	compound layout row: canary landed	w121-compound	p10-pow
+2026-11-20	win-1.21 (gen 2)	s2c	9	11	9 c:11 c:106 t:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w121-compound	p11-len-img
+2026-11-20	win-1.21 (gen 2)	s2c	9	11	9 c:11 c:3 c:5 c:99	yes	yes	none	compound layout row: canary landed	w121-compound	p11-num
+2026-11-20	win-1.21 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w121-compound	p13-4
+2026-11-20	win-1.21 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:5 c:99	yes	yes	none	compound layout row: canary landed	w121-compound	p13-5
+2026-11-20	win-1.21 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:5 c:99	no	yes	none	compound layout row: canary lost	w121-compound	p13-3
+2026-11-20	win-1.21 (gen 2)	s2c	9	23	9 c:23 c:0 c:5 c:99	yes	yes	none	compound layout row: canary landed	w121-compound	p23-zero
+2026-11-20	win-1.21 (gen 2)	s2c	9	23	9 c:23 c:1 c:5 c:99	no	yes	none	compound layout row: canary lost	w121-compound	p23-one
+2026-11-20	win-1.21 (gen 2)	s2c	9	23	9 c:23 c:4 c:1 c:2 c:3 c:4 c:5 c:99	yes	yes	none	compound layout row: canary landed	w121-compound	p23-n4
+2026-11-20	win-1.21 (gen 2)	s2c	9	23	9 c:23 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w121-compound	p23-rgba
+2026-11-20	win-1.21 (gen 2)	s2c	9	23	9 c:23 c:2 c:1 c:2 c:5 c:99	no	yes	none	compound layout row: canary lost	w121-compound	p23-n2
+2026-11-20	win-1.21 (gen 2)	s2c	9	23	9 c:23 c:1 c:7 c:5 c:99	no	yes	none	compound layout row: canary lost	w121-compound	p23-n1
+2026-11-20	win-1.21 (gen 2)	s2c	9	23	9 c:23 c:9 c:1 c:2 c:3 c:4 c:5 c:99	yes	yes	none	compound layout row: canary landed	w121-compound	p23-nz9
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	8	9 c:8 c:31 str:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w128-compound	p08-pow-img
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	8	9 c:8 c:31 c:5 c:99	no	yes	none	compound layout row: canary lost	w128-compound	p08-pow
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	9	9 c:9 c:11 str:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w128-compound	p09-pow-img
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	9	9 c:9 c:11 c:5 c:99	no	yes	none	compound layout row: canary lost	w128-compound	p09-pow
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	10	9 c:10 c:16 t:abcdef c:5 c:99	yes	yes	none	compound layout row: canary landed	w128-compound	p10-len-img
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	10	9 c:10 c:3 c:5 c:99	yes	yes	25	compound layout row: canary landed	w128-compound	p10-pow
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	11	9 c:11 c:106 t:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w128-compound	p11-len-img
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	11	9 c:11 c:3 c:5 c:99	yes	yes	none	compound layout row: canary landed	w128-compound	p11-num
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w128-compound	p13-4
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:5 c:99	yes	yes	none	compound layout row: canary landed	w128-compound	p13-5
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:5 c:99	no	yes	none	compound layout row: canary lost	w128-compound	p13-3
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	23	9 c:23 c:0 c:5 c:99	yes	yes	none	compound layout row: canary landed	w128-compound	p23-zero
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	23	9 c:23 c:1 c:5 c:99	no	yes	none	compound layout row: canary lost	w128-compound	p23-one
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	23	9 c:23 c:4 c:1 c:2 c:3 c:4 c:5 c:99	yes	yes	none	compound layout row: canary landed	w128-compound	p23-n4
+2026-11-20	win-1.28b2 (gen 2)	s2c	9	23	9 c:23 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w128-compound	p23-rgba
+2026-11-20	win-1.3test (gen 2)	s2c	9	8	9 c:8 c:31 str:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w13-compound	p08-pow-img
+2026-11-20	win-1.3test (gen 2)	s2c	9	8	9 c:8 c:31 c:5 c:99	no	yes	none	compound layout row: canary lost	w13-compound	p08-pow
+2026-11-20	win-1.3test (gen 2)	s2c	9	9	9 c:9 c:11 str:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w13-compound	p09-pow-img
+2026-11-20	win-1.3test (gen 2)	s2c	9	9	9 c:9 c:11 c:5 c:99	no	yes	none	compound layout row: canary lost	w13-compound	p09-pow
+2026-11-20	win-1.3test (gen 2)	s2c	9	10	9 c:10 c:16 t:abcdef c:5 c:99	yes	yes	none	compound layout row: canary landed	w13-compound	p10-len-img
+2026-11-20	win-1.3test (gen 2)	s2c	9	10	9 c:10 c:3 c:5 c:99	yes	yes	25	compound layout row: canary landed	w13-compound	p10-pow
+2026-11-20	win-1.3test (gen 2)	s2c	9	11	9 c:11 c:106 t:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w13-compound	p11-len-img
+2026-11-20	win-1.3test (gen 2)	s2c	9	11	9 c:11 c:3 c:5 c:99	yes	yes	none	compound layout row: canary landed	w13-compound	p11-num
+2026-11-20	win-1.3test (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w13-compound	p13-4
+2026-11-20	win-1.3test (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:5 c:99	yes	yes	none	compound layout row: canary landed	w13-compound	p13-5
+2026-11-20	win-1.3test (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:5 c:99	no	yes	none	compound layout row: canary lost	w13-compound	p13-3
+2026-11-20	win-1.3test (gen 2)	s2c	9	23	9 c:23 c:0 c:5 c:99	yes	yes	none	compound layout row: canary landed	w13-compound	p23-zero
+2026-11-20	win-1.3test (gen 2)	s2c	9	23	9 c:23 c:1 c:5 c:99	no	yes	none	compound layout row: canary lost	w13-compound	p23-one
+2026-11-20	win-1.3test (gen 2)	s2c	9	23	9 c:23 c:4 c:1 c:2 c:3 c:4 c:5 c:99	yes	yes	none	compound layout row: canary landed	w13-compound	p23-n4
+2026-11-20	win-1.3test (gen 2)	s2c	9	23	9 c:23 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w13-compound	p23-rgba
+2026-11-20	win-1.32 (gen 2)	s2c	9	8	9 c:8 c:31 str:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w132-compound	p08-pow-img
+2026-11-20	win-1.32 (gen 2)	s2c	9	8	9 c:8 c:31 c:5 c:99	no	yes	none	compound layout row: canary lost	w132-compound	p08-pow
+2026-11-20	win-1.32 (gen 2)	s2c	9	9	9 c:9 c:11 str:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w132-compound	p09-pow-img
+2026-11-20	win-1.32 (gen 2)	s2c	9	9	9 c:9 c:11 c:5 c:99	no	yes	none	compound layout row: canary lost	w132-compound	p09-pow
+2026-11-20	win-1.32 (gen 2)	s2c	9	10	9 c:10 c:16 t:abcdef c:5 c:99	yes	yes	none	compound layout row: canary landed	w132-compound	p10-len-img
+2026-11-20	win-1.32 (gen 2)	s2c	9	10	9 c:10 c:3 c:5 c:99	yes	yes	25	compound layout row: canary landed	w132-compound	p10-pow
+2026-11-20	win-1.32 (gen 2)	s2c	9	11	9 c:11 c:106 t:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w132-compound	p11-len-img
+2026-11-20	win-1.32 (gen 2)	s2c	9	11	9 c:11 c:3 c:5 c:99	yes	yes	none	compound layout row: canary landed	w132-compound	p11-num
+2026-11-20	win-1.32 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w132-compound	p13-4
+2026-11-20	win-1.32 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:5 c:99	yes	yes	none	compound layout row: canary landed	w132-compound	p13-5
+2026-11-20	win-1.32 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:5 c:99	no	yes	none	compound layout row: canary lost	w132-compound	p13-3
+2026-11-20	win-1.32 (gen 2)	s2c	9	23	9 c:23 c:0 c:5 c:99	yes	yes	none	compound layout row: canary landed	w132-compound	p23-zero
+2026-11-20	win-1.32 (gen 2)	s2c	9	23	9 c:23 c:1 c:5 c:99	no	yes	none	compound layout row: canary lost	w132-compound	p23-one
+2026-11-20	win-1.32 (gen 2)	s2c	9	23	9 c:23 c:4 c:1 c:2 c:3 c:4 c:5 c:99	yes	yes	none	compound layout row: canary landed	w132-compound	p23-n4
+2026-11-20	win-1.32 (gen 2)	s2c	9	23	9 c:23 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w132-compound	p23-rgba
+2026-11-20	win-1.35 (gen 2)	s2c	9	8	9 c:8 c:31 str:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w135-compound	p08-pow-img
+2026-11-20	win-1.35 (gen 2)	s2c	9	8	9 c:8 c:31 c:5 c:99	no	yes	23	compound layout row: canary lost	w135-compound	p08-pow
+2026-11-20	win-1.35 (gen 2)	s2c	9	9	9 c:9 c:11 str:abcdef c:5 c:99	yes	yes	none	compound layout row: canary landed	w135-compound	p09-pow-img
+2026-11-20	win-1.35 (gen 2)	s2c	9	9	9 c:9 c:11 c:5 c:99	no	yes	none	compound layout row: canary lost	w135-compound	p09-pow
+2026-11-20	win-1.35 (gen 2)	s2c	9	10	9 c:10 c:16 t:abcdef c:5 c:99	yes	yes	none	compound layout row: canary landed	w135-compound	p10-len-img
+2026-11-20	win-1.35 (gen 2)	s2c	9	10	9 c:10 c:3 c:5 c:99	yes	yes	25	compound layout row: canary landed	w135-compound	p10-pow
+2026-11-20	win-1.35 (gen 2)	s2c	9	11	9 c:11 c:106 t:abcdef c:5 c:99	yes	yes	none	compound layout row: canary landed	w135-compound	p11-len-img
+2026-11-20	win-1.35 (gen 2)	s2c	9	11	9 c:11 c:3 c:5 c:99	yes	yes	none	compound layout row: canary landed	w135-compound	p11-num
+2026-11-20	win-1.35 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w135-compound	p13-4
+2026-11-20	win-1.35 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:5 c:99	yes	yes	none	compound layout row: canary landed	w135-compound	p13-5
+2026-11-20	win-1.35 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:5 c:99	no	yes	none	compound layout row: canary lost	w135-compound	p13-3
+2026-11-20	win-1.35 (gen 2)	s2c	9	23	9 c:23 c:0 c:5 c:99	yes	yes	none	compound layout row: canary landed	w135-compound	p23-zero
+2026-11-20	win-1.35 (gen 2)	s2c	9	23	9 c:23 c:1 c:5 c:99	no	yes	none	compound layout row: canary lost	w135-compound	p23-one
+2026-11-20	win-1.35 (gen 2)	s2c	9	23	9 c:23 c:4 c:1 c:2 c:3 c:4 c:5 c:99	yes	yes	none	compound layout row: canary landed	w135-compound	p23-n4
+2026-11-20	win-1.35 (gen 2)	s2c	9	23	9 c:23 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w135-compound	p23-rgba
+2026-11-20	win-1.36 (gen 2)	s2c	9	8	9 c:8 c:31 str:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w136-compound	p08-pow-img
+2026-11-20	win-1.36 (gen 2)	s2c	9	8	9 c:8 c:31 c:5 c:99	no	yes	23	compound layout row: canary lost	w136-compound	p08-pow
+2026-11-20	win-1.36 (gen 2)	s2c	9	9	9 c:9 c:11 str:abcdef c:5 c:99	yes	yes	none	compound layout row: canary landed	w136-compound	p09-pow-img
+2026-11-20	win-1.36 (gen 2)	s2c	9	9	9 c:9 c:11 c:5 c:99	no	yes	none	compound layout row: canary lost	w136-compound	p09-pow
+2026-11-20	win-1.36 (gen 2)	s2c	9	10	9 c:10 c:16 t:abcdef c:5 c:99	yes	yes	none	compound layout row: canary landed	w136-compound	p10-len-img
+2026-11-20	win-1.36 (gen 2)	s2c	9	10	9 c:10 c:3 c:5 c:99	yes	yes	25	compound layout row: canary landed	w136-compound	p10-pow
+2026-11-20	win-1.36 (gen 2)	s2c	9	11	9 c:11 c:106 t:abcdef c:5 c:99	yes	yes	none	compound layout row: canary landed	w136-compound	p11-len-img
+2026-11-20	win-1.36 (gen 2)	s2c	9	11	9 c:11 c:3 c:5 c:99	yes	yes	none	compound layout row: canary landed	w136-compound	p11-num
+2026-11-20	win-1.36 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w136-compound	p13-4
+2026-11-20	win-1.36 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:5 c:99	yes	yes	none	compound layout row: canary landed	w136-compound	p13-5
+2026-11-20	win-1.36 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:5 c:99	no	yes	none	compound layout row: canary lost	w136-compound	p13-3
+2026-11-20	win-1.36 (gen 2)	s2c	9	23	9 c:23 c:0 c:5 c:99	yes	yes	none	compound layout row: canary landed	w136-compound	p23-zero
+2026-11-20	win-1.36 (gen 2)	s2c	9	23	9 c:23 c:1 c:5 c:99	no	yes	none	compound layout row: canary lost	w136-compound	p23-one
+2026-11-20	win-1.36 (gen 2)	s2c	9	23	9 c:23 c:4 c:1 c:2 c:3 c:4 c:5 c:99	yes	yes	none	compound layout row: canary landed	w136-compound	p23-n4
+2026-11-20	win-1.36 (gen 2)	s2c	9	23	9 c:23 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w136-compound	p23-rgba
+2026-11-20	win-1.39 (gen 2)	s2c	9	8	9 c:8 c:31 str:abcdef c:5 c:99	yes	yes	23	compound layout row: canary landed	w139-compound	p08-pow-img
+2026-11-20	win-1.39 (gen 2)	s2c	9	8	9 c:8 c:31 c:5 c:99	no	yes	23	compound layout row: canary lost	w139-compound	p08-pow
+2026-11-20	win-1.39 (gen 2)	s2c	9	9	9 c:9 c:11 str:abcdef c:5 c:99	yes	yes	none	compound layout row: canary landed	w139-compound	p09-pow-img
+2026-11-20	win-1.39 (gen 2)	s2c	9	9	9 c:9 c:11 c:5 c:99	no	yes	none	compound layout row: canary lost	w139-compound	p09-pow
+2026-11-20	win-1.39 (gen 2)	s2c	9	10	9 c:10 c:16 t:abcdef c:5 c:99	yes	yes	none	compound layout row: canary landed	w139-compound	p10-len-img
+2026-11-20	win-1.39 (gen 2)	s2c	9	10	9 c:10 c:3 c:5 c:99	yes	yes	33	compound layout row: canary landed	w139-compound	p10-pow
+2026-11-20	win-1.39 (gen 2)	s2c	9	11	9 c:11 c:106 t:abcdef c:5 c:99	yes	yes	none	compound layout row: canary landed	w139-compound	p11-len-img
+2026-11-20	win-1.39 (gen 2)	s2c	9	11	9 c:11 c:3 c:5 c:99	yes	yes	none	compound layout row: canary landed	w139-compound	p11-num
+2026-11-20	win-1.39 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w139-compound	p13-4
+2026-11-20	win-1.39 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:4 c:5 c:5 c:99	yes	yes	none	compound layout row: canary landed	w139-compound	p13-5
+2026-11-20	win-1.39 (gen 2)	s2c	9	13	9 c:13 c:1 c:2 c:3 c:5 c:99	no	yes	none	compound layout row: canary lost	w139-compound	p13-3
+2026-11-20	win-1.39 (gen 2)	s2c	9	23	9 c:23 c:0 c:5 c:99	yes	yes	none	compound layout row: canary landed	w139-compound	p23-zero
+2026-11-20	win-1.39 (gen 2)	s2c	9	23	9 c:23 c:1 c:5 c:99	no	yes	none	compound layout row: canary lost	w139-compound	p23-one
+2026-11-20	win-1.39 (gen 2)	s2c	9	23	9 c:23 c:4 c:1 c:2 c:3 c:4 c:5 c:99	yes	yes	none	compound layout row: canary landed	w139-compound	p23-n4
+2026-11-20	win-1.39 (gen 2)	s2c	9	23	9 c:23 c:1 c:2 c:3 c:4 c:5 c:99	no	yes	none	compound layout row: canary lost	w139-compound	p23-rgba
+2026-11-20	win-1.39 (gen 2)	s2c	9	23	9 c:23 c:2 c:1 c:2 c:5 c:99	no	yes	none	compound layout row: canary lost	w139-compound	p23-n2
+2026-11-20	win-1.39 (gen 2)	s2c	9	23	9 c:23 c:1 c:7 c:5 c:99	no	yes	none	compound layout row: canary lost	w139-compound	p23-n1
+2026-11-20	win-1.39 (gen 2)	s2c	9	23	9 c:23 c:9 c:1 c:2 c:3 c:4 c:5 c:99	yes	yes	none	compound layout row: canary landed	w139-compound	p23-nz9
+2026-11-20	win-1.28b2 (gen 2)	s2c	8	-	8 c:7 c:0 str:one c:20 str:<own level> c:15 c:52 c:16 c:60 c:17 c:2 c:13 (5) c:11 c:3	-	yes	none	other player drawn: no	w128-pl8	pl8-1byte-lvl
+2026-11-20	win-1.28b2 (gen 2)	s2c	8	-	8 s:9 c:0 str:two c:20 str:<own level> c:15 c:70 c:16 c:60 c:17 c:2 c:13 (5) c:11 c:3	-	yes	none	other player drawn: no	w128-pl8	pl8-2byte-lvl
+2026-11-20	win-1.28b2 (gen 2)	s2c	8	-	8 s:11 c:20 str:<own level> c:0 str:three c:15 c:60 c:16 c:56 c:17 c:2	-	yes	none	other player drawn: no	w128-pl8	pl8-lvl-first
+2026-11-20	win-1.35 (gen 2)	s2c	8	-	8 c:7 c:0 str:one c:20 str:<own level> c:15 c:52 c:16 c:60 c:17 c:2 c:13 (5) c:11 c:3	-	yes	none	other player drawn: yes	w135-pl8	pl8-1byte-lvl
+2026-11-20	win-1.35 (gen 2)	s2c	8	-	8 s:9 c:0 str:two c:20 str:<own level> c:15 c:70 c:16 c:60 c:17 c:2 c:13 (5) c:11 c:3	-	yes	none	other player drawn: no	w135-pl8	pl8-2byte-lvl
+2026-11-20	win-1.35 (gen 2)	s2c	8	-	8 s:11 c:20 str:<own level> c:0 str:three c:15 c:60 c:16 c:56 c:17 c:2	-	yes	none	other player drawn: no	w135-pl8	pl8-lvl-first
+2026-11-20	win-1.36 (gen 2)	s2c	8	-	8 c:7 c:0 str:one c:20 str:<own level> c:15 c:52 c:16 c:60 c:17 c:2 c:13 (5) c:11 c:3	-	yes	none	other player drawn: no	w136-pl8	pl8-1byte-lvl
+2026-11-20	win-1.36 (gen 2)	s2c	8	-	8 s:9 c:0 str:two c:20 str:<own level> c:15 c:70 c:16 c:60 c:17 c:2 c:13 (5) c:11 c:3	-	yes	none	other player drawn: yes	w136-pl8	pl8-2byte-lvl
+2026-11-20	win-1.36 (gen 2)	s2c	8	-	8 s:11 c:20 str:<own level> c:0 str:three c:15 c:60 c:16 c:56 c:17 c:2	-	yes	none	other player drawn: yes	w136-pl8	pl8-lvl-first
+2026-11-20	win-1.39 (gen 2)	s2c	8	-	8 c:7 c:0 str:one c:20 str:<own level> c:15 c:52 c:16 c:60 c:17 c:2 c:13 (5) c:11 c:3	-	yes	none	other player drawn: no	w139-pl8	pl8-1byte-lvl
+2026-11-20	win-1.39 (gen 2)	s2c	8	-	8 s:9 c:0 str:two c:20 str:<own level> c:15 c:70 c:16 c:60 c:17 c:2 c:13 (5) c:11 c:3	-	yes	none	other player drawn: yes	w139-pl8	pl8-2byte-lvl
+2026-11-20	win-1.39 (gen 2)	s2c	8	-	8 s:11 c:20 str:<own level> c:0 str:three c:15 c:60 c:16 c:56 c:17 c:2	-	yes	none	other player drawn: yes	w139-pl8	pl8-lvl-first
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	I	-	I12	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	lobby-I-short
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	I	-	I9999999999999999999999999999999999999999	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	lobby-I-long
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	+	-	+	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	lobby-plus-empty
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	+	-	+AAAAAAAAAAAAAAAAAAAAAAA...(301 bytes)	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	lobby-plus-long
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	P	-	P00009999	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	lobby-P-unknown
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	C	-	C	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	lobby-C-empty
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	-	-	`-` + id 7777 as 8 digits	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	lobby-minus-unknown
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	Z	-	Zprobe	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	lobby-unknown-cmd
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	N	-	NR	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	lobby-NR
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	N	-	NX	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	lobby-NX
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	D	-	D	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-empty
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	D	-	DmL	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-sid-only
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	D~	-	DmL~probe	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-type-unknown
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DC	-	DmLCprobe chat	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-chat
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DC	-	DmLC\xff\xfe\x80	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-chat-high
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DC	-	DmLCxxxxxxxxxxxxxxxxxxxx...(1104 bytes)	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-chat-1100
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DN	-	DmLNnnnnnnnnnnnnnnnnnnnn...(604 bytes)	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-nick-long
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DP	-	DmLP	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-pos-short
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DP	-	DmLP\xff\xff\xff	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-pos-high
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DB	-	DmLB!!	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-board-short
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DB	-	DmLB  \xff!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-board-big
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DM	-	DmLM!	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-baddy-M-short
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DS	-	DmLS\xff!!!!!!!!!!!!!!!!!!!!	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-colours-many
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DT	-	DmLT!	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-time-short
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	D3	-	DmL3	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-carry-npc-short
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DD	-	DmLD\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-dead-list
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	Df	-	D\xff\xffCfrom nobody	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	d-unknown-sid
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DC	-	DmLCa\x00b	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	line-nul
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	DC	-	DmLCab\r	-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	line-cr
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	LF	-		-	yes	none	no reply; both relay connections kept [alive]	w5thalpha-row	emptyline
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	I	-	I12	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	lobby-I-short
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	I	-	I9999999999999999999999999999999999999999	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	lobby-I-long
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	+	-	+	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	lobby-plus-empty
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	+	-	+AAAAAAAAAAAAAAAAAAAAAAA...(301 bytes)	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	lobby-plus-long
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	P	-	P00009999	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	lobby-P-unknown
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	C	-	C	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	lobby-C-empty
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	-	-	`-` + id 7777 as 8 digits	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	lobby-minus-unknown
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	Z	-	Zprobe	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	lobby-unknown-cmd
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	N	-	NR	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	lobby-NR
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	N	-	NX	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	lobby-NX
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	D	-	D	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-empty
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	D	-	DmL	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-sid-only
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	D~	-	DmL~probe	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-type-unknown
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DC	-	DmLCprobe chat	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-chat
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DC	-	DmLC\xff\xfe\x80	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-chat-high
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DC	-	DmLCxxxxxxxxxxxxxxxxxxxx...(1104 bytes)	-	yes	D,P	no reply; both relay connections kept [alive]	w9thalpha-row	d-chat-1100
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DN	-	DmLNnnnnnnnnnnnnnnnnnnnn...(604 bytes)	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-nick-long
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DP	-	DmLP	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-pos-short
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DP	-	DmLP\xff\xff\xff	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-pos-high
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DB	-	DmLB!!	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-board-short
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DB	-	DmLB  \xff!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-board-big
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DM	-	DmLM!	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-baddy-M-short
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DS	-	DmLS\xff!!!!!!!!!!!!!!!!!!!!	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-colours-many
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DT	-	DmLT!	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-time-short
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	D3	-	DmL3	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-carry-npc-short
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DD	-	DmLD\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-dead-list
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	Df	-	D\xff\xffCfrom nobody	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	d-unknown-sid
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DC	-	DmLCa\x00b	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	line-nul
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	DC	-	DmLCab\r	-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	line-cr
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	LF	-		-	yes	none	no reply; both relay connections kept [alive]	w9thalpha-row	emptyline
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	I	-	I12	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	lobby-I-short
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	I	-	I9999999999999999999999999999999999999999	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	lobby-I-long
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	+	-	+	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	lobby-plus-empty
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	+	-	+AAAAAAAAAAAAAAAAAAAAAAA...(301 bytes)	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	lobby-plus-long
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	P	-	P00009999	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	lobby-P-unknown
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	C	-	C	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	lobby-C-empty
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	-	-	`-` + id 7777 as 8 digits	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	lobby-minus-unknown
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	Z	-	Zprobe	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	lobby-unknown-cmd
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	N	-	NR	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	lobby-NR
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	N	-	NX	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	lobby-NX
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	D	-	D	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-empty
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	D	-	DmL	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-sid-only
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	D~	-	DmL~probe	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-type-unknown
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DC	-	DmLCprobe chat	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-chat
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DC	-	DmLC\xff\xfe\x80	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-chat-high
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DC	-	DmLCxxxxxxxxxxxxxxxxxxxx...(1104 bytes)	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-chat-1100
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DN	-	DmLNnnnnnnnnnnnnnnnnnnnn...(604 bytes)	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-nick-long
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DP	-	DmLP	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-pos-short
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DP	-	DmLP\xff\xff\xff	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-pos-high
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DB	-	DmLB!!	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-board-short
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DB	-	DmLB  \xff!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-board-big
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DM	-	DmLM!	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-baddy-M-short
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DS	-	DmLS\xff!!!!!!!!!!!!!!!!!!!!	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-colours-many
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DT	-	DmLT!	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-time-short
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	D3	-	DmL3	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-carry-npc-short
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DD	-	DmLD\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-dead-list
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	Df	-	D\xff\xffCfrom nobody	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	d-unknown-sid
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DC	-	DmLCa\x00b	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	line-nul
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	DC	-	DmLCab\r	-	yes	none	no reply; both relay connections kept [alive]	w9th-row	line-cr
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	LF	-		-	yes	none	no reply; both relay connections kept [alive]	w9th-row	emptyline
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	I12345678	-	yes	nothing	own sender ids seen {}	w5thalpha-lobby	I-8digits
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	I123456789	-	yes	nothing	own sender ids seen {}	w5thalpha-lobby	I-9digits
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	I1234567	-	yes	nothing	own sender ids seen {}	w5thalpha-lobby	I-7digits
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	I1234567x	-	yes	nothing	own sender ids seen {}	w5thalpha-lobby	I-nondigit
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	I00000005junk	-	yes	nothing	own sender ids seen {}	w5thalpha-lobby	I-junk-after
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	I	-	yes	nothing	own sender ids seen {}	w5thalpha-lobby	I-empty
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	I00000001	-	yes	nothing	own sender ids seen {}	w5thalpha-lobby	I-reset
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	C00009900	-	yes	nothing	own sender ids seen {}	w5thalpha-lobby	C-partner
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	P00009900	-	yes	nothing	own sender ids seen {}	w5thalpha-lobby	P-partner-again
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	+00009900def	-	yes	nothing	own sender ids seen {}	w5thalpha-lobby	plus-partner-again
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	`-` + id 9900 as 8 digits	-	yes	nothing	own sender ids seen {}	w5thalpha-lobby	minus-partner
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	+00009800def	-	yes	c1:P00009800	own sender ids seen {}	w5thalpha-lobby	plus-new-peer
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	P00009800	-	yes	c1:DT c1:DP c1:DY c1:DC c1:DN c1:DS	own sender ids seen {1: 6}	w5thalpha-lobby	P-new-peer
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	NL	-	yes	nothing	own sender ids seen {}	w5thalpha-lobby	NL-alone
+2026-11-20	win-5th Graal alpha (gen 1 relay)	s2c	lobby	-	NR	-	yes	nothing	own sender ids seen {}	w5thalpha-lobby	NR-alone
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	I12345678	-	yes	nothing	own sender ids seen {}	w9thalpha-lobby	I-8digits
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	I123456789	-	yes	nothing	own sender ids seen {}	w9thalpha-lobby	I-9digits
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	I1234567	-	yes	nothing	own sender ids seen {}	w9thalpha-lobby	I-7digits
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	I1234567x	-	yes	nothing	own sender ids seen {}	w9thalpha-lobby	I-nondigit
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	I00000005junk	-	yes	nothing	own sender ids seen {}	w9thalpha-lobby	I-junk-after
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	I	-	yes	nothing	own sender ids seen {}	w9thalpha-lobby	I-empty
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	I00000001	-	yes	nothing	own sender ids seen {}	w9thalpha-lobby	I-reset
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	C00009900	-	yes	nothing	own sender ids seen {}	w9thalpha-lobby	C-partner
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	P00009900	-	yes	nothing	own sender ids seen {}	w9thalpha-lobby	P-partner-again
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	+00009900def	-	yes	nothing	own sender ids seen {}	w9thalpha-lobby	plus-partner-again
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	`-` + id 9900 as 8 digits	-	yes	nothing	own sender ids seen {}	w9thalpha-lobby	minus-partner
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	+00009800def	-	yes	c1:P00009800	own sender ids seen {}	w9thalpha-lobby	plus-new-peer
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	P00009800	-	yes	c1:DT c1:DP c1:DY c1:DN c1:DS	own sender ids seen {1: 5}	w9thalpha-lobby	P-new-peer
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	NL	-	yes	nothing	own sender ids seen {}	w9thalpha-lobby	NL-alone
+2026-11-20	win-9th Graal alpha (gen 1 relay)	s2c	lobby	-	NR	-	yes	nothing	own sender ids seen {}	w9thalpha-lobby	NR-alone
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	I12345678	-	yes	nothing	own sender ids seen {}	w9th-lobby	I-8digits
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	I123456789	-	yes	nothing	own sender ids seen {}	w9th-lobby	I-9digits
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	I1234567	-	yes	nothing	own sender ids seen {}	w9th-lobby	I-7digits
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	I1234567x	-	yes	nothing	own sender ids seen {}	w9th-lobby	I-nondigit
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	I00000005junk	-	yes	nothing	own sender ids seen {}	w9th-lobby	I-junk-after
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	I	-	yes	nothing	own sender ids seen {}	w9th-lobby	I-empty
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	I00000001	-	yes	nothing	own sender ids seen {}	w9th-lobby	I-reset
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	C00009900	-	yes	nothing	own sender ids seen {}	w9th-lobby	C-partner
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	P00009900	-	yes	nothing	own sender ids seen {}	w9th-lobby	P-partner-again
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	+00009900def	-	yes	nothing	own sender ids seen {}	w9th-lobby	plus-partner-again
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	`-` + id 9900 as 8 digits	-	yes	nothing	own sender ids seen {}	w9th-lobby	minus-partner
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	+00009800def	-	yes	nothing	own sender ids seen {}	w9th-lobby	plus-new-peer
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	P00009800	-	yes	nothing	own sender ids seen {}	w9th-lobby	P-new-peer
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	NL	-	yes	nothing	own sender ids seen {}	w9th-lobby	NL-alone
+2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	NR	-	yes	nothing	own sender ids seen {}	w9th-lobby	NR-alone
+2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer: + 2 s after the join	-	yes	no P, no push	answers a peer only right after it joins a room; no state push to a fake peer in any form	w119-lobby	y119-2
+2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer: + 5 s after the join	-	yes	no P, no push	answers a peer only right after it joins a room; no state push to a fake peer in any form	w119-lobby	y119-5
+2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer: + 10 s after the join	-	yes	no P, no push	answers a peer only right after it joins a room; no state push to a fake peer in any form	w119-lobby	y119-10
+2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer: C then + at the join	-	yes	P on the level connection, no push	answers a peer only right after it joins a room; no state push to a fake peer in any form	w119-lobby	z119-c0
+2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer: C then + 3 s after the join	-	yes	no P, no push	answers a peer only right after it joins a room; no state push to a fake peer in any form	w119-lobby	z119-c3
+2026-11-20	win-15th Graal (gen 1 relay)	s2c	lobby	-	fake peer: + 5 s after the join	-	yes	P on both connections, then the state push	control for the 1.1.9 timing rows	w15th-lobby	y15th-5
