@@ -69,7 +69,7 @@ only the standard library unless their row says otherwise.
 ```
 git clone https://github.com/squirelworks/Graal_analysis
 cd Graal_analysis
-python3 tools/navigator/navigator.py      # then open http://127.0.0.1:8765
+python3 tools/navigator/navigator.py      # then open http://localhost:8765
 ```
 
 The navigator is a small local viewer for the notes. It only listens on the
