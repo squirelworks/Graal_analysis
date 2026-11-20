@@ -23,7 +23,7 @@ volume to 0 after a hang during sound start-up. **[bin]**
 
 ## What the files are
 
-The survey reports 255 distinct WAVs across all eras. Its format subtotals below and its channel subtotals each add to 254; the discrepancy remains unresolved, so these are reported figures rather than a reconciled census (manual App. E#325). **[file][doc]**
+The survey reports 255 distinct WAVs across all eras. That figure is unique by file name and size, and its format and channel subtotals add to 254 because `sounds/steps2.wav` has no RIFF header. By content hash the 4.x to 6.x sets hold 103 distinct WAVs; see the [reconciled census](static-reads-appendix-e-2026-11-20-l.md#the-wav-census-reconciled-e325). **[file][doc]**
 
 | Format tag | Files |
 | --- | --- |

@@ -111,15 +111,15 @@ The later study inspected held 4.x–6.x sound files, RIFF format chunks, update
 | Linux 6.03r7 x64 | SDL_mixer 1.2 calls for effects, panning and music over ALSA | decoded formats depend on the particular SDL_mixer build | [bin] (client-internals/sound-files-6x.md#back-ends) |
 | Both checked backends | music/stream filter names `.mp2`, `.mp3`, `.ogg`, `.wma`, `.asf`; FFmpeg is loaded on demand for video | filter names alone do not demonstrate audio playback | [bin] (client-internals/sound-files-6x.md#back-ends) |
 
-The file survey reports the following RIFF formats. Its stated total of 255 distinct WAVs disagrees with the format sum of 254 and the channel sum of 254 (193 mono, 61 stereo). Keep these as reported subtotals until the census is reconciled (→ App. E#325); no missing category or corrected total is inferred. [file][doc] (client-internals/sound-files-6x.md#what-the-files-are)
+**Settled question, formerly part of E#325: the WAV census.** Why the survey's 255 distinct WAVs disagreed with its format and channel sums of 254 was open. A recount by content hash settled it [file] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-wav-census-reconciled-e325).
 
-| RIFF format tag | Reported count | Source |
-| --- | ---: | --- |
-| 1, PCM | 202 | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
-| 85, MPEG Layer 3 in WAV | 43 | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
-| 17, four-bit IMA ADPCM | 6 | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
-| 6, A-law | 3 | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
-| MS ADPCM or mu-law | none reported in this corpus | [file] (client-internals/sound-files-6x.md#what-the-files-are) |
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The survey reported 255 distinct WAVs, 202 PCM + 43 MPEG-in-WAV + 6 IMA ADPCM + 3 A-law, and 193 mono + 61 stereo | [file][doc] (client-internals/sound-files-6x.md#what-the-files-are) |
+| Settled | The 255 was unique by file name and size across every era (2,836 files), not a 4.x to 6.x content count. `sounds/steps2.wav` is MP3 data with an ID3 tag and no `fmt ` chunk, so it is in the total and in neither split: 255 = 254 + 1 | [file] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-wav-census-reconciled-e325) |
+| Recount | By content hash the 4.x to 6.x sets hold 103 distinct WAVs: 73 PCM, 20 MPEG-in-WAV, 6 IMA ADPCM, 3 A-law and the one MP3 file; 67 mono and 35 stereo among the 102 RIFF files. All eras hold 233 | [file] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-wav-census-reconciled-e325) |
+| Why it shrinks | 5.00r7 ships most piano notes as the same bytes under up to three names (43 MPEG-in-WAV files, 20 contents) | [file] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-wav-census-reconciled-e325) |
+| Scope | Counted over the survey's dated file list; the installed 6.1.1.3 copy has since grown (151 distinct contents on today's disk) | [file] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-wav-census-reconciled-e325) |
 
 Reported rates span 5000–48000 Hz, including 8012, 11000 and 27000. One walk sound with a `.wav` extension instead starts with an ID3 tag and contains MP3 data: extension-only assumptions do not describe every surveyed file. This is content evidence, not proof of the original client's sniffing or decode path. [file] (client-internals/sound-files-6x.md#what-the-files-are)
 

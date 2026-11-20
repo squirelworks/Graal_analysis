@@ -459,7 +459,7 @@ macOS CI is paused until the polish stage.
   nick **[srv]**; GServer13 has no `setcharprop` **[bin]**; live GServer-v2+2.05 lab
   still open.*
 
-- [ ] **9. Damage and file-transfer open points (loopback captures).** Partial close
+- [x] **9. Damage and file-transfer open points (loopback captures).** Partial close
   without new Wine (#165): strike + link for bomb/arrow/baddy powers
   (`damage-sources.md`), CURPOWER + respawn + default-weapon partial
   (`lab-captures-2026-10-25`), GWEBL001/`PLO_LEVELMODTIME`
@@ -467,8 +467,8 @@ macOS CI is paused until the polish stage.
   pre-2.1 settled-name no re-check (batch e `01-request-lists`). Static read of 2.05 rev 2
   and 2.22 (`decomp-findings-2026-10-25-e/04-name-index-case-link.md`): file-index order
   (newer file in 2.22, first hit in 2.05), plain A–Z case fold, and packet 40's link
-  (a horse does not change it). ~~**Still open:** the rest of the 2.22 default file-check set.~~ Done with a server that answers: 13 checks (id 34) with a full folder, 17 (id 23) with only the start files, at most four per frame ([2026-11-19 run](../live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers)). **Still open:** maps folder
-  in 2.1–2.16. ~~The client archive still has no build between the 2.1 test builds and 2.22.~~ The Windows 2.1.0.0–2.1.0.4 images are in `client-internals/graal2002-and-140-builds.md`; the maps-folder behaviour is still unread.
+  (a horse does not change it). ~~**Still open:** the rest of the 2.22 default file-check set.~~ Done with a server that answers: 13 checks (id 34) with a full folder, 17 (id 23) with only the start files, at most four per frame ([2026-11-19 run](../live-runs/open-issues-2026-11-19/README.md#4-245-222-login-default-checks-with-a-server-that-answers)). ~~**Still open:** maps folder
+  in 2.1–2.16.~~ Done 2026-11-20: the `maps` save rule first appears in Graal 2002 ver9 (2.1.0.0, 30 Oct 2001); ver7 and ver8 lack it (`client-internals/graal2002-save-folders-2026-11-20.md`, manual §2.7.6). 2.12–2.16 have no binary (#439).
   Tracked in #245.
 
 - [x] **10. Long handler layouts per build.** PLAYERPROPS (9), OTHERPLPROPS (8),

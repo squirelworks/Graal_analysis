@@ -36,13 +36,10 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | --- | --- | --- | --- | --- |
 | E#1 | Compiler of the early Delphi builds | Maybe never | a pre-release Delphi 3 compiler; not Delphi 2 or C++Builder 1 | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#3 | What a public 5.x or 6.x `Login` server sends | Owner | a GUI-script lobby built from `basepackage.gupd` and S→C 190 | [inf] (protocol/login-session-known.md#still-unobserved) |
-| E#10 | When downloads moved to `maps` | Missing | after 2.1.0.4, by 2.17.1, with the gmap work | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | E#12 | Whether the `GNW` digits are a build date | Maybe never | yes, DDMMY | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#15 | Graal 2002 and 1.40 send sets and default routes | Lab | each build follows its token's neighbour; 1.40 and v22 logins captured | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
 | E#16 | Classic+ 1.13 login wire layout | Missing | the desktop gen-5 login (type 5, key, token, two strings, trailer); trailer and native run open | [bin] (protocol/ios-classic-plus-113-framing.md#login) |
-| E#18 | Mobile clients' outer framing and cipher | Read | iPhone settled (desktop generation 5); Android unread | [bin] (protocol/ios-classic-plus-113-framing.md) |
 | E#19 | Generation 4 (2.19 to 2.21) on the wire | Missing | the server source's bz2 plus partial XOR | [inf] (protocol/codec-and-framing.md) |
-| E#101 | Size of the type-0 allow lists | Read | the earlier mask came from another sheet or table | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 | E#203 | The rest of the 2.05 `#` code set | Lab | `#E` is an empty placeholder (read); bare `#5`/`#6` is a 2.17 scanner change | [inf] (npc-library/gs1-message-codes-205r2.md#new-original-client-controls) |
 | E#207 | GS2 language, library and event model | Read | the official compiler's grammar matches the published GS2 syntax | [inf] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written) |
 | E#209 | GS2 VM details left open by the per-build read | Read | 48, 49, 54, the 6.x loop-limit name and 6.03r7 event case settled; unread builds remain | [inf] (client-internals/gs2-vm-loader-diff.md#still-open) |
@@ -51,8 +48,8 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#304 | Stopping positions and wire rounding | Lab | stopping measured; the wire value is truncated to the half tile | [inf] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | E#320 | Whether any server checks the tamper check | Owner | no server rejects a missing or wrong value | [inf] (client-internals/feature-specs/08-tampercheck.md#public-servers) |
 | E#323 | 2.22 level-object routines | Read | as in 2.05; the throw is now read and matches 2.05's table | [inf] (client-internals/static-reads-appendix-e-2026-11-20-f.md#the-222-throw-e323) |
-| E#324 | Combat live checks still open | Lab | 1.21 gives a direct reward, not a drop | [inf] (live-runs/open-issues-2026-11-19/README.md) |
-| E#325 | Sound census and playback limits | Read | one file counted twice in the format split | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
+| E#324 | Combat live checks still open | Lab | the spark appears only when a sword meets a sword or a shield | [inf] (live-runs/drops-2026-11-20/README.md#still-open-after-this-run) |
+| E#325 | Sound census and playback limits | Lab | none yet; needs a per-backend playback test | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
 | E#403 | Classic logins on port 14922 | Owner | 14922 answered classic logins in 2001 and stopped later | [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
@@ -179,21 +176,6 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 | Settles it | Tracing the lower sender, then a qualified native run with a capture | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
 | Outlook | Missing: no iPhone device or simulator is held; the static trace is Read | [inf] (client-internals/classic-113-login-construction.md#forwarding-boundary) |
 
-### E#18 Mobile clients: outer framing and cipher
-
-**Question.** How the Android and iPhone clients frame, compress and cipher their stream. Without it no mobile client can be probed, even on a lab server [bin] (client-internals/android-login-token-boundary.md).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The held Android Classic and Era reading covers the Java host, the frame gate, collision, board, render, chat builder and the Classic 1.8 GS2 machine across seven packages; it did not recover the connect and token builders | [bin] (client-internals/android-classic.md); [bin] (client-internals/android-login-token-boundary.md) |
-| Evidence | The native engine libraries are not encrypted, so the connect and token builders are within reach of a static pass | [bin] (client-internals/android-login-token-boundary.md) |
-| Tried | No device, emulator or capture. The lab Linux VM has no nested KVM, and no Android or iPhone app is installed on a lab host | [doc] (protocol/unknowns-ledger.md) |
-| Settled part | iPhone Classic+ 1.13 uses the desktop generation-5 frame: two-byte length (or `FF FF` and four bytes), compression byte, partial XOR with round-down for compressed bodies, and a type-5 login with a key byte in one zlib frame | [bin] (protocol/ios-classic-plus-113-framing.md) |
-| Tried (2026-11-20) | Android Classic 1.8 ran natively on an Android-x86 9.0 emulator on loopback: it fetches a signed connector script first (HTTPS, then plain HTTP for `conf.gs`, user agent "Graal/6.15401") and, with no valid reply, never opens a game connection. So it is on the 6.1x connector line, and its game framing can't be captured without a genuine connector reply | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#android-classic-18-on-an-emulator-e18) |
-| Best guess | Android uses the 6.1x connector front end and then the same game frame as the 6.1x desktop clients, since it reports the same engine line. Confidence: moderate | [inf] (protocol/lab-appe-gwentea2-2026-11-20d.md#android-classic-18-on-an-emulator-e18) |
-| Settles it | A static read of the Android native socket layer after the connector step | [inf] (protocol/lab-appe-gwentea2-2026-11-20d.md#android-classic-18-on-an-emulator-e18) |
-| Outlook | Read (Android); a run is blocked by the signed connector reply | [doc] (protocol/unknowns-ledger.md) |
-
 ### E#19 Generation 4 on the wire (2.19 to 2.21)
 
 **Question.** Whether the generation-4 codec in the server source (bz2, then XOR over the first dwords) is what 2.19, 2.2 and 2.21 actually sent [srv] (protocol/codec-and-framing.md).
@@ -227,34 +209,11 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 
 These questions are about single messages and props: which builds send or handle an id, how wide a field is, and what a message changes on the screen. Each one leaves a `unmeasured` or `disputed` cell in → §2.4, → §2.5, → §2.6 or App. A, and most of them are within reach of the probe proxy, which injects a message into a live loopback session and watches the client's reaction [lab] (protocol/probe-targets-2026-11-18.md).
 
-### E#10 When the `maps` download folder arrived
-
-**Question.** Which build started saving downloads into a `maps` folder [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The 2.1 test builds save downloads with no `maps` rule, and 2.17.1 has one; no client between them has been read | [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
-| Tried | The Windows 2.1.0.0 to 2.1.0.4 images are now identified, so the question no longer waits on a binary for that range; 2.12 to 2.16 have none | [bin] (client-internals/decomp-findings-2026-10-25-k/02-save-folders-by-build.md) |
-| Tried (2026-11-19) | The gmap code, `loadgmaps.txt` included, is absent from 2.1.0.0 to 2.1.0.4 and present in 2.17.1 | [bin] (client-internals/static-reads-appendix-e-2026-11-19.md#gmap-code-in-the-21-builds-e10) |
-| Best guess | The rule arrived with the gmap work, after 2.1.0.4 and by 2.17.1. Confidence: moderate | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
-| Settles it | The save routine of the 2.1.0.x images; for 2.12 to 2.16, any binary that turns up | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
-| Outlook | Read for 2.1.0.x; Missing for 2.12 to 2.16, so the exact build may never be known | [inf] (client-internals/decomp-findings-2026-10-25-e/03-open-points.md) |
+No question in this group is open now; the last one, E#10, was settled on 2026-11-20 (→ §E.12).
 
 ## E.5 File formats and tiles
 
 These questions are about what is in a file and how a client reads it (→ Part III). Several of them look like format questions but are really questions about which client routine consumes a field, which a file alone cannot answer [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle).
-
-### E#101 Size of the type-0 allow lists
-
-**Question.** Whether an earlier mask count of walkable tiles describes the lists read from the exact file [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The exact-input lengths, overlap and union are in → §3.5.3.1; they do not reproduce the earlier count | [file] (formats/arrays-membership-2026-11-09.md#structure-and-exact-input) |
-| Evidence | The earlier export counted 3195 non-blocking and 682 blocking tiles | [live] (formats/tile-walk.md#type-0-allow-lists) |
-| Best guess | The earlier mask was made from another sheet or a later table, so the numbers describe a different input. Confidence: moderate | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-| Settles it | Link the original mask and the exact file to the producing client path and sheet before comparing | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
-| Outlook | Read, if the mask's producer can be identified; otherwise the old count is simply retired | [inf] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle) |
 
 ## E.6 Client behaviour
 
@@ -313,26 +272,26 @@ These questions are about what a client does in play: timing, walking, combat, i
 | Settled part | The 2-tile sideways sword edge is included on both sides on 1.35, and half a tile further misses | [lab] (live-runs/sword-edge-2026-11-18/README.md) |
 | Settled part | 2.05 rev 2 has no client-side drop roll offline: 17 archer and 8 soldier kills, no drop, against 9 drops in 12 archer kills on 1.39 | [lab] (live-runs/open-issues-2026-11-19/README.md) |
 | Open | The extra fields 1.41 rev 1 reads from an id 40 body of 6 bytes or more | [bin] (client-internals/combat-baddy-tile-by-version.md#hits-by-packet-ids-40-and-46) |
-| Open | 1.21 gave exactly one gralat in the frame of each of 12 archer kills, with no darts or hearts; the drop spot overlapped the player, so a dropped gralat picked up at once and a direct kill reward look the same | [lab] (live-runs/open-issues-2026-11-19/README.md) |
-| Open | 2.17.1's drop behaviour, and the sword spark (no separate spark sprite was seen on 1.39 against a rock wall) | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Settled part (2026-11-20) | 1.21 rolls a real ground drop: archers killed by explosions with the player 14 tiles away left a heart, darts and green gralats at their spots, and the gralat counter never moved; the earlier +1 per sword kill was a dropped gralat landing on the player | [lab] (live-runs/drops-2026-11-20/README.md#1-121-the-archer-drops-an-item-the-counter-does-not-change) |
+| Settled part (2026-11-20) | 2.17.1 Training: 4 archers killed at range by explosions, no drop at any spot, as on 2.05 rev 2 | [lab] (live-runs/drops-2026-11-20/README.md#2-2171-no-drop) |
+| Open | The sword spark (no separate spark sprite on 1.39 against a rock wall, nor in two 2.22 clients swinging face to face, 2026-11-20); whether 2.17.1 gives a direct reward (Training shows no gralat counter) | [lab] (live-runs/open-issues-2026-11-19/README.md); [lab] (live-runs/drops-2026-11-20/README.md#3-222-sword-against-sword-still-not-caught) |
 | Tried (2026-11-20) | Two 2.05 clients swinging at each other at once, 4 times: no spark sprite, and the victim took half a heart in 3, so no true sword-on-sword meeting was caught | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sword-against-sword-on-205-e324-one-sub-check) |
 | Tried (2026-11-20) | On 1.21 offline a thrown bush put a penned archer into its hurt state twice but did not kill it in four tries; lifting a bush left a drawn item (a gralat or hearts) on the spot, so 1.21 draws ground drops from bushes; 2.17.1 and the sword-against-sword scene were not run | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#combat-checks-on-121-e324-tried-not-settled) |
 | Tried (2026-11-20) | On 2.17.1 Training the sword never hurt or killed an archer in 12 levels, so no drop could be checked; on 2.05 rev 2 four shielded soldiers died to the sword with no drop, and no separate spark sprite could be told apart from the two swings | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#combat-checks-on-2171-and-205-e324) |
-| Best guess | 1.21 gives a direct kill reward of one gralat rather than rolling a drop; 2.17.1 has no drop roll, like 2.05; the spark appears only when a sword meets a sword or a shield. Confidence: moderate, low, low | [inf] (live-runs/open-issues-2026-11-19/README.md) |
-| Settles it | A ranged kill on 1.21 (thrown bush or pot, or an arrow), the same archer scene on 2.17.1, and a sword against a sword or a baddy's shield | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+| Best guess | The spark appears only when a sword meets a sword or a shield. Confidence: low | [inf] (live-runs/open-issues-2026-11-19/README.md) |
+| Settles it | A sword against a sword or a baddy's shield, captured frame by frame | [inf] (live-runs/drops-2026-11-20/README.md#still-open-after-this-run) |
 | Outlook | Lab | [inf] (client-internals/combat-baddy-tile-by-version.md#not-known) |
 
 ### E#325 Later sound census and playback limits
 
-**Question.** How many distinct WAVs the 4.x to 6.x builds ship, and which formats each client really plays [file][doc] (client-internals/sound-files-6x.md#what-the-files-are).
+**Question.** Which sound formats each 4.x to 6.x client really plays. The census of what they ship is settled in → §3.10.5 [file][doc] (client-internals/sound-files-6x.md#what-the-files-are).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Evidence | The survey reports 255 distinct WAVs, but its format counts (202 + 43 + 6 + 3) and channel counts (193 + 61) each total 254 | [file][doc] (client-internals/sound-files-6x.md#what-the-files-are) |
 | Evidence | Backend names, filter strings, file contents and script help do not establish exact-build playback, content sniffing, scheduling or failure behaviour; the survey ran no client (→ §3.10.5, → §4.7.5) | [file][bin] (client-internals/sound-files-6x.md) |
-| Best guess | One file was dropped from both splits, so 255 is right and each split is one short. Confidence: moderate | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
-| Settles it | Recount against the surveyed inputs, and test each format on each exact client and sound backend | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
-| Outlook | Read for the count; Lab for playback | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
+| Settled part (2026-11-20) | The census: the 4.x to 6.x sets hold 103 distinct WAVs by content, and the 255 against 254 gap was one MP3 file named `.wav` (→ §3.10.5) | [file] (client-internals/static-reads-appendix-e-2026-11-20-l.md#the-wav-census-reconciled-e325) |
+| Settles it | Test each format on each exact client and sound backend | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
+| Outlook | Lab | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 
 ### E#610 Windows 4.04r2 offline initialization against gameplay
 
@@ -580,7 +539,7 @@ The project's aim is to be as complete as the surviving evidence allows. Some qu
 
 Three kinds of evidence are missing for good, or nearly so:
 
-- **Lost builds.** No binary of 2.12 to 2.16 or of 2.19 to 2.21 is held, so the first build of the `maps` folder (→ App. E#10) and the generation-4 wire (→ App. E#19) rest on neighbours and on server source. A build that turns up in an old archive would reopen them at once; the build catalogue lists what to look for. [bin] (client-internals/build-catalogue.md)
+- **Lost builds.** No binary of 2.12 to 2.16 or of 2.19 to 2.21 is held, so whether those builds keep the `maps` folder rule that ver9 introduced (→ §2.7.6) and the generation-4 wire (→ App. E#19) rest on neighbours and on server source. A build that turns up in an old archive would reopen them at once; the build catalogue lists what to look for. [bin] (client-internals/build-catalogue.md)
 - **The official servers' own code and data.** The 1999 to 2010 official game servers, listservers and RC backends were never published. Their rules can only be inferred from what the clients expect, from open-source servers written to match them, and from today's services, which may have changed. This limits E#401, E#402, E#406 and E#422, and the meaning of the `GNW` digits (→ App. E#12). [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields)
 - **Signed or server-held scripts.** From 6.11 on, the protocol itself lives in a script the operator signs (→ §2.10). The structure can be learned with a lab-signed script, but the production script's exact content can only come from the live service (→ App. E#616). [inf] (protocol/v7-connector-live-20261111.md#5-open)
 
@@ -599,10 +558,12 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#7 | Receive-branch revision discrepancy | → §2.5.2 |
 | E#8 | Prop parser ranges of 2.00 | → §2.6.6 |
 | E#9 | Uploads from game clients | → §2.7.1 |
+| E#10 | When the `maps` download folder arrived | → §2.7.6 |
 | E#11 | Client-to-server ids the NewWorld betas lack | → §2.4.2 |
 | E#13 | Gmap neighbour overwrite on classic-login 2.x clients | → §2.5.3.2 |
 | E#14 | Expiry dates of the Themida 5.x/6.00 builds | → §1.8.7 |
 | E#17 | The 6.1.1.3 login after the RC4 switch | → §2.10.8 |
+| E#18 | Mobile clients' outer framing and cipher | → §2.2.3 |
 | E#20 | The 2.31 step on `PLO_SETACTIVELEVEL` (156) | → §2.5.3 |
 | E#21 | Whether a compiled gani script (`PLO_GANISCRIPT`, 134) runs | → §2.5.6 |
 | E#22 | `DEFAULT*` lines in `PLO_LOADGANI` (195) | → §2.5.6.1 |
@@ -610,6 +571,7 @@ These questions were answered. Each answer, with the record of how it was settle
 | E#24 | Baddy props 11 and up | → §2.6.6 |
 | E#25 | The 2.22 start-up file checks: 13 against 17 | → §2.7.10 |
 | E#100 | Collision of the Bush stamp tiles | → §3.5.2.2 |
+| E#101 | Size of the type-0 allow lists | → §3.5.3.1 |
 | E#102 | Tile id to pixel position on pics1 | → §3.5.1 |
 | E#103 | What the four 2.22 verifier guards mean | → §3.5.5.1 |
 | E#200 | When a GS1 condition counts as true | → §8.1.3 |

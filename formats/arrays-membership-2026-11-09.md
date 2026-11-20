@@ -27,7 +27,7 @@
 
 `[file]` The inspected lists do not support the earlier assertion that the Bush stamp values appear in them. This corrects file membership only; the relevant consumer, active sheet and a placed bush's runtime collision remain untraced by this pass (E#100).
 
-`[file]` The 1,035-value union differs from the earlier exported mask's 3,195 non-blocking count. The producer, coverage, mapping and selected sheet of that mask remain unlinked to this input. Subtraction does not supply a corrected walkability count (E#101).
+`[file]` The 1,035-value union differs from the earlier exported mask's 3,195 non-blocking count. That mask has no recoverable source and is retired ([E#101](../client-internals/static-reads-appendix-e-2026-11-20-l.md#the-earlier-type-0-mask-export-e101)).
 
 `[file]` List-0-only membership and two-list-union membership differ on 101 values here. This establishes different set operations, without determining which operation a runtime path uses (E#608). Earlier consumer observations retain their own evidence and build scope.
 

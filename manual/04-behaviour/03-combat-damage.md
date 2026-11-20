@@ -321,7 +321,8 @@ Lab runs since the static pass checked three of these rows on real clients [lab]
 | --- | --- | --- |
 | sideways sword edge | two real 1.35 clients: a victim exactly 2 tiles to the side is hit on both sides; 2.5 tiles misses | [lab] (live-runs/sword-edge-2026-11-18/README.md) |
 | no client drop roll from 2.0 | 2.05 rev 2 offline: 17 archer and 8 soldier kills, no drop; a 1.39 control on the same levels dropped 9 times in 12 archer kills (8 darts, 1 green gralat), as the 75 % archer roll predicts | [lab] (live-runs/open-issues-2026-11-19/README.md#1-443-item-drops-when-a-baddy-dies) |
-| 1.21 kill reward | 12 of 12 archer kills raised the gralat count by exactly 1 in the frame of death, with no darts or hearts, which does not fit the 0–99 roll; whether it is a dropped gralat picked up at once or a direct reward is open | [lab] (live-runs/open-issues-2026-11-19/README.md#1-443-item-drops-when-a-baddy-dies) |
+| 1.21 kill reward | 12 of 12 archer sword kills raised the gralat count by exactly 1 in the frame of death. Ranged kills settle it: with the player 14 tiles away, explosion kills of boxed archers drew a heart, darts and green gralats at the archer's spot and never changed the counter, so 1.21 rolls a real ground drop and the sword-kill +1 was a dropped gralat picked up at once | [lab] (live-runs/open-issues-2026-11-19/README.md#1-443-item-drops-when-a-baddy-dies); [lab] (live-runs/drops-2026-11-20/README.md#1-121-the-archer-drops-an-item-the-counter-does-not-change) |
+| 2.17.1 drops | 4 archers killed at range by explosions in Training: nothing drawn at any spot, as on 2.05 rev 2 | [lab] (live-runs/drops-2026-11-20/README.md#2-2171-no-drop) |
 | sword-clash spark | on 1.39, three swings into a rock wall showed the blade from about 25 to 240 ms after key-down and no separate spark | [lab] (live-runs/open-issues-2026-11-19/README.md#2-443-the-sword-spark) |
 
 Open: → App. E#324.
