@@ -195,6 +195,16 @@ Layouts read from the 2.05 senders and the server source. The server copy (PLO) 
 | 40 | `PLI_SHOOT` | GServer-v2 `master` reads `i3 shot id` (0 in tests), `c x`, `c y`, `c z+50`, `c angle` (0–220 = 0–π), `c z angle`, `c speed`, `str gani`, `c params length`, `rest` params | 2.17; not 6.03r7 | GServer-v2 `master`: re-sent to the level area as `PLO_SHOOT` (< 5.07) or `PLO_SHOOT2` (≥ 5.07) | [bin] (client-internals/version-profiles/141-217.toml); [bin] (protocol/v6x-clients.md#client--server-ids-601-603); [srv] (protocol/gserver-v2-master-handlers.md) |
 | 48 | `PLI_SHOOT2` | the PLO 191 body without the player id; gravity is 2 bytes ×256, X2-signed | 5.12 (also 5.24r4, 6.00b1, 6.01r1, 6.03r7); not 5.0.0.7, which sends 40 | GServer-v2 `master`: re-sent like 40, in both forms | [bin] (protocol/v6x-clients.md#client--server-ids-601-603); [bin] (protocol/shoot-5007.md); [srv] (protocol/gserver-v2-master-handlers.md) |
 
+The shot messages encode their fields with fixed steps. The rules below give how 5.0.0.7 to 6.03r7 build them [bin] (protocol/shoot-5007.md#field-scales-all-three-shoot-layouts).
+
+| Rule | Builds | Source |
+| --- | --- | --- |
+| Angle: `round(angle × 220 / 2π)` after wrapping into [0, 2π), so one step is 2π/220. GServer-v2's own comment reads 0–220 as 0–π | 5.0.0.7 to 6.03r7 | [bin] (protocol/shoot-5007.md#field-scales-all-three-shoot-layouts) |
+| Z angle: `round((zangle + π/2) × 220 / π)`, clamped to [−π/2, π/2]; power: `round(power × 44)`, clamped to 0–5. Power is in tiles per 0.05 s step, so 5 is 100 tiles a second | 5.0.0.7 to 6.03r7 | [bin][inf] (protocol/shoot-5007.md#field-scales-all-three-shoot-layouts) |
+| `PLI_SHOOT` (40) from 5.0.0.7: shooter GINT3 0, x and y as `round(v × 2)` half tiles inside the gmap level, z as `floor(z + 0.0001) + 50` whole tiles, then the angles, power, gani and shoot params; the same body goes to UDP peers as id 28 | 5.0.0.7 | [bin] (protocol/shoot-5007.md#pli_shoot-40-what-5007-sends-bin) |
+| `PLI_SHOOT2` (48): the gmap level offset is `floor(pos / 64 + 0.0001)`; x, y and z become `floor(v × 16 + 0.0001)` pixels, X2-signed in a GSHORT capped at 28671; the angles and power truncate (`floor(v + 0.0001)`) where 5.0.0.7 rounds; gravity is `floor(g × 256 + 0.0001)`, X2-signed, 2 bytes. 5.12 to 6.00b1 also send the body to UDP peers as id 30 | 5.12 to 6.03r7 | [bin] (protocol/shoot-5007.md#pli_shoot2-48-what-512-to-603r7-send-bin) |
+| Gravity on the client: a SHOOT2 projectile keeps the gravity it came with; one from GS2 `shoot` or `PLO_SHOOT` uses the script variable `gravity` (default 2). Each step the vertical speed drops by `gravity × 0.05`, from start speeds `power × cos(zangle)` across and `power × sin(zangle)` up | 5.0.0.7 to 6.03r7 | [bin] (protocol/shoot-5007.md#what-the-client-does-with-gravity-bin) |
+
 The table above gives the combat and board messages. The rules below record how they were seen on the wire, including one place where 2.05 and the server read a byte differently [2.05] (protocol/packet-layouts.md#board-change-on-the-wire-cap).
 
 | Rule | Builds | Source |

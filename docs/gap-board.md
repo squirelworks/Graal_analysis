@@ -1,0 +1,128 @@
+# Research gap board (2026-11-20)
+
+Every open research gap in the repository, in one table that anyone can claim from:
+[`gap-board.tsv`](gap-board.tsv). It collects three sources as they stood on `main` on
+2026-11-20:
+
+- the open entries of Appendix E ([`manual/app-e-open-questions.md`](../manual/app-e-open-questions.md), §E.1),
+- every unticked `- [ ]` box in the notes and in [`NEXT.md`](NEXT.md) (the anti-cheat
+  defence checklist, the publication plan and the drive-salvage placement list are left out,
+  because they are not research questions),
+- the rows still open in the `client-internals/decomp-findings-*/open-questions.tsv` files.
+
+Three new gaps found while building the board are added at the end (5.12, 2.02 and 6.037
+probe coverage). Four `open-questions.tsv` rows already closed by a later batch were left out.
+
+## Columns
+
+| Column | Meaning |
+|---|---|
+| `id` | Board id, `G001` on. Stable for this board; a later board renumbers. |
+| `source`, `where_in_source` | The file and line (or Appendix E entry, or TSV row) the gap comes from. |
+| `gap` | The question, shortened from the source. Read the source before starting. |
+| `kind` | `static` (a binary, file or source read), `lab` (needs a run), `static+lab` (read first, then a run), `owner` (only Squirrel can supply or decide), `missing` (no copy of the build or input is held), `maybe-never`, or `umbrella` (a parent item whose children are listed separately). |
+| `runs_on` | For static work, any host or the cloud. For lab work, the VM the run belongs on (see the queue below). |
+| `priority` | `high` for Appendix E entries, `NEXT.md` items and the new probe gaps; `medium` for the rest. |
+| `claimed_by` | `free`, or the thread working on it. |
+
+The kinds were assigned from the wording of each item and spot-checked by hand, so a few
+will be wrong. Many boxes are older than the batches that may have answered them: check the
+source note and `INDEX.md` for a newer note before starting, and if the gap is already
+answered, tick the box in the source with a link instead of redoing it.
+
+## Counts
+
+| Kind | Items |
+|---|---|
+| static | 264 |
+| lab | 99 |
+| static+lab | 28 |
+| missing | 13 |
+| owner | 10 |
+| maybe-never | 7 |
+| umbrella | 5 |
+| **Total** | **426** |
+
+Lab items by where they run: Mirae Windows 10 VM or Linux VM under Wine 74, Mirae Linux VM
+with the lab servers 24, Mirae Linux VM (Linux clients) 14, Android-x86 or mobile 6, Mirae
+Tiger VM 5, GwenTea2 Lion or Sequoia VM 4.
+
+## How to claim
+
+1. Pick a `free` row. Static rows need no queue.
+2. Set `claimed_by` to your thread in the same PR that answers it, or in a one-line PR first
+   for long work.
+3. Answer it in a topical note, tick the box in the source note with a link, and drop or mark
+   the row here.
+
+## Lab queue
+
+Labs run one at a time per host, inside VMs only (no bare-metal runs). GwenTea2 has little
+memory: a watchdog powers VMs off when the host's free memory falls under about 3 GB, so do not
+boot a second large VM there while one is running. Check what is running before booting. The
+queue below is the suggested order; take the next free entry whose VM is idle.
+
+### Mirae, Windows 10 VM and Linux VM
+
+| # | What | Board rows | State |
+|---|---|---|---|
+| 1 | Probe coverage: the 4.x/5.x plan set on 5.12 and 6.037, the gen-3 plan on 2.02, 2.02 rev 1 and 2.02 rev 2, and the RC width canary on native Windows | the three new rows; `NEXT.md` lines 76, 77, 239; `rc-fuzz` lines 118, 119 | claimed (research-gaps thread) |
+| 2 | Appendix E lab batch: E#210, E#304, E#203, E#507, E#324, E#325, E#15, E#610 | those E rows | claimed (Appendix E batch thread) |
+| 3 | 4.04r2 pickup field read around each action, in the repeatable Wine scene (E#611), after the static read of the field | E#611; `404r2-carry-state` lines 57–60 | free |
+| 4 | Client test harness #398 on 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 | `NEXT.md` line 222 | free |
+| 5 | 5.00r7 and 5.12 throw capture (id 11) and the loopback GS2 weapon fixture (which ask and body ids fire) | `ids-sent-512-status` line 30; `scripted-weapons-5x-status` line 37 | free |
+| 6 | `PLO_SHOOT2` with known gravity on 5.0.0.7 | `shoot-5007` line 127 | free |
+| 7 | The 2002 builds ver7 to ver13: ids 2, 4, 17, 18, 154 and 155 (baddy, chest, horse drawn or not); v22 and 1.40 login frames | `graal2002-and-140-builds` lines 297, 298 | free |
+| 8 | 6.03r7 product-id slot on Windows 10 (32-bit registry view) | `pcid` line 138 | free |
+| 9 | 2.05 rev 2 and 2.22 F-key windows with a hosts-file list host; 1.39 closing on F6 | `gui-windows-fkeys` lines 184, 185 | free |
+
+### Mirae, Linux VM with the lab servers
+
+| # | What | Board rows | State |
+|---|---|---|---|
+| 1 | Server fuzz: GServer 1.21 gen-2 sweep on a quiet host, the unauthenticated id 8 on one connection, and post-login cases with a per-case guest reset | `server-fuzz-c2s-targets` lines 54, 107, 109 | free |
+| 2 | GServer 1.25 and 1.27: lab login of both clients and the player, NPC and baddy prop ranges | `gserv-125-127-builds` lines 128, 132 | free |
+| 3 | Fix the lab gserver's GR-V1.05 reader, then serve a multi-layer level to 5.12 and 6.03r7 | `gr-v105-fuzz` line 80; `gr-v105-empty-tiles` line 33 | free |
+| 4 | NC write operations through `ncprobe.py` (attribute, class and weapon writes) | `nc-write-ops-status` line 38 | free |
+| 5 | The protocol-19 server order with a real 4.04r2 and 3.153 | `protocol19-server` lines 164, 165 | free |
+
+### Mirae, Tiger VM
+
+| # | What | Board rows | State |
+|---|---|---|---|
+| 1 | Mac PowerPC receiver positive control: one valid raw frame, then zlib members near each capacity boundary; the gmap height reader on a known-good map | `macos-ppc-receive-framing` line 56; `macos-ppc-receive-decompression` line 70; `gmap-heights-mac-ppc` line 90; `NEXT.md` line 304 | free |
+
+### GwenTea2, Lion or Sequoia VM
+
+| # | What | Board rows | State |
+|---|---|---|---|
+| 1 | Mac 6.004 with its clock held before the beta limit, on the Sequoia guest | E#618 | free |
+| 2 | An unchanged Mac client run to the context helpers, recording the real arguments | `NEXT.md` line 302 | free |
+
+E#618's full answer needs a macOS 10.9-era guest with OpenGL. None is held; building one is
+an owner call.
+
+### Android-x86 or mobile
+
+| # | What | Board rows | State |
+|---|---|---|---|
+| 1 | The GS2 loop budget and event-queue limits in an Android runtime | `NEXT.md` line 250 | free |
+
+## Static work to start with
+
+These are free, high value and need no queue. Each can run on the cloud with a binary copy
+from the Share, or on either host.
+
+- The 4.04r2 pickup-bound field (E#611, `404r2-carry-state` lines 57 and 58), which also
+  unblocks lab queue entry 3.
+- The Windows 5.00r7 frame codec for short compressed frames, both directions
+  (`gen5-cipher-step-5x` line 36), and the full 5.12 send floor (`ids-sent-512-status` line 29).
+- The Mac 4.20r6 and Windows 4.04r2 frame-cipher step rule, and the Mac server-to-client switch
+  for 4.04r2 and 5.12 (`NEXT.md` line 221).
+- The 2.22 carry pose, glove property value, swimming and carrying speed factors, push and pull
+  probes and the second passable list (`decomp-findings-2026-10-25-l` and `-m` rows).
+- The 2002 level reader: the one-character marker, the `Unsupported file type!` caller and the
+  v22 Control-NPC helper (`graal2002-level-open` lines 69–73), and the two v22 flag bytes
+  (`v21-level-record-gate` line 21).
+- Events, flags, variables and functions per 1.x build (`NEXT.md` line 219).
+- The Mac 6.11r1 handler-table extent and opcode 7 (`NEXT.md` line 288).

@@ -4,6 +4,7 @@ Every research note in this repository, listed by topic and roughly in the order
 
 When you add a note, add a line for it here in the same pull request.
 
+- [Research gap board (2026-11-20)](docs/gap-board.md) — every open gap in one claimable table ([`gap-board.tsv`](docs/gap-board.tsv)): 426 items from Appendix E, the open task boxes and the open-questions tables, each marked static, lab, owner or missing, with a lab queue per VM and the first static picks; index.
 - [Ranged baddy kills on 1.21 and 2.17.1, and sword against sword on 2.22](live-runs/drops-2026-11-20/README.md) — 1.21 rolls a real ground drop when an archer dies (heart, darts or gralat) and the kill counter does not change; 2.17.1 drops nothing (0 in 4); the 2.22 sword spark is still not caught; lab.
 - [Save and maps folders in the Graal 2002 builds (2.1.0.0 to 2.1.0.4)](client-internals/graal2002-save-folders-2026-11-20.md) — where the six 2002 builds save a downloaded file and when they make their folders (App. E#10); static.
 - [Android Classic and Era: the socket layer](protocol/android-classic-socket-layer-2026-11-20.md) — the native engine, the generation-5 classic stream, the connector stream, login and token, and what the Android-x86 lab run saw on the wire (App. E#18); static and lab.
@@ -78,6 +79,8 @@ When you add a note, add a line for it here in the same pull request.
 - [Static reads for Appendix E, twelfth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-k.md) — the 2.22 signature verifier: how the patched builds relate, where the check runs, and the verify steps.
 - [File reads for Appendix E, thirteenth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-l.md) — the WAV census reconciled (103 distinct 4.x–6.x WAVs by content) and the old type-0 mask count retired.
 - [Static reads and labs for Appendix E, last Mirae batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md) — bare `#5`/`#6` on 2.17.1, 3.04 tile types and sheet type 5, 2.22 position rounding (read and lab), Graal 2002 send sets, 6.03r7 `format` and list lookups.
+- [Static reads for Appendix E, fourteenth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-m.md) — Android Classic 1.8 classic-mode send and receive detail, and the iPhone Classic+ 1.13 login's identity trailer.
+- [Static reads for Appendix E, fifteenth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-n.md) — Android Classic 2.2 and Era 2.0 script machines matched to Classic 1.8: same engine, same opcodes, case-blind event lookup.
 - [The 6.01 built-in library, from its registration tables](client-internals/gs2-builtins-601-registry.md) — every global and per-class built-in of Linux 6.01r1 with its type letters.
 - [Static reads for Appendix E (2026-11-19)](client-internals/static-reads-appendix-e-2026-11-19.md) — pull sound, `arrays.dat` walk lists, the 1.41 program check, the 2.22 tick source, 1.39 and 2.1.x lineage.
 - [Static reads for Appendix E, second batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-b.md) — 1.39 movement tables, the 2.1 test entry save, the RC 76 last byte, GS2 opcodes 48, 49 and 54 on 5.00r7.

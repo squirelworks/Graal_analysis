@@ -472,6 +472,7 @@ Graal adds to the stock data packet. The rules below give those additions and wh
 | In 5.12 the client always reports its own position and never sends a Torque `Move`; position is client-reported as in 2D Graal | [bin] (torque/wire-by-build.md#512-game-packets-the-gameobject-era) |
 | Unguaranteed events: flag 1, int12 class id, sized payload, …, flag 0; guaranteed-ordered events add a flag (next in sequence) else int7 sequence | [bin] (graal3d/torque-engine-4x.md#events) |
 | Ghosts: flag, int4 index width (sent as is; TGE sends width − 3), then per ghost flag 1, index, flag (delete), and if not deleted int12 class id on every update and the sized data; flag 0 ends | [bin] (graal3d/torque-engine-4x.md#ghosts-graal-changes) |
+| The 12-bit ghost index and the 4-bit width field are the TGE-line constants `GhostIdBitSize = 12` and `GhostIndexBitSize = 4`, as in Torque2D. Torque3D raised `GhostIdBitSize` to 18, so a server that copies Torque3D's constants writes every ghost index 6 bits too wide | [doc][bin] (torque/open-source-lineage.md#what-matches) |
 | New ghosts go into the client's `MissionGroup`; in 4.04r2 they wait while TCP file downloads are running | [bin] (graal3d/torque-engine-4x.md#ghosts-graal-changes) |
 | In 5.12 the class id reader takes 12 bits and applies the server-to-local map; events and ghosts each have their own length wrappers | [bin] (torque/wire-by-build.md#512-game-packets-the-gameobject-era) |
 

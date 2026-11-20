@@ -166,7 +166,7 @@ client-internals/engine-600r4.md	cited	1; 10	1; 10	§1.8.7 and §10.1.8 carry th
 client-internals/engine-6113.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 is still the QPlay stub, with no GS2 switch and no Torque class; the export-name list, the Issho paragraph and the unsent issue text stay in the note
 client-internals/feature-specs/01-sound.md	cited	4.7; 8.2	4.7	
 client-internals/feature-specs/02-weapons-combat.md	cited	4.3; 8.1; 8.3; 8.4	4.3	
-client-internals/feature-specs/03-inventory.md	cited	4.10	4.10	
+client-internals/feature-specs/03-inventory.md	cited	4.10; 5	4.10	
 client-internals/feature-specs/04-death-respawn.md	cited	4.4	4.4	
 client-internals/feature-specs/05-save-load.md	cited	3.7	3.7; 4.10	§4.10 not needed: a reimplementation spec; its Graal facts are carried in §3.7, and its remaining terms are the reimplementation's own names (coverage audit 2026-11-04)
 client-internals/feature-specs/06-gmap-overworld.md	cited	3.2; 4.2	3.2; 4.10	§4.10 not needed: carried in §3.2 and §4.2.13 (gmap crossings); its remaining terms are the reimplementation's own names (coverage audit 2026-11-04)
@@ -176,7 +176,7 @@ client-internals/feature-specs/09-options.md	cited	4.6	4.6
 client-internals/feature-specs/10-right-click-menu.md	cited	4.10	4.10	
 client-internals/feature-specs/11-emotes-ganis.md	cited	4.10	4.10	
 client-internals/feature-specs/12-motd-rules.md	cited	4.10; 5	4.10	
-client-internals/feature-specs/13-ban-kick.md	cited	4.10	4.10	
+client-internals/feature-specs/13-ban-kick.md	cited	4.10; 5	4.10	
 client-internals/feature-specs/14-friends-ignore.md	cited	4.10; 2.8	4.10	
 client-internals/feature-specs/README.md	cited	4.10	4.10	
 client-internals/feature-timeline.md	cited	8; 8.1; 8.2; 8.3; 4.11	4	
@@ -284,6 +284,9 @@ client-internals/static-reads-appendix-e-2026-11-20-h.md	cited	8.4; E	8.4; E	Dec
 client-internals/static-reads-appendix-e-2026-11-20-i.md	cited	8.4; E	8.4; E	Registration-table read for App. E: the 17 global built-ins that make 6.x fuse fold 241
 client-internals/static-reads-appendix-e-2026-11-20-j.md	cited	8.3; 8.4; E	8.3; 8.4; E	Decompiler read for App. E#209: 6.x maxlooplimit name, 6.03r7 event-name case and clientside trigger path
 client-internals/static-reads-appendix-e-2026-11-20-k.md	cited	3.5; E	3.5; E	Decompiler read for App. E#103: 2.22 verifier lineage (four guards plus label renames), start-up reach, verify steps and the decoded key size
+client-internals/static-reads-appendix-e-2026-11-20-l.md	cited	3.5; 3.10; E	3.5; 3.10; E	File reads for App. E: the WAV census by content hash (E#325 count) and the untraceable type-0 mask count (E#101)
+client-internals/static-reads-appendix-e-2026-11-20-m.md	cited	E	E	Disassembly read of the Android Classic 1.8 engine: classic-mode send/receive detail and the system-ID routine; the iPhone Classic+ 1.13 identity trailer read in the app (E#16)
+client-internals/static-reads-appendix-e-2026-11-20-n.md	cited	E	E	Function-by-function match of the Android Classic 2.2 and Era 2.0 engines to Classic 1.8: opcode set, event-name case and the loop limit (E#209)
 client-internals/static-reads-appendix-e-2026-11-20.md	cited	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E; 3.1	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E	Disassembler reads for App. E: DelphiX idle timer drives 2.22, pre-release Delphi 3 traits in early builds, 1.21/1.32 send ids, decoded 2.31 window blacklist, GS2-only names in 4.20-5.30, no exec/compile in the 4.04r2 plug-in, no Z3-V1.02 magic in any client
 client-internals/status-bit-0x20.md	cited	4.3	4.6	§4.6 not needed: the bit belongs to the `hidesword` and `hideplayer` counters, carried in §4.3 with those commands (coverage audit 2026-11-04)
 client-internals/status-display.md	cited	4.6	4.6	
@@ -363,6 +366,8 @@ docs/book/04-where-the-notes-disagree.md	cited	3.1;6	3.1;6
 docs/book/GRAAL-BIBLE-0.0.3.md	excluded			0.0.3 assignment scaffold, not a source
 docs/citable-data.md	excluded			repository policy on the citable data columns, not Graal
 docs/evidence-index.tsv	excluded			digest and retrieval index for owner-held evidence; separate from the manual source map
+docs/gap-board.md	excluded			repository task board, not Graal
+docs/gap-board.tsv	excluded			repository task board data, not Graal
 docs/gemini-handoff-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
 docs/preagonal-gs2-clean-room-2026-11-07.md	excluded			licence and method note for a later compiler; not evidence about the original clients
 docs/releases/unreleased.md	excluded			notes for the next GitHub release, not Graal
@@ -486,7 +491,7 @@ protocol/client-string-fingerprints-3x-6x.md	cited	1	1; 2.3; E	carried into §1.
 protocol/client-versions.md	cited	2; 2.1; 2.2; 2.3; 2.5; 1	1; 2.2	
 protocol/codec-and-framing.md	cited	2; 0; 1; 2.1; 2.2; 2.3; 2.5; E; A	2.1; 2.2	
 protocol/conf-gs-fuzzing.md	cited	E; 2.10	2.10; E	
-protocol/connector-script.md	cited	2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
+protocol/connector-script.md	cited	1; 2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
 protocol/cross-version-anchors.md	excluded		2	string-anchor search used to line up the 2.17.1, 2.22 and 2.31 exports; method only
 protocol/crosscheck-captures-vs-research.md	excluded		2	cross-check against other projects notes; the confirmed points are cited from the primary notes
 protocol/early-clients-probe-2026-11-19.md	excluded		2.6; B	early-client probe run (1998 relay betas to 1.39 under Wine behind the probe proxy): ids, props, widths and parser recovery by build; rows in probe-results.tsv, open items in unknowns-ledger.md
@@ -518,7 +523,7 @@ protocol/gs2-official-varcache-functable-partial-2026-11-16.md	cited	8.4	E; 8.4	
 protocol/gs2-opcode-table.md	cited	8.4; C; E	8.4; C; E	case sets, threaded dispatch and compiler rules in §8.4.4; App. C.8 correction; E#202, E#207
 protocol/gs2-seg1-event-mask-2026-11-16.md	cited	8.4	8.4; E	seg1 GS1 mask: official zeros; needEvent consumer; pkzonechanges bit27 absent 4.x/5.x
 protocol/gs2-unpacked-6113.md	cited	8.3; 8.4; 1; E	8.3; 8.4; E	§8.4.2, §8.4.4 and §1.8.7 carry that unpacked 6.1.1.3 adds no opcode past 6.00 and still caches GRESCR01; E#209 cites the opcode 54 case. The per-case skip table stays in the note
-protocol/gserv-1999.md	cited	2; 2.1; 2.2; 2.3; 2.9; 5; 7; C; 2.4	2.3; 5.1	
+protocol/gserv-1999.md	cited	1; 2; 2.1; 2.2; 2.3; 2.9; 5; 7; C; 2.4	2.3; 5.1	
 protocol/gserver-v2-master-handlers.md	cited	2.4; 2.5	2.4; 2.5	GServer-v2 master server actions and layouts for PLI 14, 21, 22, 31, 32, 40, 48, 130, 152, 154, 157, 159 and PLO 55, 56, 82, 106, 187
 protocol/ids-sent-512-status.md	cited	E	2.4; E	5.12 send floor cap-only; 2.31 id44 S→C drop vs C→S keep; E#4 id11 static; research #17
 protocol/ios-classic-plus-113-framing.md	cited	2.2; E	E	iPhone Classic+ 1.13 uses desktop gen-5 framing, cipher (round-down for compressed bodies) and type-5 login; E#16 and E#18.
@@ -559,7 +564,7 @@ protocol/login-frames-by-version-2026-10-25.md	cited	2.1; 6; E	2.3	§2.3 not nee
 protocol/login-recovery-start.md	excluded	2.1	2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
 protocol/login-session-known.md	cited	2.2; 2.3; E	2.3	
 protocol/login-session-observed.md	cited	2.3	2.3	
-protocol/login-tokens-3x-7x.md	cited	2.3; 10	2.3; 10	
+protocol/login-tokens-3x-7x.md	cited	1; 2.3; 10	2.3; 10	
 protocol/macos-ppc-receive-decompression.md	cited	2.1	2.1	per-build output acceptance, zlib versions and the v5 retry cutoff carried; the zlib-style header check and library hits stay in the source note
 protocol/macos-ppc-receive-framing.md	cited	2.1; 2.2		exact-input receiver contract carried; runtime and outgoing behavior remain open
 protocol/medium-term-expansion.md	excluded		2	Seihai implementation plan; not evidence about the original clients
@@ -719,6 +724,7 @@ server-notes/01-lineage.md	cited	5; E	5
 server-notes/03-protocol.md	cited	5; 6	5	
 server-notes/04-algorithms.md	cited	5; 7	5	
 server-notes/README.md	excluded		5	index of server-notes/; its notes are cited directly
+server-notes/ash-identity-2026-11-20.md	cited	5	5	Owner statement: Ash was an early attempt at reproducing Graal, not Graal; settles App. E#400
 server-notes/ash-overview.md	cited	5; E	5	
 server-notes/baddies-serverside.md	cited	5	5	
 server-notes/gserver-1999-rules.md	cited	5; E	5.1; E	
@@ -903,6 +909,4 @@ version-profiles/version-token-map.tsv	excluded			Generated machine-readable ass
 version-profiles/version-tokens-by-build.tsv	cited	1	1.2	
 version-profiles/windows-404r2-teardown.md	cited	4.8; E	4.8; E	§4.8 carries bounded initialization results; export counts and private package retrieval are research status outside manual scope
 version-profiles/windows-v4-import-provenance.md	cited	1	1	Alias/resource/collection qualification carried in 1.11; exact evidence/report provenance remains in source note.
-server-notes/ash-identity-2026-11-20.md	cited	5	5	Owner statement: Ash was an early attempt at reproducing Graal, not Graal; settles App. E#400
-client-internals/static-reads-appendix-e-2026-11-20-l.md	cited	3.5; 3.10; E	3.5; 3.10; E	File reads for App. E: the WAV census by content hash (E#325 count) and the untraceable type-0 mask count (E#101)
 client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	cited	2.4; 4.2; 8.2; 10; E	2.4; 4.2; 8.2; 10; E	Static reads and labs for App. E: bare #5/#6 scratch string (E#203), 3.04 global sheet type and type 5 (E#507), 2.22 prop 15/16 rounding (E#304), Graal 2002 send sets (E#15), 6.03r7 format floor and case-sensitive lookups (E#210)

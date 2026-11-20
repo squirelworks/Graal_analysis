@@ -309,6 +309,42 @@ GServer-v2 respawns board changes on its own terms. The rules below give which c
 
 The 1.42 release moved bush and pot drops to the server [doc][bin] (client-internals/board-respawn.md#item-drops-from-142-on-server-side).
 
+### 5.3.8 Refused logins, disconnects and clipped props
+
+GServer-v2 checks a login in a fixed order and stops at the first check that fails. Each refusal has its own text. The tables below give the checks, the reasons it drops a player later, and how it clips the props a client sets [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv).
+
+| Order | Check | Text the client gets | Source |
+| ---: | --- | --- | --- |
+| 1 | player limit (`maxplayers`) | "This server has reached its player limit." | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+| 2 | IP ban: wildcard match against `config/ipbans.txt`, skipped for staff with the modify-staff right | "You have been banned from this server." | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+| 3 | client version not in `allowedversions.txt` (ranges `a:b` allowed, → §5.4.2) | "Your client version is not allowed on this server." and a line with the allowed list | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+| 4 | listserver down, or the listserver refused the login | "The login server is offline.  Try again later.", or the listserver's own text | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+| 5 | account banned (`BANNED 1`, not for staff) | "You have been banned.  Reason: <BANREASON>" | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+| 6 | `onlystaff` on, or the IP outside the account's `IPRANGE` | "This server is currently restricted to staff only." or "Your IP doesn't match one of the allowed IPs for this account." | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+| 7 | account already online | if the old session has been idle 30 s or more, it gets "Someone else has logged into your account." and is dropped; otherwise the new login gets "Account is already in use." (compared without case) | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+| 8 | no start level | "No level available." | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+
+| Later disconnect | Text | Source |
+| --- | --- | --- |
+| idle, with `disconnectifnotmoved` and `maxnomovement` seconds | "You have been disconnected due to inactivity." | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+| more than five unknown packet ids, or garbled props | "Disconnected for sending invalid packets." | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+| RC kick | "One of the server administrators, <name>, has disconnected you", plus " for the following reason: <reason>" when one is given | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+| RC ban by account | "<name> has banned you.  Reason: <reason>"; `BANNED` and `BANREASON` are saved to the account | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+| RC account reset | "Your account was reset by <name>" | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+| any, on 2.14 and later | `PLO_UPGRADEURL` (169) can go with the disconnect and turns Reconnect into an Upgrade button | [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv) |
+
+The word filter's `ban` action is not implemented (→ §5.3.6) [srv] (client-internals/feature-specs/13-ban-kick.md#exact-server-behaviour-messages-in-the-order-they-can-happen-srv).
+
+| Prop a client sets | Server clip | Source |
+| --- | --- | --- |
+| arrows, bombs | 0 to 99 | [srv] (client-internals/feature-specs/03-inventory.md#props-involved-self-stream-plprop-ids-srv) |
+| rupees | at most 9,999,999 | [srv] (client-internals/feature-specs/03-inventory.md#props-involved-self-stream-plprop-ids-srv) |
+| sword and shield power | `swordlimit` and `shieldlimit` (3 in the lab) | [srv] (client-internals/feature-specs/03-inventory.md#props-involved-self-stream-plprop-ids-srv) |
+| bomb power, glove power | 0 to 3; at most 3 | [srv] (client-internals/feature-specs/03-inventory.md#props-involved-self-stream-plprop-ids-srv) |
+| CURPOWER | cannot rise for a player under 40 AP | [srv] (client-internals/feature-specs/03-inventory.md#props-involved-self-stream-plprop-ids-srv) |
+
+Built with the NPC-server option, some of these props become server-only; the lab server is built without it [srv] (client-internals/feature-specs/03-inventory.md#props-involved-self-stream-plprop-ids-srv).
+
 ## 5.4 Accounts and allowed versions
 
 ### 5.4.1 Account stores
