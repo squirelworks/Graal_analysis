@@ -10,6 +10,8 @@ open-point closed.
 
 macOS CI is paused until the polish stage.
 
+Every open gap, including the boxes below, is also on the [research gap board](gap-board.md), with a kind, a place to run it and a claim column. Lab work follows the board's per-VM queue.
+
 ## Tasks
 
 - [x] **Carry the 2026-11-16 status notes into the manual.** ~~Twenty research-list status notes were `pending` in the source map.~~ Pointer rows in §2.3.5.1, §2.4.3, §2.5.6, §2.5.7, §2.5.13, §2.6.6, §2.7.3 and §2.7.10, and status rows in App. E#4, #13, #308, #311, #312, #314, #318, #323, #420, #421, #422 and #425. Each note's own open checklist stays the place to tick its labs.
