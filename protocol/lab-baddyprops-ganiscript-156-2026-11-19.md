@@ -37,6 +37,24 @@ on their own, so the test used mode 9 (remove) as the canary instead of a positi
 So 6.03r7 has no baddy props above 10. A server should never send one, because the props
 after it in the same message are lost. **[bin][lab]**
 
+### Baddy modes and the client's own reports (fuzz, 2026-11-19)
+
+A baddy that `PLO_BADDYPROPS` creates is run by the client's own AI, and the level leader
+reports its changes back to the server as `PLI_BADDYPROPS` (15). The fuzz round used that
+report as an observer, with no screenshot. Per mode on 6.03r7 **[lab]**
+([fuzz](../live-runs/fuzz-2026-11-19/README.md)):
+
+| Mode | What the client does and reports |
+|---|---|
+| 0–4, 8 | walks; reports x, y, ani and dir |
+| 5 | ani counts down from 55 to 0 (dying), then the reports stop |
+| 6 | animates in place; reports ani only |
+| 7 | jumps in place; reports ani and one y |
+| 9, 10 | no reports at all (9 removes the baddy, as above) |
+
+4.20r8 also reports ani and dir within 1.6 s but sent no x/y in that window. With a silent
+mode-10 baddy and mode 0 as the canary, ids 11–30 end the message on 4.20r8 and 2.22 as well.
+
 ## Compiled gani scripts on 6.03r7 (#646)
 
 The body of `PLO_GANISCRIPT` (134) is a `GCHAR` name length, the gani name, then the compiled GS2
