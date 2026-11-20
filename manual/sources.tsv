@@ -831,7 +831,7 @@ client-internals/gs2-engine-event-names.md	cited	8.3; E	8.3; E	engine event name
 protocol/probe-targets-2026-11-18.md	cited	2; 2.1; 2.3; 2.4; 2.5; 2.6; 5; B; E	2.6; 2.5; 5; B; E	probe-proxy lab results: §2.1.2 (NUL byte, silent ids), §2.3.3 (gen 3 live), §2.4.1 (server PLI sweep), §2.5.4 (drawing an injected player), §2.5.6.1 (195 header overrides), §2.5.10, §2.6.6 (prop widths by build, other-player, NPC, baddy types), §5.3.3 (GServer-v2 PLI sweep); App. B rows 77-83; App. E open points
 protocol/fuzz-4x-5x-win-2026-11-19.md	pending	E	2.6	probe set on the other Windows 4.x/5.x builds: no differences in 130 canary cases per build; prop 82 a string by 5.00r7; NUL kept in a SETBACKTO name (§2.5.6.1); for §2.6.6 prop widths by build
 protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.md in the same folder
-protocol/keysweep/README.md	pending		4.6	Key and mouse sweep on real clients (6.03r7, 4.20r8); script key codes, PLI 38 clicks, game key sets for §4.6.6
+protocol/keysweep/README.md	pending		4.6	Key and mouse sweep on real clients (2.05r2 to 6.03r7); script key codes, PLI 38 clicks, game key sets for §4.6.6
 protocol/keysweep/603r7.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/420r8.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
 protocol/keysweep/524r4.tsv	excluded		4.6	table form of keysweep/README.md in the same folder
