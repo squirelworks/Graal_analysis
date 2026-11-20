@@ -3,7 +3,7 @@
 
 This chapter gives the walking step, the wall test, what blocks a point, the blocked-step counter and the actions that hang off it (push pose, ledge jump, pushing blocks and NPCs), grab and pull, water and lava, link following, and the gates that stop movement. Tile type values and the `arrays.dat` lists are defined in → §3.5; this chapter only says how movement uses them. Units are tiles and 50 ms ticks (→ §4.1.1). Facings are 0 up, 1 left, 2 down, 3 right.
 
-> Status: draft. The rule is read in full for 2.05, 2.17.1, 2.22 and 2.31; the exact 1st Graal geometry is now read statically, while 1.39 still lacks its numeric tables; 3.x and 4.x are not in the notes. Open points are App. E#302, E#304, E#305 and E#308; E#303, E#306 and E#307 are settled in → §4.2.3, §4.2.8 and §4.2.2.2, and E#309 in → §4.3.7.2.
+> Status: draft. The rule is read in full for 2.05, 2.17.1, 2.22 and 2.31; the exact 1st Graal geometry is now read statically, while 1.39 still lacks its numeric tables; 3.x and 4.x are not in the notes. Open points are App. E#304, E#305 and E#308; E#303, E#306 and E#307 are settled in → §4.2.3, §4.2.8 and §4.2.2.2, and E#309 in → §4.3.7.2.
 
 ## 4.2.1 The step
 
@@ -29,8 +29,16 @@ The step vector is scaled by a speed factor. Each row gives one factor and the s
 | 1.2 | a high speed state | 2.05 | [2.05] (client-internals/decomp-findings-2026-10-25-l/01-walking-body-box.md#step) |
 | 0.2 | hidden under a carried object: 0.1 tile per tick | 1.39, 1.41, 2.05, 2.22 | [live][1.39][1.41][2.05] (client-internals/player-mannerisms-live.md#cross-version-table); [1.39] (version-profiles/matrix/rules-139.md#wall--walk-test-bin-lab) |
 | about 0.2 | hidden: 1.5 px per tick, steps of 2 and 1 px alternating | 5.x, 6.x | [wire] (protocol/v5v6-lab-play.md) |
-| 0.4, 0.8 | exist in the walking code; not tied to states (→ App. E#302) | 2.05 to 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
+| 0.4, 0.8 | 0.4 while the gani is the sleep gani, 0.8 riding (settled below) | 2.05 to 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | swimming | the same 0.5 tile per tick as walking | 1.39, 1.41, 2.05, 2.22, 5.x, 6.x | [live] (client-internals/player-mannerisms-live.md#cross-version-table); [wire] (protocol/v5v6-lab-play.md) |
+
+**Settled question, formerly E#302: Walking speed factors other than 1.0, 1.2 and the hidden 0.2.** Which states use the walking speed factors 0.4 and 0.8 was open. A read of the 2.05 walk and lab walks on 2.05 rev 2 settled it [lab] (protocol/lab-appe-mirae-2026-11-20c.md#walking-speed-on-205-e302); [bin][lab] (protocol/lab-appe-mirae-2026-11-20d.md#walking-speed-factor-04-on-205-e302).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | 2.05 picks the factor in this order: riding 0.8 (rising slightly the longer the ride), hidden 0.2, 0.4 while the current gani is the sleep gani (by name, or whatever `replaceani` put in the sleep slot), 1.2 for shield power 3 or more, else 1.0 | [bin] (protocol/lab-appe-mirae-2026-11-20d.md#walking-speed-factor-04-on-205-e302) |
+| Settled | Measured: riding 0.8; `replaceani walk,sleep` 0.4; shield 3 gives 1.2; carrying any object kind, swamp, lava swamp, water, deep water and chairs all walk at 1.0 | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#walking-speed-on-205-e302); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#walking-speed-factor-04-on-205-e302) |
+| Verdict | Verified on 2.05 rev 2. The best guess (0.8 a heavy carried object, 0.4 riding or the shield) is refuted. In ordinary play 0.4 is reached only through `replaceani` | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#walking-speed-factor-04-on-205-e302) |
 
 ### 4.2.1.2 Walking speed by build
 

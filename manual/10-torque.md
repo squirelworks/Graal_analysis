@@ -525,7 +525,16 @@ A real Windows 5.12 client was traced from inside its own process against a lab 
 | The client re-sends `w <weapon>` for its movement weapon about every 2.3 s, so a server must treat a repeated `w` as harmless | [lab][inf] (torque/lab-2026-11-12-udp-trace.md#what-the-trace-settles) |
 | The ghost index width is the bit count of the highest index in that packet | [lab] (torque/lab-2026-11-12-udp-trace.md#what-the-trace-settles) |
 | After the first 1.35 s the client sent nothing on TCP. Killed, it sends no UDP disconnect; the server notices the TCP close | [lab] (torque/lab-2026-11-12-udp-trace.md#what-the-trace-settles) |
-| Walking sends nothing new: the arrow keys reached the GS2 script, but every client packet stayed the same apart from counters, because protocol 24 has no moves and the client cannot move its own control object. A server has to drive the player's movement (→ App. E#505). Enter opened no chat bar in the 3D view | [lab] (torque/lab-2026-11-12-udp-trace.md#lab-12b-walking-chat-and-closing-rerun) |
+| Walking sends nothing new: the arrow keys reached the GS2 script, but every client packet stayed the same apart from counters, because protocol 24 has no moves and the client cannot move its own control object. A server has to drive the player's movement, with a movetype and movement data on the control object (settled below). Enter opened no chat bar in the 3D view | [lab] (torque/lab-2026-11-12-udp-trace.md#lab-12b-walking-chat-and-closing-rerun) |
+
+**Settled question, formerly E#505: How a server makes a 5.12 player move in 3D.** How a server is meant to move a 5.12 player in 3D, when protocol 24 has no moves and the client's script cannot move its control object, was open. A lab server that gave the control object a movetype and movement data settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#how-a-server-moves-a-512-player-in-3d-e505).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | With a movetype and movement data on its control object, 5.12 moves the object itself and reports where it is: interpolate and rigid glide with a lag of 0.25 to 0.5 units, list jumps exactly onto each position | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#how-a-server-moves-a-512-player-in-3d-e505) |
+| Settled | What the client echoes: interpolate sends section 7 every update, list sends section 5 every update, rigid sends no object section; interpolate and list also send sections 3, 5, 6 and 13 once at the start. Without a movetype it sends only its position | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#how-a-server-moves-a-512-player-in-3d-e505) |
+| Verdict | Verified on Windows 5.12; the best guess holds, and the movement-data layout as read was accepted with no desync | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#how-a-server-moves-a-512-player-in-3d-e505) |
+| Left over | Keyboard input together with a movetype, and a view that follows the player object | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#how-a-server-moves-a-512-player-in-3d-e505) |
 
 ### 10.3.9 Protocol 19 past the handshake: what a server sends
 
@@ -538,7 +547,16 @@ Protocol 19 (3.153, 4.04r2) has been read but not run past the handshake. A stat
 | Connection messages use TGE 1.x numbering: 0 ghost-always done, 1 ready for normal ghosts, 2 end ghosting, 3 ghost-always starting, 5 datablocks done, 6 datablocks download done. Torque3D numbers the last pair 6 and 7. Messages 0, 2, 3 and 4 before a ghost table exists are refused as "Invalid packet" | [bin] (torque/protocol19-server.md#4-connection-messages-tge-1x-numbering) |
 | A workable order: phase 1; on its ack the datablocks, then message 5; on message 6, phase 2, message 3 and the ghosts; when phase 2 is acked, message 0 and phase 3; on phase 3's ack, the control object. A ghost naming a datablock the client has not loaded drops the connection | [bin][srv] (torque/protocol19-server.md#5-mission-start) |
 | The smallest `CameraData` is 137 bits with empty names; the `Camera` ghost update and packet data carry position, two rotation angles and a mode (0 stationary to 4 orbit point) | [bin][srv] (torque/protocol19-server.md#7-cameradata--shapebasedata-nothing-of-its-own) |
-| Still unread: `ShapeBase`'s main update section and the `Player` layouts, which other players need; and whether 3.153 matches 4.04r2 here (→ App. E#506) | [bin][inf] (torque/protocol19-server.md#open) |
+| Still unread: `ShapeBase`'s main update section and the `Player` layouts, which other players need; 3.153 matches 4.04r2 on the camera path (settled below) | [bin][inf] (torque/protocol19-server.md#open) |
+
+**Settled question, formerly E#506: Protocol 19 against a real 3.153 or 4.04r2 client.** Whether a real 3.153 or 4.04r2 accepts the protocol-19 server order read statically was open. 4.04r2 ran it earlier; the Mac PowerPC 3.153 on a Tiger guest settled the rest [lab] (protocol/lab-appe-mirae-2026-11-20d.md#protocol-19-on-the-mac-3153-e506).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Settled | The real 3.153 completes the camera path: UDP challenge, phases 1 to 3, the `Camera` and `Sky` ghosts and the initial control object, then keeps the link (61 moves over about 2.5 minutes) with no crash | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#protocol-19-on-the-mac-3153-e506) |
+| Settled | 3.153 picks a 3D server from the list tag: a server listed at HQ level 1 (tag `H `) is filed as Hosted and treated as 2D, and no UDP is sent; HQ level 4 (tag `3 `) works | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#protocol-19-on-the-mac-3153-e506) |
+| Verdict | Verified for the camera path on 3.153 and 4.04r2; the best guess holds | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#protocol-19-on-the-mac-3153-e506) |
+| Left over | Other players need the unread `Player` layouts and a real `.dts` player shape, which is not held; the drawn view under QEMU's software renderer was not checked | [inf] (torque/protocol19-server.md#open) |
 
 ## 10.4 DSO v33
 
@@ -891,4 +909,4 @@ The rules below give how a 3D-capable client enters 3D mode and what it carries.
 | lab reach | a real 5.12 reached "Connection established" against a small lab responder; under Wine the same build stops at "Starting 3D mode" when its 3D side starts; native Linux 4.04r2 reached the mission start and printed "Graal3D has been activated!" | [bin] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#not-run-in-the-final-batch); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#protocol-19-on-404r2-e506-half) |
 | outside report | a third-party server author reported that a 5.007 client gets scripted 3D content over TCP on the game port and UDP on port + 1, and that 3D was gone from v6; the binaries put the cut at 5.24r3. That server's source is not public, so this is a report only | [doc] (protocol/login-tokens-3x-7x.md#are-the-g3d-clients-3d) |
 
-How a server moves a 5.12 player in 3D, and the join arguments of 3.153 and 4.20r6, are open (→ App. E#505) [inf] (protocol/login-tokens-3x-7x.md#open-points).
+How a server moves a 5.12 player in 3D is settled in §10.3 (a movetype and movement data on the control object); the join arguments of 3.153 and 4.20r6 are open [inf] (protocol/login-tokens-3x-7x.md#open-points).

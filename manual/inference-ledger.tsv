@@ -71,7 +71,6 @@ manual/06-listserver.md	What 1.42, 2.01 to 2.04 and 2.1 to 2.16 send is unmeasur
 manual/06-listserver.md	Verdict	docs/book/04-where-the-notes-disagree.md#listserver-shapes	Settled by matching the two field layouts against held captures; inferred, not measured, in the sense that no single capture was replayed into the Server Lister ELF
 manual/07-rc-nc.md	Left over	tools/remotecontrol-lineage.md	The 2014 "custom" RC is a player modification of an official RC and the second RC3 build is catalogued only; neither is expected to change the answer
 manual/07-rc-nc.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421	What an older server put in that string
-manual/07-rc-nc.md	Against GServer-v2's one-space level, RC2 2.05 would most likely list other RCs 	protocol/rc-list-online.md#how-rc2-205-shows-them-bin	
 manual/07-rc-nc.md	The reply id and layout after id 114 (local NPCs) are unmeasured	protocol/npc-control.md#check-on-loopback-inf	
 manual/07-rc-nc.md	Whether 33 carries the script length as `s` or `i3` for large scripts, and wheth	protocol/npc-control.md#check-on-loopback-inf	
 manual/08-scripting/01-gs1-language.md	name matching	npc-library/gs1-reference-205.md#execution-model-205	command names that end in a space in the table (`say `, `set `, `setlevel `, `setimg `, `move ` and others) require an argument; the others are matched as whole words
@@ -86,6 +85,7 @@ manual/09-graal3d.md	Origin of the world and actor	graal3d/beta3-genesis.md#what
 manual/09-graal3d.md	A server that accepted `GR3DV003` as well as `GR3DV002` should be enough to log 	graal3d/beta3-genesis.md#does-the-archived-server-accept-it	
 manual/10-torque.md	chat, PMs, the player list, file transfer, RC	graal3d/torque-engine-4x.md#the-tcp-gserver-connection-in-3d-mode	not touched by the switch, so presumably still TCP
 manual/10-torque.md	C→S first flag	torque/wire-by-build.md#512-game-packets-the-gameobject-era	first person [inf] | set when a connection float is 0; meaning not traced
+manual/10-torque.md	Left over	torque/protocol19-server.md#open	Other players need the unread `Player` layouts and a real `.dts` player shape, which is not held; the drawn view under QEMU's software renderer was not checked
 manual/10-torque.md	Left over	protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503	A compiled-code reader linked in but never called can't be ruled out from the stripped image or a run
 manual/10-torque.md	Left over	protocol/lab-appe-mirae-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503	A file reader linked in but never called can't be ruled out by a run
 manual/10-torque.md	So a rebuild that shows 3.04 grass as a wall is applying another rule: a per-til	torque/304-tile-types.md#what-this-means-for-the-rebuild	
