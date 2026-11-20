@@ -203,6 +203,18 @@ Of the names Preagonal's compiler turns into opcodes, these images contain `abs`
 
 `putcomp` and `putnewcomp` are in 6.0.3.7 and not in 6.1.1.3. `setprotocol`, `sendraw` and `senddata` are in 6.1.1.3 and not in 6.0.3.7. [bin] (client-internals/gs2-builtins-6113.md)
 
+#### The 6.01 registration tables
+
+The 6.x client fills its script library at start-up from static tables, one row per built-in. A function row gives the name, a return-type letter and one letter per parameter (`i` integer, `u` unsigned, `d` and `f` numbers, `b` boolean, `s` string, `o` object, `X` any further arguments); a property row gives the name, a type letter, and whether it can be written. Each table goes either into the global registry or onto a class. Read from Linux 6.01r1, the full lists are in the source note [bin] (client-internals/gs2-builtins-601-registry.md#counts).
+
+| Group | Tables | Entries | Source |
+| --- | ---: | ---: | --- |
+| Global functions | 32 | 314 | [bin] (client-internals/gs2-builtins-601-registry.md#global-functions-314) |
+| Global properties | 16 | 123 | [bin] (client-internals/gs2-builtins-601-registry.md#global-properties-123) |
+| Class members | 146 (141 on 91 named classes, 5 unnamed) | 1,284 | [bin][inf] (client-internals/gs2-builtins-601-registry.md#members-by-class) |
+
+The class of each table is inferred from the class name used next to its registration call. What each built-in does is not read; only names and types are (→ App. E#207) [inf] (client-internals/gs2-builtins-601-registry.md#not-covered).
+
 ## 8.4.6 Load-time stages and fusion
 
 #### Linux 4.20r6: post-load fusion
