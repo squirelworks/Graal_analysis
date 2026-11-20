@@ -47,6 +47,16 @@ Lab items by where they run: Mirae Windows 10 VM or Linux VM under Wine 74, Mira
 with the lab servers 24, Mirae Linux VM (Linux clients) 14, Android-x86 or mobile 6, Mirae
 Tiger VM 5, GwenTea2 Lion or Sequoia VM 4.
 
+## Issues
+
+Every row is also in one GitHub issue, so an agent can take work without reading the TSV. The
+entry point is the research gap roadmap, #746 (a child of #370). Lab issues: #743 (Windows
+clients on Mirae), #733 (servers, RC and NC), #734 (Linux clients), #730 (Tiger), #731 (Lion
+and Sequoia), #732 (Android, iOS, v7). Static issues: #740 (NEXT.md and Appendix E), #744 (1.x to
+2.x), #745 (protocol), #741 (4.x to 7.x, GS2 VM, Mac), #738 (Torque), #735 (Linux teardowns),
+#736 (formats and tools), #739 (version profiles), #737 (NPC scripting). Blocked rows: #742.
+When a row is done, tick it in its issue as well as in the source note.
+
 ## How to claim
 
 1. Pick a `free` row. Static rows need no queue.
