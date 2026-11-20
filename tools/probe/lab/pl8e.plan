@@ -1,0 +1,19 @@
+# other-player add with prop 50 (joined the level) = 1 first: one-byte and two-byte ids
+waitsession 240
+wait s2c 9 90
+sleep 8
+shot ref
+mark row pl8-1b-join
+s2c 8 c:7 c:50 c:1 c:0 str:one c:20 str:{LEVEL} c:15 c:52 c:16 c:60 c:17 c:2
+sleep 3
+shot pl8-1b-join
+mark row pl8-2b-join
+s2c 8 s:9 c:50 c:1 c:0 str:two c:20 str:{LEVEL} c:15 c:70 c:16 c:60 c:17 c:2
+sleep 3
+shot pl8-2b-join
+mark row pl8-1b-join-nolevel
+s2c 8 c:12 c:50 c:1 c:0 str:three c:15 c:60 c:16 c:56 c:17 c:2
+sleep 3
+shot pl8-1b-join-nolevel
+sleep 2
+shot final

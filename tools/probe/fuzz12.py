@@ -118,7 +118,7 @@ def plan2(rows, post=True):
     return out
 
 
-PEER = 9900                                            # the fake partner the D rows speak for
+PEER = int(os.environ.get('FZPEER', '9900'))          # the fake partner the D rows speak for (1.1.9 needs a small id)
 SID = chr(PEER // 128 + 32) + chr(PEER % 128 + 32)     # its id as two base-128 characters
 
 

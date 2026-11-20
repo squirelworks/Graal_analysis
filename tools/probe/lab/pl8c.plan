@@ -1,0 +1,19 @@
+# 1.28b2: other-player add with the level and the peer address/UDP port props (30 i5, 31 i3)
+waitsession 240
+wait s2c 9 90
+sleep 8
+shot ref
+mark row pl8-1b-udp
+s2c 8 c:7 c:0 str:one c:20 str:{LEVEL} c:15 c:52 c:16 c:60 c:17 c:2 c:13 c:1 c:2 c:3 c:4 c:5 c:11 c:3 c:30 i5:2130706433 c:31 i3:30000
+sleep 3
+shot pl8-1b-udp
+mark row pl8-2b-udp
+s2c 8 s:9 c:0 str:two c:20 str:{LEVEL} c:15 c:70 c:16 c:60 c:17 c:2 c:13 c:1 c:2 c:3 c:4 c:5 c:11 c:3 c:30 i5:2130706433 c:31 i3:30001
+sleep 3
+shot pl8-2b-udp
+mark row pl8-1b-sprite-first
+s2c 8 c:12 c:17 c:2 c:15 c:60 c:16 c:56 c:0 str:three c:20 str:{LEVEL}
+sleep 3
+shot pl8-1b-sprite-first
+sleep 2
+shot final
