@@ -90,3 +90,84 @@ times.
 
 The 1.21 ranged kill and the 2.17.1 archer scene were not run, because 2.17.1 Training has no
 sword.
+
+## RC props tail counts (E#420)
+
+Build: RC 2004 (`RemoteControl.exe`, `GSERV024`) against the Seihai GServer-v2 fork lab build,
+behind `gen5probe`. Props requests by account name (74) were injected for four offline lab
+accounts, and the tail of each 72 reply was decoded.
+
+| Account | First `s` | Second `s` |
+| --- | --- | --- |
+| 3 flags, no chests | 3, then the flag strings, newest first | 0 |
+| no flags, 2 chests | 0 | 2 |
+| 3 flags, 1 chest | 3 | 1 |
+| nothing | 0 | 0 |
+
+- The first count is flags, the second opened chests.
+- Each chest entry is `c` (length + 2), `c` x, `c` y, then the level name.
+- The weapon count and names follow, and nothing comes after the weapons.
+- This is the lab server's writer; no original 2001–2004 server was run.
+- The RC account needs `LOCALRIGHTS`, not `ADMINRIGHTS`, or the server refuses to show player
+  props.
+
+## 6.03r7 HUD (E#326)
+
+Build: 6.03r7 Linux (`G3D0511C`) on Mesa software GL.
+
+- Hearts. In the identified-state captures of the 2026-11-13 HUD lab:
+  - With 4 full hearts at window width 1024, the slots are at x = 826, 871, 916 and 961. The row
+    ends at 1001, so the right margin is 23 px.
+  - The 68 px margin is the 3-heart case (826, 871 and 916, ending at 956).
+  - The slots stay at W − 198 + 45k at 640, 800, 1024 and 1280 wide.
+- Sword. With the server's `sword1.png` replaced by an all-opaque magenta 128 x 96 image, the sword
+  slot draws a magenta block of exactly 28 x 28 at (105, 31), and nothing more. The source
+  rectangle is 28 px wide, not 34.
+- Windows text positions and a Windows run at a current clock were not done; they need the Windows
+  guest.
+
+## 6.03r7 chest art and menu (E#327)
+
+Build: 6.03r7 Linux.
+
+- Chest. The same script-free scene, with the world now serving `chest.png` (32 x 32) and
+  `chestopen.png`:
+  - The client fetches `chest.png` at level entry and draws the closed chest.
+  - Walking up opens it (gralats 0 → 1). The client then fetches `chestopen.png` and draws the
+    open chest.
+  - The missing art was only the two files the lab world lacked.
+- Menu:
+  - The 6.03r7 image names no GUI skin or window image. Its built-in image names are only sprites,
+    state, swords, shields, bombs, bows, baddies, chest and chestopen.
+  - The client requests no file when D, Q, Tab or Esc toggles the menu.
+  - So the orange box is the default, unskinned GUI drawing, and a skin can only come from a
+    server script. A scripted skin was not delivered.
+
+## Upload ids from a game connection (E#9)
+
+Build: 6.03r7 Linux on its game connection to the lab GServer-v2 fork. The file-browser and upload
+ids were injected as client-to-server packets: 93 with data, 92, 155 + 93 + 156 (large file), and
+96, 97 and 98.
+
+- The server logs each as an unknown player packet. After three, it reports the player as
+  sending invalid packets and closes the connection.
+- No file is created. The handlers exist only for RC connections, and even there an upload checks
+  a protected-file list, not folder rights.
+- The 6.03r7 image describes its upload calls as working "only if the scripted RC has currently a
+  file browser window open", for "uploading of files (into scripted RC)". So the in-game file
+  browser is the scripted-RC staff feature, and on this server a game connection's upload ids go
+  nowhere.
+
+## Prop 81 (E#23, not settled)
+
+- None of the 96 player variables that 6.03r7 scripts can read is a category, so a player-list
+  script can't read prop 81 directly.
+- The image has `openplayerlist` and `togglescriptedplayerlist` events. Opening the built-in list
+  from a script needs a compiled bytecode delivery that this round did not build.
+
+## Not run in groups B and C
+
+- E#423: the original 1.3 server and test client are in the lab VM, but there wasn't time.
+- E#424: RC2 2.05 under Wine draws text as boxes and never connects.
+- E#425: its outlook is a static read.
+- E#618: Mirae has no Mac guest that runs the 6.0x Cocoa builds.

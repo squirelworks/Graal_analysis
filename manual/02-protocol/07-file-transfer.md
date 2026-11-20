@@ -21,7 +21,7 @@ The rules below cover the edge cases of those replies, which differ either side 
 | --- | --- | --- |
 | Below 2.1 the server adds `.gif` to a requested name with no extension | server | [srv] (protocol/file-transfer.md#requests-client--server) |
 | Below 2.1, 30 also means "already up to date"; 2.05 handles 45, but the server does not send it to 2.05 | server; 2.05 | [srv] (protocol/file-transfer.md#replies-server--client) |
-| Game clients cannot upload; RC upload uses the file-browser ids 89 to 98 and 65 to 67 (→ §7); disputed for 6.x → App. E#9 | server | [srv] (protocol/file-transfer.md#upload-rc-only) |
+| Game clients cannot upload; RC upload uses the file-browser ids 89 to 98 and 65 to 67 (→ §7). 6.x clients carry the ids for the scripted-RC file browser; on a game connection the GServer-v2 fork treats them as unknown packets (→ App. E#9) | server | [srv] (protocol/file-transfer.md#upload-rc-only); [lab] (protocol/lab-appe-mirae-2026-11-20.md#upload-ids-from-a-game-connection-e9) |
 
 ## 2.7.2 The `PLO_FILE` body
 

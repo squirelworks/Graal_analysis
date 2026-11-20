@@ -1,7 +1,7 @@
 <!-- manual: kind=reference status=draft -->
 # Appendix E. Open questions and disagreements
 
-> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; a fourth pass the same day moved E#303, E#307, E#315, E#421 and E#603, settled the 5.00r7 opcodes 48, 49 and 54 in E#209, and narrowed E#317; lab runs on 2026-11-20 moved E#309, E#310, E#604, E#617, E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
+> Status: draft. Rewritten on 2026-11-19 as a discussion of each unknown: what it is, what has been tried, the best current guess, what would settle it, and how likely it is to be settled. Entry numbers are unchanged, so every `App. E#n` reference elsewhere still resolves. A first answering pass on the same day moved E#2, E#17, E#20, E#21, E#22, E#24, E#102, E#202, E#405, E#605, E#607 and E#609 to → §E.11, each marked verified or inferred; a second pass of static reads the same day moved E#306, E#606, E#608 and E#620 and narrowed E#308 and E#328; a third pass on 2026-11-20 moved E#6, E#321, E#328 and E#602 and narrowed E#1, E#215, E#502 and E#503; a fourth pass the same day moved E#303, E#307, E#315, E#421 and E#603, settled the 5.00r7 opcodes 48, 49 and 54 in E#209, and narrowed E#317; lab runs on 2026-11-20 moved E#9, E#309, E#327, E#420, E#310, E#604, E#617, E#13, E#25, E#204, E#212, E#313, E#314, E#316, E#322, E#501 and E#601.
 
 ## E.0 How to read this appendix
 
@@ -37,7 +37,6 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#1 | Compiler of the early Delphi builds | Maybe never | a pre-release Delphi 3 compiler; not Delphi 2 or C++Builder 1 | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#3 | What a public 5.x or 6.x `Login` server sends | Owner | a GUI-script lobby built from `basepackage.gupd` and S→C 190 | [inf] (protocol/login-session-known.md#still-unobserved) |
 | E#4 | Whether 5.00r7 sends id 11 | Lab | yes, from the carried-object throw | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
-| E#9 | Uploads from game clients | Lab | the late clients' file browser is a staff tool that servers accept only from staff accounts | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
 | E#10 | When downloads moved to `maps` | Missing | after 2.1.0.4, by 2.17.1, with the gmap work | [inf] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md) |
 | E#12 | Whether the `GNW` digits are a build date | Maybe never | yes, DDMMY | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#14 | Expiry dates of the Themida 5.x/6.00 builds | Lab | WinLicense's own expiry, set a few months after each build | [inf] (client-internals/v5v6-expiry-and-black-screen.md#open) |
@@ -75,14 +74,12 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#324 | Combat live checks still open | Lab | 1.21 gives a direct reward, not a drop | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | E#325 | Sound census and playback limits | Read | one file counted twice in the format split | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | E#326 | Remaining 6.03r7 HUD measurements | Lab | the formula is right and the 68-pixel margin counts three hearts | [inf] (client-internals/hud-603r7-black-box.md#hearts) |
-| E#327 | Chest art and menu skin in the 6.03r7 item run | Lab | both come from files the lab world lacks | [inf] (client-internals/items-603r7-black-box.md#signs-and-chests) |
 | E#400 | Two projects called Ash | Missing | two projects that share a name | [inf] (ash/ARCHIVAL-NOTE.md) |
 | E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
 | E#403 | Classic logins on port 14922 | Owner | 14922 answered classic logins in 2001 and stopped later | [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
 | E#404 | A public server refusing 2.05 | Owner | an older version table with no 2.05 entry | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
-| E#420 | Flag and chest counts in the RC props tail | Lab | flags first, then chests | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 | E#423 | The 1999 servers' open rules | Lab | the 1.3 test client works against them | [inf] (server-notes/gserver-1999-rules.md#not-known) |
 | E#424 | RC2's Admins folder and a one-space level | Lab | other RCs appear under Players | [inf] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
@@ -295,18 +292,6 @@ These questions are about single messages and props: which builds send or handle
 | Settles it | The id of the 5.00r7 throws in that run's server log, or one more 5.00r7 throw with the id recorded | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | Outlook | Lab; probably already answered by the 2026-11-19 log | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 
-### E#9 Uploads from game clients
-
-**Question.** Which game-client feature sends the file-browser and upload ids, and whether any server accepts them from a game connection [srv] (protocol/file-transfer.md#upload-rc-only).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Claim A | Game clients cannot upload; the file-browser ids are for RemoteControl only | [srv] (protocol/file-transfer.md#upload-rc-only) |
-| Claim B | 6.01r1 and 6.03r7 send the file-browser and upload ids (93, 96 to 98, 155, 156) with an upload queue, and 3.153 and 5.00r7 send several of them | [bin] (protocol/v6x-clients.md#client--server-ids-601-603); [bin] (version-profiles/3.04-3.153.md#client--server-ids) |
-| Best guess | The late clients carry an in-game file browser for staff (the GS2-era client merged RC features), and servers accept the ids only from accounts with folder rights. Confidence: moderate | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
-| Settles it | A 6.x game client using the upload path against a lab server, with and without folder rights | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
-| Outlook | Lab, if a GUI script that opens the browser can be delivered through the probe | [inf] (protocol/v6x-clients.md#client--server-ids-601-603) |
-
 ### E#10 When the `maps` download folder arrived
 
 **Question.** Which build started saving downloads into a `maps` folder [bin] (client-internals/decomp-findings-2026-10-25-k/03-open-points.md).
@@ -327,6 +312,7 @@ These questions are about single messages and props: which builds send or handle
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Tried | 6.03r7 has no built-in key that opens a player list against the lab server; on 6.x the list is a script window the lab server does not provide | [lab] (live-runs/open-issues-2026-11-19/README.md) |
+| Tried (2026-11-20) | No script-visible player variable on 6.03r7 is a category, so a list script can't read prop 81; opening the built-in list needs the `openplayerlist` event through delivered bytecode | [lab] (protocol/lab-appe-mirae-2026-11-20.md#prop-81-e23-not-settled) |
 | Best guess | The value picks the folder or group a player is listed under (for example staff, friends or others). Confidence: moderate, from the name | [inf] (protocol/unknowns-ledger.md) |
 | Settles it | A list GUI script delivered as bytecode through the probe, as the 2026-11-19 timer test did, then prop 81 set to several values for a second player | [inf] (live-runs/open-issues-2026-11-19/README.md) |
 | Outlook | Lab | [inf] (protocol/unknowns-ledger.md) |
@@ -568,20 +554,10 @@ These questions are about what a client does in play: timing, walking, combat, i
 | --- | --- | --- |
 | Evidence | The source calls the full-size row's right margin 68 pixels, but its own formula x = W − 198 + 45k with a 40-pixel full heart gives 23 pixels for four hearts (k = 0 to 3); 68 fits three | [shot][doc] (client-internals/hud-603r7-black-box.md#hearts) |
 | Evidence | The sword source rectangle's right edge (width 28 to 34 pixels), Windows text positions at other window sizes, and Windows operation with a current clock (its run used a 2012 clock) are unresolved (→ §4.6.9) | [shot][lab] (client-internals/hud-603r7-black-box.md#open) |
-| Best guess | The formula is right and the 68-pixel figure was measured with three hearts. Confidence: moderate | [inf] (client-internals/hud-603r7-black-box.md#hearts) |
+| Settled part (2026-11-20) | The hearts formula holds at four window sizes: four hearts leave 23 px, and 68 px is the three-heart case. The sword source rectangle is 28 px wide, from a magenta test image | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-hud-e326) |
+| Best guess | The Windows text positions follow the Linux ones. Confidence: low | [inf] (client-internals/hud-603r7-black-box.md#hearts) |
 | Settles it | Identified-state captures: a known heart count, a known window size, the sword drawn on a plain background | [inf] (client-internals/hud-603r7-black-box.md#open) |
 | Outlook | Lab | [inf] (client-internals/hud-603r7-black-box.md#open) |
-
-### E#327 Missing chest art and menu skin in the 6.03r7 item run
-
-**Question.** Why the script-free Linux 6.03r7 run drew no chest art, and why the menu showed an orange rectangle (→ §4.5.8) [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | Chest collision and opening were observed without chest art; an orange rectangle appeared after D, Q, Tab or Esc toggled the menu status | [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests) |
-| Best guess | Both come from files or scripts the lab world lacks: the chest image and the GUI skin are delivered by the server on 6.x. Confidence: moderate | [inf] (client-internals/items-603r7-black-box.md#open) |
-| Settles it | Controlled input changes: add the chest image and a GUI skin and see what changes | [inf] (client-internals/items-603r7-black-box.md#open) |
-| Outlook | Lab | [inf] (client-internals/items-603r7-black-box.md#open) |
 
 ### E#610 Windows 4.04r2 offline initialization against gameplay
 
@@ -685,18 +661,6 @@ These questions are about the programs on the other side of the connection (→ 
 | Best guess | A row number in a listserver table of machines matched on the hardware hashes; a truncated hash of the fields would fit too. Confidence: low | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | Settles it | The official listserver, or captures of its `ASSIGNPCID` replies for known inputs (public servers need the owner's written permission) | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | Outlook | Maybe never for the rule, which lives only in the operator's database; a clean-room server can pick its own rule, since clients only store the number | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
-
-### E#420 Flag and chest counts in the RC props tail
-
-**Question.** Which of the two counts in the RC props tail counts flags and which counts opened chests [cap] (protocol/rc-capture-2026-11-04.md#player-props).
-
-| Part | Discussion | Source |
-| --- | --- | --- |
-| Evidence | The tail after the props block in 72 and 76 holds two `s` counts, then the weapons; both were 0 in the only capture | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Evidence | PLO 124 (`PLO_RC_PLAYERFLAGS`, proposed) is handled by RC3 only, which logs and discards its body | [cap][bin] (protocol/rc-props-flags-status.md) |
-| Best guess | Flags first, then chests, the order the server stores them in the account file. Confidence: low to moderate | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Settles it | A capture of 72 for a player with some flags and no opened chests | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Outlook | Lab | [inf] (protocol/rc-capture-2026-11-04.md#player-props) |
 
 ### E#422 Quoting of folder rights
 
@@ -1086,6 +1050,16 @@ Two sources disagreed on whether 2.00 parses player prop 36 and NPC prop 36; a r
 | Claim B | The 2.00 layout tables have the self and other-player streams accept 0 to 35 and the NPC stream 0 to 36 | [bin] (version-profiles/plo-playerprops-layouts.tsv); [bin] (version-profiles/plo-npcprops-layouts.tsv) |
 | Settled | The 2.00 and 2.01 self switch covers 0 to 36 and the NPC switch 0 to 35; NPC 36 to 40 arrive in 2.02 rev 2. Claim A holds; the other-player switch also accepts 36 (and 50, 51) | [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin) |
 
+### E#9 Uploads from game clients (settled)
+
+Which game-client feature sends the file-browser and upload ids, and whether a server accepts them from a game connection, was open; a lab run and the client's own strings settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#upload-ids-from-a-game-connection-e9).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Claims | A: game clients cannot upload; the ids are RC-only. B: 6.01r1 and 6.03r7 send the ids with an upload queue | [srv] (protocol/file-transfer.md#upload-rc-only); [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
+| Settled | 6.03r7 describes its upload calls as working only while the scripted RC has a file browser open: they are the scripted-RC staff feature. On the GServer-v2 fork, those ids on a game connection are unknown packets; after three the player is dropped, and no file is written | [lab] (protocol/lab-appe-mirae-2026-11-20.md#upload-ids-from-a-game-connection-e9) |
+| Verdict | Verified for the fork; both claims hold, for different connections. Original servers were not run | [lab] (protocol/lab-appe-mirae-2026-11-20.md#upload-ids-from-a-game-connection-e9) |
+
 ### E#11 Client-to-server ids the NewWorld betas lack (settled)
 
 Two reads disagreed on whether the NewWorld betas send ids 8 and 20 [bin] (client-internals/version-profiles/141-217.toml).
@@ -1366,6 +1340,18 @@ How other players see a Ctrl+letter emote was open, because captures showed AFK 
 | Settled | On 2.05 rev 2, Ctrl+A draws the AFK bubble locally and sends only one file check (34) for its image, once per session; Ctrl+S and Ctrl+D likewise; no `PLI_SHOWIMG` and no props leave the client, so the server has nothing to relay | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
 | Verdict | Verified: others do not see a key emote; the captured AFK frames came from a server script | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#key-emote-on-205-e322) |
 
+### E#327 Missing chest art and menu skin in the 6.03r7 item run (settled)
+
+Why the script-free Linux 6.03r7 run drew no chest art, and why the menu showed an orange rectangle, was open; controlled input changes settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | Chest collision and opening worked without chest art; an orange rectangle appeared when the menu toggled | [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests) |
+| Settled (chest) | With `chest.png` and `chestopen.png` on the server, the client fetches the first at level entry and the second on opening, and draws both | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+| Settled (menu) | The image names no skin or window image, and the client fetches no file when the menu toggles: the orange box is the default unskinned GUI drawing, and a skin can only come from a server script | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+| Verdict | Verified; the best guess held | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+| Left over | A scripted skin delivered and seen to change the menu | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+
 ### E#328 What drives 2.22's tick (settled)
 
 Whether 2.22's game step runs from a 50 ms multimedia timer or from the idle handler behind a 50 ms gate was open; a static read of the timer's creation settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#what-drives-the-222-tick-e328).
@@ -1387,6 +1373,16 @@ Which RC builds send `GSERV025` was open while only the earlier RC builds had be
 | Settled | RC2 2.05, RC3 and the 2006-01-20 Linux RC send `GSERV025`; the 2005-12-09 Linux RC and the 2004 RC (login type 6) send `GSERV024`. The token changed between December 2005 and January 2006 | [bin] (protocol/rc2-sessions-stock-2026-11-16.md); [bin] (tools/remotecontrol.md#logins-bin); [lab] (protocol/rc-fuzz-2026-11-19.md) |
 | Verdict | Verified for every held official RC build. A server should accept both tokens | [bin] (protocol/rc2-sessions-stock-2026-11-16.md) |
 | Left over | The 2014 "custom" RC is a player modification of an official RC and the second RC3 build is catalogued only; neither is expected to change the answer | [inf] (tools/remotecontrol-lineage.md) |
+
+### E#420 Flag and chest counts in the RC props tail (settled)
+
+Which of the two counts in the RC props tail counts flags and which opened chests was open, because both were 0 in the only capture; four controlled accounts settled it for the fork's writer [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420).
+
+| Part | Discussion | Source |
+| --- | --- | --- |
+| Before | The tail after the props block in 72 and 76 holds two `s` counts, then the weapons | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
+| Settled | The first count is flags (then the flag strings, newest first), the second opened chests (each `c` length + 2, `c` x, `c` y, level name), then the weapon count and names, and nothing after | [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420) |
+| Verdict | Verified against the GServer-v2 fork with RC 2004; the best guess held. No original 2001–2004 server was run | [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420) |
 
 ### E#421 The last byte of RC_PLAYERPROPSSET2 (settled)
 
