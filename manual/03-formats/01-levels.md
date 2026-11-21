@@ -310,7 +310,7 @@ The rules below give how the clients draw an injected `PLO_BOARDLAYER` (107). Th
 | robustness | as above | no 107 or 7 variant crashed a client or drew a reply; 5.24r4 under Wine blanked the board after the first 107, read as repaint noise | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
 | caches | 5.x | in these runs the 5.x clients wrote no `GR-V1.05` web-level cache entry, only a script-cache `.code` file per level | [lab] (formats/gr-v105-fuzz-2026-11-19.md#other-results-lab) |
 
-What the open-source lab server does with a `GR-V1.05` file is in → §5.6.
+What the open-source lab server does with a `GR-V1.05` file is in → §5.6. Its layer-count and malformed-link source repairs have landed, but a correctly served multi-layer file on 5.12 and 6.03r7 remains unmeasured here; injected 107 rendering is a separate result [srv] (formats/gr-v105-fuzz-2026-11-19.md#source-repair-reconciled-on-2026-11-21-srv).
 
 ## 3.1.3 GLEVNW01 (.nw)
 

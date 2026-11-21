@@ -94,7 +94,7 @@ queue below is the suggested order; take the next free entry whose VM is idle.
 |---|---|---|---|
 | 1 | Server fuzz: GServer 1.21 gen-2 sweep on a quiet host, the unauthenticated id 8 on one connection, and post-login cases with a per-case guest reset | `server-fuzz-c2s-targets` lines 54, 107, 109 | free |
 | 2 | GServer 1.25 and 1.27: lab login of both clients and the player, NPC and baddy prop ranges | `gserv-125-127-builds` lines 128, 132 | free |
-| 3 | Fix the lab gserver's GR-V1.05 reader, then serve a multi-layer level to 5.12 and 6.03r7 | `gr-v105-fuzz` line 80; `gr-v105-empty-tiles` line 33 | free |
+| 3 | Serve a multi-layer level to 5.12 and 6.03r7 with the reader repair from seihai-gserver-v2 #118; live result still open | `gr-v105-fuzz` source repair and remaining level walk; `gr-v105-empty-tiles` line 33 | free |
 | 4 | NC write operations through `ncprobe.py` (attribute, class and weapon writes) | `nc-write-ops-status` line 38 | free |
 | 5 | The protocol-19 server order with a real 4.04r2 and 3.153 | `protocol19-server` lines 164, 165 | free |
 
