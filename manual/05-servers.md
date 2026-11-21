@@ -187,6 +187,10 @@ In the pinned newer fork, `defaultlanguage` (default `en`) and `translatedlangua
 
 Modern generation selects a translation stub that returns source text. Other generations use the classic manager, which loads eligible `slanguage*.txt` files and looks up requested language, then Original, then source text, recording a missing original entry. RPG-window and sign-message methods use this path; not every outgoing string is established as translated. Existing cache-update test definitions do not prove selection/filtering or runtime behavior [srv] (server-notes/language-options-and-fallback-2026-11-21.md#player-selection-and-translator-generation).
 
+The pinned newer fork tracks `syncdistancex`/`syncdistancey` at 192 tiles each and `syncbydistanceinside` at false. Its numeric synchronization query uses inclusive independent axes, returns all members when both distances cover the dimensions, delegates bigmaps to data routing and bypasses numeric tests inside ordinary levels unless enabled. Entry/departure and ghost-refresh callers use this query; ordinary level-scoped property buffers instead use current-level or bounded 3-by-3 map-cell routing [srv] (server-notes/sync-distance-routing-2026-11-21.md#defaults-and-the-numeric-query).
+
+`sendtonearbybigmaplevels` defaults true and gates cross-level sends in one nearby-send method, alongside the pre-2.01 client gate and temporary active-level wrapper. The ordinary-property helper does not apply that option gate. These are separate paths, not universal visibility controls. Advice to avoid distances below 64 is not an enforced predicate minimum; malformed-value defaults, live reannouncement and original/client agreement are not established here [srv] (server-notes/sync-distance-routing-2026-11-21.md#ordinary-data-routing-and-send-gates).
+
 ### 5.3.1 Server source lineage
 
 Several server source trees survive. Each row gives one tree, the era it belongs to and how its code is laid out [src] (server-notes/01-lineage.md#what-is-actually-source).
