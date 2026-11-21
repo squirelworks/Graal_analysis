@@ -179,6 +179,10 @@ The header comments of the 2006 tree give wrong opcode numbers after 83; the `ms
 
 GServer-v2 is an open reimplementation, not an original server [src] (client-internals/board-respawn.md#gserver-v2-lab-server-src). Where this part says "GServer-v2", it means the behaviour read in its source or seen in the lab; it is the reference for what 2.x and later clients accept, not a record of the official servers.
 
+In the pinned newer fork, `defaultlanguage` (default `en`) and `translatedlanguages` (default empty list) are tracked and logged, but do not select translated text or filter loaded classic domains. No dedicated `serverlanguage` text consumer was identified. The separate `language` key is the registration label, default English; the player translation method instead uses the account language, with an empty client language message becoming English [srv] (server-notes/language-options-and-fallback-2026-11-21.md#settings-versus-implemented-effects).
+
+Modern generation selects a translation stub that returns source text. Other generations use the classic manager, which loads eligible `slanguage*.txt` files and looks up requested language, then Original, then source text, recording a missing original entry. RPG-window and sign-message methods use this path; not every outgoing string is established as translated. Existing cache-update test definitions do not prove selection/filtering or runtime behavior [srv] (server-notes/language-options-and-fallback-2026-11-21.md#player-selection-and-translator-generation).
+
 ### 5.3.1 Server source lineage
 
 Several server source trees survive. Each row gives one tree, the era it belongs to and how its code is laid out [src] (server-notes/01-lineage.md#what-is-actually-source).
