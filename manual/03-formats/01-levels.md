@@ -294,6 +294,7 @@ board × count            one 64 × 64 board per layer, 13-bit codes as in → �
 | empty cells on the wire | 4095 sent in a 107 draws as tileset cell 4095 (a dark tile), and `0xFFFF` draws as empty, so a server turns an on-disk 4095 on a layer above 0 into `0xFFFF` before it sends the layer | [lab][srv] (formats/gr-v105-fuzz-2026-11-19.md#what-this-settles) |
 | heights on the wire | no heights message was seen for a `HEIGHTS` level of either 1.04 or 1.05; which message, if any, carries them is open | [lab][srv] (formats/gr-v105-fuzz-2026-11-19.md#what-this-settles) |
 | older readers | the classic 2.x clients and the 2.22 `GraalEditor` do not know the magic | [bin] (formats/gr-v105-500r7.md#limits) |
+| repaired-server positive serve | native Linux 6.03r7 receives full-board 107 layers with raw headers and little-endian cells: two-layer upper board has 64 cells of tile 332 and 4032 empty; an explicit hole changes this to 63 and 4033, with (30,30) empty. RLE adds a layer with 16 cells of tile 333 and 4080 empty. Painted regions and the hole are visible; 5.12 and an independent gameplay canary remain open | [lab] (formats/gr-v105-native603-2026-11-21.md#delivered-layers); [lab] (formats/gr-v105-native603-2026-11-21.md#drawing-and-session-observations) |
 | samples | no real on-disk `GR-V1.05` file is held; the two server backups searched hold none (→ §3.1.3.3) | [file] (formats/gr-v105-empty-tiles-2026-11-16.md#sample-hunt-limits) |
 
 The rules below give how the clients draw an injected `PLO_BOARDLAYER` (107). They were measured with the probe proxy on loopback, a bomb-count canary after each message [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client).
@@ -310,7 +311,7 @@ The rules below give how the clients draw an injected `PLO_BOARDLAYER` (107). Th
 | robustness | as above | no 107 or 7 variant crashed a client or drew a reply; 5.24r4 under Wine blanked the board after the first 107, read as repaint noise | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
 | caches | 5.x | in these runs the 5.x clients wrote no `GR-V1.05` web-level cache entry, only a script-cache `.code` file per level | [lab] (formats/gr-v105-fuzz-2026-11-19.md#other-results-lab) |
 
-What the open-source lab server does with a `GR-V1.05` file is in → §5.6. Its layer-count and malformed-link source repairs have landed, but a correctly served multi-layer file on 5.12 and 6.03r7 remains unmeasured here; injected 107 rendering is a separate result [srv] (formats/gr-v105-fuzz-2026-11-19.md#source-repair-reconciled-on-2026-11-21-srv).
+What the open-source lab server does with a `GR-V1.05` file is in → §5.6. Its layer-count and malformed-link source repairs have landed [srv] (formats/gr-v105-fuzz-2026-11-19.md#source-repair-reconciled-on-2026-11-21-srv). Native Linux 6.03r7 now has a partial positive served-file result; 5.12, an independent gameplay canary and a walked link remain open [lab] (formats/gr-v105-native603-2026-11-21.md#limits-and-remaining-work).
 
 ## 3.1.3 GLEVNW01 (.nw)
 
