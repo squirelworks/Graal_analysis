@@ -1,9 +1,11 @@
-# GR-V1.05 native Linux 6.03r7: parser canary and physical link returns
+# GR-V1.05: served-layer canaries and link returns across three runtimes
 
 Date: 2026-11-21. Tags: **[lab]** for the original-client observations below.
-Evidence ID: `GR105-NATIVE603-CANARY-LINKS` in [the evidence index](../docs/evidence-index.tsv).
+Evidence IDs: `GR105-NATIVE603-CANARY-LINKS`, `GR105-WINE512-CANARY-LINKS` and
+`GR105-WINE524-CANARY-LINKS` in [the evidence index](../docs/evidence-index.tsv).
 This follows the [initial served-layer result](https://github.com/squirelworks/Graal_analysis/pull/753)
-with a separate bounded run. It adds no Windows-client result.
+with separate bounded runs. Windows 5.12 and the retained 5.24r4-labelled build below ran
+under Wine inside Debian, not native Windows.
 
 ## Setup and scope
 
@@ -19,6 +21,8 @@ The client entered each fixture through an injected chat warp. The canary was th
 and measured before returning to the hub. No malformed fixture was replayed.
 
 ## Independent HUD/parser canary
+
+This section reports the native Linux 6.03r7 run.
 
 The run first recorded two reference frames after setting the bomb-count HUD property to
 1 and 99 respectively. Before each fixture, it reset the property to 1 and recorded a
@@ -58,12 +62,54 @@ It does not prove walking into the positive levels from the hub; ingress in the
 successful run remained chat warp.
 The successful follow-up plan had no packet-9 wait timeout.
 
+## Windows 5.12 under Wine
+
+The Windows 5.12 client authenticated with token `G3D14097` under Wine inside the same
+Debian VM, using a private prefix copy and the same reported fixed world deployment.
+The retained served frames show the two-layer patch, explicit empty hole and extra RLE
+region. There is no black game viewport in those inspected frames; the surrounding Wine
+desktop is not the game viewport. **[lab]**
+
+The same reset-to-1, serve, separate-property-99 and physical bottom-return plan was used.
+The scorer region was translated to the observed game origin within the desktop, retaining
+the same 40 by 22 region size and distance rule. All three before frames scored lost;
+all three served-canary and returned frames scored landed. Each served region matched its
+99 reference exactly. Physical Down input again preceded client 30 and server 6 hub
+messages in all three cases. Ingress and the approach position still used chat warp. **[lab]**
+
+Full packet-107 hex logging was not enabled in time for this Wine run. No fresh full-board
+histograms are inferred from it; the Wine visual/canary/link evidence and the earlier native
+packet counts are separate scopes. The scorer was the bitmap-decoding port; original
+Python/Pillow execution is not claimed. No native-Windows run or server build is added.
+
+## Retained 5.24r4-labelled build under Wine
+
+This client authenticated with runtime token `G3D15010`. Its hub baseline drew, but each
+served fixture showed partial black regions or repaint failure. The controller used the
+same canary protocol with the scorer region translated to this game viewport. All three
+before frames scored lost; all three served frames scored **unclear**. **[lab]**
+
+| Fixture | Distance to 99 reference | Distance to 1 reference | Served verdict | Returned hub |
+|---|---|---|---|---|
+| two layers | 61.67 | 84.37 | unclear | landed |
+| explicit empty hole | 34.38 | 57.08 | unclear | landed |
+| RLE | 61.67 | 84.37 | unclear | landed |
+
+These scores establish neither a successful post-serve canary nor a parser failure.
+After each physical bottom return, client 30 and server 6 again identified the hub,
+and the returned hub canary scored landed. Thus continued input and return traversal
+are observed despite the served-frame repaint problem. This is not full rendering or
+parser acceptance for the served fixture. Ingress remained chat warp. **[lab]**
+
 ## Remaining gap
 
 - [x] Add the independent parser/HUD canary after serving each native Linux positive fixture.
 - [x] Exercise each advertised bottom return link with physical input and bind the resulting
   client request, server level response and returned frame.
-- [ ] Establish correctly served coverage on Windows 5.12 and the separate 5.24r4 repaint case.
+- [x] Repeat the three positive serves, separate parser/HUD canary and physical return on
+  Windows 5.12 under Wine inside Debian.
+- [ ] Resolve the 5.24r4-labelled Wine build's repaint and served-canary ambiguity, and establish
+  any native-Windows behavior independently.
 - [ ] Establish walking ingress separately; one-direction return is not bidirectional traversal.
 - [ ] Measure heights, malformed inputs and a real vendor-original on-disk sample separately.
 

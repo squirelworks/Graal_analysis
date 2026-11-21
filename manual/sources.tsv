@@ -914,4 +914,4 @@ client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	cited	2.4; 4.
 docs/releases/v0.0.8.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.9.md	excluded			release notes for the book's GitHub release, not Graal
 formats/gr-v105-native603-2026-11-21.md	cited	3.1; 5	3.1; 5	Positive generated-layer delivery and drawing; deployment provenance and remaining checks are qualified in the note.
-formats/gr-v105-native603-canary-2026-11-21.md	cited	3.1; 5	3.1; 5	Independent HUD/parser canary and one-direction physical return; deployment and scorer execution limits preserved.
+formats/gr-v105-served-canary-links-2026-11-21.md	cited	3.1; 5	3.1; 5	Independent HUD/parser canary and one-direction physical return; deployment and scorer execution limits preserved.
