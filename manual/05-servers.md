@@ -183,6 +183,10 @@ The pinned newer fork consumes `newtilesets` (false by default) and `newtilesetl
 
 Coordinates at or above the level's upper dimensions and unavailable tiles return blocking before category lookup. The registered GS1 `tiletype` function reads that level category, with blocking fallback when no level exists. Its wall predicate recognizes throw-through, jump-stone and blocking categories; GS1 `onwall` and `onwall2` also have object/player checks. `playerswimming` samples the water/lava categories. Terrain category lookup returns nonblocking before the tile-id range check; other selections reject ids at or above 4096. No live setting-change or new runtime result is established [srv] (server-notes/tile-category-options-2026-11-21.md#concrete-consumers).
 
+In the pinned newer fork, `defaultlanguage` (default `en`) and `translatedlanguages` (default empty list) are tracked and logged, but do not select translated text or filter loaded classic domains. No dedicated `serverlanguage` text consumer was identified. The separate `language` key is the registration label, default English; the player translation method instead uses the account language, with an empty client language message becoming English [srv] (server-notes/language-options-and-fallback-2026-11-21.md#settings-versus-implemented-effects).
+
+Modern generation selects a translation stub that returns source text. Other generations use the classic manager, which loads eligible `slanguage*.txt` files and looks up requested language, then Original, then source text, recording a missing original entry. RPG-window and sign-message methods use this path; not every outgoing string is established as translated. Existing cache-update test definitions do not prove selection/filtering or runtime behavior [srv] (server-notes/language-options-and-fallback-2026-11-21.md#player-selection-and-translator-generation).
+
 ### 5.3.1 Server source lineage
 
 Several server source trees survive. Each row gives one tree, the era it belongs to and how its code is laid out [src] (server-notes/01-lineage.md#what-is-actually-source).

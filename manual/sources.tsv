@@ -924,3 +924,4 @@ formats/height-transport-scope-2026-11-21.md	cited	3.1; 5	3.1; 5	Reference-fork 
 protocol/file-profile-evidence-2026-11-21.md	cited	2.7	2.7	Recorded 1.41r1 direct cases are distinct from raw/file handling; local shared defaults, server gates and directional captures retain their evidence limits.
 server-notes/ghost-mode-options-2026-11-21.md	cited	5	5	Pinned reference-fork configuration consumption; original-server and client runtime behavior remain separate.
 server-notes/tile-category-options-2026-11-21.md	cited	5	5	Pinned GPL reference-fork category selection and consumers; original-server, client rendering and live-toggle effects remain unverified.
+server-notes/language-options-and-fallback-2026-11-21.md	cited	5	5	Tracked/logged language keys are separated from registration metadata, player language and actual classic/modern lookup; no original/runtime equivalence.
