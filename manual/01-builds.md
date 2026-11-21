@@ -298,6 +298,8 @@ The iPhone tokens follow the `G3D` + DDMMY shape, each stamped a day to a few da
 
 ## 1.3 Version ids
 
+Selected 2.14–2.16 release-note headings document voice/music/UI and script/GANI feature families, while the canonical catalogue gives documentary token associations; neither authenticates every revision or establishes an original-client packet set. The 2.14 notes also describe some projectile features as added earlier, so the heading is not their introduction date. The reference server's version gate corroborates a large-download compatibility boundary only, not the other features or native capacities [doc][srv] (client-internals/214-216-feature-evidence.md).
+
 Server code identifies a client by an internal version id; ids sort, so 2.05 rev 2 sorts below 2.1 [srv] (client-internals/version-id-map.md#protocol-token--version).
 
 | Version id | Build | Token | Source |
