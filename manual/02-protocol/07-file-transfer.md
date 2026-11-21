@@ -67,6 +67,12 @@ Which file layout a client gets depends on how the server ranks its token, not o
 
 For the focus builds the ladder above gives: 1.39 takes the pre-2.1 path and never sends id 34; 2.22 and later take the ≥ 2.14 path with 32000-byte chunks, and 2.31 adds 84 to its receive set; 4.20r8, 5.00r7, 5.12 and 6.03r7 take the same path when the server's table knows their tokens, and fall back to the pre-2.1 path (large files fail with 30) when it does not. The per-executable receive constants of 4.20r8 to 6.03r7 were not read, so profile cells for them stay inferred from 2.14. [srv][bin][cap][inf] (protocol/large-file-thresholds-focus.md)
 
+The recorded patched 1.41r1 input is generation 3 (`GNW13110`). Its 45 direct receive cases are 0–41, 43, 75 and 100, so 68/69 are absent from that switch. This does not establish the FILE body behind RAWDATA 100: the exact raw/file subpath remains unread. It is not a pristine-vendor or all-copies claim [bin] (protocol/file-profile-evidence-2026-11-21.md#the-recorded-141r1-input).
+
+The 2.22/2.31 profile's `defaults.gen5` is a local shared block, not literal inheritance from a 2.1 profile. Its `file_modtime` and `image_ext_default` historical ≥2.1 comments describe server gates; `large_files` combines recorded 68/69 receive cases with a server chunk size. Those dimensions do not independently establish native metadata handling, extension selection or size limits. Existing UDP evidence covers `noudp` and `fixedudpport` presence and default-off behavior, not the numeric fixed-port default; `zlib_fix_npc` remains a server workaround with inferred native equivalence [bin][srv][inf] (protocol/file-profile-evidence-2026-11-21.md#shared-222-and-231-defaults).
+
+The profile's combined `compression_src` tag also needs direction: real 2.22 client-originated raw/zlib frames include partial compressed groups, but client-originated bz2 remains unseen. This reconciliation changes comments and provenance, not profile values [cap] (protocol/file-profile-evidence-2026-11-21.md#captures-remain-directional).
+
 ## 2.7.4 Requests at login
 
 Each build asks for different files when it enters a server. The table gives the first requests seen per build. The late builds always start with the base package [srv][inf][cap] (protocol/file-transfer.md#typical-flow-for-205-srvinf).
