@@ -34,11 +34,13 @@ the issue it closes. Part 2 lists every other lab row on the [gap board](gap-boa
 
 **X1. Probe coverage for 5.12, 6.037 and the 2.02 family.**
 
-- **Partial result (2026-11-21):** [100 selected own-prop canaries on 5.12 under Wine](../protocol/probe-wine512-widths-2026-11-21.md)
-  were measured across `widths` and nine nonzero `widths-fix` follow-ups
-  (96 landed, four lost). This does not complete the other plans or wider G424/G191 scope.
+- **Partial results (2026-11-21):** the [32-case 5.12 core slice under Wine](../protocol/probe-wine512-core-2026-11-21.md)
+  measured 29 landed and three lost canaries. A separate [100 selected own-prop canaries](../protocol/probe-wine512-widths-2026-11-21.md)
+  across `widths` and nine nonzero `widths-fix` follow-ups measured 96 landed and four lost.
+  These do not complete G424/G191 or the other plans/builds below. Reconcile
+  `loadgani3w` with the eight existing 5.12 PLO 195 rows before another GANI run.
 - **Goal:** close the probe holes found while building the board. At the original 2026-11-20
-  triage, 5.12 had only the 8-row 195 gani set; the partial result above adds selected own-prop cases.
+  triage, 5.12 had only the 8-row 195 gani set; the partial results above add core and selected own-prop cases.
   6.037 had 32 rows. 2.02, 2.02 rev 1 and 2.02 rev 2 had none. Board rows G424, G425,
   G426 and G191.
 - **VM and client:**

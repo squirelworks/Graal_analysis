@@ -5,6 +5,8 @@ Every research note in this repository, listed by topic and roughly in the order
 When you add a note, add a line for it here in the same pull request.
 
 - [Windows 5.12 selected own-prop canaries under Wine](protocol/probe-wine512-widths-2026-11-21.md) — 100 selected payloads across widths and nine nonzero follow-ups, 96 landed and four lost; case 76 is a threshold result rather than an exact reset match, and wider width semantics remain open.
+
+- [Windows 5.12 core probes under Wine](protocol/probe-wine512-core-2026-11-21.md) — 32 controlled cases, 29 landed and three lost canaries; selected own-prop alignment and five PLO ids, with the wider campaign still open.
 - [Research gap board (2026-11-20)](docs/gap-board.md) — every open gap in one claimable table ([`gap-board.tsv`](docs/gap-board.tsv)): 426 items from Appendix E, the open task boxes and the open-questions tables, each marked static, lab, owner or missing, with a lab queue per VM and the first static picks; index.
 - [Planned experiments (2026-11-20)](docs/experiments.md) — the queued lab runs, step by step, and every lab row on the board by VM
 - [Ranged baddy kills on 1.21 and 2.17.1, and sword against sword on 2.22](live-runs/drops-2026-11-20/README.md) — 1.21 rolls a real ground drop when an archer dies (heart, darts or gralat) and the kill counter does not change; 2.17.1 drops nothing (0 in 4); the 2.22 sword spark is still not caught; lab.

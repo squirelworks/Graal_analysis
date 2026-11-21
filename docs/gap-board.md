@@ -20,6 +20,11 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 and four lost canaries across the 91-case scan and nine nonzero follow-ups. This is partial coverage, not a full width/semantic
 table; G424/G191 and the remaining plans stay open.
 
+2026-11-21 update: G424 now has a [controlled 32-case Windows 5.12 core slice
+under Wine](../protocol/probe-wine512-core-2026-11-21.md). G424 and G191 remain
+open: other plans/builds and the full width sweep are not completed. The older
+failed attempt adds no accepted rows; existing PLO 195 coverage stays separate.
+
 | Column | Meaning |
 |---|---|
 | `id` | Board id, `G001` on. Stable for this board; a later board renumbers. |
