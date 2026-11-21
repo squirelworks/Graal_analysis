@@ -54,8 +54,8 @@ No chat-warp command occurred between that marker and the client request. The re
 screens remained alive and drawn. **[lab]**
 
 This proves the advertised bottom return link in one direction for those three fixtures.
-It does not prove walking into the positive levels from the hub: an earlier top-door
-attempt did not enter them, and ingress in the successful run remained chat warp.
+It does not prove walking into the positive levels from the hub; ingress in the
+successful run remained chat warp.
 The successful follow-up plan had no packet-9 wait timeout.
 
 ## Remaining gap
