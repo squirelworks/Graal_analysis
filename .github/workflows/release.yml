@@ -17,11 +17,6 @@ on:
         description: 'Commit the tag should point at (empty = the commit this run is on)'
         required: false
         default: ''
-      replace_assets:
-        description: 'Published release: also replace its PDFs with the ones in the tree (for a rebuilt manual, e.g. a scrub)'
-        type: boolean
-        required: false
-        default: false
 
 permissions:
   contents: write
@@ -38,7 +33,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           VERSION: ${{ inputs.version }}
           TARGET: ${{ inputs.target }}
-          REPLACE_ASSETS: ${{ inputs.replace_assets }}
         run: |
           echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$' || { echo "::error::bad version $VERSION"; exit 1; }
           TAG="v$VERSION"
@@ -66,15 +60,9 @@ jobs:
               gh release upload "$TAG" dist/* --clobber
               gh release edit "$TAG" --target "$SHA" --notes-file "$RUNNER_TEMP/notes.md"
             else
-              # Published: only the notes change. The tag and its commit stay, and so do
-              # the files unless replace_assets is set (the owner asked for a rebuilt PDF).
+              # Published: only the notes change. The tag, its commit and the files stay.
               gh release edit "$TAG" --notes-file "$RUNNER_TEMP/notes.md"
-              if [ "$REPLACE_ASSETS" = true ]; then
-                gh release upload "$TAG" dist/* --clobber
-                echo "$TAG is already published; replaced its files and notes."
-              else
-                echo "$TAG is already published; updated its notes only."
-              fi
+              echo "$TAG is already published; updated its notes only."
             fi
           else
             gh release create "$TAG" dist/* --draft --target "$SHA" --title "$TITLE" --notes-file "$RUNNER_TEMP/notes.md"
