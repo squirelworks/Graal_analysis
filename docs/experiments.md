@@ -33,8 +33,13 @@ the issue it closes. Part 2 lists every other lab row on the [gap board](gap-boa
 ### Lab host B: Windows 10 VM, or Wine in the Linux lab VM (issue #743)
 
 **X1. Probe coverage for 5.12, 6.037 and the 2.02 family.**
-- **Goal:** close the probe holes found while building the board. 5.12 has only the 8-row 195
-  gani set. 6.037 has 32 rows. 2.02, 2.02 rev 1 and 2.02 rev 2 have none. Board rows G424, G425,
+
+- **Partial result (2026-11-21):** [91 selected own-prop canaries on 5.12 under Wine](../protocol/probe-wine512-widths-2026-11-21.md)
+  were measured (88 landed, three lost). This does not complete `widths-fix`,
+  the other plans or the wider G424/G191 scope.
+- **Goal:** close the probe holes found while building the board. At the original 2026-11-20
+  triage, 5.12 had only the 8-row 195 gani set; the partial result above adds selected own-prop cases.
+  6.037 had 32 rows. 2.02, 2.02 rev 1 and 2.02 rev 2 had none. Board rows G424, G425,
   G426 and G191.
 - **VM and client:**
   - 5.12 runs under Wine with `runwine.sh 512`.

@@ -306,6 +306,8 @@ Because an unknown id ends a stream, a server has to know which ids each client 
 
 #### What the clients do with each id, in the lab
 
+Windows 5.12 under Wine was also given the 91 selected own-prop payloads of `widths.plan`: 88 trailing same-message bomb canaries landed and three were lost (51, 76 and 83). Case 76 is lost by the calibrated distance threshold rather than an exact reset-reference match; the other two match the reset control. This records selected-body alignment, not a complete semantic/width table. The separate baseline is not a 92nd case; `widths-fix` and wider G424/G191 work remain open [lab] (protocol/probe-wine512-widths-2026-11-21.md).
+
 A probe proxy injected single prop messages into live loopback sessions, each followed by a visible prop as a canary (the bomb count, or an x or y), and read whether the canary landed. The results agree with the static case sets above and add the one rule a server writer most needs: **2.x clients stop at an id they have no case for, while 4.x to 6.x clients skip it as one byte** [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18).
 
 | Own-player prop | 2.05 rev 2, 2.17.1, 2.22 | 2.31 | 4.20r8 | 5.24r4 | 6.03r7 | Source |

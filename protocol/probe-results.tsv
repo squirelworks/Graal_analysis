@@ -4892,3 +4892,94 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer id 256 announced at the join (relay98 --fakepeer=256)	-	yes	P	state push after the confirming P: no (a race at join time, not an id limit)	w119-lobby	b119-256
 2026-11-20	win-1.1.9 (gen 1 relay)	s2c	lobby	-	fake peer id 1000 announced at the join (relay98 --fakepeer=1000)	-	yes	P, then T P Y N S 7	state push after the confirming P: yes (a race at join time, not an id limit)	w119-lobby	b119-1000
 2026-11-20	win-9th Graal (gen 1 relay)	s2c	lobby	-	login without the extra Return after Start	-	yes	NG5, NGraal5 only	start dialog stays up; no move to the level room	w9th-lobby	w9d
+2026-11-21	win-5.12 (wine)	s2c	9	0	9 c:0 str:Probe c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id00
+2026-11-21	win-5.12 (wine)	s2c	9	1	9 c:1 c:3 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id01
+2026-11-21	win-5.12 (wine)	s2c	9	2	9 c:2 c:6 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id02
+2026-11-21	win-5.12 (wine)	s2c	9	3	9 c:3 i3:7 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id03
+2026-11-21	win-5.12 (wine)	s2c	9	4	9 c:4 c:10 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id04
+2026-11-21	win-5.12 (wine)	s2c	9	5	9 c:5 c:3 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id05
+2026-11-21	win-5.12 (wine)	s2c	9	6	9 c:6 c:1 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id06
+2026-11-21	win-5.12 (wine)	s2c	9	7	9 c:7 c:1 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id07
+2026-11-21	win-5.12 (wine)	s2c	9	8	9 c:8 c:31 str:sword1.png c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id08
+2026-11-21	win-5.12 (wine)	s2c	9	9	9 c:9 c:11 str:shield1.png c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id09
+2026-11-21	win-5.12 (wine)	s2c	9	10	9 c:10 str:idle c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id10
+2026-11-21	win-5.12 (wine)	s2c	9	11	9 c:11 c:109 t:head0.png c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id11
+2026-11-21	win-5.12 (wine)	s2c	9	12	9 c:12 str:hi c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id12
+2026-11-21	win-5.12 (wine)	s2c	9	13	9 c:13 c:0 c:0 c:0 c:0 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id13
+2026-11-21	win-5.12 (wine)	s2c	9	15	9 c:15 c:60 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id15
+2026-11-21	win-5.12 (wine)	s2c	9	16	9 c:16 c:61 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id16
+2026-11-21	win-5.12 (wine)	s2c	9	17	9 c:17 c:2 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id17
+2026-11-21	win-5.12 (wine)	s2c	9	18	9 c:18 c:20 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id18
+2026-11-21	win-5.12 (wine)	s2c	9	19	9 c:19 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id19
+2026-11-21	win-5.12 (wine)	s2c	9	21	9 c:21 str: c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id21
+2026-11-21	win-5.12 (wine)	s2c	9	22	9 c:22 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id22
+2026-11-21	win-5.12 (wine)	s2c	9	23	9 c:23 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id23
+2026-11-21	win-5.12 (wine)	s2c	9	24	9 c:24 i3:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id24
+2026-11-21	win-5.12 (wine)	s2c	9	25	9 c:25 s:1 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id25
+2026-11-21	win-5.12 (wine)	s2c	9	26	9 c:26 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id26
+2026-11-21	win-5.12 (wine)	s2c	9	27	9 c:27 i3:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id27
+2026-11-21	win-5.12 (wine)	s2c	9	28	9 c:28 i3:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id28
+2026-11-21	win-5.12 (wine)	s2c	9	29	9 c:29 i3:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id29
+2026-11-21	win-5.12 (wine)	s2c	9	30	9 c:30 i5:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id30
+2026-11-21	win-5.12 (wine)	s2c	9	31	9 c:31 i3:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id31
+2026-11-21	win-5.12 (wine)	s2c	9	32	9 c:32 c:50 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id32
+2026-11-21	win-5.12 (wine)	s2c	9	33	9 c:33 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id33
+2026-11-21	win-5.12 (wine)	s2c	9	34	9 c:34 str:guest c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id34
+2026-11-21	win-5.12 (wine)	s2c	9	35	9 c:35 str:body.png c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id35
+2026-11-21	win-5.12 (wine)	s2c	9	36	9 c:36 i3:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id36
+2026-11-21	win-5.12 (wine)	s2c	9	37	9 c:37 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id37
+2026-11-21	win-5.12 (wine)	s2c	9	38	9 c:38 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id38
+2026-11-21	win-5.12 (wine)	s2c	9	39	9 c:39 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id39
+2026-11-21	win-5.12 (wine)	s2c	9	40	9 c:40 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id40
+2026-11-21	win-5.12 (wine)	s2c	9	41	9 c:41 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id41
+2026-11-21	win-5.12 (wine)	s2c	9	42	9 c:42 c:0 i3:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id42
+2026-11-21	win-5.12 (wine)	s2c	9	43	9 c:43 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id43
+2026-11-21	win-5.12 (wine)	s2c	9	44	9 c:44 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id44
+2026-11-21	win-5.12 (wine)	s2c	9	45	9 c:45 c:50 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id45
+2026-11-21	win-5.12 (wine)	s2c	9	46	9 c:46 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id46
+2026-11-21	win-5.12 (wine)	s2c	9	47	9 c:47 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id47
+2026-11-21	win-5.12 (wine)	s2c	9	48	9 c:48 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id48
+2026-11-21	win-5.12 (wine)	s2c	9	49	9 c:49 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id49
+2026-11-21	win-5.12 (wine)	s2c	9	50	9 c:50 c:1 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id50
+2026-11-21	win-5.12 (wine)	s2c	9	52	9 c:52 str:English c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id52
+2026-11-21	win-5.12 (wine)	s2c	9	53	9 c:53 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id53
+2026-11-21	win-5.12 (wine)	s2c	9	54	9 c:54 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id54
+2026-11-21	win-5.12 (wine)	s2c	9	55	9 c:55 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id55
+2026-11-21	win-5.12 (wine)	s2c	9	56	9 c:56 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id56
+2026-11-21	win-5.12 (wine)	s2c	9	57	9 c:57 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id57
+2026-11-21	win-5.12 (wine)	s2c	9	58	9 c:58 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id58
+2026-11-21	win-5.12 (wine)	s2c	9	59	9 c:59 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id59
+2026-11-21	win-5.12 (wine)	s2c	9	60	9 c:60 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id60
+2026-11-21	win-5.12 (wine)	s2c	9	61	9 c:61 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id61
+2026-11-21	win-5.12 (wine)	s2c	9	62	9 c:62 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id62
+2026-11-21	win-5.12 (wine)	s2c	9	63	9 c:63 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id63
+2026-11-21	win-5.12 (wine)	s2c	9	64	9 c:64 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id64
+2026-11-21	win-5.12 (wine)	s2c	9	65	9 c:65 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id65
+2026-11-21	win-5.12 (wine)	s2c	9	66	9 c:66 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id66
+2026-11-21	win-5.12 (wine)	s2c	9	67	9 c:67 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id67
+2026-11-21	win-5.12 (wine)	s2c	9	68	9 c:68 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id68
+2026-11-21	win-5.12 (wine)	s2c	9	69	9 c:69 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id69
+2026-11-21	win-5.12 (wine)	s2c	9	70	9 c:70 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id70
+2026-11-21	win-5.12 (wine)	s2c	9	71	9 c:71 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id71
+2026-11-21	win-5.12 (wine)	s2c	9	72	9 c:72 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id72
+2026-11-21	win-5.12 (wine)	s2c	9	73	9 c:73 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id73
+2026-11-21	win-5.12 (wine)	s2c	9	74	9 c:74 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id74
+2026-11-21	win-5.12 (wine)	s2c	9	75	9 c:75 str:linux c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id75
+2026-11-21	win-5.12 (wine)	s2c	9	76	9 c:76 i3:1252 c:5 c:99	no	yes	not scored	same-message trailing canary lost by distance threshold; not an exact reset-reference match	wine512-widths-2026-11-21	id76
+2026-11-21	win-5.12 (wine)	s2c	9	77	9 c:77 i5:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id77
+2026-11-21	win-5.12 (wine)	s2c	9	78	9 c:78 s:960 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id78
+2026-11-21	win-5.12 (wine)	s2c	9	79	9 c:79 s:960 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id79
+2026-11-21	win-5.12 (wine)	s2c	9	80	9 c:80 s:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id80
+2026-11-21	win-5.12 (wine)	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id81
+2026-11-21	win-5.12 (wine)	s2c	9	82	9 c:82 str:x c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id82
+2026-11-21	win-5.12 (wine)	s2c	9	83	9 c:83 i5:7 c:5 c:99	no	yes	not scored	same-message trailing canary lost; matches reset reference	wine512-widths-2026-11-21	id83
+2026-11-21	win-5.12 (wine)	s2c	9	84	9 c:84 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id84
+2026-11-21	win-5.12 (wine)	s2c	9	85	9 c:85 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id85
+2026-11-21	win-5.12 (wine)	s2c	9	86	9 c:86 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id86
+2026-11-21	win-5.12 (wine)	s2c	9	87	9 c:87 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id87
+2026-11-21	win-5.12 (wine)	s2c	9	88	9 c:88 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id88
+2026-11-21	win-5.12 (wine)	s2c	9	89	9 c:89 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id89
+2026-11-21	win-5.12 (wine)	s2c	9	90	9 c:90 c:0 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id90
+2026-11-21	win-5.12 (wine)	s2c	9	51	9 c:51  c:5 c:99	no	yes	not scored	same-message trailing canary lost; matches reset reference	wine512-widths-2026-11-21	id51
+2026-11-21	win-5.12 (wine)	s2c	9	20	9 c:20 str:probe_start.nw c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id20
+2026-11-21	win-5.12 (wine)	s2c	9	14	9 c:14 s:1 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id14
