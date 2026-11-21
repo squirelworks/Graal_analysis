@@ -224,7 +224,7 @@ G222	formats/gmap-heights-mac-ppc.md	line 90	Positive control: an unchanged read
 G223	formats/gmap-heights-mac-ppc.md	line 91	Validate the RANDOMSEEDS row bound against the callers and the assembly.	static	static: cloud or a host (lab host A/B)	medium	free
 G224	formats/gmap-heights-mac-ppc.md	line 92	Open the board helper that receives 12 or 13, and the GLEVNW01 handler.	static	static: cloud or a host (lab host A/B)	medium	free
 G225	formats/gr-v105-empty-tiles-2026-11-16.md	line 32	Decode one real on-disk GR-V1.05 sample when held. [file]	static	static: cloud or a host (lab host A/B)	medium	free
-G226	formats/gr-v105-empty-tiles-2026-11-16.md	line 33	Live serve of a multi-layer file to 5.12 / 6.03r7 remains unmeasured; the source repair landed in seihai-gserver-v2 #118. [lab][srv]	lab	lab host B Linux VM (servers)	medium	free
+G226	formats/gr-v105-empty-tiles-2026-11-16.md	line 33	Partial positive served layers on native Linux 6.03r7; 5.12, independent gameplay canary and walked link remain open; see gr-v105-native603-2026-11-21.md. [lab]	lab	lab host B Linux VM (servers)	medium	free
 G227	formats/gr-v105-fuzz-2026-11-19.md	Still open: level walk	Re-run the level walk with the repaired lab gserver; reader and link-line source repairs landed in seihai-gserver-v2 #118. [srv]	static+lab	lab host B Linux VM (servers)	medium	Codex server (source reconciliation only; live run unclaimed)
 G228	formats/gr-v105-fuzz-2026-11-19.md	line 82	Heights over the wire: which packet, if any, carries a level's HEIGHTS block.	static	static: cloud or a host (lab host A/B)	medium	free
 G229	formats/gr-v105-fuzz-2026-11-19.md	line 83	A real on-disk GR-V1.05 sample (none held yet).	static	static: cloud or a host (lab host A/B)	medium	free

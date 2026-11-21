@@ -30,4 +30,6 @@ Held corpus hunts for files that **start** with `GR-V1.05` remain empty so far. 
 
 - [x] ~~Pin any render-loop skip (or tileset blank) for disk value 4095 on layers above 0.~~ On the wire 4095 draws as tileset cell 4095 and `0xFFFF` draws as empty; see [`gr-v105-fuzz-2026-11-19.md`](gr-v105-fuzz-2026-11-19.md). **[lab]**
 - [ ] Decode one real on-disk `GR-V1.05` sample when held. **[file]**
-- [ ] Live serve of a multi-layer file to **5.12** / **6.03r7**. The 2026-11-19 attempt used a lab build with a four-byte skew. The source repair has since landed, but a correctly served level remains unmeasured here; see the [source reconciliation](gr-v105-fuzz-2026-11-19.md#source-repair-reconciled-on-2026-11-21-srv). **[lab][srv]**
+- [ ] Complete the multi-layer live-serve checks: native Linux **6.03r7** has a partial positive result, but **5.12**, an independent gameplay canary and a walked link remain open. The source repair has landed; see the [source reconciliation](gr-v105-fuzz-2026-11-19.md#source-repair-reconciled-on-2026-11-21-srv) and [native follow-up](gr-v105-native603-2026-11-21.md). **[lab][srv]**
+
+The [native Linux 6.03r7 follow-up](gr-v105-native603-2026-11-21.md) now supplies a partial positive served-file result: the painted patch and explicit empty hole are visible. The combined live-serve box above stays open for 5.12 and independent gameplay checks. **[lab]**

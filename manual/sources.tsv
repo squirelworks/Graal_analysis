@@ -914,3 +914,4 @@ client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	cited	2.4; 4.
 docs/releases/v0.0.8.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.9.md	excluded			release notes for the book's GitHub release, not Graal
 protocol/client-id-inference-scope.md	cited	2.4	2.4	Evidence limits and separate token association carried in section 2.4.
+formats/gr-v105-native603-2026-11-21.md	cited	3.1; 5	3.1; 5	Positive generated-layer delivery and drawing; deployment provenance and remaining checks are qualified in the note.
