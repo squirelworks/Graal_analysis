@@ -13,6 +13,61 @@ Text file, first line `GRACC001`, then `KEY value` lines, CRLF on write. Keys re
 - `guest` accounts are load-only and get a random `pc:` community name.
 - Saved on disconnect (`TPlayer::cleanup`, only clients that are not load-only) and every 300 s while connected (`doTimedEvents`). Not saved if the listserver login failed.
 
+## Reference-fork account placement (2026-11-22)
+
+This clarification describes the GPL-3.0 Seihai GServer-v2 fork at
+`0cf8f83d0ac658299abb4a9c93dab99cca805f37`, separately from the older
+snapshots and API names above. It is an original-prose source read, not
+original-server equivalence or a runtime login test. **[srv]**
+
+The [flat-file account loader](https://github.com/squirelworks/seihai-gserver-v2/blob/0cf8f83d0ac658299abb4a9c93dab99cca805f37/server/src/loader/flatfile/FlatFileAccountLoader.cpp)
+selects `accounts/(defaultaccount).txt` only when the named account lookup
+finds no file. A found file that cannot open or has an invalid `GRACC001`
+header fails loading without retrying the template. Saved `LEVEL`, `X`
+and `Y` otherwise come from the named record; `MAPX` and `MAPY` are separate
+fields. This is not a reset to start settings on every login.
+
+Only the template-selected path applies individually present `startlevel`,
+`startx` and `starty` options. These are conditional dynamic lookups, not
+dedicated registered cache defaults. Absent keys leave template fields
+unchanged. The expressions' fallback values do not establish unconditional
+start defaults or malformed-value handling. Coordinates are multiplied by
+16 and converted into signed local-pixel fields; these assignments provide
+no placement-specific range, finite-value or clamp guarantee. The adjacent
+`startap` override uses the same template gate.
+
+Guest handling sets `loadOnly` separately from template selection. A missing
+guest record can therefore still receive the overrides. The loader attempts
+to save a template-derived account only when it is not load-only; it does
+not propagate the save result as proof of successful persistence.
+
+The [base login routine](https://github.com/squirelworks/seihai-gserver-v2/blob/0cf8f83d0ac658299abb4a9c93dab99cca805f37/server/src/player/Player.cpp)
+does not check the account-loader return, so a load failure alone must not
+be described as automatic admission rejection. In
+[client login Stage 5](https://github.com/squirelworks/seihai-gserver-v2/blob/0cf8f83d0ac658299abb4a9c93dab99cca805f37/server/src/player/PlayerClient.cpp),
+the server warps to the account's level and global position. If that fails
+and there is no current level, it clears queued data and ends the login
+with "No level available." This block does not substitute start or unstick
+settings; the shared warp's map-cell handling is not general validation of
+start coordinates.
+
+Recovery has separate callers. The
+[client warp-request handler](https://github.com/squirelworks/seihai-gserver-v2/blob/0cf8f83d0ac658299abb4a9c93dab99cca805f37/server/src/player/packets/PlayerClientPackets.cpp)
+retries the current location, then cached `unstickmelevel`, `unstickmex`
+and `unstickmey`; chat unsticking is another route. The
+[safe-place helper](https://github.com/squirelworks/seihai-gserver-v2/blob/0cf8f83d0ac658299abb4a9c93dab99cca805f37/server/src/Server.cpp)
+tries unstick, then explicitly loads the default account, then disconnects
+on failure. Its callers are level and GS1 operations, not initial login.
+Likewise, uppercase `STARTLEVEL`, `STARTX` and `STARTY` in the
+[NPC loader](https://github.com/squirelworks/seihai-gserver-v2/blob/0cf8f83d0ac658299abb4a9c93dab99cca805f37/server/src/loader/flatfile/FlatFileNPCLoader.cpp)
+persist NPC initial/reset placement; they are not account-option aliases.
+
+The existing [StartAP test definitions](https://github.com/squirelworks/seihai-gserver-v2/blob/0cf8f83d0ac658299abb4a9c93dab99cca805f37/Catch_tests/ServerOptions/StartAP_tests.cpp)
+cover AP cache default/update and a new-account AP override. They were read,
+not executed for this audit, and do not establish placement-key precedence,
+guest behavior, invalid settings or login-warp recovery. G067's wider
+versioned option inventory and original/runtime questions remain open.
+
 ## How the save reaches the client (login burst, `sendLogin`) **[srv][cap]**
 Order (`TPlayer::sendLogin` then `sendLoginClient`): signature, own props (`PLO_PLAYERPROPS` 9 with the loaded values; no level or position props), `PLO_RESETCLIENT` (194, formerly `PLO_CLEARWEAPONS`), one `PLO_FLAGSET` (28) per saved player flag, the server flags, `NPCWEAPONDEL` for "Bomb" and "Bow" (the client adds them itself), the account's weapons (`NPCWEAPONADD` 33 and `DEFAULTWEAPON` 43), protected weapons and classes, then the warp: `PLO_PLAYERWARP` (14) to the saved level and x/y followed by the level data. After the level come bigmap/minimap/RPG window (2.1+), `PLO_STARTMESSAGE` (41) and an empty `PLO_SERVERTEXT` (82). Chest open state arrives inside each level's chest packets (03). The saved `LEVEL`, `X`, `Y` therefore arrive as the first warp, not as props.
 Level and position are stored, so reconnecting resumes where the player left.

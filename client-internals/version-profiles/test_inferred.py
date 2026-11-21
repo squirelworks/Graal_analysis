@@ -1,12 +1,13 @@
-"""Each version profile with no binary behind it says so in data (Graal_analysis#439).
+"""Inferred behavior stays explicit, independently of token evidence (#439).
 
 A profile is a table with a `token` in one of the version-profile TOMLs. Two rules:
 
 1. A profile whose login token is graded L (list only) in
    `client-internals/version-token-catalogue.md`, with no B or W row for the same
    token, has no executable behind it, so it must carry `inferred = true`.
-2. A profile with `inferred = true` must not claim a binary or wire source for its
-   own values (`src_default = "bin"`, or `bin`/`cap` in `token_src`).
+2. A profile with `inferred = true` must not give its values a binary default.
+   A separately observed token may coexist with inferred behavior only when both
+   packet sets remain explicitly inferred and the outgoing set is incomplete.
 
 `inferred` is an identity key: `resolve.py` does not pass it to a profile that
 names this one as its `base`.
@@ -93,14 +94,58 @@ def test_list_only_tokens_are_inferred():
     assert not bad, 'L-graded token without inferred = true: ' + ', '.join(bad)
 
 
-def test_inferred_profiles_claim_no_binary():
+def inference_errors(p, evidence):
+    if not p.get('inferred'):
+        return []
+    errors = []
+    if p.get('src_default', '') == 'bin':
+        errors.append('binary default for inferred behavior')
+    observed = set(re.findall(r'\b(bin|cap)\b', p.get('token_src', '')))
+    if observed:
+        support = evidence.get(p.get('token'), set())
+        for tag, category in (('bin', 'B'), ('cap', 'W')):
+            if tag in observed and category not in support:
+                errors.append(f'{tag} token source lacks catalogue {category} support')
+        for field in ('plo_known_src', 'pli_sent_src'):
+            if p.get(field) != 'inf':
+                errors.append(f'observed token requires separate {field} = inf')
+        if p.get('pli_sent_complete') is not False:
+            errors.append('observed token does not establish a complete send set')
+    return errors
+
+
+def test_inferred_profiles_preserve_behavior_limits():
     bad = []
+    evidence = grades()
     for f, p in profiles():
-        if not p.get('inferred'):
-            continue
-        if p.get('src_default', '') == 'bin' or re.search(r'\b(bin|cap)\b', p.get('token_src', '')):
-            bad.append(f"{f}: {p.get('label')}")
-    assert not bad, 'inferred profile claims a binary source: ' + ', '.join(bad)
+        if errors := inference_errors(p, evidence):
+            bad.append(f"{f}: {p.get('label')}: {'; '.join(errors)}")
+    assert not bad, 'inferred profile overstates behavior evidence: ' + ', '.join(bad)
+
+
+def test_observed_token_does_not_upgrade_inferred_packet_sets():
+    profile = dict(inferred=True, token='GNW00000', token_src='cap', plo_known_src='inf',
+                   pli_sent_src='inf', pli_sent_complete=False)
+    evidence = {'GNW00000': {'W'}}
+    assert not inference_errors(profile, evidence)
+    # A real token observation cannot authorize measured packet sets, implicit
+    # source tags, a complete outgoing set or a blanket binary default.
+    for change in ({'plo_known_src': 'bin'}, {'pli_sent_src': 'cap'},
+                   {'plo_known_src': ''}, {'pli_sent_complete': True},
+                   {'src_default': 'bin'}):
+        assert inference_errors(dict(profile, **change), evidence), change
+    for missing in ('plo_known_src', 'pli_sent_src', 'pli_sent_complete'):
+        incomplete = dict(profile)
+        del incomplete[missing]
+        assert inference_errors(incomplete, evidence), missing
+    # Inference flags cannot manufacture a captured association for a list-only
+    # token, an unlisted token, a missing token or a binary-only observation.
+    for support in ({'GNW00000': {'L'}}, {}, {'GNW00000': {'B'}}):
+        assert inference_errors(profile, support), support
+    unbound = dict(profile)
+    del unbound['token']
+    assert inference_errors(unbound, evidence)
+    assert inference_errors(dict(profile, token_src='bin'), evidence)
 
 
 def test_inferred_is_not_inherited():
