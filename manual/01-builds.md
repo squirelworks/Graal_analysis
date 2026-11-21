@@ -298,6 +298,8 @@ The iPhone tokens follow the `G3D` + DDMMY shape, each stamped a day to a few da
 
 ## 1.3 Version ids
 
+Selected 2.14–2.16 release-note headings document voice/music/UI and script/GANI feature families, while the canonical catalogue gives documentary token associations; neither authenticates every revision or establishes an original-client packet set. The 2.14 notes also describe some projectile features as added earlier, so the heading is not their introduction date. The reference server's version gate corroborates a large-download compatibility boundary only, not the other features or native capacities [doc][srv] (client-internals/214-216-feature-evidence.md).
+
 Server code identifies a client by an internal version id; ids sort, so 2.05 rev 2 sorts below 2.1 [srv] (client-internals/version-id-map.md#protocol-token--version).
 
 | Version id | Build | Token | Source |
@@ -967,6 +969,8 @@ Unresolved archive-label and resource identity: → §1.9.1.
 Seven exact Linux input identities have observed accepted local logins on one pinned patched lab server, while visual results and later execution gates remain separate. The derived ledger records exact client hashes, shared tokens, per-gate statuses and sanitized source lineage. A not-established cell concerns its specified network cohorts, not every experiment in this repository. [cap] (version-profiles/linux-network-bootstrap-evidence.md#read-the-gates-independently)
 
 The later 6.03 cohort separately records class parsing, registered-weapon execution and a suspended continuation with proxy-origin bodies; the 3.04 cohort separately records source-weapon effects and persistence. These observations do not establish normal-server GS2 compilation, exact sleep timing, a positive disk-cache hit or complete gameplay. Cache contracts remain explicitly static-only where marked. [cap] (version-profiles/linux-network-bootstrap-evidence.md#read-the-gates-independently); [bin] (version-profiles/linux-network-bootstrap-evidence.md#static-contracts-and-supersession)
+
+A separate November 21 supplement records generated-layer rendering, an independent parser/HUD canary and physical bottom-link returns for native Linux 6.03r7. Exact executable binding to the frozen seven-input dataset is not established, so the later positive frames do not replace the earlier black-window cohort. Ingress remained chat warp; neither complete gameplay nor a reproducible server build is established. [lab][doc] (version-profiles/linux-network-bootstrap-evidence.md#later-published-cohorts)
 
 ### 1.9.3 The imported Windows v4 carrier
 

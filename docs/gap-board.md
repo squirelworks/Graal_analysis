@@ -15,6 +15,15 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 
 ## Columns
 
+2026-11-21 update: G190 has a [documentary 2.14–2.16 feature-family
+reconciliation](../client-internals/214-216-feature-evidence.md), including a
+pinned reference-server large-file gate. G190 remains open for earlier
+families, unlisted details and exact client/revision evidence.
+2026-11-21 update: G424 now has a [controlled 32-case Windows 5.12 core slice
+under Wine](../protocol/probe-wine512-core-2026-11-21.md). G424 and G191 remain
+open: other plans/builds and the full width sweep are not completed. The older
+failed attempt adds no accepted rows; existing PLO 195 coverage stays separate.
+
 | Column | Meaning |
 |---|---|
 | `id` | Board id, `G001` on. Stable for this board; a later board renumbers. |
@@ -29,6 +38,12 @@ The kinds were assigned from the wording of each item and spot-checked by hand, 
 will be wrong. Many boxes are older than the batches that may have answered them: check the
 source note and `INDEX.md` for a newer note before starting, and if the gap is already
 answered, tick the box in the source with a link instead of redoing it.
+
+2026-11-21 update: **G192's named starting rows were relabelled**, not measured.
+The [client-id evidence reconciliation](../protocol/client-id-inference-scope.md)
+keeps their outgoing sets inferred, separates Windows and Mac 6.015, and corrects
+the stale Windows token-evidence label. The note lists the remaining per-build
+measurements; other inference-ledger rows and G168's broader identity work remain open.
 
 ## Counts
 

@@ -21,8 +21,8 @@ Clients before 2.14 cannot receive files over 64000 bytes on a correct server ta
 | Focus | Token (typical) | On a correct gs2lib / Seihai table | Evidence |
 |---|---|---|---|
 | **1.39** | `GNW07080` | Pre-2.1 path: no modtime FILE; **no** large-file ids handled; client only asks **23** `WANTFILE` (never 34). | `versions-133-139.md` **[bin][lab]** |
-| **1.41r1** | (gen-2 list era) | Still before 2.14: expect modtime/era rules of its server slot; **no** LARGEFILE\* on that client generation. Exact 1.41r1 FILE handler not re-read this pass. | **[inf]** from era ladder + `file-transfer.md` |
-| **2.22** | `GNW03014` | ≥ 2.14: large_files true; 68/69 known; 32000-byte chunks. | `2.22-2.31.toml` **[bin]**; release note “files bigger than 64k” from 2.14 **[doc]** |
+| **1.41r1** | `GNW13110`, generation 3 | The recorded patched input's direct switch has 45 cases (0–41, 43, 75, 100), without 68/69. The exact raw/file subpath remains unread here; direct-case absence does not establish FILE absence or its body. | [Exact-input scope](file-profile-evidence-2026-11-21.md#the-recorded-141r1-input) **[bin]** |
+| **2.22** | `GNW03014` | 68/69 receive cases are recorded; 32000-byte chunks describe the server sender. | `2.22-2.31.toml` **[bin]** for cases; `file-transfer.md` **[srv]** for chunks; 2.14 release note **[doc]** |
 | **2.31** | `GNW28015` | Same as 2.22 plus **84** `LARGEFILESIZE` in the receive set. | `2.22-2.31.toml` **[bin]** |
 | **4.208** | `G3D20126` | Above 2.14 on any current table that knows the token; Login also uses 23/47 for packages. | `v4x-clients.md`; `live-behaviour-404.md` **[bin][live]** |
 | **5.007** | `G3D22067` | Stock gs2lib knows it (`CLVER_5_07`). Lab: 541 248-byte file as 68 → 84 → 102 chunks → 69; client saved byte-for-byte. | `file-transfer.md`; Seihai `v5v6-profiles.md` **[cap][bin]** |
@@ -45,5 +45,6 @@ If the server **does not** know the login token, every focus 4.x–6.x build is 
 
 - [ ] Exact per-exe `large_files` / `large_file_size` (or equivalent receive constants) on stock **4.208 / 5.007 / 5.12 / 6.037** — profile-audit cells that still say “inferred from 2.14” are **unverified on these binaries**, not false. **[inf]**
 - [ ] Discriminating **~300 KB** image push on each focus build against seihai-gserver (confirm chunk boundaries and 84 handling on 2.22 vs 2.31).
-- [ ] Static 1.41r1 FILE / LARGEFILE receive set (confirm no 68/69).
+- [x] ~~Reconcile the recorded 1.41r1 direct receive set: no 68/69.~~ [Exact-input scope](file-profile-evidence-2026-11-21.md#the-recorded-141r1-input).
+- [ ] Read the exact 1.41r1 raw/file subpath and FILE body; G264 remains partial.
 - [ ] Whether any focus client enforces a **stricter** on-disk limit than the server's 32000-byte chunks (none claimed today).

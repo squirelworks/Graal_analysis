@@ -266,7 +266,7 @@ The machine fields differ by platform. Each row gives the five fields one family
 | --- | --- | --- | --- | --- | --- | --- |
 | Windows 4.20r8, 5.00r7 | `win` | MD5 hex of the Windows `DigitalProductId` | MD5 hex of the network adapter MAC (fallback: node part of `UuidCreateSequential`, or `UuidCreate`) | MD5 hex of the `C:\` volume serial | none | [bin] (protocol/v4x-clients.md#login-packet); [bin] (protocol/v5x-clients.md#login) |
 | Mac 4.20r6 | `mac` | hash of the primary Ethernet MAC | hash of 4 bytes of `stat("/etc")` | empty | none | [bin] (protocol/v4x-clients.md#login-packet) |
-| Windows 5.12, 5.24r3 to 6.03r7 | `win` | MD5 hex of the product id (5.24 and later try `DigitalProductId` before `DigitalProductId4` in each key, so the hash usually matches 4.x; → §2.3.5.1) | MD5 hex of the adapter MAC | MD5 hex of the `C:\` serial | quoted Windows version `"<major>.<minor> <build> <service pack>"` | [cap][bin] (protocol/v5v6-windows-unpacked.md#login-message) |
+| Windows 5.12, 5.24r3 to 6.03r7 | `win` | MD5 hex of the product id; the retained 6.03r7-labelled selector takes the first non-empty fallback, which does not prove equality with 4.x or a difference from 5.12 (→ §2.3.5.1) | MD5 hex of the adapter MAC | MD5 hex of the `C:\` serial | quoted Windows version `"<major>.<minor> <build> <service pack>"` | [cap][bin] (protocol/v5v6-windows-unpacked.md#login-message) |
 | Linux 6.01r1, 6.03r7 | `linux` | MD5 hex of the `eth0` MAC | MD5 hex of the inode number of `/etc` | empty | kernel release and version string | [bin] (protocol/v6x-clients.md#login-message-601-and-603) |
 
 The rules below say what the machine fields are for and what a late client sends right after logging in [bin][inf] (protocol/v5x-clients.md#login).
@@ -301,6 +301,8 @@ Each hardware field is computed the same way in every build read: the Windows 4.
 | Second field: MD5 of the low 4 bytes of the `/etc` inode number | Linux 6.01r1, 6.03r7 | [bin] (protocol/pcid.md#linux-601r1-603r7) |
 | The hashes are unsalted MD5 of short inputs, so a 4-byte serial or inode, or a MAC under a known vendor prefix, can be recovered by search; clients can send any values | all | [inf] (protocol/pcid.md#what-the-hashes-do-and-do-not-hide) |
 | The PC id a server sees is not computed from these fields by the game server: the listserver assigns it (→ §6.5.1) | 4.x and later | [src] (protocol/pcid.md#game-server-to-listserver-veriacc2-and-assignpcid) |
+
+The retained 6.03r7-labelled selector reread (`W603-PRODUCT-FALLBACK-20261122`) confirms conditional first-non-empty selection: `DigitalProductId4` in the first key can win before either value in the second key. It does not establish how often hashes match 4.x, a genuine 5.12 reader contract, or an end-to-end hash-input audit [bin] (protocol/pcid.md#windows).
 
 **Account step, 4.x against 5.x/6.x.** 4.x sends the typed or saved account in its first frame to the server named `Login` and never saves a `guest…` account; 5.24r4 and 6.03r7 log in as the built-in `guest` first, and a Login weapon renames the account before the world warp. A Login server for 4.x should accept a typed account on first connect without a guest-then-reconnect step. The stock 4.20r8 account dialog, its script API and whether an open Login GUI window survives S→C 178 are unconfirmed third-party leads until a loopback run on the unmodified engine. [bin][live][lab] (protocol/v4-login-account-contract.md); [bin][live] (protocol/v4-gui-survive-serverwarp.md)
 

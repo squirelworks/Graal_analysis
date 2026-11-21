@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "kind": "derived supplement from published source notes; no new native experiment",
+  "recorded_date": "2026-11-21",
+  "source_revision": "794bdf2dbb043e11ed3a8d93aadb279249602ad1",
+  "frozen_snapshot": "linux-network-bootstrap-evidence.json",
+  "snapshot_policy": "original clients, gate statuses, source hashes and lineage remain unchanged",
+  "cohorts": [
+    {
+      "id": "native603-generated-layers-20261121",
+      "evidence_id": "GR105-NATIVE603-POSITIVE",
+      "source_note": "formats/gr-v105-native603-2026-11-21.md",
+      "platform": "native Linux",
+      "client_label": "6.03r7",
+      "wire_token": "G3D0511C",
+      "evidence_class": "published lab observation",
+      "identity_binding_to_frozen_clients": "not established",
+      "server_deployment": {
+        "source_commit": "01bb0b3f",
+        "qualification": "reported deployment association; not an independently reproduced source-to-binary build"
+      },
+      "gates": {
+        "authenticated_entry": "observed",
+        "generated_layer_delivery": "observed for three positive fixtures",
+        "bounded_layer_rendering": "patches and explicit hole observed",
+        "independent_parser_hud_canary": "not measured in this cohort",
+        "physical_link_return": "not measured in this cohort"
+      },
+      "qualifications": [
+        "fixtures were generated, not vendor-original on-disk samples",
+        "ingress and return used chat warp",
+        "initial packet-9 wait timed out, then the plan continued",
+        "normal-server GS2 compiler/writer not measured",
+        "positive disk-cache hit not measured",
+        "complete gameplay not established",
+        "exact executable binding to frozen clients not established"
+      ]
+    },
+    {
+      "id": "native603-layer-canary-returns-20261121",
+      "evidence_id": "GR105-NATIVE603-CANARY-LINKS",
+      "source_note": "formats/gr-v105-served-canary-links-2026-11-21.md",
+      "source_sections": [
+        "Independent HUD/parser canary",
+        "Physical return through advertised links"
+      ],
+      "platform": "native Linux",
+      "client_label": "6.03r7",
+      "evidence_class": "published lab observation",
+      "identity_binding_to_frozen_clients": "not established",
+      "server_deployment": {
+        "source_commit": "01bb0b3f",
+        "qualification": "reported deployment association; not an independently reproduced source-to-binary build"
+      },
+      "gates": {
+        "bounded_layer_rendering": "served painted regions and hole observed",
+        "independent_parser_hud_canary": "landed after each of three positive serves",
+        "physical_link_return": "one-direction bottom return observed for each fixture",
+        "walking_ingress": "not established"
+      },
+      "qualifications": [
+        "ingress and near-link approach used chat warp",
+        "parser/HUD update is not a bomb-use or broader gameplay-action test",
+        "private bitmap-decoding scorer port used; original Python/Pillow execution not claimed",
+        "no packet-9 wait timeout in this follow-up",
+        "normal-server GS2 compiler/writer not measured",
+        "positive disk-cache hit not measured",
+        "complete gameplay not established",
+        "exact executable binding to frozen clients not established"
+      ]
+    }
+  ]
+}
