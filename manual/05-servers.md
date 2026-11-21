@@ -345,6 +345,12 @@ The word filter's `ban` action is not implemented (→ §5.3.6) [srv] (client-in
 
 Built with the NPC-server option, some of these props become server-only; the lab server is built without it [srv] (client-internals/feature-specs/03-inventory.md#props-involved-self-stream-plprop-ids-srv).
 
+### 5.3.9 Reference-fork ghost-mode configuration
+
+The older documentation lead's unread-key count is a historical snapshot. At reference-fork source `0cf8f83d`, `ghostmodeenabled` and `ghostmodefornotstaff` are tracked Boolean keys with false defaults and concrete consumers. Disabled selects nobody; enabled with the non-staff restriction selects only non-staff; enabled without it selects everybody. Staff membership is checked against the server's staff list case-insensitively [srv] (server-notes/ghost-mode-options-2026-11-21.md#selection-policy).
+
+Selected clients receive empty `PLO_GHOSTMODE` and `PLO_GHOSTTEXT` with the corner label "Ghost Mode" during login. Other-player properties append the `ghostani` GANI override without changing the stored own gani in that helper. Level entry sends `PLO_GHOSTICON` from the supplied level's eligible-client collection, with nearby refresh on entry and departure. The source routine returns without a disabling mode packet when the player is unselected. Existing test definitions cover tracked defaults, changed values, the eight policy combinations and the extension-free gani name; they were read, not executed in this audit. Original-server equivalence, client rendering/collision and live toggling remain separate questions, and G067's wider option inventory stays open [srv] (server-notes/ghost-mode-options-2026-11-21.md#concrete-consumers); [srv] (server-notes/ghost-mode-options-2026-11-21.md#validation-and-limits).
+
 ## 5.4 Accounts and allowed versions
 
 ### 5.4.1 Account stores
