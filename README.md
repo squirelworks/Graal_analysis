@@ -15,10 +15,10 @@ an open Graal client and server suite written from scratch.
 
 - **The Graal Technical Reference Manual.** The notes, organised by subject into
   one book. The latest edition is
-  [0.0.8](https://github.com/squirelworks/Graal_analysis/releases/tag/v0.0.8)
-  (415 pages): download `graal-trm-0.0.8.pdf` from the release, or the A4 print
+  [0.0.9](https://github.com/squirelworks/Graal_analysis/releases/tag/v0.0.9)
+  (415 pages): download `graal-trm-0.0.9.pdf` from the release, or the A4 print
   set and A3 insert next to it. Every release keeps its section numbers for good,
-  so "manual §4.12 (0.0.8)" always means the same text. The Markdown source is in
+  so "manual §4.12 (0.0.9)" always means the same text. The Markdown source is in
   [`manual/`](manual/README.md).
 - **The [notes index](INDEX.md).** Every individual note, with a one-line summary.
   Notes are often more detailed than the manual and carry the raw tables.
@@ -102,7 +102,7 @@ To build the current manual yourself:
 ```
 python3 -m pip install playwright pypdf     # and install pandoc
 python3 -m playwright install chromium     # or pass --chromium PATH
-python3 tools/manual/build_manual.py --version 0.0.8
+python3 tools/manual/build_manual.py --version 0.0.9
 ```
 
 ## Contributing
@@ -115,7 +115,7 @@ run, and the leak checks to run on your diff. Add any new note to the
 
 ## Status
 
-The manual is at 0.0.8 and still well short of 1.0.0. The roadmap is in
+The manual is at 0.0.9 and still well short of 1.0.0. The roadmap is in
 [#191](https://github.com/squirelworks/Graal_analysis/issues/191) and the research
 toward it in [#370](https://github.com/squirelworks/Graal_analysis/issues/370).
 The largest open areas are GS2 syntax and its built-in library, and exactly what
