@@ -33,8 +33,14 @@ the issue it closes. Part 2 lists every other lab row on the [gap board](gap-boa
 ### Lab host B: Windows 10 VM, or Wine in the Linux lab VM (issue #743)
 
 **X1. Probe coverage for 5.12, 6.037 and the 2.02 family.**
-- **Goal:** close the probe holes found while building the board. 5.12 has only the 8-row 195
-  gani set. 6.037 has 32 rows. 2.02, 2.02 rev 1 and 2.02 rev 2 have none. Board rows G424, G425,
+
+- **Partial result (2026-11-21):** the [32-case 5.12 core slice under Wine](../protocol/probe-wine512-core-2026-11-21.md)
+  is measured (29 landed, three lost canaries). It does not finish G424/G191 or
+  the other plans/builds below. Reconcile `loadgani3w` with the eight existing
+  5.12 PLO 195 rows before another GANI run.
+- **Goal:** close the probe holes found while building the board. At the original 2026-11-20
+  triage, 5.12 had only the 8-row 195 gani set; the partial result above adds its core slice.
+  6.037 had 32 rows. 2.02, 2.02 rev 1 and 2.02 rev 2 had none. Board rows G424, G425,
   G426 and G191.
 - **VM and client:**
   - 5.12 runs under Wine with `runwine.sh 512`.
@@ -161,7 +167,7 @@ frames.**
 - **Record in:** `formats/gr-v105-fuzz-2026-11-19.md` and
   `formats/gr-v105-empty-tiles-2026-11-16.md`.
 
-S3 partial result: [native Linux 6.03r7](../formats/gr-v105-native603-2026-11-21.md) received and drew the positive layers and explicit hole. The 5.12 serve and independent gameplay checks remain open; G226/G227 are not closed.
+S3 partial result: [native Linux 6.03r7](../formats/gr-v105-native603-2026-11-21.md) received and drew the positive layers and explicit hole. The [separate acceptance follow-up](../formats/gr-v105-served-canary-links-2026-11-21.md) adds positive native/Wine-5.12 parser canaries and physical bottom returns; Wine 5.24r4 served scores remain unclear. G226/G227 are not closed.
 
 **S4. NC write operations.**
 - **Steps:** run `runnc.sh 713` with fixtures for attribute, class and weapon writes through
@@ -333,8 +339,8 @@ the same rows as a task list. Read the source line before you start.
 | G096 | lab | Why 1.39 closes on F6 when the server is the loopback address. | `client-internals/gui-windows-fkeys.md` line 185 | free |
 | G159 | static+lab | A readable window for the width canary (Wine virtual desktop): rc2004 and rc3 both render black/unreadable, so CAN01–06 is unknown, not failed. | `docs/NEXT.md` line 76 | free |
 | G160 | lab | rc205 (RC2 2.05) — blocked by a Wine/GTK Pango font failure; staging fix needed. | `docs/NEXT.md` line 77 | free |
-| G226 | lab | Partial positive served layers on native Linux 6.03r7; 5.12, independent gameplay canary and walked link remain open; see gr-v105-native603-2026-11-21.md. [lab] | `formats/gr-v105-empty-tiles-2026-11-16.md` line 33 | free |
-| G227 | static+lab | Re-run the level walk with the repaired lab gserver; reader and link-line source repairs landed in seihai-gserver-v2 #118. [srv] | `formats/gr-v105-fuzz-2026-11-19.md` Still open: level walk | Codex server (source reconciliation only; live run unclaimed) |
+| G226 | lab | Native Linux 6.03r7 and Wine 5.12 have positive parser/HUD canaries and one-direction returns; Wine 5.24r4-labelled served scores are unclear with repaint failure; ingress and native Windows remain open. | `formats/gr-v105-empty-tiles-2026-11-16.md` line 33 | Codex server (native and Wine partial publication; other runtimes and ingress open) |
+| G227 | static+lab | Native Linux 6.03r7 and Wine 5.12 have positive parser/HUD canaries and one-direction returns; Wine 5.24r4-labelled served scores are unclear with repaint failure; ingress and native Windows remain open. | `formats/gr-v105-fuzz-2026-11-19.md` Still open: level walk | Codex server (native and Wine partial publication; other runtimes and ingress open) |
 | G284 | lab | Tooling for this now exists: tools/probe/ncprobe.py is a cipher-free NCL11012 proxy that logs every NC packet both ways and can inject/drop on either side (selftest tools/probe/ncselftest.py). tools/probe/lab/runnc.sh + lab/nc-core.plan drive it against nc7132001 / the Jan-2002 builds. Running the f | `protocol/nc-write-ops-status.md` line 38 | free |
 | G292 | lab | Optional: unknown own-id long-value desync lab (called out in v5-props.md). | `protocol/player-props-5x-status.md` line 36 | free |
 | G298 | static+lab | A readable window for the width canary on the 2004 RC and RC3 (Wine virtual desktop). | `protocol/rc-fuzz-2026-11-19.md` line 118 | free |

@@ -87,7 +87,13 @@ if [ $CL = 222 ] || [ $CL = 231 ]; then   # 2.22 / 2.31 login form, then the ser
   else echo "no login window" >> $O/marks.txt; fi
 fi
 export PROBE_SHOT="DISPLAY=:$D scrot -o $O/{name}.png; W=\$(DISPLAY=:$D xdotool search --onlyvisible --name . 2>/dev/null | head -1); [ -n \"\$W\" ] && echo '{name} alive' >> $O/marks.txt || echo '{name} CLIENT-GONE' >> $O/marks.txt"
-python3 $T/probectl.py $R/run/wine.sock plan $PLAN "$@" > $O/plan.log 2>&1
+plan_exit=0
+python3 $T/probectl.py $R/run/wine.sock plan $PLAN "$@" > $O/plan.log 2>&1 || plan_exit=$?
 cp $C/$LOG $O/ 2>/dev/null; cp run/wine$D.log $O/ 2>/dev/null
 ./k.sh "Graal4?\.exe|wine|\.exe|wineserver|winedevice|services.exe|plugplay|explorer.exe|rpcss|gen5probe|gs2emu|seihai-listserver|Xvfb :$D" > /dev/null
-echo done $O
+if [ "$plan_exit" -eq 0 ]; then
+  echo done $O
+else
+  echo "plan failed ($plan_exit): $O" >&2
+fi
+exit "$plan_exit"
