@@ -278,7 +278,7 @@ The rules below give the editor's tools and how tiles and tile definitions are a
 | Turn selection into a warp field: a link over the selection with new x `playerx` and new y `playery`, then the first matching edge rule: starts in column 63 → new x 0; row 63 → new y 0; column 0 and one wide → new x 61; row 0 and one high → new y 61 | [2.22] (tools/level-editor/222-reference.md#6-selection-paste-undo-fill) |
 | Stamps come from `objects<set>.txt` in GOBJSET01 (→ §3.4); add-selection inserts after the chosen stamp and Save objects rewrites the set; placing writes tile ids only; sets arrived in 2.04 | [2.22] (tools/level-editor/222-reference.md#7-stamps-predefined-objects) |
 | Edit links (L): Linkfile, X, Y, W, H, New X, New Y; Load opens the destination in a tab; the dialog refuses invalid fields with "Wrong values! Type in a filename…"; arrival text is stored as typed | [2.22] (tools/level-editor/222-reference.md#8-links) |
-| The engine evaluates an arrival such as `playery+10` at warp time: 2.22 lands at the evaluated position (→ §11.6.4) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#link-arrival-offsets-on-222-e601) |
+| The engine evaluates an arrival such as `playery+10` at warp time: 2.22 lands at the evaluated position (→ §11.6.4) | [lab] (protocol/lab-appe-hosta-2026-11-20.md#link-arrival-offsets-on-222-e601) |
 | Edit signs (S): X, Y, New, Delete; a (0, 0) sign is not drawn and is used by index from chests and `say n`; text is in the sign alphabet (→ §3.6); trailing empty lines are removed | [2.22] (tools/level-editor/222-reference.md#9-signs) |
 | Chest dialog: item, sign index, Sign button; items in index order `greenrupee, bluerupee, redrupee, bombs, darts, heart, glove1, bow, bomb, shield, sword, fullheart, superbomb, battleaxe, goldensword, mirrorshield, glove2, lizardshield, lizardsword, goldrupee, fireball, fireblast, nukeshot, joltbomb, spinattack`; a new chest is item 1, sign −1 | [2.22] (tools/level-editor/222-reference.md#10-chests) |
 | Baddy dialog: ten types (Gray, Blue, Red, Shooting and Swamp Soldier, Frog, Spider, Golden Warrior, Lizardon, Dragon) and three verses; types 4–6 disable and save empty verses; a new baddy says "Stop!" and "Ouch!" | [2.22] (tools/level-editor/222-reference.md#11-baddies) |
@@ -286,13 +286,13 @@ The rules below give the editor's tools and how tiles and tile definitions are a
 | Multi-level editing (2.12): when an NPC calls `setmap` the neighbours show together; scroll by dragging the player or with arrows; a big cursor on maps (2.13) | [2.22] (tools/level-editor/222-reference.md#14-tabs-maps-and-multi-level-editing) |
 | Other dialogs: load by name, log window, `TShowImg` (role unmeasured), variable editor, tile-array window | [2.22] (tools/level-editor/222-reference.md#15-other-dialogs) |
 
-**Settled question, formerly E#601: Whether link arrival offsets are evaluated.** Whether the client evaluates an offset in a link's arrival field, such as `playery+10`, was open between the editors' verbatim storage and the level authors' usage; a lab link settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#link-arrival-offsets-on-222-e601).
+**Settled question, formerly E#601: Whether link arrival offsets are evaluated.** Whether the client evaluates an offset in a link's arrival field, such as `playery+10`, was open between the editors' verbatim storage and the level authors' usage; a lab link settled it [lab] (protocol/lab-appe-hosta-2026-11-20.md#link-arrival-offsets-on-222-e601).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Claims | A: arrival fields may hold `playerx` or `playery` plus an offset, and 21 archived arrivals do. B: the editors store the text verbatim | [2.22] (tools/level-editor/222-reference.md#8-links); [2.22] (tools/level-editor/formats-crossref.md#batch-f-decomp-findings-2026-10-25-f-pr-39) |
-| Settled | On 2.22 a link with arrival `playerx playery+10`, entered at y about 20, sent the player to (30, 30); a plain `30 40` control arrived at (30, 40). The client evaluates the expression; the editors only store it | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#link-arrival-offsets-on-222-e601) |
-| Verdict | Verified on 2.22; both claims hold, at different stages | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#link-arrival-offsets-on-222-e601) |
+| Settled | On 2.22 a link with arrival `playerx playery+10`, entered at y about 20, sent the player to (30, 30); a plain `30 40` control arrived at (30, 40). The client evaluates the expression; the editors only store it | [lab] (protocol/lab-appe-hosta-2026-11-20.md#link-arrival-offsets-on-222-e601) |
+| Verdict | Verified on 2.22; both claims hold, at different stages | [lab] (protocol/lab-appe-hosta-2026-11-20.md#link-arrival-offsets-on-222-e601) |
 
 Keys, 2.22 [2.22] (tools/level-editor/222-reference.md#13-keys):
 

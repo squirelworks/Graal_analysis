@@ -3423,94 +3423,94 @@ protocol/keysweep/README.md	id:NAME{decoded props}	a lab setting, command, confi
 protocol/keysweep/README.md	key(code,char,scan)	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/keysweep/README.md	keydown(0..10)	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/keysweep/README.md	keydown=N	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	!(0+0)	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	"""abcB"".pos(""B"")"	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	0.1+0.2==0.3	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	1==1.00001	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	PeekMessage	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	QueryPerformanceCounter	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	aq-e316b-205	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	c:0	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	cache=1	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	fz-e322-205-g	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	fz-gd420-g	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	gen5probe	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	npcs[k].x = 44	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	npcs[k].y = 24	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	of 255 →	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	of 5 →	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	players[0].x = 33	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	playerx!=playerx	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	playerx==playerx	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	s:300	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	str:x	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	strequals(#a,#a)	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	"{""a"",""B"",""c""}.index(""b"")"	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20.md	→ −1, and	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-gwentea2-2026-11-20b.md	debian-lab446	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-gwentea2-2026-11-20b.md	"md5(""abc"")"	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-gwentea2-2026-11-20c.md	debian-lab446	lab VM name, not Graal
-protocol/lab-appe-mirae-2026-11-20.md	gen5probe	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20.md	libfaketime	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20.md	togglescriptedplayerlist	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20b.md	gen5probe	a lab setting, probe name, test case or log fragment; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20c.md	!(0+0)	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	"""30"""	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	"""Lab Quoted"""	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	"""push"""	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	"""ride.png"""	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	#s(an)	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	#s(hs)	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	#s(nx)	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	#s(wn)	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	0.1+0.2==0.3	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	0==0	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	14+14	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	1==1.00001	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	dead hurt	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	gen5probe	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	gs1 timer ok	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	playerx!=playerx	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	playerx==playerx	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	ride png	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	sit,lift	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	strequals(#a,#a)	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	this.a==1.00001	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	while ((1+0))	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	while (1)	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	while (1==1)	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20c.md	while (this.c<3)	a lab test case or script fragment; the manual carries the measured rule
-protocol/lab-appe-mirae-2026-11-20d.md	"""GS2 C"" @ char(231) @ ""a"""	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	"""push"""	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	#K(-15)	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	#K(-23)	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	#K(-25)	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	#K(-4)	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	#s(an)	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	3 Lab 3D	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	DisableUserModeCallbackFilter	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	Lab 3D	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	dead hurt	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	freezeplayer 1	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	gen5probe	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	hurt 1	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	move 10,0,0.12,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	move 10,0,0.5,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	move 10,0,2,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	move 10,0,4,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	move 16,0,1.6,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	replaceani idle,sleep	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	replaceani sleep,lift	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	"replaceani walk,""push"""	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,#s(an)	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,dead hurt	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,hurt	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,lift	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,sit	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,sit,lift	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	replaceani walk,walk	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	setsword sword1.png,1	a lab setting, command, config line or notation of the run; the manual carries the measured result
-protocol/lab-appe-mirae-2026-11-20d.md	tgeplayershape	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	!(0+0)	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	"""abcB"".pos(""B"")"	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	0.1+0.2==0.3	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	1==1.00001	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	PeekMessage	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	QueryPerformanceCounter	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	aq-e316b-205	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	c:0	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	cache=1	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	fz-e322-205-g	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	fz-gd420-g	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	gen5probe	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	npcs[k].x = 44	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	npcs[k].y = 24	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	of 255 →	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	of 5 →	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	players[0].x = 33	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	playerx!=playerx	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	playerx==playerx	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	s:300	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	str:x	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	strequals(#a,#a)	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	"{""a"",""B"",""c""}.index(""b"")"	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20.md	→ −1, and	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hosta-2026-11-20b.md	debian-lab446	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hosta-2026-11-20b.md	"md5(""abc"")"	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hosta-2026-11-20c.md	debian-lab446	lab VM name, not Graal
+protocol/lab-appe-hostb-2026-11-20.md	gen5probe	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20.md	libfaketime	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20.md	togglescriptedplayerlist	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20b.md	gen5probe	a lab setting, probe name, test case or log fragment; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20c.md	!(0+0)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	"""30"""	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	"""Lab Quoted"""	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	"""push"""	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	"""ride.png"""	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	#s(an)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	#s(hs)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	#s(nx)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	#s(wn)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	0.1+0.2==0.3	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	0==0	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	14+14	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	1==1.00001	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	dead hurt	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	gen5probe	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	gs1 timer ok	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	playerx!=playerx	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	playerx==playerx	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	ride png	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	sit,lift	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	strequals(#a,#a)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	this.a==1.00001	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	while ((1+0))	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	while (1)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	while (1==1)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20c.md	while (this.c<3)	a lab test case or script fragment; the manual carries the measured rule
+protocol/lab-appe-hostb-2026-11-20d.md	"""GS2 C"" @ char(231) @ ""a"""	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	"""push"""	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	#K(-15)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	#K(-23)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	#K(-25)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	#K(-4)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	#s(an)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	3 Lab 3D	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	DisableUserModeCallbackFilter	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	Lab 3D	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	dead hurt	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	freezeplayer 1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	gen5probe	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	hurt 1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	move 10,0,0.12,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	move 10,0,0.5,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	move 10,0,2,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	move 10,0,4,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	move 16,0,1.6,8	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	replaceani idle,sleep	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	replaceani sleep,lift	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	"replaceani walk,""push"""	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	replaceani walk,#s(an)	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	replaceani walk,dead hurt	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	replaceani walk,hurt	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	replaceani walk,lift	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	replaceani walk,sit	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	replaceani walk,sit,lift	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	replaceani walk,walk	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	setsword sword1.png,1	a lab setting, command, config line or notation of the run; the manual carries the measured result
+protocol/lab-appe-hostb-2026-11-20d.md	tgeplayershape	a lab setting, command, config line or notation of the run; the manual carries the measured result
 protocol/lab-baddyprops-ganiscript-156-2026-11-19.md	5 = 9	a lab setting, probe name, test case or log fragment; the manual carries the measured result
 protocol/lab-baddyprops-ganiscript-156-2026-11-19.md	BDPROP_ID	a lab setting, probe name, test case or log fragment; the manual carries the measured result
 protocol/lab-baddyprops-ganiscript-156-2026-11-19.md	BDPROP_VERSEDEATH	a lab setting, probe name, test case or log fragment; the manual carries the measured result
@@ -5839,23 +5839,23 @@ version-profiles/windows-404r2-teardown.md	WIN-OFFLINE	an evidence or lab-run id
 version-profiles/windows-404r2-teardown.md	WIN-OFFLINE-TRACE	an evidence or lab-run id; the manual cites the note
 version-profiles/windows-404r2-teardown.md	WIN-STARTUP	an evidence or lab-run id; the manual cites the note
 version-profiles/windows-404r2-teardown.md	WIN-TRACE	an evidence or lab-run id; the manual cites the note
-protocol/lab-appe-gwentea2-2026-11-20e.md	human2	the name of the offline tutorial animation set; §4.8 states that the stock offline files have no lift or carry animation, which is the fact used
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"""abc"".index(""ABC"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"""abc"".index(""B"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"""abc"".index(""abc"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"""abc"".index(""b"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"""abc"".pos(""B"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"""abc"".pos(""b"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	#v(playerx) #v(playery)	the lab script's echo line; §4.2 carries the measured rounding rule
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	07:[A	a worked example of the scratch-string append; §8.2 carries the rule in words
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	4294967293	a single sample value; App. E#210 carries the %d, %i and %u rules it illustrates
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"format(""%d"", -0.5)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"format(""%d"", -2.7)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"format(""%d"", 2.5)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"format(""%d"", 2.7)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"format(""%d"", 2.9999)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"format(""%i"", -2.7)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"format(""%u"", -2.7)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	particletypes = 2	an unfinished particle probe; nothing settled to carry, and the kinds stay open in App. E
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"{""a"",""B"",""c""}.index(""B"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
-client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md	"{""a"",""B"",""c""}.index(""b"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+protocol/lab-appe-hosta-2026-11-20e.md	human2	the name of the offline tutorial animation set; §4.8 states that the stock offline files have no lift or carry animation, which is the fact used
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"""abc"".index(""ABC"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"""abc"".index(""B"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"""abc"".index(""abc"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"""abc"".index(""b"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"""abc"".pos(""B"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"""abc"".pos(""b"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	#v(playerx) #v(playery)	the lab script's echo line; §4.2 carries the measured rounding rule
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	07:[A	a worked example of the scratch-string append; §8.2 carries the rule in words
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	4294967293	a single sample value; App. E#210 carries the %d, %i and %u rules it illustrates
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"format(""%d"", -0.5)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"format(""%d"", -2.7)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"format(""%d"", 2.5)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"format(""%d"", 2.7)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"format(""%d"", 2.9999)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"format(""%i"", -2.7)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"format(""%u"", -2.7)"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	particletypes = 2	an unfinished particle probe; nothing settled to carry, and the kinds stay open in App. E
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"{""a"",""B"",""c""}.index(""B"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"{""a"",""B"",""c""}.index(""b"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample

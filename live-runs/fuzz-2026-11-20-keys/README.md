@@ -4,7 +4,7 @@
 [2026-11-19 fuzz round](../fuzz-2026-11-19/README.md) that were still open: keyboard and chat
 input, and the widths of other-player props on the Windows clients. The other queued items (the shot
 byte, 4.20r8 GS2 delivery, the 2.22/2.31 NPC widths and the 2.05 key emote) had already run in
-the [GwenTea2 Appendix E lab](../../protocol/lab-appe-gwentea2-2026-11-20.md).
+the [lab host A Appendix E lab](../../protocol/lab-appe-hosta-2026-11-20.md).
 
 - **Other-player props (`PLO_OTHERPLPROPS`, 8):** 74 and 75 are strings and 76 is five bytes on all four
   builds. 77 and everything from 83 up end the message. From 2.31 on, 78–80 are the two-byte X2/Y2/Z2. The
@@ -23,7 +23,7 @@ Evidence: lab **[lab]**. Rows are in `fuzz-results.tsv`, which has the columns o
 
 ## Lab
 
-The lab is the GwenTea2 Debian lab VM, on loopback only. The clients run under Wine 10, behind a gs2emu
+The lab is the lab host A Debian lab VM, on loopback only. The clients run under Wine 10, behind a gs2emu
 lab gserver and the `gen5probe` proxy (`tools/probe`). Each run uses one client, and runs go one at a time
 on an idle VM (1-minute load under 3, with no other thread's probe run live). Captures and screenshots
 stay in the lab.

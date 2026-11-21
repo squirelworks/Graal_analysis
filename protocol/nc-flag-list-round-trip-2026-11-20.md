@@ -1,7 +1,7 @@
 # The 2001 NPC Control server-flag list, end to end (E#425)
 
 Date: 2026-11-20. Evidence: **[bin]** (a linear disassembly of the two retained flag-list NPC
-Control executables, plus a decompiler read on the GwenTea2 lab; no program run). Only behaviour is
+Control executables, plus a decompiler read on the lab host A; no program run). Only behaviour is
 given here. It follows [nc-standalone-flag-action.md](nc-standalone-flag-action.md) and answers its
 open questions for the client side.
 

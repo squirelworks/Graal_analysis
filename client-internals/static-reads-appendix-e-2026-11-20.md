@@ -1,7 +1,7 @@
 # Static reads for Appendix E (2026-11-20)
 
 Date: 2026-11-20. Evidence: **[bin]** (a disassembler read of the real client executables on the
-Mirae lab, with no client run). Only behaviour is given here. Covers App. E#1, E#6, E#215, E#321,
+lab host B, with no client run). Only behaviour is given here. Covers App. E#1, E#6, E#215, E#321,
 E#328, E#502, E#503 and E#602. It follows
 [static-reads-appendix-e-2026-11-19.md](static-reads-appendix-e-2026-11-19.md).
 

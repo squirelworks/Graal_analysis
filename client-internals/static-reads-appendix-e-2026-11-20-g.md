@@ -1,7 +1,7 @@
 # Static reads for Appendix E, seventh batch (2026-11-20)
 
 Date: 2026-11-20. Evidence: **[bin]** (a decompiler read of the real client executables on the
-GwenTea2 lab, plus a linear disassembly of the same files; no client run) and **[file]** (the
+lab host A, plus a linear disassembly of the same files; no client run) and **[file]** (the
 `arrays.dat` shipped with 1.39). Only behaviour is given here. Covers App. E#305 and E#317.
 
 Builds read: the original Windows 2.22 `Graal2220.exe` (token `GNW03014`), and Windows 1.39
@@ -91,7 +91,7 @@ and super bomb (1.75 tall). Other builds take the sizes from their own `arrays.d
 
 ### Draw order
 
-The 1.39 lab run had already measured the draw order (`protocol/lab-appe-mirae-2026-11-20c.md`):
+The 1.39 lab run had already measured the draw order (`protocol/lab-appe-hostb-2026-11-20c.md`):
 items and players are drawn in y order. That run is the evidence for the draw order. The drawer
 was not read again here.
 

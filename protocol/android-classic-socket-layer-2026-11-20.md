@@ -1,6 +1,6 @@
 # Android Classic and Era: the socket layer
 
-Date: 2026-11-20. Tracker: [#648](https://github.com/squirelworks/Graal_analysis/issues/648); App. E#18. Tags: **[bin]** (static read of the held Android packages' native engine libraries, no run) and **[lab]** (the 2026-11-20 Android-x86 emulator run on loopback, `lab-appe-gwentea2-2026-11-20d.md`).
+Date: 2026-11-20. Tracker: [#648](https://github.com/squirelworks/Graal_analysis/issues/648); App. E#18. Tags: **[bin]** (static read of the held Android packages' native engine libraries, no run) and **[lab]** (the 2026-11-20 Android-x86 emulator run on loopback, `lab-appe-hosta-2026-11-20d.md`).
 
 The GraalOnline Classic 1.8 x86_64 engine library keeps its C++ symbols, so it was read first. The other held packages and ABIs were checked against it.
 

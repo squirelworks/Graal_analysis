@@ -25,13 +25,13 @@ Each command in the table carries one letter per argument. The compiler uses the
 
 The four corrected entries give stored letters only; argument conversion is settled below [bin] (npc-library/gs1-signatures-205-followup.md#checks-and-limits).
 
-**Settled question, formerly E#201: Four GS1 argument signatures in 2.05.** What the stored argument letters of four GS1 commands mean at run time was open. Lab scenes on 2.05 rev 2 settled each [lab] (protocol/lab-appe-mirae-2026-11-20c.md#gs1-argument-conversion-on-205-e201); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#replaceani-and-showimg-on-205-e201).
+**Settled question, formerly E#201: Four GS1 argument signatures in 2.05.** What the stored argument letters of four GS1 commands mean at run time was open. Lab scenes on 2.05 rev 2 settled each [lab] (protocol/lab-appe-hostb-2026-11-20c.md#gs1-argument-conversion-on-205-e201); [lab] (protocol/lab-appe-hostb-2026-11-20d.md#replaceani-and-showimg-on-205-e201).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Settled | `puthorse` (`MRR`) and `showimg` (`RMRR`): the image slot is free text with message codes expanded, spaces and quotes kept; the numeric slots evaluate expressions, and a string there gives 0 | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#gs1-argument-conversion-on-205-e201); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#replaceani-and-showimg-on-205-e201) |
-| Settled | `toinventory` (`S`) and `replaceani` (`MM`) take their arguments as raw text: codes not expanded, quotes and spaces kept. A third `replaceani` argument stops the command and the rest of its line. Online, 2.05 runs `replaceani` only after server message 44 | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#gs1-argument-conversion-on-205-e201); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#replaceani-and-showimg-on-205-e201) |
-| Verdict | Verified on 2.05 rev 2. The best guess (the older descriptions are equivalent) is refuted: `M` letters convert differently in different commands | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#replaceani-and-showimg-on-205-e201) |
+| Settled | `puthorse` (`MRR`) and `showimg` (`RMRR`): the image slot is free text with message codes expanded, spaces and quotes kept; the numeric slots evaluate expressions, and a string there gives 0 | [lab] (protocol/lab-appe-hostb-2026-11-20c.md#gs1-argument-conversion-on-205-e201); [lab] (protocol/lab-appe-hostb-2026-11-20d.md#replaceani-and-showimg-on-205-e201) |
+| Settled | `toinventory` (`S`) and `replaceani` (`MM`) take their arguments as raw text: codes not expanded, quotes and spaces kept. A third `replaceani` argument stops the command and the rest of its line. Online, 2.05 runs `replaceani` only after server message 44 | [lab] (protocol/lab-appe-hostb-2026-11-20c.md#gs1-argument-conversion-on-205-e201); [lab] (protocol/lab-appe-hostb-2026-11-20d.md#replaceani-and-showimg-on-205-e201) |
+| Verdict | Verified on 2.05 rev 2. The best guess (the older descriptions are equivalent) is refuted: `M` letters convert differently in different commands | [lab] (protocol/lab-appe-hostb-2026-11-20d.md#replaceani-and-showimg-on-205-e201) |
 
 ## 8.2.2 Name tables
 
@@ -332,15 +332,15 @@ Expressions resolve names through a table of functions and variables with numeri
 
 The seven families above have 36 exact compiled records / 35 distinct family/member spellings. The parser matches stored suffixes and exits on its first successful record: arrow `dx=663` shadows the duplicate `dx=664` vertical getter, with no builtin `dy` spelling. This replaces the documentation-order inference for the exact checked build → §8.2.5. Expression IDs are language identifiers, not binary addresses or serialized bytecode [bin] (npc-library/gs1-object-members-205r2.md#parser-binding).
 
-**Settled question, formerly E#204: Writing to GS1 object members.** What writing to a GS1 object member does, and how the members change across builds, was open; a write-and-read-back scene on four builds settled the main part [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs1-member-writes-e204).
+**Settled question, formerly E#204: Writing to GS1 object members.** What writing to a GS1 object member does, and how the members change across builds, was open; a write-and-read-back scene on four builds settled the main part [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs1-member-writes-e204).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Before | The 2.05 rev 2 name-to-id mapping is settled (36 records, 35 spellings); writes and fallbacks were not | [bin] (npc-library/gs1-object-members-205r2.md#parser-binding) |
-| Settled | On 2.05, 2.17.1, 2.22 and 2.31, writes to `npcs[k].x`, `npcs[k].y` and `players[0].x` read back and move the object on screen; writes past the end read 0; unknown members such as `zz` and `arrows[0].dy` read 0; `players[0].power` reads 0 | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs1-member-writes-e204) |
-| Build change | `npcs[k].dir = 1` does not stick on 2.05 (reads 2) and does from 2.17.1 | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs1-member-writes-e204) |
-| Verdict | Verified for the members tested; the best guess held | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs1-member-writes-e204) |
-| Left over | The rest of the members, setter side effects beyond position, and 1.39 | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs1-member-writes-e204) |
+| Settled | On 2.05, 2.17.1, 2.22 and 2.31, writes to `npcs[k].x`, `npcs[k].y` and `players[0].x` read back and move the object on screen; writes past the end read 0; unknown members such as `zz` and `arrows[0].dy` read 0; `players[0].power` reads 0 | [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs1-member-writes-e204) |
+| Build change | `npcs[k].dir = 1` does not stick on 2.05 (reads 2) and does from 2.17.1 | [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs1-member-writes-e204) |
+| Verdict | Verified for the members tested; the best guess held | [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs1-member-writes-e204) |
+| Left over | The rest of the members, setter side effects beyond position, and 1.39 | [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs1-member-writes-e204) |
 
 The NewWorld betas add eight time variables after the direction list. They are variables (also usable as `#v(name)` codes), not commands; the server sends the time in packet 42 [bin][doc] (client-internals/newworld-betas.md#gs1-changes):
 
@@ -486,13 +486,13 @@ The `move` command queues motion that a consumer applies tick by tick. The rules
 | 64 | character auto-animation: water first; otherwise empty queue or both deltas below tolerance selects idle; at least half-tile delta on either axis selects walking, smaller selects slower walking; special profile uses its own names | [2.05][bin] (npc-library/gs1-move-205r2.md#options-and-collision) |
 | residuals | the step timing is settled below; full collision eligibility, event execution, overflow/nonfinite inputs, other bits and animation playback remain open | [2.05][bin] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
 
-**Settled question, formerly E#206: `move` option bits in 2.05.** How often the `move` caller runs in 2.05, whether it catches up, and its edge cases were open; the queued consumer was read. A further read and a timed lab settled the caller and its timing [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-move-queue-in-205-e206); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#move-timing-on-205-e206).
+**Settled question, formerly E#206: `move` option bits in 2.05.** How often the `move` caller runs in 2.05, whether it catches up, and its edge cases were open; the queued consumer was read. A further read and a timed lab settled the caller and its timing [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-move-queue-in-205-e206); [lab] (protocol/lab-appe-hostb-2026-11-20d.md#move-timing-on-205-e206).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Settled | `move` has two callers: the GS1 command and a move received from the network with its own start position. Option 0 replaces the queue; 1 appends, but replaces when the queue ends more than 5 tiles away; the queue holds 100 records, and the hundredth forces a replace | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-move-queue-in-205-e206) |
-| Settled | A move takes its time in 50 ms steps (asked 2.00, 0.50, 1.60 and 0.12 s took 2.03, 0.57, 1.65 and 0.15 s), and a 1 s or 2 s stall of the client adds its full length: no catch-up | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#move-timing-on-205-e206) |
-| Verdict | Verified on 2.05 rev 2; the best guess (once per 50 ms step, no catch-up) holds | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#move-timing-on-205-e206) |
+| Settled | A move takes its time in 50 ms steps (asked 2.00, 0.50, 1.60 and 0.12 s took 2.03, 0.57, 1.65 and 0.15 s), and a 1 s or 2 s stall of the client adds its full length: no catch-up | [lab] (protocol/lab-appe-hostb-2026-11-20d.md#move-timing-on-205-e206) |
+| Verdict | Verified on 2.05 rev 2; the best guess (once per 50 ms step, no catch-up) holds | [lab] (protocol/lab-appe-hostb-2026-11-20d.md#move-timing-on-205-e206) |
 | Left over | Full collision eligibility, one unidentified object collection, event execution after the move, unusual numeric inputs and bits outside the consumer | [2.05][bin] (npc-library/gs1-move-205r2.md#evidence-and-limits) |
 
 ## 8.2.10 Exact-build object getter semantics
@@ -550,7 +550,7 @@ On 1.41r1, 2.05r2, 2.17.1, 2.22 and 2.31, `#v(##)` shows `0`. The escaped hash i
 | 1.41r1 set | `#`, `1`, `2`, `3`, `5`, `6`, `7`, `8`, `C`, `L`, `a`, `b`, `c`, `f`, `g`, `m`, `n`, `s`, `v`, `w`. No `#e`, `#K`, `#P` or display codes. `#e(1,2,ABCD)` shows `e(1,2,ABCD)` and `#K(65)` shows `K(65)` | [lab] (npc-library/gs1-message-codes-by-build.md#what-the-empty-scenes-showed) |
 | `#b` from 2.17.1 | `A#bB` stays `A#bB`. On 1.41r1 and 2.05r2 it shows `AB` | [lab] (npc-library/gs1-message-codes-by-build.md#what-the-empty-scenes-showed) |
 | unknown code | `A#?B` stays `A#?B` from 2.17.1 and loses the `#` before that | [lab] (npc-library/gs1-message-codes-by-build.md#two-engines) |
-| bare `#5` and `#6` | empty on 2.05r2. On 2.17.1, 2.22 and 2.31 each was replaced by the label text in front of it: the later evaluator reuses one scratch string across parts, and with no horse or carried NPC the getter writes nothing, so the previous part's text is appended again | [lab] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6); [bin] (client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md#bare-5-and-6-on-2171-e203) |
+| bare `#5` and `#6` | empty on 2.05r2. On 2.17.1, 2.22 and 2.31 each was replaced by the label text in front of it: the later evaluator reuses one scratch string across parts, and with no horse or carried NPC the getter writes nothing, so the previous part's text is appended again | [lab] (npc-library/gs1-message-codes-by-build.md#bare-5-and-6); [bin] (client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md#bare-5-and-6-on-2171-e203) |
 | `showimg2`, `savelog2` | `RMRRR` and `MS` on 2.17.1, 2.22, 2.31 and 3.04 | [bin] (npc-library/gs1-message-codes-by-build.md#letters-the-summary-had-wrong) |
 
 | Text | 1.33 | 2.05r2 and 2.17.1 | Source |

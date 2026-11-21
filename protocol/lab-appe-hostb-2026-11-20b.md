@@ -1,11 +1,11 @@
-# Appendix E lab runs on Mirae, second batch (2026-11-20)
+# Appendix E lab runs on lab host B, second batch (2026-11-20)
 
 Date: 2026-11-20. Evidence: **[lab]**. Real Windows clients and the original 1999 server under Wine,
-in the Mirae Graal Linux RE Lab VM. Each run used its own network namespace with loopback only.
+in the lab host B the Linux lab VM. Each run used its own network namespace with loopback only.
 Login hosts the clients dial resolve to lab listeners there. The lab servers sat behind the `gen5probe`
 proxy, so both directions were logged. Captures and screenshots stay in the lab. Probe rows are appended
 to [`probe-results.tsv`](probe-results.tsv). The first batch is in
-[`lab-appe-mirae-2026-11-20.md`](lab-appe-mirae-2026-11-20.md).
+[`lab-appe-hostb-2026-11-20.md`](lab-appe-hostb-2026-11-20.md).
 
 ## Login of the 1.40 build (E#15)
 

@@ -1,6 +1,6 @@
-# Appendix E lab runs on GwenTea2 (2026-11-20)
+# Appendix E lab runs on lab host A (2026-11-20)
 
-Date: 2026-11-19/20. Evidence: **[lab]**. Real clients in the GwenTea2 Debian lab VM, on loopback
+Date: 2026-11-19/20. Evidence: **[lab]**. Real clients in the lab host A Debian lab VM, on loopback
 only: Wine 10, a gs2emu lab gserver and the `gen5probe` injecting proxy. One probe ran at a time
 on an idle VM. Captures and screenshots stay in the lab. Probe rows are appended to
 [`probe-results.tsv`](probe-results.tsv).

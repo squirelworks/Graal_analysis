@@ -23,7 +23,7 @@ GS2 replaces client-side GS1 in steps. Each row gives a group of builds and the 
 
 ## 8.3.2 Delivery
 
-How the server hands GS2 code to a client. NPC bodies travel in 131 behind 100 on 4.20r8, 5.24r4 and 6.03r7; on 6.x a class or weapon arrives as a 197 descriptor and a 140 body, a path 4.20r8 does not honour as sent (→ §8.4.1) [lab] (protocol/script-fuzz-2026-11-19.md); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover).
+How the server hands GS2 code to a client. NPC bodies travel in 131 behind 100 on 4.20r8, 5.24r4 and 6.03r7; on 6.x a class or weapon arrives as a 197 descriptor and a 140 body, a path 4.20r8 does not honour as sent (→ §8.4.1) [lab] (protocol/script-fuzz-2026-11-19.md); [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover).
 
 | Item | Rule | Source |
 | --- | --- | --- |
@@ -339,13 +339,13 @@ The rules below summarise what those scripts do, and so what a client has to run
 | The opcodes these scripts lean on beyond calls and arithmetic are list membership (`in`, 81 and 80), `getangle` (95), list `add` (136), `tokenize` (118) and `getdir` (96); `waitfor` (11) is rare and 4.20r8 on only (→ §8.4.4) | [lab] (npc-library/gs2-weapon-corpus-2026-11-14.md#opcodes-the-repro-machine-still-refuses) |
 | All eight GS2-only names checked (`triggerserver`, `scheduleevent`, `findimg`, `findweapon`, `md5`, `cancelevents`, `keydown2`, `onwall2`) are in the January 2007 4.20 engine and in 5.00r7 to 5.30r3. A call to a missing name logs "not found", gives 0 and the script goes on (settled below); 4.04r2 and 4.11 are not read | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#gs2-only-names-in-the-engines-e215); [inf] (npc-library/gs2-weapon-corpus-2026-11-14.md#not-settled) |
 
-**Settled question, formerly E#215: When GS2-only names arrived, and what a missing name does.** Which 4.x build first has each GS2-only name, and what a client does when a script calls a name it lacks, were open. Engine reads and a bytecode run on four builds settled the behaviour [lab] (protocol/lab-appe-gwentea2-2026-11-20b.md#a-gs2-call-to-a-name-the-client-lacks-e215); [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#gs2-only-names-in-the-engines-e215).
+**Settled question, formerly E#215: When GS2-only names arrived, and what a missing name does.** Which 4.x build first has each GS2-only name, and what a client does when a script calls a name it lacks, were open. Engine reads and a bytecode run on four builds settled the behaviour [lab] (protocol/lab-appe-hosta-2026-11-20b.md#a-gs2-call-to-a-name-the-client-lacks-e215); [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#gs2-only-names-in-the-engines-e215).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Settled | All eight names are in the January 2007 4.20 engine and in 5.00r7 to 5.30r3; `md5`, `keydown2`, `findimg`, `findweapon` and `onwall2` were called and worked on 4.20r8, 5.12, 5.24r4 and 6.03r7 | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#gs2-only-names-in-the-engines-e215); [lab] (protocol/lab-appe-gwentea2-2026-11-20b.md#a-gs2-call-to-a-name-the-client-lacks-e215) |
-| Settled | A call to a missing name, as a statement, a value or a method, logs one "Function NAME not found …" line and gives 0; the script goes on. Reading a missing attribute gives 0 and logs nothing. The same on 4.20r8, 5.12, 5.24r4 and 6.03r7 | [lab] (protocol/lab-appe-gwentea2-2026-11-20b.md#a-gs2-call-to-a-name-the-client-lacks-e215) |
-| Verdict | Verified for 4.20r8 to 6.03r7; the best guess holds | [lab] (protocol/lab-appe-gwentea2-2026-11-20b.md#a-gs2-call-to-a-name-the-client-lacks-e215) |
+| Settled | All eight names are in the January 2007 4.20 engine and in 5.00r7 to 5.30r3; `md5`, `keydown2`, `findimg`, `findweapon` and `onwall2` were called and worked on 4.20r8, 5.12, 5.24r4 and 6.03r7 | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#gs2-only-names-in-the-engines-e215); [lab] (protocol/lab-appe-hosta-2026-11-20b.md#a-gs2-call-to-a-name-the-client-lacks-e215) |
+| Settled | A call to a missing name, as a statement, a value or a method, logs one "Function NAME not found …" line and gives 0; the script goes on. Reading a missing attribute gives 0 and logs nothing. The same on 4.20r8, 5.12, 5.24r4 and 6.03r7 | [lab] (protocol/lab-appe-hosta-2026-11-20b.md#a-gs2-call-to-a-name-the-client-lacks-e215) |
+| Verdict | Verified for 4.20r8 to 6.03r7; the best guess holds | [lab] (protocol/lab-appe-hosta-2026-11-20b.md#a-gs2-call-to-a-name-the-client-lacks-e215) |
 | Left over | Whether 4.04r2 or 4.11 already has the names needs an unpacked engine of those builds, which is not held | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#gs2-only-names-in-the-engines-e215) |
 
 

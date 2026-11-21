@@ -1,12 +1,12 @@
-# Appendix E lab runs on Mirae, batch 3 (2026-11-20)
+# Appendix E lab runs on lab host B, batch 3 (2026-11-20)
 
-Date: 2026-11-20. Evidence: **[lab]**. Real clients under Wine in the Mirae Graal Linux RE Lab VM,
+Date: 2026-11-20. Evidence: **[lab]**. Real clients under Wine in the lab host B the Linux lab VM,
 each in its own network namespace with loopback only. The servers are the original GServer 1.3
 (1999) and the gs2emu lab worlds. A logging relay or the `gen5probe` proxy sits between client and
 server. No public service was contacted. Captures and screenshots stay in the lab. Probe rows are
 appended to [`probe-results.tsv`](probe-results.tsv). The earlier batches are
-[`lab-appe-mirae-2026-11-20.md`](lab-appe-mirae-2026-11-20.md) and
-[`lab-appe-mirae-2026-11-20b.md`](lab-appe-mirae-2026-11-20b.md).
+[`lab-appe-hostb-2026-11-20.md`](lab-appe-hostb-2026-11-20.md) and
+[`lab-appe-hostb-2026-11-20b.md`](lab-appe-hostb-2026-11-20b.md).
 
 ## Level change and other-level props on GServer 1.3 (E#423)
 
@@ -320,9 +320,9 @@ left for that.
 ## Mac 6.004 and 6.015 frame (E#618): not run
 
 Neither Mac guest has working OpenGL.
-- On Mirae: the PowerPC Tiger (10.4.5) guest under QEMU has no OpenGL. The Mac 4.x and 5.x clients
+- On lab host B: the PowerPC Tiger (10.4.5) guest under QEMU has no OpenGL. The Mac 4.x and 5.x clients
   needed a render shim there, and drew a black captured display without it.
-- The Lion guest on GwenTea2 also lacks OpenGL (see the 2026-11-16 note).
+- The Lion guest on lab host A also lacks OpenGL (see the 2026-11-16 note).
 
 What the builds need:
 - Both builds are universal (PowerPC 7400, i386 and x86_64), and their `Info.plist` names no

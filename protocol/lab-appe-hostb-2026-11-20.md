@@ -1,6 +1,6 @@
-# Appendix E lab runs on Mirae (2026-11-20)
+# Appendix E lab runs on lab host B (2026-11-20)
 
-Date: 2026-11-20. Evidence: **[lab]**. Real Windows clients under Wine in the Mirae Graal Linux RE
+Date: 2026-11-20. Evidence: **[lab]**. Real Windows clients under Wine in the lab host B Graal Linux RE
 Lab VM, each in its own network namespace with loopback only, against gs2emu lab worlds through the
 `gen5probe` proxy. Captures and screenshots stay in the lab. Probe rows are appended to
 [`probe-results.tsv`](probe-results.tsv).
@@ -170,7 +170,7 @@ ids were injected as client-to-server packets: 93 with data, 92, 155 + 93 + 156 
 - E#423: the original 1.3 server and test client are in the lab VM, but there wasn't time.
 - E#424: RC2 2.05 under Wine draws text as boxes and never connects.
 - E#425: its outlook is a static read.
-- E#618: Mirae has no Mac guest that runs the 6.0x Cocoa builds.
+- E#618: lab host B has no Mac guest that runs the 6.0x Cocoa builds.
 
 ## Built-in login host of 5.30r3 and 5.31r4 (E#619)
 
@@ -246,7 +246,7 @@ prop 81 values 0 to 10, 12 and 16, plus one with no prop 81.
 
 - E#15: 1.40's start form differs from 1.39's, and no login reached the proxy. Graal 2002 v22 was
   copied into the lab but not run.
-- E#312: the server software of the 2026-10-25 lab is not on Mirae, and its write-up does not name
+- E#312: the server software of the 2026-10-25 lab is not on lab host B, and its write-up does not name
   it.
 - E#505 (5.12 stops at "Starting 3D mode" under Wine), E#504 (needs a server patched for
   `GR3DV003`), E#610 and E#611 (need a 4.04r2 offline scene).

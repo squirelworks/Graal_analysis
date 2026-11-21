@@ -1,9 +1,9 @@
-# Appendix E lab runs on GwenTea2, second batch (2026-11-20)
+# Appendix E lab runs on lab host A, second batch (2026-11-20)
 
-Date: 2026-11-20. Evidence: **[lab]**. Real clients in the GwenTea2 Debian lab VM (`debian-lab446`),
+Date: 2026-11-20. Evidence: **[lab]**. Real clients in the lab host A Debian lab VM (`debian-lab446`),
 on loopback only, under Wine 10 or natively. No public service was contacted. Captures and
 screenshots stay in the lab. The first batch is in
-[`lab-appe-gwentea2-2026-11-20.md`](lab-appe-gwentea2-2026-11-20.md).
+[`lab-appe-hosta-2026-11-20.md`](lab-appe-hosta-2026-11-20.md).
 
 ## The later Graal3D beta at run time (E#504)
 

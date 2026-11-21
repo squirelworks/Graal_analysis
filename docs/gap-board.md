@@ -43,15 +43,15 @@ answered, tick the box in the source with a link instead of redoing it.
 | umbrella | 5 |
 | **Total** | **426** |
 
-Lab items by where they run: Mirae Windows 10 VM or Linux VM under Wine 74, Mirae Linux VM
-with the lab servers 24, Mirae Linux VM (Linux clients) 14, Android-x86 or mobile 6, Mirae
-Tiger VM 5, GwenTea2 Lion or Sequoia VM 4.
+Lab items by where they run: Windows 10 VM on lab host B or Linux VM under Wine 74, Linux VM on lab host B
+with the lab servers 24, Linux VM on lab host B (Linux clients) 14, Android-x86 or mobile 6, lab host B
+Tiger VM 5, lab host A Lion or Sequoia VM 4.
 
 ## Issues
 
 Every row is also in one GitHub issue, so an agent can take work without reading the TSV. The
 entry point is the research gap roadmap, #746 (a child of #370). Lab issues: #743 (Windows
-clients on Mirae), #733 (servers, RC and NC), #734 (Linux clients), #730 (Tiger), #731 (Lion
+clients on lab host B), #733 (servers, RC and NC), #734 (Linux clients), #730 (Tiger), #731 (Lion
 and Sequoia), #732 (Android, iOS, v7). Static issues: #740 (NEXT.md and Appendix E), #744 (1.x to
 2.x), #745 (protocol), #741 (4.x to 7.x, GS2 VM, Mac), #738 (Torque), #735 (Linux teardowns),
 #736 (formats and tools), #739 (version profiles), #737 (NPC scripting). Blocked rows: #742.
@@ -69,12 +69,12 @@ When a row is done, tick it in its issue as well as in the source note.
 
 Each queued run below is written out step by step in [`experiments.md`](experiments.md), with its expected output, where the result goes and the issue it closes.
 
-Labs run one at a time per host, inside VMs only (no bare-metal runs). GwenTea2 has little
+Labs run one at a time per host, inside VMs only (no bare-metal runs). Lab host A has little
 memory: a watchdog powers VMs off when the host's free memory falls under about 3 GB, so do not
 boot a second large VM there while one is running. Check what is running before booting. The
 queue below is the suggested order; take the next free entry whose VM is idle.
 
-### Mirae, Windows 10 VM and Linux VM
+### Lab host B, Windows 10 VM and Linux VM
 
 | # | What | Board rows | State |
 |---|---|---|---|
@@ -88,7 +88,7 @@ queue below is the suggested order; take the next free entry whose VM is idle.
 | 8 | 6.03r7 product-id slot on Windows 10 (32-bit registry view) | `pcid` line 138 | free |
 | 9 | 2.05 rev 2 and 2.22 F-key windows with a hosts-file list host; 1.39 closing on F6 | `gui-windows-fkeys` lines 184, 185 | free |
 
-### Mirae, Linux VM with the lab servers
+### Lab host B, Linux VM with the lab servers
 
 | # | What | Board rows | State |
 |---|---|---|---|
@@ -98,13 +98,13 @@ queue below is the suggested order; take the next free entry whose VM is idle.
 | 4 | NC write operations through `ncprobe.py` (attribute, class and weapon writes) | `nc-write-ops-status` line 38 | free |
 | 5 | The protocol-19 server order with a real 4.04r2 and 3.153 | `protocol19-server` lines 164, 165 | free |
 
-### Mirae, Tiger VM
+### Lab host B, Tiger VM
 
 | # | What | Board rows | State |
 |---|---|---|---|
 | 1 | Mac PowerPC receiver positive control: one valid raw frame, then zlib members near each capacity boundary; the gmap height reader on a known-good map | `macos-ppc-receive-framing` line 56; `macos-ppc-receive-decompression` line 70; `gmap-heights-mac-ppc` line 90; `NEXT.md` line 304 | free |
 
-### GwenTea2, Lion or Sequoia VM
+### Lab host A, Lion or Sequoia VM
 
 | # | What | Board rows | State |
 |---|---|---|---|

@@ -1,7 +1,7 @@
 # Static reads for Appendix E, sixth batch (2026-11-20)
 
 Date: 2026-11-20. Evidence: **[bin]** (a decompiler read of the real client executables on the
-GwenTea2 lab, plus a linear disassembly of the same files; no client run). Only behaviour is given
+lab host A, plus a linear disassembly of the same files; no client run). Only behaviour is given
 here. Covers App. E#308 and E#613, and the throw part of E#323.
 
 Builds read: the original Windows 2.22 `Graal2220.exe` (token `GNW03014`; it differs from the

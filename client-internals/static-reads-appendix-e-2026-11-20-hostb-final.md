@@ -1,7 +1,7 @@
-# Static reads and labs for Appendix E, last Mirae batch (2026-11-20)
+# Static reads and labs for Appendix E, last lab host B batch (2026-11-20)
 
 Date: 2026-11-20. Evidence: **[bin]** (disassembler reads of the real client executables on the
-Mirae lab) and, where a section says so, **[lab]** (a loopback run). Only behaviour is given here. Covers App.
+lab host B) and, where a section says so, **[lab]** (a loopback run). Only behaviour is given here. Covers App.
 E#203, E#507 and E#304.
 
 ## Bare `#5` and `#6` on 2.17.1 (E#203)
@@ -177,7 +177,7 @@ player chat, which was read from the client's props messages.
 
 - **`%d` and `%i` floor; they do not truncate.** −2.7 gives −3. 2.9999 giving 3 suggests the same
   small upward bias as the client's biased-floor helper (inferred from that one value). This
-  agrees with the GwenTea2 floor result on 4.20r8 and 5.12.
+  agrees with the lab host A floor result on 4.20r8 and 5.12.
 
 | Expression | Result |
 | --- | --- |

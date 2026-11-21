@@ -1,7 +1,7 @@
 # 2.05 and 2.22 edge-link probe offsets
 
 Date: 2026-11-19. Evidence: **[bin]** (a disassembler read of the real 2.05 rev 2 `Graal.exe`
-(2.0.5.2) and the Windows 2.22 client, on the Mirae lab; no client run). Answers the main part
+(2.0.5.2) and the Windows 2.22 client, on the lab host B; no client run). Answers the main part
 of App. E#308 and the probe-offset row of [link-probe-bigmap-status.md](link-probe-bigmap-status.md).
 
 ## Method

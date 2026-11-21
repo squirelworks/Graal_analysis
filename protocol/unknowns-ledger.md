@@ -85,7 +85,7 @@ Status words:
 | Baddy type range a client accepts | resolved | 6.03r7 survives 0–24 and quits on 25 and 31; 4.20r8 and 2.22 survive every type up to 223 |
 | Baddy props 11 and up | resolved | 6.03r7 has cases for 0–10 only; any id of 11 or more ends the message, so later props are lost (static read, then a mode-9 kill canary, run `kc`; [lab](lab-baddyprops-ganiscript-156-2026-11-19.md)). 4.20r8 and 2.22 are the same: ids 11–30, as a byte or a string, lose the rest of the message (silent mode-10 baddy, mode 0 as the canary, `PLI_BADDYPROPS` as the observer; [fuzz](../live-runs/fuzz-2026-11-19/README.md)) |
 | 6.1.1.3 | blocked | RC4 after a server-sent connector script; no loopback login yet (`v6113-status.md`) |
-| Windows 6.037 | blocked | runs only in the Win10 lab VM (8 GB); booting it on Mirae now would leave about 3 GB free, under the host-stability rule. The host side is ready: the proxy runs on Windows with a TCP control port (`tcp:PORT`) |
+| Windows 6.037 | blocked | runs only in the Win10 lab VM (8 GB); booting it on lab host B now would leave about 3 GB free, under the host-stability rule. The host side is ready: the proxy runs on Windows with a TCP control port (`tcp:PORT`) |
 | 2.00 to 2.17 (gen 3) | resolved | the proxy speaks gen 3; real 2.05 rev 2 and 2.17.1 probed (runs `w205-b`, `w217-b`) |
 | 2.19 to 2.21 (gen 4) | blocked | the proxy has gen 4 from server source, but no 2.19–2.21 binary is held |
 | Mobile clients | blocked | iPhone codec now known: Classic+ 1.13 is desktop gen 5 with round-down for compressed bodies, which the proxy already speaks ([note](ios-classic-plus-113-framing.md)). Still blocked on running it: no 32-bit iOS device or emulator, no Android package on the lab hosts, no KVM in the Linux VM |

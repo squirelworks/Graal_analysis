@@ -1,7 +1,7 @@
 # Static reads for Appendix E, tenth batch (2026-11-20)
 
 Date: 2026-11-20. Evidence: **[bin]** (a decompiler read of the Linux 6.01r1 x64 client on the
-GwenTea2 lab, the existing decompiler output of the Linux 6.03r7 x64 client, and a linear
+lab host A, the existing decompiler output of the Linux 6.03r7 x64 client, and a linear
 disassembly of the unpacked Windows 6.00r2, 6.00r4 and 6.03r7 executables; no client run). Only
 behaviour is given here. Covers App. E#211.
 

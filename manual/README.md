@@ -1,6 +1,6 @@
 # Graal Technical Reference Manual
 
-Version 0.0.8. The target is 1.0.0; the specification and the roadmap to it are in issue #191.
+Version 0.0.9. The target is 1.0.0; the specification and the roadmap to it are in issue #191.
 
 Find exact login, staff-tool and service identities in the [version token map](../VERSION-TOKENS.md), generated from the [canonical catalogue](../client-internals/version-token-catalogue.md). Shared values do not identify a unique build; read each association's evidence and role.
 

@@ -73,20 +73,20 @@ A swing hits the local player only when every gate passes. In 2.05 rev 2 order:
 | 3 | the victim can be hurt: not in hurt mode, not dead, not swimming, hearts above 0, and normal play or a sparring-zone level | [2.05] (client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md#level-flags-seen) |
 | 4 | the victim's AP is not exactly 100 | [2.05] (client-internals/decomp-findings-2026-10-24-d/hit-gates.tsv) |
 | 5 | the level has not run `noplayerkilling`; when the local player's own attack is refused by it, the client prints `nopkzone` | [2.05] (client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md#gates) |
-| 6 | the attacker has not already been judged in this second of the day (a per-attacker stamp, stored before the guild test); on 2.05 rev 2 this gate is on the hurt-message path only: the sword judge neither checks nor stores the stamp (→ §4.3.3) | [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets); [lab] (protocol/lab-appe-mirae-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
+| 6 | the attacker has not already been judged in this second of the day (a per-attacker stamp, stored before the guild test); on 2.05 rev 2 this gate is on the hurt-message path only: the sword judge neither checks nor stores the stamp (→ §4.3.3) | [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets); [lab] (protocol/lab-appe-hostb-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
 | 7 | guild: the first bracketed text in the attacker's nickname (a `(`, then the first `)` after it with at least one character between) does not occur anywhere in the victim's nickname, case-sensitive | [2.05] (client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md#gates) |
 | 8 | the attacker's STATUS has neither 0x02 (hidden) nor 0x20 (sword hidden) | [2.05] (client-internals/decomp-findings-2026-10-24-d/03-hit-gates-and-open-points.md#gates) |
 | 9 | the attacker is not kicking: 2.05 by the animation name `kick`, 2.17.1 and later by an object id of 3 | [2.05][2.17.1] (client-internals/decomp-findings-2026-10-24-d/hit-gates.tsv) |
 | 10 | reach box: the victim's centre 0 to 4 tiles ahead of the attacker's centre along its facing (both ends count) and at most 2 tiles to the side, the 2-tile edge included (every build 1.21 to 2.31; earlier readings said strictly under 2) [bin] (client-internals/combat-baddy-tile-by-version.md#the-sword-box-the-victim-judging-another-players-swing); two live 1.35 clients confirm the edge: a victim 2 tiles to either side is hit, 2.5 tiles is missed [lab] (live-runs/sword-edge-2026-11-18/README.md#result); centres are (x + 1.5, y + 2); skipped while the victim is in hurt mode | [2.05] (client-internals/decomp-findings-2026-10-24/04-sword-hitbox.md#who-decides-a-hit); [2.00] (client-internals/combat-200-204.md#the-same-in-every-build-200-to-205-rev-2) |
 
-**Settled question, formerly E#310: Where the once-per-second hit stamp sits.** Which hit paths share the per-attacker once-per-second stamp was open between two reads; a two-client lab on 2.05 settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#once-per-second-hit-stamp-on-205-e310).
+**Settled question, formerly E#310: Where the once-per-second hit stamp sits.** Which hit paths share the per-attacker once-per-second stamp was open between two reads; a two-client lab on 2.05 settled it [lab] (protocol/lab-appe-hostb-2026-11-20.md#once-per-second-hit-stamp-on-205-e310).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Claims | A: the sword and both hit messages share the stamp, stored before the guild test. B: in 2.00 to 2.05 rev 2 the stamp is on the hurt-message path only | [2.05][2.22] (client-internals/decomp-findings-2026-10-25-k/01-knockback-and-packet-hits.md#gates-shared-by-the-sword-and-the-packets); [2.00][2.05] (client-internals/combat-200-204.md#what-changes-by-build) |
-| Settled | On 2.05 rev 2 a guild-rejected hurt message blocks a clean one from the same attacker in the same second, so that path stores the stamp before the guild test; a real swing is not blocked by that stamp and stores none of its own | [lab] (protocol/lab-appe-mirae-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
-| Verdict | Verified on 2.05 rev 2: Claim B holds | [lab] (protocol/lab-appe-mirae-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
-| Left over | 2.22, which Claim A also covers | [lab] (protocol/lab-appe-mirae-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
+| Settled | On 2.05 rev 2 a guild-rejected hurt message blocks a clean one from the same attacker in the same second, so that path stores the stamp before the guild test; a real swing is not blocked by that stamp and stores none of its own | [lab] (protocol/lab-appe-hostb-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
+| Verdict | Verified on 2.05 rev 2: Claim B holds | [lab] (protocol/lab-appe-hostb-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
+| Left over | 2.22, which Claim A also covers | [lab] (protocol/lab-appe-hostb-2026-11-20.md#once-per-second-hit-stamp-on-205-e310) |
 
 By build:
 
@@ -182,24 +182,24 @@ Shots fly one tile per tick. The rules below cover local and remote shots, their
 | hit box | size from the sprite table entry `v` (array 24): width `((v >> 6) & 63) / 16`, height `(v & 63) / 16`; hits when `x + w > px + 0.5`, `x < px + 2.5`, `y + h > py + 1`, `y < py + 3` | [2.05] (client-internals/damage-sources.md#when-a-shot-hurts-the-local-player) |
 | skipped | while the shot bounces back, for a player's shot (one's own, or one received in a `noplayerkilling` level), or when the player cannot be hurt | [2.05] (client-internals/damage-sources.md#when-a-shot-hurts-the-local-player) |
 | shield | the player faces the shot, shield power above 0, the shot is type 0 or 1, and the animation is one of two built-in names (inferred `idle` and `walk`); power 1: an arrow turns back for 3 ticks with a sound, any other sprite is gone; power 2 or more: the shot is sent back the other way and re-sent as a new shot | [2.05][inf] (client-internals/damage-sources.md#when-a-shot-hurts-the-local-player) |
-| walls | arrows (type 0) and fireballs (type 1) pass walls; types 2 to 4 burst on them, measured on 2.05 rev 2 (→ §4.3.5.2) | [2.05] (client-internals/damage-sources.md#open); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#arrows-and-fireballs-at-a-wall-on-205-e313) |
+| walls | arrows (type 0) and fireballs (type 1) pass walls; types 2 to 4 burst on them, measured on 2.05 rev 2 (→ §4.3.5.2) | [2.05] (client-internals/damage-sources.md#open); [lab] (protocol/lab-appe-hosta-2026-11-20.md#arrows-and-fireballs-at-a-wall-on-205-e313) |
 | lab | an injected shot hurt only when its last byte was `0x23` or more; the byte is the shot type, and low types do hurt (settled below) | [lab][2.22] (client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md#b-bombs-arrows-baddies-who-owns-the-damage-part-2-fresh-runs) |
 
-**Settled question, formerly E#312: The last byte of a shot.** What the last byte of `PLO_ARROWADD` (19) does was open, because an earlier 2.22 lab saw only bytes 35 and up hurt. A read of the 2.22 receiver and a lab sweep settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-shot-message-on-222-e312); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#shot-types-0-and-1-on-222-e312).
+**Settled question, formerly E#312: The last byte of a shot.** What the last byte of `PLO_ARROWADD` (19) does was open, because an earlier 2.22 lab saw only bytes 35 and up hurt. A read of the 2.22 receiver and a lab sweep settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-shot-message-on-222-e312); [lab] (protocol/lab-appe-hostb-2026-11-20d.md#shot-types-0-and-1-on-222-e312).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Settled | The last byte less 33 is the shot type. On 2.22, types 0 and 1 hurt a receiving client directly, half a heart and one heart, linked to an owner or not; type 2 hurts half a heart. A `noplayerkilling` level stops every shot | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-shot-message-on-222-e312); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#shot-types-0-and-1-on-222-e312) |
-| Verdict | Verified on 2.22: Claim A holds. Claim B's no-hit results came from the setup (placement, level flags or the owner field), not from the byte | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#shot-types-0-and-1-on-222-e312) |
-| Left over | Which owner field the client compares, and why the 2026-10-25 and 2026-11-20 GwenTea2 sweeps saw no hits | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-shot-message-on-222-e312) |
+| Settled | The last byte less 33 is the shot type. On 2.22, types 0 and 1 hurt a receiving client directly, half a heart and one heart, linked to an owner or not; type 2 hurts half a heart. A `noplayerkilling` level stops every shot | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-shot-message-on-222-e312); [lab] (protocol/lab-appe-hostb-2026-11-20d.md#shot-types-0-and-1-on-222-e312) |
+| Verdict | Verified on 2.22: Claim A holds. Claim B's no-hit results came from the setup (placement, level flags or the owner field), not from the byte | [lab] (protocol/lab-appe-hostb-2026-11-20d.md#shot-types-0-and-1-on-222-e312) |
+| Left over | Which owner field the client compares, and why the 2026-10-25 and 2026-11-20 lab host A sweeps saw no hits | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#the-shot-message-on-222-e312) |
 
-**Settled question, formerly E#313: Do arrows and fireballs pass walls.** Whether arrows and fireballs fly through walls in 2.05 was open from a code read; a lab shot at a wall settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#arrows-and-fireballs-at-a-wall-on-205-e313).
+**Settled question, formerly E#313: Do arrows and fireballs pass walls.** Whether arrows and fireballs fly through walls in 2.05 was open from a code read; a lab shot at a wall settled it [lab] (protocol/lab-appe-hosta-2026-11-20.md#arrows-and-fireballs-at-a-wall-on-205-e313).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Before | In the 2.05 shot flow, types 0 and 1 skip the blocking test that stops types 2 and 3 | [2.05] (client-internals/damage-sources.md#open) |
-| Settled | On 2.05 rev 2 an arrow (type 0) and a fireball (type 1) cross a wall row and keep going; types 2 to 4 burst on the wall | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#arrows-and-fireballs-at-a-wall-on-205-e313) |
-| Verdict | Verified: the code read holds | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#arrows-and-fireballs-at-a-wall-on-205-e313) |
+| Settled | On 2.05 rev 2 an arrow (type 0) and a fireball (type 1) cross a wall row and keep going; types 2 to 4 burst on the wall | [lab] (protocol/lab-appe-hosta-2026-11-20.md#arrows-and-fireballs-at-a-wall-on-205-e313) |
+| Verdict | Verified: the code read holds | [lab] (protocol/lab-appe-hosta-2026-11-20.md#arrows-and-fireballs-at-a-wall-on-205-e313) |
 
 ## 4.3.6 Hits by message
 
@@ -281,19 +281,19 @@ Hurt mode was measured across builds. Each row gives one build's lock-out, knock
 | --- | --- | --- | --- | --- | --- |
 | 1st Graal | 40 ticks; walking refused while the counter is 30 or more | 5 steps; baddy and projectile hits an axis unit step from the attacker's facing, a sword hit the centre-to-centre delta; no zero-vector rule | the hurt body while the counter is above 30 | odd counters draw a single frame | [bin] (version-profiles/matrix/rules-1st-graal.md#hurt-and-knockback-bin) |
 | 1.32 | 40 ticks (mode 3); a new hit refused while it lasts | 5 steps (counter 39 to 35), twelve body probes, a blocked step undone; baddy touch a unit step from the baddy's facing table, a sword hit half the centre-to-centre delta with 1st Graal's broken normalisation; no zero-vector rule | the hurt body while the counter is above 30 | odd counters at 34 or below | [bin] (version-profiles/matrix/rules-132.md#hurt-and-knockback-bin) |
-| 1.39 | 40 ticks; a hit is also refused in mode 7 | 5 tiles, from the binary and measured online on open ground (→ §4.3.7.2) | about 10 ticks, the back with the arms out | after the pose, every other tick to 40 | [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin); [live][1.39] (client-internals/player-mannerisms-live.md#notes-per-build); [lab] (protocol/lab-appe-mirae-2026-11-20.md#knockback-on-139-e309) |
+| 1.39 | 40 ticks; a hit is also refused in mode 7 | 5 tiles, from the binary and measured online on open ground (→ §4.3.7.2) | about 10 ticks, the back with the arms out | after the pose, every other tick to 40 | [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin); [live][1.39] (client-internals/player-mannerisms-live.md#notes-per-build); [lab] (protocol/lab-appe-hostb-2026-11-20.md#knockback-on-139-e309) |
 | 1.41 | 40 | 5 steps | `hurt` 31 ticks | from the hit, every other tick | [live][1.41] (client-internals/player-mannerisms-live.md#cross-version-table) |
 | 2.05 rev 2 | 40 | 5 steps | `hurt` 31 ticks (`hurt.gani` 1 frame, WAIT 30), keeping the facing; 12 ticks when an arrow is held | the body drawn on alternate ticks, only the shadow on the off ticks, for all 40 ticks, after `hurt` has given way | [live][2.05] (client-internals/player-mannerisms-live.md#hurt-knockback-and-blinking-live) |
 | 2.22 | 40 | 4.9 tiles on the same test | 12 ticks with an arrow held | unmeasured | [live][2.22] (client-internals/player-mannerisms-live.md#cross-version-table) |
 | 5.24r4, 5.30r3, 6.03r7 | unmeasured | 5 tiles in 5 ticks | `idle` 1.54 to 1.55 s after the hit | blinks | [wire] (protocol/v5v6-lab-play.md) |
 
-**Settled question, formerly E#309: knockback distance of 1.39.** Whether 1.39 knocks a hurt player back four or five tiles was open between a code read and one offline video; an online run on open ground settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#knockback-on-139-e309).
+**Settled question, formerly E#309: knockback distance of 1.39.** Whether 1.39 knocks a hurt player back four or five tiles was open between a code read and one offline video; an online run on open ground settled it [lab] (protocol/lab-appe-hostb-2026-11-20.md#knockback-on-139-e309).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Claims | A: one tile per tick while the hurt counter runs 39 down to 35, five steps. B: four tiles on the offline touch-NPC test | [1.39] (version-profiles/matrix/rules-139.md#hurt-and-knockback-bin); [live][1.39] (client-internals/player-mannerisms-live.md#cross-version-table) |
-| Settled | On 1.39 a hurt message on open ground moved the player five tiles east (3 runs), south and north | [lab] (protocol/lab-appe-mirae-2026-11-20.md#knockback-on-139-e309) |
-| Verdict | Verified: Claim A holds; the four-tile reading lost a step | [lab] (protocol/lab-appe-mirae-2026-11-20.md#knockback-on-139-e309) |
+| Settled | On 1.39 a hurt message on open ground moved the player five tiles east (3 runs), south and north | [lab] (protocol/lab-appe-hostb-2026-11-20.md#knockback-on-139-e309) |
+| Verdict | Verified: Claim A holds; the four-tile reading lost a step | [lab] (protocol/lab-appe-hostb-2026-11-20.md#knockback-on-139-e309) |
 
 ## 4.3.8 Combat, baddy and lava rules by build, 1.21 to 2.31
 

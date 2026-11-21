@@ -1,7 +1,7 @@
 # The 6.01 built-in library, from its registration tables
 
 Date: 2026-11-20. Evidence: **[bin]** (a decompiler read and byte read of the Linux 6.01r1 x64
-client, build stamp Sep 18 2011, on the GwenTea2 lab; no client run). Only names, types and
+client, build stamp Sep 18 2011, on the lab host A; no client run). Only names, types and
 grouping are given here. The developers' descriptions that some rows carry are not copied.
 
 ## How the client registers its built-ins

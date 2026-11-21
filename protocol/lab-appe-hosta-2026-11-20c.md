@@ -1,9 +1,9 @@
-# Appendix E lab runs on GwenTea2, third batch (2026-11-20)
+# Appendix E lab runs on lab host A, third batch (2026-11-20)
 
-Date: 2026-11-20. Evidence: **[lab]**. The GwenTea2 Debian lab VM (`debian-lab446`), on loopback
+Date: 2026-11-20. Evidence: **[lab]**. The lab host A Debian lab VM (`debian-lab446`), on loopback
 only. No public service was contacted. The earlier batches are
-[`lab-appe-gwentea2-2026-11-20.md`](lab-appe-gwentea2-2026-11-20.md) and
-[`lab-appe-gwentea2-2026-11-20b.md`](lab-appe-gwentea2-2026-11-20b.md).
+[`lab-appe-hosta-2026-11-20.md`](lab-appe-hosta-2026-11-20.md) and
+[`lab-appe-hosta-2026-11-20b.md`](lab-appe-hosta-2026-11-20b.md).
 
 ## RC logins on the GServer-v2 fork (E#424)
 
@@ -25,11 +25,11 @@ through the probe proxy.
 ## Protocol 19 and 3.153 (E#506)
 
 - The 3.153 half could not be run here. The only real 3.153 held is the Mac PowerPC build, which
-  needs the Tiger guest on Mirae. The Linux 3.15r1 installer is a truncated self-extracting bundle
+  needs the Tiger guest on lab host B. The Linux 3.15r1 installer is a truncated self-extracting bundle
   with no client binary in it, and no Windows 3.153 is held.
 - The 4.04r2 half from the first batch stands.
 
 ## Mobile clients (E#16, E#18)
 
-- No Android emulator or Android-x86 image is on the lab. GwenTea2 has `adb` and `fastboot` only.
+- No Android emulator or Android-x86 image is on the lab. Lab host A has `adb` and `fastboot` only.
 - Classic+ 1.13 is an iPhone build, so an Android emulator would not cover E#16 in any case.

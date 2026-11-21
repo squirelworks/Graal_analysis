@@ -1,7 +1,7 @@
 # Static reads for Appendix E, eleventh batch (2026-11-20)
 
 Date: 2026-11-20. Evidence: **[bin]** (the existing decompiler output of the Linux 6.03r7 x64
-client, a decompiler read of the Linux 6.01r1 x64 client on the GwenTea2 lab, and a byte search of
+client, a decompiler read of the Linux 6.01r1 x64 client on the lab host A, and a byte search of
 the unpacked Windows 6.00r2, 6.00r4 and 6.03r7 executables; no client run). Only behaviour is given
 here. Covers three of the open items of App. E#209.
 
@@ -56,7 +56,7 @@ it before the lookup was not followed here.
 
 - The other unread VM builds of E#209: Mac 4.04r2, Mac 5.12, the December 2006 Mac 4.20r6, 6.015,
   6.034, Android Era and Classic other than 1.8. Mac 6.004 and 6.015 installers are held on the
-  GwenTea2 lab.
+  lab host A.
 - Where the `on` prefix is added, and whether the function table that scripts call through uses the
   same lookup as event firing.
 - The other E#209 checklist items (maths on 6.1.1.3 and Mac 6.11r1, the Linux 4.20r6 fusion re-read,

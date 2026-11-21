@@ -60,6 +60,12 @@ jobs:
             exit 1
           fi
 
+      - name: Leak check — no lab names, home paths or binary addresses
+        env:
+          LAB_LEAK_DENYLIST: ${{ secrets.LAB_LEAK_DENYLIST }}
+          LAB_LEAK_REQUIRE_DENYLIST: ${{ github.event.pull_request.head.repo.fork != true }}
+        run: python .github/scripts/check_lab_leaks.py
+
       - name: pytest tools/lab-servers
         run: python -m pytest tools/lab-servers -q
 
@@ -190,6 +196,13 @@ jobs:
           CHROME=$(command -v google-chrome || command -v google-chrome-stable)
           "$CHROME" --version
           echo "PLAYWRIGHT_CHROMIUM_EXECUTABLE=$CHROME" >> "$GITHUB_ENV"
+
+      # The built manuals in the tree are scanned as text for lab names.
+      - name: Leak check — no lab names in the tracked PDFs
+        env:
+          LAB_LEAK_DENYLIST: ${{ secrets.LAB_LEAK_DENYLIST }}
+          LAB_LEAK_REQUIRE_DENYLIST: ${{ github.event.pull_request.head.repo.fork != true }}
+        run: python .github/scripts/check_lab_leaks.py --pdf
 
       - name: Build the reference manual PDF
         run: python tools/manual/build_manual.py --out "${{ runner.temp }}/graal-trm.pdf"

@@ -36,7 +36,7 @@ The A key lifts, carries and throws. The rules below give the key order, the glo
 | Rule | Detail | Source |
 | --- | --- | --- |
 | A key order | throw what is carried; else lift; else grab (→ §4.2.8) | [2.05] (client-internals/ledges-push-pull.md#grabbing-and-pulling) |
-| glove | glove power `g` allows the first `g + 2` lift entries; every player starts at glove 1 (bush, sign, pot); `glove1` raises it to at least 2 (light stone), `glove2` to at least 3 (black stone); online the power is player prop 6; measured on 2.05 rev 2 with the power set by prop: 0 lifts bush and sign, 1 adds the pot, 2 the light stone, 3 the black stone (→ §4.5.2) | [2.05] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table); [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#glove-power-on-205-e316) |
+| glove | glove power `g` allows the first `g + 2` lift entries; every player starts at glove 1 (bush, sign, pot); `glove1` raises it to at least 2 (light stone), `glove2` to at least 3 (black stone); online the power is player prop 6; measured on 2.05 rev 2 with the power set by prop: 0 lifts bush and sign, 1 adds the pot, 2 the light stone, 3 the black stone (→ §4.5.2) | [2.05] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table); [lab] (protocol/lab-appe-hosta-2026-11-20.md#glove-power-on-205-e316) |
 | NPCs | an NPC is lifted only when its script set `canbecarried` (command 41, cleared by 42), at the same point, with no glove check; it leaves the level's NPC list and nothing is sent | [2.05] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table) |
 | lift | `lift` plays at once and the board tile becomes its leftover at once; a counter runs 4 down to 0 and the carried flag is set on the 5th tick; `carrystill` follows on the 7th tick (6 ticks of `lift`) | [live][2.05] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live) |
 | carry | `carry` (8 frames, one per tick) at the normal 0.5 tile per tick; the object is drawn over the head, the head and arms hidden behind it | [live][2.05] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live) |
@@ -56,13 +56,13 @@ The A key lifts, carries and throws. The rules below give the key order, the glo
 | D key while carrying | does not throw; with carry sprite 239, 261 or 263 it hides (above) | [2.05] (client-internals/decomp-findings-2026-10-28/01-sword-while-carrying.md) |
 | stone without glove | A at a black stone with glove 1 does nothing: no lift and no grab | [live][2.05] (client-internals/player-mannerisms-live.md#lifting-carrying-hiding-and-throwing-live) |
 
-**Settled question, formerly E#316: Glove power steps.** Which objects each glove power can lift was open between two reads; a lab run with the power set through the props settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#glove-power-on-205-e316).
+**Settled question, formerly E#316: Glove power steps.** Which objects each glove power can lift was open between two reads; a lab run with the power set through the props settled it [lab] (protocol/lab-appe-hosta-2026-11-20.md#glove-power-on-205-e316).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Claims | A: glove 1 lifts bush, sign and pot; `glove1` adds the light stone and `glove2` the black stone. B: a bare hand lifts the first two entries, power 1 adds the pot, power 2 the light and black stones together | [2.05][srv] (client-internals/carry-hide-and-glove.md#glove-power-and-the-lift-table); [2.05] (client-internals/decomp-findings-2026-10-25-l/03-cut-lift-chest.md#lift-a-key) |
-| Settled | On 2.05 rev 2, glove power N lifts the first N + 2 entries of the lift list: 0 bush and sign, 1 adds the pot, 2 the light stone, 3 the black stone. The first object out of reach only plays the grab gani | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#glove-power-on-205-e316) |
-| Verdict | Verified: Claim A's steps hold, and Claim B is right that a bare hand lifts bush and sign but wrong that power 2 adds both stones | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#glove-power-on-205-e316) |
+| Settled | On 2.05 rev 2, glove power N lifts the first N + 2 entries of the lift list: 0 bush and sign, 1 adds the pot, 2 the light stone, 3 the black stone. The first object out of reach only plays the grab gani | [lab] (protocol/lab-appe-hosta-2026-11-20.md#glove-power-on-205-e316) |
+| Verdict | Verified: Claim A's steps hold, and Claim B is right that a bare hand lifts bush and sign but wrong that power 2 adds both stones | [lab] (protocol/lab-appe-hosta-2026-11-20.md#glove-power-on-205-e316) |
 
 By build:
 
@@ -191,7 +191,7 @@ An item on the floor has a life that counts down. The rules below give that life
 | offline value | green 1, blue 5, red 30, gold 100 rupees (up to 9,999,999); bombs and darts 5 each (up to 99); a heart one whole heart; sound `extra.wav` | [bin] (client-internals/item-drops.md#items-on-the-floor-205-rev-2-bin) |
 | online pickup | `PLI_ITEMTAKE` (32) with the item's three bytes; the server answers with props (for example RUPEESCOUNT) | [cap] (client-internals/item-drops.md#lab-runs-livecap) |
 | 1.3 | the pickup test is an overlap of pixel boxes, and a timeout is silent | [bin] (client-internals/item-drops.md#items-on-the-floor-205-rev-2-bin) |
-| 1.x pickup box in tiles, draw order against players | 1.39: strict overlap in eighths of a tile of the player's body box (x + 0.5 to x + 2.5, y + 1 to y + 3) with the item's box, centred across x + 1 from y + 1/8 and sized from its sprite record in `arrays.dat` array 24, in eighths of a tile (a heart 1 × 1, a rupee 1 × 2); items and players draw in y order (see the settled question below) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-139-item-box-and-its-unit-e317); [lab] (protocol/lab-appe-mirae-2026-11-20c.md#item-draw-order-on-139-e317) |
+| 1.x pickup box in tiles, draw order against players | 1.39: strict overlap in eighths of a tile of the player's body box (x + 0.5 to x + 2.5, y + 1 to y + 3) with the item's box, centred across x + 1 from y + 1/8 and sized from its sprite record in `arrays.dat` array 24, in eighths of a tile (a heart 1 × 1, a rupee 1 × 2); items and players draw in y order (see the settled question below) | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-139-item-box-and-its-unit-e317); [lab] (protocol/lab-appe-hostb-2026-11-20c.md#item-draw-order-on-139-e317) |
 
 **Settled question, formerly E#317: The 1.x pickup box and item draw order.** The 1.39 pickup test was known, but not the unit of the item size it uses, so the box in tiles was open; the draw order had been measured. A read of the 1.39 pickup routine, its sprite drawer and its `arrays.dat` settled the unit [bin][file] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-139-item-box-and-its-unit-e317).
 
@@ -199,7 +199,7 @@ An item on the floor has a life that counts down. The rules below give that life
 | --- | --- | --- |
 | Settled | The item's w and h are two 6-bit fields of its sprite record (array 24 of `arrays.dat`, → §3.5), picked through a built-in 25-entry item table; the sprite drawer doubles them to get pixels and the item drawer divides them by 8 to get tiles, so they are in eighths of a tile, the pickup test's own unit | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#where-w-and-h-come-from) |
 | Settled | Boxes in tiles from the 1.39 file: rupees, darts 1 × 2; heart 1 × 1; bombs and gloves 1.75 × 2; bomb and super bomb 2 × 2; shields 1 × 1.25; swords 1 × 2.125; full heart 1.625 × 1.625; the rest in the note. 2.22's file gives the same sizes; 1.21's differs for darts and the two bombs | [file] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-boxes-in-tiles) |
-| Settled | Items and players draw in y order: an item covers a player only when its y is larger | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#item-draw-order-on-139-e317) |
+| Settled | Items and players draw in y order: an item covers a player only when its y is larger | [lab] (protocol/lab-appe-hostb-2026-11-20c.md#item-draw-order-on-139-e317) |
 | Verdict | Verified by read and file on 1.39; the best guess (size in tiles) was wrong: the size is in eighths of a tile | [bin] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-139-item-box-and-its-unit-e317) |
 | Left over | What sets the busy flag that makes the test skip an item | [inf] (client-internals/static-reads-appendix-e-2026-11-20-g.md#the-pickup-test-again) |
 
@@ -243,14 +243,14 @@ Carried objects used 32 × 32 cells at PTL + (8, −22): bush (0, 338), sign (32
 
 Cut-bush leaves appeared around +0.21 s and disappeared around +0.50 s. The server supplied the observed green-gralat/heart drops; a green gralat bounced from PTL + (24, 9) to (24, 46) over about one second. These outcomes do not establish random-drop probabilities. All four tested object types blocked walking; `push` followed around 0.85–1.0 s, without board change, and walking sent X2/Y2 at about 50 ms intervals, 0.5 tile per step. No `arrays.dat` request was seen and observed cut/lift replacements matched the 2.22 tables; this does not recover the complete internal tile tables. [cap][shot] (client-internals/items-603r7-black-box.md#s-sword); [cap] (client-internals/items-603r7-black-box.md#walking-into-objects)
 
-The chest blocked and opened but its art was absent. [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests) The art is the server's `chest.png` and `chestopen.png`, fetched at level entry and on opening; the orange rectangle is the default unskinned GUI, since the client names no skin file and a skin can only come from a server script (→ §4.5.8). [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327)
+The chest blocked and opened but its art was absent. [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests) The art is the server's `chest.png` and `chestopen.png`, fetched at level entry and on opening; the orange rectangle is the default unskinned GUI, since the client names no skin file and a skin can only come from a server script (→ §4.5.8). [lab] (protocol/lab-appe-hostb-2026-11-20.md#603r7-chest-art-and-menu-e327)
 
-**Settled question, formerly E#327: missing chest art and menu skin in the 6.03r7 item run.** Why the script-free Linux 6.03r7 run drew no chest art, and why the menu showed an orange rectangle, was open; controlled input changes settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327).
+**Settled question, formerly E#327: missing chest art and menu skin in the 6.03r7 item run.** Why the script-free Linux 6.03r7 run drew no chest art, and why the menu showed an orange rectangle, was open; controlled input changes settled it [lab] (protocol/lab-appe-hostb-2026-11-20.md#603r7-chest-art-and-menu-e327).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Before | Chest collision and opening worked without chest art; an orange rectangle appeared when the menu toggled | [shot][inf] (client-internals/items-603r7-black-box.md#signs-and-chests) |
-| Settled (chest) | With `chest.png` and `chestopen.png` on the server, the client fetches the first at level entry and the second on opening, and draws both | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
-| Settled (menu) | The image names no skin or window image, and the client fetches no file when the menu toggles: the orange box is the default unskinned GUI drawing, and a skin can only come from a server script | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
-| Verdict | Verified; the best guess held | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
-| Left over | A scripted skin delivered and seen to change the menu | [lab] (protocol/lab-appe-mirae-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+| Settled (chest) | With `chest.png` and `chestopen.png` on the server, the client fetches the first at level entry and the second on opening, and draws both | [lab] (protocol/lab-appe-hostb-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+| Settled (menu) | The image names no skin or window image, and the client fetches no file when the menu toggles: the orange box is the default unskinned GUI drawing, and a skin can only come from a server script | [lab] (protocol/lab-appe-hostb-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+| Verdict | Verified; the best guess held | [lab] (protocol/lab-appe-hostb-2026-11-20.md#603r7-chest-art-and-menu-e327) |
+| Left over | A scripted skin delivered and seen to change the menu | [lab] (protocol/lab-appe-hostb-2026-11-20.md#603r7-chest-art-and-menu-e327) |

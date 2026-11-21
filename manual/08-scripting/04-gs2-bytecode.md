@@ -27,8 +27,8 @@ GS2 reaches the client as compiled bytecode. The rules below give the message th
 | Settled (NPCs) | 131 behind 100 carries a runnable NPC body on 4.20r8, 5.24r4 and 6.03r7: the script fuzz delivered every case that way and the scripts ran | [lab] (protocol/script-fuzz-2026-11-19.md) |
 | Settled (classes and weapons) | On 6.x, 197 is the descriptor `type,name,1,key,crc` and 140 carries the body, from the cache or the wire, never inside 197 | [cap] (protocol/gs2-official-bytecode-6113.md#what-this-settles); [bin] (formats/linux-6x-class-cache.md); [lab][cap] (protocol/linux-603-network-gs2.md) |
 | Verdict | Verified: two messages for two kinds of object, not three rival claims. Claim B names the class exchange by its first message | [lab] (protocol/script-fuzz-2026-11-19.md) |
-| Also measured | 4.20r8 does not honour the 6.x class path as sent: ten 197 and 140 variants with a valid compiled body ran no script and drew no request, while 131 behind 100 runs NPC bodies on the same build | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover) |
-| Left over | How 4.20r8 delivers weapon and class scripts, and 4.0x before 4.20r8 | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover) |
+| Also measured | 4.20r8 does not honour the 6.x class path as sent: ten 197 and 140 variants with a valid compiled body ran no script and drew no request, while 131 behind 100 runs NPC bodies on the same build | [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover) |
+| Left over | How 4.20r8 delivers weapon and class scripts, and 4.0x before 4.20r8 | [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover) |
 
 ## 8.4.2 Format
 
@@ -312,25 +312,25 @@ The rules below say what follows for a client and a compiler, and where the evid
 | Rule | Source |
 | --- | --- |
 | Clean output is consistent with a jump-threading and marker-narrowing pass, but careful emitting alone gives the same stream, so the official compiler's passes are not known. Open compilers' test baselines do leave jump-to-jump chains and wide `F4` markers | [cap][inf] (protocol/gs2-official-jump-narrow-returns-2026-11-16.md#enlarged-residual-bodies-that-do-not-end-in-a-return) |
-| On 4.20r8 and 5.12 a function-only image (leading jump to the end) never runs a top level, and an image with top-level code runs it before `onCreated` and again before every later event; 6.03r7 was not run (→ §8.3.4, §8.4.10) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212) |
+| On 4.20r8 and 5.12 a function-only image (leading jump to the end) never runs a top level, and an image with top-level code runs it before `onCreated` and again before every later event; 6.03r7 was not run (→ §8.3.4, §8.4.10) | [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs2-top-level-pass-e212) |
 | The 5.00r7 and 6.03r7 clients draw text through the Windows ANSI path, with no UTF-8 literal in the scanned 5.00r7 engine, so on a Western European Windows the Latin-1 bytes above draw as the expected letters. The classic French language packs use the same single-byte letters. On another code page the same bytes draw differently; 5.00r7 is measured below | [bin][file][inf] (protocol/gs2-official-strings-latin1-2026-11-16.md#focus-client-text-path-500r7--603r7) |
 
-**Settled question, formerly E#213: How GS2 text bytes draw on screen.** Whether the clients draw official bytecode's single Latin-1 bytes as the intended letters was open. Lab runs on 5.00r7 under a Western code page settled it for that build [lab] (protocol/lab-appe-mirae-2026-11-20c.md#latin-1-text-on-500r7-e213); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#latin-1-byte-231-in-showtext-and-a-sign-on-500r7-e213).
+**Settled question, formerly E#213: How GS2 text bytes draw on screen.** Whether the clients draw official bytecode's single Latin-1 bytes as the intended letters was open. Lab runs on 5.00r7 under a Western code page settled it for that build [lab] (protocol/lab-appe-hostb-2026-11-20c.md#latin-1-text-on-500r7-e213); [lab] (protocol/lab-appe-hostb-2026-11-20d.md#latin-1-byte-231-in-showtext-and-a-sign-on-500r7-e213).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Settled | 5.00r7 draws bytes 231, 233, 252 and 241 as ç, é, ü and ñ in chat, nicknames and GS2 `showtext`, including text built with `char(231)` on the client | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#latin-1-text-on-500r7-e213); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#latin-1-byte-231-in-showtext-and-a-sign-on-500r7-e213) |
-| Verdict | Verified for 5.00r7 on a Western code page; the best guess (bytes pass through the Windows code page) holds | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#latin-1-byte-231-in-showtext-and-a-sign-on-500r7-e213) |
-| Left over | A 6.x build, a sign on screen, and another code page; the lab server's GS1 translator and sign encoder garble non-ASCII bytes on their own, so use GS2 | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#latin-1-byte-231-in-showtext-and-a-sign-on-500r7-e213) |
+| Settled | 5.00r7 draws bytes 231, 233, 252 and 241 as ç, é, ü and ñ in chat, nicknames and GS2 `showtext`, including text built with `char(231)` on the client | [lab] (protocol/lab-appe-hostb-2026-11-20c.md#latin-1-text-on-500r7-e213); [lab] (protocol/lab-appe-hostb-2026-11-20d.md#latin-1-byte-231-in-showtext-and-a-sign-on-500r7-e213) |
+| Verdict | Verified for 5.00r7 on a Western code page; the best guess (bytes pass through the Windows code page) holds | [lab] (protocol/lab-appe-hostb-2026-11-20d.md#latin-1-byte-231-in-showtext-and-a-sign-on-500r7-e213) |
+| Left over | A 6.x build, a sign on screen, and another code page; the lab server's GS1 translator and sign encoder garble non-ASCII bytes on their own, so use GS2 | [lab] (protocol/lab-appe-hostb-2026-11-20d.md#latin-1-byte-231-in-showtext-and-a-sign-on-500r7-e213) |
 
-**Settled question, formerly E#212: Whether a function-only image skips the top-level pass.** Whether stock clients treat a leading jump to the end as "no top level", and re-run top-level code before every event when an image has some, was open; loopback fixtures settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212).
+**Settled question, formerly E#212: Whether a function-only image skips the top-level pass.** Whether stock clients treat a leading jump to the end as "no top level", and re-run top-level code before every event when an image has some, was open; loopback fixtures settled it [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs2-top-level-pass-e212).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Before | The 19 official bodies are all function-only; a Linux 4.04r2 experiment suggested a top-level re-run | [cap][lab] (protocol/gs2-official-function-only-shape-2026-11-16.md#what-this-does-and-does-not-settle) |
-| Settled | On 4.20r8 and 5.12, with bytecode in 131: a script with a top level runs it before `onCreated` and again before every later `onTimeout`; its function-only twin never runs a top level | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212) |
-| Verdict | Verified on two builds; the best guess held on both counts | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212) |
-| Left over | 6.03r7, and a handler at instruction 0 | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#gs2-top-level-pass-e212) |
+| Settled | On 4.20r8 and 5.12, with bytecode in 131: a script with a top level runs it before `onCreated` and again before every later `onTimeout`; its function-only twin never runs a top level | [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs2-top-level-pass-e212) |
+| Verdict | Verified on two builds; the best guess held on both counts | [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs2-top-level-pass-e212) |
+| Left over | 6.03r7, and a handler at instruction 0 | [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs2-top-level-pass-e212) |
 
 
 ## 8.4.11 Undispatched bytes, raw folds and damaged containers (lab)

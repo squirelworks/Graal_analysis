@@ -32,13 +32,13 @@ The step vector is scaled by a speed factor. Each row gives one factor and the s
 | 0.4, 0.8 | 0.4 while the gani is the sleep gani, 0.8 riding (settled below) | 2.05 to 2.31 | [bin] (client-internals/decomp-findings-2026-10-25-m/open-questions.tsv) |
 | swimming | the same 0.5 tile per tick as walking | 1.39, 1.41, 2.05, 2.22, 5.x, 6.x | [live] (client-internals/player-mannerisms-live.md#cross-version-table); [wire] (protocol/v5v6-lab-play.md) |
 
-**Settled question, formerly E#302: Walking speed factors other than 1.0, 1.2 and the hidden 0.2.** Which states use the walking speed factors 0.4 and 0.8 was open. A read of the 2.05 walk and lab walks on 2.05 rev 2 settled it [lab] (protocol/lab-appe-mirae-2026-11-20c.md#walking-speed-on-205-e302); [bin][lab] (protocol/lab-appe-mirae-2026-11-20d.md#walking-speed-factor-04-on-205-e302).
+**Settled question, formerly E#302: Walking speed factors other than 1.0, 1.2 and the hidden 0.2.** Which states use the walking speed factors 0.4 and 0.8 was open. A read of the 2.05 walk and lab walks on 2.05 rev 2 settled it [lab] (protocol/lab-appe-hostb-2026-11-20c.md#walking-speed-on-205-e302); [bin][lab] (protocol/lab-appe-hostb-2026-11-20d.md#walking-speed-factor-04-on-205-e302).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Settled | 2.05 picks the factor in this order: riding 0.8 (rising slightly the longer the ride), hidden 0.2, 0.4 while the current gani is the sleep gani (by name, or whatever `replaceani` put in the sleep slot), 1.2 for shield power 3 or more, else 1.0 | [bin] (protocol/lab-appe-mirae-2026-11-20d.md#walking-speed-factor-04-on-205-e302) |
-| Settled | Measured: riding 0.8; `replaceani walk,sleep` 0.4; shield 3 gives 1.2; carrying any object kind, swamp, lava swamp, water, deep water and chairs all walk at 1.0 | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#walking-speed-on-205-e302); [lab] (protocol/lab-appe-mirae-2026-11-20d.md#walking-speed-factor-04-on-205-e302) |
-| Verdict | Verified on 2.05 rev 2. The best guess (0.8 a heavy carried object, 0.4 riding or the shield) is refuted. In ordinary play 0.4 is reached only through `replaceani` | [lab] (protocol/lab-appe-mirae-2026-11-20d.md#walking-speed-factor-04-on-205-e302) |
+| Settled | 2.05 picks the factor in this order: riding 0.8 (rising slightly the longer the ride), hidden 0.2, 0.4 while the current gani is the sleep gani (by name, or whatever `replaceani` put in the sleep slot), 1.2 for shield power 3 or more, else 1.0 | [bin] (protocol/lab-appe-hostb-2026-11-20d.md#walking-speed-factor-04-on-205-e302) |
+| Settled | Measured: riding 0.8; `replaceani walk,sleep` 0.4; shield 3 gives 1.2; carrying any object kind, swamp, lava swamp, water, deep water and chairs all walk at 1.0 | [lab] (protocol/lab-appe-hostb-2026-11-20c.md#walking-speed-on-205-e302); [lab] (protocol/lab-appe-hostb-2026-11-20d.md#walking-speed-factor-04-on-205-e302) |
+| Verdict | Verified on 2.05 rev 2. The best guess (0.8 a heavy carried object, 0.4 riding or the shield) is refuted. In ordinary play 0.4 is reached only through `replaceani` | [lab] (protocol/lab-appe-hostb-2026-11-20d.md#walking-speed-factor-04-on-205-e302) |
 
 ### 4.2.1.2 Walking speed by build
 
@@ -203,16 +203,16 @@ Consequences of the rule:
 | gaps | a two-wide body fits a two-tile gap and not a one-tile gap | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#what-this-means-for-stopping-positions) |
 | corners | pressing against the end of a wall slides the body round it at 0.1 tile per tick, ten ticks per tile | [2.05][2.22][2.31] (client-internals/decomp-findings-2026-10-25-m/01-walking-rule.md#what-this-means-for-stopping-positions) |
 | sliding along a wall | holding Down into a wall and adding Right walks right at full speed with `walk`; the push pose ends in that tick | [live][2.05] (client-internals/player-mannerisms-live.md#walking-idle-and-running-in-place-live) |
-| live confirmation | the stopping positions were walked on a live 2.22 and match the read (settled below) | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#walking-into-a-wall-on-222-e304) |
+| live confirmation | the stopping positions were walked on a live 2.22 and match the read (settled below) | [lab] (protocol/lab-appe-hosta-2026-11-20.md#walking-into-a-wall-on-222-e304) |
 
-**Settled question, formerly E#304: Stopping positions and wire rounding.** Where a player stops after a blocked step, and how a position off the half tile is rounded on the wire, were open. Two labs and a read of the props writer settled them [bin][lab] (client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md#wire-rounding-of-a-position-off-the-half-tile-222-e304).
+**Settled question, formerly E#304: Stopping positions and wire rounding.** Where a player stops after a blocked step, and how a position off the half tile is rounded on the wire, were open. Two labs and a read of the props writer settled them [bin][lab] (client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md#wire-rounding-of-a-position-off-the-half-tile-222-e304).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Stopping | On 2.22 a player walking into a wall stops flush at it (y 25.0, wire 50) from either half-tile alignment, then the push gani starts; against a 2 × 2 rock it stops flush at y 21.0, and with 0.5 or 1.0 tiles of overlap it slides off the corner through half-tile x values | [lab] (protocol/lab-appe-gwentea2-2026-11-20.md#walking-into-a-wall-on-222-e304); [lab] (protocol/lab-appe-mirae-2026-11-20c.md#walking-into-a-rock-on-222-e304) |
-| Settled | Props 15 and 16 are written as `nearest(2x + 0.0001) + 32`: the nearest half tile, ties up, not truncation. 2.05 rev 2 writes the same byte as `floor(2x + 0.5 + 0.0001)` | [bin][lab] (client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md#wire-rounding-of-a-position-off-the-half-tile-222-e304) |
-| Lab | Ten scripted positions on 2.22 (for example 30.25 → 30.5, 30.24 → 30.0, 0.25 → 0.5, 30.75 → 31.0) all fit that rule; a prop is sent only when its rounded byte changes | [bin][lab] (client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md#wire-rounding-of-a-position-off-the-half-tile-222-e304) |
-| Verdict | The best guess (truncation) is refuted; stopping is flush as read | [bin][lab] (client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md#wire-rounding-of-a-position-off-the-half-tile-222-e304) |
+| Stopping | On 2.22 a player walking into a wall stops flush at it (y 25.0, wire 50) from either half-tile alignment, then the push gani starts; against a 2 × 2 rock it stops flush at y 21.0, and with 0.5 or 1.0 tiles of overlap it slides off the corner through half-tile x values | [lab] (protocol/lab-appe-hosta-2026-11-20.md#walking-into-a-wall-on-222-e304); [lab] (protocol/lab-appe-hostb-2026-11-20c.md#walking-into-a-rock-on-222-e304) |
+| Settled | Props 15 and 16 are written as `nearest(2x + 0.0001) + 32`: the nearest half tile, ties up, not truncation. 2.05 rev 2 writes the same byte as `floor(2x + 0.5 + 0.0001)` | [bin][lab] (client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md#wire-rounding-of-a-position-off-the-half-tile-222-e304) |
+| Lab | Ten scripted positions on 2.22 (for example 30.25 → 30.5, 30.24 → 30.0, 0.25 → 0.5, 30.75 → 31.0) all fit that rule; a prop is sent only when its rounded byte changes | [bin][lab] (client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md#wire-rounding-of-a-position-off-the-half-tile-222-e304) |
+| Verdict | The best guess (truncation) is refuted; stopping is flush as read | [bin][lab] (client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md#wire-rounding-of-a-position-off-the-half-tile-222-e304) |
 
 ## 4.2.5 The blocked-step counter and the push pose
 
