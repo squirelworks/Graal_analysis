@@ -378,7 +378,7 @@ G376	version-profiles/222-inferred-from-21-inventory.md	line 49	After S, regener
 G377	version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	line 73	Trace one selected slice (prefer x86_64) from entry through	static	static: cloud or a host (lab host A/B)	medium	free
 G378	version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	line 76	Re-test with an OpenGL-capable guest display (or Sequoia) to separate	lab	Lab host A Lion/Sequoia VM	medium	free
 G379	version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	line 78	Locate or rule out a Mac 6.037 / 6.03r7 artifact outside this owner share tree.	owner	-	medium	free
-G380	version-profiles/linux-network-bootstrap-evidence.md	line 69	Extend the ledger with new qualified evidence and exact source identity, preserving prior snapshot meaning.	static	static: cloud or a host (lab host A/B)	medium	free
+G380	version-profiles/linux-network-bootstrap-evidence.md	later published cohorts	Separate later source-qualified cohorts added; exact executable binding to frozen inputs and further qualified evidence remain open.	static	static: cloud or a host (lab host A/B)	medium	suite-later-cohorts (partial)
 G381	version-profiles/linux-network-bootstrap-evidence.md	line 70	Establish a positive cache control and normal-server compiled delivery before marking either gate observed.	lab	Linux VM on lab host B	medium	free
 G382	version-profiles/linux-teardown.md	line 72	Resolve the 3.04 early exit in a separately authorized sandbox experiment.	static	static: cloud or a host (lab host A/B)	medium	free
 G383	version-profiles/linux-teardown.md	line 73	Validate gameplay claims with a controlled fixture and recorded server commit.	static	static: cloud or a host (lab host A/B)	medium	free
