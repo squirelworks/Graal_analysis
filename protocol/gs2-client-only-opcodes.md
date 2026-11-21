@@ -55,6 +55,12 @@ Both take the instruction's number, truncated toward zero. An index in 0..1023 s
 
 The top value is rewritten in place as a resolved variable (tag 5). A number becomes an empty resolved value. An object keeps its object pointer. A string or a variable name is resolved, and a missing name is created. The resolver tries a property of the object before a child variable. **[bin]**
 
+## 48 and 49: retained 5.00r7 backup engine
+
+The [November 20 static study](../client-internals/static-reads-appendix-e-2026-11-20-b.md#gs2-opcodes-48-49-and-54-on-500r7-e209) already describes these handlers: 48 builds an object from name/value pairs with an incrementing loop counter; 49 constructs a list from a clamped count and values popped from the stack. That study supplies the effects missing from the original checklist. **[bin]**
+
+A separate reread of the retained archive-labelled 5.00r7 backup-engine dispatcher and helper bodies (`W500-OP48-49-REREAD-20261122`) corroborates object/array construction and the incrementing counter, without establishing a new long name, vendor authenticity, genuine 5.12 parity or a runtime result. The reread did not independently bind the numeric conversion's additive constant or the array insertion's exact virtual target; those more specific earlier claims retain the November 20 study's attribution. The [runtime question](script-fuzz-2026-11-19.md#still-open) stays open. **[bin]**
+
 ## 66 and 67
 
 Both need two values. The right-hand value is popped. The left-hand number field becomes 0 or 1. The tag is left as it was. Only the number field is tested, so a zero number is zero whatever the tag says. **[bin]**

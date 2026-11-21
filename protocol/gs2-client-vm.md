@@ -182,7 +182,7 @@ The 4.2.0.8 switch is the base. Later dispatchers only add cases. **[bin]**
 
 | Build | Added cases | What was read |
 | --- | --- | --- |
-| 5.0.0.7 | 48, 49, 54, 121 | 48 and 49 require a non-empty stack and then call a helper; the helper was not read, so it is not named. 54 builds a value with type tag 4 from the top of the stack, copying a string onto it when one is present. 121 adds the two numbers, unless either value has the string type tag, in which case both go through the string helper |
+| 5.0.0.7 | 48, 49, 54, 121 | 48 and 49 build an object and a numeric array respectively in the retained backup engine; see [the bounded handler read](gs2-client-only-opcodes.md#48-and-49-retained-500r7-backup-engine). Their runtime behavior and other builds remain unverified. 54 builds a value with type tag 4 from the top of the stack, copying a string onto it when one is present. 121 adds the two numbers, unless either value has the string type tag, in which case both go through the string helper |
 | 6.00r2 and 6.00r4 | 54, 121, and 234–242 | 54 and 121 match the 5.0.0.7 cases. 48 and 49 are not in this switch. 234–242 are the extra folds below |
 
 The compiler emits none of these. **[doc]** (`npc-library/preagonal-gs2.md`)

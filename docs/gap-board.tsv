@@ -301,7 +301,7 @@ G299	protocol/rc-fuzz-2026-11-19.md	line 119	RC2 2.05 once its GTK font/render p
 G300	protocol/rc-fuzz-2026-11-19.md	line 120	A pre-2002 rcpre (gen 2), and rc2002 (gen 2) with the embedded NC socket (NC-fuzz thread).	lab	Linux VM on lab host B (servers)	medium	free
 G301	protocol/rc-list-online.md	line 136	Read the send path of the 2005 Linux i386 RC. (Unpacked 2026-11-13; its receive ids are in unknown-ids-2026-11-06.md.)	static	static: cloud or a host (lab host A/B)	medium	free
 G302	protocol/rc-list-online.md	line 137	A lab run with RC2 2.05 and two RC logins against the GServer-v2 fork, to confirm the	lab	Linux VM on lab host B (servers)	medium	free
-G303	protocol/script-fuzz-2026-11-19.md	line 220	Opcodes 48 and 49 on a build that dispatches them (5.00r7 or 5.12).	static	static: cloud or a host (lab host A/B)	medium	free
+G303	protocol/script-fuzz-2026-11-19.md	Still open	Partial: published 5.00r7 static effects reconciled with generic opcode notes and a bounded backup-engine reread; runtime behavior and genuine 5.12 contract remain open.	static	static: cloud or a host (lab host A/B)	medium	partial — static evidence reconciled
 G304	protocol/script-fuzz-2026-11-19.md	line 221	The value waitfor gives when its time runs out. The three cases did not settle it.	lab	Win10 VM on lab host B or Linux VM (Wine)	medium	free
 G305	protocol/script-fuzz-2026-11-19.md	line 222	Why the expression in case 30789 crashes 6.03r7.	static	static: cloud or a host (lab host A/B)	medium	free
 G306	protocol/script-fuzz-2026-11-19.md	line 223	Why control 30000 reads stopped on 5.24r4 while 30001 and every canary reported.	static	static: cloud or a host (lab host A/B)	medium	free
