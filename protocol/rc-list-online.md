@@ -16,8 +16,10 @@ groups + 32), `str` = a `c` length and then that many bytes.
 
 ## Answer
 
-- **Id 65 was never implemented.** No RC build in the materials (1999 to RC3, 2015) sends it, and no GServer
-  source answers it. There is no server → client reply id for it either. **[bin][src][srv]**
+- **Id 65 is not an established online-RC-list request.** The inspected send paths listed below
+  have no identified constant use of it, and the inspected GServer sources do not answer it.
+  No server → client RC-list reply id was found in those sources. The January 2005 Linux build's
+  complete outgoing-id census remains open. **[bin][src][srv]**
 - **The online-RC list is the player list.** Since 1999 the server has put every RC into the
   RC player list with `PLO_ADDPLAYER` (55) and taken it out with `PLO_DELPLAYER` (56). An RC
   entry is a player with an **empty level**. The server also prints `New RC: <account>` and
@@ -29,8 +31,9 @@ groups + 32), `str` = a `c` length and then that many bytes.
 
 ## Who sends 65 **[bin]**
 
-Every RC send path was read: the constant id at each send call site. 65 (wire byte `a`) is in
-none of them.
+The completed send-path rows below list constant ids at inspected call sites. 65 (wire byte
+`a`) is in none of those rows. The January 2005 Linux build's framing is now separately read,
+but its complete indirect-call and outgoing-id census is not established.
 
 | Build | Login token | Client → server RC ids (constant) | 65 | 66 | 67 |
 |---|---|---|:-:|:-:|:-:|
@@ -55,10 +58,12 @@ so every `sendData` call site was read by name; there too some ids (51–54, 68,
 91, 95) are not constants at a call site. In both builds the only 65 constants near a
 send are the player prop 33 inside a `PLI_PLAYERPROPS` (2), as in RC2.
 
-**Unpacked, send path not read:** a Linux i386 RC from January 2005 (build string "Remote Control
-Linux 2005/01/24"), packed with UPX 1.90. It sits between the 2004 Delphi RC and RC2 2.05 in time.
-Its UPX checksums all verify, so the header was not damaged. It was unpacked byte-exact on
-2026-11-13, and its receive-side ids are in `unknown-ids-2026-11-06.md`. **[bin]**
+**January 2005 Linux i386 RC:** the build titled "Remote Control Linux 2005/01/24" sits between
+ the 2004 Delphi RC and RC2 2.05. Its earlier checksum-verified unpacking and receive-side read
+ are recorded in `unknown-ids-2026-11-06.md`. The later
+ [send-framing study](rc2005-linux-send-framing-2026-11-21.md) reads enqueueing, initial RC
+ construction and flush/cipher branches. It does not complete indirect per-socket routing or
+ establish an id-65 absence result. **[bin]**
 
 ## What the 2001 servers do **[src]**
 
@@ -133,6 +138,9 @@ handles: 8, 13, 16, 30, 35, 37, 47, 55, 56, 58, 59, 61–70, 72–77, 79, 82, 10
 ## Open
 
 - [x] Read the send paths of the 2010 Linux RC and RC3 (neither sends 65 or 66).
-- [ ] Read the send path of the 2005 Linux i386 RC. (Unpacked 2026-11-13; its receive ids are in `unknown-ids-2026-11-06.md`.)
+- [x] Read the 2005 Linux i386 RC's shared enqueue and flush/framing branches; see the
+      [scoped static result](rc2005-linux-send-framing-2026-11-21.md).
+- [ ] Complete its indirect per-socket outgoing-call routing and constant/computed id census;
+      the scoped framing read does not establish whole-build id-65 absence.
 - [ ] A lab run with RC2 2.05 and two RC logins against the GServer-v2 fork, to confirm the
       Admins folder on the wire and whether the one-space level puts RCs under Players.

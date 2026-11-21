@@ -45,6 +45,7 @@ The RC login changed in 2004. Each row gives a group of builds, the first messag
 | --- | --- | --- | --- | --- |
 | 1999 to rc141 (2002) | type 1, token, `str account`, `str password`; no key byte | `u16be` length + zlib, no cipher, no type byte | unchanged | [bin] (tools/remotecontrol-lineage.md#what-stays-the-same-bin); [bin] (tools/npc-control.md#logins-bin) |
 | 2004 | type 6, `c key` (`rand & 0x7F`), `GSERV024`, `str account`, `str password` | `u16be` length + zlib, no cipher, no type byte | generation 5 (type byte + partial XOR) | [bin] (tools/remotecontrol.md#logins-bin) |
+| January 2005 Linux, RC construction | type 6, encoded seven-bit key value, `GSERV024`, length-prefixed account and password fields | fixed zlib, no dynamic type byte or XOR | the `gserver` connection changes to dynamic framing after its initial flush; acceptance untested | [bin] (protocol/rc2005-linux-send-framing-2026-11-21.md#enqueue-and-initial-rc-message) |
 
 The rules below explain the RC2 name, how the tokens are stored and the defaults in the connect dialog [bin][srv] (tools/remotecontrol.md#logins-bin).
 
@@ -69,7 +70,7 @@ After the server's signature (25) and clear-weapons (194), RC2 2.05 sends `PLI_S
 
 ### 7.1.3 Framing
 
-RC framing is the game framing without the cipher. Each row gives a group of builds and its rule [bin] (tools/remotecontrol.md#codec).
+Staff framing depends on build and socket. Each row gives a group of builds and its rule [bin] (tools/remotecontrol.md#codec).
 
 | Builds | Rule | Source |
 | --- | --- | --- |
@@ -78,6 +79,9 @@ RC framing is the game framing without the cipher. Each row gives a group of bui
 | 2002 | large uploads: id 50 (`PLI_RAWDATA`) with an `i3` length, a flush, then one frame of `c id` + header + raw bytes with no `\n`; receiving id 100 switches the reader to raw mode for that many bytes | [bin] (tools/npc-control.md#framing-both-sockets-bin) |
 | 2002 | more than 256 KB queued unsent drops the socket | [bin] (tools/npc-control.md#framing-both-sockets-bin) |
 | 2004, RC socket | client-side generation 5: each flush picks raw, zlib or bz2 by size, writes a type byte, and XORs the first 12 or 4 dwords with the `0x04A80B38`-seeded LCG plus the key, one step per 4-byte group present; send and receive keep separate iterators with the same key (→ §2.2.3) | [bin] (tools/remotecontrol.md#codec) |
+| January 2005 Linux, send side | dynamic raw XOR advances for a partial final group, capped at twelve groups; compressed XOR processes only complete groups, capped at four; this is not a receive/send symmetry claim | [bin] (protocol/rc2005-linux-send-framing-2026-11-21.md#flush-selection-and-cipher-stepping) |
+
+The January 2005 result, registered as `RC2005-SEND-STATIC-20261121`, reads static construction and framing, not a complete outgoing-id census or a working RC/NC session. For nonnegative time values, the login key is time modulo 128 before the wire encoder adds 32; the encoded byte is not itself constrained to seven bits. Selected frame bodies have a size guard, raw copying has a separate cap, and the upload override clamps the declared length; the nominal framing policy is not arbitrary-size delivery proof [bin] (protocol/rc2005-linux-send-framing-2026-11-21.md#limits-and-g301).
 
 ### 7.1.4 Start dialog and server timers
 
