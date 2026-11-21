@@ -179,6 +179,10 @@ The header comments of the 2006 tree give wrong opcode numbers after 83; the `ms
 
 GServer-v2 is an open reimplementation, not an original server [src] (client-internals/board-respawn.md#gserver-v2-lab-server-src). Where this part says "GServer-v2", it means the behaviour read in its source or seen in the lab; it is the reference for what 2.x and later clients accept, not a record of the official servers.
 
+The pinned newer fork tracks `syncdistancex`/`syncdistancey` at 192 tiles each and `syncbydistanceinside` at false. Its numeric synchronization query uses inclusive independent axes, returns all members when both distances cover the dimensions, delegates bigmaps to data routing and bypasses numeric tests inside ordinary levels unless enabled. Entry/departure and ghost-refresh callers use this query; ordinary level-scoped property buffers instead use current-level or bounded 3-by-3 map-cell routing [srv] (server-notes/sync-distance-routing-2026-11-21.md#defaults-and-the-numeric-query).
+
+`sendtonearbybigmaplevels` defaults true and gates cross-level sends in one nearby-send method, alongside the pre-2.01 client gate and temporary active-level wrapper. The ordinary-property helper does not apply that option gate. These are separate paths, not universal visibility controls. Advice to avoid distances below 64 is not an enforced predicate minimum; malformed-value defaults, live reannouncement and original/client agreement are not established here [srv] (server-notes/sync-distance-routing-2026-11-21.md#ordinary-data-routing-and-send-gates).
+
 ### 5.3.1 Server source lineage
 
 Several server source trees survive. Each row gives one tree, the era it belongs to and how its code is laid out [src] (server-notes/01-lineage.md#what-is-actually-source).
