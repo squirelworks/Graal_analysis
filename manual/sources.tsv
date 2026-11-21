@@ -915,6 +915,8 @@ docs/releases/v0.0.8.md	excluded			release notes for the book's GitHub release, 
 docs/releases/v0.0.9.md	excluded			release notes for the book's GitHub release, not Graal
 protocol/client-id-inference-scope.md	cited	2.4	2.4	Evidence limits and separate token association carried in section 2.4.
 formats/gr-v105-native603-2026-11-21.md	cited	3.1; 5	3.1; 5	Positive generated-layer delivery and drawing; deployment provenance and remaining checks are qualified in the note.
+protocol/probe-wine512-widths-2026-11-21.md	cited	2.6	2.6	Selected-payload alignment, non-exact case 76 and nonzero 77 follow-up limits carried in section 2.6.6.
+
 client-internals/214-216-feature-evidence.md	cited	1	1	Documentary feature and token limits carried in section 1.3; full attribution table stays in the note.
 protocol/probe-wine512-core-2026-11-21.md	cited	2.6	2.6	Controlled Windows 5.12 core slice and canary limits carried in section 2.6.6.
 formats/gr-v105-served-canary-links-2026-11-21.md	cited	3.1; 5	3.1; 5	Independent HUD/parser canary and one-direction physical return; deployment and scorer execution limits preserved.
