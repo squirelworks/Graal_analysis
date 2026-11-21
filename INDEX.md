@@ -404,7 +404,7 @@ Sources: GServer-v2 and gs2-parser (GPLv3), gs2lib, graal-serverlist, OpenGS1 (M
 - [GraalShop movie grammar and shipped mobile sample](tools/graalshop.md#shipped-movie-sample-and-remaining-limits): Classic+ 1.13 and Era+ 1.0 boolean spellings corroborate existing grammar; actor-kind carry is corrected in manual §3.3, while editor identity and runtime units remain open.
 - `formats/grv1-decoder/`: a small GR-V1 / Z3-V1 level decoder.
 
-- [Direct PARAM1 placement structure in two iOS builds](formats/ios-gani-param1-placements.md): distinguishes ANI placement references from SPRITE sheets and numeric zero; file-preservation evidence with native resolution still open.
+- [Direct PARAM1 placement structure in two iOS builds](formats/ios-gani-param1-placements.md): distinguishes ANI placement references from SPRITE sheets and numeric zero; file-preservation evidence and current consumer/test reconciliation, with native resolution still open.
 
 ## Cross-version pass (2026-10-21)
 
