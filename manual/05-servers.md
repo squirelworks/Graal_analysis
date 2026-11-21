@@ -179,6 +179,10 @@ The header comments of the 2006 tree give wrong opcode numbers after 83; the `ms
 
 GServer-v2 is an open reimplementation, not an original server [src] (client-internals/board-respawn.md#gserver-v2-lab-server-src). Where this part says "GServer-v2", it means the behaviour read in its source or seen in the lab; it is the reference for what 2.x and later clients accept, not a record of the official servers.
 
+The pinned newer fork consumes `newtilesets` (false by default) and `newtilesetlevels` (an empty list by default) in server tile-category selection. Terrain takes precedence; otherwise the fork's case-sensitive matcher or a literal level-name prefix selects the new-format category map, followed by the global Boolean, then classic fallback. These options select server categories; original-server equivalence and client rendering remain unverified [srv] (server-notes/tile-category-options-2026-11-21.md#settings-and-selection).
+
+Coordinates at or above the level's upper dimensions and unavailable tiles return blocking before category lookup. The registered GS1 `tiletype` function reads that level category, with blocking fallback when no level exists. Its wall predicate recognizes throw-through, jump-stone and blocking categories; GS1 `onwall` and `onwall2` also have object/player checks. `playerswimming` samples the water/lava categories. Terrain category lookup returns nonblocking before the tile-id range check; other selections reject ids at or above 4096. No live setting-change or new runtime result is established [srv] (server-notes/tile-category-options-2026-11-21.md#concrete-consumers).
+
 ### 5.3.1 Server source lineage
 
 Several server source trees survive. Each row gives one tree, the era it belongs to and how its code is laid out [src] (server-notes/01-lineage.md#what-is-actually-source).

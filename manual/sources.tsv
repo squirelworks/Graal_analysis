@@ -917,3 +917,4 @@ formats/gr-v105-native603-2026-11-21.md	cited	3.1; 5	3.1; 5	Positive generated-l
 formats/gr-v105-served-canary-links-2026-11-21.md	cited	3.1; 5	3.1; 5	Independent HUD/parser canary and one-direction physical return; deployment and scorer execution limits preserved.
 formats/height-transport-scope-2026-11-21.md	cited	3.1; 5	3.1; 5	Reference-fork source gates and serialization are separate from prior original 2.x receiver evidence and unmeasured modern transport.
 server-notes/ghost-mode-options-2026-11-21.md	cited	5	5	Pinned reference-fork configuration consumption; original-server and client runtime behavior remain separate.
+server-notes/tile-category-options-2026-11-21.md	cited	5	5	Pinned GPL reference-fork category selection and consumers; original-server, client rendering and live-toggle effects remain unverified.
