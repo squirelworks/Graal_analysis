@@ -81,6 +81,7 @@ When you add a note, add a line for it here in the same pull request.
 - [Appendix E lab runs on lab host A, second batch (2026-11-20)](protocol/lab-appe-hosta-2026-11-20b.md) — the `GR3DV003` beta run, GS2 calls to missing names, particle modifiers.
 - [Appendix E lab runs on lab host A, third batch (2026-11-20)](protocol/lab-appe-hosta-2026-11-20c.md) — RC logins on the GServer-v2 fork, what could not be run (3.153, mobile).
 - [Appendix E lab runs on lab host B, batch 4 (2026-11-20)](protocol/lab-appe-hostb-2026-11-20d.md) — Mac 3.153 on protocol 19, the 2.05 sleep-gani walk, 2.22 shot types, `move` timing, `replaceani` and `showimg`, 5.00r7 Latin-1 `showtext`.
+- [Protocol 19 server order and later lab scope](torque/protocol19-server.md#10-later-lab-scope) — partial GPL runs and distinct later Linux/Mac camera-path observations; exact GPL validation, rendering and gameplay remain open.
 - [Appendix E lab runs on lab host A, fourth batch (2026-11-20)](protocol/lab-appe-hosta-2026-11-20d.md) — RC2 2.05's RC list, the Windows 6.03r7 HUD, Mac 6.015 on macOS 15.
 - [Appendix E lab runs on lab host A, fifth batch (2026-11-20)](protocol/lab-appe-hosta-2026-11-20e.md) — Windows 4.04r2 offline lift, carry and throw under Wine.
 - [Static reads for Appendix E, fourth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-d.md) — 2.05 `#E` and `move` queue, 2.22 explosions and the shot receiver, 3.04 sheet type 5.

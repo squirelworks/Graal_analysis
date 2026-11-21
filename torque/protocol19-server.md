@@ -1,6 +1,6 @@
 # Protocol 19 (3.153, 4.04r2): what a server must send, past the handshake
 
-Date: 2026-11-13. Tags as in `README.md`. Static read of the 4.04r2 `Graal3DEngine.dll` (its readers for each layout below) and of 3.153's decompiled mission scripts. No real 3.153 or 4.04r2 client has been run past the handshake yet. This note fills in §10 of [udp-session.md](udp-session.md) for a **server**. It uses the smallest control object these clients take, a stock `Camera`, so it needs nothing from the still unread `Player` layout.
+Date: 2026-11-13. Tags as in `README.md`. Static read of the 4.04r2 `Graal3DEngine.dll` (its readers for each layout below) and of 3.153's decompiled mission scripts. Later partial GPL runs and separate published camera-path observations reached beyond the handshake (see §10). This note fills in §10 of [udp-session.md](udp-session.md) for a **server**. It uses the smallest control object these clients take, a stock `Camera`, so it needs nothing from the still unread `Player` layout.
 
 The Seihai GPL lab server implements this (`seihai-gserver-v2` PR #78, `graal3d = true`). **[srv]**
 
@@ -159,8 +159,23 @@ mode 4: a compressed point
 
 **[bin]**
 
+## 10. Later lab scope
+
+The retained 2026-11-14 lab receipt reports GPL server revision `c4f786be` (including PR #78), using CI builds except for the Linux 3.151 follow-up. That follow-up lowered the server's 3D version bound from 3.153 to 3.151 Linux in a lab-only rebuild. This is receipt-reported provenance; the reviewed logs do not independently bind the executable to that revision. Evidence ID: `P19-LATER-LAB-20261114`. **[lab]**
+
+- Linux 3.151 reached phases 1–3 and the initial control object with the changed version bound. Its client log then records a segmentation fault; the server log records Camera delivery. This is a partial path observation, not compatibility with the unchanged server.
+- Mac PowerPC 3.153 under Tiger/QEMU used a render shim. The server records Camera delivery, and the debugger records a null-memory failure. This run does not establish a working rendered scene.
+- The receipt reports Ato reproduction-client progress separately from original-client results. Its Windows 4.04r2 attempts failed before a usable 3D exchange. The separate Windows 4.20r8 Wine result used protocol 24 and cannot validate protocol 19.
+
+The later [native Linux 4.04r2 camera-path note](../protocol/lab-appe-hosta-2026-11-20.md#protocol-19-on-404r2-e506-half) reports link, datablocks, mission start and control-object delivery. Its section does not identify an exact server revision. This is a Linux result, not the earlier Windows 4.04r2 input. **[lab]**
+
+The later [Mac 3.153 camera-path note](../protocol/lab-appe-hostb-2026-11-20d.md#protocol-19-on-the-mac-3153-e506) explicitly uses the Rust Seihai gserver and a lab listing stand-in, with the original Mac build under the render shim. It reports a sustained link and 61 moves over about 2.5 minutes without a crash; the rendered scene remains unverified. These are distinct server/input cohorts, not a revalidation of the unchanged November 14 GPL fixture or an erasure of its failures. **[lab]**
+
+The later observations establish their bounded camera paths, not every layout field, other-player layouts, complete gameplay or the separate static Mac-layout read. The original exact GPL-server validation question remains open. **[lab]**
+
 ## Open
 
+- [x] ~~Record the later native Linux 4.04r2 and shimmed Mac 3.153 camera-path observations.~~ See §10 for their separate source and fixture limits.
 - [ ] A real 4.04r2 and 3.153 run against this order (the GPL lab server, PR #78).
 - [ ] `ShapeBase`'s main update section and `Player`'s update, packet data and `PlayerData` (Graal adds at least `chat` and a name colour), so other players can be shown and a `Player` can be the control object. Started: `PlayerData` is ShapeBaseData, then flag, flag → `pstring`, 19 × `f32`, `int7`, 17 × `f32`, 19 × (flag → `int12` datablock id − 3), 3 × `f32`, flag → `int12`, 2 × `f32`, flag → `int12`, `f32`, 2 × (flag → `int12`), 3 × (flag → `int12`), 9 × `f32` **[bin]**. Tying each float to a field name and value, and the `Player` update's bit widths, are still to do. A `Player` also needs a real shape (a TGE `.dts` with the player sequences) for the client to animate, and we hold none.
 - [ ] 3.153's Camera, CameraData and move layouts. They are assumed to match 4.04r2 (same Torque line, same net classes); not checked against the Mac binary.

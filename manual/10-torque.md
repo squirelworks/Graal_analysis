@@ -539,7 +539,7 @@ A real Windows 5.12 client was traced from inside its own process against a lab 
 
 ### 10.3.9 Protocol 19 past the handshake: what a server sends
 
-Protocol 19 (3.153, 4.04r2) has been read but not run past the handshake. A static read of the 4.04r2 plug-in and the 3.153 mission scripts gives what a server must send, using the smallest control object these clients take, a stock `Camera`. The handshake, header, rate fields, string buffer, event lists and ghost section are those of protocol 24; the accept's class table has three types: object, datablock, event [bin] (torque/protocol19-server.md#1-what-is-the-same-as-protocol-24).
+Protocol 19 has static layout evidence, earlier partial GPL-server runs and separate later native Linux 4.04r2 and shimmed Mac 3.153 camera-path observations. The later Mac study uses the Rust Seihai gserver; these cohorts do not revalidate the unchanged GPL fixture or its intended Windows 4.04r2 input. The retained `P19-LATER-LAB-20261114` receipt reports GPL revision `c4f786be`; reviewed logs do not independently bind that executable to the revision. Their reported provenance and limits are qualified in [lab] (torque/protocol19-server.md#10-later-lab-scope). A static read of the 4.04r2 plug-in and the 3.153 mission scripts gives what a server must send, using the smallest control object these clients take, a stock `Camera`. The handshake, header, rate fields, string buffer, event lists and ghost section are those of protocol 24; the accept's class table has three types: object, datablock, event [bin] (torque/protocol19-server.md#1-what-is-the-same-as-protocol-24).
 
 | Rule | Source |
 | --- | --- |
