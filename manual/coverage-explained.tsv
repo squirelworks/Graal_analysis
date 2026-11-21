@@ -5860,3 +5860,5 @@ client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	particletypes
 client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"{""a"",""B"",""c""}.index(""B"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
 client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	"{""a"",""B"",""c""}.index(""b"")"	one sample expression of the 6.03r7 format and lookup lab; App. E#210 carries the rules (floor for %d and %i, case-sensitive list .index(), no string search) instead of each sample
 formats/gr-v105-native603-2026-11-21.md	GR105-NATIVE603-POSITIVE	evidence identifier for the private supporting record, not a format or protocol term
+formats/gr-v105-native603-canary-2026-11-21.md	GR105-NATIVE603-CANARY-LINKS	evidence identifier, not a Graal protocol or behavior term
+formats/gr-v105-native603-canary-2026-11-21.md	01bb0b3f	reported deployment source commit; source-to-binary correspondence is qualified in the note
