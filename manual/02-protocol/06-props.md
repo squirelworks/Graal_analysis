@@ -306,6 +306,8 @@ Because an unknown id ends a stream, a server has to know which ids each client 
 
 #### What the clients do with each id, in the lab
 
+A separate 32-case Windows 5.12 run under Wine in a Debian VM found 29 landed and three lost bomb-count canaries. Same-message canaries land after the selected one-byte 77/83/90 values, two-byte 78–80, one-byte 81, string 82 and three-byte 3; they stay at the reset value after the selected five-byte 77/83 and three-byte 90 payloads. All 20 subsequent-message canaries land after PLO 60/78/81/83/110 with the four selected bodies. These are alignment/liveness observations, not a full width table, a reply census or proof of handler absence. The wider campaign remains open [lab] (protocol/probe-wine512-core-2026-11-21.md).
+
 A probe proxy injected single prop messages into live loopback sessions, each followed by a visible prop as a canary (the bomb count, or an x or y), and read whether the canary landed. The results agree with the static case sets above and add the one rule a server writer most needs: **2.x clients stop at an id they have no case for, while 4.x to 6.x clients skip it as one byte** [lab] (protocol/probe-targets-2026-11-18.md#the-same-probes-on-windows-clients-2026-11-18).
 
 | Own-player prop | 2.05 rev 2, 2.17.1, 2.22 | 2.31 | 4.20r8 | 5.24r4 | 6.03r7 | Source |

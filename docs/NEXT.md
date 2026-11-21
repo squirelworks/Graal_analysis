@@ -101,6 +101,7 @@ Every open gap, including the boxes below, is also on the [research gap board](g
 - [x] **Player-prop parsers 5.00r7 / 5.12 (#6 status).** ~~Case sets settled in v5-props (+82 only vs 4.x); value widths and P4–P6 leads open.~~ [Note](../protocol/player-props-5x-status.md).
 
 - [x] **Ids sent by 5.12; 2.31 id-44 (#17 status).** ~~2.31 S→C 44 dropped / C→S 44 kept; 5.12 send floor still cap-only; E#4 id 11 settled static on 5.00r7.~~ [Note](../protocol/ids-sent-512-status.md).
+  - [x] ~~Reconcile the 5.00r7 wrapper list with its separately traced throw path and published two-throw lab.~~ G257 editorial complete; G256 retains the controlled 5.12 comparison, and G255's genuine-engine send-code census remains open.
 
 - [x] **Update packages after login (status).** ~~159 / 47 / .gupd beyond base?~~ Wire ids and GServer-v2 chain settled; client 159 layout + seihai handlers open. [Note](../protocol/update-packages-focus-status.md); gap #28.
 
@@ -221,7 +222,8 @@ Every open gap, including the boxes below, is also on the [research gap board](g
   - [x] ~~Run `while (1)`, `##` in the 2.17 engine, and the 2.17 message codes in a populated context on real clients.~~ [Run](../live-runs/open-issues-2026-11-14/README.md#1-442-gs1-per-version); manual §8.2.12. A bare number is false in `while` and `for` on 1.33 to 2.31; `##` and the populated codes are recorded there.
   - [ ] Table events, flags, variables and functions per 1.x build.
   - [x] ~~Run the GS1 `timeout` sweep on 5.x, 6.x and the 1.x/2.x engines; time 6.03r7's script timer.~~ 1.33 to 2.31 and 5.00r7 done ([run](../live-runs/open-issues-2026-11-14/README.md#2a-gs1-timeout-sweep-offline-engines); manual §4.1.8: all round down, and 1.33's 0.15 is 2 steps). Linux 6.03r7 GS2 / lowered-GS1 timers **ceil** to 50 ms and fire sub-0.05 ([quirks](../client-internals/gs2-vm-quirks-by-version.md#linux-603r7-timer-lab); [cadence](../client-internals/update-cadence-3x-6x.md#603r7-gs2-timer-ceils-to-50-ms)).
-  - [ ] Read the Mac 4.20r6 and Windows 4.04r2 frame-cipher step rule, and the Mac server-to-client switch for 4.04r2 and 5.12.
+  - [x] ~~Read the Mac 4.04r2/5.12 server-to-client handled-id sets.~~ The [static summary](../client-internals/mac-ppc-404-512/SUMMARY.md) records those named sets and a separate cipher read of the archive-labelled `G3D27076` input. These are static results, not discriminating captures or runtime acceptance.
+  - [ ] Read the exact December Mac 4.20r6 (`G3D21126`) and Windows 4.04r2 engine frame-cipher step rules. The archive-labelled `G3D27076` study is a distinct scope in the [catalogue](../client-internals/version-token-catalogue.md); it does not settle the December input, and nearby Linux/Windows siblings do not settle Windows 4.04r2.
   - [ ] Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in `live-runs/client-harness-2026-11-13`; 5.00r7 partial (walk 4/4, sword 3/3; place-dependent actions not reached) in [the 2026-11-14 run](../live-runs/open-issues-2026-11-14/README.md#5-398-action-list-on-420r86113-partial-500r7-only) and manual §4.11.12.1.
     - 2026-11-18: 4.20r8, 5.00r7, 5.12, 5.24r4 and 6.03r7 logged in through a lab `Login` lobby on real Windows 10, drew the level and walked ([run](../live-runs/real-win10-2026-11-18/README.md), §2.3.6.4). Still open: the full action list on the fixture world, and 6.113 (signed connector).
     - 2026-11-19: the action list ran on Linux 6.03r7 (with an observer) and on real Windows 4.20r8 to 6.03r7 (§4.11.12.2). Spin and the glove chest are not client results; the rest is tracked in #652.
@@ -234,13 +236,15 @@ Every open gap, including the boxes below, is also on the [research gap board](g
   - [x] ~~Mark the no-binary profiles as inferred in data, with a CI check.~~ `inferred = true` on 2.1 and 2.12 to 2.16 in [141-217.toml](../client-internals/version-profiles/141-217.toml) (2.3 already had it); [test_inferred.py](../client-internals/version-profiles/test_inferred.py) fails when a list-only (L) token's profile lacks the flag. seihai-core's `Basis::Inferred` rows match.
   - [ ] Still with no executable: 1.391, 2.12 to 2.16, 2.18 to 2.21, 2.3 and 4.02.11. Record the search for copies of the official downloads, including searches that found nothing.
   - [ ] Date each 2.1x feature to a token from `newfeatures200x.txt` and the GServer-v2 version branches.
+    - [x] ~~Reconcile selected 2.14–2.16 release-note feature families with documentary token associations and the reference-server large-file gate.~~ [Attribution and limits](../client-internals/214-216-feature-evidence.md); earlier families, exact revision bindings and native behavior remain open.
 
 - [x] **Inference ledger and stale prop cells (2026-11-13).** ~~List the manual's rows that rest on inference alone; correct App. C.1 cells that said "unmeasured" where a note already had the read.~~ [Ledger](../manual/inference-ledger.tsv) (52 rows, checked in CI); C.1 now carries the 1.21–1.32, 4.04r2/4.20r8 and 6.x prop reads.
   - [x] ~~Read the 5.00r7 and 5.12 prop parsers (the one era with no read), and find where 6.x parses the prop strings it stores.~~ [v5-props](../protocol/v5-props.md): 5.00r7, 5.12, 5.30r3 and 5.31r4 share 4.x's parsers plus 82; 6.x still parses natively (6.0.3.7 from the packet switch, 6.1.1.3 through `tclient_set*props`).
   - [x] ~~What 6.x own-prop 83 sets.~~ The gralat count in five bytes, same setter as 3 ([v5-props](../protocol/v5-props.md#83-a-wide-gralat-count)).
   - [x] ~~A wire check of the one-byte skip on a 6.x client, and a lab check of 83 above 2,097,151 on 6.03r7.~~ Done in #628 ([probe note](../protocol/probe-targets-2026-11-18.md#what-the-runs-show), §2.6.6): one-byte skip confirmed, values above 999,999,999 ignored, HUD shows seven digits.
   - [ ] The same probe on 4.20r8, 5.24r4 and 6.037 under Wine, the 0–90 self-prop width table, and a GS2 read-back of `player.rupees` ([next batches](../protocol/probe-targets-2026-11-18.md#recommended-next-batches)).
-  - [ ] Settle or relabel ledger rows, starting with the 2.14–2.16 and 6.00r2/r4/6.015 client-id sets in §2.4.
+    - [x] ~~Add the separate Windows 5.12 `wine-core` slice under Wine.~~ [32 measured cases](../protocol/probe-wine512-core-2026-11-21.md), not the full width table or completion of the builds listed above.
+  - [x] ~~Relabel the 2.14–2.16 and Windows 6.00r2/r4/6.015 client-id rows in §2.4.~~ [Evidence limits](../protocol/client-id-inference-scope.md): outgoing sets stay inferred; receive-switch reads and captured token associations are separate claims. The remaining per-build measurements are listed in that note; other ledger rows remain open.
 
 - [x] **Mac PowerPC start-up and input.** ~~Carry the one-shot engine timer, event registration and the input translator for 4.04r2, 4.20r6 and v5.~~ [Source](../client-internals/mac-ppc-startup-input-2026-11-09.md).
   - [ ] Read the v5 end consumers per event type, the key lookup table and the two post-window start-up helpers; then observe input delivery in a guest.
@@ -303,7 +307,7 @@ Every open gap, including the boxes below, is also on the [research gap board](g
   - [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.
 - [x] **Publish the rest of the Mac PowerPC broad static pass.** ~~Decompression workspace policy, the four gmap readers with 4.04r2 board dispatch, graphics context setup, transport, machine identity, event names, resource routing and the packaged-resource survey.~~ [Decompression](../protocol/macos-ppc-receive-decompression.md); [gmap readers](../formats/gmap-heights-mac-ppc.md); [runtime surfaces](../client-internals/mac-ppc-runtime-surface-2026-11-09.md).
   - [ ] Run an unchanged Mac client to the context helpers and record the real arguments. Record success and visible output separately.
-  - [ ] Validate the `RANDOMSEEDS` row bound, and open the board helper that receives 12 or 13.
+  - [ ] Trace caller/state constraints for the assembly-confirmed `RANDOMSEEDS` boundary, and open the board helper that receives 12 or 13. [Assembly follow-up](../formats/gmap-heights-mac-ppc.md#randomseeds-assembly-follow-up).
   - [ ] Feed valid zlib members to an unchanged receiver near each build's capacity boundary, after a raw-frame positive control.
 - [x] **Qualify Mac PowerPC receive stepping.** ~~Publish the bounded static result.~~ [Source](../protocol/macos-ppc-receive-framing.md) retains native-runtime limits.
   - [ ] Obtain one naturally reached unchanged-client reader positive control; entry, consumed fields, successful return and rendering remain separate.

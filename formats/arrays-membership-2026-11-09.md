@@ -34,4 +34,4 @@
 - [x] ~~Check structure, counts, overlap and Bush-value membership for the bounded inputs.~~
 - [ ] Link an exact input to a particular consuming client and active sheet.
 - [ ] Determine runtime collision for the distinguishing values and placed bushes.
-- [ ] Reconcile the earlier exported mask's provenance and interpretation.
+- [x] ~~Reconcile the earlier exported mask's provenance and interpretation.~~ The bounded search found no recoverable source; the 3,195-value claim is retired, and the producing client/sheet remains unknown (E#101).
