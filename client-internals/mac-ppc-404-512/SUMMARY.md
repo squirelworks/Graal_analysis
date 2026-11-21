@@ -17,9 +17,9 @@ Every routine read has the same shape, in both directions (encode and decode):
 | Mac 4.04r2, Mac 5.12 | round down (re-confirmed) | read directly |
 | Windows 5.12 | round down (calibration; matches seihai) | read directly |
 
-The two rules differ only for a compressed body under 16 bytes with len % 4 != 0. 4.x clients compress only plaintext over 47 bytes, so the difference stays latent for them.
+The two rules differ only for a compressed body under 16 bytes with len % 4 != 0. The plaintext compression threshold does not by itself establish compressed-body length or whether traffic exercises that difference. This static read is not a discriminating capture or runtime-acceptance result.
 
-seihai-core today: `gen5_round_down` is set only for Windows 5.12 (G3D14097). Mac 4.04r2, 4.20r6 and 5.12 should all be round down. Windows 4.04r2 is likely round down too, but that is unproven until a real Windows 4.04r2 engine is read.
+The original report's recommendation to update the consumer's Mac `gen5_round_down` rows is historical implementation advice, not evidence that current code still omits those rows. Check current profiles before repeating that work. The exact Windows 4.04r2 engine's static rule remains unproven here; sibling results do not replace that read.
 
 ## PLO ids handled (server → client)
 
@@ -31,4 +31,4 @@ Differences from the Windows sets that seihai borrows today:
 - Mac 4.04r2 vs Windows 4.04r2 (98): Mac **lacks 41**.
 - Mac 5.12 vs Windows 5.12 (100): Mac **lacks 41** and **adds 100 and 108**.
 
-No Windows switch was re-read: Windows 4.04r2 is not on the host, and Windows 5.12 stays as seihai records it.
+No Windows switch was re-read in this study: the intended Windows 4.04r2 input was unavailable for that read, and Windows 5.12 stayed as the consumer recorded it. This is a dated study boundary, not a current inventory of all retained inputs.
