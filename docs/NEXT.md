@@ -174,6 +174,7 @@ Every open gap, including the boxes below, is also on the [research gap board](g
 - [x] **Carry the measured Linux 6.03r7 item behavior into the manual.** ~~Separate input packets, corrected idle-VM timing and screen effects from server replies.~~ [Study](../client-internals/items-603r7-black-box.md); manual §4.5.8, App. E#327.
   - [ ] Identify the missing chest art and test the proposed menu-skin dependency (App. E#327).
 - [x] **Establish direct symbolic GANI placement context.** ~~Separate ANI PARAM1 references from SPRITE sheet tokens in the inspected mobile resources.~~ [File evidence](../formats/ios-gani-param1-placements.md); manual §3.3.8. Two shared forms, not a native playback test.
+  - [x] ~~Reconcile uppercase `PARAM1` preservation and fallback in the named consumers (G231).~~ [Current source and test audit](../formats/ios-gani-param1-placements.md#consumer-reconciliation-2026-11-21); native resolution remains open.
   - [ ] Verify parser/serializer preservation in each consumer and establish native resolution separately; retain the coordinate/slot/case limits in the note.
 
 - [x] **Carry the measured Linux/Windows 6.03r7 HUD into the manual.** ~~Separate fixed art/layout, font availability and captured transitions.~~ [Study](../client-internals/hud-603r7-black-box.md); manual §4.6.9, App. E#326.

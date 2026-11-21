@@ -137,4 +137,5 @@ WINE512-CORE-20261121	windows-under-wine	controlled-proxy-injection-and-hud-cana
 GR105-NATIVE603-CANARY-LINKS	linux	generated-fixture-parser-canary-and-physical-link-return
 GR105-WINE512-CANARY-LINKS	windows-wine	generated-fixture-parser-canary-and-physical-link-return
 GR105-WINE524-CANARY-LINKS	windows-wine	generated-fixture-repaint-ambiguity-and-physical-link-return
+G231-CONSUMER-CONTROL-20261121	windows	synthetic-parser-and-lookup-control
 W603-PRODUCT-FALLBACK-20261122	windows	retained-product-id-selector-static-reread
