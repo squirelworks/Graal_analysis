@@ -33,7 +33,11 @@ All three are dynamically linked, stripped ELFs. The January 2005 build is the L
 - Chat font-size preference.
 - Compiler stamp `GCC: (GNU) 4.0.3 … (Debian 4.0.2-5)`. **[bin]**
 
-None of these three send id 65 (`PLI_RC_LISTRCS`); that negative result for the wider RC set is unchanged. **[inf]** (see `rc-list-online.md`)
+This string-comparison pass did not read the three builds' outgoing call sites and therefore
+ does not establish whether they send id 65 (`PLI_RC_LISTRCS`). A later
+ [January 2005 framing read](rc2005-linux-send-framing-2026-11-21.md) supplies a bounded send-side
+ result, but the complete outgoing-id census remains open; the other two builds do not inherit
+ it from their tokens. **[bin][doc]**
 
 ## Seihai / suite feed
 
