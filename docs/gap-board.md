@@ -19,6 +19,10 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 reconciliation](../client-internals/214-216-feature-evidence.md), including a
 pinned reference-server large-file gate. G190 remains open for earlier
 families, unlisted details and exact client/revision evidence.
+2026-11-21 update: G424 now has a [controlled 32-case Windows 5.12 core slice
+under Wine](../protocol/probe-wine512-core-2026-11-21.md). G424 and G191 remain
+open: other plans/builds and the full width sweep are not completed. The older
+failed attempt adds no accepted rows; existing PLO 195 coverage stays separate.
 
 | Column | Meaning |
 |---|---|
