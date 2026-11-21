@@ -130,3 +130,4 @@ LAB-RESEARCH-UNKNOWNS-20261119	linux	loopback-lab
 V6113-LIVESWAP-NEG-20261119	windows	loopback-trust-anchor-swap-negative
 GCR-6113-SEI00001-LOGIN-20261119	windows	clean-room-loopback-login
 GR105-NATIVE603-POSITIVE	linux	generated-fixture-loopback-packets-and-visual-observations
+RELEASE-NOTES-214216	documentation	retained-release-note-sections

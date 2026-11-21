@@ -15,6 +15,11 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 
 ## Columns
 
+2026-11-21 update: G190 has a [documentary 2.14–2.16 feature-family
+reconciliation](../client-internals/214-216-feature-evidence.md), including a
+pinned reference-server large-file gate. G190 remains open for earlier
+families, unlisted details and exact client/revision evidence.
+
 | Column | Meaning |
 |---|---|
 | `id` | Board id, `G001` on. Stable for this board; a later board renumbers. |
