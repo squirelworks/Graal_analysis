@@ -48,9 +48,25 @@ Each reader was opened in its own build. No result was carried over from another
 - The row condition allows row = height, so that bound is inclusive.
 - The buffer holds only width × height integers.
 
-[inf] The row bound and the allocation do not match. This needs checking against the callers and the assembly. It is recorded as an open boundary. It is not a confirmed defect and not a safe rejection.
+[inf] The row bound and the allocation do not match. The assembly comparison is now independently checked below; caller-enforced input limits and prior buffer state remain unresolved. It is not a confirmed defect or a safe-rejection policy.
 
 **[bin] 4.20r6.** One input helper either moves a collection across or processes the input directly. Who owns the data afterwards was not traced.
+
+### RANDOMSEEDS assembly follow-up
+
+[bin] On 2026-11-21, the retained PowerPC assembly was read separately for shared v3,
+4.04r2 and 4.20r6, using their registered static evidence listed below. In each,
+the row guard skips rows only when they are greater than height, while the column
+guard stops at width. The seed store uses row times width plus column, scaled to
+four bytes. This independently corroborates the inclusive row and exclusive column
+observations; it is not solely a decompiler comparison. The opened allocation
+expressions reserve width times height integers.
+
+[inf] The caller bodies and constructor or prior-buffer state were not recovered
+in this follow-up. Caller-enforced dimensions and input extent, changed dimensions
+and runtime consequences remain unestablished. No client was run, and no malformed
+input or safe-rejection behavior was tested. These results do not transfer to v5's
+unopened setup helper.
 
 ## A v3 height writer
 
@@ -88,7 +104,8 @@ Each reader was opened in its own build. No result was carried over from another
 ## Remaining work
 
 - [ ] Positive control: an unchanged reader, reached naturally, returns successfully on a known-good map. Then vary only the height data in a one-cell map written for the test. Record storage and rendering separately.
-- [ ] Validate the `RANDOMSEEDS` row bound against the callers and the assembly.
+- [x] ~~Check the `RANDOMSEEDS` row comparison against retained assembly in v3, 4.04r2 and 4.20r6.~~ [Assembly follow-up](#randomseeds-assembly-follow-up).
+- [ ] Trace caller-enforced dimensions and input extent, and constructor or prior-buffer state, for the assembly-confirmed `RANDOMSEEDS` boundary.
 - [ ] Open the board helper that receives 12 or 13, and the `GLEVNW01` handler.
 
 ## Evidence
