@@ -239,6 +239,8 @@ Every open gap, including the boxes below, is also on the [research gap board](g
   - [x] ~~What 6.x own-prop 83 sets.~~ The gralat count in five bytes, same setter as 3 ([v5-props](../protocol/v5-props.md#83-a-wide-gralat-count)).
   - [x] ~~A wire check of the one-byte skip on a 6.x client, and a lab check of 83 above 2,097,151 on 6.03r7.~~ Done in #628 ([probe note](../protocol/probe-targets-2026-11-18.md#what-the-runs-show), §2.6.6): one-byte skip confirmed, values above 999,999,999 ignored, HUD shows seven digits.
   - [ ] The same probe on 4.20r8, 5.24r4 and 6.037 under Wine, the 0–90 self-prop width table, and a GS2 read-back of `player.rupees` ([next batches](../protocol/probe-targets-2026-11-18.md#recommended-next-batches)).
+    - [x] ~~Record the separate Windows 5.12 `widths` payload scan under Wine.~~ [100 selected cases across widths and nonzero follow-ups](../protocol/probe-wine512-widths-2026-11-21.md), not a complete width/semantic specification or completion of the builds listed above.
+
     - [x] ~~Add the separate Windows 5.12 `wine-core` slice under Wine.~~ [32 measured cases](../protocol/probe-wine512-core-2026-11-21.md), not the full width table or completion of the builds listed above.
   - [ ] Settle or relabel ledger rows, starting with the 2.14–2.16 and 6.00r2/r4/6.015 client-id sets in §2.4.
 

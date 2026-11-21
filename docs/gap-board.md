@@ -15,6 +15,11 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 
 ## Columns
 
+2026-11-21 update: G424 has a [100-case selected own-prop scan on Windows
+5.12 under Wine](../protocol/probe-wine512-widths-2026-11-21.md), with 96 landed
+and four lost canaries across the 91-case scan and nine nonzero follow-ups. This is partial coverage, not a full width/semantic
+table; G424/G191 and the remaining plans stay open.
+
 2026-11-21 update: G424 now has a [controlled 32-case Windows 5.12 core slice
 under Wine](../protocol/probe-wine512-core-2026-11-21.md). G424 and G191 remain
 open: other plans/builds and the full width sweep are not completed. The older
