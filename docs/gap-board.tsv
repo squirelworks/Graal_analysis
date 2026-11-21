@@ -217,7 +217,7 @@ G215	docs/NEXT.md	line 527	16. Torque study and the 3.04 plan. Live work, top pr
 G216	docs/preagonal-gs2-clean-room-2026-11-07.md	line 88	Measure joined classes and other event lifecycles before generalizing.	lab	Win10 VM on lab host B or Linux VM (Wine)	medium	free
 G217	formats/arrays-membership-2026-11-09.md	line 35	Link an exact input to a particular consuming client and active sheet.	static	static: cloud or a host (lab host A/B)	medium	free
 G218	formats/arrays-membership-2026-11-09.md	line 36	Determine runtime collision for the distinguishing values and placed bushes.	static	static: cloud or a host (lab host A/B)	medium	free
-G219	formats/arrays-membership-2026-11-09.md	line 37	Reconcile the earlier exported mask's provenance and interpretation.	static	static: cloud or a host (lab host A/B)	medium	free
+G219	formats/arrays-membership-2026-11-09.md	line 37	The earlier 3,195-value mask has no recoverable source; retire its claim and retain unknown client/sheet provenance (E#101).	static	static: cloud or a host (lab host A/B)	medium	resolved in E#101; provenance unrecoverable
 G220	formats/gmap-heights-404r2.md	line 48	Establish rendering, server handling and any broader writer coverage separately.	static	static: cloud or a host (lab host A/B)	medium	free
 G221	formats/gmap-heights-404r2.md	line 49	Measure missing-name and malformed-grid behavior before specifying rejection rules.	lab	Win10 VM on lab host B or Linux VM (Wine)	medium	free
 G222	formats/gmap-heights-mac-ppc.md	line 90	Positive control: an unchanged reader, reached naturally, returns successfully on a known-good map. Then vary only the height data in a one-cell map written for the test. Record storage and rendering separately.	static+lab	Tiger VM on lab host B	medium	free
