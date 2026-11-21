@@ -387,7 +387,7 @@ formats/gani.txt	cited	3.3	3.3
 formats/glevnw01.txt	cited	3.1	3.1	
 formats/gmap-heights-404r2.md	cited	3.2	3.2; E	reader and fixture results carried; private provenance bookkeeping remains in source note
 formats/gmap-heights-by-component-2026-11-19.md	cited	3.2	3.2; E	Token-level read of each engine component's gmap parser: HEIGHTS is read by the 3D components and the merged 6.x client, not by the 4.x/5.x Linux 2D engine
-formats/gmap-heights-mac-ppc.md	cited	3.1; 3.2	3.1; 3.2; E	four Mac readers, the RANDOMSEEDS boundary, the v3 writer candidate and board dispatch carried; allocation details stay in the source note
+formats/gmap-heights-mac-ppc.md	cited	3.1; 3.2	3.1; 3.2; E	four Mac readers, assembly-confirmed RANDOMSEEDS comparisons and width-stride stores with caller/state limits open, the v3 writer candidate and board dispatch carried; allocation details stay in the source note
 formats/gmap.md	cited	3.2	3.2	
 formats/gobjset01.md	cited	3.4	3.4	
 formats/gpak.md	cited	2.5	2.5	
@@ -877,7 +877,7 @@ version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	cited	1; E	1; E
 version-profiles/lab-serverwarp178.tsv	cited	2.4; 2.5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-showimg24-relay.tsv	cited	2.4; 2.5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-v5-2026-10-30.md	cited	C; 1	1; C	
-version-profiles/linux-network-bootstrap-evidence.md	cited	1	1	Gate meanings and limits carried in1.10; exact identities and evidence lineage remain in source note/dataset.
+version-profiles/linux-network-bootstrap-evidence.md	cited	1	1	Gate meanings and limits carried in1.9.2; frozen exact-input snapshot and later source-qualified cohorts remain separate, with executable binding unresolved.
 version-profiles/linux-teardown.md	excluded			tooling verification and preflight handoff; client results need individual review
 version-profiles/macos-client-compatibility.md	cited	1	1.9; E	framework dependencies summarized by role; lab-machine preparation remains outside the reference manual
 version-profiles/macos-resource-identity.md	cited	1	1.9; E	bounded regular-file identity carried; private manifests and method bookkeeping stay in the source note
@@ -913,9 +913,12 @@ version-profiles/windows-v4-import-provenance.md	cited	1	1	Alias/resource/collec
 client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	cited	2.4; 4.2; 8.2; 10; E	2.4; 4.2; 8.2; 10; E	Static reads and labs for App. E: bare #5/#6 scratch string (E#203), 3.04 global sheet type and type 5 (E#507), 2.22 prop 15/16 rounding (E#304), Graal 2002 send sets (E#15), 6.03r7 format floor and case-sensitive lookups (E#210)
 docs/releases/v0.0.8.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.9.md	excluded			release notes for the book's GitHub release, not Graal
+protocol/client-id-inference-scope.md	cited	2.4	2.4	Evidence limits and separate token association carried in section 2.4.
 formats/gr-v105-native603-2026-11-21.md	cited	3.1; 5	3.1; 5	Positive generated-layer delivery and drawing; deployment provenance and remaining checks are qualified in the note.
+client-internals/214-216-feature-evidence.md	cited	1	1	Documentary feature and token limits carried in section 1.3; full attribution table stays in the note.
 protocol/probe-wine512-core-2026-11-21.md	cited	2.6	2.6	Controlled Windows 5.12 core slice and canary limits carried in section 2.6.6.
 formats/gr-v105-served-canary-links-2026-11-21.md	cited	3.1; 5	3.1; 5	Independent HUD/parser canary and one-direction physical return; deployment and scorer execution limits preserved.
 formats/height-transport-scope-2026-11-21.md	cited	3.1; 5	3.1; 5	Reference-fork source gates and serialization are separate from prior original 2.x receiver evidence and unmeasured modern transport.
+protocol/file-profile-evidence-2026-11-21.md	cited	2.7	2.7	Recorded 1.41r1 direct cases are distinct from raw/file handling; local shared defaults, server gates and directional captures retain their evidence limits.
 server-notes/ghost-mode-options-2026-11-21.md	cited	5	5	Pinned reference-fork configuration consumption; original-server and client runtime behavior remain separate.
 protocol/rc2005-linux-send-framing-2026-11-21.md	cited	7	7	Static enqueue and framing branches; indirect routing, outgoing-id census and runtime acceptance remain open.

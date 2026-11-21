@@ -10,8 +10,9 @@ manual/02-protocol/03-login.md	`1`, `4`	protocol/relay-1998.md#d-payloads	x, y |
 manual/02-protocol/03-login.md	`5`, `6`, `7`	protocol/relay-1998.md#d-payloads	none | pose flags (sitting, sleeping)
 manual/02-protocol/03-login.md	The hashes are unsalted MD5 of short inputs, so a 4-byte serial or inode, or a M	protocol/pcid.md#what-the-hashes-do-and-do-not-hide	all
 manual/02-protocol/03-login.md	year character	protocol/login-tokens-3x-7x.md#the-token-itself	2010 and later | a letter: `A` in the 6.01 tokens, `C` in the 6.03 tokens, read as the year as a hex digit (A = 2010, C = 2012)
-manual/02-protocol/04-pli.md	2.14 to 2.16		the 2.1 set plus 41 | inferred; no binaries of 2.1 to 2.16 in the archive
-manual/02-protocol/04-pli.md	6.00r2, 6.00r4, 6.015		0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–159, 161, 162 | inferred from the 6.01 and 6.03 reads
+manual/02-protocol/04-pli.md	2.14 to 2.16	protocol/client-id-inference-scope.md#214216-retain-the-send-set-hypothesis	profile hypothesis: the inherited 2.1-line set plus 41 | inferred; no exact 2.14–2.16 send-site read or outgoing capture establishes this set
+manual/02-protocol/04-pli.md	6.00r2, 6.00r4 Windows	protocol/client-id-inference-scope.md#windows-600r2r4-receive-reads-do-not-settle-outgoing-ids	proposed: 0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–159, 161, 162 | inferred from Linux 6.01r1; their own receive-switch reads and login observations do not establish this outgoing set
+manual/02-protocol/04-pli.md	6.015 Windows profile (6.007 / 6.015 builds)	protocol/client-id-inference-scope.md#windows-60076015-and-mac-6015-separate-the-identities	same proposed set as the preceding row | inferred from Linux 6.01r1; the captured Windows token association does not validate packet sets; excludes Mac 6.015
 manual/02-protocol/04-pli.md	6.034		as 6.03r7 | inferred
 manual/02-protocol/04-pli.md	Left over	client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6	What 14 and 22 carry in these builds
 manual/02-protocol/04-pli.md	Note	client-internals/decomp-findings-2026-10-24-c/05-pli-client-to-server.md	Claim B's count of 34 was 39 less five, the arithmetic that hid the gap
