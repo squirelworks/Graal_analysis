@@ -49,6 +49,30 @@ Linux parsing questions; and reconnect observation versus a proposed rendering
 cure. Historical source hashes remain unchanged. These entries organize evidence
 lineage; they do not independently rerun an experiment or settle other builds.
 
+## Later published cohorts
+
+The [November 21 supplement](linux-network-bootstrap-supplement-20261121.json)
+records two later native Linux 6.03r7 cohorts from the published
+[generated-layer serve](../formats/gr-v105-native603-2026-11-21.md) and
+[canary/link-return follow-up](../formats/gr-v105-served-canary-links-2026-11-21.md).
+Its source revision and existing public evidence IDs identify the write-ups;
+this editorial extension adds no client run or independent raw-capture review. **[doc]**
+
+The first cohort records authenticated entry, delivered generated layers and
+bounded patch/hole drawing. The follow-up separately records a parser/HUD canary
+and physical return through the advertised bottom links. Its successful ingress
+remained chat warp; the canary was not a bomb-use or broader gameplay-action
+test. Neither cohort establishes normal-server GS2 compilation, a positive disk
+cache hit or complete gameplay. **[lab]**
+
+No exact executable-identity binding from these later cohorts to the frozen
+seven-input dataset is established here. A build label and shared token do not
+supply that binding. The supplement therefore neither replaces the older
+black-window observations nor upgrades their gate cells. It also keeps the
+world server's reported deployment association separate from an independently
+reproduced source-to-binary build. The original JSON and its lineage remain
+unchanged. **[doc]**
+
 ## Provenance and reproduction boundary
 
 Client build/hash, wire token and gate status are separate fields. The server
@@ -66,5 +90,5 @@ a public coverage ledger alone is not a full reproduction package.
 
 - [x] ~~Organize the specified network cohorts into independently readable gates.~~
 - [x] ~~Check identities, source hashes and explicit unknown statuses.~~ Seven unique inputs; all seven lineage records match the sanitized source bytes.
-- [ ] Extend the ledger with new qualified evidence and exact source identity, preserving prior snapshot meaning.
+- [ ] Extend the ledger with new qualified evidence and exact source identity, preserving prior snapshot meaning. The [later-cohort supplement](#later-published-cohorts) records the bounded November 21 results; exact executable binding to the frozen inputs remains open.
 - [ ] Establish a positive cache control and normal-server compiled delivery before marking either gate observed.

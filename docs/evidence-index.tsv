@@ -130,8 +130,10 @@ LAB-RESEARCH-UNKNOWNS-20261119	linux	loopback-lab
 V6113-LIVESWAP-NEG-20261119	windows	loopback-trust-anchor-swap-negative
 GCR-6113-SEI00001-LOGIN-20261119	windows	clean-room-loopback-login
 GR105-NATIVE603-POSITIVE	linux	generated-fixture-loopback-packets-and-visual-observations
+RELEASE-NOTES-214216	documentation	retained-release-note-sections
 WINE512-CORE-20261121	windows-under-wine	controlled-proxy-injection-and-hud-canary
 GR105-NATIVE603-CANARY-LINKS	linux	generated-fixture-parser-canary-and-physical-link-return
 GR105-WINE512-CANARY-LINKS	windows-wine	generated-fixture-parser-canary-and-physical-link-return
 GR105-WINE524-CANARY-LINKS	windows-wine	generated-fixture-repaint-ambiguity-and-physical-link-return
 W500-OP48-49-REREAD-20261122	windows	retained-backup-engine-dispatcher-helper-and-assembly-reread
+W603-PRODUCT-FALLBACK-20261122	windows	retained-product-id-selector-static-reread

@@ -25,9 +25,9 @@ xor_limit_dwords = { raw = 12, zlib = 4, bz2 = 4 }   # caps; steps = min(ceil(le
 lcg = { seed = 0x04A80B38, mul = 0x08088405, add = "key" }
 out_queue_drop_bytes = 0x40000
 listserver = { host = "<list-host-reborn>", port = 14922, kind = "supported", port_status = "confirmed", first_message_id = 7, token = "GNW30123", list_name = "newmain", config = "arrays2.dat + arrays2.sig" }
-file_modtime = true                    # PLO_FILE carries i5 modtime (all >= 2.1)
-large_files = true                     # LARGEFILESTART/END (68/69), 32000-byte chunks (>= 2.14)
-image_ext_default = ".png"             # server adds no .gif for >= 2.1
+file_modtime = true                    # historical server >=2.1 reply gate [srv], not an exact 2.22 receiver read
+large_files = true                     # 68/69 cases [bin]; 32000-byte chunks and >=2.14 gate describe the server [srv]
+image_ext_default = ".png"             # server stops appending .gif at >=2.1 [srv]; native extension algorithm not established here
 login_after = [37, 39]                 # PLI_LANGUAGE, then PLI_TAMPERCHECK
 level_formats = ["GR-V1.00", "GR-V1.01", "GR-V1.02", "GR-V1.03", "GR-V1.04", "GLEVNW01", "GRMAP001"]
 udp = { present = true, default_off = true, config_key = "noudp", fixed_port_key = "fixedudpport", fixed_port_default = 14899 }
