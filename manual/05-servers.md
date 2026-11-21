@@ -488,7 +488,7 @@ Later servers handle NPCs in their own ways. Each row gives one server and how i
 
 ## 5.6 GServer-v2 under malformed and unusual input
 
-The lab runs that fuzzed clients and staff tools through the open-source server also showed how that server handles levels and accounts it was not written for. The rules below are its behaviour as of the fork the labs used; they describe the reference server, not any original Graal server [srv][lab] (formats/gr-v105-fuzz-2026-11-19.md#the-lab-gserver-misreads-every-gr-v105-file-srvlab).
+The lab runs that fuzzed clients and staff tools through the open-source server also showed how that server handles levels and accounts it was not written for. The rules below are its behaviour as of the fork the labs used; they describe the reference server, not any original Graal server [srv][lab] (formats/gr-v105-fuzz-2026-11-19.md#the-lab-gserver-misreads-every-gr-v105-file-srvlab). The layer-count and malformed-link source defects were subsequently repaired in fork PR #118, commit `eea7a0b2`, retained at `4d1fb2f9`: width guards `C >= 2` through `C >= 5` now consume the requested byte count, `noexcept` filesystem lookups treat an uncheckable path as absent, and short NPC, chest and sign records are skipped. Existing generated regressions check cursor positions, a two-layer board, empty upper cells, an overlong link and short records. This source audit does not measure a new live serve; G226 and the live portion of G227 remain open [srv] (formats/gr-v105-fuzz-2026-11-19.md#source-repair-reconciled-on-2026-11-21-srv).
 
 | Rule | Detail | Source |
 | --- | --- | --- |
