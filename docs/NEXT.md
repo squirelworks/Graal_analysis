@@ -174,6 +174,7 @@ Every open gap, including the boxes below, is also on the [research gap board](g
 - [x] **Carry the measured Linux 6.03r7 item behavior into the manual.** ~~Separate input packets, corrected idle-VM timing and screen effects from server replies.~~ [Study](../client-internals/items-603r7-black-box.md); manual §4.5.8, App. E#327.
   - [ ] Identify the missing chest art and test the proposed menu-skin dependency (App. E#327).
 - [x] **Establish direct symbolic GANI placement context.** ~~Separate ANI PARAM1 references from SPRITE sheet tokens in the inspected mobile resources.~~ [File evidence](../formats/ios-gani-param1-placements.md); manual §3.3.8. Two shared forms, not a native playback test.
+  - [x] ~~Reconcile uppercase `PARAM1` preservation and fallback in the named consumers (G231).~~ [Current source and test audit](../formats/ios-gani-param1-placements.md#consumer-reconciliation-2026-11-21); native resolution remains open.
   - [ ] Verify parser/serializer preservation in each consumer and establish native resolution separately; retain the coordinate/slot/case limits in the note.
 
 - [x] **Carry the measured Linux/Windows 6.03r7 HUD into the manual.** ~~Separate fixed art/layout, font availability and captured transitions.~~ [Study](../client-internals/hud-603r7-black-box.md); manual §4.6.9, App. E#326.
@@ -242,6 +243,8 @@ Every open gap, including the boxes below, is also on the [research gap board](g
   - [x] ~~What 6.x own-prop 83 sets.~~ The gralat count in five bytes, same setter as 3 ([v5-props](../protocol/v5-props.md#83-a-wide-gralat-count)).
   - [x] ~~A wire check of the one-byte skip on a 6.x client, and a lab check of 83 above 2,097,151 on 6.03r7.~~ Done in #628 ([probe note](../protocol/probe-targets-2026-11-18.md#what-the-runs-show), §2.6.6): one-byte skip confirmed, values above 999,999,999 ignored, HUD shows seven digits.
   - [ ] The same probe on 4.20r8, 5.24r4 and 6.037 under Wine, the 0–90 self-prop width table, and a GS2 read-back of `player.rupees` ([next batches](../protocol/probe-targets-2026-11-18.md#recommended-next-batches)).
+    - [x] ~~Record the separate Windows 5.12 `widths` payload scan under Wine.~~ [100 selected cases across widths and nonzero follow-ups](../protocol/probe-wine512-widths-2026-11-21.md), not a complete width/semantic specification or completion of the builds listed above.
+
     - [x] ~~Add the separate Windows 5.12 `wine-core` slice under Wine.~~ [32 measured cases](../protocol/probe-wine512-core-2026-11-21.md), not the full width table or completion of the builds listed above.
   - [x] ~~Relabel the 2.14–2.16 and Windows 6.00r2/r4/6.015 client-id rows in §2.4.~~ [Evidence limits](../protocol/client-id-inference-scope.md): outgoing sets stay inferred; receive-switch reads and captured token associations are separate claims. The remaining per-build measurements are listed in that note; other ledger rows remain open.
 
