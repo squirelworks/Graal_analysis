@@ -387,7 +387,7 @@ formats/gani.txt	cited	3.3	3.3
 formats/glevnw01.txt	cited	3.1	3.1	
 formats/gmap-heights-404r2.md	cited	3.2	3.2; E	reader and fixture results carried; private provenance bookkeeping remains in source note
 formats/gmap-heights-by-component-2026-11-19.md	cited	3.2	3.2; E	Token-level read of each engine component's gmap parser: HEIGHTS is read by the 3D components and the merged 6.x client, not by the 4.x/5.x Linux 2D engine
-formats/gmap-heights-mac-ppc.md	cited	3.1; 3.2	3.1; 3.2; E	four Mac readers, the RANDOMSEEDS boundary, the v3 writer candidate and board dispatch carried; allocation details stay in the source note
+formats/gmap-heights-mac-ppc.md	cited	3.1; 3.2	3.1; 3.2; E	four Mac readers, assembly-confirmed RANDOMSEEDS comparisons and width-stride stores with caller/state limits open, the v3 writer candidate and board dispatch carried; allocation details stay in the source note
 formats/gmap.md	cited	3.2	3.2	
 formats/gobjset01.md	cited	3.4	3.4	
 formats/gpak.md	cited	2.5	2.5	
