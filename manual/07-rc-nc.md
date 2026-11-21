@@ -186,7 +186,7 @@ Player administration was captured on the wire from a 2004 RC. Each row gives a 
 | RC→S | 73 RC_PLAYERPROPSGET2 | `s player id` | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
 | S→RC | 72 RC_PLAYERPROPSGET | `s player id`, `str account`, `str world`, `c n`, n bytes of props, tail | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
 | RC→S | 76 RC_PLAYERPROPSSET2 | `str account`, `str world`, `c n`, n bytes of props, tail, then `str` copied back from an optional string after the weapons in the server's 72 (empty when 72 has none, which shows as one byte 0; → §7.1.8) | [cap] (protocol/rc-capture-2026-11-04.md#player-props); [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421) |
-| both | props tail | `s` flag count and the flags, newest first; `s` opened-chest count, each `c` length + 2, `c` x, `c` y, level; `c weapon count`, `str` per weapon (→ §7.1.8) | [cap] (protocol/rc-capture-2026-11-04.md#player-props); [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420) |
+| both | props tail | `s` flag count and the flags, newest first; `s` opened-chest count, each `c` length + 2, `c` x, `c` y, level; `c weapon count`, `str` per weapon (→ §7.1.8) | [cap] (protocol/rc-capture-2026-11-04.md#player-props); [lab] (protocol/lab-appe-hostb-2026-11-20.md#rc-props-tail-counts-e420) |
 | RC→S | 83 RC_PLAYERRIGHTSGET | account as `rest` | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
 | S→RC | 62 RC_PLAYERRIGHTSGET | `str account`, `i5 rights`, `str IP range`, `s n` + n bytes of folder rights | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
 | RC→S | 84 RC_PLAYERRIGHTSSET | same layout as 62; folder lines as CSV (→ App. E#422) | [cap] (protocol/rc-capture-2026-11-04.md#rights) |
@@ -197,13 +197,13 @@ Player administration was captured on the wire from a 2004 RC. Each row gives a 
 | S→RC | 64 RC_PLAYERBANGET | `str account`, `c banned`, reason (`rest`) | [cap] (protocol/rc-capture-2026-11-04.md#ban) |
 | RC→S | 88 RC_PLAYERBANSET | `str account`, `c banned`, reason as CSV (`rest`) | [cap] (protocol/rc-capture-2026-11-04.md#ban) |
 
-**Settled question, formerly E#420: flag and chest counts in the RC props tail.** Which of the two counts in the RC props tail counts flags and which opened chests was open, because both were 0 in the only capture; four controlled accounts settled it for the fork's writer [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420).
+**Settled question, formerly E#420: flag and chest counts in the RC props tail.** Which of the two counts in the RC props tail counts flags and which opened chests was open, because both were 0 in the only capture; four controlled accounts settled it for the fork's writer [lab] (protocol/lab-appe-hostb-2026-11-20.md#rc-props-tail-counts-e420).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Before | The tail after the props block in 72 and 76 holds two `s` counts, then the weapons | [cap] (protocol/rc-capture-2026-11-04.md#player-props) |
-| Settled | The first count is flags (then the flag strings, newest first), the second opened chests (each `c` length + 2, `c` x, `c` y, level name), then the weapon count and names, and nothing after | [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420) |
-| Verdict | Verified against the GServer-v2 fork with RC 2004; the best guess held. No original 2001–2004 server was run | [lab] (protocol/lab-appe-mirae-2026-11-20.md#rc-props-tail-counts-e420) |
+| Settled | The first count is flags (then the flag strings, newest first), the second opened chests (each `c` length + 2, `c` x, `c` y, level name), then the weapon count and names, and nothing after | [lab] (protocol/lab-appe-hostb-2026-11-20.md#rc-props-tail-counts-e420) |
+| Verdict | Verified against the GServer-v2 fork with RC 2004; the best guess held. No original 2001–2004 server was run | [lab] (protocol/lab-appe-hostb-2026-11-20.md#rc-props-tail-counts-e420) |
 
 **Settled question, formerly E#421: the last byte of RC_PLAYERPROPSSET2.** What the extra byte the 2004 RC puts at the end of 76 means was open; a static read of the RC's 76 builder and 72 parser settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#the-last-byte-of-rc-76-e421).
 
@@ -237,15 +237,15 @@ There is no RC-list message on the wire: an RC learns who else is staff from the
 | The online RCs are therefore the 55/56 entries whose level is empty | [src] (protocol/rc-list-online.md#2001-servers-src) |
 | GServer-v2 sends an RC's level as one space, adds player-list status and community name to 55, and sends one 74 `Currently online: <a>, <b>, …` after login | [srv] (protocol/rc-list-online.md#gserver-v2-srv) |
 | RC2 2.05 and RC3 put an entry in the **Admins** folder when its nickname's guild tag is in the 47 staff-guild list, or when its id is above 0, its level has length 0 (no trim) and bit 0 of prop 81 is clear; everything else goes to **Players**; prop 81 bits 1 and 2 move an entry to separate lists | [bin] (protocol/rc-list-online.md#how-rc2-205-shows-them-bin) |
-| Against GServer-v2's one-space level, RC2 2.05 lists other RCs under Players (settled below) | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424) |
+| Against GServer-v2's one-space level, RC2 2.05 lists other RCs under Players (settled below) | [lab] (protocol/lab-appe-hosta-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424) |
 | The RC2 2.05 RC socket handles server → RC ids 8, 13, 16, 30, 35, 37, 47, 55, 56, 58, 59, 61–70, 72–77, 79, 82, 100, 102, 103, 180 and 190, the same set as the 2010 Linux RC; 65 on this socket is `PLO_RC_FILEBROWSER_DIRLIST` | [bin] (protocol/rc-list-online.md#rc2-205-server-client-ids-bin) |
 
-**Settled question, formerly E#424: RC2's Admins folder against a one-space level.** Where RC2 2.05 lists other RCs when GServer-v2 sends their level as one space was open. A run of RC2 2.05 on a Win10 guest, with injected entries, settled it [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424).
+**Settled question, formerly E#424: RC2's Admins folder against a one-space level.** Where RC2 2.05 lists other RCs when GServer-v2 sends their level as one space was open. A run of RC2 2.05 on a Win10 guest, with injected entries, settled it [lab] (protocol/lab-appe-hosta-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Settled | RC2's Players window is a flat list under header rows, and the header counts stay 0. An entry with an empty level goes under Admins; one space or a level name goes under Players | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424) |
-| Verdict | Verified: both claims hold. RC2 2.05 tests the level by length with no trim, so on the GServer-v2 fork other RCs appear under Players | [lab] (protocol/lab-appe-gwentea2-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424) |
+| Settled | RC2's Players window is a flat list under header rows, and the header counts stay 0. An entry with an empty level goes under Admins; one space or a level name goes under Players | [lab] (protocol/lab-appe-hosta-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424) |
+| Verdict | Verified: both claims hold. RC2 2.05 tests the level by length with no trim, so on the GServer-v2 fork other RCs appear under Players | [lab] (protocol/lab-appe-hosta-2026-11-20d.md#rc2-205s-list-of-other-rcs-e424) |
 
 ## 7.2 NC login
 

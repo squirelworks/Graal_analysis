@@ -8,7 +8,7 @@ the issue it closes. Part 2 lists every other lab row on the [gap board](gap-boa
 ## Rules for every run
 
 - **VMs only.** Run nothing on bare metal. Each host runs one lab at a time, so check what is
-  running before you boot. On GwenTea2 a watchdog powers VMs off when the host's free memory
+  running before you boot. On lab host A a watchdog powers VMs off when the host's free memory
   falls under about 3 GB, so boot only one large VM there.
 - **Loopback or VM-internal servers only.** The probe scripts run inside a `bwrap
   --unshare-net` namespace. Never point a client or a probe at a public server. Starting a public
@@ -30,7 +30,7 @@ the issue it closes. Part 2 lists every other lab row on the [gap board](gap-boa
 
 ## Part 1. Queued experiments
 
-### Mirae: Windows 10 VM, or Wine in the Graal Linux RE Lab VM (issue #743)
+### Lab host B: Windows 10 VM, or Wine in the Linux lab VM (issue #743)
 
 **X1. Probe coverage for 5.12, 6.037 and the 2.02 family.**
 - **Goal:** close the probe holes found while building the board. 5.12 has only the 8-row 195
@@ -129,7 +129,7 @@ frames.**
 - **Record in:** `client-internals/gui-windows-fkeys.md` (lines 184 and 185).
 - **Closes:** G095.
 
-### Mirae: Linux VM with the lab servers (issue #733)
+### Lab host B: Linux VM with the lab servers (issue #733)
 
 **S1. Server fuzz on GServer 1.21.**
 - **What to run:**
@@ -166,7 +166,7 @@ frames.**
   the client asks for.
 - **Record in:** `torque/protocol19-server.md` (lines 164 and 165).
 
-### Mirae: Tiger VM (issue #730)
+### Lab host B: Tiger VM (issue #730)
 
 **T1. Mac PowerPC receiver positive control.**
 - **Steps:**
@@ -177,7 +177,7 @@ frames.**
   `protocol/macos-ppc-receive-decompression.md` (line 70), `formats/gmap-heights-mac-ppc.md`
   (line 90) and `docs/NEXT.md` (line 304).
 
-### GwenTea2: Lion or Sequoia VM (issue #731)
+### Lab host A: Lion or Sequoia VM (issue #731)
 
 **L1. Mac 6.004 with its clock held before the beta limit (E#618).**
 - **VM:** the Sequoia guest.
@@ -229,17 +229,17 @@ These close issues in the client and server reimplementations, not gap-board row
 Generated from `docs/gap-board.tsv`, rows of kind `lab` or `static+lab`. Each VM's issue carries
 the same rows as a task list. Read the source line before you start.
 
-### Mirae Win10 VM or Linux VM (Wine) (#743, 73 rows)
+### Win10 VM on lab host B or Linux VM (Wine) (#743, 73 rows)
 
 | id | kind | gap | source | claimed |
 |---|---|---|---|---|
-| G004 | lab | Graal 2002 and 1.40 send sets and default routes (best guess: each build follows its token's neighbour; 1.40 and v22 logins captured) | `manual/app-e-open-questions.md` E#15 | Mirae Appendix E batch thread |
-| G007 | lab | The rest of the 2.05 # code set (best guess: #E is an empty placeholder (read); bare #5/#6 is a 2.17 scanner change) | `manual/app-e-open-questions.md` E#203 | Mirae Appendix E batch thread |
-| G010 | lab | Particle emitter and format details (best guess: %d truncates, indexof is case-sensitive) | `manual/app-e-open-questions.md` E#210 | Mirae Appendix E batch thread |
-| G012 | lab | Stopping positions and wire rounding (best guess: stopping measured; the wire value is truncated to the half tile) | `manual/app-e-open-questions.md` E#304 | Mirae Appendix E batch thread |
-| G015 | lab | Combat live checks still open (best guess: the spark appears only when a sword meets a sword or a shield) | `manual/app-e-open-questions.md` E#324 | Mirae Appendix E batch thread |
-| G016 | lab | Sound census and playback limits (best guess: none yet; needs a per-backend playback test) | `manual/app-e-open-questions.md` E#325 | Mirae Appendix E batch thread |
-| G024 | lab | 4.04r2 offline gameplay (best guess: it plays like 4.20r6 offline) | `manual/app-e-open-questions.md` E#610 | Mirae Appendix E batch thread |
+| G004 | lab | Graal 2002 and 1.40 send sets and default routes (best guess: each build follows its token's neighbour; 1.40 and v22 logins captured) | `manual/app-e-open-questions.md` E#15 | Lab host B Appendix E batch thread |
+| G007 | lab | The rest of the 2.05 # code set (best guess: #E is an empty placeholder (read); bare #5/#6 is a 2.17 scanner change) | `manual/app-e-open-questions.md` E#203 | Lab host B Appendix E batch thread |
+| G010 | lab | Particle emitter and format details (best guess: %d truncates, indexof is case-sensitive) | `manual/app-e-open-questions.md` E#210 | Lab host B Appendix E batch thread |
+| G012 | lab | Stopping positions and wire rounding (best guess: stopping measured; the wire value is truncated to the half tile) | `manual/app-e-open-questions.md` E#304 | Lab host B Appendix E batch thread |
+| G015 | lab | Combat live checks still open (best guess: the spark appears only when a sword meets a sword or a shield) | `manual/app-e-open-questions.md` E#324 | Lab host B Appendix E batch thread |
+| G016 | lab | Sound census and playback limits (best guess: none yet; needs a per-backend playback test) | `manual/app-e-open-questions.md` E#325 | Lab host B Appendix E batch thread |
+| G024 | lab | 4.04r2 offline gameplay (best guess: it plays like 4.20r6 offline) | `manual/app-e-open-questions.md` E#610 | Lab host B Appendix E batch thread |
 | G025 | lab | 4.04r2 pickup semantics (best guess: the bound field is the carried object's kind) | `manual/app-e-open-questions.md` E#611 | free |
 | G032 | lab | Measure simulation, animation and rendering clocks before converting countdowns to time. | `client-internals/404r2-carry-state.md` line 59 | free |
 | G033 | lab | Capture a complete scene and before/after state for each selected interaction. | `client-internals/404r2-carry-state.md` line 60 | free |
@@ -307,17 +307,17 @@ the same rows as a task list. Read the source line before you start.
 | G424 | lab | Windows 5.12 has only the 8-row 195 gani set; the 4.x/5.x plan set (wine-core, widths, widths-fix, bytes2x, baddytypes, loadgani3w) was never run on it | `protocol/probe-results.tsv` (new, 2026-11-20 triage) | free |
 | G426 | lab | Windows 6.037 has 32 rows; the full 4.x/5.x plan set has not been run on it | `protocol/probe-results.tsv` (new, 2026-11-20 triage) | free |
 
-### Mirae Win10 VM (#743, 1 rows)
+### Win10 VM on lab host B (#743, 1 rows)
 
 | id | kind | gap | source | claimed |
 |---|---|---|---|---|
 | G425 | lab | Windows 2.02, 2.02 rev 1 and 2.02 rev 2 have no probe rows; 2.00 to 2.05 rev 1 have the 32-case gen-3 plan | `protocol/probe-results.tsv` (new, 2026-11-20 triage) | free |
 
-### Mirae Linux VM (servers) (#733, 24 rows)
+### Linux VM on lab host B (servers) (#733, 24 rows)
 
 | id | kind | gap | source | claimed |
 |---|---|---|---|---|
-| G023 | lab | 3.04 sheet type 5 and server tile definitions (best guess: type 5 is a walk rule (read); servers sent no tile definitions) | `manual/app-e-open-questions.md` E#507 | Mirae Appendix E batch thread |
+| G023 | lab | 3.04 sheet type 5 and server tile definitions (best guess: type 5 is a walk rule (read); servers sent no tile definitions) | `manual/app-e-open-questions.md` E#507 | Lab host B Appendix E batch thread |
 | G066 | static+lab | listscriptfunctions. The 4.03 and 6.036 notes say the client prints its script-function documentation with this switch; our launcher reads list the switch (torque/4208-launcher.md, torque/5007-launcher.md). Run once in a sandbox to get each build's GS2 function list. The wiki's Creation/Dev/Script/C | `client-internals/graal-wiki-crosscheck-2026-11-11.md` line 63 | free |
 | G094 | lab | A lab login of both clients on a loopback GServer. | `client-internals/gserv-125-127-builds.md` line 132 | free |
 | G096 | lab | Why 1.39 closes on F6 when the server is the loopback address. | `client-internals/gui-windows-fkeys.md` line 185 | free |
@@ -342,7 +342,7 @@ the same rows as a task list. Read the source line before you start.
 | G407 | lab | what a real service does with id 46 | `client-internals/decomp-findings-2026-10-25-g/open-questions.tsv` row 7 | free |
 | G408 | lab | what a real list service sends for 178 (item 0 in particular) | `client-internals/decomp-findings-2026-10-25-g/open-questions.tsv` row 8 | free |
 
-### Mirae Linux VM (#734, 14 rows)
+### Linux VM on lab host B (#734, 14 rows)
 
 | id | kind | gap | source | claimed |
 |---|---|---|---|---|
@@ -361,7 +361,7 @@ the same rows as a task list. Read the source line before you start.
 | G272 | lab | Measure the remaining delivery, parser, event and cache gates separately. | `protocol/linux-local-login-matrix.md` line 36 | free |
 | G381 | lab | Establish a positive cache control and normal-server compiled delivery before marking either gate observed. | `version-profiles/linux-network-bootstrap-evidence.md` line 70 | free |
 
-### Mirae Tiger VM (#730, 5 rows)
+### Tiger VM on lab host B (#730, 5 rows)
 
 | id | kind | gap | source | claimed |
 |---|---|---|---|---|
@@ -371,7 +371,7 @@ the same rows as a task list. Read the source line before you start.
 | G353 | lab | A real 4.04r2 and 3.153 run against this order (the GPL lab server, PR #78). | `torque/protocol19-server.md` line 164 | free |
 | G365 | lab | Stage 8: 3.153 3D play | `torque/rebuild-plan-3.04.md` line 43 | free |
 
-### GwenTea2 Lion/Sequoia VM (#731, 4 rows)
+### Lab host A Lion/Sequoia VM (#731, 4 rows)
 
 | id | kind | gap | source | claimed |
 |---|---|---|---|---|

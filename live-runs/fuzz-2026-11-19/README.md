@@ -98,9 +98,9 @@ The other-player props 77–90 on the Windows clients are not done yet.
 
 ## 5–8 (not run: VM load)
 
-**Update 2026-11-20:** all of these have now run on GwenTea2. The shot byte, 4.20r8 GS2 delivery,
+**Update 2026-11-20:** all of these have now run on lab host A. The shot byte, 4.20r8 GS2 delivery,
 2.22/2.31 NPC widths and the 2.05 key emote are in the
-[GwenTea2 Appendix E lab note](../../protocol/lab-appe-gwentea2-2026-11-20.md). The keyboard and chat fuzz
+[lab host A Appendix E lab note](../../protocol/lab-appe-hosta-2026-11-20.md). The keyboard and chat fuzz
 and the other-player prop widths are in [fuzz-2026-11-20-keys](../fuzz-2026-11-20-keys/README.md).
 
 Sections 4 (2.22/2.31 columns) and 5–8 are planned but did not run on 2026-11-19. I set up a queue

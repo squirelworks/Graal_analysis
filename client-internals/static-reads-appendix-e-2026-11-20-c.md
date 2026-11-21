@@ -1,7 +1,7 @@
 # Static reads for Appendix E, third batch (2026-11-20)
 
 Date: 2026-11-20. Evidence: **[bin]** (a disassembler read of the real client executables on the
-Mirae lab, with no client run). Only behaviour is given here. Covers App. E#303, E#317 and E#603.
+lab host B, with no client run). Only behaviour is given here. Covers App. E#303, E#317 and E#603.
 
 Builds read: 2.05 rev 2 `Graal.exe` and 1.39.
 

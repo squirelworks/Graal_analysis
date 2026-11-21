@@ -1,7 +1,7 @@
 # File reads for Appendix E, thirteenth batch (2026-11-20)
 
 Date: 2026-11-20. Evidence: **[file]** (content hashes and RIFF headers of the held sound files,
-and a search of the held folders and archives on the Mirae lab; no client run, no network).
+and a search of the held folders and archives on the lab host B; no client run, no network).
 Covers App. E#325 (the count) and E#101.
 
 ## The WAV census reconciled (E#325)
@@ -57,9 +57,9 @@ the one the manual cites.
 **Not found.** No mask export and no script that produced "3,195 non-blocking and 682 blocking
 tiles" exists in any held folder or archive.
 
-- Searched: every lab, scratch, research and intake folder and repository checkout on the Mirae
+- Searched: every lab, scratch, research and intake folder and repository checkout on the lab host B
   lab, the older working-paper folders, the installed client, the dated archive drive, and the
-  GwenTea2 intake (reviewed notes and the file indexes of the backup tarballs).
+  lab host A intake (reviewed notes and the file indexes of the backup tarballs).
 - By file name: mask, nowall, walk or walkable, tiletype, tiledef, collision, blocking, type0.
 - By content: text files holding both 3195 (or 3,195) and 682.
 - Every hit is the same sentence, in copies of `formats/tile-walk.md`, the manual's App. E and

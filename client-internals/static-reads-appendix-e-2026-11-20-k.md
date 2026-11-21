@@ -1,6 +1,6 @@
 # Static reads for Appendix E, twelfth batch (2026-11-20)
 
-Date: 2026-11-20. Evidence: **[bin]** (a decompiler read of the Windows 2.22 input A on the GwenTea2
+Date: 2026-11-20. Evidence: **[bin]** (a decompiler read of the Windows 2.22 input A on the lab host A
 lab, a linear disassembly of the same file, and a full byte comparison of A, B and the community
 control; no client run) and **[test]** (a check of the held `.sig` files against the decoded key).
 Only behaviour is given here. Covers App. E#103.

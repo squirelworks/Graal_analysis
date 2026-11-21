@@ -204,18 +204,18 @@ Signs are stored in the sign alphabet, not in plain text. The rules below give t
 | record | `GCHAR x, GCHAR y`, then text in the sign alphabet | [srv] (formats/level-binary.md#records) |
 | alphabet | the same as signs on the wire: `byte - 32` indexes the sign table (→ §3.6) | [2.05] (formats/level-binary-client.md#sign-text-in-files) |
 | line break | the token `v*eUWf` + `0x80` decodes to `#K(13)` and a newline; it is the explicit line-break marker, not a space | [test] (formats/level-binary-client.md#sign-text-in-files) |
-| end | the sign list stops at the first empty line, measured on 2.05 rev 2 and read for 2.31, where a `HEIGHTS` block can follow; the earlier reading that 2.05 reads to the end of the file was wrong (→ §3.1.2.6) | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd); [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
+| end | the sign list stops at the first empty line, measured on 2.05 rev 2 and read for 2.31, where a `HEIGHTS` block can follow; the earlier reading that 2.05 reads to the end of the file was wrong (→ §3.1.2.6) | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd); [lab] (protocol/lab-appe-hostb-2026-11-20.md#sign-list-end-on-205-e604) |
 | signs at (0,0) | common in real levels and hold dialogue text, so they are probably messages that NPC scripts show by index rather than signs on the map | [inf] (formats/level-binary-client.md#sign-text-in-files) ; [test] (client-internals/decomp-findings-2026-10-25-f/04-sign-and-chest-details.md) |
 | no signs | a level with no signs ends after the chest `#`, with no empty line; in 3113 files nothing follows the signs | [test] (client-internals/decomp-findings-2026-10-25-f/01-section-shapes.md) |
 
-**Settled question, formerly E#604: Where a binary sign list ends.** Where the sign list in a binary level ends when a `HEIGHTS` block may follow was open, with one read saying 2.05 reads to the end of the file; a 2.05 lab settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604).
+**Settled question, formerly E#604: Where a binary sign list ends.** Where the sign list in a binary level ends when a `HEIGHTS` block may follow was open, with one read saying 2.05 reads to the end of the file; a 2.05 lab settled it [lab] (protocol/lab-appe-hostb-2026-11-20.md#sign-list-end-on-205-e604).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Claims | A: 2.05 reads signs to the end of the file, and 2.31 stops at the first empty line. B: the sign section runs to an empty line or the end of the file | [2.05][2.31] (formats/level-binary-client.md#agreement-with-level-binarymd); [srv] (formats/level-binary.md#layout) |
-| Settled | On 2.05 rev 2 a level with three signs shows all three; with an empty line after the first, or an empty line and a `HEIGHTS` line, only the first shows | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
-| Verdict | Verified for 2.05: Claim B holds and Claim A is wrong about 2.05, which stops at the first empty line as 2.31 does | [lab] (protocol/lab-appe-mirae-2026-11-20.md#sign-list-end-on-205-e604) |
-| Settled (2.31) | A 2.31 run of the same files keeps 1 sign of 3 after an empty line, with or without a `HEIGHTS` line, so the 2.05 and 2.31 readers agree | [lab] (protocol/lab-appe-mirae-2026-11-20b.md#where-a-binary-sign-list-ends-on-231-e604) |
+| Settled | On 2.05 rev 2 a level with three signs shows all three; with an empty line after the first, or an empty line and a `HEIGHTS` line, only the first shows | [lab] (protocol/lab-appe-hostb-2026-11-20.md#sign-list-end-on-205-e604) |
+| Verdict | Verified for 2.05: Claim B holds and Claim A is wrong about 2.05, which stops at the first empty line as 2.31 does | [lab] (protocol/lab-appe-hostb-2026-11-20.md#sign-list-end-on-205-e604) |
+| Settled (2.31) | A 2.31 run of the same files keeps 1 sign of 3 after an empty line, with or without a `HEIGHTS` line, so the 2.05 and 2.31 readers agree | [lab] (protocol/lab-appe-hostb-2026-11-20b.md#where-a-binary-sign-list-ends-on-231-e604) |
 
 ### 3.1.2.7 GR-V1.04 height block
 

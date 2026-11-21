@@ -33,12 +33,12 @@ The tick is the same everywhere, but what drives it changes. Each row gives a gr
 | Windows 4.04r2 | measured under Wine at 19.8 fps in game (→ §4.1.7); statically, the core's clocks are traced: `getTicks` is `GetTickCount` and `timevar2` scales it by 0.001; legacy `timeout` counts service passes (set ×20 + 0.0001 floored, read ×0.05); a GS2-style pass advances its script clock 0.05 per pass and drives `istimeout` and scheduled events | [bin][cap] (client-internals/windows-404r2-500r7-static-2026-11-09.md#404r2-clocks) |
 | Mac PowerPC 4.04r2, 4.20r6 and v5 | a Carbon event-loop timer calls the engine entry once; it runs an initialize method, then an update method repeatedly while it returns non-zero, then shutdown, and quits the event loop. The pump sleeps 1 ms when idle. The update rate is not measured | [bin] (client-internals/mac-ppc-startup-input-2026-11-09.md#start-up-one-timer-that-runs-the-whole-engine) |
 
-**Settled question, formerly E#300: Frame driver of 4th Graal alpha, 5th Graal and 5th Graal alpha.** How fast the three early builds really tick was open: a timer was read in each, but only a callback count was measured. A timed DirectDraw trace settled it [lab] (protocol/lab-appe-mirae-2026-11-20c.md#frame-timing-of-the-early-builds-e300).
+**Settled question, formerly E#300: Frame driver of 4th Graal alpha, 5th Graal and 5th Graal alpha.** How fast the three early builds really tick was open: a timer was read in each, but only a callback count was measured. A timed DirectDraw trace settled it [lab] (protocol/lab-appe-hostb-2026-11-20c.md#frame-timing-of-the-early-builds-e300).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Settled | Each frame ends with one front-buffer blit: 20.3, 19.6 and 20.2 a second for 4th Graal alpha, 5th Graal and 5th Graal alpha, median gap 50.0 ms in each | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#frame-timing-of-the-early-builds-e300) |
-| Verdict | Verified: the frames follow the declared 50 ms interval in elapsed time. The busy idle loop seen before is the DelphiX timer polling, which draws only when 50 ms have passed | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#frame-timing-of-the-early-builds-e300) |
+| Settled | Each frame ends with one front-buffer blit: 20.3, 19.6 and 20.2 a second for 4th Graal alpha, 5th Graal and 5th Graal alpha, median gap 50.0 ms in each | [lab] (protocol/lab-appe-hostb-2026-11-20c.md#frame-timing-of-the-early-builds-e300) |
+| Verdict | Verified: the frames follow the declared 50 ms interval in elapsed time. The busy idle loop seen before is the DelphiX timer polling, which draws only when 50 ms have passed | [lab] (protocol/lab-appe-hostb-2026-11-20c.md#frame-timing-of-the-early-builds-e300) |
 
 ### 4.1.2.1 The frame function (idle-driven builds)
 

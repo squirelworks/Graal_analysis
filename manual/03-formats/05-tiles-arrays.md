@@ -100,12 +100,12 @@ The official client decides walkability differently for each kind of sheet. The 
 
 The Bush-value membership correction is recorded in → §3.5.3.1; runtime collision is settled below (stamped bushes block) [file] (formats/arrays-membership-2026-11-09.md#what-the-counts-settle).
 
-**Settled question, formerly E#100: Collision of the Bush stamp tiles.** Whether a bush placed with the editor's Bush stamp blocks the player was open, because the inspected arrays are not the collision path. A lab walk settled it [lab] (protocol/lab-appe-mirae-2026-11-20c.md#bush-tiles-placed-as-a-stamp-e100).
+**Settled question, formerly E#100: Collision of the Bush stamp tiles.** Whether a bush placed with the editor's Bush stamp blocks the player was open, because the inspected arrays are not the collision path. A lab walk settled it [lab] (protocol/lab-appe-hostb-2026-11-20c.md#bush-tiles-placed-as-a-stamp-e100).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Settled | Tile ids 2, 3, 18 and 19 placed as a 2 × 2 bush stop a player walking up into them at the same point as a rock, from both half-tile alignments, on 2.22 and on 2.05 rev 2 with the stock `pics1.png` | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#bush-tiles-placed-as-a-stamp-e100) |
-| Verdict | Verified on 2.22 and 2.05 rev 2: a stamped bush blocks like a bush drawn into the board | [lab] (protocol/lab-appe-mirae-2026-11-20c.md#bush-tiles-placed-as-a-stamp-e100) |
+| Settled | Tile ids 2, 3, 18 and 19 placed as a 2 × 2 bush stop a player walking up into them at the same point as a rock, from both half-tile alignments, on 2.22 and on 2.05 rev 2 with the stock `pics1.png` | [lab] (protocol/lab-appe-hostb-2026-11-20c.md#bush-tiles-placed-as-a-stamp-e100) |
+| Verdict | Verified on 2.22 and 2.05 rev 2: a stamped bush blocks like a bush drawn into the board | [lab] (protocol/lab-appe-hostb-2026-11-20c.md#bush-tiles-placed-as-a-stamp-e100) |
 
 ## 3.5.3 arrays.dat
 

@@ -1,7 +1,7 @@
 # Static reads for Appendix E, fourth batch (2026-11-20)
 
 Date: 2026-11-20. Evidence: **[bin]** (a disassembler read of the real client executables on the
-Mirae lab, with no client run). Only behaviour is given here. Covers App. E#203, E#206, E#311,
+lab host B, with no client run). Only behaviour is given here. Covers App. E#203, E#206, E#311,
 E#312 and E#507.
 
 Builds read: 2.05 rev 2 `Graal.exe`, 2.17.1, the real Windows 2.22 `Graal_222.exe`, 2.31 and the

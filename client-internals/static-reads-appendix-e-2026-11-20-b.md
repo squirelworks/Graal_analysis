@@ -1,6 +1,6 @@
 # Static reads for Appendix E, second batch (2026-11-20)
 
-Date: 2026-11-20. Evidence: **[bin]** (a disassembler read of the real executables on the Mirae
+Date: 2026-11-20. Evidence: **[bin]** (a disassembler read of the real executables on the lab host B
 lab, with no client run). Only behaviour is given here. Covers App. E#209, E#307, E#315 and E#421.
 
 Builds read: 1st Graal, 1.39, 2.05 rev 2 `Graal.exe` and 2.22 for the movement tables; 2.1 test 2,

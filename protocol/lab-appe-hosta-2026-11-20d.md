@@ -1,10 +1,10 @@
-# Appendix E lab runs on GwenTea2, fourth batch (2026-11-20)
+# Appendix E lab runs on lab host A, fourth batch (2026-11-20)
 
-Date: 2026-11-20. Evidence: **[lab]**. The GwenTea2 lab: the Debian VM, its Win10 guest and a macOS
+Date: 2026-11-20. Evidence: **[lab]**. The lab host A: the Debian VM, its Win10 guest and a macOS
 15 guest, on loopback only. No public service was contacted. The earlier batches are
-[`lab-appe-gwentea2-2026-11-20.md`](lab-appe-gwentea2-2026-11-20.md),
-[`lab-appe-gwentea2-2026-11-20b.md`](lab-appe-gwentea2-2026-11-20b.md) and
-[`lab-appe-gwentea2-2026-11-20c.md`](lab-appe-gwentea2-2026-11-20c.md).
+[`lab-appe-hosta-2026-11-20.md`](lab-appe-hosta-2026-11-20.md),
+[`lab-appe-hosta-2026-11-20b.md`](lab-appe-hosta-2026-11-20b.md) and
+[`lab-appe-hosta-2026-11-20c.md`](lab-appe-hosta-2026-11-20c.md).
 
 ## RC2 2.05's list of other RCs (E#424)
 

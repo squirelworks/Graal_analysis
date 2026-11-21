@@ -1,7 +1,7 @@
 # Static reads for Appendix E (2026-11-19)
 
 Date: 2026-11-19. Evidence: **[bin]** (a disassembler read of the real client executables on the
-Mirae lab, with no client run). Only behaviour is given here. Covers App. E#306, E#608, E#620,
+lab host B, with no client run). Only behaviour is given here. Covers App. E#306, E#608, E#620,
 E#328, E#307, E#10 and E#323. The probe-offset table that several of these lean on is in
 [link-probe-offsets-205-222-2026-11-19.md](../protocol/link-probe-offsets-205-222-2026-11-19.md).
 

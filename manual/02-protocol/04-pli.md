@@ -61,7 +61,7 @@ The *First sent* column of the tables below names the earliest build in this tab
 | 4.04r2 | 1, 2, 4–10, 12–19, 21–24, 26, 28, 29, 32, 33, 35–37, 41, 44, 50, 79–81, 92, 96, 130, 152, 154, 157, 158, 161 | floor | [inf][cap] (version-profiles/4.04-4.20.toml) |
 | 4.20r6 (Mac) | the 4.04r2 set plus 34, 46, 162 | floor | [inf][cap] (version-profiles/4.04-4.20.toml) |
 | 4.20r8 | 1, 2, 4–10, 12–19, 21–24, 26, 28, 29, 32, 33, 35–37, 41, 44, 50, 79–81, 92, 96, 130, 152, 154, 157, 158, 161, 162 | floor; some sends pass the id in a register | [bin] (protocol/v4x-clients.md#client--server-ids); [bin] (version-profiles/4.04-4.20.toml) |
-| 5.00r7 | 1, 2, 4–10, 12–19, 21–24, 26, 28, 29, 32–37, 41, 44, 47, 50, 79–81, 92, 93, 96–98, 130, 152, 154–159, 161 | floor; also sends 11 with an empty body on a throw (→ §2.4.2) | [bin] (protocol/v5x-clients.md#client--server-ids-500r7); [bin][cap] (version-profiles/5.00-6.03.toml); [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
+| 5.00r7 | 1, 2, 4–10, 12–19, 21–24, 26, 28, 29, 32–37, 41, 44, 47, 50, 79–81, 92, 93, 96–98, 130, 152, 154–159, 161 | floor; also sends 11 with an empty body on a throw (→ §2.4.2) | [bin] (protocol/v5x-clients.md#client--server-ids-500r7); [bin][cap] (version-profiles/5.00-6.03.toml); [lab] (protocol/lab-appe-hostb-2026-11-20.md#throw-id-on-500r7-e4) |
 | 5.12 | 1, 2, 11, 23, 24, 34, 37, 38, 44, 47, 157 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
 | 5.24r4 | the 5.12 set plus 158 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
 | 5.30r3 | 1, 11, 37, 38 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
@@ -71,14 +71,14 @@ The *First sent* column of the tables below names the earliest build in this tab
 | 6.034 | as 6.03r7 | inferred | [inf] (version-profiles/5.00-6.03.toml) |
 | 6.03r7 | 0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–162 | yes | [bin] (protocol/v6x-clients.md#client--server-ids-601-603); [bin] (version-profiles/5.00-6.03.toml) |
 
-**Settled question, formerly E#4: Whether 5.00r7 sends id 11.** Whether 5.00r7 sends `PLI_THROWCARRIED` (11) when the player throws was open, because two lists of its sent ids disagreed; a lab throw with the id recorded settled it [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4).
+**Settled question, formerly E#4: Whether 5.00r7 sends id 11.** Whether 5.00r7 sends `PLI_THROWCARRIED` (11) when the player throws was open, because two lists of its sent ids disagreed; a lab throw with the id recorded settled it [lab] (protocol/lab-appe-hostb-2026-11-20.md#throw-id-on-500r7-e4).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Claims | A: the send wrappers have no 11. B: the profile lists 11, and 5.12, 5.24r4 and 5.30r3 captures send it | [bin] (protocol/v5x-clients.md#client--server-ids-500r7); [bin][cap] (version-profiles/5.00-6.03.toml) |
 | Before | A static read found the backup engine's throw path sending 11 with an empty body | [bin] (client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) |
-| Settled | An unchanged 5.00r7, reaching the lab through a connect shim with its licence untouched, sent 11 with an empty body on each of 2 throws, after the lift's board change and ganis | [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
-| Verdict | Verified: Claim B holds; the wrapper list missed the throw path | [lab] (protocol/lab-appe-mirae-2026-11-20.md#throw-id-on-500r7-e4) |
+| Settled | An unchanged 5.00r7, reaching the lab through a connect shim with its licence untouched, sent 11 with an empty body on each of 2 throws, after the lift's board change and ganis | [lab] (protocol/lab-appe-hostb-2026-11-20.md#throw-id-on-500r7-e4) |
+| Verdict | Verified: Claim B holds; the wrapper list missed the throw path | [lab] (protocol/lab-appe-hostb-2026-11-20.md#throw-id-on-500r7-e4) |
 
 **Settled question, formerly E#6: client-to-server constants of 1.21 and 1.32.** Whether 1.21 sends id 14 and 1.32 sends id 22 was open, because two reads of their send sites disagreed; a static read of both send routines settled it [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6).
 
@@ -113,7 +113,7 @@ The id table above says which ids a build can send. The rules below add the exce
 
 A full read of the 1.21 and 1.32 send routines settled the earlier disagreement: 1.21 never sends 14, and 1.32 sends 22. Both also send 1 to 9 [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#client-to-server-ids-of-121-and-132-e6).
 
-The six Graal 2002 inputs in §1.1.5 were read for their send sites. ver7, ver8 and ver9 send 0–6, 9, 10, 12–14, 18, 19, 21–24, 26–30, 32–38, 80 and 81; ver10 and ver13 add 39; v22 sends 0–24, 26–30, 32–39, 80 and 81. ver7 to ver13 never send 7, 8, 11, 15, 16, 17 or 20, which matches their receive side. The token does not predict the set, so do not assign the 2.1 test or 2.17.1 row to these builds; when each id is sent is still open in App. E#15 [bin] (client-internals/static-reads-appendix-e-2026-11-20-mirae-final.md#client-to-server-ids-of-the-six-graal-2002-builds-e15-send-sites).
+The six Graal 2002 inputs in §1.1.5 were read for their send sites. ver7, ver8 and ver9 send 0–6, 9, 10, 12–14, 18, 19, 21–24, 26–30, 32–38, 80 and 81; ver10 and ver13 add 39; v22 sends 0–24, 26–30, 32–39, 80 and 81. ver7 to ver13 never send 7, 8, 11, 15, 16, 17 or 20, which matches their receive side. The token does not predict the set, so do not assign the 2.1 test or 2.17.1 row to these builds; when each id is sent is still open in App. E#15 [bin] (client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md#client-to-server-ids-of-the-six-graal-2002-builds-e15-send-sites).
 
 ## 2.4.3 Level navigation
 

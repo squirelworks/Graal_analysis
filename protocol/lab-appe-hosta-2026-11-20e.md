@@ -1,13 +1,13 @@
-# Appendix E lab runs on GwenTea2, fifth batch (2026-11-20)
+# Appendix E lab runs on lab host A, fifth batch (2026-11-20)
 
-Date: 2026-11-20. Evidence: **[lab]**. The GwenTea2 lab: the debian-lab446 Linux VM, on loopback
+Date: 2026-11-20. Evidence: **[lab]**. The lab host A: the debian-lab446 Linux VM, on loopback
 only. No public service was contacted. The earlier batches are
-[`lab-appe-gwentea2-2026-11-20.md`](lab-appe-gwentea2-2026-11-20.md) to
-[`lab-appe-gwentea2-2026-11-20d.md`](lab-appe-gwentea2-2026-11-20d.md).
+[`lab-appe-hosta-2026-11-20.md`](lab-appe-hosta-2026-11-20.md) to
+[`lab-appe-hosta-2026-11-20d.md`](lab-appe-hosta-2026-11-20d.md).
 
 ## Windows 4.04r2 pickup in offline mode under Wine (E#611)
 
-**Setup.** No Windows XP or 32-bit Windows 7 VM exists on GwenTea2, so the client ran under Wine 10
+**Setup.** No Windows XP or 32-bit Windows 7 VM exists on lab host A, so the client ran under Wine 10
 (32-bit loader, 32-bit prefix) inside the debian-lab446 VM, on a headless X server, in a network
 namespace with only loopback. The client was the extracted 4.04r2 install (the same build as the
 single-file 4.04r2 exe of the earlier labs); the executable and engine DLL were checked unchanged
@@ -59,10 +59,10 @@ for 4.04r2 on this machine.
   carried and thrown object is never drawn, so the throw itself is not visible.
 - Only the bush below the player was used; the three to the right sat partly under a palm's leaves.
 
-Compared with the Win10 guest runs (→ [`lab-appe-mirae-2026-11-20d.md`](lab-appe-mirae-2026-11-20d.md)),
+Compared with the Win10 guest runs (→ [`lab-appe-hostb-2026-11-20d.md`](lab-appe-hostb-2026-11-20d.md)),
 Wine with the OpenGL renderer gives a repeatable offline scene for 4.04r2.
 
 **State afterwards.** In debian-lab446 the Wine client, wineserver and X display were stopped and
 the work folder deleted; the VM was left running for other work. The work level, added files,
-frames, logs and run scripts are kept on GwenTea2 outside any repository. The client files are
+frames, logs and run scripts are kept on lab host A outside any repository. The client files are
 unchanged.

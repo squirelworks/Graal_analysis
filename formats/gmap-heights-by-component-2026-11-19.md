@@ -1,7 +1,7 @@
 # Which gmap readers take `HEIGHTS`: by engine component
 
 Date: 2026-11-19. Evidence: **[bin]** (a read-only look at the gmap section tokens of installed
-client components on the Mirae lab, with no client run). Closes App. E#606.
+client components on the lab host B, with no client run). Closes App. E#606.
 
 ## Question
 

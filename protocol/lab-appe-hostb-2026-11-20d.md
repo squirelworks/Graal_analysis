@@ -1,13 +1,13 @@
-# Appendix E lab runs on Mirae, batch 4 (2026-11-20)
+# Appendix E lab runs on lab host B, batch 4 (2026-11-20)
 
 Date: 2026-11-20. Evidence: **[lab]**, with one short **[bin]** read for E#302. Real clients ran
-under Wine in the Mirae Graal Linux RE Lab VM, each in its own network namespace with loopback
+under Wine in the lab host B the Linux lab VM, each in its own network namespace with loopback
 only, or (E#506) in the Mac OS X Tiger guest under QEMU with user-mode networking. The servers
 are the gs2emu lab worlds behind the `gen5probe` proxy, and for E#506 the Seihai gserver with
 its Graal3D mode on. No public service was contacted. Captures and screenshots stay in the lab.
-The earlier batches are [`lab-appe-mirae-2026-11-20.md`](lab-appe-mirae-2026-11-20.md),
-[`lab-appe-mirae-2026-11-20b.md`](lab-appe-mirae-2026-11-20b.md) and
-[`lab-appe-mirae-2026-11-20c.md`](lab-appe-mirae-2026-11-20c.md). Probe rows are appended to
+The earlier batches are [`lab-appe-hostb-2026-11-20.md`](lab-appe-hostb-2026-11-20.md),
+[`lab-appe-hostb-2026-11-20b.md`](lab-appe-hostb-2026-11-20b.md) and
+[`lab-appe-hostb-2026-11-20c.md`](lab-appe-hostb-2026-11-20c.md). Probe rows are appended to
 [`probe-results.tsv`](probe-results.tsv).
 
 ## Protocol 19 on the Mac 3.153 (E#506)
@@ -108,7 +108,7 @@ each shot. Flags = direction 2 (down) plus the bit under test.
   hit. So on this setup the owner field the static read compares was equal in every case (most
   likely 0 on both players); its identity is still not known.
 - A `noplayerkilling` level stopped every shot, with or without an owner.
-- Why the 2026-11-20 GwenTea2 sweep saw no hits is not settled by this run; its shot placement
+- Why the 2026-11-20 lab host A sweep saw no hits is not settled by this run; its shot placement
   and level were not repeated here.
 - An injected `PLO_PLAYERWARP` (14) to the other level left the 2.22 client on "loading" (no board
   follows it), so the `noplayerkilling` half was rerun with that level as the start level.
