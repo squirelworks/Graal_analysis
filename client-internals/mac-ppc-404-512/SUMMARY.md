@@ -1,6 +1,12 @@
-# Mac PPC 4.04r2 / 4.20r6 / 5.12: step rule and PLO sets (static read, 2026-11-13)
+# Mac PPC 4.04r2 / archived G3D27076 input / 5.12: step rule and PLO sets (static read, 2026-11-13)
 
 Address-free summary. Static disassembly only; no client was run.
+
+The input called "4.20r6" in this study is the archive-labelled `G3D27076`
+build. The [canonical catalogue](../version-token-catalogue.md) distinguishes
+that archive scope from the December 2006 Mac 4.20r6 input, `G3D21126`.
+Results below for `G3D27076` do not establish the latter's cipher step or
+handled set. This qualification does not infer binary identity from a shared token.
 
 ## Gen-5 frame cipher step rule
 
@@ -12,20 +18,20 @@ Every routine read has the same shape, in both directions (encode and decode):
 
 | Build | Compressed-body step | Source |
 |---|---|---|
-| Mac 4.20r6 (G3D27076) | **round down**, encode and decode | read directly |
+| Archive-labelled "Mac 4.20r6" (G3D27076) | **round down**, encode and decode | read directly; not the December G3D21126 input |
 | Windows 4.04r2 (G3D17026) | **not read**: no genuine Windows 4.04r2 engine was available for this read. The installer labelled "4.04r2 Windows" is byte-identical to the 4.20r8 Windows exe (Thinstall-packed). The nearest evidence is **round down**: Linux 4.04r2 (same release) and Windows 4.20r8 `GraalEngine.dll` both round down in encode and decode. | proxy |
 | Mac 4.04r2, Mac 5.12 | round down (re-confirmed) | read directly |
 | Windows 5.12 | round down (calibration; matches seihai) | read directly |
 
 The two rules differ only for a compressed body under 16 bytes with len % 4 != 0. The plaintext compression threshold does not by itself establish compressed-body length or whether traffic exercises that difference. This static read is not a discriminating capture or runtime-acceptance result.
 
-The original report's recommendation to update the consumer's Mac `gen5_round_down` rows is historical implementation advice, not evidence that current code still omits those rows. Check current profiles before repeating that work. The exact Windows 4.04r2 engine's static rule remains unproven here; sibling results do not replace that read.
+The original report's recommendation to update the consumer's Mac `gen5_round_down` rows is historical implementation advice, not evidence that current code still omits those rows. Check current profiles and exact input bindings before repeating that work. The December Mac 4.20r6 and exact Windows 4.04r2 engine rules remain unproven here; sibling or archive-label results do not replace those reads.
 
 ## PLO ids handled (server → client)
 
 - **Mac 4.04r2 (G3D18026), 97 ids:** 0–25, 27–40, 42, 43, 45–49, 67, 68, 69, 74, 75, 82, 84, 100, 101, 102, 104, 105, 106, 131–134, 150, 151, 153–156, 165, 166, 168–176, 178–187, 189, 190, 191, 193, 194, 195. One switch (bound 195); 100 is a switch case; there is no 107 or 108.
-- **Mac 4.20r6 (G3D27076), 99 ids:** Mac 4.04r2 + 107, 108 (100 and 108 are tested before a 97-case switch). This equals seihai's existing row.
-- **Mac 5.12 (G3D15097), 101 ids:** Mac 4.20r6 + 140, 197 (a 99-case switch with bound 197, plus 100 and 108 tested before it).
+- **Archive-labelled "Mac 4.20r6" (G3D27076), 99 ids:** Mac 4.04r2 + 107, 108 (100 and 108 are tested before a 97-case switch). The original report compared this with the consumer's then-existing row.
+- **Mac 5.12 (G3D15097), 101 ids:** the recorded G3D27076 set + 140, 197 (a 99-case switch with bound 197, plus 100 and 108 tested before it).
 
 Differences from the Windows sets that seihai borrows today:
 - Mac 4.04r2 vs Windows 4.04r2 (98): Mac **lacks 41**.
