@@ -1,8 +1,8 @@
-# Windows 5.12 under Wine: 91 selected own-prop canary cases
+# Windows 5.12 under Wine: 100 selected own-prop canary cases
 
 Date: 2026-11-21. **[lab]** Evidence ID `WINE512-WIDTHS-20261121` in the
-[evidence index](../docs/evidence-index.tsv). This is the `widths.plan` payload
-scan, not a complete semantic or width specification for 5.12.
+[evidence index](../docs/evidence-index.tsv). This covers the 91-case `widths.plan` scan and nine nonzero
+`widths-fix.plan` follow-ups, not a complete semantic or width specification for 5.12.
 
 ## Controlled run
 
@@ -55,11 +55,39 @@ match. Cases 51 and 83 have zero reset-reference distance. The baseline's 99
 distance is zero. This distinction is retained rather than reporting all
 three lost frames as identical to the reset control.
 
+## Nine nonzero follow-ups
+
+A separate authenticated session on the same client/server combination ran
+[`widths-fix.plan`](../tools/probe/lab/widths-fix.plan) at the same pinned
+revision. Fresh 1/99 references and an extra positive baseline passed the
+control gate before case execution. Independent review matched all 18 case
+injections, nine frames and nine liveness marks; the retained launcher records
+`PLAN_EXIT=0`. All ten scored regions, including baseline, were recomputed
+without disagreement. The local scoring port used the published ROI/distance
+rule; execution of the original Pillow scorer is not claimed.
+
+Eight cases landed: 24, 27, 28, 29, 30, 31, 36 and 42. Case 77 lost and
+exactly matched the reset reference (mean distances 0 to reset and about
+22.88 to 99). Each landed region matched its fresh 99 reference. The i3 cases
+used `16511`; cases 30 and 77 used `i5:2080768`; case 42 also prefixed `c:0`.
+The trailing bomb canary remained in the same injected message.
+
+The earlier all-zero body for 77 landed, while this nonzero body lost.
+Consequently the earlier acceptance does **not** establish a five-byte value
+width for 77. This agrees with the separate core slice's failed i5 and landed
+single-byte probes without proving complete value semantics.
+
+Together the two slices contain **100 cases: 96 landed, four lost and zero
+unclear**. The two extra baseline controls are not cases. The 91-case lost
+case 76 retains its non-exact threshold qualification above; it is not an
+exact reset match. These counts exclude the separate 32-case core slice.
+
 ## Limits and remaining plans
 
 - [x] The 91 selected `widths` payloads on Windows 5.12 under Wine, with
   authenticated entry, calibrated controls and reviewed per-case outputs.
-- [ ] `widths-fix`: the nine follow-up cases have not been run in this slice.
+- [x] The nine selected nonzero `widths-fix` follow-ups, with fresh controls
+  and independent receipt review; no complete-width claim follows.
 - [ ] `bytes2x` and `baddytypes` on this client.
 - [ ] Reconcile `loadgani3w` with the eight existing 5.12 PLO 195 rows before
   another GANI coverage claim or repeat run.
@@ -67,7 +95,7 @@ three lost frames as identical to the reset control.
   and exact widths beyond what these selected canary bodies discriminate.
 
 The separate [32-case core slice](https://github.com/squirelworks/Graal_analysis/pull/759)
-has its own payloads and evidence; its counts are not merged into the 91 here.
+has its own payloads and evidence; its counts are not merged into the 100 here.
 G424 and G191 remain open for their wider scopes. Raw screenshots, logs,
 client binaries, artifact digests and private retrieval details stay outside
 the public repository. No additional lab run was needed for publication.

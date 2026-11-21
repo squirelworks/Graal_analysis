@@ -15,9 +15,9 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 
 ## Columns
 
-2026-11-21 update: G424 has a [91-case selected own-prop scan on Windows
-5.12 under Wine](../protocol/probe-wine512-widths-2026-11-21.md), with 88 landed
-and three lost canaries. This is partial coverage, not a full width/semantic
+2026-11-21 update: G424 has a [100-case selected own-prop scan on Windows
+5.12 under Wine](../protocol/probe-wine512-widths-2026-11-21.md), with 96 landed
+and four lost canaries across the 91-case scan and nine nonzero follow-ups. This is partial coverage, not a full width/semantic
 table; G424/G191 and the remaining plans stay open.
 
 | Column | Meaning |

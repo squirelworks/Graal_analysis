@@ -4983,3 +4983,12 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-21	win-5.12 (wine)	s2c	9	51	9 c:51  c:5 c:99	no	yes	not scored	same-message trailing canary lost; matches reset reference	wine512-widths-2026-11-21	id51
 2026-11-21	win-5.12 (wine)	s2c	9	20	9 c:20 str:probe_start.nw c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id20
 2026-11-21	win-5.12 (wine)	s2c	9	14	9 c:14 s:1 c:5 c:99	yes	yes	not scored	same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-2026-11-21	id14
+2026-11-21	win-5.12 (wine)	s2c	9	24	9 c:24 i3:16511 c:5 c:99	yes	yes	not scored	nonzero same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-fix-2026-11-21	id24
+2026-11-21	win-5.12 (wine)	s2c	9	27	9 c:27 i3:16511 c:5 c:99	yes	yes	not scored	nonzero same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-fix-2026-11-21	id27
+2026-11-21	win-5.12 (wine)	s2c	9	28	9 c:28 i3:16511 c:5 c:99	yes	yes	not scored	nonzero same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-fix-2026-11-21	id28
+2026-11-21	win-5.12 (wine)	s2c	9	29	9 c:29 i3:16511 c:5 c:99	yes	yes	not scored	nonzero same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-fix-2026-11-21	id29
+2026-11-21	win-5.12 (wine)	s2c	9	31	9 c:31 i3:16511 c:5 c:99	yes	yes	not scored	nonzero same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-fix-2026-11-21	id31
+2026-11-21	win-5.12 (wine)	s2c	9	36	9 c:36 i3:16511 c:5 c:99	yes	yes	not scored	nonzero same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-fix-2026-11-21	id36
+2026-11-21	win-5.12 (wine)	s2c	9	30	9 c:30 i5:2080768 c:5 c:99	yes	yes	not scored	nonzero same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-fix-2026-11-21	id30
+2026-11-21	win-5.12 (wine)	s2c	9	77	9 c:77 i5:2080768 c:5 c:99	no	yes	not scored	nonzero same-message trailing canary lost; matches reset reference	wine512-widths-fix-2026-11-21	id77
+2026-11-21	win-5.12 (wine)	s2c	9	42	9 c:42 c:0 i3:16511 c:5 c:99	yes	yes	not scored	nonzero same-message trailing bomb canary 99 visible; selected payload only	wine512-widths-fix-2026-11-21	id42
