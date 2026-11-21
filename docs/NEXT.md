@@ -242,7 +242,7 @@ Every open gap, including the boxes below, is also on the [research gap board](g
     - [x] ~~Record the separate Windows 5.12 `widths` payload scan under Wine.~~ [100 selected cases across widths and nonzero follow-ups](../protocol/probe-wine512-widths-2026-11-21.md), not a complete width/semantic specification or completion of the builds listed above.
 
     - [x] ~~Add the separate Windows 5.12 `wine-core` slice under Wine.~~ [32 measured cases](../protocol/probe-wine512-core-2026-11-21.md), not the full width table or completion of the builds listed above.
-  - [ ] Settle or relabel ledger rows, starting with the 2.14–2.16 and 6.00r2/r4/6.015 client-id sets in §2.4.
+  - [x] ~~Relabel the 2.14–2.16 and Windows 6.00r2/r4/6.015 client-id rows in §2.4.~~ [Evidence limits](../protocol/client-id-inference-scope.md): outgoing sets stay inferred; receive-switch reads and captured token associations are separate claims. The remaining per-build measurements are listed in that note; other ledger rows remain open.
 
 - [x] **Mac PowerPC start-up and input.** ~~Carry the one-shot engine timer, event registration and the input translator for 4.04r2, 4.20r6 and v5.~~ [Source](../client-internals/mac-ppc-startup-input-2026-11-09.md).
   - [ ] Read the v5 end consumers per event type, the key lookup table and the two post-window start-up helpers; then observe input delivery in a guest.

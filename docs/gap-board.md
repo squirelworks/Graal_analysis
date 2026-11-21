@@ -40,6 +40,12 @@ will be wrong. Many boxes are older than the batches that may have answered them
 source note and `INDEX.md` for a newer note before starting, and if the gap is already
 answered, tick the box in the source with a link instead of redoing it.
 
+2026-11-21 update: **G192's named starting rows were relabelled**, not measured.
+The [client-id evidence reconciliation](../protocol/client-id-inference-scope.md)
+keeps their outgoing sets inferred, separates Windows and Mac 6.015, and corrects
+the stale Windows token-evidence label. The note lists the remaining per-build
+measurements; other inference-ledger rows and G168's broader identity work remain open.
+
 ## Counts
 
 | Kind | Items |
