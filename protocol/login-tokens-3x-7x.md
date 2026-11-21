@@ -45,7 +45,7 @@ The token can be read from the binary without running the client. This section r
 - For the 2.x Delphi clients, the character-immediate scan in [graal2002-and-140-builds.md](../client-internals/graal2002-and-140-builds.md) applies.
 - Packed Windows 4.x clients: the 4.03r3, 4.04r2 and 4.11 `Graal4Setup.exe` downloads are Thinstall 2.x packages that hold the whole client. A memory image taken under Wine reads with the same connect-routine method. Since 2026-11-13 the files can also be unpacked without running anything ([tools/thinstall-unpack](../tools/thinstall-unpack/)), and `g3dref.py` on the unpacked `GraalEngine.dll` gives the same tokens: 4.03r3 `G3D09125`, 4.04r2 `G3D17026` (the wire token) and 4.11 `G3D26076` ([note](v4x-windows-403r3-411.md)).
 
-**Checked against tokens seen on the wire** (2026-11-13): Linux 4.04r2 `G3D19026`, Linux 4.20r6 and 4.20r8 (2007-01-17) `G3D22126`, Linux 6.01r1 x86 and x64 `G3D0108A`, Windows 4.04r2 `G3D17026`, Windows 4.20r8 `G3D20126`, Windows 5.12 `G3D14097`. All match. Linux 3.0beta and 3.01 also give the listed `G3D16053` and `G3D27063`.
+**Checked against tokens seen on the wire** (2026-11-13): Linux 4.04r2 `G3D19026`, Linux 4.20r6 and 4.20r8 (2007-01-17) `G3D22126`, Linux 6.01r1 x86 and x64 `G3D0108A`, Windows 4.04r2 `G3D17026`, Windows 4.20r8 `G3D20126`, Windows 5.12 `G3D14097`. All match. Separately, static connect-routine reads of Linux 3.0beta and 3.01 recovered `G3D16053` and `G3D27063`; these catalogue B records are not wire captures. **[bin]**
 
 **New reads** (2026-11-13, from copies of the official downloads; all in the [catalogue](../client-internals/version-token-catalogue.md)): Linux 3.151 `G3D27015`, Linux 4.03r1 `G3D11125`, Linux 4.10r2 and 4.11 `G3D28076`, Linux 4.20r8 (2007-01-15) `G3D22126`, the June 2011 Linux beta (x86 and x64, probably 6.00r4) `G3D28090`, Windows 4.03r3 `G3D09125` and Windows 4.11 `G3D26076` (both from the memory image), and the public Windows 2.1.0.0 `GNW31101`. Mac (Mach-O, same connect-routine method; PPC addresses followed through register pairs): 4.10r2 `G3D27076`, 4.20r6 (2006-12-21) `G3D21126`, 6.004 `G3D27090`, 6.015 `G3D3107A`. This Mac reader was first checked against the wire tokens of Mac 4.04r2 `G3D18026`, 5.12 `G3D15097` and the 2006-09-19 build `G3D27076`. Linux 4.11 and Windows 4.11 send different tokens, as other platform pairs do. The Mac and Windows 6.015 tokens, and the Mac 6.004 and Linux beta tokens, differ by one day.
 
@@ -97,9 +97,10 @@ The Graal3D of February 2000 is a different program. It is a DirectX client with
 
 - [ ] Try the 3.x `G3D30123` listserver login against a public listserver on 14922, then 14923, to settle the "assumed" port status. Owner approval is needed for a public login (see `AGENTS.md`).
 - [ ] Read the join password and arguments that 3.153 and 4.20r6 put in their Torque connect request. Both are still "not traced"[^net].
-- [ ] Find a 3.0 or 3.01 binary. Their tokens (`G3D16053`, `G3D27063`) and the type-4, gen-4 login are known only from gs2lib's table[^gs2].
+- [x] ~~Find a 3.0 or 3.01 binary.~~ Published Linux 3.0beta and 3.01 reads recovered `G3D16053` and `G3D27063` statically on 2026-11-13 ([catalogue](../client-internals/version-token-catalogue.md)); the [2026-11-16 installer study](../version-profiles/batch-linux-3x-clean-installers-2026-11-16.md) records the unpacked inputs. **[bin][file]**
 - [ ] Confirm, with build dates, that the 2010+ year character is a hex digit.
 - [ ] The Torque game layer after the accept: the `GameObject` property map, the rotation packing, and the movement and shape payloads[^wire].
+- [ ] Observe an original Linux 3.0beta or 3.01 type-4 login and gen-4 framing in an isolated lab. The server-table association is not a client capture; see the [remaining transport question](../version-profiles/batch-linux-3x-clean-installers-2026-11-16.md#open-still).
 
 ## Notes
 

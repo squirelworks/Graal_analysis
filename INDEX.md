@@ -4,6 +4,9 @@ Every research note in this repository, listed by topic and roughly in the order
 
 When you add a note, add a line for it here in the same pull request.
 
+- [2.14–2.16 documentary feature attribution](client-internals/214-216-feature-evidence.md) — release-note feature families, documentary token associations and the reference server's large-file gate; revision and native-client limits remain explicit.
+- [Client-id inference limits: 2.14–2.16 and Windows 6.00–6.015](protocol/client-id-inference-scope.md) — separate outgoing-set hypotheses from receive-switch reads and captured token associations; Windows and Mac 6.015 remain distinct.
+- [Windows 5.12 core probes under Wine](protocol/probe-wine512-core-2026-11-21.md) — 32 controlled cases, 29 landed and three lost canaries; selected own-prop alignment and five PLO ids, with the wider campaign still open.
 - [Research gap board (2026-11-20)](docs/gap-board.md) — every open gap in one claimable table ([`gap-board.tsv`](docs/gap-board.tsv)): 426 items from Appendix E, the open task boxes and the open-questions tables, each marked static, lab, owner or missing, with a lab queue per VM and the first static picks; index.
 - [Planned experiments (2026-11-20)](docs/experiments.md) — the queued lab runs, step by step, and every lab row on the board by VM
 - [Ranged baddy kills on 1.21 and 2.17.1, and sword against sword on 2.22](live-runs/drops-2026-11-20/README.md) — 1.21 rolls a real ground drop when an archer dies (heart, darts or gralat) and the kill counter does not change; 2.17.1 drops nothing (0 in 4); the 2.22 sword spark is still not caught; lab.
@@ -21,6 +24,7 @@ When you add a note, add a line for it here in the same pull request.
 - [Scripted weapons on 5.00r7 / 5.12](protocol/scripted-weapons-5x-status.md) — classic vs modern delivery ids; transitional 5.x handles both; stock path / #55 open; research #5; static status.
 - [v4 GUI windows after server-warp](protocol/v4-gui-survive-serverwarp.md) — C5 lead: Login GUI may survive 178 unless hidden; loopback confirm open; research #56; static status.
 - [Large-file thresholds on focus builds](protocol/large-file-thresholds-focus.md) — 64000 / 32000 / LARGEFILE\* ladder for 1.39–6.037; token-table trap; consolidates file-transfer + labs; static + prior lab.
+- [File defaults and receive-case evidence](protocol/file-profile-evidence-2026-11-21.md) — recorded 1.41r1 generation/direct cases; 2.22/2.31 shared-default provenance; server gates and directional captures kept separate; no new run.
 - [v4 Login account contract (4.20r8)](protocol/v4-login-account-contract.md) — typed account on first Login vs 5.x/6.x guest-first; open stock-UI / script-API rows; consolidates C4 status; static + prior lab.
 - [Player-prop parsers on 5.00r7 / 5.12](protocol/player-props-5x-status.md) — case sets settled (+82); widths and pyreborn P4–P6 open; research #6; static status.
 - [Ids sent by 5.12 / 2.31 id 44](protocol/ids-sent-512-status.md) — S→C vs C→S 44 on 2.31 settled; 5.12 send floor still cap-only; research #17; static status.
@@ -56,6 +60,7 @@ When you add a note, add a line for it here in the same pull request.
 - [Combat, baddy and lava rules, 1.21 to 2.31](client-internals/combat-baddy-tile-by-version.md) — the inclusive 2-tile sword edge, AP immunity from 1.34, raw sword power before 2.03, the 1.x client item roll when a baddy dies, lava from 1.28 beta 2, the swamp-soldier window change in 2.01, the sword-clash spark; static, one live 1.39 check.
 - [Reference-fork ghost-mode options](server-notes/ghost-mode-options-2026-11-21.md) — tracked defaults, staff selection and concrete packet/property consumers; G067 remains partial.
 - [Reference-fork tile-category options](server-notes/tile-category-options-2026-11-21.md) — tracked global/per-level selection, terrain precedence and concrete wall/swimming consumers; G067 remains partial.
+- [Account-start placement clarification](client-internals/feature-specs/05-save-load.md#reference-fork-account-placement-2026-11-22) — pinned template/override gates, save limits and separate recovery routes in the existing save/load note; G067 remains partial.
 - [Game rules of the 1999 servers](server-notes/gserver-1999-rules.md) — GServer 1.28 beta 2 and 1.3: each client message, bush regrowth, horses, leaders, deaths, alignment, baddy start modes and the kill cost, and where GServer-v2 differs; static.
 - [Update cadence of the 3.x, 4.x and 6.x clients](client-internals/update-cadence-3x-6x.md) — every build steps every 50 ms; how each loop handles falling behind; GS1 `timeout` counts whole steps, rounded down; lab.
 - [NPC GS2 across gmap re-entry (gap #22)](protocol/npc-gmap-reentry-status.md) — Seihai restarts; real-client survive-vs-restart lab still open.

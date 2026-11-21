@@ -5866,3 +5866,4 @@ formats/gr-v105-served-canary-links-2026-11-21.md	GR105-WINE512-CANARY-LINKS	evi
 formats/gr-v105-served-canary-links-2026-11-21.md	GR105-WINE524-CANARY-LINKS	evidence identifier for the separate ambiguous Wine runtime, not a protocol term
 formats/height-transport-scope-2026-11-21.md	efaabb30	GPL helper dependency commit used for source attribution, not a Graal protocol term
 server-notes/tile-category-options-2026-11-21.md	0cf8f83d0ac658299abb4a9c93dab99cca805f37	Pinned GPL source commit for attribution, not a Graal protocol or configuration term.
+client-internals/feature-specs/05-save-load.md	0cf8f83d0ac658299abb4a9c93dab99cca805f37	GPL reference-fork source pin; placement behavior is carried in section 3.7.6, not a Graal version claim

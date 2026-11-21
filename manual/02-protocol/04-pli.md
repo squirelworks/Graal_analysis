@@ -52,7 +52,7 @@ The *First sent* column of the tables below names the earliest build in this tab
 | 2.02 rev2 | 0–24, 26–30, 32–37, 80, 81 | yes: every game-client send passes a constant id | [bin] (version-profiles/pli-sent-ids-by-build-20x.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/pli_sent_ids_by_build.tsv) ; [bin] (version-profiles/pli-send-sites-141-217.md#result) |
 | 2.03, 2.04, 2.05 (rev0–rev2), 2.1 test 2 and test 3 | 0–24, 26–30, 32–38, 80, 81 | yes: every game-client send passes a constant id | [bin] (version-profiles/pli-sent-ids-by-build-20x.tsv) ; [bin] (client-internals/decomp-findings-2026-10-24-c/pli_sent_ids_by_build.tsv) ; [bin] (version-profiles/pli-send-sites-141-217.md#result) |
 | NewWorld beta 1, beta 2 | the 2.1 test set without 7, 8, 11, 15, 16, 17, 20; settled → §2.4.2 | yes: no send passes the id in a register; neither beta sends 8 or 20 | [bin] (client-internals/version-profiles/141-217.toml); [bin] (client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#newworld-beta1--beta2) ; [bin] (version-profiles/pli-send-sites-141-217.md#result) |
-| 2.14 to 2.16 | the 2.1 set plus 41 | inferred; no binaries of 2.1 to 2.16 in the archive | [inf] (client-internals/version-profiles/141-217.toml) |
+| 2.14 to 2.16 | profile hypothesis: the inherited 2.1-line set plus 41 | inferred; no exact 2.14–2.16 send-site read or outgoing capture establishes this set | [inf] (protocol/client-id-inference-scope.md#214216-retain-the-send-set-hypothesis) |
 | 2.17 (the 2.17.1 binary) | 0–24, 26–30, 32–41, 43–45, 80, 81 | yes: every game-client send passes a constant id | [bin] (client-internals/version-profiles/141-217.toml) ; [bin] (version-profiles/pli-send-sites-141-217.md#result) |
 | 2.22 | 0–24, 26–30, 32–35, 37–41, 43, 44, 80 | floor; 36, 42 and 45 not matched to a call site | [bin][cap] (version-profiles/2.22-2.31.md#wire-protocol); [bin] (version-profiles/2.22-2.31.toml) |
 | 2.31 | the 2.22 set without 21, plus 46 | floor | [bin][cap] (version-profiles/2.22-2.31.md#wire-protocol); [bin] (version-profiles/2.22-2.31.toml) |
@@ -66,10 +66,13 @@ The *First sent* column of the tables below names the earliest build in this tab
 | 5.24r4 | the 5.12 set plus 158 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
 | 5.30r3 | 1, 11, 37, 38 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
 | 5.31r4 | 2, 37 (seen in capture) | floor | [cap] (version-profiles/5.00-6.03.toml) |
-| 6.00r2, 6.00r4, 6.015 | 0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–159, 161, 162 | inferred from the 6.01 and 6.03 reads | [inf] (version-profiles/5.00-6.03.toml) |
+| 6.00r2, 6.00r4 Windows | proposed: 0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–159, 161, 162 | inferred from Linux 6.01r1; their own receive-switch reads and login observations do not establish this outgoing set | [inf] (protocol/client-id-inference-scope.md#windows-600r2r4-receive-reads-do-not-settle-outgoing-ids) |
+| 6.015 Windows profile (6.007 / 6.015 builds) | same proposed set as the preceding row | inferred from Linux 6.01r1; the captured Windows token association does not validate packet sets; excludes Mac 6.015 | [inf] (protocol/client-id-inference-scope.md#windows-60076015-and-mac-6015-separate-the-identities) |
 | 6.01r1 | the 6.03r7 set without 160 | unmeasured | [bin] (protocol/v6x-clients.md#client--server-ids-601-603) |
 | 6.034 | as 6.03r7 | inferred | [inf] (version-profiles/5.00-6.03.toml) |
 | 6.03r7 | 0–20, 22–24, 26–30, 32–38, 41, 44–48, 50, 79, 92, 93, 96–98, 130, 152, 154–162 | yes | [bin] (protocol/v6x-clients.md#client--server-ids-601-603); [bin] (version-profiles/5.00-6.03.toml) |
+
+Token associations, receive-switch ids and outgoing sets have separate evidence. The 2.14–2.16 and Windows 6.00r2/r4/6.015 rows above remain hypotheses; a named sibling's complete set does not make them complete. Windows 6.007 and 6.015 now have a captured token association, superseding the profile's earlier “never captured” description, while their packet-set inference flags remain [inf][cap] (protocol/client-id-inference-scope.md).
 
 **Settled question, formerly E#4: Whether 5.00r7 sends id 11.** Whether 5.00r7 sends `PLI_THROWCARRIED` (11) when the player throws was open, because two lists of its sent ids disagreed; a lab throw with the id recorded settled it [lab] (protocol/lab-appe-hostb-2026-11-20.md#throw-id-on-500r7-e4).
 
