@@ -4,6 +4,7 @@ Every research note in this repository, listed by topic and roughly in the order
 
 When you add a note, add a line for it here in the same pull request.
 
+- [Client-id inference limits: 2.14–2.16 and Windows 6.00–6.015](protocol/client-id-inference-scope.md) — separate outgoing-set hypotheses from receive-switch reads and captured token associations; Windows and Mac 6.015 remain distinct.
 - [Windows 5.12 core probes under Wine](protocol/probe-wine512-core-2026-11-21.md) — 32 controlled cases, 29 landed and three lost canaries; selected own-prop alignment and five PLO ids, with the wider campaign still open.
 - [Research gap board (2026-11-20)](docs/gap-board.md) — every open gap in one claimable table ([`gap-board.tsv`](docs/gap-board.tsv)): 426 items from Appendix E, the open task boxes and the open-questions tables, each marked static, lab, owner or missing, with a lab queue per VM and the first static picks; index.
 - [Planned experiments (2026-11-20)](docs/experiments.md) — the queued lab runs, step by step, and every lab row on the board by VM
