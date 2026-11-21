@@ -61,6 +61,9 @@ jobs:
           fi
 
       - name: Leak check — no lab names, home paths or binary addresses
+        env:
+          LAB_LEAK_DENYLIST: ${{ secrets.LAB_LEAK_DENYLIST }}
+          LAB_LEAK_REQUIRE_DENYLIST: ${{ github.event.pull_request.head.repo.fork != true }}
         run: python .github/scripts/check_lab_leaks.py
 
       - name: pytest tools/lab-servers
@@ -196,6 +199,9 @@ jobs:
 
       # The built manuals in the tree are scanned as text for lab names.
       - name: Leak check — no lab names in the tracked PDFs
+        env:
+          LAB_LEAK_DENYLIST: ${{ secrets.LAB_LEAK_DENYLIST }}
+          LAB_LEAK_REQUIRE_DENYLIST: ${{ github.event.pull_request.head.repo.fork != true }}
         run: python .github/scripts/check_lab_leaks.py --pdf
 
       - name: Build the reference manual PDF
