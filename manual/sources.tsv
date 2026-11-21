@@ -877,7 +877,7 @@ version-profiles/lab-mac-v6-6015-lion-2026-11-16.md	cited	1; E	1; E
 version-profiles/lab-serverwarp178.tsv	cited	2.4; 2.5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-showimg24-relay.tsv	cited	2.4; 2.5; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/lab-v5-2026-10-30.md	cited	C; 1	1; C	
-version-profiles/linux-network-bootstrap-evidence.md	cited	1	1	Gate meanings and limits carried in1.10; exact identities and evidence lineage remain in source note/dataset.
+version-profiles/linux-network-bootstrap-evidence.md	cited	1	1	Gate meanings and limits carried in1.9.2; frozen exact-input snapshot and later source-qualified cohorts remain separate, with executable binding unresolved.
 version-profiles/linux-teardown.md	excluded			tooling verification and preflight handoff; client results need individual review
 version-profiles/macos-client-compatibility.md	cited	1	1.9; E	framework dependencies summarized by role; lab-machine preparation remains outside the reference manual
 version-profiles/macos-resource-identity.md	cited	1	1.9; E	bounded regular-file identity carried; private manifests and method bookkeeping stay in the source note
