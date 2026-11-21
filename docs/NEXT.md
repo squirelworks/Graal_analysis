@@ -101,6 +101,7 @@ Every open gap, including the boxes below, is also on the [research gap board](g
 - [x] **Player-prop parsers 5.00r7 / 5.12 (#6 status).** ~~Case sets settled in v5-props (+82 only vs 4.x); value widths and P4–P6 leads open.~~ [Note](../protocol/player-props-5x-status.md).
 
 - [x] **Ids sent by 5.12; 2.31 id-44 (#17 status).** ~~2.31 S→C 44 dropped / C→S 44 kept; 5.12 send floor still cap-only; E#4 id 11 settled static on 5.00r7.~~ [Note](../protocol/ids-sent-512-status.md).
+  - [x] ~~Reconcile the 5.00r7 wrapper list with its separately traced throw path and published two-throw lab.~~ G257 editorial complete; G256 retains the controlled 5.12 comparison, and G255's genuine-engine send-code census remains open.
 
 - [x] **Update packages after login (status).** ~~159 / 47 / .gupd beyond base?~~ Wire ids and GServer-v2 chain settled; client 159 layout + seihai handlers open. [Note](../protocol/update-packages-focus-status.md); gap #28.
 
