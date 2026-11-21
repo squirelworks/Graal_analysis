@@ -188,7 +188,7 @@ G186	docs/NEXT.md	line 222	Client test harness (#398): run 4.20r8, 5.00r7, 5.12,
 G187	docs/NEXT.md	line 227	Settle E#209 (opcode 54, waitfor timeout) and E#423 (1999 server open points).	static	static: cloud or a host (lab host A/B)	high	free
 G188	docs/NEXT.md	line 229	Builds with no binary (#439). Catalogue the client hunt and keep the no-binary profiles honest.	umbrella	-	high	free
 G189	docs/NEXT.md	line 232	Still with no executable: 1.391, 2.12 to 2.16, 2.18 to 2.21, 2.3 and 4.02.11. Record the search for copies of the official downloads, including searches that found nothing.	missing	-	high	free
-G190	docs/NEXT.md	line 233	Date each 2.1x feature to a token from newfeatures200x.txt and the GServer-v2 version branches.	static	static: cloud or a host (lab host A/B)	high	free
+G190	docs/NEXT.md	line 233	Date each 2.1x feature to a token from newfeatures200x.txt and the GServer-v2 version branches.	static	static: cloud or a host (lab host A/B)	high	partial: selected 2.14–2.16 documentary feature families (2026-11-21)
 G191	docs/NEXT.md	line 239	The same probe on 4.20r8, 5.24r4 and 6.037 under Wine, the 0–90 self-prop width table, and a GS2 read-back of player.rupees (next batches).	static+lab	Win10 VM on lab host B or Linux VM (Wine)	high	free
 G192	docs/NEXT.md	line 240	Settle or relabel ledger rows, starting with the 2.14–2.16 and 6.00r2/r4/6.015 client-id sets in §2.4.	static	static: cloud or a host (lab host A/B)	high	free
 G193	docs/NEXT.md	line 243	Read the v5 end consumers per event type, the key lookup table and the two post-window start-up helpers; then observe input delivery in a guest.	static+lab	Win10 VM on lab host B or Linux VM (Wine)	high	free
