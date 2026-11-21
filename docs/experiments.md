@@ -148,8 +148,16 @@ frames.**
 - **Closes:** G092.
 
 **S3. The lab gserver's GR-V1.05 reader.**
-- **Steps:** fix the reader first. Then serve a multi-layer level to 5.12 and 6.03r7 and compare
-  the screens.
+- **Prerequisite:** the reader and malformed-link repairs already landed in
+  [seihai-gserver-v2 #118](https://github.com/squirelworks/seihai-gserver-v2/pull/118).
+  Use a build containing `eea7a0b2`; the [source audit](../formats/gr-v105-fuzz-2026-11-19.md#source-repair-reconciled-on-2026-11-21-srv)
+  does not establish a live serve.
+- **Steps:** serve a generated multi-layer level to 5.12 and 6.03r7 with that repaired build.
+  Compare the loaded boards, delivered layers and drawn cells separately; retain a single-layer
+  positive control and record the exact server commit. The earlier 5.24r4 repaint issue remains
+  a separate qualification if that client is included.
+- **Expected output:** a per-client result distinguishing file loading, layer delivery and drawing.
+  G226 and the live portion of G227 remain open until that result is measured.
 - **Record in:** `formats/gr-v105-fuzz-2026-11-19.md` and
   `formats/gr-v105-empty-tiles-2026-11-16.md`.
 
@@ -323,8 +331,8 @@ the same rows as a task list. Read the source line before you start.
 | G096 | lab | Why 1.39 closes on F6 when the server is the loopback address. | `client-internals/gui-windows-fkeys.md` line 185 | free |
 | G159 | static+lab | A readable window for the width canary (Wine virtual desktop): rc2004 and rc3 both render black/unreadable, so CAN01–06 is unknown, not failed. | `docs/NEXT.md` line 76 | free |
 | G160 | lab | rc205 (RC2 2.05) — blocked by a Wine/GTK Pango font failure; staging fix needed. | `docs/NEXT.md` line 77 | free |
-| G226 | lab | Live serve of a multi-layer file to 5.12 / 6.03r7. Tried 2026-11-19, but our lab gserver misreads GR-V1.05 (four-byte skew); see gr-v105-fuzz-2026-11-19.md. [lab] | `formats/gr-v105-empty-tiles-2026-11-16.md` line 33 | free |
-| G227 | static+lab | Fix the lab gserver's readPackedIntegral guards and the link-line exception, then re-run the level | `formats/gr-v105-fuzz-2026-11-19.md` line 80 | free |
+| G226 | lab | Live serve of a multi-layer file to 5.12 / 6.03r7 remains unmeasured; the source repair landed in seihai-gserver-v2 #118. [lab][srv] | `formats/gr-v105-empty-tiles-2026-11-16.md` line 33 | free |
+| G227 | static+lab | Re-run the level walk with the repaired lab gserver; reader and link-line source repairs landed in seihai-gserver-v2 #118. [srv] | `formats/gr-v105-fuzz-2026-11-19.md` Still open: level walk | Codex server (source reconciliation only; live run unclaimed) |
 | G284 | lab | Tooling for this now exists: tools/probe/ncprobe.py is a cipher-free NCL11012 proxy that logs every NC packet both ways and can inject/drop on either side (selftest tools/probe/ncselftest.py). tools/probe/lab/runnc.sh + lab/nc-core.plan drive it against nc7132001 / the Jan-2002 builds. Running the f | `protocol/nc-write-ops-status.md` line 38 | free |
 | G292 | lab | Optional: unknown own-id long-value desync lab (called out in v5-props.md). | `protocol/player-props-5x-status.md` line 36 | free |
 | G298 | static+lab | A readable window for the width canary on the 2004 RC and RC3 (Wine virtual desktop). | `protocol/rc-fuzz-2026-11-19.md` line 118 | free |
