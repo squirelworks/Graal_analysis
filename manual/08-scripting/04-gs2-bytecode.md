@@ -337,6 +337,8 @@ The rules below say what follows for a client and a compiler, and where the evid
 
 The script fuzz of → §8.3.10 also sent every byte that no compiler emits, the fold bytes written raw, and damaged containers. The tables give what each client did [lab] (protocol/script-fuzz-2026-11-19.md#gs2-what-each-undispatched-byte-does).
 
+The separate 5.00r7 static study already describes 48's object construction and incrementing counter and 49's list construction. The retained backup-engine reread (`W500-OP48-49-REREAD-20261122`) corroborates those broad effects without independently rebinding the conversion constant or insertion target. These are static findings, not a completed runtime test or genuine 5.12 contract [bin] (protocol/gs2-client-only-opcodes.md#48-and-49-retained-500r7-backup-engine); [bin] (client-internals/static-reads-appendix-e-2026-11-20-b.md#gs2-opcodes-48-49-and-54-on-500r7-e209).
+
 | Rule | 6.03r7 Linux | 5.24r4, 4.20r8 | Source |
 | --- | --- | --- | --- |
 | a byte with no handler | crashes the client about 0.2 s after the script starts: bytes 12–19, 28, 29, 48, 49, 55–59, 105–109, 122–129, 143–149, 152–162, 165–179, 185–188 and 191–199; the threaded dispatch has no guard in front of an empty handler slot | runs as a no-op through the switch default; a value pushed before it survives | [lab] (protocol/script-fuzz-2026-11-19.md#gs2-what-each-undispatched-byte-does) |
