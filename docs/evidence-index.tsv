@@ -133,3 +133,4 @@ GR105-NATIVE603-POSITIVE	linux	generated-fixture-loopback-packets-and-visual-obs
 GR105-NATIVE603-CANARY-LINKS	linux	generated-fixture-parser-canary-and-physical-link-return
 GR105-WINE512-CANARY-LINKS	windows-wine	generated-fixture-parser-canary-and-physical-link-return
 GR105-WINE524-CANARY-LINKS	windows-wine	generated-fixture-repaint-ambiguity-and-physical-link-return
+RC2005-SEND-STATIC-20261121	linux	static-disassembly-and-bounded-data-review

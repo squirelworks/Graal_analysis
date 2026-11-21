@@ -299,7 +299,7 @@ G297	protocol/plo-24-29-30-45-205r2.md	line 63	Other builds. Only 2.05r2 is read
 G298	protocol/rc-fuzz-2026-11-19.md	line 118	A readable window for the width canary on the 2004 RC and RC3 (Wine virtual desktop).	static+lab	Linux VM on lab host B (servers)	medium	free
 G299	protocol/rc-fuzz-2026-11-19.md	line 119	RC2 2.05 once its GTK font/render problem under Wine is solved.	lab	Linux VM on lab host B (servers)	medium	free
 G300	protocol/rc-fuzz-2026-11-19.md	line 120	A pre-2002 rcpre (gen 2), and rc2002 (gen 2) with the embedded NC socket (NC-fuzz thread).	lab	Linux VM on lab host B (servers)	medium	free
-G301	protocol/rc-list-online.md	line 136	Read the send path of the 2005 Linux i386 RC. (Unpacked 2026-11-13; its receive ids are in unknown-ids-2026-11-06.md.)	static	static: cloud or a host (lab host A/B)	medium	free
+G301	protocol/rc-list-online.md	line 143	Complete indirect per-socket outgoing-call routing and the constant/computed id census; January 2005 send framing is statically read.	static	static: cloud or a host (lab host A/B)	medium	partial: send framing read; outgoing census open
 G302	protocol/rc-list-online.md	line 137	A lab run with RC2 2.05 and two RC logins against the GServer-v2 fork, to confirm the	lab	Linux VM on lab host B (servers)	medium	free
 G303	protocol/script-fuzz-2026-11-19.md	line 220	Opcodes 48 and 49 on a build that dispatches them (5.00r7 or 5.12).	static	static: cloud or a host (lab host A/B)	medium	free
 G304	protocol/script-fuzz-2026-11-19.md	line 221	The value waitfor gives when its time runs out. The three cases did not settle it.	lab	Win10 VM on lab host B or Linux VM (Wine)	medium	free
