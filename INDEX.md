@@ -4,6 +4,8 @@ Every research note in this repository, listed by topic and roughly in the order
 
 When you add a note, add a line for it here in the same pull request.
 
+- [Windows 5.12 selected own-prop canaries under Wine](protocol/probe-wine512-widths-2026-11-21.md) — 100 selected payloads across widths and nine nonzero follow-ups, 96 landed and four lost; case 76 is a threshold result rather than an exact reset match, and wider width semantics remain open.
+
 - [2.14–2.16 documentary feature attribution](client-internals/214-216-feature-evidence.md) — release-note feature families, documentary token associations and the reference server's large-file gate; revision and native-client limits remain explicit.
 - [Client-id inference limits: 2.14–2.16 and Windows 6.00–6.015](protocol/client-id-inference-scope.md) — separate outgoing-set hypotheses from receive-switch reads and captured token associations; Windows and Mac 6.015 remain distinct.
 - [Windows 5.12 core probes under Wine](protocol/probe-wine512-core-2026-11-21.md) — 32 controlled cases, 29 landed and three lost canaries; selected own-prop alignment and five PLO ids, with the wider campaign still open.
@@ -59,6 +61,7 @@ When you add a note, add a line for it here in the same pull request.
 - [`NPCPROP_CLASS` vs v4 158 status](npc-library/npcprop-class-v4-158-status.md) — research #55: GServer CLASS+197 habit is not a verified 4.20r8 client rule; CLASS/empty-line isolate still open.
 - [Combat, baddy and lava rules, 1.21 to 2.31](client-internals/combat-baddy-tile-by-version.md) — the inclusive 2-tile sword edge, AP immunity from 1.34, raw sword power before 2.03, the 1.x client item roll when a baddy dies, lava from 1.28 beta 2, the swamp-soldier window change in 2.01, the sword-clash spark; static, one live 1.39 check.
 - [Reference-fork ghost-mode options](server-notes/ghost-mode-options-2026-11-21.md) — tracked defaults, staff selection and concrete packet/property consumers; G067 remains partial.
+- [Reference-fork tile-category options](server-notes/tile-category-options-2026-11-21.md) — tracked global/per-level selection, terrain precedence and concrete wall/swimming consumers; G067 remains partial.
 - [Reference-fork language options and fallback](server-notes/language-options-and-fallback-2026-11-21.md) — tracked stubs, registration label, player language and classic/modern text consumers; G067 remains partial.
 - [Account-start placement clarification](client-internals/feature-specs/05-save-load.md#reference-fork-account-placement-2026-11-22) — pinned template/override gates, save limits and separate recovery routes in the existing save/load note; G067 remains partial.
 - [Game rules of the 1999 servers](server-notes/gserver-1999-rules.md) — GServer 1.28 beta 2 and 1.3: each client message, bush regrowth, horses, leaders, deaths, alignment, baddy start modes and the kill cost, and where GServer-v2 differs; static.
@@ -411,7 +414,7 @@ Sources: GServer-v2 and gs2-parser (GPLv3), gs2lib, graal-serverlist, OpenGS1 (M
 - [GraalShop movie grammar and shipped mobile sample](tools/graalshop.md#shipped-movie-sample-and-remaining-limits): Classic+ 1.13 and Era+ 1.0 boolean spellings corroborate existing grammar; actor-kind carry is corrected in manual §3.3, while editor identity and runtime units remain open.
 - `formats/grv1-decoder/`: a small GR-V1 / Z3-V1 level decoder.
 
-- [Direct PARAM1 placement structure in two iOS builds](formats/ios-gani-param1-placements.md): distinguishes ANI placement references from SPRITE sheets and numeric zero; file-preservation evidence with native resolution still open.
+- [Direct PARAM1 placement structure in two iOS builds](formats/ios-gani-param1-placements.md): distinguishes ANI placement references from SPRITE sheets and numeric zero; file-preservation evidence and current consumer/test reconciliation, with native resolution still open.
 
 ## Cross-version pass (2026-10-21)
 

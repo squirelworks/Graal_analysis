@@ -132,6 +132,8 @@ Classic+ 1.13 and Era+ 1.0 share two inspected resource forms with uppercase `PA
 
 Preserving the file requires keeping the symbolic reference distinct from numeric sprite zero; this does not establish native resolution or rendering. Other slots/case variants, negative or fractional native-coordinate acceptance, default direction behavior, timing and playback remain unverified. Independently authored parse/serialize and fallback tests establish consumer behavior, not a native oracle. [file][doc] (formats/ios-gani-param1-placements.md#useful-preservation-contract); [file] (formats/ios-gani-param1-placements.md#limits-and-next-questions)
 
+The current core, Seihai and servertools implementations already retain the symbolic reference separately from zero, skip unresolved symbols before drawing/bounds lookup, and serialize it through the actual LAT editor writer. The selected servertools core/draw release contains that typed reference. GCR readers use a separate negative sentinel and reject it before numeric lookup; no ANI serializer is provided by those reader APIs. Existing Rust test definitions were audited without reexecution; an independent 14-assertion GCR parser/lookup control passed, without rendering or round-trip claims. This bounded consumer reconciliation does not establish native resolution or playback. [doc] (formats/ios-gani-param1-placements.md#consumer-reconciliation-2026-11-21)
+
 ## 3.3.9 Public 2.1.0.0 field counts
 
 The public 2.1.0.0 image stores these fields. Playback, units and the other 2.1 images were not read [bin] (client-internals/v2100-gani-reader.md). The counts of fields remaining after the keyword are an inference from an unidentified call [inf] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect).
