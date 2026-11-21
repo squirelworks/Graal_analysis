@@ -158,6 +158,13 @@ When more than one fuzz thread shares one Win10 lab VM, serialise the guest desk
 
 ## Limits
 
+`lab/runwine.sh` preserves the probe plan's exit status after collecting logs
+and cleaning up. A plan error or session timeout returns nonzero and prints
+`plan failed`, not `done`. A zero exit only means the plan command completed:
+accept coverage only after checking the authenticated client/session, expected
+per-case outputs and canary controls. The runner does not turn process liveness
+or a completion message into a successful probe result.
+
 - Generation 1 is tested on 18 Delphi builds (1st Graal to 1.1.9) and generation 2 on 1.28b2 to 1.39 ([results](../../protocol/early-clients-probe-2026-11-19.md)).
 - Generations 2, 3 and 5 are tested (gen 3 on real 2.05 and 2.17.1, gen 5 on 2.22 and later). Gen 4 (2.19–2.21) follows the server source and is untested. 6.1.1.3's RC4 stream is not covered.
   6.1.1.3 needs a loopback connector harness first (`../../protocol/v6113-status.md`).
