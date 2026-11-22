@@ -36,8 +36,20 @@ The Windows 4.20r8 engine's 101-id receive set stays the Windows read. It is not
 
 `G3D22126` stays the catalogued login token for Linux 4.20r6 and 4.20r8. This string pass did not see that token as one contiguous literal, and it did not re-trace the login builder. No client-to-server send site was read.
 
+## Selected January 17 parser bodies
+
+Added 2026-11-22. The following static instruction and referenced-data reads belong only to the 7,876,188-byte January 17 image. They extend the original string comparison, not the January 15 parser or receive table. Evidence: LNX420R8-PARSERS-20261122 in the [evidence index](../docs/evidence-index.tsv). **[bin]**
+
+The selected level reader obtains an LF-delimited first line, removing a preceding CR. Exact `GLEVNW01` or `GSERVL01` passes its header gate; if neither header matches, it takes cleanup and returns. A selected `BOARD` record consumes four integer tokens and a data token. Its application path checks nominal coordinates in 0–63, positive run length, end coordinate at most 64, and at least two data bytes per position. It decodes pairs through a mutable alphabet and writes words in row-major order in the selected layer. Earlier writes can remain when a later pair fails alphabet lookup. This is not an atomic validation pass, a complete numeric grammar, an overflow/allocation safety proof or a complete level parser. Other records and multiline branches remain outside this selected contract.
+
+The selected gmap reader checks the first string for exact `GRMAP001`, then dispatches exact keys. GMAP key-line tokenization trims edge bytes representing ASCII space or its high-bit counterpart and splits on literal ASCII space; it does not establish tab/general-whitespace splitting, case folding or quoted key-line arguments. The key token is removed before value processing. `WIDTH` and `HEIGHT` use the first remaining token and store dimensions before the selected consumer's positive-dimension guards. Numeric conversion includes decimal, hexadecimal and special-token paths; strict decimal-only validation and a maximum dimension are not established.
+
+`LEVELNAMES` clears one destination list, then parses following raw rows until an exact whole-line `LEVELNAMESEND` or input exhaustion. Parsed fields append in row/field order into that one list using shared string holders, not proved deep byte copies. The loop does not clamp each row to `WIDTH` or validate the number of rows against `HEIGHT`. Its row parser has quoted-comma, doubled-quote and conditional backslash paths, but the complete escape set and malformed-row grammar remain unbound. Allocation-rounding comparisons do not establish a 255-name limit. Other selected keys have dispatch/storage paths, but terrain, image loading and rendering are not demonstrated here.
+
+These reads establish selected reader behavior beyond literal presence. Caller acceptance, complete grammar, malformed-input safety, terrain/rendering and native runtime behavior remain open. Nothing here transfers the findings to January 15 or to another platform.
+
 ## Open
 
 - [x] ~~Compare the protocol-keyword strings of the two Linux 4.20 rev 8 images.~~ Empty delta, as above.
 - [ ] Read the 2007-01-15 receive dispatcher before treating its id set as the 2007-01-17 set.
-- [ ] Read a level or gmap parser body before treating these literals as handler behaviour in either image.
+- [ ] Complete the level/gmap parser contract: selected January 17 header, BOARD and LEVELNAMES paths are now read above; January 15, remaining grammar, callers and runtime behavior remain open.
