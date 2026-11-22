@@ -224,7 +224,7 @@ client-internals/linux-404r2-embedded-scripts.md	cited	8.4; E	8.4; E	experiment 
 client-internals/linux-404r2-events.md	cited	8; 8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 client-internals/linux-404r2-sleep.md	cited	8.3; E	8.3; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
 client-internals/linux-404r2-vm-dispatch.md	cited	8.4; E	8.4; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
-client-internals/linux-420-native-object-bridge.md	cited	10	10	exact identities and evidence lineage remain in source note; bridge relation and limits carried
+client-internals/linux-420-native-object-bridge.md	cited	10	10	Exact identities and lineage remain in source note; native registration and selected creation/lookup/optional stack/result-use boundaries carried, complete ABI/ownership/runtime unresolved
 client-internals/linux-420r6-clock-property.md	cited	4.1	4.1; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 client-internals/linux-420r6-reader-fusion.md	cited	8.4; E	8.4; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 client-internals/linux-420r6-selector11.md	cited	8.3; E	8.3; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried

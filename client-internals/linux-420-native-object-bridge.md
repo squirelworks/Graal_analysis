@@ -14,6 +14,18 @@
 
 [bin] A creation dispatcher forwards through a tail call. Consequently an inferred ordinary C prototype is insufficient to establish the callback ABI. An optional fast-path callback slot is still unresolved. Calling-convention or layout assumptions should not be exported from these observations as a runtime contract.
 
+## Selected stack interfaces (2026-11-22)
+
+[bin] A follow-up reads the selected r6 initializer, callers, adapters, targets and representation helper in the retained source and instruction records. Initialization supplies the selected creation and lookup callback targets when that initializer executes; actual initializer execution and subsequent slot writes are not observed. Evidence: LNX420-BRIDGE-STACK-20261122 in the [evidence index](../docs/evidence-index.tsv). This does not transfer the r8 or later engine's ABI.
+
+[bin] The creation adapter restores its own frame and jumps to the selected callback without repacking the existing argument stack. Its actual caller prepares three stack words, and the bound creation body consumes all three. The adapter adds no extra receiver or hidden-result word. The caller does not consume a creation result before subsequent allocation; that is not a guarantee of zero, a returned native object or a complete C return prototype for every caller.
+
+[bin] The separate lookup adapter derives one pointer-shaped word from its input holder and passes that word to its callback. The optional adapter derives two such words and passes them with an unchanged third word. It converts the second input before the first, but this adapter sequence is not source-expression evaluation-order proof. These two adapters consume only the low result byte and zero-extend it; a recovered wide return type is not evidence of a pointer result. A missing callback slot returns zero on these selected wrappers. The optional callback target itself remains unresolved.
+
+[bin] The representation helper unwraps a held pointer or returns a fallback pointer. This helper performs no allocation, copying, retention or freeing. That narrows representation, not the pointer's lifetime, validity or ownership in a callee. Selected creation cleanup covers local temporaries; registered native objects and the unresolved optional callee do not acquire a universal ownership rule from this read.
+
+[inf] These are selected caller/stack/result-use boundaries. They do not establish all register inputs, arities, callers, reentry, lifetime, runtime initialization or a general callback ABI for reconstruction.
+
 ## Separate revision comparison
 
 [bin] The selected 4.20r8 native review corroborates the earlier r6 compiled-input reader and associated state-saving routes, while exposing differences in execution-state layout despite equal recovered embedded inputs. This is a reason to retain revision-specific structures. It is not proof of complete semantic equivalence or evidence that every r6 bridge callback has been independently confirmed in r8.
@@ -28,7 +40,7 @@
 
 - [x] ~~Identify the selected concrete native objects and their scripting-variable registration boundary.~~
 - [ ] Observe initializer and callback execution, including the unresolved optional path.
-- [ ] Establish callback ABI independently before any reconstruction uses it.
+- [ ] Complete callback ABI before reconstruction: selected creation/lookup/optional stack interfaces are followed above; optional target, other callers, ownership and runtime behavior remain open.
 - [ ] Test GUI/input dispatch and an actual 3D session separately.
 
 This note does not demonstrate an active TorqueScript interpreter, a working 3D session, complete GUI startup or Windows-specific Appendix E#503.
