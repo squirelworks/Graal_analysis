@@ -14,6 +14,17 @@ Every open gap, including the boxes below, is also on the [research gap board](g
 
 ## Tasks
 
+### Merged static follow-ups — 2026-11-22
+
+These checks credit the named merged notes and manual carry, not whole research-gap closures or release acceptance. The wider research tracks remain open in [#370](https://github.com/squirelworks/Graal_analysis/issues/370) and the manual roadmap in [#191](https://github.com/squirelworks/Graal_analysis/issues/191).
+
+- [x] **Follow selected saved wait results statically.** [#795](https://github.com/squirelworks/Graal_analysis/pull/795) and [#796](https://github.com/squirelworks/Graal_analysis/pull/796), [source](../client-internals/gs2-wait-results-2026-11-22.md): selected creation, deadline mutation and conditional numeric restoration. G304/G088 remain partial; executed public returns, cancellation, lifetime and wider build coverage remain open.
+- [x] **Trace ordinary joined-function lookup in three selected inputs.** [#797](https://github.com/squirelworks/Graal_analysis/pull/797), [source](../client-internals/gs2-joined-function-lookup-2026-11-22.md): distinguish older adjusted integer entries from later receiver/function-object lookup. G090 remains partial; complete join/collision policy, Linux attachment writer and runtime acceptance remain open.
+- [x] **Trace selected event-handler case comparisons.** [#798](https://github.com/squirelworks/Graal_analysis/pull/798), [source](../client-internals/gs2-event-handler-case-2026-11-22.md): event-specific consumers and Linux ASCII registration/query matching. G087 remains partial; Windows helper-state, other builds and the source/runtime matrix remain open.
+- [x] **Bind selected r6 bridge stack/result-use interfaces.** [#799](https://github.com/squirelworks/Graal_analysis/pull/799), [source](../client-internals/linux-420-native-object-bridge.md#selected-stack-interfaces-2026-11-22): three-word creation interface and separate one-/three-word byte-result adapters. G115 remains partial; optional target, complete ABI, ownership/lifetime, initializer execution and actual 3D acceptance remain open.
+- [x] **Read selected January 17 level/gmap parser paths.** [#800](https://github.com/squirelworks/Graal_analysis/pull/800), [source](../client-internals/linux-420r8-string-floor.md#selected-january-17-parser-bodies): exact level headers/BOARD writes and gmap key/LEVELNAMES paths extend the string floor. G121 remains partial; January 15, remaining grammar, callers, safety, terrain/rendering and native runtime remain open.
+- [ ] Complete those wider acceptance gates in the linked topical notes. Own-VM implementation tests do not substitute for original-client research, and documentation CI does not establish native runtime acceptance.
+
 - [x] **Carry the 2026-11-16 status notes into the manual.** ~~Twenty research-list status notes were `pending` in the source map.~~ Pointer rows in §2.3.5.1, §2.4.3, §2.5.6, §2.5.7, §2.5.13, §2.6.6, §2.7.3 and §2.7.10, and status rows in App. E#4, #13, #308, #311, #312, #314, #318, #323, #420, #421, #422 and #425. Each note's own open checklist stays the place to tick its labs.
 
 - [x] **v7 Worlds builds and connector in the manual.** ~~Fold the nine pending v7 notes (#463, #466, #623, the Unity 6000 unpack and the live connector capture) into Part I and §2.10.~~ Manual §1.8.10 (builds, identity, unpack and names, start-up and date gate) and §2.10.7 (connector); App. E#615, E#616. Static and earlier lab evidence only; no new run.
