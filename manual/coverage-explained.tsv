@@ -5879,3 +5879,4 @@ protocol/player-props-5x-status.md	W500-COORDINATE-DISPATCH-20261122	owner-held 
 protocol/player-props-selected-backup-cursors-2026-11-22.md	W500-PLAYER-CURSOR-CENSUS-20261122	owner-held static evidence ID; section 2.6 carries the selected cursor conventions and table limits
 protocol/player-props-5x-status.md	W500-PROP-ORDER-POWER-20261122	owner-held static evidence ID; section 2.6 carries selected order-boundary and receive power/storage findings
 client-internals/showimg-particles-and-gs2-format.md	LNX603-LIST-FORMAT-20261122	Owner-held selected static evidence ID; section 8.3 and E#210 carry its mechanism and provenance limits, not a script term.
+client-internals/showimg-particles-and-gs2-format.md	LNX603-FORMAT-COERCION-20261122	Owner-held selected static evidence ID; section 8.3 and E#210 carry the conversion, string gates and remaining limits, not a script term.

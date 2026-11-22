@@ -183,6 +183,16 @@ Published labs already answer the original observable questions at their named-b
 
 The particle-kind selector remains unresolved. The Linux report's unfinished particle scene does not negate the separate positive modifier batch. Overall Appendix E#210 remains partial. **[lab][inf]**
 
+## String coercion and unsigned formatting follow-up
+
+Date: 2026-11-22. Evidence ID: `LNX603-FORMAT-COERCION-20261122`. This continues the same separately identity-bound static input labelled Linux 6.03r7 above. Selected retained instructions and newly checked exact data records bind the conversion branches; no new original-client execution or retrospective identity with earlier labs is claimed. **[bin]**
+
+The selected formatter dispatch sends `%i` to the same signed-decimal branch as `%d`, while `%u` uses a distinct unsigned-decimal digit path. Its two argument callbacks were checked independently: the sequential and explicit-position callbacks first use the same value coercion, then compute the same `floor(y)` for evaluated binary64 `y = x + 0.0001`, when `y` is finite and its floor fits a signed 32-bit integer. `%u` renders the returned 32 bits as unsigned decimal; this is not proof of a full-range double-to-uint32 conversion. For example, an in-domain result of −1 supplies the unsigned 32-bit pattern 4294967295 to that digit path, a static arithmetic consequence rather than a new executed sample. Unavailable argument positions return 0 on the selected gates; stack selection/consumption does not establish source-expression evaluation order. **[bin]**
+
+For the selected string-tag coercion, a null holder or empty string returns 0 early. Exact lowercase `true` gives 1 and exact lowercase `false` gives 0. A lowercase `0x` prefix selects a hexadecimal parsing route after removal of those two bytes; the other route uses the decimal parser. After those ordinary parser routes, an ordered zero result is retained only when the complete stored string is exactly `0`, `0x0` or `0.0`; a different zero-result spelling yields −1. Nonzero and unordered results bypass that zero gate. Thus the early empty/false cases and the later zero gate must not be collapsed into a universal invalid-string-to-zero rule. **[bin]**
+
+The selected parser calls supply no end pointer. This chain does not establish complete-token validation, locale independence, imported-parser overflow behavior, exceptional floating state or a complete string grammar. Other original value tags, object/dynamic coercion, allocation limits and runtime acceptance remain outside this follow-up; the signed formatter's minimum-integer magnitude edge is not newly settled. It adds no particle-kind result or further gap closure. **[bin]**
+
 ## Not settled
 
 - [x] ~~Whether `removemodifiers()` clears the emit list as well as the local and global ones.~~ Answered for the four reported lab builds in the [reconciliation](#selected-linux-603r7-mechanisms-and-published-lab-reconciliation).
