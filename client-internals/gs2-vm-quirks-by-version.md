@@ -179,6 +179,7 @@ control dispatch that was opened. **[bin]**
 | --- | --- | --- |
 | Client reproduction loader | lowercases both sides; action `"timeout"` looks up `"on"+"timeout"` with a fallback if the name already has `on` | [doc] |
 | Stock 4.2 / 5.0 / 6.x | schedule / cancel fold case **proven**; **full function-table case-fold for every dispatch path not proven per build** | [bin][inf] |
+| Three separately identified static inputs | Selected older Windows suffix and backup Windows full-name event scanners fold names, with helper-state qualifications; exact recorded Linux event lookup has matching ASCII-folded registration/query hashes and candidate comparison, plus a separate case-insensitive multi-handler comparison. This is [event-specific evidence](gs2-event-handler-case-2026-11-22.md), not ordinary-call or string-presence inference | [bin][inf] |
 | Android Classic 1.8 | schedule lowercases; string compare ignores case | [bin] |
 | seihai-core | timer looks up the exact name `onTimeout`; `scheduleevent` keeps the rest of the spelling after stripping `on`, so `onTimeOut` stays distinct | [doc] |
 | GServer-v2 wrappers | bind the exact JavaScript identifiers `onTimeout` / `onActionServerSide` | [srv][doc] |
@@ -198,6 +199,8 @@ fires even when compile succeeds. If lookup folds (as schedule / cancel and the
 reproduction loader do), both spellings work. A spelling × client lab matrix is
 still required (at least Windows 6.03 / Linux 6.03r7 and one 5.x) — not filed as a
 product issue from this page alone. **[lab][inf]**
+
+The selected-input follow-up narrows this conditional warning: it supplies actual event-consumer case-matching mechanisms, including explicit Linux ASCII folding, rather than a demonstrated casing mismatch. Windows helper state, source normalization, event production and a complete native spelling matrix remain open. **[bin][inf]**
 
 ### Queue limits
 
@@ -329,7 +332,7 @@ in those notes:
 ## 11. Still open
 
 - [ ] Fuller Android Classic / Era GS2 static findings → replace interim Android cells (§2 / §5 / §6).
-- [ ] Spelling × client matrix for `onTimeout` / `onTimeOut` / `onActionServerSide` variants.
+- [ ] Full spelling × client matrix for `onTimeout` / `onTimeOut` / `onActionServerSide` variants and runtime acceptance. [Selected static event-handler comparisons](gs2-event-handler-case-2026-11-22.md) are followed; Linux ASCII matching is bound, while Windows helper state and other builds remain qualified.
 - [ ] Full semantics of 48, 49, 54; `waitfor` timeout-expiry return value on 4.20r8.
 - [ ] 4.04r2 / mid-5.x / 6.00r2 clock step confirmation where still partial; Unity 7.x VM.
 - [ ] Cross-build/runtime joined-class function visibility; [three selected ordinary-call lookup chains](gs2-joined-function-lookup-2026-11-22.md) are statically followed, with authenticated identity, all join modes and collision cases still open.

@@ -63,6 +63,10 @@ The Android Classic 1.8 x86 engine reads the same four-segment container, decode
 
 The runner in §8.3.3 treats events as functions. How a queued event, a `sleep` and a pending wait are scheduled has been observed or read build by build; each reading below holds for its own build and input, and none is an all-version rule (→ App. E#207). [bin] (client-internals/gs2-vm-from-engines.md#events)
 
+#### Selected event-handler case matching
+
+A separately retained older Windows input folds requested names and recognized-`on` candidate suffixes; the selected Windows backup folds complete candidate names after constructing its prefixed request. Their helper state remains qualified. Exact recorded Linux lookup uses matching ASCII-folded registration/query hashes and candidate comparison, with a separate library case-insensitive multi-handler path. Thus `onTimeout` / `onTimeOut` and capitalization within `onActionServerSide` have explicit Linux matching support on these paths; uppercase `ON`, Unicode, duplicate definitions, event production and native runtime delivery are not established. This is event-consumer evidence, not merely scheduled-name folding or ordinary-call lookup [bin][inf] (client-internals/gs2-event-handler-case-2026-11-22.md).
+
 #### Linux 4.04r2: event ordering
 
 Event order was tested on Linux 4.04r2 with instrumented scripts. Each row gives one condition, what was seen and the limit of that test [cap] (client-internals/linux-404r2-events.md#observed-dispatch-sequence).
