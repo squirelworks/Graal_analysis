@@ -84,6 +84,16 @@ and Sequoia), #732 (Android, iOS, v7). Static issues: #740 (NEXT.md and Appendix
 #736 (formats and tools), #739 (version profiles), #737 (NPC scripting). Blocked rows: #742.
 When a row is done, tick it in its issue as well as in the source note.
 
+## External research reservation (2026-11-22)
+
+Grok owns the following research scopes by external reservation: `G028`, `G156`, `G246`, `G332`, `G334`, `G335`, `G082`, `G148`, `G328`, `E#618`, `G129`, `G285`, `G286`, `G287`, `G158`, `G284`, `G300`, `G302`, `G313`, `G314`, `G316`, `G273`, `G155`, `G344`, `G248`.
+
+This is ownership metadata only, not a result, closure or authorization to probe or operate.
+All existing input, evidence, approval and completion limits remain in force; other agents
+should avoid duplicate work. The TSV changes only the claimant for the 24 stable G rows,
+retaining any prior partial/status qualification. `E#618` is a separately reserved evidence
+item, not a new G row: the board still has 426 IDs.
+
 ## How to claim
 
 1. Pick a `free` row. Static rows need no queue.
