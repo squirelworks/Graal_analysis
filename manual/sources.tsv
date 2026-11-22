@@ -585,7 +585,7 @@ protocol/packet-layouts.md	cited	2; 0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; A	2.4;
 protocol/payload-and-trigger-205r2.md	cited	2.5	2.5	
 protocol/pcap-2026-10-04.md	excluded		2	first survey of the 2026-10-04 captures; its decoded results are in protocol/login-and-walk.md and protocol/codec-and-framing.md, which the manual cites
 protocol/pcid.md	cited	2.3; 6; E	2.3; 6	
-protocol/player-props-5x-status.md	cited	2.6	2.6; E	5.00r7/5.12 prop case sets point at v5-props; widths + P4–P6 open; research #6
+protocol/player-props-5x-status.md	cited	2.6	2.6; E	Case sets and selected backup-input appearance extents; complete widths, genuine 5.12 and P4–P6 remain open; research #6
 protocol/player-props.md	cited	2; 2.5; 2.6; 2.8; B	2.6; B	
 protocol/player-x-half-tile.md	cited	2.6	2.6	
 protocol/plo-109-httpdownload.md	cited	2.5; A	2.5; A	PLO 109 HTTPDOWNLOAD: i5 + local name + URL; 5.24r4–6.03r7; first-string scheme-check open; §2.5 / App. A
@@ -927,5 +927,6 @@ protocol/rc2005-linux-send-framing-2026-11-21.md	cited	7	7	Static enqueue and fr
 server-notes/tile-category-options-2026-11-21.md	cited	5	5	Pinned GPL reference-fork category selection and consumers; original-server, client rendering and live-toggle effects remain unverified.
 server-notes/language-options-and-fallback-2026-11-21.md	cited	5	5	Tracked/logged language keys are separated from registration metadata, player language and actual classic/modern lookup; no original/runtime equivalence.
 server-notes/sync-distance-routing-2026-11-21.md	cited	5	5	Numeric synchronization queries are separated from ordinary data and send-method gates; no universal visibility, original-server or new runtime claim.
+server-notes/level-persistence-options-2026-11-22.md	cited	5	5	Tile rewrite attempts, sublevel NPC sleep and DATABASE save requests are separated; no durable-output or original/runtime claim.
 server-notes/player-z-policy-2026-11-22.md	cited	5	5	Pinned reference-fork Z update rejection, independent range conversion and conditional NPC-touch probe; direct state paths and original/runtime limits remain separate.
 server-notes/script-engine-defaults-2026-11-22.md	cited	5	5	Pinned GPL default-engine alias and consumer classification; no original/runtime or fresh inventory claim.

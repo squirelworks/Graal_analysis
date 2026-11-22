@@ -28,7 +28,7 @@ When you add a note, add a line for it here in the same pull request.
 - [Large-file thresholds on focus builds](protocol/large-file-thresholds-focus.md) — 64000 / 32000 / LARGEFILE\* ladder for 1.39–6.037; token-table trap; consolidates file-transfer + labs; static + prior lab.
 - [File defaults and receive-case evidence](protocol/file-profile-evidence-2026-11-21.md) — recorded 1.41r1 generation/direct cases; 2.22/2.31 shared-default provenance; server gates and directional captures kept separate; no new run.
 - [v4 Login account contract (4.20r8)](protocol/v4-login-account-contract.md) — typed account on first Login vs 5.x/6.x guest-first; open stock-UI / script-API rows; consolidates C4 status; static + prior lab.
-- [Player-prop parsers on 5.00r7 / 5.12](protocol/player-props-5x-status.md) — case sets settled (+82); widths and pyreborn P4–P6 open; research #6; static status.
+- [Player-prop parsers on 5.00r7 / 5.12](protocol/player-props-5x-status.md) — case sets settled (+82); selected backup-input appearance extents qualified; complete widths, genuine 5.12 and pyreborn P4–P6 open; research #6.
 - [Ids sent by 5.12 / 2.31 id 44](protocol/ids-sent-512-status.md) — S→C vs C→S 44 on 2.31 settled; 5.12 send floor still cap-only; research #17; static status.
 - [2.22 inferred-from-2.1 inventory](version-profiles/222-inferred-from-21-inventory.md) — settled binary/cap rows vs unmatched PLI and era-default cells still to re-tag; research #9; static inventory.
 - [Batch Linux 4.03r1 / 4.10r2 / 4.11 autopackage ELFs](version-profiles/batch-linux-4x-autopackage-2026-11-16.md) — package identity to prior extracts, string ladder vs 4.04r2, Win Thinstall twins already profiled; static.
@@ -65,6 +65,7 @@ When you add a note, add a line for it here in the same pull request.
 - [Reference-fork tile-category options](server-notes/tile-category-options-2026-11-21.md) — tracked global/per-level selection, terrain precedence and concrete wall/swimming consumers; G067 remains partial.
 - [Reference-fork language options and fallback](server-notes/language-options-and-fallback-2026-11-21.md) — tracked stubs, registration label, player language and classic/modern text consumers; G067 remains partial.
 - [Reference-fork synchronization distances and nearby routing](server-notes/sync-distance-routing-2026-11-21.md) — numeric-query callers, map bypasses and separate ordinary-property/send gates; G067 remains partial.
+- [Reference-fork level persistence options](server-notes/level-persistence-options-2026-11-22.md) — tile-update rewrite attempts, minute-gated sublevel NPC sleep and empty-level DATABASE save requests; G067 remains partial.
 - [Reference-fork player Z and NPC-touch policy](server-notes/player-z-policy-2026-11-22.md) — property-update locks, independent coordinate range and conditional vertical touch probes; G067 remains partial.
 - [Reference-fork script-engine defaults](server-notes/script-engine-defaults-2026-11-22.md) — initialization-time aliases and per-side overrides, compile consumers and separate generation/wire behavior; G067 remains partial.
 - [Account-start placement clarification](client-internals/feature-specs/05-save-load.md#reference-fork-account-placement-2026-11-22) — pinned template/override gates, save limits and separate recovery routes in the existing save/load note; G067 remains partial.

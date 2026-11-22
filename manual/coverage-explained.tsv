@@ -5870,5 +5870,6 @@ server-notes/language-options-and-fallback-2026-11-21.md	0cf8f83d0ac658299abb4a9
 server-notes/sync-distance-routing-2026-11-21.md	0cf8f83d0ac658299abb4a9c93dab99cca805f37	Pinned GPL source commit for attribution, not a Graal protocol or configuration term.
 client-internals/feature-specs/05-save-load.md	0cf8f83d0ac658299abb4a9c93dab99cca805f37	GPL reference-fork source pin; placement behavior is carried in section 3.7.6, not a Graal version claim
 npc-library/gs2-world-corpus-2026-11-12.md	89cf379fda9b037012d2406a2eb910683c000bb1	Pinned current clean-room core source commit, not a protocol or language term.
+server-notes/level-persistence-options-2026-11-22.md	0cf8f83d0ac658299abb4a9c93dab99cca805f37	Pinned GPL source commit for attribution, not a Graal protocol or configuration term.
 server-notes/player-z-policy-2026-11-22.md	0cf8f83d0ac658299abb4a9c93dab99cca805f37	Pinned GPL source commit for attribution, not a Graal protocol or configuration term.
 server-notes/script-engine-defaults-2026-11-22.md	0cf8f83d0ac658299abb4a9c93dab99cca805f37	Pinned GPL source commit for attribution, not a Graal protocol or configuration term.

@@ -2,7 +2,7 @@
 
 Date: 2026-11-16. Research-list rank **#6** (focus 5.007, 5.120). Points at the completed case-set read; **no new jump-table pass or two-client prop lab** this pass.
 
-Tags: **[bin]** case sets already published; **[inf]** value-width and pyreborn leads still open.
+Tags: **[bin]** case sets and the selected reader extent below; **[inf]** complete value-width and pyreborn leads still open.
 
 ## Settled (case sets)
 
@@ -20,6 +20,16 @@ Canonical note: [`v5-props.md`](v5-props.md) (2026-11-13 static).
 - 6.x native parsers and the 6.1.1.3 `tclient_set*props` bridge are in the same note / [`v6-props.md`](v6-props.md) — out of #6’s focus but adjacent.
 
 Identity reminder: a folder labelled “5.12 untouched” is **5.00r7** re-versioned ([`launchers-420r8-500r7-512.md`](../client-internals/launchers-420r8-500r7-512.md)). Genuine 5.12 engine is `Graal3DEngine.dll`. **[bin]**
+
+## Selected appearance-reader extents (2026-11-22)
+
+A retained archive-labelled 5.00r7 backup input gives a bounded sword/shield consumption result (evidence `W500-APPEARANCE-READERS-20261122`). The label is not authenticated stock/vendor provenance or runtime identity, and this input does not establish the genuine 5.12 reader. **[bin]**
+
+For these two properties, the selected shared reader uses one value byte when its unsigned byte minus 32 is below 10. Otherwise its nominal value extent is two bytes plus the nonnegative declared image length: the first value byte, a length byte and the image bytes. The length is the unsigned length byte minus 32, clamped at zero for this cursor calculation. These extents exclude the property ID. The own-player parser independently calculates the same nominal extent before forwarding the selected property prefix to shared application; the top-level self and other parsers are not identical. **[bin]**
+
+The image substring helper bounds the selected image slice by available text. This is distinct from the declared cursor advancement: the selected outer guards do not prove that the entire extended value is present, strict truncation rejection or safe arbitrary-byte consumption. Compact preset-image cases cover sword 1–4 and shield 1–3, but being below the reader discriminator alone does not establish semantic power. That discriminator is not interchangeable with a historical sender's bias. **[bin]**
+
+This is a selected static extent, not the complete self/other width table, P6 semantic resolution, rendering/healing behavior or a runtime alignment result. Other properties, other specimens and genuine 5.12 remain open. **[bin][inf]**
 
 ## Still open for #6
 
