@@ -133,6 +133,8 @@ Which gameplay site calls each of those names was not followed. `catchEvent` reg
 
 ## Timers
 
+A [2026-11-22 follow-up](gs2-wait-results-2026-11-22.md) follows saved wait results in a separately qualified Windows backup and the exact recorded Linux 6.03r7 x64 input. It distinguishes numeric-one preparation, explicit deadline payload zeroing and conditional restore from guaranteed runtime delivery; the original lab timeout question remains open. **[bin][inf]**
+
 Sleep, `waitfor` and `scheduleEvent` use one double clock. **[bin]**
 
 - In 2D, once the clock is non-zero, each `runScripts` pass adds 0.05. A sleep of 1 therefore lasts 20 of those passes.
