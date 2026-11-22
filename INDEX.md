@@ -175,7 +175,7 @@ When you add a note, add a line for it here in the same pull request.
 
 - [Windows v4 imported alias and retained identity](version-profiles/windows-v4-import-provenance.md) — exact carrier/resource corroboration with unresolved official release provenance.
 
-- [Linux 6.01 x86 program/state stages](client-internals/linux-601-x86-program-state.md) — retained static preparation and mixed snapshot handling, separate from earlier dispatch observations and complete VM recovery.
+- [Linux 6.01 x86 program/state stages](client-internals/linux-601-x86-program-state.md) — selected snapshot ownership/cleanup and distinct record-cache lifecycles; full dynamic ownership, handler and runtime contracts remain open.
 
 - [Linux 6.03 local-file cache helper](formats/linux-603-local-cache-helper.md) — exact-input static status/checksum order and five unexecuted helper cases.
 - [Linux 6.x class cache](formats/linux-6x-class-cache.md) — packet 197 as a metadata list with the expected CRC, why a header-only file is never a class hit, the 161 request with the stored-body CRC, and the 6.01 x86 split between 140 and 197.
