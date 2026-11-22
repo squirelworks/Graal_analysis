@@ -60,6 +60,7 @@ PowerPC shift rule, assumed); 6.00r2, 6.00r4, 6.015, 6.034 and 6.03r7 take 6.03r
   event and a timeout above 0 the VM registers the event, saves the run and returns; the run
   resumes with 1 when the event comes. Otherwise it pushes 0 **[bin]**. That a timeout that runs
   out gives 0 is assumed; that path was not followed **[inf]**.
+  A [later static follow-up](gs2-wait-results-2026-11-22.md#separately-retained-420r8-labelled-input) independently follows preparation, deadline payload zeroing and conditional restoration in a separately retained 4.20r8-labelled input. Its archive label does not bind an authenticated release or historical lab process **[bin][inf]**.
 - **104, object compare** (4.20r6 on) compares the two values and leaves -1, 0 or 1 **[bin]**.
 
 ### The load-time optimiser (4.20r8 on)
@@ -105,7 +106,7 @@ The number-to-text rule is what a `+` join, `format("%f")` and `format("%s")` pr
 ## Not known
 
 - ~~What opcode 54 stores, and the operand order of 48 and 49.~~ Settled for 5.00r7 in [static-reads-appendix-e-2026-11-20-b.md](static-reads-appendix-e-2026-11-20-b.md#gs2-opcodes-48-49-and-54-on-500r7-e209).
-- The value `waitfor` gives when its timeout runs out.
+- [ ] The value `waitfor` gives when its timeout runs out in the historical runs; the selected archive-labelled static follow-up above does not supply that runtime result.
 - The 6.x name of the loop-limit property.
 - 4.04r2 (both builds), 5.12 to 5.31r4 (both 5.12 builds), 6.00r2 and 6.00r4 were not read;
   their rows above are inferred from the nearest read build.
