@@ -235,7 +235,7 @@ When you add a note, add a line for it here in the same pull request.
 
 - [Record Linux 4.04r2 event ordering and deferred delivery](client-internals/linux-404r2-events.md) — Two repeated controls establish top-level execution before the tested events and deferred delivery. A preserved arity failure remains qualified to its fixture.
 
-- [Linux 4.04r2 object-script delivery](protocol/linux-404r2-receive-scope.md) — static message-131 path into the compiled-script reader, with the 97-case switch count kept separate from complete handled-message coverage.
+- [Linux 4.04r2 object-script delivery](protocol/linux-404r2-receive-scope.md) — static message-131 container-reader path, selected transport/raw-100 boundary and separate message-193 lookup candidate; the 97-case switch count remains separate from complete handled-message coverage and cache policy.
 
 - [Correct Linux 4.04r2 script API declaration ownership](client-internals/linux-404r2-api-ownership.md) — Correct a derived ownership error without changing raw output or total declarations. Script API membership remains separate from native layout and behavior.
 

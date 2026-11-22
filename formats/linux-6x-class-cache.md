@@ -16,7 +16,13 @@ Inputs: Linux 6.03r7 x64, executable SHA-256 `ceeaefeb2df0668c9de921d4b967c511f8
 
 ## The class request on a cache miss
 
-[bin] On a class cache miss the client sends logical id **161**. The body is the stored-body CRC of the cached file, written as five offset-integer bytes, then the class name. The generic packet table calls that field a modification time; on this path it is the CRC, and nothing here shows it to be a time. The class request number must not be applied to weapons, which use 158 on the Windows path studied in [windows-404r2-500r7-static-2026-11-09.md](../client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-script-container-and-cache).
+[bin] On a class cache miss, the selected caller first checks a name collection and can return before requesting if the name is already present. Otherwise it adds the name and sends logical id **161**. The body is the stored-body CRC of the cached file, written as five offset-integer bytes, then the class name. The generic packet table calls that field a modification time; on this path it is the CRC, and nothing here shows it to be a time. The class request number must not be applied to weapons, which use 158 on the Windows path studied in [windows-404r2-500r7-static-2026-11-09.md](../client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-script-container-and-cache).
+
+## Caller gates and the next cache observation
+
+[bin] A 2026-11-22 reread of the same retained Linux 6.03r7 x64 caller separates positive helper status from a fresh reader invocation. A further stored-value comparison gates the reader call, while named class-loaded notification call paths follow afterward. The comparison's meaning and actual event delivery remain unverified. The name-collection early return above also does not establish the full retry or reset lifetime. Source: `LNX603-CACHE-CALLER-GATES-20261122`; selected export hashes were checked against the retained manifest, not against a freshly hashed executable.
+
+For a future independent cache observation, record helper status, returned-body identity, fresh reader-entry count, request-161 count, named notification calls and actual script-event delivery separately. A false-status control must distinguish a new name from one already present in the pending lookup; no second request is not evidence of a cache hit. Positive status must record the comparison outcome rather than assume reader entry. Keep packet-197 zero metadata as a separate control. These are static-derived acceptance conditions, not executed fixtures. The three positive [network probes](../protocol/linux-603-network-gs2.md) do not establish these cache gates.
 
 ## Linux 6.01 x86: two delivery shapes, one class store
 
