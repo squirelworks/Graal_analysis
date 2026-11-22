@@ -62,6 +62,8 @@ That route supplies no color-mode handler to connect with the separately examine
 
 ## Still open for #6
 
+A [complete selected own/shared cursor census](player-props-selected-backup-cursors-2026-11-22.md), with a numeric per-ID table, now records these two backup functions' dispatch membership, nominal extents, short guards and default behavior. It distinguishes own prefix-copy delegation from shared cursor advancement. This closes that selected static census only; the multi-build/genuine-5.12 checklist below and semantic/runtime questions remain open. **[bin][inf]**
+
 | Question | Why | Next |
 |---|---|---|
 | Per-id **value widths** beyond the ids named in `v5-props.md` | Needed for safe encode / fuzz-free lab fixtures | **S** width table on 5.00r7 + 5.12 engines |

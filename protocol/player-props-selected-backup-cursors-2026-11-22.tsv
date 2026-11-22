@@ -1,0 +1,86 @@
+logical_id	own_value_extent	own_route	shared_value_extent	shared_dispatch
+-32..-1	1	default then common path	none	outside_range
+0	max(a-32,0)+1	local path	1+max(a-32,0)	explicit
+1	1	local path	none	default
+2	1	local path	1	explicit
+3	3	local path	none	default
+4	1	local path	none	default
+5	1	local path	none	default
+6	1	local path	none	default
+7	1	local path	none	default
+8	a>=42 ? max(b-32,0)+2 : 1	shared prefix copy	a<42:1; otherwise2+max(b-32,0)	explicit
+9	a>=42 ? max(b-32,0)+2 : 1	shared prefix copy	a<42:1; otherwise2+max(b-32,0)	explicit
+10	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+11	a>=132 ? a-131 : 1	shared prefix copy	a<132:1; otherwise a-131	explicit
+12	max(a-32,0)+1	local path	1+max(a-32,0)	explicit
+13	5	local path	5	explicit
+14	2	local path	none	default
+15	1	local path	1	explicit
+16	1	local path	1	explicit
+17	1	shared prefix copy	1	explicit
+18	1	local path	1	explicit
+19	1	shared prefix copy	1	explicit
+20	max(a-32,0)+1	local path	1+max(a-32,0)	explicit
+21	max(a-32,0)+1	local path	1+max(a-32,0)	explicit
+22	1	local path	none	default
+23	a>32 ? 5 : 1	conditional shared prefix copy	a>32:5; otherwise1	explicit
+24	3	local path	N>=4:3; otherwise1	explicit
+25	2	local path	none	default
+26	1	local path	none	default
+27	3	local path	none	default
+28	3	local path	none	default
+29	3	local path	none	default
+30	5	local path	N>=6:5; otherwise1	explicit
+31	3	local path	N>=4:3; otherwise1	explicit
+32	1	local path	1	explicit
+33	1	default then common path	1	explicit
+34	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+35	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+36	3	shared prefix copy	N>=4:3; otherwise1	explicit
+37	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+38	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+39	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+40	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+41	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+42	4	shared prefix copy	N>=5:4; otherwise1	explicit
+43	1	local path	1	explicit
+44	1	local path	1	explicit
+45	1	shared prefix copy	1	explicit
+46	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+47	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+48	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+49	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+50	1	default then common path	1	explicit
+51	1	default then common path	1 (no value read)	explicit
+52	max(a-32,0)+1	local path	1+max(a-32,0)	explicit
+53	1	default then common path	1	explicit
+54	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+55	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+56	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+57	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+58	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+59	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+60	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+61	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+62	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+63	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+64	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+65	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+66	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+67	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+68	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+69	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+70	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+71	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+72	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+73	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+74	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+75	1	default then common path	1+max(a-32,0)	explicit
+76	1	default then common path	3	explicit
+77	1	default then common path	none	default
+78	2	local path	2	explicit
+79	2	local path	2	explicit
+80	2	shared prefix copy	2	explicit
+81	1	shared prefix copy	1	explicit
+82	max(a-32,0)+1	shared prefix copy	1+max(a-32,0)	explicit
+83..223	1	default then common path	none	outside_range
