@@ -1,6 +1,6 @@
 # Bound Linux 4.20r6 container operands and post-load fusion
 
-The editor reviewed only the sanitized 2026-11-09 Linux cross-version handoff and matched its supplied SHA-256. Observations and original private-carrier digests are researcher-supplied, not independently re-run or authenticated by the editor. No raw code, capture text, script body or client asset was inspected for publication. Evidence keys below resolve via [the source index](../docs/evidence-index.tsv). They identify actual owner-held carriers; proposed key-based JSON aliases are not materialized records or new Evidence IDs.
+The original publication reviewed only the sanitized 2026-11-09 Linux cross-version handoff and matched its supplied SHA-256; no raw code, capture text, script body or client asset was inspected for that publication. Its observations and private-carrier digests were researcher-supplied, not independently re-run or authenticated by the editor. The dated follow-up below additionally reads selected retained source, instructions and identity-bound referenced bytes for the same executable. It runs no client, script, conversion library or server. Evidence keys resolve via [the source index](../docs/evidence-index.tsv), not proposed JSON aliases.
 
 Runtime observations use owned isolated Linux guest/process workflows with no server or server commit, no online login/gameplay and ordinary debugger breakpoints. New probes patch neither executable/signature checks nor script input. Bounded termination and owned-group cleanup do not assert that every system process was inspectable; separately identified unreadable kernel workers are outside the owned client/debugger group.
 
@@ -16,9 +16,19 @@ Runtime observations use owned isolated Linux guest/process workflows with no se
 
 [bin] The reviewed r6 reader uses big-endian four-byte framing/directory numbers and NUL-terminated directory names. It removes a leading `public.` declaration marker and forwards a flag. Format recognition does not establish runtime public-call visibility.
 
-[bin] Operand markers 240–242 select string-table entries using one-byte and two-byte unsigned indexes and a four-byte form with an explicit nonnegative-representation check. Markers 243–245 read progressively wider signed integers into numeric payloads. Marker 246 passes numeric text to a conversion helper whose full grammar remains unreviewed; it is not established as decimal-only. Other bytes append numeric-tagged instruction records; marker branches modify the most recent record.
+[bin] Operand markers 240–242 select string-table entries using one-byte and two-byte unsigned indexes and a four-byte form with an explicit nonnegative-representation check. Markers 243–245 read progressively wider signed integers into numeric payloads. Marker 246 passes text to the selected conversion wrapper traced below; its loaded-library grammar remains unmeasured. Other bytes append numeric-tagged instruction records; marker branches modify the most recent record.
 
 [bin] The recovered r6 corpus does not cover multiple-marker overwrite edges. Native local bounds/default behavior is not equivalent to the stricter whole-input rejection rules used for corpus validation.
+
+## Selected numeric-text wrapper (2026-11-22)
+
+[bin] Evidence: LNX420-NUMERIC-TEXT-20261122 in the [source index](../docs/evidence-index.tsv). The selected marker dispatch reaches text extraction and the conversion wrapper; when a prior instruction record exists, the result is stored as its numeric operand. This is not a whole marker-placement validity rule.
+
+[bin] Empty input returns zero. Exact lowercase `true` and `false` take separate one/zero branches. An exact lowercase `0x` prefix selects unsigned base-16 library conversion of the suffix; the returned unsigned 32-bit value is widened to floating point. Other text uses the loaded C-library floating converter. Both calls pass no end-pointer destination, and the wrapper does not check consumed length or range-error state. Library/environment-dependent decimal, exponent, hexadecimal-floating, nonfinite and locale grammar are not established by naming those callees.
+
+[bin] After either library conversion, the selected floating comparison returns an ordered nonzero value. Zero and unordered results instead enter a spelling-sensitive fallback, assuming the comparison completes normally: exact `0` or `0x0` is preserved as zero; other nonempty fallback text yields numeric minus one. The early empty/keyword branches remain separate. Instructions, rather than a recovered C inequality, establish this unordered-result distinction. Floating exception state and actual parsing of any spelling were not tested; this is neither a general finite-only filter nor full-text validation.
+
+[bin] Text extraction checks its initial cursor against logical length, then scans to a NUL and advances past that terminator independently of numeric parsing. Its selected failed gate substitutes an empty string and a sentinel cursor. The scan does not receive a remaining-length bound here; buffer construction and sentinels remain untraced. This read establishes neither safe truncation, whole-input rejection nor an out-of-bounds defect. Malformed/truncated input, multiple-marker overwrites and source/public-call runtime behavior remain open.
 
 ## Post-load transforms
 
@@ -27,7 +37,8 @@ Runtime observations use owned isolated Linux guest/process workflows with no se
 [bin] This is not source-compiler recovery or proof that fused tags were transmitted on the wire. Complete native bodies and raw corroboration were compared with the exact-roundtrip corpus offline. No client/server ran; cleanup is not applicable. Numeric-text grammar, malformed-input recovery, public/joined calls and source-language semantics remain open in E#207.
 
 - [x] ~~Review r6 operand handling and native jump-index/fusion passes.~~
-- [ ] Test malformed input, conversion grammar and source/public-call semantics.
+- [x] ~~Trace the selected marker-246 text wrapper, numeric fallback and independent cursor advance.~~ See the dated follow-up.
+- [ ] Test loaded-library/environment grammar, malformed/truncated input, multiple-marker overwrites and source/public-call semantics.
 
 ## Evidence provenance
 
