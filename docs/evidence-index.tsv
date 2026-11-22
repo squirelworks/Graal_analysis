@@ -145,3 +145,4 @@ W603-PRODUCT-FALLBACK-20261122	windows	retained-product-id-selector-static-rerea
 L404-DELIVERY-BOUNDARIES-20261122	linux	retained-transport-dispatch-and-handler-static-reread
 LNX603-CACHE-CALLER-GATES-20261122	linux	retained-class-cache-caller-static-reread
 W500-APPEARANCE-READERS-20261122	windows	retained-appearance-reader-and-cursor-static-review
+W500-PLAYER-EXTENTS-20261122	windows	retained-selected-player-reader-consumer-and-cursor-static-review

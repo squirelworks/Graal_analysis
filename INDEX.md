@@ -28,7 +28,7 @@ When you add a note, add a line for it here in the same pull request.
 - [Large-file thresholds on focus builds](protocol/large-file-thresholds-focus.md) — 64000 / 32000 / LARGEFILE\* ladder for 1.39–6.037; token-table trap; consolidates file-transfer + labs; static + prior lab.
 - [File defaults and receive-case evidence](protocol/file-profile-evidence-2026-11-21.md) — recorded 1.41r1 generation/direct cases; 2.22/2.31 shared-default provenance; server gates and directional captures kept separate; no new run.
 - [v4 Login account contract (4.20r8)](protocol/v4-login-account-contract.md) — typed account on first Login vs 5.x/6.x guest-first; open stock-UI / script-API rows; consolidates C4 status; static + prior lab.
-- [Player-prop parsers on 5.00r7 / 5.12](protocol/player-props-5x-status.md) — case sets settled (+82); selected backup-input appearance extents qualified; complete widths, genuine 5.12 and pyreborn P4–P6 open; research #6.
+- [Player-prop parsers on 5.00r7 / 5.12](protocol/player-props-5x-status.md) — case sets settled (+82); selected backup-input image/string/color/scalar extents qualified; complete widths, genuine 5.12 and pyreborn P4–P6 open; research #6.
 - [Ids sent by 5.12 / 2.31 id 44](protocol/ids-sent-512-status.md) — S→C vs C→S 44 on 2.31 settled; 5.12 send floor still cap-only; research #17; static status.
 - [2.22 inferred-from-2.1 inventory](version-profiles/222-inferred-from-21-inventory.md) — settled binary/cap rows vs unmatched PLI and era-default cells still to re-tag; research #9; static inventory.
 - [Batch Linux 4.03r1 / 4.10r2 / 4.11 autopackage ELFs](version-profiles/batch-linux-4x-autopackage-2026-11-16.md) — package identity to prior extracts, string ladder vs 4.04r2, Win Thinstall twins already profiled; static.

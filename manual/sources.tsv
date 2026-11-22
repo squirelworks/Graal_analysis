@@ -585,7 +585,7 @@ protocol/packet-layouts.md	cited	2; 0; 2.1; 2.4; 2.5; 2.6; 2.9; 8.3; 8.4; A	2.4;
 protocol/payload-and-trigger-205r2.md	cited	2.5	2.5	
 protocol/pcap-2026-10-04.md	excluded		2	first survey of the 2026-10-04 captures; its decoded results are in protocol/login-and-walk.md and protocol/codec-and-framing.md, which the manual cites
 protocol/pcid.md	cited	2.3; 6; E	2.3; 6	
-protocol/player-props-5x-status.md	cited	2.6	2.6; E	Case sets and selected backup-input appearance extents; complete widths, genuine 5.12 and P4–P6 remain open; research #6
+protocol/player-props-5x-status.md	cited	2.6	2.6; E	Case sets and selected backup-input image/string/color/scalar extents; complete widths, genuine 5.12 and P4–P6 remain open; research #6
 protocol/player-props.md	cited	2; 2.5; 2.6; 2.8; B	2.6; B	
 protocol/player-x-half-tile.md	cited	2.6	2.6	
 protocol/plo-109-httpdownload.md	cited	2.5; A	2.5; A	PLO 109 HTTPDOWNLOAD: i5 + local name + URL; 5.24r4–6.03r7; first-string scheme-check open; §2.5 / App. A
