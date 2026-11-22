@@ -13,6 +13,8 @@ optimiser fuses, the limits, and the maths and text rules that change between bu
 
 ## What was read
 
+A [selected backup call/context follow-up](gs2-vm-from-engines.md#selected-backup-call-binding-and-context-cleanup-2026-11-22) separates counted/formal binding, frame destruction and explicit WITH cleanup, with a separate re-walk of official 6.113-era normal closures. Its archive label does not authenticate a distribution; it does not revise this six-build matrix. **[bin][cap]**
+
 | Build | Platform | How the VM was found | Tag |
 | --- | --- | --- | --- |
 | 3.153 | Mac OS X PowerPC | the dispatcher as one switch | [bin] |
