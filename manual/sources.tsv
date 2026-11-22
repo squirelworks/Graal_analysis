@@ -404,7 +404,7 @@ formats/ios-gani-param1-placements.md	cited	3.3	3.3	Direct-placement context, na
 formats/level-binary-client.md	cited	3.1; 3.6	3.1	
 formats/level-binary.md	cited	1; 3.1	3.1	
 formats/linux-603-local-cache-helper.md	cited	3.8	3.8	Local-file helper recognition/status/checksum order carried in 3.8.8; identity and static-derived case bookkeeping remain in source note.
-formats/linux-6x-class-cache.md	cited	3.8; 8.4	3.8; E	Class-path writer/reader order, packet 197 zero-CRC path, the 161 request and the 6.01 x86 delivery split carried in 3.8.9; identities stay in the source note
+formats/linux-6x-class-cache.md	cited	3.8; 8.4	3.8; E	Class-path writer/reader order, zero-CRC branch, pending-name request suppression and separate status/reader/notification gates carried; exact identities and static limits remain in source note
 formats/linux-torque-resource-scope.md	cited	10	10	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 formats/pics1-tile-layout-render-2026-11-19.md	cited	3.5	E	Render test of real levels against a real pics1 sheet settles the tile-id layout (eight blocks of 512 ids); carried in App. E#102.
 formats/seihai-boards.md	excluded			reimplementation design (Seihai), out of scope per §0.1
@@ -552,7 +552,7 @@ protocol/large-file-thresholds-focus.md	cited	2.7	2.5	Focus-build large-file / F
 protocol/link-probe-bigmap-status.md	cited	E	2.5; E	2.x link probe / PLO_BIGMAP / gmap entry-save status; gap #34; E#308/E#314
 protocol/link-probe-offsets-205-222-2026-11-19.md	cited	4.2; E	4.2; E	Disassembler read: per-facing edge-link probe offsets of 2.05, byte-identical in 2.22; walking past the edge with the neighbour loaded
 protocol/link-test-2026-11-04.md	cited	2.5		
-protocol/linux-404r2-receive-scope.md	cited	2.5	2.5; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
+protocol/linux-404r2-receive-scope.md	cited	2.5	2.5; E	initial handoff plus selected transport/raw-100 and message-193 export reread; indirect-call, helper and runtime limits retained
 protocol/linux-603-network-gs2.md	cited	8.4	8.4; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 protocol/linux-cross-version-receive.md	cited	2.5	2.5; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 protocol/linux-local-login-matrix.md	cited	2.3	2.3	exact identities and provenance remain in source note; bounded behavioral findings carried
@@ -928,3 +928,4 @@ server-notes/tile-category-options-2026-11-21.md	cited	5	5	Pinned GPL reference-
 server-notes/language-options-and-fallback-2026-11-21.md	cited	5	5	Tracked/logged language keys are separated from registration metadata, player language and actual classic/modern lookup; no original/runtime equivalence.
 server-notes/sync-distance-routing-2026-11-21.md	cited	5	5	Numeric synchronization queries are separated from ordinary data and send-method gates; no universal visibility, original-server or new runtime claim.
 server-notes/level-persistence-options-2026-11-22.md	cited	5	5	Tile rewrite attempts, sublevel NPC sleep and DATABASE save requests are separated; no durable-output or original/runtime claim.
+server-notes/script-engine-defaults-2026-11-22.md	cited	5	5	Pinned GPL default-engine alias and consumer classification; no original/runtime or fresh inventory claim.
