@@ -371,6 +371,8 @@ The rules below summarise what those scripts do, and so what a client has to run
 
 Opcodes 48 and 49 on a build that dispatches them (5.00r7 or 5.12), the value `waitfor` gives when its time runs out, and why one random expression crashes 6.03r7 are open [lab] (protocol/script-fuzz-2026-11-19.md#still-open).
 
+A separate static read follows a selected archive-labelled Windows backup and the exact recorded Linux 6.03r7 x64 input: successful waits prepare numeric one, deadline processing explicitly zeroes that payload before requesting the event, and eligible restoration copies the saved value. The Linux deadline path requires an ordered positive deadline and `clock + 0.0001 > deadline`, with equality excluded. Registration, queue handling, script changes and readiness still gate delivery; this does not settle the native timeout experiment or genuine 5.12 behavior [bin][inf] (client-internals/gs2-wait-results-2026-11-22.md).
+
 ## 8.3.11 Engine event names by build
 
 The table lists every `on…` name the engine images hold as a literal, so a script can be passed that event by name (→ §8.3.4). An `x` means the image holds the literal and `·` means it does not. Holding a name does not show which gameplay site fires it, which is still open (→ App. E#207) [bin] (client-internals/gs2-engine-event-names.md#the-table).

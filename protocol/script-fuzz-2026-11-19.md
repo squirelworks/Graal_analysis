@@ -218,6 +218,6 @@ Each `differs` row above is a candidate fix for seihai-core's GS2 VM or GS1 engi
 ## Still open
 
 - [ ] Runtime behavior of opcodes 48 and 49 on a build that dispatches them (5.00r7 or 5.12). The [retained 5.00r7 backup-engine handler read](gs2-client-only-opcodes.md#48-and-49-retained-500r7-backup-engine) supplies a bounded static contract; genuine 5.12 and runtime validation remain open.
-- [ ] The value `waitfor` gives when its time runs out. The three cases did not settle it.
+- [ ] The value `waitfor` gives when its time runs out. The three cases did not settle it. A separate [static follow-up](../client-internals/gs2-wait-results-2026-11-22.md) binds saved-one preparation, deadline payload zeroing and conditional restoration in two selected inputs; it does not supply a new native timeout experiment.
 - [ ] Why the expression in case 30789 crashes 6.03r7.
 - [ ] Why control 30000 reads `stopped` on 5.24r4 while 30001 and every canary reported.
