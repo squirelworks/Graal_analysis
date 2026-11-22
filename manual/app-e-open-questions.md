@@ -420,6 +420,8 @@ These questions are about GS1 and GS2 (→ Part VIII). GS1 is read one build at 
 | Settles it | A decoded bytecode message from a 4.x lab session, a reading of the built-in command table and the compiler's grammar, and a note on the GS2 documentation in the archived websites | [bin] (client-internals/gs2-vm-from-engines.md#what-is-still-missing-before-a-seihai-vm-can-be-written); [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 | Outlook | Read and Lab for the client side; Maybe never for the official compiler's own source, so its grammar must be inferred from its output | [inf] (protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation) |
 
+Current compiler qualification (2026-11-22): seihai-core already folds enums, generates dynamic members/methods and standalone GUI initializers, selectively lowers GS1 `with`, and emits the named `seteffectmode` host command. Exact-head CI passed the named compilation/control tests and a legacy-GS2 own-VM command-effect test. These do not rerun the historical corpus or establish general own-VM values, GUI rendering, official encoding or native execution. G241 and G242 remain open [src] (npc-library/gs2-world-corpus-2026-11-12.md#current-compiler-qualification-2026-11-22).
+
 ### E#209 GS2 VM: what the per-build reading left open
 
 **Question.** The VM details the six-VM reading of 3.153 to 6.03r7 left open. The cross-version table settles some and names the builds still unread [bin][doc] (client-internals/gs2-vm-loader-diff.md).
