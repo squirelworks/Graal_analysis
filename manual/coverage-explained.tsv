@@ -5869,3 +5869,4 @@ server-notes/tile-category-options-2026-11-21.md	0cf8f83d0ac658299abb4a9c93dab99
 server-notes/language-options-and-fallback-2026-11-21.md	0cf8f83d0ac658299abb4a9c93dab99cca805f37	Pinned GPL source commit for attribution, not a Graal protocol or configuration term.
 server-notes/sync-distance-routing-2026-11-21.md	0cf8f83d0ac658299abb4a9c93dab99cca805f37	Pinned GPL source commit for attribution, not a Graal protocol or configuration term.
 client-internals/feature-specs/05-save-load.md	0cf8f83d0ac658299abb4a9c93dab99cca805f37	GPL reference-fork source pin; placement behavior is carried in section 3.7.6, not a Graal version claim
+server-notes/player-z-policy-2026-11-22.md	0cf8f83d0ac658299abb4a9c93dab99cca805f37	Pinned GPL source commit for attribution, not a Graal protocol or configuration term.
