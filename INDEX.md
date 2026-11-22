@@ -6,6 +6,8 @@ When you add a note, add a line for it here in the same pull request.
 
 - [Windows 5.12 selected own-prop canaries under Wine](protocol/probe-wine512-widths-2026-11-21.md) — 100 selected payloads across widths and nine nonzero follow-ups, 96 landed and four lost; case 76 is a threshold result rather than an exact reset match, and wider width semantics remain open.
 
+- [GServer-v2 level persistence and cache options](server-notes/level-persistence-options-2026-11-22.md) — separates script-tile save gates from gmap sublevel sleep and last-player NPC save calls; static source scope, with durability and original-server behavior left open.
+
 - [2.14–2.16 documentary feature attribution](client-internals/214-216-feature-evidence.md) — release-note feature families, documentary token associations and the reference server's large-file gate; revision and native-client limits remain explicit.
 - [Client-id inference limits: 2.14–2.16 and Windows 6.00–6.015](protocol/client-id-inference-scope.md) — separate outgoing-set hypotheses from receive-switch reads and captured token associations; Windows and Mac 6.015 remain distinct.
 - [Windows 5.12 core probes under Wine](protocol/probe-wine512-core-2026-11-21.md) — 32 controlled cases, 29 landed and three lost canaries; selected own-prop alignment and five PLO ids, with the wider campaign still open.

@@ -10,6 +10,10 @@ Nothing in these notes was invented about the protocol. Identifiers and behavior
 
 `lab-servers-2026-10-30.md`: what the project's lab gserver (GServer-v2 `efb5b90` + a gs2lib patch) and listserver are, real 2.05 / 2.17.1 / 2.22 runs against them, and a comparison with GServer-v2 beta4, graal-serverlist, Guthius's graal-listserver, glauncher and gs2-parser.
 
+## Level persistence and cache options (2026-11-22)
+
+`level-persistence-options-2026-11-22.md`: pinned-fork source paths for script-driven tile persistence, gmap sublevel sleep, and NPC save requests; original-server behavior and durable writes remain unverified.
+
 ## `setcharprop` and `#n` (2026-10-31)
 
 `setcharprop-hash-n.md`: in a `setcharprop` **value**, `#n` expands to the
