@@ -15,6 +15,12 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 
 ## Columns
 
+2026-11-23 update: G070 has a [versioned source comparison](../server-notes/file-cache-and-script-size-2026-11-23.md)
+separating the later fork's file-checksum exception, cached package metadata and
+parsed map state from NC script input and classic script-output bounds. Original
+4.02 behavior, the historical RC editing limit and old-engine breakage remain open;
+this is partial coverage, not a completed historical confirmation.
+
 2026-11-21 update: G424 has a [100-case selected own-prop scan on Windows
 5.12 under Wine](../protocol/probe-wine512-widths-2026-11-21.md), with 96 landed
 and four lost canaries across the 91-case scan and nine nonzero follow-ups. This is partial coverage, not a full width/semantic
