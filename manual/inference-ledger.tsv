@@ -82,7 +82,7 @@ manual/07-rc-nc.md	Whether 33 carries the script length as `s` or `i3` for large
 manual/07-rc-nc.md	Left over	protocol/nc-flag-list-round-trip-2026-11-20.md#not-covered	What the 2001 NPC server does with 69 and whether it limits the list; no server of that date is held
 manual/08-scripting/01-gs1-language.md	name matching	npc-library/gs1-reference-205.md#execution-model-205	command names that end in a space in the table (`say `, `set `, `setlevel `, `setimg `, `move ` and others) require an argument; the others are matched as whole words
 manual/08-scripting/01-gs1-language.md	Left over	npc-library/gs1-condition-truth-205r2.md#verification-and-limits	The full alias and precedence rules, and named-flag collisions
-manual/08-scripting/03-gs2-language.md	Open: whether `removemodifiers` clears the emit list, when a global clock starts	client-internals/showimg-particles-and-gs2-format.md#not-settled	
+manual/08-scripting/03-gs2-language.md	Open: the exact particle kinds (image, ani and text)	client-internals/showimg-particles-and-gs2-format.md#not-settled	
 manual/08-scripting/04-gs2-bytecode.md	still open	protocol/graphics-movement-bytecode.md#what-still-needs-capture-or-confirmation	GS2 syntax, standard library, event model
 manual/08-scripting/04-gs2-bytecode.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-h.md#not-covered	3.153's opcode switch and whether it folds
 manual/08-scripting/04-gs2-bytecode.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-i.md#not-covered	Why these 17 are marked, and whether a script function of the same name would resolve differently unfused
