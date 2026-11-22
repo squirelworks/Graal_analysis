@@ -263,7 +263,7 @@ Earlier cadence work on 3.x / 4.x / 5.00r7:
 | Lookup order | with → active frame child → thiso **property only** → level → universe (+ create) → fallback `playero` | Differs slightly from the 3.153 account | [bin] |
 | Failed call | slot ← 0; optional `Function … not found` | — | [bin] |
 | `adventure.*` | refused unless the variable name starts with `login` | — | [bin] |
-| Joined classes | OR event masks; instruction walk concatenates; unqualified call search on the opened path was **current script only** | Visibility of class functions still open | [bin] |
+| Joined classes | OR event masks; instruction walk concatenates | The earlier current-script-only description was incomplete for the separately retained older input: its program lookup recurses through joins. Two later selected inputs also reach joined function tables through their own ordinary-call routes; cross-build/runtime and collision limits remain [in the follow-up](gs2-joined-function-lookup-2026-11-22.md) | [bin][inf] |
 
 ---
 
@@ -332,7 +332,7 @@ in those notes:
 - [ ] Spelling × client matrix for `onTimeout` / `onTimeOut` / `onActionServerSide` variants.
 - [ ] Full semantics of 48, 49, 54; `waitfor` timeout-expiry return value on 4.20r8.
 - [ ] 4.04r2 / mid-5.x / 6.00r2 clock step confirmation where still partial; Unity 7.x VM.
-- [ ] Whether joined-class functions are visible to unqualified call.
+- [ ] Cross-build/runtime joined-class function visibility; [three selected ordinary-call lookup chains](gs2-joined-function-lookup-2026-11-22.md) are statically followed, with authenticated identity, all join modes and collision cases still open.
 - [ ] Further world-scan aggregates → refresh §10 only.
 
 Also tracked with grades in [gs2-vm-loader-diff.md](gs2-vm-loader-diff.md#still-open)
