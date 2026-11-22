@@ -168,3 +168,4 @@ GS1-EIGHT-COMMANDS-20261122	source	eight-gs1-command-registration-wrapper-and-se
 FILE-CACHE-SCRIPT-SIZE-20261123	source	pinned-file-verification-package-metadata-map-state-and-script-input-output-static-comparison
 V2100-GANI-PREFIXES-20261123	windows	native-static-raw-literals-prefix-helper-and-selected-placement-instructions
 V2100-GANI-HEADER-WORDS-20261123	windows	selected-retained-parser-instructions-and-identity-bound-raw-header-word-data
+V2100-GANI-KEYWORD-REMOVAL-20261123	windows	native-static-caller-registers-concrete-list-method-and-post-removal-count-contract

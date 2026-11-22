@@ -36,16 +36,16 @@ This closes G144's literal-spelling question for the examined image. It does not
 
 ## `SPRITE`, `COLOREFFECT`, `ZOOMEFFECT`
 
-The first field is the keyword. A call with no arguments sits between taking that field and reading the field count. The call was not identified, so it is not a traced removal of the keyword. The counts of fields remaining after the keyword are an inference from the next read being an integer. They are not a measured count. **[inf]**
+The first field is the keyword. The intervening call was previously unidentified because its decompiled presentation omitted the register arguments. The follow-up below resolves it as first-element deletion with index zero before the later count checks. These selected normal-path minima are now statically verified after keyword removal, rather than inferred from the next field's type. No runtime count was measured. **[bin]**
 
 | Keyword | Fields remaining after the keyword | Fields this body reads |
 | --- | --- | --- |
-| `SPRITE` | more than five, inferred | an integer, a text name, and four integers. A further field is not stored |
-| `COLOREFFECT` | more than four, inferred | that integer and four floating-point values, when the integer finds a sprite already stored. A miss stores nothing |
-| `ZOOMEFFECT` | more than one, inferred | that integer and one floating-point value, with the same sprite test |
-| `SETBACKTO` | at least one, inferred | that field as text |
+| `SPRITE` | at least six, statically verified | an integer, a text name, and four integers. A further field is not stored |
+| `COLOREFFECT` | at least five, statically verified | that integer and four floating-point values, when the integer finds a sprite already stored. A miss stores nothing |
+| `ZOOMEFFECT` | at least two, statically verified | that integer and one floating-point value, with the same sprite test |
+| `SETBACKTO` | at least one, statically verified | that field as text |
 
-The last column is what this body reads after the call. **[bin]**
+The last column is what this body reads after the call. Having enough fields does not by itself prove successful numeric conversion, a matching sprite or rendered output. **[bin]**
 
 `LOOP`, `CONTINUOUS` and `SINGLEDIRECTION` each set a separate flag byte. The `LOOP` spelling and the `ANI` opener are bound by the follow-up below. `SCRIPT` collects the following lines until `SCRIPTEND`. The separator between those lines was not recovered, and this body does not run the text. A line that matches none of these words is not stored. This body does not test `ATTACHSPRITE` or the movie-mode words. **[bin]**
 
@@ -57,11 +57,19 @@ A header comparison with `ANI` sets the reader's animation-block mode. The main 
 
 Matching `LOOP` sets a stored byte flag to one. The neighboring `CONTINUOUS` and `SINGLEDIRECTION` branches set different bytes. The latter also sets the direction-row minimum to one rather than the reader's initial four. The selected `LOOP` branch changes its flag, not that minimum or the animation-block mode. Its name does not establish how a later renderer or timer consumes it. **[bin]**
 
-G145's two-word recovery is answered for this input. Default/reset behavior, interactions among the flags, rendering/repeat semantics, error recovery and other builds are not established by these selected normal-path observations. G146's unidentified call and inferred post-keyword counts, and G147's cross-build comparison, remain open. **[bin]**
+G145's two-word recovery is answered for this input. Default/reset behavior, interactions among the flags, rendering/repeat semantics, error recovery and other builds are not established by these selected normal-path observations. The G146 call/count follow-up below is separate; G147's cross-build comparison remains open. **[bin]**
+
+### Keyword removal and field counts: static follow-up (2026-11-23)
+
+This uses the same examined image and [identity qualification](#placement-prefixes-static-follow-up-2026-11-23). The tokenizer constructs a fresh list whose concrete class metadata identifies `TStringList`; the selected construction and return instructions bind that object to the caller. The reader checks that the list is nonempty, reads its element zero as the keyword, then passes the list object and index zero to a virtual method. Thus the apparent argument-free call is a decompiler limitation, not the instruction-level call contract. Evidence: V2100-GANI-KEYWORD-REMOVAL-20261123. **[bin]**
+
+The concrete method-table target identifies the operation by its state changes: on its normal path, it finalizes the indexed entry, decrements the list's count and moves the remaining entries down. The caller's zero index therefore removes the first entry it just read. The selected count getter returns that same decremented count field; the selected element getter reads the indexed string entry. The caller subsequently checks at least six remaining fields for `SPRITE`, five for `COLOREFFECT`, two for `ZOOMEFFECT` and one for `SETBACKTO`. Those count checks concern the list after keyword removal. **[bin]**
+
+This closes G146's call-identification and post-keyword-count question for the selected reader. It is based on register setup, concrete table entries, getter/deletion/copy instructions and the following branch thresholds, not a guessed source-level method name. Decompiler return typing and exception-handler coverage remain incomplete. Error/callback effects, malformed input, numeric domains, allocation safety, playback and other builds were not established; the result describes the normal path, not a runtime acceptance test. No original client or Graal script was run. **[bin]**
 
 ## Open
 
 - [x] ~~Recover the five-character and four-character prefix spellings.~~ `PARAM` and `ATTR`, bound to the selected public image's actual placement branch; see [the static follow-up](#placement-prefixes-static-follow-up-2026-11-23).
 - [x] ~~Recover the block opener and the third flag word.~~ `ANI` and `LOOP`, bound to selected parser-mode and separate flag stores; see [the static follow-up](#block-opener-and-third-flag-static-follow-up-2026-11-23).
-- [ ] Identify the no-argument call between the keyword and the field count. Until that call is a traced removal, the post-keyword counts stay an inference.
+- [x] ~~Identify the no-argument call between the keyword and the field count.~~ The instructions pass index zero to the concrete first-entry deletion method; the selected post-removal count thresholds are verified. See [the static follow-up](#keyword-removal-and-field-counts-static-follow-up-2026-11-23).
 - [ ] Compare this reader with ver7 and with v22.

@@ -33,10 +33,6 @@ manual/03-formats/01-levels.md	tile range	formats/level-binary.md#board-bit-stre
 manual/03-formats/01-levels.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-c.md#whole-tiles-and-fractions-in-205-binary-level-records-e603	2.22 and 2.31, which were not read for this field
 manual/03-formats/01-levels.md	meaning	formats/level-binary-client.md#gr-v104-231	a 9×9 grid fits the corners of an 8×8 grid of 8×8-tile cells on a 64×64 level
 manual/03-formats/02-gmap.md	integers	formats/gmap.md#205-big-map-and-minimap-text-files-205	stored as points in the player object; probably image offsets or scale, which fits the defaults, but their use is not traced
-manual/03-formats/03-gani.md	`SPRITE` count	client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect	more than five fields remaining after the keyword is an inference
-manual/03-formats/03-gani.md	`COLOREFFECT` count	client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect	more than four fields remaining after the keyword is an inference
-manual/03-formats/03-gani.md	`ZOOMEFFECT` count	client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect	more than one field remaining after the keyword is an inference
-manual/03-formats/03-gani.md	`SETBACKTO` count	client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect	at least one field remaining after the keyword is an inference
 manual/03-formats/05-tiles-arrays.md	Left over	formats/tiledef-type4-2026-11-16.md#open	Water under an overlay, and type-4 lines on builds other than 2.22
 manual/03-formats/05-tiles-arrays.md	2	formats/arrays-and-signatures.md#arrays2dat	web host, joined into a URL template
 manual/03-formats/05-tiles-arrays.md	consequence	formats/arrays-and-signatures.md#the-graal-reborn-222-exe-has-the-check-disabled	an unpatched 2.17, 2.22 or 2.31 client refuses an edited `arrays2.dat` or executable; editing `arrays2.dat` alone fails the signature
