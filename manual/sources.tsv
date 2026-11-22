@@ -197,7 +197,7 @@ client-internals/gs2-builtins-6113.md	cited	8.4	8.4	§8.4.5 carries the math nam
 client-internals/gs2-engine-event-names.md	cited	8.3; E	8.3; E	engine event names by build in §8.3.4; E#207
 client-internals/gs2-value-semantics-stock-2026-11-16.md	cited	8.4	8.4; E	stock vs third-party value-semantics: 10k loop default; waitfor real; starts/ends case open
 client-internals/gs2-vm-by-version.md	cited	8.4; C; E	8.4; C; E	
-client-internals/gs2-vm-from-engines.md	cited	8; 8.3; 8.4; E	8.3	§8.3.3 carries the object, the lookup, the events, the clock and the bytecode segments. The opcode table, the fusion numbers and the per-version case list stay in the note
+client-internals/gs2-vm-from-engines.md	cited	8; 8.3; 8.4; E	8.3	§8.3.3 carries objects, lookup, events, clock and segments; §8.4 carries selected backup call/context findings and separate official normal-closure limits. Signature detail, fusion numbers and per-version cases stay in the note
 client-internals/gs2-vm-loader-diff.md	cited	8.4; C; E	8.4; C; E	loader, slots, opcodes, maths, event names and clock by build; settled, partial or open
 client-internals/gs2-vm-quirks-by-version.md	cited	8.4; 4.1; C	8.4; 4.1; C; E	compact quirks table; 6.03r7 timer ceil lab; event-casing risk; compile vs runtime
 client-internals/gserv-125-127-builds.md	cited	1	1; 2.3; 2.4; 8	Graal 1.25 and 1.27 (InstallShield 3 packages): GSERV tokens cited in §1; GS1 dating and receive-dispatch rows still to be folded into the login and scripting sections

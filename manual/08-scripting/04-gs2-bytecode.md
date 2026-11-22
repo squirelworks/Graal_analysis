@@ -280,6 +280,8 @@ The wrong-representation hash attempt remains superseded; only the corrected rea
 
 Six VMs were read side by side: 3.153 and 4.20r6 (Mac PowerPC), 4.20r8 and 5.00r7 (Windows), 6.01r1 and 6.03r7 (Linux). Unread builds borrow the nearest read VM [bin][inf] (client-internals/gs2-vm-by-version.md). The per-build matrix is App. C.8. A later table adds the loader, the slots, event-name matching and the clock, and retires the loans for the builds that were read after this chapter: [bin][doc] (client-internals/gs2-vm-loader-diff.md). A compact quirks table restates those rows for era scripts and adds the Linux 6.03r7 timer ceil lab: [bin][lab][doc] (client-internals/gs2-vm-quirks-by-version.md).
 
+A selected archive-labelled backup follow-up distinguishes counted-call adapters and formal binding from source evaluation order. Explicit WITH-end removes a context entry and recomputes outer context; frame destruction can instead invalidate matching references in place, while terminal cleanup clears the list. The label does not authenticate a distribution or establish runtime identity. A separate re-walk of nineteen official 6.113-era bodies found 524 normal closures but no early-exit discriminator; neither input establishes that the clean-room VM's unwind behavior matches native execution. G242/G303 remain partial. [bin][cap][inf] (client-internals/gs2-vm-from-engines.md#selected-backup-call-binding-and-context-cleanup-2026-11-22).
+
 | Item | Rule | Source |
 | --- | --- | --- |
 | opcodes added | 104 object compare (4.20r6); 11 `waitfor` and the optimiser's 200–233 (4.20r8); 48, 49, 54, 121 (5.00r7); 0, 164 and 234–242, without 48 and 49 (6.x) | [bin] (client-internals/gs2-vm-by-version.md#opcodes-each-vm-handles) |
