@@ -164,6 +164,14 @@ from the 2.05 script command table.
   `playerlastdead`, `level.`. These look server-only.
 - `getplayer`/`getnpc` appear in 2.171 and 2.22 but not in 2.05.
 
+## Separate later-fork source reference
+
+The [eight-command GPL GS1 reference](../server-notes/gs1-eight-server-commands-2026-11-22.md)
+classifies a pinned later fork's guild, level-file, value-copy and board commands.
+It includes registered-but-unimplemented `saveinfo` and explicit storage/result
+limits. It is not evidence that this 2001 NPC server implements those commands;
+the original-server confirmation requirement remains open. **[srv]**
+
 ## Open questions
 
 1. Packet ids and port for the NPC-server ↔ GServer link (needs a 2001-era
