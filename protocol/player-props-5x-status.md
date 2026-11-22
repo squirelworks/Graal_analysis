@@ -44,6 +44,22 @@ The same archive-labelled backup input supports the following additional nominal
 
 Substring clipping and selected update guards do not prove complete malformed-stream safety or successful alignment. Stock/vendor provenance, runtime identity, genuine 5.12, the full width census and the broader P4–P6 questions remain open. **[bin][inf]**
 
+## Selected coordinate conversion and storage (2026-11-22)
+
+A further read of the same archive-labelled backup binds the conversion constants and a selected concrete shared receiver (evidence `W500-COORDINATE-DISPATCH-20261122`). It does not authenticate a distribution, establish runtime identity or transfer the result to genuine 5.12. **[bin]**
+
+For logical 15/16, the unsigned value byte minus 32 is multiplied by 0.5. For logical 78/79, the combined integer is 128 times the first unsigned value byte plus the second, minus 4128. The reader arithmetic-shifts this signed integer right once, multiplies by 1/16, then negates the result when the combined integer's low bit is set. Sign/magnitude shorthand therefore needs a nonnegative combined integer; it is not the exact rule for arbitrary raw bytes. The optional reference component is added in the selected branches. Assembly passes both words of the resulting 64-bit value to the setter, rather than only the low word suggested by recovered C. None of this changes the nominal one/two-value-byte wire extents or proves arbitrary malformed-input safety. **[bin]**
+
+For the shared handler's newly constructed receiver, the allocation/constructor/vtable/application chain binds the first pair (15/78) to exported `getx` and the second (16/79) to exported `gety`. Their getters read double storage updated by the concrete setter chains. Those setters also maintain relative caches and propagate to a member list; their full effect is not merely storing the incoming value. This binds x/y for that selected new-object path, not the dynamic types of own-player, already-existing shared or optional reference objects. Tile/pixel units, reference/map conventions, dirty-state meaning and rendering remain unestablished. **[bin]**
+
+This is static conversion/storage evidence, not a movement experiment, complete property table or resolution of P4–P6. **[bin][inf]**
+
+## Selected logical 177 dispatcher binding (2026-11-22)
+
+The same selected backup's constructed connection decodes the logical message ID from the first message byte. Its direct dispatch and queue-drain routes preserve that ID. For logical 177, the selected translation and jump-slot data bind the dispatch to its default return path, with no intervening selected handler call. This resolves the selected static mapping rather than relying on the absence of a recovered switch arm. **[bin]**
+
+That route supplies no color-mode handler to connect with the separately examined five-value player-colors reader. It does not establish whole-client packet177 absence, another ID's equivalence, all connection subclasses or alternate paths, genuine 5.12, observed traffic, color rendering or runtime acceptance. P4–P6 remain open beyond this selected result. **[bin][inf]**
+
 ## Still open for #6
 
 | Question | Why | Next |
