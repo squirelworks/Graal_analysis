@@ -15,10 +15,15 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 
 ## Columns
 
+2026-11-23 update: G145's [header-word recovery](../client-internals/v2100-gani-reader.md#block-opener-and-third-flag-static-follow-up-2026-11-23)
+is answered for the same examined input: `ANI` selects the block mode and `LOOP`
+sets a distinct stored flag. This does not establish rendered repetition or flag
+defaults/interactions; G146/G147 remain open and all 426 IDs are retained.
+
 2026-11-23 update: G144's [placement-prefix spelling question](../client-internals/v2100-gani-reader.md#placement-prefixes-static-follow-up-2026-11-23)
 is answered for the examined public-labelled 2.1.0.0 input: `PARAM` and `ATTR`,
 with raw literal bytes and separate instruction paths. Rendering and malformed-input
-behavior are not established; G145, G146 and G147 remain open. The stable inventory
+behavior are not established; G146 and G147 remain open. The stable inventory
 still contains 426 IDs.
 
 2026-11-23 update: G070 has a [versioned source comparison](../server-notes/file-cache-and-script-size-2026-11-23.md)

@@ -6,7 +6,7 @@ The direction-row minimum, four or one after `SINGLEDIRECTION`, and `ANIEND` dro
 
 ## `PLAYSOUND`
 
-Inside the block that `ANIEND` closes, a line whose text starts with `PLAYSOUND` is stored when it has more than one field and a frame is open.
+Inside the `ANI` block that `ANIEND` closes, a line whose text starts with `PLAYSOUND` is stored when it has more than one field and a frame is open.
 
 | Field | What is stored |
 | --- | --- |
@@ -47,13 +47,21 @@ The first field is the keyword. A call with no arguments sits between taking tha
 
 The last column is what this body reads after the call. **[bin]**
 
-`CONTINUOUS` and `SINGLEDIRECTION` each set a flag byte. One more flag byte, beside those two, is set by a header word this read did not recover. `SCRIPT` collects the following lines until `SCRIPTEND`. The separator between those lines was not recovered, and this body does not run the text. A line that matches none of these words is not stored. This body does not test `ATTACHSPRITE` or the movie-mode words. **[bin]**
+`LOOP`, `CONTINUOUS` and `SINGLEDIRECTION` each set a separate flag byte. The `LOOP` spelling and the `ANI` opener are bound by the follow-up below. `SCRIPT` collects the following lines until `SCRIPTEND`. The separator between those lines was not recovered, and this body does not run the text. A line that matches none of these words is not stored. This body does not test `ATTACHSPRITE` or the movie-mode words. **[bin]**
 
-The word that opens the block `ANIEND` closes was not recovered as text in this read.
+### Block opener and third flag: static follow-up (2026-11-23)
+
+This follow-up uses the same examined image and identity qualification as the [placement-prefix study](#placement-prefixes-static-follow-up-2026-11-23). The selected retained reader instructions were compared with a fresh constant-window read from that unchanged file, mapped through its observed PE section headers. The word lengths and bytes are three characters for `ANI` and four for `LOOP`. No original program or Graal script was executed. Evidence: V2100-GANI-HEADER-WORDS-20261123. **[file][bin]**
+
+A header comparison with `ANI` sets the reader's animation-block mode. The main line loop tests that mode to select the block-reading path. In that path, matching `ANIEND` processes the current direction group using the existing minimum-row check, clears the pending group and clears the mode. This binds the opener to the selected parser transition; it is not a claim about playback or a complete malformed/end-of-file grammar. **[bin]**
+
+Matching `LOOP` sets a stored byte flag to one. The neighboring `CONTINUOUS` and `SINGLEDIRECTION` branches set different bytes. The latter also sets the direction-row minimum to one rather than the reader's initial four. The selected `LOOP` branch changes its flag, not that minimum or the animation-block mode. Its name does not establish how a later renderer or timer consumes it. **[bin]**
+
+G145's two-word recovery is answered for this input. Default/reset behavior, interactions among the flags, rendering/repeat semantics, error recovery and other builds are not established by these selected normal-path observations. G146's unidentified call and inferred post-keyword counts, and G147's cross-build comparison, remain open. **[bin]**
 
 ## Open
 
 - [x] ~~Recover the five-character and four-character prefix spellings.~~ `PARAM` and `ATTR`, bound to the selected public image's actual placement branch; see [the static follow-up](#placement-prefixes-static-follow-up-2026-11-23).
-- [ ] Recover the block opener and the third flag word.
+- [x] ~~Recover the block opener and the third flag word.~~ `ANI` and `LOOP`, bound to selected parser-mode and separate flag stores; see [the static follow-up](#block-opener-and-third-flag-static-follow-up-2026-11-23).
 - [ ] Identify the no-argument call between the keyword and the field count. Until that call is a traced removal, the post-keyword counts stay an inference.
 - [ ] Compare this reader with ver7 and with v22.
