@@ -36,6 +36,7 @@ So the container reading of 4.2.0.8 to 6.00 also holds for what the official 6.1
 - **Jumps:** opcodes 1 to 5 always carry an integer operand (`F3`–`F5`) from 0 to the script's instruction count. That fits jump targets counted in instructions, as `gs2-client-vm.md` says. **[cap]**
 - Opcodes 21 and 22 always carry a string-table operand (`F0`–`F2`). Opcodes 45, 46, 80, 150 and 163 carry integer operands. **[cap]**
 - **190 (`loadparams`) is emitted.** The third-party compiler has no `params` opcode and never emits 190 (`gs2-client-vm.md`). The official compiler does. **[cap]**
+- A later [call/formal structural comparison](../client-internals/gs2-vm-from-engines.md#selected-backup-call-binding-and-context-cleanup-2026-11-22) found 1,786 operandless calls, with no numeric-1/2 adapter occurrence, and 474 marker/formal-bind/save-stack prologues. These include 34 temporary-member reference forms; 484 function-table rows share the 474 prologues. This is observed output structure, not recovered source evaluation order or complete parameter semantics. **[cap]**
 - 48, 49, 54 and 121, the cases added in 5.0.0.7 and 6.00, do not occur in any of the 19 bodies. **[cap]**
 
 ## What this settles
