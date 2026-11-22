@@ -360,6 +360,8 @@ Further rows from the same runs:
 
 For 5.00r7 and 5.12 the case sets are settled (the 4.x set plus 82), and 5.00r7's widths match 5.24r4 in the probe set above; a two-client wire diff and third-party leads on colours via 177, an ascending-id stop and sword and shield bias are still open [bin][inf] (protocol/player-props-5x-status.md).
 
+Selected static backup-input readers also give logical 21 a prefixed string extent with distinct own/shared update gates, and logical 23 five value bytes only for a strictly positive decoded first value, otherwise one. The former reaches an image-string holder without an exact property-name binding; the latter has no established color/effect consumer. These selected extents do not complete the width table or establish genuine 5.12, malformed-stream safety or runtime acceptance [bin][inf] (protocol/player-props-5x-status.md#additional-selected-reader-extents-2026-11-22).
+
 Prop ranges for the 1.21 to 1.32 builds are in → App. C.6, and parser growth from 1.33 to the 2.1 tests in → App. C.3. An earlier reading of the 2.00 ranges is corrected in → §2.6.6.
 
 **Settled question, formerly E#8: prop parser ranges of 2.00.** Two sources disagreed on whether 2.00 parses player prop 36 and NPC prop 36; a re-read of the 2.0x jump tables settled it [bin] (protocol/player-props.md#parsers-in-200-to-205-re-read-2026-11-12-bin).
