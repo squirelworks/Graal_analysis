@@ -404,7 +404,7 @@ formats/ios-gani-param1-placements.md	cited	3.3	3.3	Direct-placement context, na
 formats/level-binary-client.md	cited	3.1; 3.6	3.1	
 formats/level-binary.md	cited	1; 3.1	3.1	
 formats/linux-603-local-cache-helper.md	cited	3.8	3.8	Local-file helper recognition/status/checksum order carried in 3.8.8; identity and static-derived case bookkeeping remain in source note.
-formats/linux-6x-class-cache.md	cited	3.8; 8.4	3.8; E	Class-path writer/reader order, packet 197 zero-CRC path, the 161 request and the 6.01 x86 delivery split carried in 3.8.9; identities stay in the source note
+formats/linux-6x-class-cache.md	cited	3.8; 8.4	3.8; E	Class-path writer/reader order, zero-CRC branch, pending-name request suppression and separate status/reader/notification gates carried; exact identities and static limits remain in source note
 formats/linux-torque-resource-scope.md	cited	10	10	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 formats/pics1-tile-layout-render-2026-11-19.md	cited	3.5	E	Render test of real levels against a real pics1 sheet settles the tile-id layout (eight blocks of 512 ids); carried in App. E#102.
 formats/seihai-boards.md	excluded			reimplementation design (Seihai), out of scope per §0.1
