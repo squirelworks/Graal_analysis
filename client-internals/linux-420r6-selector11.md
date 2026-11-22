@@ -1,6 +1,6 @@
 # Bound Linux 4.20r6 selector-11 saved-state and registration paths
 
-The editor reviewed only the sanitized 2026-11-09 Linux cross-version handoff and matched its supplied SHA-256. Observations and original private-carrier digests are researcher-supplied, not independently re-run or authenticated by the editor. No raw code, capture text, script body or client asset was inspected for publication. Evidence keys below resolve via [the source index](../docs/evidence-index.tsv). They identify actual owner-held carriers; proposed key-based JSON aliases are not materialized records or new Evidence IDs.
+The original publication reviewed only the sanitized 2026-11-09 Linux cross-version handoff and matched its supplied SHA-256; no raw code, capture text, script body or client asset was inspected for that publication. Its observations and private-carrier digests were researcher-supplied, not independently re-run or authenticated by the editor. The dated follow-up below additionally reads selected retained source and bounded instructions for the same executable input, with identity-bound table and numeric-constant records. It adds static consumer/restore evidence, runs no client, script or server and does not repeat earlier runtime observations. Evidence keys resolve via [the source index](../docs/evidence-index.tsv); they identify owner-held evidence, not proposed JSON aliases.
 
 Runtime observations use owned isolated Linux guest/process workflows with no server or server commit, no online login/gameplay and ordinary debugger breakpoints. New probes patch neither executable/signature checks nor script input. Bounded termination and owned-group cleanup do not assert that every system process was inspectable; separately identified unreadable kernel workers are outside the owned client/debugger group.
 
@@ -29,12 +29,27 @@ Runtime observations use owned isolated Linux guest/process workflows with no se
 
 [bin] The save helper transfers the next-instruction position and clears the active position, copies typed stack values and transfers collections while selectively reconstructing some entries. Insertion normalizes the event key. An empty requested target permits the matcher to compare against the current owner's name. This is a conditional, asymmetric matching fallback; canonical rewriting of stored or query targets is not established. Only the first matching pending record is removed; insertion destroys it and appends the new record. This proves first-match replacement on that path, without proving global uniqueness, removal of every duplicate, delivery order or full cancellation/destruction behavior.
 
-[bin] The expression-value capacity helper grows by 100 slots, refusing growth beyond 10,000; selector 11 requests one slot. Capacity failure is distinct from call-frame depth and event reception. Prepared numeric branch values are not established public success/failure returns.
+[bin] The expression-value capacity helper grows by 100 slots, refusing growth beyond 10,000; selector 11 requests one slot. Capacity failure is distinct from call-frame depth and event reception. The alternate entry branch and the saved wait result are different paths. The follow-up traces selected saved numeric values through restoration, not an executed public success/failure API.
 
 [bin] The r6 stock corpus contains no selector-11 input or function-directory entry carrying the public declaration prefix. Bundled startup therefore does not test those paths. This offline review runs no client/server; cleanup is not applicable. Complete retained pseudocode supports the review despite an earlier oversized dossier delivery. E#207 still needs controlled inputs, source coercion, resume, cancellation and lifecycle observations.
 
+## Static deadline consumption and conditional numeric restoration
+
+Added 2026-11-22. Evidence: LNX420-WAIT-CONSUMER-20261122 in the [source index](../docs/evidence-index.tsv). **[bin]**
+
+[bin] On the qualifying selector-11 path, saving records the next instruction and creates a typed numeric result containing `1.0`. The saved deadline is the current internal clock plus the supplied positive numeric input. The record is marked to append its result when restored. Zero does not enter this creation path as an indefinite wait; the alternate entry branch's numeric zero is separate from the timeout consumer.
+
+[bin] The pending-state consumer requires an ordered positive saved deadline. Expiry is strictly **current clock + `0.0001` > saved deadline**: equality does not take the branch, and an unordered comparison does not satisfy it. The constant is read from this input's selected operand, not borrowed from another client. Duration units, clock cadence and measured timer precision are not established.
+
+[bin] On expiry, the consumer clears the deadline and, if a saved result exists, zeroes its numeric payload before requesting a queued action with the stored target/event names. It changes neither the result type nor the append-result mark on this path. Mutation precedes the queue attempt; owner eligibility, capacity and duplicate-suppression gates can prevent delivery. The cleared deadline does not establish a retry guarantee.
+
+[bin] The selected action path probes for a matching pending record; execution repeats the match with removal enabled, removes the first match, restores its state and enters the executor. Restore recovers the instruction position and typed stack values. When the append-result mark is set and capacity permits, its numeric-type route copies the saved payload into an extra restored stack slot. Thus an unchanged ordinary record can append its initial `1.0`, while an expiry-mutated record can append `0.0`, conditional on surviving/matching and the owner/program/capacity gates. These are static numeric restorations, not observed public boolean returns or guaranteed completion. Saved-element and extra-result capacity checks are separate; failure need not deliver a result.
+
+[bin] The selected scheduler calls the deadline consumer before processing its queued actions. That is local code order, not event-arrival priority or fairness. Program/class refresh paths can reset and destroy pending records. Selected reset/destructor reads establish cleanup, not a public cancellation command/result, complete unsubscription policy or all referenced-object lifetimes. Actual invocation, coercion and controlled end-to-end resume/cancellation remain open; no layout or return contract is transferred to another build.
+
 - [x] ~~Trace r6 static saved-state, registration and first-match insertion behavior.~~
-- [ ] Establish actual invocation, resume/cancellation and public return semantics.
+- [x] ~~Trace selected static deadline mutation, match/removal and conditional numeric-result restoration.~~ See the follow-up above.
+- [ ] Establish executed public invocation and return semantics, including coercion, end-to-end resume/cancellation and subscription/object lifetime.
 
 ## Evidence provenance
 

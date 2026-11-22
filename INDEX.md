@@ -215,7 +215,7 @@ When you add a note, add a line for it here in the same pull request.
 
 - [Bound Linux 4.20r6 container operands and post-load fusion](client-internals/linux-420r6-reader-fusion.md) — Serialized/fused distinction plus selected numeric-text wrapper and cursor behavior; library grammar, malformed-input and runtime limits remain.
 
-- [Bound Linux 4.20r6 selector-11 saved-state and registration paths](client-internals/linux-420r6-selector11.md) — Document static state saving and first-match pending-record replacement without inventing wait/timeout API results.
+- [Bound Linux 4.20r6 selector-11 saved-state and registration paths](client-internals/linux-420r6-selector11.md) — Static creation, expiry mutation and conditional matched numeric restoration; executed public returns, cancellation and lifetime remain open.
 
 - [Compare Linux receive cases and the 4.20r6 compiled-input chain](protocol/linux-cross-version-receive.md) — Preserve tag normalization and exact-build case behavior without publishing an unproved delivery grammar.
 
