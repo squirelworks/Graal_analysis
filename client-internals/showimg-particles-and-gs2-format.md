@@ -131,7 +131,7 @@ Stack before: `…, list, value`. Stack after: `…, index`. **[bin]** (4.2.0.8)
 - The result is a number: the 0-based index, or −1. It replaces the `list` slot.
 - At least two stack slots are required; with fewer, the opcode faults like any other short-stack opcode.
 
-Whether string matching ignores letter case is in a helper that was not opened. **[inf]**
+The original read did not open the case-comparison helper; the later selected read and published lab reconciliation below supply the bounded answer. **[bin][lab]**
 
 ## GS2 opcode 84: `format`
 
@@ -165,11 +165,27 @@ The formatter is Graal's own, not the C library's. **[bin]** (6.03 conversion le
 - A positional `n$` past the last argument is also treated as missing. **[bin]**
 - Extra arguments are ignored. **[bin]**
 
-How `%d` turns a number into an integer (truncation or flooring) is in the reader's integer path, which was not opened. **[inf]**
+The original read did not open the integer path; the selected Linux read below supplies its epsilon-biased rule and domain limits. **[bin]**
+
+## Selected Linux 6.03r7 mechanisms and published lab reconciliation
+
+Date: 2026-11-22. Evidence ID: `LNX603-LIST-FORMAT-20261122`. This is a new selected static read of a separately identity-bound Linux 6.03r7-labelled x64 carrier, using instruction and exact data-record checks with independent review. It does not retrospectively identify the November 12 static inputs or the executables used by the published November 20 labs. No new original-client run was performed. **[bin]**
+
+The selected opcode 82 string route passes a query string to a list helper. It visits element indices in ascending order, obtains each element's string representation through its virtual interface, and returns the first matching zero-based index or −1. The equality helper requires equal recorded lengths and, apart from identical-storage or empty-string shortcuts, compares the bytes exactly; it performs no case folding itself. This is a string-representation comparison, not proof that arbitrary original member values preserve their source spelling. Other value tags and normalization paths are outside this selected read. **[bin]**
+
+The selected opcode 84 `%d` route uses the custom formatter's integer callbacks for both sequential and explicit-position arguments. For an already numeric value, each adds `0.0001` to the binary64 payload, truncates toward zero, then corrects a negative fractional result downward. Thus the bounded rule is `floor(y)`, where `y` is the evaluated binary64 sum `x + 0.0001`, provided `y` is finite and `floor(y)` fits signed 32-bit. This is neither nearest rounding nor unqualified truncation or floor of the original `x`. The selected static route does not establish exceptional conversions, nonnumeric coercion grammar, all integer-output limits or every conversion letter. **[bin]**
+
+Published labs already answer the original observable questions at their named-build scope; they are cited as reports, not as new runs or byte-identical specimens:
+
+- `removemodifiers()` stopped the emit-template zoom impulse, retained the template's last value and removed live particles while emission and the cumulative count continued, on 4.20r8, 5.12, 5.24r4 and 6.03r7. **[lab]** ([second batch](../protocol/lab-appe-hosta-2026-11-20b.md#particle-modifiers-e210)).
+- Global `once` values of 2, 3 and 6 seconds took effect within one 0.5-second observation step after addition on 4.20r8, 5.12 and 6.03r7, including later additions. The report calls this first-frame behavior; it does not measure an internal clock origin or sub-step latency. A pre-particle addition had no visible effect, and `impulse` followed its interval. The report does not assign these timing results to 5.24r4. **[lab]** ([second batch](../protocol/lab-appe-hosta-2026-11-20b.md#particle-modifiers-e210)).
+- Case-distinguishing list samples and signed `%d` samples are reported on 4.20r8/5.12 and Linux 6.03r7. The Linux report uses `.index()` for opcode 82, not a source method named `.indexof()`, and includes `2.9999` → `3`. Its negative `%i` sample distinguishes floor from truncation; the earlier positive `%i(3.7)` → `3` sample alone does not. These samples agree with the new selected mechanism without proving carrier identity or all exceptional domains. **[lab][bin]** ([first batch](../protocol/lab-appe-hosta-2026-11-20.md#format-and-indexof-e210); [Linux report](static-reads-appendix-e-2026-11-20-hostb-final.md#format-and-list-lookups-on-603r7-e210-partial)).
+
+The particle-kind selector remains unresolved. The Linux report's unfinished particle scene does not negate the separate positive modifier batch. Overall Appendix E#210 remains partial. **[lab][inf]**
 
 ## Not settled
 
-- [ ] Whether `removemodifiers()` clears the emit list as well as the local and global ones.
-- [ ] When a global modifier's clock starts: the reading suggests at time zero, so a global `once` fires on the first frame.
+- [x] ~~Whether `removemodifiers()` clears the emit list as well as the local and global ones.~~ Answered for the four reported lab builds in the [reconciliation](#selected-linux-603r7-mechanisms-and-published-lab-reconciliation).
+- [x] ~~The predicted first-frame global `once` behavior.~~ Answered at the published three-build, 0.5-second observation scope in the [reconciliation](#selected-linux-603r7-mechanisms-and-published-lab-reconciliation); exact internal clock origin is not measured.
 - [ ] The exact particle kinds: image, ani and text. The help string "store its own data (good for text emitters)" shows a text kind exists.
-- [ ] Case handling in `indexof` string search, and `%d` rounding.
+- [x] ~~Case handling in `indexof` string search, and `%d` rounding.~~ Published named-build samples and the separately bound selected Linux mechanism are reconciled [above](#selected-linux-603r7-mechanisms-and-published-lab-reconciliation); exceptional domains and other routes remain outside that answer.

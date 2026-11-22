@@ -50,6 +50,13 @@ keeps their outgoing sets inferred, separates Windows and Mac 6.015, and correct
 the stale Windows token-evidence label. The note lists the remaining per-build
 measurements; other inference-ledger rows and G168's broader identity work remain open.
 
+2026-11-22 reconciliation: G134, G135 and G137 are answered at the original
+named-build observable scope in the [particle/list/format note](../client-internals/showimg-particles-and-gs2-format.md#selected-linux-603r7-mechanisms-and-published-lab-reconciliation).
+This credits the existing published labs, with three-build timing versus four-build
+clearing and 0.5-second observation limits; the new selected static input is separate.
+G136 and overall E#210 remain open/partial. Stable board IDs and the historical
+426-row inventory are retained.
+
 ## Counts
 
 | Kind | Items |
