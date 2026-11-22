@@ -227,7 +227,7 @@ client-internals/linux-404r2-vm-dispatch.md	cited	8.4; E	8.4; E	experiment setup
 client-internals/linux-420-native-object-bridge.md	cited	10	10	Exact identities and lineage remain in source note; native registration and selected creation/lookup/optional stack/result-use boundaries carried, complete ABI/ownership/runtime unresolved
 client-internals/linux-420r6-clock-property.md	cited	4.1	4.1; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 client-internals/linux-420r6-reader-fusion.md	cited	8.4; E	8.4; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
-client-internals/linux-420r6-selector11.md	cited	8.3; E	8.3; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
+client-internals/linux-420r6-selector11.md	cited	8.3; E	8.3; E	exact-input provenance plus static creation, deadline mutation and conditional numeric restoration; executed public returns/cancellation and lifetime remain open
 client-internals/linux-420r8-string-floor.md	cited	2.5	2.5	Shared string floor plus January 17 level-header/BOARD and gmap LEVELNAMES static reader paths in §2.5.12; January 15, complete grammar, callers and runtime stay open.
 client-internals/linux-601-x86-program-state.md	cited	8.4; E	8.4; E	Exact-build stage and saved-state distinctions carried; identity, selected-recovery counts and provenance stay in source note
 client-internals/linux-cross-version-dispatch.md	cited	8.4; E	8.4; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
