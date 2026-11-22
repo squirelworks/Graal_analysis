@@ -930,3 +930,4 @@ server-notes/sync-distance-routing-2026-11-21.md	cited	5	5	Numeric synchronizati
 server-notes/level-persistence-options-2026-11-22.md	cited	5	5	Tile rewrite attempts, sublevel NPC sleep and DATABASE save requests are separated; no durable-output or original/runtime claim.
 server-notes/player-z-policy-2026-11-22.md	cited	5	5	Pinned reference-fork Z update rejection, independent range conversion and conditional NPC-touch probe; direct state paths and original/runtime limits remain separate.
 server-notes/script-engine-defaults-2026-11-22.md	cited	5	5	Pinned GPL default-engine alias and consumer classification; no original/runtime or fresh inventory claim.
+server-notes/folder-configuration-routing-2026-11-22.md	cited	5	5	Setup options, retained patterns and indexed-file categories are separated from managed-root creation fallback; no runtime binding or original-server claim.
