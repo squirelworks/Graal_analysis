@@ -182,7 +182,7 @@ The public service was tested with each login type. The rules below say which po
 | The legacy list's row count varied between runs (2 or 4) with no link to the version; the 2-row form carried `P ` and `H ` prefixes and the 4-row form none | [cap] (protocol/listserver-login-type-matrix-2026-10-25.md#result); [cap] (protocol/login-frames-by-version-2026-10-25.md#what-the-matrix-shows-public-service-seihai-only) |
 | The 2.05 rows of the matrix are a generation-5 login, not a classic 2.05 login; a classic 2.05 login was not run | [cap] (protocol/login-frames-by-version-2026-10-25.md#problem-in-the-matrix-data-the-205-rows-are-not-a-classic-205-login) |
 | No real client of these versions was captured against the public service; the runs say which login type the service answers on which port, not what a real 1.41 to 2.17 client sends | [cap] (protocol/listserver-login-type-matrix-2026-10-25.md#what-this-does-not-show) |
-| The 2001-era server tools list clients on 14922 and older clients on 14923 (`clientPortOld`) | [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f) |
+| The 2001-era server tools list clients on 14922 and older clients on 14923 (`clientPortOld`) | [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f-src) |
 
 Why the public 14922 ignores a classic login, and what it does with a real 2.17.1, is open (→ App. E#403). Whether the 14923 legacy list is a real 2000-era reply is disputed (→ App. E#402).
 
@@ -231,7 +231,7 @@ Game servers talk to the listserver over a separate link. The rules below give i
 | Rule | Source |
 | --- | --- |
 | Listserver packets on this link have no length prefix: `id + payload + \n` | [src] (server-notes/03-protocol.md#protocol) |
-| Game servers register on port 14900 in the Reborn listserver | [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f) |
+| Game servers register on port 14900 in the Reborn listserver | [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f-src) |
 | A GServer-v2 opens with a plain `REGISTERV3` line, then zlib frames: `NEWSERVER`, `SERVERHQPASS` / `SERVERHQLEVEL`, `SETPLYR` and `PLYRADD` per player, `VERIACC2` per login, and `SENDTEXT` with its allowed versions; the older master never pings | [src] (server-notes/lab-servers-2026-10-30.md#what-our-gserver-does-with-each-client-generation-src) |
 | The newer GServer-v2 sends `SETIP` every 60 s as a keep-alive, and its `VERIACC2` carries a `s` identity length | [src] (server-notes/lab-servers-2026-10-30.md#2-gserver-v2-beta4-against-our-build) |
 | Id 16 from a GServer-v2 is a pong and 99 is the listserver's ping | [src] (tools/lab-servers/README.md#what-changed-from-the-stub-of-2026-10-22) |
@@ -267,12 +267,12 @@ The other server-to-list ids (0 to 31) set description, language, version, URL, 
 | Id 5: player leave (2-byte id) | [bin] (tools/classic-tools/serverlist3.md#what-a-game-server-sends) |
 | The public directory is a database table, not built from these messages; the link carries presence, the ghost queue and the address check | [bin] (tools/classic-tools/serverlist3.md#what-a-game-server-sends) |
 
-The Reborn listserver keeps its data in tables. The rows below give what it stores and how it hashes passwords [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f).
+The Reborn listserver keeps its data in tables. The rows below give what it stores and how it hashes passwords [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f-src).
 
 | Reborn listserver data | Source |
 | --- | --- |
-| Tables for users (account, password, salt, activation, ban, profile fields), servers (name, address, port, players, description, URL, language, a two-character type, version, uptime), per-server HQ password and level, IP bans, guilds and guild members | [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f) |
-| Account passwords are `md5(md5(password) + salt)` with a three-character salt | [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f) |
+| Tables for users (account, password, salt, activation, ban, profile fields), servers (name, address, port, players, description, URL, language, a two-character type, version, uptime), per-server HQ password and level, IP bans, guilds and guild members | [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f-src) |
+| Account passwords are `md5(md5(password) + salt)` with a three-character salt | [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f-src) |
 
 ### 6.5.1 PC ids (`VERIACC2` and `ASSIGNPCID`)
 

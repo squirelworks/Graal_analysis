@@ -938,3 +938,4 @@ client-internals/gs2-joined-function-lookup-2026-11-22.md	cited	8.3	8.3	Three se
 client-internals/gs2-event-handler-case-2026-11-22.md	cited	8.3	8.3	Selected event-specific name matching and Linux ASCII insertion/query consistency; Windows helper-state and the complete native spelling/runtime matrix remain open
 server-notes/versioned-server-options-reference-2026-11-22.md	cited	5	5	Full retrospective documentary inventory and pinned source navigation; detailed99-row comparison, not an acceptance census or original/runtime claim.
 server-notes/gs1-eight-server-commands-2026-11-22.md	cited	5	5	Complete eight-command later-fork registration/argument/delegate reference with typed-store and persistence limits; original-server G069 confirmation remains open.
+tools/manual/fixtures/source-fragments.md	excluded			authored Markdown parser fixture for source-fragment checks, not research evidence or manual facts

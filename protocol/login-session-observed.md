@@ -11,7 +11,7 @@ Date: 2026-11-13. Evidence: `LOGIN-CAPTURE-247-20261113` in `docs/evidence-index
 - **Server:** a community-run GS2Emu (OpenGraal) game server named `Login`, on `<login-host>`. The client's compiled-in Login names were pointed at it with the guest's hosts file. On port 14900 that host closes the connection right after the client's login packet, without sending anything; the `Login` entry on its server list uses a different port, and a plain TCP relay inside the guest bridged 14900 to it. Nothing rewrote the traffic.
 - **Capture:** a host-side trace of the VM's NIC, decoded offline with the gen-5 cipher. The client's own `game_console.log`. Screenshots.
 
-## Login packet (Câ†’S, before any frame)
+## Login packet (C→S, before any frame)
 
 - Type 5 (gen 5), then the key byte, then the 8-byte token. **The Windows 6.03r7 sends `G3D0311C`**, not the `G3D0511C` of the Linux 6.03r7. **[cap]**
 - Account and password as length-prefixed strings. The client sends a login packet the moment it starts, before the login screen exists: its account field then holds a placeholder default. The second login, after the user fills in the screen, carries the real account. **[cap]**

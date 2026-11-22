@@ -50,7 +50,7 @@ def test_untagged_fact_fails(tmp_path):
 
 def test_tagged_fact_and_table_pass(tmp_path):
     root = make_repo(tmp_path, {
-        'protocol/a.md': '# A\n',
+        'protocol/a.md': '# A\n\n## Frame\n',
         'manual/01-x.md': REF + (
             '# 1 X\n\nThe frame length is big-endian [srv][2.05] (protocol/a.md#frame).\n\n'
             '| Field | Source |\n| --- | --- |\n| length | [cap] (protocol/a.md) |\n'
@@ -231,3 +231,134 @@ def test_build_pli_ids_are_checked_separately(tmp_path):
     errs = errors(root)
     assert len(errs) == 1
     assert 'PLI id 80 ' in errs[0]
+
+
+def test_missing_source_heading_fragment_fails(tmp_path):
+    root = make_repo(tmp_path, {
+        'protocol/a.md': '# A\n\n## Present heading\n',
+        'manual/01-x.md': REF + '# 1 X\n\nA fact [doc] (protocol/a.md#missing-heading).\n',
+    }, sources=HEADER + 'protocol/a.md\tcited\t1\t\t\n')
+    assert any('protocol/a.md#missing-heading' in e and 'does not resolve' in e
+               for e in errors(root))
+
+
+def test_code_fence_text_is_not_a_source_heading(tmp_path):
+    root = make_repo(tmp_path, {
+        'protocol/a.md': '# A\n\n```markdown\n## Not a heading\n```\n',
+        'manual/01-x.md': REF + '# 1 X\n\nA fact [doc] (protocol/a.md#not-a-heading).\n',
+    }, sources=HEADER + 'protocol/a.md\tcited\t1\t\t\n')
+    assert any('protocol/a.md#not-a-heading' in e and 'does not resolve' in e
+               for e in errors(root))
+
+
+def test_existing_source_heading_forms_resolve(tmp_path):
+    note = (
+        '# A\n\n## Present heading\n\n## `Code` and **bold**!\n\n'
+        '## Repeated\n\n## Repeated\n\n'
+        '<a name="legacy-location"></a>\n\n'
+        'Underlined heading\n------------------\n\n## café\n'
+    )
+    fragments = (
+        'present-heading', 'code-and-bold', 'repeated', 'repeated-1',
+        'legacy-location', 'underlined-heading', 'caf%C3%A9',
+    )
+    body = '\n\n'.join(f'A fact [doc] (protocol/a.md#{fragment}).'
+                        for fragment in fragments)
+    root = make_repo(tmp_path, {
+        'protocol/a.md': note,
+        'manual/01-x.md': REF + '# 1 X\n\n' + body + '\n',
+    }, sources=HEADER + 'protocol/a.md\tcited\t1\t\t\n')
+    assert errors(root) == []
+
+
+def test_source_paths_without_fragments_keep_bibliography_contract():
+    assert check_manual.split_sources(
+        '`protocol/a.md#present-heading`; protocol/b.txt'
+    ) == ['protocol/a.md', 'protocol/b.txt']
+
+
+def test_literal_anchor_examples_do_not_create_targets(tmp_path):
+    examples = (
+        '`<a name="example-id"></a>`',
+        r'\<a name="example-id"></a>',
+        '<!--\n<a name="example-id"></a>\n-->',
+        '    <a name="example-id"></a>',
+        '<script>\n<a name="example-id"></a>\n</script>',
+        '<textarea>\n<a name="example-id"></a>\n</textarea>',
+    )
+    for index, example in enumerate(examples):
+        root = make_repo(tmp_path / str(index), {
+            'protocol/a.md': '# A\n\n' + example + '\n',
+            'manual/01-x.md': REF + '# 1 X\n\nA fact [doc] (protocol/a.md#example-id).\n',
+        }, sources=HEADER + 'protocol/a.md\tcited\t1\t\t\n')
+        assert any('protocol/a.md#example-id' in e for e in errors(root))
+
+
+def test_inline_literal_comments_do_not_hide_following_headings(tmp_path):
+    for index, title in enumerate(('Label `<!--` end', r'Label \<!-- end')):
+        root = make_repo(tmp_path / str(index), {
+            'protocol/a.md': '# A\n\n## ' + title + '\n\n## Following\n',
+            'manual/01-x.md': REF + '# 1 X\n\nA fact [doc] (protocol/a.md#following).\n',
+        }, sources=HEADER + 'protocol/a.md\tcited\t1\t\t\n')
+        assert errors(root) == []
+
+
+def test_source_markup_and_automatic_anchor_numbering(tmp_path):
+    note = (
+        '# A\n\n## `a_b` and _Word_\n\n## A  B\tC\n\n'
+        '## [Readable](#a)\n\n## Evidence **[lab][bin]**\n\n'
+        '## [Shown][dest]\n\n[dest]: #a\n\n'
+        '<a name="repeat"></a>\n\n## Repeat\n\n## Repeat\n\n## Repeat-1\n'
+    )
+    fragments = (
+        'a_b-and-word', 'a--bc', 'readable', 'evidence-labbin',
+        'shown', 'repeat-1', 'repeat-1-1',
+    )
+    body = '\n\n'.join(f'A fact [doc] (protocol/a.md#{fragment}).'
+                        for fragment in fragments)
+    root = make_repo(tmp_path, {
+        'protocol/a.md': note,
+        'manual/01-x.md': REF + '# 1 X\n\n' + body + '\n',
+    }, sources=HEADER + 'protocol/a.md\tcited\t1\t\t\n')
+    assert errors(root) == []
+
+
+def test_unsupported_and_invalid_fragments_are_diagnostics(tmp_path):
+    cases = (
+        ('# A\n\n## `unfinished\n', 'unfinished', 'cannot be checked'),
+        ('# A\n', '%FF', 'not valid UTF-8'),
+        ('# A\n', '%G0', 'malformed percent escape'),
+        ('# A\n', '', 'requires a nonempty Markdown'),
+    )
+    for index, (note, fragment, diagnostic) in enumerate(cases):
+        root = make_repo(tmp_path / str(index), {
+            'protocol/a.md': note,
+            'manual/01-x.md': REF + f'# 1 X\n\nA fact [doc] (protocol/a.md#{fragment}).\n',
+        }, sources=HEADER + 'protocol/a.md\tcited\t1\t\t\n')
+        assert any(diagnostic in e for e in errors(root))
+
+
+def test_source_fragment_cannot_read_a_note_outside_repository(tmp_path):
+    (tmp_path / 'outside.md').write_text('# Outside\n', encoding='utf-8')
+    root = make_repo(tmp_path / 'repo', {
+        'manual/01-x.md': REF + '# 1 X\n\nA fact [doc] (../outside.md#outside).\n',
+    })
+    assert any('not a repository path' in e for e in errors(root))
+
+
+def test_authored_fixture_matches_observed_github_anchors(tmp_path):
+    note = (HERE / 'fixtures' / 'source-fragments.md').read_text(encoding='utf-8')
+    # Recorded from GitHub's rendered contents response for this authored file,
+    # including its multiline Setext heading and visible URL autolink.
+    fragments = (
+        'source-fragment-checker-fixture', 'first-linesecond-line',
+        'httpsexampleinvalid', 'a_b-and-word', 'a--b', 'caf%C3%A9',
+        'legacy-location', 'repeated', 'repeated-1',
+    )
+    body = '\n\n'.join(f'A fact [doc] (protocol/a.md#{fragment}).'
+                        for fragment in fragments)
+    root = make_repo(tmp_path, {
+        'protocol/a.md': note,
+        'manual/01-x.md': REF + '# 1 X\n\n' + body + '\n',
+    }, sources=HEADER + 'protocol/a.md\tcited\t1\t\t\n')
+    assert errors(root) == []

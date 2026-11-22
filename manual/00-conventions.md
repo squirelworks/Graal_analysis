@@ -47,6 +47,8 @@ Every factual statement carries an **evidence tag** and the **path of the note**
 
 - The tag says what kind of evidence backs the claim. The full legend is App. G; build tags such as `[2.05]` mean "read from that client build".
 - The path is relative to the repository root. The `#anchor` is optional and names the heading in the note.
+- The checker resolves a Markdown fragment against common ATX/Setext headings or explicit HTML `id`/anchor `name` attributes, including duplicate-heading suffixes and UTF-8 percent encoding. Code examples and comments do not define anchors. It preserves path-only bibliography entries and checks that sources stay inside the repository.
+- This is a bounded source validator, not a complete GitHub Markdown renderer. Unsupported heading/HTML forms, malformed fragments and fragments on non-Markdown sources receive a diagnostic rather than an assumed match. See the [GitHub heading and custom-anchor conventions](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#section-links).
 - Several tags may share one path: `[srv][2.05] (protocol/codec-and-framing.md)`. Several sources are separated by `;` inside the parentheses, or written as several tag-and-path pairs.
 - In a table, the tags and paths go in a **Source** column. Each body row carries its own source.
 - A sentence that only arranges tagged facts, such as a cross-reference or a table caption, carries no tag.
