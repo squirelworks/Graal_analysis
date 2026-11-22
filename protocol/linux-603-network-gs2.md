@@ -51,3 +51,6 @@ the result to other client builds.
 
 - [x] ~~Publish these bounded observations and their exact scope.~~
 - [ ] Measure the remaining delivery, parser, event and cache gates separately.
+  The [caller-gate acceptance conditions](../formats/linux-6x-class-cache.md#caller-gates-and-the-next-cache-observation)
+  distinguish pending-name suppression, helper status, reader invocation and
+  notification calls; they are a static-derived future plan, not another run.
