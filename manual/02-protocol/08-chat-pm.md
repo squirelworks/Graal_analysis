@@ -17,7 +17,7 @@ Local chat rides on a player prop, not on a message of its own. The rules below 
 | A line longer than 256 characters is cut to its first 253 characters plus `...` when sent; the receiver draws whatever arrives | 2.05 | [2.05] (client-internals/chat-text.md#length) |
 | When the player's own line times out (3 s after the first move), the client sends an empty CURCHAT | 2.05 | [2.05][cap] (client-internals/chat-text.md#how-long-it-stays-live-205-rev-2-2026-10-30) |
 | A typed `showname` is not sent to the server | 2.05 | [2.05][cap] (client-internals/chat-text.md#nickname-131-to-231) |
-| Chat also goes peer to peer as UDP id 22 (→ §2.9) | 2.00 to 2.05, 3.04 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-plipl-numbering) |
+| Chat also goes peer to peer as UDP id 22 (→ §2.9) | 2.00 to 2.05, 3.04 | [2.05] (protocol/udp-p2p.md#udp-ids-own-dispatcher-not-pliplo-numbering) |
 
 ## 2.8.2 Private messages
 

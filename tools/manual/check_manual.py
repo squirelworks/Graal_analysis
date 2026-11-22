@@ -17,6 +17,9 @@ import re
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path, PurePosixPath
+from urllib.parse import unquote
+
+from source_fragments import source_anchors
 
 NOTE_SUFFIXES = {'.md', '.tsv', '.toml', '.txt'}
 SKIP_DIRS = {'.git', '__pycache__', '.pytest_cache', 'node_modules', '.venv', 'venv'}
@@ -205,14 +208,49 @@ def iter_body(mf: ManualFile):
             yield no, line, 'text'
 
 
-def split_sources(group: str) -> list[str]:
+def source_references(group: str) -> list[tuple[str, str | None]]:
     out = []
     for part in group.split(';'):
         part = part.strip().strip('`').strip()
         if not part:
             continue
-        out.append(part.split('#', 1)[0].strip())
+        path, separator, fragment = part.partition('#')
+        out.append((path.strip(), fragment if separator else None))
     return out
+
+
+def split_sources(group: str) -> list[str]:
+    """Keep path-only bibliography/source-map compatibility."""
+    return [path for path, _fragment in source_references(group)]
+
+
+def check_source_fragment(target: Path, src: str, fragment: str,
+                          indexes: dict, where: str, report: Report) -> None:
+    citation = f'{src}#{fragment}'
+    if not fragment or not target.is_file() or target.suffix.lower() != '.md':
+        report.add(where, f'cited fragment {citation} requires a nonempty Markdown heading or anchor')
+        return
+    if re.search(r'%(?![0-9A-Fa-f]{2})', fragment):
+        report.add(where, f'cited fragment {citation} has a malformed percent escape')
+        return
+    try:
+        decoded = unquote(fragment, encoding='utf-8', errors='strict')
+    except UnicodeDecodeError:
+        report.add(where, f'cited fragment {citation} is not valid UTF-8')
+        return
+    if src not in indexes:
+        try:
+            indexes[src] = source_anchors(target.read_text(encoding='utf-8'))
+        except (OSError, UnicodeError):
+            report.add(where, f'cannot read cited Markdown source {src}')
+            return
+    index = indexes[src]
+    if index['unsupported']:
+        issue = index['unsupported'][0]
+        report.add(where, f'cited fragment {citation} cannot be checked: '
+                   f'{src}:{issue["line"]}: {issue["reason"]}')
+    elif decoded not in index['automatic'] and decoded not in index['custom']:
+        report.add(where, f'cited fragment {citation} does not resolve to a heading or explicit anchor')
 
 
 def check_files(root: Path, files: list[ManualFile], report: Report) -> dict[str, set[str]]:
@@ -220,6 +258,9 @@ def check_files(root: Path, files: list[ManualFile], report: Report) -> dict[str
     sections, entries = collect_anchors(files)
     app_letters = {mf.number for mf in files if mf.number and mf.number.isalpha()}
     cited_by: dict[str, set[str]] = {}
+    source_indexes: dict = {}
+    repository_root = root.resolve()
+    source_boundaries: dict[str, bool] = {}
     for mf in files:
         for no, line, kind in iter_body(mf):
             where = f'{mf.rel}:{no}'
@@ -237,14 +278,25 @@ def check_files(root: Path, files: list[ManualFile], report: Report) -> dict[str
                     report.add(where, f'App. {letter}#{entry} does not resolve to an entry heading')
             cites = CITE_RE.findall(line)
             for _tags, group in cites:
-                for src in split_sources(group):
+                for src, fragment in source_references(group):
                     if '/' not in src and not src.endswith(('.md', '.tsv', '.toml', '.txt')):
                         report.add(where, f'source {src!r} is not a repository path')
                         continue
                     target = root / PurePosixPath(src.rstrip('/'))
+                    if src not in source_boundaries:
+                        try:
+                            target.resolve().relative_to(repository_root)
+                            source_boundaries[src] = True
+                        except (ValueError, OSError):
+                            source_boundaries[src] = False
+                    if not source_boundaries[src]:
+                        report.add(where, f'source {src!r} is not a repository path')
+                        continue
                     if not target.exists():
                         report.add(where, f'cited path {src} does not exist')
                         continue
+                    if fragment is not None:
+                        check_source_fragment(target, src, fragment, source_indexes, where, report)
                     if mf.number:
                         cited_by.setdefault(src.rstrip('/'), set()).add(mf.number)
             if kind in ('heading', 'table-sep', 'table-head'):

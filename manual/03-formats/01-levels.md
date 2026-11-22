@@ -297,18 +297,18 @@ board × count            one 64 × 64 board per layer, 13-bit codes as in → �
 | repaired-server positive serve | native Linux 6.03r7 receives full-board 107 layers with raw headers and little-endian cells: two-layer upper board has 64 cells of tile 332 and 4032 empty; an explicit hole changes this to 63 and 4033, with (30,30) empty. RLE adds a layer with 16 cells of tile 333 and 4080 empty. Painted regions and the hole are visible; the separate parser/HUD, Wine and physical-return follow-up is described below | [lab] (formats/gr-v105-native603-2026-11-21.md#delivered-layers); [lab] (formats/gr-v105-native603-2026-11-21.md#drawing-and-session-observations) |
 | samples | no real on-disk `GR-V1.05` file is held; the two server backups searched hold none (→ §3.1.3.3) | [file] (formats/gr-v105-empty-tiles-2026-11-16.md#sample-hunt-limits) |
 
-The rules below give how the clients draw an injected `PLO_BOARDLAYER` (107). They were measured with the probe proxy on loopback, a bomb-count canary after each message [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client).
+The rules below give how the clients draw an injected `PLO_BOARDLAYER` (107). They were measured with the probe proxy on loopback, a bomb-count canary after each message [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client-lab).
 
 | Rule | Builds | Detail | Source |
 | --- | --- | --- | --- |
-| who draws 107 | 4.20r8, 5.12, 5.24r4, 6.03r7 | all four; 107 itself dates from 4.11, only the file magic from 5.00r7 | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client); [bin] (protocol/v4x-windows-403r3-411.md#server-messages-the-client-handles) |
-| header | as above | five raw bytes: layer, x, y, w, h; a `GCHAR` (+32) header lands off the board and nothing shows | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
-| tiles | as above | little-endian 16-bit, w × h of them; big-endian and `GSHORT` bodies draw the wrong tiles | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
-| body length | as above | the client keeps only w × h cells and skips extra tiles; the next message still parses | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
-| raw-data wrapper | as above | not needed unless the body holds a `0x0a` byte (layer 10, x 10, or a tile with that byte); wrapping it in `PLO_RAWDATA` (100) is always safe | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
-| layers | as above | every layer 0 to 255 draws | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
-| layered `PLO_BOARDMODIFY` (7) with a `GCHAR`(layer + 64) marker | as above | no crash and no reply; the canary lands | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
-| robustness | as above | no 107 or 7 variant crashed a client or drew a reply; 5.24r4 under Wine blanked the board after the first 107, read as repaint noise | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client) |
+| who draws 107 | 4.20r8, 5.12, 5.24r4, 6.03r7 | all four; 107 itself dates from 4.11, only the file magic from 5.00r7 | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client-lab); [bin] (protocol/v4x-windows-403r3-411.md#server-messages-the-client-handles) |
+| header | as above | five raw bytes: layer, x, y, w, h; a `GCHAR` (+32) header lands off the board and nothing shows | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client-lab) |
+| tiles | as above | little-endian 16-bit, w × h of them; big-endian and `GSHORT` bodies draw the wrong tiles | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client-lab) |
+| body length | as above | the client keeps only w × h cells and skips extra tiles; the next message still parses | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client-lab) |
+| raw-data wrapper | as above | not needed unless the body holds a `0x0a` byte (layer 10, x 10, or a tile with that byte); wrapping it in `PLO_RAWDATA` (100) is always safe | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client-lab) |
+| layers | as above | every layer 0 to 255 draws | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client-lab) |
+| layered `PLO_BOARDMODIFY` (7) with a `GCHAR`(layer + 64) marker | as above | no crash and no reply; the canary lands | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client-lab) |
+| robustness | as above | no 107 or 7 variant crashed a client or drew a reply; 5.24r4 under Wine blanked the board after the first 107, read as repaint noise | [lab] (formats/gr-v105-fuzz-2026-11-19.md#plo_boardlayer-107-on-the-client-lab) |
 | caches | 5.x | in these runs the 5.x clients wrote no `GR-V1.05` web-level cache entry, only a script-cache `.code` file per level | [lab] (formats/gr-v105-fuzz-2026-11-19.md#other-results-lab) |
 
 What the open-source lab server does with a `GR-V1.05` file is in → §5.6. Its layer-count and malformed-link source repairs have landed [srv] (formats/gr-v105-fuzz-2026-11-19.md#source-repair-reconciled-on-2026-11-21-srv). Native Linux 6.03r7 and Windows 5.12 under Wine now have positive parser/HUD canaries and physical bottom returns. The 5.24r4-labelled Wine served scores remain unclear; native-Windows behavior and walking ingress remain open [lab] (formats/gr-v105-served-canary-links-2026-11-21.md#remaining-gap).

@@ -402,7 +402,7 @@ Servers keep accounts in different files. Each row gives a server, a file or fie
 | 1999 gserver tree | flag byte | bit 0 only-load, bits 1–3 admin level, bit 4 blocked | [src] (tools/classic-tools/gserverstat.md#what-it-reads) |
 | 1999 gserver tree | `accounts/accN.txt` | name, password, a prop list (`id + 32` and a value), the flag byte, two zero counts, weapons, action flags, opened chests | [src] (tools/classic-tools/gserverstat.md#what-it-reads) |
 | 1999 gserver tree | `accounts.txt` | read if present, imported, then removed | [src][bin] (tools/classic-tools/gserverstat.md#what-it-reads) |
-| GServer 1.39 with MySQL | `accounts` table | `accname`, `encrpass` (traditional DES `crypt`), `email`, `blocked`, `onlyload`, `adminlevel`, `adminworlds`, `lastused` | [src][bin] (tools/server-tools-2001.md#gserver-139-web-scripts-2001) |
+| GServer 1.39 with MySQL | `accounts` table | `accname`, `encrpass` (traditional DES `crypt`), `email`, `blocked`, `onlyload`, `adminlevel`, `adminworlds`, `lastused` | [src][bin] (tools/server-tools-2001.md#gserver-139-web-scripts-2001-src) |
 | gs2emu / GServer-v2 | `GRACC001` files | text account files | [src] (server-notes/01-lineage.md#what-changed-between-eras) |
 
 The rules below record what the 1999 and 1.39 servers did with account data: stat pages, count files and the chat commands players could use [src][bin] (tools/classic-tools/gserverstat.md#what-it-reads).
@@ -410,8 +410,8 @@ The rules below record what the 1999 and 1.39 servers did with account data: sta
 | Account rule | Source |
 | --- | --- |
 | The 1999 stat pages rank accounts by props 0 (nickname), 1 (max hearts), 3 (rupees, three 7-bit bytes), 27 (kills), 28 (deaths), 29 (online seconds) and 32 (alignment), and skip only-load accounts | [src][bin] (tools/classic-tools/gserverstat.md#what-it-reads) |
-| GServer 1.39 servers wrote `playercount.txt`, `accountcount.txt`, `serveruptime.txt` and top lists as `nickname:value` lines for web pages | [src] (tools/server-tools-2001.md#gserver-139-web-scripts-2001) |
-| The 1.39 chat commands listed for players: `sethead`, `setsword`, `setshield`, `setnick`, `showname`, `showap`, `showdeaths`, `showkills`, `showonlinetime`, `showguild`, `showadmins`, `unstuck me`, `toguild:`, `toall:` | [src] (tools/server-tools-2001.md#gserver-139-web-scripts-2001) |
+| GServer 1.39 servers wrote `playercount.txt`, `accountcount.txt`, `serveruptime.txt` and top lists as `nickname:value` lines for web pages | [src] (tools/server-tools-2001.md#gserver-139-web-scripts-2001-src) |
+| The 1.39 chat commands listed for players: `sethead`, `setsword`, `setshield`, `setnick`, `showname`, `showap`, `showdeaths`, `showkills`, `showonlinetime`, `showguild`, `showadmins`, `unstuck me`, `toguild:`, `toall:` | [src] (tools/server-tools-2001.md#gserver-139-web-scripts-2001-src) |
 | GServer-v2's stock default account has `MAXHP 3.00`, which its loader reads as 0 hearts | [lab] (tools/lab-servers/README.md#133-to-139-on-beta4-2026-10-30) |
 
 ### 5.4.2 Allowed versions
