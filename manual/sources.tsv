@@ -552,7 +552,7 @@ protocol/large-file-thresholds-focus.md	cited	2.7	2.5	Focus-build large-file / F
 protocol/link-probe-bigmap-status.md	cited	E	2.5; E	2.x link probe / PLO_BIGMAP / gmap entry-save status; gap #34; E#308/E#314
 protocol/link-probe-offsets-205-222-2026-11-19.md	cited	4.2; E	4.2; E	Disassembler read: per-facing edge-link probe offsets of 2.05, byte-identical in 2.22; walking past the edge with the neighbour loaded
 protocol/link-test-2026-11-04.md	cited	2.5		
-protocol/linux-404r2-receive-scope.md	cited	2.5	2.5; E	experiment setup and digest bookkeeping remain in source note; bounded results and limits carried
+protocol/linux-404r2-receive-scope.md	cited	2.5	2.5; E	initial handoff plus selected transport/raw-100 and message-193 export reread; indirect-call, helper and runtime limits retained
 protocol/linux-603-network-gs2.md	cited	8.4	8.4; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 protocol/linux-cross-version-receive.md	cited	2.5	2.5; E	exact-input identities, provenance and selected recovery coverage remain in source note; behavioral findings and limits carried
 protocol/linux-local-login-matrix.md	cited	2.3	2.3	exact identities and provenance remain in source note; bounded behavioral findings carried

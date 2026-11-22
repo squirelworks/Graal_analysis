@@ -468,9 +468,11 @@ Each row below is one finding about the Linux 4.04r2 receive switch, with its ex
 
 | Observation | Exact scope | Limit | Source |
 | --- | --- | --- | --- |
-| 97 explicit receive cases | Static switch mapping with direct handler edges | Not the complete handled-message count: transport pre-dispatch remains to be included | [bin] (protocol/linux-404r2-receive-scope.md#explicit-switch-coverage) |
+| 97 explicit receive cases | Static switch mapping with direct handler edges; logical 100 is already included | Not a complete handled-message count: the selected transport callback remains an indirect-call boundary | [bin] (protocol/linux-404r2-receive-scope.md#transport-and-raw-message-boundary) |
+| Transport and raw extent | Selected loop uses a two-byte frame length, mode-dependent body processing and delimiter/announced-extent chunk selection; switch case 100 sets the raw flag and extent | Candidate class/table linkage only; leaf-helper semantics, alternate paths and runtime acceptance remain open | [bin] (protocol/linux-404r2-receive-scope.md#transport-and-raw-message-boundary) |
 | Missing switch case | No case in this particular dispatch map | Does not prove rejection of that message | [bin] (protocol/linux-404r2-receive-scope.md#explicit-switch-coverage) |
 | Message 131 | Requires a three-byte identifier; a positive decoded identifier selects an object lookup, the prefix is stripped, and remaining bytes reach the script setter, context loader and compiled-segment reader | Static path only; complete identifier encoding, lookup roles and indirect initialization callback not fully established; no network fixture delivered | [bin] (protocol/linux-404r2-receive-scope.md#static-message-131-path) |
+| Message 193 | Separate handler decodes a five-byte value, derives a lookup argument through a helper and forwards the value after a successful lookup | Lookup/value-receiving bodies are not in the selected recovery; checksum/cache policy, weapon/class ownership and exact string-field layout remain open | [bin] (protocol/linux-404r2-receive-scope.md#separate-message-193-lookup-path) |
 | Other script delivery and cache validation | Messages 140/197 and other weapon/class paths remain under research | The map and message-131 trace do not settle all roles, field layouts or cross-platform compatibility (→ §8.4.1) | [bin] (protocol/linux-404r2-receive-scope.md#static-message-131-path) |
 
 #### Linux 4.20 and 6.x
