@@ -36,11 +36,13 @@ The variable's name is the name it was constructed with. Giving the runner a byt
 
 `OP_CALL` (opcode 6) expects the callee name on top of the stack and a type-0 marker under the arguments. The name is a string (type 2), a variable (type 4) or a resolved value (type 5). **[bin]**
 
-1. A name with no object, or whose object is the running script's own variable, is looked up in the current script's function table.
+1. A name with no object, or whose object is the running script's own variable, is passed to the current program's function lookup.
 2. A name on some other object is looked up in that object's script, when it has one, and the call runs there.
 3. Otherwise the name is resolved and matched against the built-in command table. Each command has a signature string; the number of arguments must be at least the length of that string, or the error is `Not enough parameters for` plus the name, the number needed and the number given.
 4. A command whose name starts with `adventure.` is refused with `Unauthorized call of` unless the running variable's name starts with `login`.
 5. If nothing matched, and the variable is set to log missing functions, the error is `Function` plus the script name plus the missing name plus `not found`. The call's slot becomes the number 0.
+
+A [selected-input follow-up](gs2-joined-function-lookup-2026-11-22.md) traces that lookup beyond a single table: the separately retained older input searches its own table and joined programs recursively, returning adjusted integer entries. The selected Windows backup and exact recorded Linux input have later receiver/function-object routes that also reach joined tables. Eligibility and preparation differ; these are not universal collision, version-identity or runtime guarantees. **[bin][inf]**
 
 The error recorder prefixes `GraalScript:` and suffixes `in script of` plus the variable's log name. It keeps at most 20 distinct texts. **[bin]**
 
@@ -273,4 +275,4 @@ Each item is a behaviour this read did not see.
 - Whether 6.00 steps its script clock by 0.05, or only by the performance-counter seconds.
 - The property set of `TServerPlayer`, `TServerNPC`, `TServerLevel` and a weapon (the fields a script reads and writes).
 - Packet id 140's own framing. It is not a case in the dispatch that feeds `setScript`.
-- Whether a joined class's functions are visible to an unqualified call, or only its event mask and its instructions. The call lookup that was opened searches the current script's function table.
+- [ ] Cross-build joined-function visibility and runtime acceptance. The [three selected ordinary-call paths](gs2-joined-function-lookup-2026-11-22.md) now reach joined functions through their own lookup mechanisms; authenticated release coverage, all join modes and collision cases remain open.
