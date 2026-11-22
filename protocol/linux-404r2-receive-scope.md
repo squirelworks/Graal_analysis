@@ -32,9 +32,8 @@ cache validation, or the relationship among candidate script messages.
 frame and selects a mode-dependent decode route. Its call sequence selects
 candidate message extents through a helper called with LF or a saved raw extent,
 then invokes a virtual callback with a byte-derived logical identifier and a
-helper-derived body. The selected
-recovery does not separately include all string-slicing and delimiter helpers,
-so their full payload and malformed-input semantics remain unverified.
+helper-derived body. Full string-slicing and delimiter-helper payload and
+malformed-input semantics remain unverified by this selected read.
 The retained virtual-table reconstruction suggests the known receive switch as
 that callback, but the indirect call is not independently resolved across every
 connection path. Source: `L404-DELIVERY-BOUNDARIES-20261122`.
@@ -68,8 +67,8 @@ network path. Messages 140 and 197 and other weapon/class paths remain open.
 `[bin]` Message 193 selects a different handler. It requires more than five
 payload bytes and a clear state flag, decodes a five-byte value, derives a
 lookup argument through a helper called with a five-byte offset, and forwards
-the value when the lookup returns an object. The selected recovery does not
-include the lookup or value-receiving helper bodies. It therefore does not
+the value when the lookup returns an object. The selected trace does not
+establish the lookup or value-receiving behavior. It therefore does not
 establish checksum comparison, cache hit/miss, requests, persistence, or the
 object's weapon/class role. Exact string-field boundaries also remain open.
 Source: `L404-DELIVERY-BOUNDARIES-20261122`.
