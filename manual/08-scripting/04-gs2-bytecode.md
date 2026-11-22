@@ -30,6 +30,8 @@ GS2 reaches the client as compiled bytecode. The rules below give the message th
 | Also measured | 4.20r8 does not honour the 6.x class path as sent: ten 197 and 140 variants with a valid compiled body ran no script and drew no request, while 131 behind 100 runs NPC bodies on the same build | [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover) |
 | Left over | How 4.20r8 delivers weapon and class scripts, and 4.0x before 4.20r8 | [lab] (protocol/lab-appe-hosta-2026-11-20.md#gs2-class-path-on-420r8-e202-leftover) |
 
+[bin] In the selected Linux 6.03r7 class-cache caller, a pending-name lookup can suppress a new request after false helper status. Positive status can still skip a fresh reader call, while named class-loaded notification call paths follow; neither a notification nor no second request establishes a cache hit or parse. The future acceptance plan keeps status, reader entries, requests and actual event delivery separate. This is static caller evidence, not another network result. [bin] (formats/linux-6x-class-cache.md#caller-gates-and-the-next-cache-observation)
+
 ## 8.4.2 Format
 
 4.2.0.8, 5.0.0.7, and unpacked 6.00r2 and 6.00r4 parse one container: four big-endian segments (event mask, functions, strings, opcodes) and `F0`–`F6` operands. It does not share OpenGS1's layout (→ §8.4.3). The runner is → §8.3.3. Syntax, the standard library, and the event model stay open → App. E#207.
