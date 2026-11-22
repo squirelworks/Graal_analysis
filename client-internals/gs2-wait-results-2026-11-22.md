@@ -2,7 +2,7 @@
 
 Date: 2026-11-22. Static source, selected instruction and data reads; no client was executed for this study. **[bin]**
 
-This follows two separate inputs: an archive-labelled Windows 5.00r7 backup and the recorded Linux 6.03r7 x64 executable. The backup's label does not authenticate a vendor release or establish genuine 5.12 behavior. The Linux input matches its retained static export; that does not independently bind it to every historical lab executable. Neither input is evidence of all builds. **[bin][inf]**
+The first two chains follow an archive-labelled Windows 5.00r7 backup and the recorded Linux 6.03r7 x64 executable. The backup's label does not authenticate a vendor release or establish genuine 5.12 behavior. The Linux input matches its retained static export; that does not independently bind it to every historical lab executable. A separate older archive-labelled input is followed below. These inputs are not evidence of all builds. **[bin][inf]**
 
 Owner-held evidence: GS2-WAIT-RESULT-20261122 in the [evidence index](../docs/evidence-index.tsv). **[bin]**
 
@@ -28,6 +28,22 @@ A matching resume restores the prepared value; it does not simply substitute the
 
 Consequently, one is the prepared successful-wait value, and zero is the value explicitly prepared by selected deadline processing before a successful restore. Queue suppression, registration failure, script changes and other eligibility conditions can prevent that restore. Clearing a deadline before the event request does not establish an automatic retry if the request is suppressed. These are mechanisms, not an unconditional runtime return-value promise. **[bin][inf]**
 
+## Separately retained 4.20r8-labelled input
+
+This additional Windows input is labelled 4.20r8 by its archive provenance. Its retained carrier, source export, instruction listing and bounded data reads agree on one input identity; that does not authenticate a vendor release or bind it to a historical lab process. Evidence: W420-WAIT-RESULT-20261122 in the [evidence index](../docs/evidence-index.tsv). **[bin][inf]**
+
+Its opcode-11 route is independently linked through the decoded opcode translation and handler tables. The entry directly accesses a duration and two string holders, requires a nonempty event, an ordered positive duration and the required owner/context, and otherwise has a separately gated immediate-zero path. Insufficient stack and capacity failure are separate. Neither a nearby opcode name nor another build's dispatch table supplies this binding. **[bin]**
+
+The successful path requests string-source event registration, normalizes the event, snapshots the run and attaches source, event, an absolute deadline, readiness and numeric one. It then saves the state. This is result-before-insertion, unlike the Linux sequence above. The registration call is not evidence of subscription success or safe allocation failure; the selected helper's allocation-null branches continue. The source expression evaluation order and prefix literal's spelling remain outside this read. **[bin]**
+
+Its runner ends that path by returning from the current invocation. There is no explicit suspension-status-two assignment on this selected path. The Linux status convention must not be assigned to this older runner merely because both save a wait. **[bin]**
+
+This input's own deadline consumer independently requires an ordered positive deadline and `clock + 0.0001 > deadline`. It clears the deadline and, when a result exists, both numeric payload words before requesting the saved source/event with null arguments. It leaves the prepared tag and readiness intact. Its local service loop performs this check before pending actions. This again supports a selected prepared-one-to-zero transition, not a wall-clock arrival priority or guaranteed delivery. **[bin][inf]**
+
+Matching compares source and normalized event and removes the selected saved state before eligible execution. Restoration pushes the prepared numeric value only when the ready and capacity checks succeed; its numeric copy route is independently linked by table data and copies both words. This input grows the value pool by one hundred slots and refuses growth above ten thousand. A skipped result push still destroys the consumed state. This is its own resource policy, not the Linux growth path or a promise of retry, memory safety or eventual delivery. No Linux script-update cancellation rule is inferred here. **[bin]**
+
+The older [version note](gs2-vm-by-version.md#named-opcodes-with-version-notes) had left timeout zero as an assumption. This supplies a static mechanism for the separately identified archive-labelled input; it does not retrospectively authenticate every image or run covered by that older version label. **[bin][inf]**
+
 ## What remains open
 
-The three-case experiment's [open timeout question](../protocol/script-fuzz-2026-11-19.md#still-open) remains a lab question. This static read does not supply a new native run, authenticate a genuine 5.12 engine, settle 4.20r8, establish source-language event priority or cover every error and ownership path. The older [loader comparison](gs2-vm-loader-diff.md#500r7-and-512) records broader historical readings; the two inputs audited here should not silently expand their version scope. **[bin][inf]**
+The three-case experiment's [open timeout question](../protocol/script-fuzz-2026-11-19.md#still-open) remains a lab question. These static reads do not supply a new native run, authenticate genuine 4.20r8 or 5.12 behavior, establish source-language event priority or cover every error and ownership path. The older [loader comparison](gs2-vm-loader-diff.md#500r7-and-512) records broader historical readings; the selected inputs audited here should not silently expand their version scope. **[bin][inf]**
