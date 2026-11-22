@@ -15,6 +15,12 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 
 ## Columns
 
+2026-11-23 update: G144's [placement-prefix spelling question](../client-internals/v2100-gani-reader.md#placement-prefixes-static-follow-up-2026-11-23)
+is answered for the examined public-labelled 2.1.0.0 input: `PARAM` and `ATTR`,
+with raw literal bytes and separate instruction paths. Rendering and malformed-input
+behavior are not established; G145, G146 and G147 remain open. The stable inventory
+still contains 426 IDs.
+
 2026-11-23 update: G070 has a [versioned source comparison](../server-notes/file-cache-and-script-size-2026-11-23.md)
 separating the later fork's file-checksum exception, cached package metadata and
 parsed map state from NC script input and classic script-output bounds. Original

@@ -166,3 +166,4 @@ LNX603-FORMAT-COERCION-20261122	linux	selected-string-coercion-zero-result-gates
 SERVER-OPTIONS-REFERENCE-20261122	source	versioned-document-inventory-and-pinned-source-reader-comparison
 GS1-EIGHT-COMMANDS-20261122	source	eight-gs1-command-registration-wrapper-and-selected-delegate-static-review
 FILE-CACHE-SCRIPT-SIZE-20261123	source	pinned-file-verification-package-metadata-map-state-and-script-input-output-static-comparison
+V2100-GANI-PREFIXES-20261123	windows	native-static-raw-literals-prefix-helper-and-selected-placement-instructions

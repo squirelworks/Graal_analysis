@@ -22,7 +22,17 @@ The Mac v5 loader stores two default fields and replaces them only when both opt
 
 A line whose text starts with `WAIT`, with more than one field and an open frame, adds field 1 as an integer to that counter. The counter's starting value was not read in this function. **[bin]**
 
-Any other line in the block is split on commas. A piece is kept only when it has exactly three fields. The second and third fields are integers. The first field is an integer sprite id, or a five-character prefix whose tail is an integer, or a four-character prefix whose tail is an integer. A prefix value of 0 or below does not by itself keep the piece. The two prefix spellings were not recovered. **[bin]**
+Any other line in the block is split on commas. A piece is kept only when it has exactly three fields. The second and third fields are integers. The first field is an integer sprite id, or `PARAM` followed by an integer, or `ATTR` followed by an integer. A prefix value of 0 or below does not by itself keep the piece. The prefix spellings are now recovered by the bounded follow-up below. **[bin]**
+
+### Placement prefixes: static follow-up (2026-11-23)
+
+The examined archive-labelled public image is 1,771,008 bytes with embedded FileVersion 2.1.0.0, matching the public-image descriptors in the [build inventory](graal2002-and-140-builds.md#form-resources). Version and size are not vendor authentication or a claim about every image with that version. Only the client executable was extracted for static analysis; no installer, client or script was run. Evidence: V2100-GANI-PREFIXES-20261123. **[file][bin]**
+
+In the placement branch of the same reader identified by its `ANIEND` and `PLAYSOUND` references, the first test uses the five-byte literal `PARAM`; the next uses the four-byte literal `ATTR`. Both raw string objects and the instructions that pass them to the prefix helper were read. The helper compares the beginning of the candidate with the literal's bytes; it is not a search for that text anywhere in the token, or a whole-token equality test. This does not establish a case-normalization policy for the complete file grammar. **[bin]**
+
+For `PARAM`, the reader takes the tail starting at character 6 (one-based); for `ATTR`, at character 5. The tail goes through the same integer-conversion helper used for the placement coordinates, and the two prefix results go into separate fields. If neither prefix matches, the first field instead goes through integer conversion and sprite lookup. The normal keep branch requires a found sprite or a positive prefix index; zero or a negative prefix index alone does not retain the placement. **[bin]**
+
+This closes G144's literal-spelling question for the examined image. It does not prove parameter/attribute value resolution at rendering, malformed-number recovery, index upper bounds, acceptance of arbitrary suffixes, or the grammar of ver7/v22. The decompiler's exception-handler and value-flow coverage is incomplete; the literal bytes, suffix positions and normal keep/discard branch were checked against instructions rather than inferred from a high-level return type. The other open questions below remain separate. **[bin]**
 
 ## `SPRITE`, `COLOREFFECT`, `ZOOMEFFECT`
 
@@ -43,7 +53,7 @@ The word that opens the block `ANIEND` closes was not recovered as text in this 
 
 ## Open
 
-- [ ] Recover the five-character and four-character prefix spellings.
+- [x] ~~Recover the five-character and four-character prefix spellings.~~ `PARAM` and `ATTR`, bound to the selected public image's actual placement branch; see [the static follow-up](#placement-prefixes-static-follow-up-2026-11-23).
 - [ ] Recover the block opener and the third flag word.
 - [ ] Identify the no-argument call between the keyword and the field count. Until that call is a traced removal, the post-keyword counts stay an inference.
 - [ ] Compare this reader with ver7 and with v22.

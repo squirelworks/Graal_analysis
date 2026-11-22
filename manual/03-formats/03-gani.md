@@ -142,7 +142,7 @@ The public 2.1.0.0 image stores these fields. Playback, units and the other 2.1 
 | --- | --- | --- |
 | `PLAYSOUND` | field 1 is the sound name; the two floating-point slots are `1.5` and `2.0` unless the line has more than three fields, in which case fields 2 and 3 replace them | [bin] (client-internals/v2100-gani-reader.md#playsound) |
 | `WAIT` | field 1 is an integer added to the open frame's counter; the counter's start was not read | [bin] (client-internals/v2100-gani-reader.md#wait-and-a-placement) |
-| placement | a comma piece is kept only at exactly three fields; the second and third are integers | [bin] (client-internals/v2100-gani-reader.md#wait-and-a-placement) |
+| placement | a comma piece is kept only at exactly three fields; the second and third are integers. The first is a sprite id or `PARAM`/`ATTR` plus an integer tail, stored in separate index fields; a found sprite or a positive prefix index is needed | [bin] (client-internals/v2100-gani-reader.md#wait-and-a-placement); [bin] (client-internals/v2100-gani-reader.md#placement-prefixes-static-follow-up-2026-11-23) |
 | `SPRITE` | an integer, a text name, and four integers; a further field is not stored | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
 | `SPRITE` count | more than five fields remaining after the keyword is an inference | [inf] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
 | `COLOREFFECT` | an integer and four floating-point values when that integer finds a stored sprite; a miss stores nothing | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
@@ -152,3 +152,5 @@ The public 2.1.0.0 image stores these fields. Playback, units and the other 2.1 
 | `SETBACKTO` | one text field | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
 | `SETBACKTO` count | at least one field remaining after the keyword is an inference | [inf] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
 | ignored lines | a line that is not one of these words is not stored; `ATTACHSPRITE` is not tested | [bin] (client-internals/v2100-gani-reader.md#sprite-coloreffect-zoomeffect) |
+
+The prefix follow-up binds raw five-/four-byte literals and the normal instruction paths in the selected archive-labelled public image (embedded 2.1.0.0, matching the published byte count). It closes G144's spelling question for that input, without establishing vendor authenticity, all same-version builds, rendering-time parameter/attribute resolution, malformed-number recovery or index upper bounds. The block opener, third flag and unidentified call before the field count remain separate open questions [file][bin] (client-internals/v2100-gani-reader.md#placement-prefixes-static-follow-up-2026-11-23).

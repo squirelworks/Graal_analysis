@@ -300,7 +300,7 @@ client-internals/update-cadence-3x-6x.md	cited	4; 4.1; C	4.1; C
 client-internals/v2.00-connect-path.md	cited	6	4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/v21-level-record-gate.md	cited	3.1	3.1	Baddy and chest store/skip carried in §3.1.2.10. The two v22 flags stay unnamed.
 client-internals/v21-local-enter.md	cited	4.8; E	4.8; E	The two 31 arguments, the v22 64-tile shift, the eight-byte stream and the ver7 log-literal limit are in §4.8. 2.05 stays open in E#319.
-client-internals/v2100-gani-reader.md	cited	3.3	3.3	Public 2.1.0.0 reads carried in §3.3.9. The post-keyword field counts are an inference there. Prefix spellings and the block opener stay in the note.
+client-internals/v2100-gani-reader.md	cited	3.3	3.3	Public 2.1.0.0 selected field reads and PARAM/ATTR literal/index branches carried in §3.3.9; malformed/rendering/other-build limits retained. Post-keyword counts remain inferred; the block opener stays open.
 client-internals/v3-v5-protocol-pass/README.md	excluded		1; 2.3	index of the pass; each note has its own row
 client-internals/v3-v5-protocol-pass/client-internals/older-v3-v5-inventory.md	excluded		1; 2.3	inventory of the images read; the identities are in §1.8
 client-internals/v3-v5-protocol-pass/client-internals/v3-builds.md	excluded		1; 2.3	inventory of the 3.04 files read; the facts are in §1.8.4
