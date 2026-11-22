@@ -60,6 +60,18 @@ The same selected backup's constructed connection decodes the logical message ID
 
 That route supplies no color-mode handler to connect with the separately examined five-value player-colors reader. It does not establish whole-client packet177 absence, another ID's equivalence, all connection subclasses or alternate paths, genuine 5.12, observed traffic, color rendering or runtime acceptance. P4–P6 remain open beyond this selected result. **[bin][inf]**
 
+## Selected ordering and power-storage boundaries (2026-11-22)
+
+Further static reads of the same archive-labelled backup qualify P5/P6 (evidence `W500-PROP-ORDER-POWER-20261122`). They do not authenticate a distribution or transfer the result to genuine 5.12. **[bin]**
+
+The examined own/shared outer dispatch and common-advance paths reload the current ID and reset the extent for each iteration. Those regions and the direct player-property packet wrappers do not compare the current ID with a carried previous ID. The shared reader's unsupported-current-ID exit is a membership stop, not positive evidence of an ascending-order requirement. This does not prove order independence, descending-stream acceptance, a historical observation's cause or the absence of policy in handlers, callbacks, transport or other builds. P5 is not refuted by this bounded negative result. **[bin][inf]**
+
+For shared logical 8/9, let a be the unsigned first value byte and p equal a minus 32. Both branches select compact representation when p is below 10 and pass p unchanged on that path. In extended representation, logical 8 subtracts an additional 30 from p, while logical 9 subtracts an additional 10. The representation threshold is therefore distinct from the numeric adjustment. This is receive-side arithmetic, not a sender encoder or a valid numeric range. Negative arithmetic results do not establish healing behavior. **[bin]**
+
+For the already bound newly constructed shared receiver, concrete getter/setter slots agree with the named swordpower and shieldpower property-adapter paths. The selected setters store the full computed 32-bit word without a local clamp. Corresponding image holders agree with the named swordimg and shieldimg getter paths. These bindings do not establish active property registration or the same setter policy for every runtime object, nor damage, healing or rendering behavior. **[bin]**
+
+The compact image routing selects four sword presets for decoded values 1–4 and three shield presets for 1–3; other compact values retain the initially empty image path. Extended image text uses its separate length and available-bounded slice. Image assignment and numeric storage converge, but neither successful asset loading nor gameplay follows from those stores. The nominal extents stay as recorded in the cursor census. Own-player concrete storage, existing/shared subclasses, sender behavior, genuine 5.12 and full P6 remain open. **[bin][inf]**
+
 ## Still open for #6
 
 A [complete selected own/shared cursor census](player-props-selected-backup-cursors-2026-11-22.md), with a numeric per-ID table, now records these two backup functions' dispatch membership, nominal extents, short guards and default behavior. It distinguishes own prefix-copy delegation from shared cursor advancement. This closes that selected static census only; the multi-build/genuine-5.12 checklist below and semantic/runtime questions remain open. **[bin][inf]**
