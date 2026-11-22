@@ -928,4 +928,5 @@ server-notes/tile-category-options-2026-11-21.md	cited	5	5	Pinned GPL reference-
 server-notes/language-options-and-fallback-2026-11-21.md	cited	5	5	Tracked/logged language keys are separated from registration metadata, player language and actual classic/modern lookup; no original/runtime equivalence.
 server-notes/sync-distance-routing-2026-11-21.md	cited	5	5	Numeric synchronization queries are separated from ordinary data and send-method gates; no universal visibility, original-server or new runtime claim.
 server-notes/level-persistence-options-2026-11-22.md	cited	5	5	Tile rewrite attempts, sublevel NPC sleep and DATABASE save requests are separated; no durable-output or original/runtime claim.
+server-notes/player-z-policy-2026-11-22.md	cited	5	5	Pinned reference-fork Z update rejection, independent range conversion and conditional NPC-touch probe; direct state paths and original/runtime limits remain separate.
 server-notes/script-engine-defaults-2026-11-22.md	cited	5	5	Pinned GPL default-engine alias and consumer classification; no original/runtime or fresh inventory claim.
