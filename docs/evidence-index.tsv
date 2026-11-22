@@ -163,3 +163,4 @@ LNX420R8-PARSER-STATE-20261122	linux	selected-row-grammar-initialized-alphabets-
 LNX601-X86-LIFECYCLE-20261122	linux	selected-snapshot-ownership-cleanup-and-decoded-program-cache-lifecycles-static-review
 LNX603-LIST-FORMAT-20261122	linux	selected-list-string-equality-and-sequential-positional-integer-callback-static-review
 LNX603-FORMAT-COERCION-20261122	linux	selected-string-coercion-zero-result-gates-and-signed-unsigned-format-callback-static-review
+GS1-EIGHT-COMMANDS-20261122	source	eight-gs1-command-registration-wrapper-and-selected-delegate-static-review
