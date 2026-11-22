@@ -267,7 +267,7 @@ client-internals/relay-room-bridge.md	cited	2.3; 4.11	4
 client-internals/rendering-observations.md	cited	4.1	4	
 client-internals/saved-passwords.md	cited	3.7	4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
 client-internals/serveroptions-198.md	cited	2.5	2.5	
-client-internals/showimg-particles-and-gs2-format.md	cited	8.3; E	8.3	
+client-internals/showimg-particles-and-gs2-format.md	cited	8.3; E	8.3; E	Selected static mechanism and named-build lab reconciliation carried in 8.3 and E#210; particle kinds remain open.
 client-internals/sign-panel.md	cited	4.6; 4.9	4	
 client-internals/skipped-v6-read.md	cited	10	10	§10.1.9 carries the stub, the QPlay.exe export directory and the TLS names that differ; the full export lists stay in the note
 client-internals/sound-and-music.md	cited	3.10; 4.7	3.10; 4.7	
