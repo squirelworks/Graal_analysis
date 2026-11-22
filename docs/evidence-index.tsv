@@ -154,3 +154,4 @@ W500-PROP-ORDER-POWER-20261122	windows	selected-backup-property-loop-control-and
 GS2-WAIT-RESULT-20261122	windows/linux	selected-backup-and-recorded-linux-wait-creation-deadline-and-conditional-restore-static-review
 W420-WAIT-RESULT-20261122	windows	selected-archive-labelled-wait-entry-deadline-matching-and-conditional-numeric-restore-static-review
 GS2-JOIN-FUNCTION-20261122	windows/linux	three-selected-ordinary-call-joined-function-lookup-and-preparation-static-review
+GS2-EVENT-CASE-20261122	windows/linux	selected-event-consumer-prefix-candidate-and-registration-query-case-matching-static-review
