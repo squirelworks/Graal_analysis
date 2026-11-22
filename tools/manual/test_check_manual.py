@@ -231,3 +231,47 @@ def test_build_pli_ids_are_checked_separately(tmp_path):
     errs = errors(root)
     assert len(errs) == 1
     assert 'PLI id 80 ' in errs[0]
+
+
+def test_missing_source_heading_fragment_fails(tmp_path):
+    root = make_repo(tmp_path, {
+        'protocol/a.md': '# A\n\n## Present heading\n',
+        'manual/01-x.md': REF + '# 1 X\n\nA fact [doc] (protocol/a.md#missing-heading).\n',
+    }, sources=HEADER + 'protocol/a.md\tcited\t1\t\t\n')
+    assert any('protocol/a.md#missing-heading' in e and 'does not resolve' in e
+               for e in errors(root))
+
+
+def test_code_fence_text_is_not_a_source_heading(tmp_path):
+    root = make_repo(tmp_path, {
+        'protocol/a.md': '# A\n\n```markdown\n## Not a heading\n```\n',
+        'manual/01-x.md': REF + '# 1 X\n\nA fact [doc] (protocol/a.md#not-a-heading).\n',
+    }, sources=HEADER + 'protocol/a.md\tcited\t1\t\t\n')
+    assert any('protocol/a.md#not-a-heading' in e and 'does not resolve' in e
+               for e in errors(root))
+
+
+def test_existing_source_heading_forms_resolve(tmp_path):
+    note = (
+        '# A\n\n## Present heading\n\n## `Code` and **bold**!\n\n'
+        '## Repeated\n\n## Repeated\n\n'
+        '<a name="legacy-location"></a>\n\n'
+        'Underlined heading\n------------------\n\n## café\n'
+    )
+    fragments = (
+        'present-heading', 'code-and-bold', 'repeated', 'repeated-1',
+        'legacy-location', 'underlined-heading', 'caf%C3%A9',
+    )
+    body = '\n\n'.join(f'A fact [doc] (protocol/a.md#{fragment}).'
+                        for fragment in fragments)
+    root = make_repo(tmp_path, {
+        'protocol/a.md': note,
+        'manual/01-x.md': REF + '# 1 X\n\n' + body + '\n',
+    }, sources=HEADER + 'protocol/a.md\tcited\t1\t\t\n')
+    assert errors(root) == []
+
+
+def test_source_paths_without_fragments_keep_bibliography_contract():
+    assert check_manual.split_sources(
+        '`protocol/a.md#present-heading`; protocol/b.txt'
+    ) == ['protocol/a.md', 'protocol/b.txt']
