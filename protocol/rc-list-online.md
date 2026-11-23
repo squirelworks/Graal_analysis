@@ -1,6 +1,7 @@
 # Listing the RCs that are online (and why id 65 is not the way)
 
-Date: 2026-11-12 (updated the same day with the 2010 Linux RC and RC3)
+Date: 2026-11-12 (updated the same day with the 2010 Linux RC and RC3; lab-status
+2026-11-24)
 
 Question: how does a Remote Control learn which other RCs (admins) are online? gs2lib names
 client → server id 65 `PLI_RC_LISTRCS`, and `seihai-rc` left "List RCs" open because the
@@ -135,6 +136,25 @@ handles: 8, 13, 16, 30, 35, 37, 47, 55, 56, 58, 59, 61–70, 72–77, 79, 82, 10
 190. That is exactly the set of the 2010 Linux RC. 8, 56, 58 and 59 share one entry that reads
 `s id` first. 65 on this socket is `PLO_RC_FILEBROWSER_DIRLIST`, unrelated to `PLI_RC_LISTRCS`.
 
+## Lab status (2026-11-24) **[lab]**
+
+Attempted the two-RC GServer-v2 confirmation on the Linux probe lab (loopback only).
+Neither path reached a live RC2 session:
+
+- **Wine `RC2_2.05` (`GSERV025`).** Same Wine/GTK Pango failure as the
+  [rc-fuzz follow-up](rc-fuzz-2026-11-19.md#width-canary-follow-up-2026-11-23):
+  "All font fallbacks failed"; the start dialog paints with tofu glyphs; no login
+  traffic hit the proxy. Seeded host TTFs into the Wine prefix and rewrote the
+  client's `fonts.conf` `WINDOWSFONTDIR` placeholder to an absolute Fonts path —
+  Pango still failed. Not a protocol result.
+- **Native Linux `GSERV025` (2006/01/20, i386, `RC_NATIVE=1`).** Binary is staged;
+  `ldd` still misses `libgtk-x11-2.0.so.0`, `libgdk-x11-2.0.so.0`, and
+  `libgtksourceview-1.0.so.0`. The lab image has amd64 GTK2 and i386 GTK3 only;
+  `libgtksourceview-1.0` is not in the current distro. No packages were installed.
+
+So the Admins-vs-Players / one-space question stays open (static **[inf]** above
+unchanged). Same staging blockers as board G160 / G299.
+
 ## Open
 
 - [x] Read the send paths of the 2010 Linux RC and RC3 (neither sends 65 or 66).
@@ -144,3 +164,5 @@ handles: 8, 13, 16, 30, 35, 37, 47, 55, 56, 58, 59, 61–70, 72–77, 79, 82, 10
       the scoped framing read does not establish whole-build id-65 absence.
 - [ ] A lab run with RC2 2.05 and two RC logins against the GServer-v2 fork, to confirm the
       Admins folder on the wire and whether the one-space level puts RCs under Players.
+      (2026-11-24: lab blocked — Wine/GTK Pango + native i386 GTK2/gtksourceview1; see
+      [Lab status](#lab-status-2026-11-24-lab) and G160/G299.)
