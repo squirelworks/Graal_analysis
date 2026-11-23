@@ -37,6 +37,13 @@ parsed map state from NC script input and classic script-output bounds. Original
 4.02 behavior, the historical RC editing limit and old-engine breakage remain open;
 this is partial coverage, not a completed historical confirmation.
 
+2026-11-23 update: G159/G298 (RC width canary window) and G160/G299 (rc205 staging)
+advanced in [rc-fuzz follow-up](../protocol/rc-fuzz-2026-11-19.md#width-canary-follow-up-2026-11-23):
+Wine virtual desktop makes rc2004 readable for `rc-widths`; rc3 client area stays
+black; CAN01–06 still need the Player List open; native Linux `GSERV025` is preferred
+for RC2 but the lab image lacks i386 GTK2. G158 umbrella leftovers remain those
+residuals.
+
 2026-11-21 update: G424 has a [100-case selected own-prop scan on Windows
 5.12 under Wine](../protocol/probe-wine512-widths-2026-11-21.md), with 96 landed
 and four lost canaries across the 91-case scan and nine nonzero follow-ups. This is partial coverage, not a full width/semantic

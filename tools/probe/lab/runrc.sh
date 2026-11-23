@@ -33,11 +33,12 @@
 # An RC only sends when a user acts, so every post-base shot reads `silent`: that is liveness
 # (no crash / no disconnect), not proof the parser stayed in step. In-step is read from the shots
 # (player count rising, dialogs opening with the injected values) and from rc-widths.plan's canary.
-# Known rendering gaps under Wine (2026-11-19 run): RC3's main window stays BLACK (no paint), so its
-# width canary can't be read from shots — set a Wine virtual desktop in the prefix registry first
-# (HKCU\Software\Wine\Explorer\Desktops). RC2 2.05 (GTK) fails Pango font fallback ("All font
-# fallbacks failed") and draws text as boxes; it also sets no X window title, so match it with
-# `xdotool search --class .`, not `--name .`. Both are prefix/Wine issues, not proxy issues.
+# Known rendering gaps under Wine (2026-11-19 / 2026-11-23): set a Wine virtual desktop in the
+# prefix registry first (HKCU\Software\Wine\Explorer + Desktops=1024x768). That makes the 2004 RC
+# paint; RC3's title shows but the client area stays BLACK, so its width canary still can't be read
+# from shots. RC2 2.05 (GTK) fails Pango font fallback under Wine ("All font fallbacks failed") and
+# draws text as boxes; prefer RC_NATIVE=1 with a Linux GSERV025 build when the lab has i386 GTK2.
+# GTK windows may set no X title — match with `xdotool search --class .`, not `--name .`.
 set -u
 LO1=$(printf '%d.%d.%d.%d' 127 0 0 1); LO2=$(printf '%d.%d.%d.%d' 127 0 0 2); LO3=$(printf '%d.%d.%d.%d' 127 0 0 3)
 RC=$1; PLAN=$(readlink -f "$2"); RUN=$3; shift 3
@@ -116,7 +117,8 @@ C=clients/$DIR; LOG=controlconsole.log; : > $C/$LOG 2>/dev/null || true
 rm -f /tmp/.X11-unix/X$D /tmp/.X$D-lock
 ./cl.sh xvfb $D
 if [ $NATIVE = 1 ]; then
-  ./E sh -c "cd $C && DISPLAY=:$D setsid nohup ./$EXE > $G/run/rc$D.log 2>&1 &"
+  # Absolute path: nsenter into the lab namespace does not keep this script's cwd.
+  ./E sh -c "cd $G/$C && DISPLAY=:$D setsid nohup ./$EXE > $G/run/rc$D.log 2>&1 &"
 else
   ./cl.sh start $D $DIR $EXE wpD ""
 fi
