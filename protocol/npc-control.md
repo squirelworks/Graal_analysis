@@ -112,9 +112,9 @@ Confirm against GServer-v2 lab + Wine `RemoteControl.exe` / RC 1.41 (sandbox, th
 
 1. ~~Exact bytes of NC login (type 3 / token / account / password) and whether any junk byte follows.~~ Done for the standalone tools: type 3 + `NCL15031` + `str account` + `str password`, no key byte, no junk byte (see Login, **[lab]**). RC-2002 embedded socket (`NCL11012`) still to confirm live.
 2. Packet 79 address string format (`ip,port` vs spaces) when the lab NPC-server player appears.
-3. NC_NPCADD (158) property order when the server sends all three props; whether missing props clear or leave the row.
-4. NC_CLASSDELETE (188 / client 119): payload is bare class name vs length-prefixed string.
-5. Weapon add (33) script length: `GSHORT` vs GINT3 on large scripts; RAWDATA path for big set packets (109 / 113 / 117).
+3. ~~NC_NPCADD (158) property order when the server sends all three props; whether missing props clear or leave the row.~~ Done 2026-11-24: any order; omit=leave; empty str=clear. See `nc-write-ops-status.md`.
+4. ~~NC_CLASSDELETE (188 / client 119): payload is bare class name vs length-prefixed string.~~ Done 2026-11-24: bare name on both. See `nc-write-ops-status.md`.
+5. ~~Weapon add (33) script length: `GSHORT` vs GINT3 on large scripts;~~ GSHORT settled 2026-11-24; RAWDATA path for big set packets (109 / 113 / 117) unchanged from the note above. See `nc-write-ops-status.md`.
 6. Local-NPC list reply id and layout after client 114 (not named in the 2002 handler table above).
 7. Whether id 16 on the NC socket really shares the RC disconnect UI when the NPC-server drops the link.
 

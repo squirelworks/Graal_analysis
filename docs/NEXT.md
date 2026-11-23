@@ -72,7 +72,7 @@ These checks credit the named merged notes and manual carry, not whole research-
 
 - [x] **NPC GS2 gmap re-entry (status).** ~~Survive or restart?~~ Seihai restarts; real-client lab open. [Note](../protocol/npc-gmap-reentry-status.md); gap #22.
 
-- [x] **NC write ops (status).** ~~Attribute/class/weapon write layouts?~~ Id inventory settled; write-path details open. [Note](../protocol/nc-write-ops-status.md); gap #40.
+- [x] **NC write ops (status).** ~~Attribute/class/weapon write layouts?~~ Layouts settled 2026-11-24 via ncprobe write fixtures (prop order / clear-vs-leave / class+weapon length forms); local-NPC list after 114 still open. [Note](../protocol/nc-write-ops-status.md); gap #40.
 
 - [x] **Carry/throw / shoot (status).** ~~Layouts?~~ SHOOT path settled for 5.x/6.x; throw and HITOBJECTS need capture. [Note](../protocol/carry-shoot-hit-status.md); gap #26.
 

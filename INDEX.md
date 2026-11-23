@@ -79,7 +79,7 @@ When you add a note, add a line for it here in the same pull request.
 - [Game rules of the 1999 servers](server-notes/gserver-1999-rules.md) — GServer 1.28 beta 2 and 1.3: each client message, bush regrowth, horses, leaders, deaths, alignment, baddy start modes and the kill cost, and where GServer-v2 differs; static.
 - [Update cadence of the 3.x, 4.x and 6.x clients](client-internals/update-cadence-3x-6x.md) — every build steps every 50 ms; how each loop handles falling behind; GS1 `timeout` counts whole steps, rounded down; lab.
 - [NPC GS2 across gmap re-entry (gap #22)](protocol/npc-gmap-reentry-status.md) — Seihai restarts; real-client survive-vs-restart lab still open.
-- [NC write operations (gap #40)](protocol/nc-write-ops-status.md) — id inventory from npc-control.md; attribute/class/weapon write layouts still open.
+- [NC write operations (gap #40)](protocol/nc-write-ops-status.md) — write layouts settled 2026-11-24 (158 prop order / clear-vs-leave; class 163/162/188; weapon 33 GSHORT; no attribute write beyond 109/110).
 - [Carry/throw, hit and shoot (gap #26)](protocol/carry-shoot-hit-status.md) — SHOOT/SHOOT2 settled for 5.x/6.x; throw/HITOBJECTS/E#311–312 still open.
 - [Non-local level warp (gap #15)](protocol/nonlocal-level-warp-status.md) — gmap hang settled; plain `.nw` missing-level link lab still open.
 - [2.x link probe / BIGMAP / entry save (gap #34)](protocol/link-probe-bigmap-status.md) — 2.05 edge rules settled; probe offsets, skip flag, 171 vs bigmap, E#314 still open.
