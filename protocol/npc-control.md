@@ -110,7 +110,7 @@ Id 111 matches the 2001 PM `add npc` field list moved onto its own packet. **[in
 
 Confirm against GServer-v2 lab + Wine `RemoteControl.exe` / RC 1.41 (sandbox, the loopback address, lab ports only):
 
-1. ~~Exact bytes of NC login (type 3 / token / account / password) and whether any junk byte follows.~~ Done for the standalone tools: type 3 + `NCL15031` + `str account` + `str password`, no key byte, no junk byte (see Login, **[lab]**). RC-2002 embedded socket (`NCL11012`) still to confirm live.
+1. ~~Exact bytes of NC login (type 3 / token / account / password) and whether any junk byte follows.~~ Done for the standalone tools: type 3 + `NCL15031` + `str account` + `str password`, no key byte, no junk byte (see Login, **[lab]**). ~~RC-2002 embedded socket (`NCL11012`) still to confirm live.~~ Confirmed live on the 2002/05/02 RC (`GSERV023` + `NCL11012`) through `runrc.sh`/`ncprobe`; see [rc-fuzz](rc-fuzz-2026-11-19.md) and the RC-embedded section below. **[lab]**
 2. Packet 79 address string format (`ip,port` vs spaces) when the lab NPC-server player appears.
 3. ~~NC_NPCADD (158) property order when the server sends all three props; whether missing props clear or leave the row.~~ Done 2026-11-24: any order; omit=leave; empty str=clear. See `nc-write-ops-status.md`.
 4. ~~NC_CLASSDELETE (188 / client 119): payload is bare class name vs length-prefixed string.~~ Done 2026-11-24: bare name on both. See `nc-write-ops-status.md`.

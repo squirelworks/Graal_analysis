@@ -41,6 +41,13 @@ this is partial coverage, not a completed historical confirmation.
 158 any-order props with omit=leave / empty-str=clear; class 163/162/188 and weapon 33 GSHORT
 layouts dumped; no attribute write beyond script/flags. Local-NPC list after 114 remains open.
 
+2026-11-24 update: G300 (pre-2002 `rcpre` gen 2, and `rc2002` embedded NC) is answered in
+[rc-fuzz](../protocol/rc-fuzz-2026-11-19.md): `rcpre` (`GSERV022`) took `rc-core` with no
+crash/desync; `rc2002` (`GSERV023` + `NCL11012`) opened the NC socket through `ncprobe` and
+took `nc-core` (45 injects, no crash). The `LOCALRIGHTS` harness fix for native `PLO 79` is in
+`runrc.sh`. Source and `NEXT.md` boxes were already ticked; this closes the board row. G158
+umbrella leftovers remain G159/G298 (CAN cell / rc3 paint) and G160/G299 (rc205 / native GTK2).
+
 2026-11-23 update: G159/G298 (RC width canary window) and G160/G299 (rc205 staging)
 advanced in [rc-fuzz follow-up](../protocol/rc-fuzz-2026-11-19.md#width-canary-follow-up-2026-11-23):
 Wine virtual desktop makes rc2004 readable for `rc-widths`; rc3 client area stays
