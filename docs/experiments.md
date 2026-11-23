@@ -347,7 +347,7 @@ the same rows as a task list. Read the source line before you start.
 | G292 | lab | Optional: unknown own-id long-value desync lab (called out in v5-props.md). | `protocol/player-props-5x-status.md` line 36 | free |
 | G298 | static+lab | A readable window for the width canary on the 2004 RC and RC3 (Wine virtual desktop). | `protocol/rc-fuzz-2026-11-19.md` line 118 | free |
 | G299 | lab | RC2 2.05 once its GTK font/render problem under Wine is solved. | `protocol/rc-fuzz-2026-11-19.md` line 119 | free |
-| G300 | lab | A pre-2002 rcpre (gen 2), and rc2002 (gen 2) with the embedded NC socket (NC-fuzz thread). | `protocol/rc-fuzz-2026-11-19.md` line 120 | free |
+| G300 | lab | Answered: rcpre gen-2 rc-core + rc2002 embedded NC via ncprobe (see rc-fuzz note). | `protocol/rc-fuzz-2026-11-19.md` line 120 | done |
 | G302 | lab | A lab run with RC2 2.05 and two RC logins against the GServer-v2 fork, to confirm the | `protocol/rc-list-online.md` line 137 | free |
 | G310 | lab | GServer 1.21 (GSERV007) — gen2 sweep (packs reply into one frame; watch framing). First run invalid (host load caused false canary timeouts); redo pending a quiet host. | `protocol/server-fuzz-c2s-targets.md` line 54 | free |
 | G313 | lab | Confirm or explain the unauthenticated id 8 — re-run on a single connection with no | `protocol/server-fuzz-c2s-targets.md` line 107 | free |
