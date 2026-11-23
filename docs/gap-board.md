@@ -41,11 +41,17 @@ this is partial coverage, not a completed historical confirmation.
 158 any-order props with omit=leave / empty-str=clear; class 163/162/188 and weapon 33 GSHORT
 layouts dumped; no attribute write beyond script/flags. Local-NPC list after 114 remains open.
 
+2026-11-24 update: G313 (unauthenticated S→C id 8 / `OTHERPLPROPS`) is answered in
+[server-fuzz-c2s-targets](../protocol/server-fuzz-c2s-targets.md): on GServer 1.28b2 a solo
+pre-auth frame/login run with no canary produced no id 8; the normal canary harness
+reproduced id 8 on every frame case (body `0x21 0x53`). Canary-guest artifact; checkbox
+closed. Do not start G314 from this row.
+
 2026-11-24 update: G302 (RC2 2.05 two-RC Admins/Players confirm on the GServer-v2 fork) was
 attempted and **blocked** — see [rc-list-online lab status](../protocol/rc-list-online.md#lab-status-2026-11-24-lab).
 Wine `RC2_2.05` still dies on GTK Pango font fallbacks (no proxy login); native Linux
 `GSERV025` still lacks i386 GTK2 / gtksourceview1 on the lab image (no heavy install).
-Same residuals as G160/G299; the source checkbox stays open. Do not start G313 from this row.
+Same residuals as G160/G299; the source checkbox stays open.
 
 2026-11-24 update: G300 (pre-2002 `rcpre` gen 2, and `rc2002` embedded NC) is answered in
 [rc-fuzz](../protocol/rc-fuzz-2026-11-19.md): `rcpre` (`GSERV022`) took `rc-core` with no
@@ -175,7 +181,7 @@ queue below is the suggested order; take the next free entry whose VM is idle.
 
 | # | What | Board rows | State |
 |---|---|---|---|
-| 1 | Server fuzz: GServer 1.21 gen-2 sweep on a quiet host, the unauthenticated id 8 on one connection, and post-login cases with a per-case guest reset | `server-fuzz-c2s-targets` lines 54, 107, 109 | free |
+| 1 | Server fuzz: GServer 1.21 gen-2 sweep on a quiet host, and post-login cases with a per-case guest reset (unauthenticated id 8 closed 2026-11-24) | `server-fuzz-c2s-targets` lines 54, 109 | free |
 | 2 | GServer 1.25 and 1.27: lab login of both clients and the player, NPC and baddy prop ranges | `gserv-125-127-builds` lines 128, 132 | free |
 | 3 | Serve a multi-layer level to 5.12 and 6.03r7 with the reader repair from seihai-gserver-v2 #118; live result still open | `gr-v105-fuzz` source repair and remaining level walk; `gr-v105-empty-tiles` line 33 | free |
 | 4 | NC write operations through `ncprobe.py` (attribute, class and weapon writes) | `nc-write-ops-status` line 38 | free |

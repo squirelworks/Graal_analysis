@@ -93,10 +93,14 @@ Behaviours seen (canary up throughout; all **[lab]**, 1.28b2 only):
   reply; types 2, 5, 64 and 127 were left open with no reply.
 - **Half-open on double login:** two valid login lines in one frame left the connection
   neither logged in nor disconnected — a half-open socket. Worth a closer look.
-- **Unauthenticated id 8 (unconfirmed):** pre-auth frame and malformed-login cases saw an
-  S→C id 8 (`OTHERPLPROPS`) on a socket that had not logged in. This may just be the prior
-  canary guest's leave props being broadcast to the freshly-accepted socket; the cause is
-  not confirmed.
+- **Unauthenticated id 8 — canary artifact (confirmed 2026-11-24):** pre-auth frame and
+  malformed-login cases in the canary harness saw an S→C id 8 (`OTHERPLPROPS`) on sockets
+  that had not logged in. A solo re-run on the same 1.28b2 build with **no canary and no
+  other guest** (one fresh socket per case, idle-accept first) produced **zero** id 8 across
+  idle-accept plus all 34 frame/login cases. The same build with the normal canary harness
+  reproduced id 8 on **every** frame case, always body `0x21 0x53` (player index 1 + one
+  prop byte). So the unauthenticated id 8 is leave/other props from the harness guest, not
+  a reply to the malformed pre-auth input.
 - **Server state persisted across cases:** from the id-40 case onward every canary login
   also received id 33 (`NPCWEAPONADD`) — a fuzz case granted the shared `guest` account a
   weapon that stuck server-side. So the post-login (idsweep/body) results reflect
@@ -104,8 +108,9 @@ Behaviours seen (canary up throughout; all **[lab]**, 1.28b2 only):
 
 Follow-ups:
 
-- [ ] Confirm or explain the unauthenticated id 8 — re-run on a single connection with no
-  concurrent canary so a broadcast can't be the cause.
+- [x] Confirm or explain the unauthenticated id 8 — re-run on a single connection with no
+  concurrent canary so a broadcast can't be the cause. **Done 2026-11-24:** solo (no canary)
+  → no id 8; canary harness → id 8 on every frame case (body `0x21 0x53`). Canary artifact.
 - [ ] Re-run the post-login cases with a per-case `guest` account reset, to separate each
   case's effect from cumulative state.
 - [ ] Narrow which case grants `NPCWEAPONADD` (id 33 first appears from the id-40 case).

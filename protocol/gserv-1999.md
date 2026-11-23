@@ -115,11 +115,13 @@ capture facts above:
   + board, 6 level name, 1 links, optional 5 signs, 10 ISLEADER — so a post-login reply capture
   must drain that stream first, which the fuzzer does.) Empty id 17 (BADDYADD) does **not**
   crash the server — note it crashes the 6.03r7 *client*, the opposite direction. **[lab]**
-- An S→C id 8 (OTHERPLPROPS) was seen on some pre-auth sockets; this is most likely the prior
-  canary guest's leave-props being broadcast to the freshly-accepted socket, not a reply to the
-  malformed input (unconfirmed). GServer 1.21 (`GSERV007`) has the same big level-stream login
-  but its fuzz run is pending a redo on a quiet host (a loaded host produced false canary
-  timeouts). Per-build run status and the full taxonomy are in
+- An S→C id 8 (`OTHERPLPROPS`) on some pre-auth sockets is a **canary artifact**, not a reply
+  to the malformed input. Confirmed 2026-11-24 on 1.28b2: solo frame/login with no canary
+  and no other guest → no id 8; the same build under the normal canary harness → id 8 on
+  every frame case (body `0x21 0x53`, player index 1). Earlier “id 8 then …” observations on
+  pre-auth sockets should be read with that in mind. GServer 1.21 (`GSERV007`) has the same
+  big level-stream login but its fuzz run is pending a redo on a quiet host (a loaded host
+  produced false canary timeouts). Per-build run status and the full taxonomy are in
   [`server-fuzz-c2s-targets.md`](server-fuzz-c2s-targets.md). **[lab]**
 
 ## Message ids
