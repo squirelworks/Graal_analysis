@@ -1,0 +1,123 @@
+# nc-write.plan : dump well-formed NC write layouts through ncprobe inject/drop.
+#
+# Gap G284 / protocol/nc-write-ops-status.md. Not the receive-handler crash fuzz
+# (that is nc-core.plan). This plan seeds known fixtures, varies prop order and
+# subset updates on 158, compares bare vs length-prefixed names on class/weapon
+# delete, and injects one c2s of each client write id so the wire form lands in
+# proxy.log. Oracle: window alive + shot of the list/editor after each write.
+#
+# Field notes: c:N = GCHAR; s:N = GSHORT; str:TEXT = GCHAR len + text;
+# i3:N = GINT3; t:TEXT = raw text. Trailing newline added by the proxy.
+
+waitsession 180
+sleep 4
+shot baseline
+
+# --- 158 NC_NPCADD: full props, three orders ---
+s2c 158 i3:10 c:50 str:seedname c:51 str:OBJECT c:52 str:seed.nw
+sleep 1
+shot seed-npc-50-51-52
+s2c 158 i3:10 c:52 str:seed.nw c:51 str:OBJECT c:50 str:seedname
+sleep 1
+shot npcadd-order-52-51-50
+s2c 158 i3:10 c:51 str:OBJECT c:50 str:seedname c:52 str:seed.nw
+sleep 1
+shot npcadd-order-51-50-52
+
+# --- 158 clear-vs-leave: name-only update after a full seed ---
+s2c 158 i3:10 c:50 str:seedname c:51 str:OBJECT c:52 str:seed.nw
+sleep 1
+shot reseeds-before-name-only
+s2c 158 i3:10 c:50 str:newname
+sleep 1
+shot npcadd-name-only
+
+# --- 158 type-only update ---
+s2c 158 i3:10 c:50 str:seedname c:51 str:OBJECT c:52 str:seed.nw
+sleep 1
+s2c 158 i3:10 c:51 str:ANIMAL
+sleep 1
+shot npcadd-type-only
+
+# --- 158 level-only update ---
+s2c 158 i3:10 c:50 str:seedname c:51 str:OBJECT c:52 str:seed.nw
+sleep 1
+s2c 158 i3:10 c:52 str:other.nw
+sleep 1
+shot npcadd-level-only
+
+# --- 158 empty-name prop (explicit clear of name?) ---
+s2c 158 i3:10 c:50 str:seedname c:51 str:OBJECT c:52 str:seed.nw
+sleep 1
+s2c 158 i3:10 c:50 str:
+sleep 1
+shot npcadd-empty-name
+
+# --- class create / update / delete (163 / 162 / 188) ---
+s2c 163 t:classWriteA
+sleep 1
+shot classadd-bare-name
+s2c 162 str:classWriteA t://class-body-A
+sleep 1
+shot classget-str-name
+s2c 188 t:classWriteA
+sleep 1
+shot classdelete-bare-name
+s2c 163 t:classWriteB
+sleep 1
+shot classadd-b
+s2c 188 str:classWriteB
+sleep 1
+shot classdelete-str-name
+
+# --- weapon create / list / length form (33 / 167) ---
+s2c 33 str:wWrite str:wimg.png s:5 t:hello
+sleep 1
+shot weaponadd-gshort
+s2c 33 str:wWrite2 str:wimg2.png i3:5 t:hello
+sleep 1
+shot weaponadd-gint3-len
+s2c 167 str:wWrite str:wWrite2
+sleep 1
+shot weaponlist-after-adds
+
+# --- attributes: S->C view packet only (no client write id in the NC table) ---
+s2c 157 t:attr1=1
+sleep 1
+shot attributes-view-only
+
+# --- client->NC write fixtures (land in proxy.log; stub holds the socket) ---
+c2s 111 t:fixnpc,99,OBJECT,scripter,start.nw,10,20
+sleep 1
+shot c2s-npcadd-comma
+c2s 113 str:classC t://save-class
+sleep 1
+shot c2s-classadd
+c2s 117 str:wSave str:wsave.png t://weapon-script
+sleep 1
+shot c2s-weaponadd
+c2s 118 t:wSave
+sleep 1
+shot c2s-weapondelete-bare
+c2s 118 str:wSave
+sleep 1
+shot c2s-weapondelete-str
+c2s 119 t:classC
+sleep 1
+shot c2s-classdelete-bare
+c2s 119 str:classC
+sleep 1
+shot c2s-classdelete-str
+c2s 109 i3:10 t://script-set
+sleep 1
+shot c2s-npcscriptset
+c2s 110 i3:10 t:flag1=1
+sleep 1
+shot c2s-npcflagsset
+
+# --- drop once (tooling check): withhold one levellist, then status ---
+drop s2c 80
+s2c 80 t:should-drop.nw
+sleep 1
+shot after-drop-levellist
+status

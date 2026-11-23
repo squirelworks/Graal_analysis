@@ -171,10 +171,11 @@ frames.**
 S3 partial result: [native Linux 6.03r7](../formats/gr-v105-native603-2026-11-21.md) received and drew the positive layers and explicit hole. The [separate acceptance follow-up](../formats/gr-v105-served-canary-links-2026-11-21.md) adds positive native/Wine-5.12 parser canaries and physical bottom returns; Wine 5.24r4 served scores remain unclear. G226/G227 are not closed.
 
 **S4. NC write operations.**
-- **Steps:** run `runnc.sh 713` with fixtures for attribute, class and weapon writes through
-  `ncprobe.py`.
-- **Expected output:** the write layouts: property order, clear versus leave, and length prefixes.
-- **Record in:** `protocol/nc-write-ops-status.md` (line 38).
+- **Steps:** ~~run `runnc.sh 713` with fixtures for attribute, class and weapon writes through
+  `ncprobe.py`.~~ Done 2026-11-24 (`lab/nc-write.plan`).
+- **Expected output:** ~~the write layouts: property order, clear versus leave, and length prefixes.~~
+  Settled in the note (local-NPC list after 114 still open).
+- **Record in:** `protocol/nc-write-ops-status.md` (write-layouts section).
 
 **S5. The protocol-19 server order with a real 4.04r2 and 3.153.**
 - **Steps:** run the GPL lab server (PR #78). The Mac 3.153 has passed the handshake against
@@ -342,7 +343,7 @@ the same rows as a task list. Read the source line before you start.
 | G160 | lab | rc205 (RC2 2.05) — blocked by a Wine/GTK Pango font failure; staging fix needed. | `docs/NEXT.md` line 77 | free |
 | G226 | lab | Native Linux 6.03r7 and Wine 5.12 have positive parser/HUD canaries and one-direction returns; Wine 5.24r4-labelled served scores are unclear with repaint failure; ingress and native Windows remain open. | `formats/gr-v105-empty-tiles-2026-11-16.md` line 33 | Codex server (native and Wine partial publication; other runtimes and ingress open) |
 | G227 | static+lab | Native Linux 6.03r7 and Wine 5.12 have positive parser/HUD canaries and one-direction returns; Wine 5.24r4-labelled served scores are unclear with repaint failure; ingress and native Windows remain open. | `formats/gr-v105-fuzz-2026-11-19.md` Still open: level walk | Codex server (native and Wine partial publication; other runtimes and ingress open) |
-| G284 | lab | Tooling for this now exists: tools/probe/ncprobe.py is a cipher-free NCL11012 proxy that logs every NC packet both ways and can inject/drop on either side (selftest tools/probe/ncselftest.py). tools/probe/lab/runnc.sh + lab/nc-core.plan drive it against nc7132001 / the Jan-2002 builds. Running the f | `protocol/nc-write-ops-status.md` line 38 | free |
+| G284 | lab | Settled 2026-11-24 write layouts via nc-write.plan; local-NPC list after 114 still open | `protocol/nc-write-ops-status.md` write-layouts | partial |
 | G292 | lab | Optional: unknown own-id long-value desync lab (called out in v5-props.md). | `protocol/player-props-5x-status.md` line 36 | free |
 | G298 | static+lab | A readable window for the width canary on the 2004 RC and RC3 (Wine virtual desktop). | `protocol/rc-fuzz-2026-11-19.md` line 118 | free |
 | G299 | lab | RC2 2.05 once its GTK font/render problem under Wine is solved. | `protocol/rc-fuzz-2026-11-19.md` line 119 | free |

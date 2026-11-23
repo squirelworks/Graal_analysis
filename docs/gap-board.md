@@ -37,6 +37,10 @@ parsed map state from NC script input and classic script-output bounds. Original
 4.02 behavior, the historical RC editing limit and old-engine breakage remain open;
 this is partial coverage, not a completed historical confirmation.
 
+2026-11-24 update: G284 (NC write ops via ncprobe) settled in [nc-write-ops-status](../protocol/nc-write-ops-status.md#write-layouts-2026-11-24-lab):
+158 any-order props with omit=leave / empty-str=clear; class 163/162/188 and weapon 33 GSHORT
+layouts dumped; no attribute write beyond script/flags. Local-NPC list after 114 remains open.
+
 2026-11-23 update: G159/G298 (RC width canary window) and G160/G299 (rc205 staging)
 advanced in [rc-fuzz follow-up](../protocol/rc-fuzz-2026-11-19.md#width-canary-follow-up-2026-11-23):
 Wine virtual desktop makes rc2004 readable for `rc-widths`; rc3 client area stays
