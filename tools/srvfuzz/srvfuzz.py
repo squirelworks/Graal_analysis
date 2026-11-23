@@ -30,8 +30,9 @@ reach one. See README.md.
 
 Usage:
   srvfuzz.py gen2 HOST PORT [--token GSERV014] [--out DIR] [--only CAT] [--resume N]
-                            [--stop-on-crash] [--relaunch 'CMD']
+                            [--stop-on-crash] [--relaunch 'CMD'] [--reset-cmd 'CMD']
   srvfuzz.py list HOST PORT [--out DIR] [--only CAT] [--resume N] [--stop-on-crash]
+                            [--reset-cmd 'CMD']
 
 HOST/PORT name the loopback target (the loopback address and a lab port, e.g. 14804).
 Results go to DIR/results.tsv and DIR/srvfuzz.log; a crash leaves DIR/crash-<case>.txt.
@@ -246,7 +247,8 @@ def deliver(host, port, case, pre_login):
     return summary, closed, err or '', len(case.payload), pkts
 
 
-def run(mode, host, port, token, out_dir, only, resume, stop_on_crash, relaunch):
+def run(mode, host, port, token, out_dir, only, resume, stop_on_crash, relaunch,
+        reset_cmd=None):
     import cases as caselib  # local import so the module can also be used as a library
     os.makedirs(out_dir, exist_ok=True)
     cases = caselib.build(mode, token)
@@ -272,7 +274,8 @@ def run(mode, host, port, token, out_dir, only, resume, stop_on_crash, relaunch)
     canary = canary_gen2 if mode == 'gen2' else canary_list
     pre_login = frame_zlib(login_gen2(token, 'guest', 'guest')) if mode == 'gen2' else frame_zlib(list_login_frames())
 
-    rec('start', mode, host, port, 'cases', len(cases), 'token', token)
+    rec('start', mode, host, port, 'cases', len(cases), 'token', token,
+        'reset_cmd', 'yes' if reset_cmd else 'no')
     state, note, _ = canary(host, port, token) if mode == 'gen2' else canary(host, port)
     rec('baseline canary', state, note)
     if state != 'up':
@@ -283,6 +286,12 @@ def run(mode, host, port, token, out_dir, only, resume, stop_on_crash, relaunch)
     for c in cases:
         if c.n < resume:
             continue
+        if reset_cmd:
+            # Restore shared account/server files between cases so a prior case cannot leave
+            # sticky account state (e.g. a granted weapon) for the next login. Run before the
+            # case so both the probe login and the canary start from the reset files.
+            rec('reset-cmd before', c.n, c.name)
+            subprocess.call(reset_cmd, shell=True)
         pl = pre_login if c.pre_login else None
         summary, closed, err, slen, pkts = deliver(host, port, c, pl)
         for pid, body in pkts:  # the protocol capture: every S->C packet this probe drew
@@ -328,8 +337,10 @@ def main():
     ap.add_argument('--resume', type=int, default=0, help='skip cases with n < this')
     ap.add_argument('--stop-on-crash', action='store_true')
     ap.add_argument('--relaunch', help='shell command to restart the target after a crash, then resume')
+    ap.add_argument('--reset-cmd', help='shell command run before each case (e.g. restore a pristine guest account file)')
     a = ap.parse_args()
-    return run(a.mode, a.host, a.port, a.token, a.out, a.only, a.resume, a.stop_on_crash, a.relaunch)
+    return run(a.mode, a.host, a.port, a.token, a.out, a.only, a.resume, a.stop_on_crash,
+               a.relaunch, a.reset_cmd)
 
 
 if __name__ == '__main__':

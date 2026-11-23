@@ -142,11 +142,12 @@ frames.**
 - **What to run:**
   - The gen-2 sweep again on a quiet host. The first run was invalid because host load caused
     false canary timeouts.
-  - The unauthenticated id 8 on a single connection.
-  - The post-login cases, with a `guest` account reset before each case.
+  - (Unauthenticated id 8 and the post-login per-case guest reset were closed 2026-11-24 on
+    1.28b2; see `protocol/server-fuzz-c2s-targets.md`.)
 - **Steps:** `lab/srv13.sh` / `lab/srvq13.sh` with `tools/srvfuzz/`. Use `lab/waitload.sh` with
-  `LOAD_MAX=4`.
-- **Record in:** `protocol/server-fuzz-c2s-targets.md` (lines 54, 107 and 109).
+  `LOAD_MAX=4`. For post-login isolation on other builds, pass `--reset-cmd` to restore the
+  pristine guest account file before each case.
+- **Record in:** `protocol/server-fuzz-c2s-targets.md` (line 54).
 
 **S2. GServer 1.25 and 1.27.**
 - **Steps:** log both lab clients and a player into each server. Then measure the player, NPC and
@@ -351,7 +352,7 @@ the same rows as a task list. Read the source line before you start.
 | G302 | lab | 2026-11-24 lab blocked: Wine RC2 Pango + native i386 GTK2/gtksourceview1; Admins/Players confirm still open | `protocol/rc-list-online.md` lab status | partial |
 | G310 | lab | GServer 1.21 (GSERV007) — gen2 sweep (packs reply into one frame; watch framing). First run invalid (host load caused false canary timeouts); redo pending a quiet host. | `protocol/server-fuzz-c2s-targets.md` line 54 | free |
 | G313 | lab | Answered 2026-11-24: unauthenticated id 8 is canary OTHERPLPROPS (solo none; canary harness every frame) | `protocol/server-fuzz-c2s-targets.md` | done |
-| G314 | lab | Re-run the post-login cases with a per-case guest account reset, to separate each | `protocol/server-fuzz-c2s-targets.md` line 109 | free |
+| G314 | lab | Answered 2026-11-24: per-case guest reset on 1.28b2 idsweep+body — no sticky id 33; clean id-40/222 | `protocol/server-fuzz-c2s-targets.md` | done |
 | G317 | lab | Lab check: send a PLO_SHOOT2 with known gravity to a 5.0.0.7 client and watch the arc. | `protocol/shoot-5007.md` line 127 | free |
 | G326 | lab | Listserver VERIACC2 path when the world verifies accounts (our 4.04 lab used localhost / proxy accept without that check). | `protocol/v4-login-account-contract.md` line 37 | free |
 | G344 | lab | Whether a 3.04 game server sends addtiledef lines at login; no 3.04-era server capture was checked for them. | `torque/304-tile-types.md` line 84 | free |

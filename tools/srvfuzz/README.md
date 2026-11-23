@@ -78,6 +78,12 @@ Because a crash kills the whole server, pass `--stop-on-crash` to halt at the cu
 `--relaunch 'CMD'` to have the driver restart the target and resume at the next case. Use
 `--resume N` to continue a stopped run, and `--only CAT` to focus one category.
 
+**Sticky account state.** A post-login case can change shared server files (for example grant
+the canary `guest` account a weapon). Pass `--reset-cmd 'CMD'` to run a shell command
+*before each case* that restores those files from a pristine copy, so each case starts from
+a clean account rather than cumulative state. The command should not need the server to
+restart; restoring the account file between logins is enough when the server re-reads it.
+
 **Level-streaming servers.** The 1.2x GServers stream the whole start level on every login
 (`9,14,100,100,6,1,...`), not just a short ack. Between the login and a post-login case the
 driver drains that reply until the socket goes idle (`SRVFUZZ_DRAIN` seconds max, default 3;
