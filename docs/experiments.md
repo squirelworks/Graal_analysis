@@ -248,7 +248,7 @@ These close issues in the client and server reimplementations, not gap-board row
 Generated from `docs/gap-board.tsv`, rows of kind `lab` or `static+lab`. Each VM's issue carries
 the same rows as a task list. Read the source line before you start.
 
-### Win10 VM on lab host B or Linux VM (Wine) (#743, 73 rows)
+### Win10 VM on lab host B or Linux VM (Wine) (#743, 74 rows)
 
 | id | kind | gap | source | claimed |
 |---|---|---|---|---|
@@ -292,6 +292,7 @@ the same rows as a task list. Read the source line before you start.
 | G216 | lab | Measure joined classes and other event lifecycles before generalizing. | `docs/preagonal-gs2-clean-room-2026-11-07.md` line 88 | free |
 | G221 | lab | Measure missing-name and malformed-grid behavior before specifying rejection rules. | `formats/gmap-heights-404r2.md` line 49 | free |
 | G234 | lab | Measure caller scheduling frequency/catch-up and later event execution. | `npc-library/gs1-move-205r2.md` line 34 | free |
+| G248 | lab | Answered 2026-11-24: Phase A conf.gs container fuzz via connfuzz fails closed on stock 6.113; Phase B / first encrypted frames blocked (trust-anchor NO-GO). | `protocol/conf-gs-fuzzing.md` | done |
 | G251 | lab | Separate HTML/Wine and native Windows behavior with an appropriate controlled fixture. | `protocol/file-205r2-prefix-lf.md` line 32 | free |
 | G253 | static+lab | Optional: publish one 5.12 capture snippet that contains such a short compressed frame so Claim B can be retired in E#2 with a cited decode. | `protocol/gen5-cipher-step-5x.md` line 37 | free |
 | G256 | lab | 5.00r7 / 5.12 throw capture to wire-confirm id 11 (E#4 residual). | `protocol/ids-sent-512-status.md` line 30 | free |

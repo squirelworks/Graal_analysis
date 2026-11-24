@@ -491,8 +491,8 @@ protocol/class-bytecode-v4.md	cited	2.4	2.4	v4 `PLI_UPDATECLASS` → raw PLO 133
 protocol/client-string-fingerprints-3x-6x.md	cited	1	1; 2.3; E	carried into §1.9.4 and App. E#619; the login rows of §2.3 do not change
 protocol/client-versions.md	cited	2; 2.1; 2.2; 2.3; 2.5; 1	1; 2.2	
 protocol/codec-and-framing.md	cited	2; 0; 1; 2.1; 2.2; 2.3; 2.5; E; A	2.1; 2.2	
-protocol/conf-gs-fuzzing.md	cited	E; 2.10	2.10; E	
-protocol/connector-script.md	cited	1; 2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c
+protocol/conf-gs-fuzzing.md	cited	E; 2.10	2.10; E	Phase A fail-closed on stock 6.113; trust-anchor NO-GO; G248 close 2026-11-24 (Phase B blocked)
+protocol/connector-script.md	cited	1; 2.10	1; 2.10	#396/#397 hub: connector fetch, container, script steps, the per-direction key frames (§4c) and id-table mechanism; §2.10 cites §4c; G248 harness open checkbox closed 2026-11-24
 protocol/cross-version-anchors.md	excluded		2	string-anchor search used to line up the 2.17.1, 2.22 and 2.31 exports; method only
 protocol/crosscheck-captures-vs-research.md	excluded		2	cross-check against other projects notes; the confirmed points are cited from the primary notes
 protocol/early-clients-probe-2026-11-19.md	excluded		2.6; B	early-client probe run (1998 relay betas to 1.39 under Wine behind the probe proxy): ids, props, widths and parser recovery by build; rows in probe-results.tsv, open items in unknowns-ledger.md
@@ -640,14 +640,14 @@ protocol/v6113-files.md	cited	2.7	2.7
 protocol/v6113-handlers.md	cited	2.5	2.5	§2.5.11 carries the pair installer, the empty slot and the lack of a compiled case for wire id 104; the per-index names stay in the note
 protocol/v6113-hello.md	cited	1; 2.10	1; 2.10	§1.8.7 and §2.10.5 carry the token and the six-byte header. The cipher after the zlib member is in protocol/v611-outgoing-cipher.md
 protocol/v6113-list-capture.md	cited	1; 6	1; 6	
-protocol/v6113-live-connector-2026-11-16.md	cited	2.10	2.10; E	Windows 6.113 live connector still served; GRESCR01 StartScript_Connector; loopback harness open; §2.10 / E / #510
+protocol/v6113-live-connector-2026-11-16.md	cited	2.10	2.10; E	Windows 6.113 live connector still served; GRESCR01 StartScript_Connector; G248 harness answered 2026-11-24; §2.10 / E / #510
 protocol/v6113-live-handshake-2026-11-16.md	cited	2.10	2.10; E	Windows 6.113 live HOST:14900 handshake reconfirm; GNP1905C + EILLLT/0xfd; RC4 from 287; no keys; §2.10 / E / #510
 protocol/v6113-login-lab-2026-11-19.md	cited	2.10; 5	2.10; 5	
 protocol/v6113-login-lab-method.md	cited	2.10; E	2.10; E	6.1.1.3 loopback login: two gates, deterministic request, trust-anchor path, in §2.10.8 and E#616
 protocol/v6113-pli.md	cited	2.4	2.4	§2.4.12 carries sendraw, senddata, the 254 script slot and the 6.037 id-5 login; the 55 event names stay in the note
 protocol/v6113-plo.md	cited	2.5	2.5	
 protocol/v6113-receive-handlers-props.md	cited	2.10; 2.8	2.10; 2.8	6.113 receive-handler install joined to prop wires/slots and native parsers; §2.10 / props
-protocol/v6113-status.md	cited	2.10	2.10; E	6.113 connector-path status hub; settled cipher/hello/keys; 6.037≠6.113; open live conf.gs harness; §2.10 / E / #510
+protocol/v6113-status.md	cited	2.10	2.10; E	6.113 connector-path status hub; settled cipher/hello/keys; 6.037≠6.113; G248 harness answered 2026-11-24; §2.10 / E / #510
 protocol/v6113-udp-code.md	cited	2.9	2.9	
 protocol/v6113-udp.md	cited	1; 2.9; 6; 10	1; 2.9; 6; 10	§1.8.7 carries both captures: the shorter one has TCP 14900 and no UDP on 14900, 14901 or 14899, and the longer one has the Graal hello on 14900 and 14882. §2.9, §6.1.3 and §10.2 carry the longer capture's port comparison. Both port tables stay in the note
 protocol/v6113-wire.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 has no token and no wire of its own; the contradiction table stays in the note

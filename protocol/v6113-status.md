@@ -57,30 +57,28 @@ Do not treat a working 6.037 Gen5 lab stack as a fidelity stand-in for 6.113.
    build), so for 6.113 the request binds nothing per launch — any per-launch
    binding, if it exists, is inside the decrypted script, not the request.
    `v6113-login-lab-method.md`, `connector-script.md` Open. **[lab]**
-3. **Open: loopback `conf.gs` harness** (partial). Live Windows 6.113 still
-   fetches a connector and reaches Login UI
+3. **Loopback `conf.gs` harness (G248) — answered 2026-11-24.** Live Windows
+   6.113 still fetches a connector and reaches Login UI
    (`v6113-live-connector-2026-11-16.md`). Official post-Login traffic on
    `HOST:14900` reconfirms the clear hello and RC4-from-287 cut without keys
-   (`v6113-live-handshake-2026-11-16.md`). A loopback connector responder plus
-   first encrypted frames against a lab game sink is still missing. Mac 6.111
-   offline replay already settles the cipher story; do not wait on the
-   harness to keep the settled table above. A loopback run of the real packed
-   client confirmed the two-gate order (classic login/list first, then the
-   signed-connector game-connect) and that the connector gate is total — no
-   accepted reply, no token/framing in memory. The stock-client lab path is a
-   trust-anchor swap (lab public key + lab-signed `conf.gs`), the way the gcr
-   repro already bakes in its own key. `v6113-login-lab-method.md`. **[lab]**
-   The responder + mutator skeleton and the fuzz/key-patch design have landed
-   (`conf-gs-fuzzing.md`, `../tools/connfuzz/`, offline selftest passing); the
-   live run is what remains. Note from the concurrent unpack: the 6.113
-   connector anchor is runtime-materialized and the verify virtualized, so the
-   swap is an in-memory at-verify-time patch, not a static offset. **[lab]**
+   (`v6113-live-handshake-2026-11-16.md`). The loopback responder + mutator
+   harness is in `../tools/connfuzz/` (`conf-gs-fuzzing.md`): **Phase A**
+   container fuzz against stock 6.113 fails closed on every one-field mutation
+   (no crash/hang/accept). **Phase B** / first encrypted frames on a
+   lab-signed stock path are **blocked** — trust-anchor swap is a NO-GO on the
+   packed client (`v6113-login-lab-2026-11-19.md`, `conf-gs-fuzzing.md`), and
+   session-key recovery is stopped. Mac 6.111 offline replay and the clean-room
+   repro already settle the cipher story for lab work; do not wait on a stock
+   accept. Two-gate order (classic login/list, then signed connector) remains
+   as previously measured. **[lab]**
 4. **Clean fully-unpacked 6.113 image vs the existing unpacked-6113 notes.**
    Packed game exe remains a Themida shell in the stock listing; a lab unpack
    dump (private) may sharpen leftovers, but must not put digests, paths or
    decompile text on git. Method only until a dump exists. **[bin]**
 5. **First Login / play replies a 6.113 client needs after decrypt** compared
-   with 6.037 — still the open half of #510. Needs the harness in (3). **[lab]**
+   with 6.037 — still the open half of #510. Needs an accepted connector
+   script (genuine reply or clean-room repro); stock lab-signed path is
+   blocked per (3). **[lab]**
 6. **7.x script delta** (token / template / cipher vs 6.11) — needs a 7.x
    reply decrypted for its own launch. `connector-script.md` Open. **[lab]**
 

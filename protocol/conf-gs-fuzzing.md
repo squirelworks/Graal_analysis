@@ -88,7 +88,20 @@ All in a headless KVM lab guest, loopback-only, lab copies only; artifacts and w
 - **Phase-A container fuzz — run against the real stock client, fails closed.** All 18 one-field container mutations (marker / signature / inner length / payload-vs-length variants) were served to the real client over the loopback connector and compared to the clean-room oracle. **Every one fails closed:** the client stays up and shows the connect-error dialog — **no crash, no hang, no accept.** Notably the maximum declared length and the length/body-mismatch cases do **not** over-read or crash, so the container length is validated before use. **No candidate stock-client defect in phase A.** **[lab]**
 - **Payload cipher — characterised, behind the VM wall.** House cipher is DES-ECB; the connector-reply decrypt is not a readable DES entry point (virtualized). **[bin][lab]**
 
-## Still open / next
+## G248 close (2026-11-24)
+
+**G248** asked for a loopback `conf.gs` harness on Windows 6.113 (connector responder + first encrypted frames). **[lab]**
+
+| Piece | Status |
+| --- | --- |
+| Responder + mutator harness (`../tools/connfuzz/`) | Landed; offline selftest re-passed 2026-11-24 |
+| Phase A vs stock 6.113 | Done (Results above): 18 mutations, all fail closed |
+| Phase B / first encrypted frames on stock + lab-signed reply | **Blocked** — trust-anchor NO-GO; session-key recovery stopped (no BP/attach/memgrab) |
+| Live stock connector before Login | Still true (`v6113-live-connector-2026-11-16.md`); not a loopback accept |
+
+So the harness gap closes as far as a stock client can be driven without forging a genuine signed reply. Script-content fuzzing and lab-chosen RC4 first frames stay on the clean-room repro track, outside this gap. **[lab][inf]**
+
+## Still open / next (not G248)
 
 - **Phase-B on the repro.** Script-content fuzzing (the table above) against `graal-client-repro`, which owns its key and payload crypto — the route now that the stock client is a NO-GO for the deep layer. **[lab]**
 - **Deeper phase-A variants** (two-field combinations, transport-level truncation timing) against the real client, since single-field phase-A is clean. **[lab]**

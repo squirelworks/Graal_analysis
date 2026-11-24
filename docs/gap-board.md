@@ -41,12 +41,19 @@ this is partial coverage, not a completed historical confirmation.
 158 any-order props with omit=leave / empty-str=clear; class 163/162/188 and weapon 33 GSHORT
 layouts dumped; no attribute write beyond script/flags. Local-NPC list after 114 remains open.
 
+2026-11-24 update: G248 (loopback `conf.gs` harness for Windows 6.113) is
+answered in [conf-gs-fuzzing](../protocol/conf-gs-fuzzing.md#g248-close-2026-11-24):
+Phase A container fuzz via `tools/connfuzz/` against stock 6.113 fails closed
+on all 18 one-field mutations; Phase B / first encrypted frames on the stock
+path are blocked (trust-anchor NO-GO; session-key recovery stopped). Checkbox
+closed. Last line-ball gap — STOP; do not start Crypto/Protection/Machine-identity
+from this row.
+
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback
 GServer-v2 / gs2emu profile that admits `G3D03014` sends no `addtiledef` /
 `addtiledef2` / `removetiledefs` at login (`CLEARWEAPONS` + `NPCWEAPONDEL` only;
-no `NPCWEAPONADD`; no tiledef text on the wire). Checkbox closed. Do not start
-G248 from this row.
+no `NPCWEAPONADD`; no tiledef text on the wire). Checkbox closed.
 
 2026-11-24 update: G155 (iPhone tokens G3D29090 / G3D2504D) is **partial**: `G3D29090` placed on Classic+ 1.10 and Adrenaline Golf Free 1.1 ([iphone-version-tokens](../client-internals/iphone-version-tokens.md)); `G3D2504D` still L after the expanded IPA pass. Lab wire capture not run (no device).
 
