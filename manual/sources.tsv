@@ -567,6 +567,7 @@ protocol/login-and-walk.md	cited	2.3; 2.4; 7; 2.1	2.3
 protocol/login-frames-by-version-2026-10-25.md	cited	2.1; 6; E	2.3	§2.3 not needed: the login frames by version are carried in §2.3 from the per-generation notes; this note is cited for framing, the listserver and App. E (coverage audit 2026-11-04)
 protocol/login-recovery-start.md	excluded	2.1	2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
 protocol/login-session-known.md	cited	2.2; 2.3; E	2.3	
+protocol/g002-public-login-603r7-2026-11-24.md	cited	E	2; E	official Login:14900 G3D0311C guest reject (25+16); E#3/G002 partial
 protocol/login-session-observed.md	cited	2.3	2.3	
 protocol/login-tokens-3x-7x.md	cited	1; 2.3; 10	2.3; 10	
 protocol/macos-ppc-receive-decompression.md	cited	2.1	2.1	per-build output acceptance, zlib versions and the v5 retry cutoff carried; the zlib-style header check and library hits stay in the source note

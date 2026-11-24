@@ -147,6 +147,14 @@ and **14923** (legacy+modern on 14923). 3.04/3.153 `port_status` moves assumedâ†
 G129 or start G285/G286/G287; Crypto residuals, G248 Phase B, G155 G3D2504D and E#618
 live frame stay untouched.
 
+2026-11-24 update: **G002 / E#3** (public 5.x/6.x Login session) is **partial** in
+[g002-public-login-603r7-2026-11-24](../protocol/g002-public-login-603r7-2026-11-24.md):
+official Login on **14900** answers Windows 6.03r7 guest (`G3D0311C`) with Sâ†’C **25** then
+**16** (`Please update your version..`); no 190 / `basepackage.gupd` lobby for that token.
+Official accepting-client lobby still open (community Login only). **Do not start G019/G020.**
+Crypto residuals, G248 Phase B, G155 and E#618 stay untouched; v7/Worlds and Machine-identity
+rows stay avoided/DROPPED.
+
 2026-11-24 update: G314 (post-login per-case guest account reset) is answered in
 [server-fuzz-c2s-targets](../protocol/server-fuzz-c2s-targets.md): on GServer 1.28b2,
 `idsweep`+`body` with `srvfuzz --reset-cmd` restoring the pristine guest account before

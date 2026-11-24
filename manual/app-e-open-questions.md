@@ -35,7 +35,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | Entry | Question | Outlook | Best guess | Source |
 | --- | --- | --- | --- | --- |
 | E#1 | Compiler of the early Delphi builds | Maybe never | a pre-release Delphi 3 compiler; not Delphi 2 or C++Builder 1 | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
-| E#3 | What a public 5.x or 6.x `Login` server sends | Owner | a GUI-script lobby built from `basepackage.gupd` and S→C 190 | [inf] (protocol/login-session-known.md#still-unobserved) |
+| E#3 | What a public 5.x or 6.x `Login` server sends | Owner (partial) | a GUI-script lobby built from `basepackage.gupd` and S→C 190 (official Login rejects `G3D0311C` with 25+16 before that lobby) | [cap] (protocol/g002-public-login-603r7-2026-11-24.md); [inf] (protocol/login-session-known.md#still-unobserved) |
 | E#12 | Whether the `GNW` digits are a build date | Maybe never | yes, DDMMY | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#15 | Graal 2002 and 1.40 send sets and default routes | Lab | each build follows its token's neighbour; 1.40 and v22 logins captured | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
 | E#16 | Classic+ 1.13 login wire layout | Missing | the desktop gen-5 login (type 5, key, token, two strings, trailer); trailer read, string sources and native run open | [bin] (protocol/ios-classic-plus-113-framing.md#login) |
@@ -151,15 +151,14 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Unobserved | The bytes the server sends, including the payload of S→C 190 | [doc] (protocol/login-session-known.md#still-unobserved) |
-| Unobserved | The GUI script text for the server list, the account screens and the `ChatBar` control | [doc] (protocol/login-session-known.md#still-unobserved) |
-| Unobserved | The file list inside `basepackage.gupd` and any later update package, and the backdrop level the server chooses | [doc] (protocol/login-session-known.md#still-unobserved) |
+| Unobserved | The lobby bytes on the official Login (S→C 190 payload, GUI scripts, `ChatBar`, `basepackage.gupd` file list, backdrop level) when the client is accepted | [doc] (protocol/login-session-known.md#still-unobserved) |
 | Unobserved | The 6.11 connector script body, and with it the framing, cipher and login token a 6.11 client uses on the public service (the lab path is in → §2.10.8) | [doc] (protocol/login-session-known.md#still-unobserved) |
 | Tried | A real Windows 4.20r8 to 6.03r7 run reached a lab `Login` server, so the client side of the lobby is known; the server side is what a lab server chooses to send | [lab] (live-runs/real-win10-2026-11-18/README.md) |
-| Tried (2026-11-20) | The owner approved the public captures, but no lab device holds an account for the public service, so none was run; the project leaves this entry open rather than contact the service again | [doc] (AGENTS.md#labs) |
-| Best guess | The lobby is a set of GUI scripts delivered in the update package and driven by S→C 190, with no lobby logic in the client beyond the script runtime. Confidence: moderate | [inf] (protocol/login-session-known.md#still-unobserved) |
-| Settles it | A capture of a real `Login` session; it touches a public server, so it needs the owner's written permission | [doc] (AGENTS.md#labs) |
-| Outlook | Owner. If the service has changed since these clients shipped, part of the period behaviour may be lost for good | [doc] (AGENTS.md#labs) |
+| Tried (2026-11-20) | The owner approved the public captures, but no lab device holds an account for the public service, so none was run that day | [doc] (AGENTS.md#labs) |
+| Settled part (2026-11-24, G002) | Official Login on port **14900** answers a Windows 6.03r7 guest (`G3D0311C`) with S→C **25** then **16** (`Please update your version..`); no 190 / package / lobby burst for that token | [cap] (protocol/g002-public-login-603r7-2026-11-24.md) |
+| Best guess | When a Login accepts the client, the lobby is still a set of GUI scripts delivered in the update package and driven by S→C 190. Confidence: moderate for accepting servers; official Login no longer accepts 6.03r7 | [inf] (protocol/login-session-known.md#still-unobserved); [cap] (protocol/g002-public-login-603r7-2026-11-24.md) |
+| Settles it | A capture of an **accepted** official `Login` session (a token the service still takes), with the owner's written permission | [doc] (AGENTS.md#labs) |
+| Outlook | Owner (partial). The 6.03r7 reject path is recorded; the official lobby for a current client may need a newer build and may be partly lost for the classic era | [doc] (AGENTS.md#labs) |
 
 ### E#16 Classic+ 1.13 caller contract versus mobile wire layout
 

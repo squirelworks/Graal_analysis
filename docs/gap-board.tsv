@@ -1,6 +1,6 @@
 id	source	where_in_source	gap	kind	runs_on	priority	claimed_by
 G001	manual/app-e-open-questions.md	E#1	Compiler of the early Delphi builds (best guess: a pre-release Delphi 3 compiler; not Delphi 2 or C++Builder 1)	maybe-never	-	high	free
-G002	manual/app-e-open-questions.md	E#3	What a public 5.x or 6.x Login server sends (best guess: a GUI-script lobby built from basepackage.gupd and S→C 190)	owner	-	high	free
+G002	manual/app-e-open-questions.md	E#3	Partial 2026-11-24: official Login:14900 answers G3D0311C guest with PLO_SIGNATURE+PLO_DISCMESSAGE "Please update your version.."; no 190/basepackage lobby for that token. Official accepting-client lobby still open. See g002-public-login-603r7-2026-11-24.md.	owner	-	high	partial — 6.03r7 reject path settled; official lobby unobserved
 G003	manual/app-e-open-questions.md	E#12	Whether the GNW digits are a build date (best guess: yes, DDMMY)	maybe-never	-	high	free
 G004	manual/app-e-open-questions.md	E#15	Graal 2002 and 1.40 send sets and default routes (best guess: each build follows its token's neighbour; 1.40 and v22 logins captured)	lab	Win10 VM on lab host B or Linux VM (Wine)	high	Lab host B Appendix E batch thread
 G005	manual/app-e-open-questions.md	E#16	Classic+ 1.13 login wire layout (best guess: the desktop gen-5 login (type 5, key, token, two strings, trailer); trailer and native run open)	missing	-	high	static-read thread
