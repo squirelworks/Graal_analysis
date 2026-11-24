@@ -161,3 +161,10 @@ Outside-script 7.x vs 6.11 diffs stay in `connector-script.md` §7a. The product
 script's token, template and cipher remain **uncompared** while decrypt stays blocked —
 see [v7-connector-script-diff.md](v7-connector-script-diff.md). G028 residuals and the
 G156 NO-GO were not re-opened.
+
+### 5.4 G332 partial (2026-11-24): id-table pair lists uncompared
+
+Remapper install model and PLI slot names match 6.11; production pair lists stay
+**uncompared** while decrypt stays blocked — see
+[v7-connector-id-tables.md](v7-connector-id-tables.md). G028 residuals, G156 NO-GO,
+and G246 token/template/cipher opens were not re-opened.

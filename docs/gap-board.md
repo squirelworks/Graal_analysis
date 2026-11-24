@@ -98,6 +98,14 @@ token/template/cipher remain **uncompared** (decrypt blocked — G156 trust-anch
 + G028 residuals untouched). **Do not start G332 / G334 / G335.** G248 Phase B,
 G155 G3D2504D and E#618 live frame stay untouched. **G273 stays DROPPED.**
 
+2026-11-24 update: **G332** (7.x vs 6.11 connector id tables) is **partial** in
+[v7-connector-id-tables.md](../protocol/v7-connector-id-tables.md): remapper install
+model and PLI `onSend*` slot names match 6.11; production 7.x pair lists remain
+**uncompared** (decrypt blocked — G156 trust-anchor NO-GO + G028 residuals
+untouched). **Do not start G334 / G335.** G028 residuals, G156 trust-anchor
+residuals, G246 token/template/cipher, G248 Phase B, G155 G3D2504D and E#618 live
+frame stay untouched. **G273 stays DROPPED.**
+
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback
 GServer-v2 / gs2emu profile that admits `G3D03014` sends no `addtiledef` /

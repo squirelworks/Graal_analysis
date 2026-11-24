@@ -149,6 +149,8 @@ So 7.x needs either a genuine reply for one live launch's exact request, which m
 
 **G246 (2026-11-24, honest partial):** outside-the-script diffs above stay settled. The production 7.x script's **token**, **template**, and **cipher** remain **uncompared** — a decrypted reply for its own launch is still required, and stock decrypt stays blocked (G156 trust-anchor NO-GO + G028 residuals untouched). See `v7-connector-script-diff.md`. **[inf]**
 
+**G332 (2026-11-24, honest partial):** the remapper install model and PLI `onSend*` slot names match 6.11. The production 7.x **pair lists** remain **uncompared** to the Mac 6.111 tables — same decrypt block (G156 NO-GO + G028 residuals untouched). See `v7-connector-id-tables.md`. **[inf]**
+
 ## Open
 
 - [x] ~~The pair lists that `setoutdatahandlers` and `setindatahandlers` receive.~~ Read live from a 6.111 lab run, with gs2lib names joined by wire id: `v611-id-tables.md`.

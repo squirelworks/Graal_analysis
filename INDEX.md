@@ -97,6 +97,7 @@ When you add a note, add a line for it here in the same pull request.
 - [v7 connector payload cipher (E#616)](protocol/v7-connector-payload-cipher.md) — RSA container block is signature-only (not AES key wrap); payload cipher / plaintext / `?p=` DES key still open on stock v7.
 - [v7 connector trust-anchor NO-GO (E#616 / G156)](protocol/v7-connector-trust-anchor.md) — stock Worlds cannot take a lab-replaced connector public key; production plaintext stays Maybe never under G028 residuals.
 - [v7 vs 6.11 connector script diff (G246)](protocol/v7-connector-script-diff.md) — outside-script diffs settled; production script token/template/cipher uncompared (decrypt blocked).
+- [v7 vs 6.11 connector id tables (G332)](protocol/v7-connector-id-tables.md) — remapper model and PLI slot names match; production pair lists uncompared (decrypt blocked).
 - [Appendix E lab runs on lab host A, fifth batch (2026-11-20)](protocol/lab-appe-hosta-2026-11-20e.md) — Windows 4.04r2 offline lift, carry and throw under Wine.
 - [Static reads for Appendix E, fourth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-d.md) — 2.05 `#E` and `move` queue, 2.22 explosions and the shot receiver, 3.04 sheet type 5.
 - [Static reads for Appendix E, sixth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-f.md) — 2.22 neighbour-table skip flags and `PLO_BIGMAP` (171), the 2.22 roster and PM receipt, and the 2.22 throw.
