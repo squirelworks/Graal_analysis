@@ -138,22 +138,25 @@ handles: 8, 13, 16, 30, 35, 37, 47, 55, 56, 58, 59, 61–70, 72–77, 79, 82, 10
 
 ## Lab status (2026-11-24) **[lab]**
 
-Attempted the two-RC GServer-v2 confirmation on the Linux probe lab (loopback only).
-Neither path reached a live RC2 session:
+Attempted the two-RC GServer-v2 confirmation on the Linux probe lab (loopback only)
+on 2026-11-24 morning. Neither path reached a live RC2 session that day:
 
 - **Wine `RC2_2.05` (`GSERV025`).** Same Wine/GTK Pango failure as the
   [rc-fuzz follow-up](rc-fuzz-2026-11-19.md#width-canary-follow-up-2026-11-23):
   "All font fallbacks failed"; the start dialog paints with tofu glyphs; no login
   traffic hit the proxy. Seeded host TTFs into the Wine prefix and rewrote the
   client's `fonts.conf` `WINDOWSFONTDIR` placeholder to an absolute Fonts path —
-  Pango still failed. Not a protocol result.
-- **Native Linux `GSERV025` (2006/01/20, i386, `RC_NATIVE=1`).** Binary is staged;
-  `ldd` still misses `libgtk-x11-2.0.so.0`, `libgdk-x11-2.0.so.0`, and
-  `libgtksourceview-1.0.so.0`. The lab image has amd64 GTK2 and i386 GTK3 only;
-  `libgtksourceview-1.0` is not in the current distro. No packages were installed.
+  Pango still failed. Not a protocol result. **Still blocked.**
+- **Native Linux `GSERV025` (2006/01/20, i386, `RC_NATIVE=1`).** That morning
+  `ldd` still missed i386 GTK2 / gtksourceview1. **Later the same day** those
+  libs were installed on the lab image and a single native RC logged in and
+  completed `rc-widths` (see
+  [rc-fuzz follow-up](rc-fuzz-2026-11-19.md#width-canary-follow-up-2026-11-23)).
+  The **two-RC** Admins confirmation itself was not re-run here — G302 stays
+  open for a dedicated two-login pass now that native staging works.
 
 So the Admins-vs-Players / one-space question stays open (static **[inf]** above
-unchanged). Same staging blockers as board G160 / G299.
+unchanged). Native single-RC staging is no longer the blocker (G160/G299 closed).
 
 ## Open
 
@@ -164,5 +167,6 @@ unchanged). Same staging blockers as board G160 / G299.
       the scoped framing read does not establish whole-build id-65 absence.
 - [ ] A lab run with RC2 2.05 and two RC logins against the GServer-v2 fork, to confirm the
       Admins folder on the wire and whether the one-space level puts RCs under Players.
-      (2026-11-24: lab blocked — Wine/GTK Pango + native i386 GTK2/gtksourceview1; see
-      [Lab status](#lab-status-2026-11-24-lab) and G160/G299.)
+      (2026-11-24: earlier same-day attempt blocked on missing i386 GTK2; native single-RC
+      staging later cleared — re-run two-RC with `RC_NATIVE=1`. Wine/GTK Pango still
+      blocked. See [Lab status](#lab-status-2026-11-24-lab) and G302.)

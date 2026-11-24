@@ -54,25 +54,30 @@ pre-auth frame/login run with no canary produced no id 8; the normal canary harn
 reproduced id 8 on every frame case (body `0x21 0x53`). Canary-guest artifact; checkbox
 closed.
 
+2026-11-24 update: G160/G299 (rc205 / native i386 GTK2 staging) closed in
+[rc-fuzz follow-up](../protocol/rc-fuzz-2026-11-19.md#width-canary-follow-up-2026-11-23):
+lab image now has i386 GTK2 + `libgtksourceview-1.0`; native `GSERV025` (2006/01/20,
+`RC_NATIVE=1`) logs in and completes `rc-widths` (no crash/disconnect; `Players:` 0→1).
+Wine/GTK Pango for Windows `RC2_2.05` unchanged. CAN nickname cell still needs Player
+List (G159). G158 umbrella leftovers are G159/G298 (CAN cell / rc3 paint).
+
 2026-11-24 update: G302 (RC2 2.05 two-RC Admins/Players confirm on the GServer-v2 fork) was
-attempted and **blocked** — see [rc-list-online lab status](../protocol/rc-list-online.md#lab-status-2026-11-24-lab).
-Wine `RC2_2.05` still dies on GTK Pango font fallbacks (no proxy login); native Linux
-`GSERV025` still lacks i386 GTK2 / gtksourceview1 on the lab image (no heavy install).
-Same residuals as G160/G299; the source checkbox stays open.
+attempted earlier the same day and **blocked** on missing i386 GTK2 — see
+[rc-list-online lab status](../protocol/rc-list-online.md#lab-status-2026-11-24-lab).
+Native single-RC staging later cleared (G160); Wine/GTK Pango still blocked. Re-run
+two-RC with `RC_NATIVE=1`; source checkbox stays open.
 
 2026-11-24 update: G300 (pre-2002 `rcpre` gen 2, and `rc2002` embedded NC) is answered in
 [rc-fuzz](../protocol/rc-fuzz-2026-11-19.md): `rcpre` (`GSERV022`) took `rc-core` with no
 crash/desync; `rc2002` (`GSERV023` + `NCL11012`) opened the NC socket through `ncprobe` and
 took `nc-core` (45 injects, no crash). The `LOCALRIGHTS` harness fix for native `PLO 79` is in
-`runrc.sh`. Source and `NEXT.md` boxes were already ticked; this closes the board row. G158
-umbrella leftovers remain G159/G298 (CAN cell / rc3 paint) and G160/G299 (rc205 / native GTK2).
+`runrc.sh`. Source and `NEXT.md` boxes were already ticked; this closes the board row.
 
 2026-11-23 update: G159/G298 (RC width canary window) and G160/G299 (rc205 staging)
 advanced in [rc-fuzz follow-up](../protocol/rc-fuzz-2026-11-19.md#width-canary-follow-up-2026-11-23):
 Wine virtual desktop makes rc2004 readable for `rc-widths`; rc3 client area stays
-black; CAN01–06 still need the Player List open; native Linux `GSERV025` is preferred
-for RC2 but the lab image lacks i386 GTK2. G158 umbrella leftovers remain those
-residuals.
+black; CAN01–06 still need the Player List open. (G160/G299 native GTK2 staging closed
+2026-11-24 — see above.)
 
 2026-11-21 update: G424 has a [100-case selected own-prop scan on Windows
 5.12 under Wine](../protocol/probe-wine512-widths-2026-11-21.md), with 96 landed
