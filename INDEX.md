@@ -92,7 +92,8 @@ When you add a note, add a line for it here in the same pull request.
 - [Appendix E lab runs on lab host A, third batch (2026-11-20)](protocol/lab-appe-hosta-2026-11-20c.md) — RC logins on the GServer-v2 fork, what could not be run (3.153, mobile).
 - [Appendix E lab runs on lab host B, batch 4 (2026-11-20)](protocol/lab-appe-hostb-2026-11-20d.md) — Mac 3.153 on protocol 19, the 2.05 sleep-gani walk, 2.22 shot types, `move` timing, `replaceani` and `showimg`, 5.00r7 Latin-1 `showtext`.
 - [Protocol 19 server order and later lab scope](torque/protocol19-server.md#10-later-lab-scope) — partial GPL runs and distinct later Linux/Mac camera-path observations; exact GPL validation, rendering and gameplay remain open.
-- [Appendix E lab runs on lab host A, fourth batch (2026-11-20)](protocol/lab-appe-hosta-2026-11-20d.md) — RC2 2.05's RC list, the Windows 6.03r7 HUD, Mac 6.015 on macOS 15.
+- [Appendix E lab runs on lab host A, fourth batch (2026-11-20)](protocol/lab-appe-hosta-2026-11-20d.md) — RC2 2.05's RC list, the Windows 6.03r7 HUD, Mac 6.015 on macOS 15; 2026-11-24 follow-up links Mac 6.004's beta cutoff.
+- [Mac 6.004 beta date gate (E#618)](client-internals/mac-6004-beta-gate.md) — static wall-clock cutoff 2011-09-08 19:22:31 UTC; 6.015 has no matching gate; main-view frame still blank on Lion/Sequoia; clock-held live blocked.
 - [Appendix E lab runs on lab host A, fifth batch (2026-11-20)](protocol/lab-appe-hosta-2026-11-20e.md) — Windows 4.04r2 offline lift, carry and throw under Wine.
 - [Static reads for Appendix E, fourth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-d.md) — 2.05 `#E` and `move` queue, 2.22 explosions and the shot receiver, 3.04 sheet type 5.
 - [Static reads for Appendix E, sixth batch (2026-11-20)](client-internals/static-reads-appendix-e-2026-11-20-f.md) — 2.22 neighbour-table skip flags and `PLO_BIGMAP` (171), the 2.22 roster and PM receipt, and the 2.22 throw.

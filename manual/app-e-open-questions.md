@@ -60,7 +60,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#612 | GraalShop movie editor attribution | Missing | the 2006 editor wrote the movie format | [inf] (tools/graaleditor-vs-205.md#workflow) |
 | E#615 | v7 Worlds login token and quit reason | Owner | the connector supplies a `G3D2204D`-family token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
 | E#616 | v7 connector script plaintext | Maybe never | the RSA block wraps an AES key for the payload | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
-| E#618 | Whether Mac 6.004 and 6.015 draw a game frame | Lab | 6.015 logs in and plays (lab); the white frame is the guest's missing OpenGL | [lab] (protocol/probe-mac-6015-2026-11-19.md) |
+| E#618 | Whether Mac 6.004 and 6.015 draw a game frame | Lab | Partial 2026-11-24: 6.015 logs in / requests level files but main view blank on Lion and Sequoia; 6.004 beta cutoff is 2011-09-08 19:22:31 UTC (static); clock-held live frame still needs a Mac guest | [lab][bin] (client-internals/mac-6004-beta-gate.md) |
 
 ## E.2 Builds, identity and protection
 
@@ -135,9 +135,11 @@ These questions are about which build is which, who built it and how it protects
 | Evidence | Mac 6.11r1 showed the same white window on the same guest, which has no OpenGL acceleration; both 6.0x builds use a Cocoa OpenGL view | [lab][bin] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#static-surface-used-to-choose-the-live-build) |
 | Tried (2026-11-19) | The x86_64 slice of Mac 6.015 in the same Lion guest logged in through the probe proxy (generation 5, token `G3D3107A`), stayed connected through the whole core probe plan and ran a clientside GS1 NPC whose chat came back; the canary read the wire, not the screen | [lab] (protocol/probe-mac-6015-2026-11-19.md) |
 | Tried (2026-11-20) | On a macOS 15 guest with working software OpenGL, 6.015 initialised OpenGL, logged in, entered the start level and asked for its files, but its main window stayed blank grey; a small "Select File" window drew the GUI skin. 6.004 printed its beta notice and quit at once, probably a time limit | [lab] (protocol/lab-appe-hosta-2026-11-20d.md#mac-6004-and-6015-with-working-opengl-e618) |
-| Best guess | The 6.0x Cocoa main view draws only on the macOS versions it was built for (around 10.9, the version it reports), not on Lion without OpenGL or on Sequoia; 6.004 needs its clock held before its beta limit. Confidence: low | [inf] (protocol/lab-appe-hosta-2026-11-20d.md#mac-6004-and-6015-with-working-opengl-e618) |
-| Settles it | A 10.9-era macOS guest with OpenGL, with the clock held for 6.004 | [inf] (protocol/lab-appe-hosta-2026-11-20d.md#mac-6004-and-6015-with-working-opengl-e618) |
-| Outlook | Lab. A Mac 6.03r7 is not held, so that build stays Missing | [inf] (version-profiles/lab-mac-v6-6015-lion-2026-11-16.md#open-points) |
+| Settled part (2026-11-24) | Mac 6.004's beta quit is a compiled-in wall-clock gate: after printing the notice it fails when the clock is past **2011-09-08 19:22:31 UTC** (same stop day as Windows 6.00r4). Mac 6.015 has no beta-notice string and no matching cutoff. 6.015 still does not draw a playable **main** frame on Lion or Sequoia despite login / level-file requests | [bin][lab] (client-internals/mac-6004-beta-gate.md) |
+| Tried (2026-11-24) | Lab-host-A L1 handoff read (clock-held 6.004; Lion preferred). Owner confirmed Lion/Sequoia guests on lab host A. Live guest control from the Windows lab host was unreachable (shared-folder sync only), so the clock-held frame was not observed | [lab] (client-internals/mac-6004-beta-gate.md#frame--login--level--answer-with-limits) |
+| Best guess | The 6.0x Cocoa main view draws only on the macOS versions it was built for (around 10.9, the version it reports), not on Lion without OpenGL or on Sequoia; 6.004 needs its clock held on or before the static cutoff. Confidence: moderate for the gate, low for a 10.9 main-view draw | [inf] (client-internals/mac-6004-beta-gate.md) |
+| Settles the rest | A 10.9-era macOS guest with OpenGL, with the clock held for 6.004 | [inf] (client-internals/mac-6004-beta-gate.md#open) |
+| Outlook | Partial / blocked on the clock-held live frame until a Mac guest is reachable again. A Mac 6.03r7 is not held, so that build stays Missing | [inf] (client-internals/mac-6004-beta-gate.md#open) |
 
 ## E.3 Transport: frames, ciphers and logins
 
