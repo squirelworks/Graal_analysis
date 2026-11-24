@@ -102,10 +102,11 @@ capture facts above:
   close with no further reply; login types 2, 5, 64 and 127 leave the socket half-open with
   id 8 and no login. Short/truncated/zero tokens and account/password length-prefix overruns
   also land in the same id-8-only half-open state. **[lab]**
-- **Double login differs by build.** Two valid login lines in one frame: 1.25, 1.27 and 1.3
-  test honour the *second* login and the player logs in (id 8, then the normal login reply);
-  1.28 beta 2 instead leaves the socket half-open, id 8 only, neither logged in nor closed.
-  **[lab]**
+- **Double login.** Two valid login lines in one frame: 1.25, 1.27, 1.3 test, and **1.28
+  beta 2** (re-checked 2026-11-24) all complete a normal login (login stream `9,14,100,…`).
+  The earlier 1.28b2 “half-open, id 8 only” note was incomplete. Held completed sessions
+  occupy ordinary player slots until the TCP close; see
+  [`server-fuzz-c2s-targets.md`](server-fuzz-c2s-targets.md). **[lab]**
 - **No `WANTFILE` path traversal.** Id 23 with `../`, Windows `..\`, an absolute path, an
   empty name and a 250-byte name each returned id 30 (FILESENDFAILED) with no file bytes, on
   every build. **[lab]**
