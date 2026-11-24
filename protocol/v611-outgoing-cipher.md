@@ -62,10 +62,10 @@ recovered. See
 
 ## Open points
 
-- [x] ~~Decrypt the Windows 6.113 capture itself.~~ **Partial 2026-11-24 (G334):** clear prefix + RC4@287 reconfirmed on three capture streams; post-287 decrypt **blocked** (exact-session key never recorded; operator private key unheld; memdump alone insufficient; other-session keys do not transfer). See [`v6113-capture-decrypt.md`](v6113-capture-decrypt.md). C→S padding / operator-key question moved to G335.
+- [ ] Decrypt the Windows 6.113 capture itself. **Partial 2026-11-24 (G334):** clear prefix + RC4@287 reconfirmed on three capture streams; post-287 decrypt **blocked** (exact-session key never recorded; operator private key unheld; memdump alone insufficient; other-session keys do not transfer). See [`v6113-capture-decrypt.md`](v6113-capture-decrypt.md). C→S padding / operator-key question moved to G335.
 - [x] ~~The incoming direction.~~ *2026-11-13:* the server sends one clear `0xfd` wrapping its own `0xfc` with a 256-byte block. That block is the server-to-client key (cipher type, key, IV), RSA-wrapped to a private key that the connector script gives the client through `setEncryptionParseKey`. The two directions use different keys. Confirmed in a 6.111 lab run: `connector-script.md` §4c **[lab]**.
 - [x] ~~The padding scheme inside the **server→client** 0xfc body.~~ PKCS#1 v1.5 type-2 (`00 02…00`) on held stock blocks: [gen6-s2c-pkcs-padding-2026-11-16.md](gen6-s2c-pkcs-padding-2026-11-16.md). **[cap][lab]**
-- [x] ~~The padding scheme inside the **client→server** 0xfc body.~~ **Partial 2026-11-24 (G335):** C→S envelope settled (256-byte RSA to the **operator** public key; parse-key decrypt is garbage; S→C PKCS#1 v1.5 type-2 and §4c plaintext already closed). Exact C→S encoding-message padding **blocked** — operator private key **unheld**. See [`gen6-c2s-0xfc-padding.md`](gen6-c2s-0xfc-padding.md).
+- [ ] The padding scheme inside the **client→server** 0xfc body. **Partial 2026-11-24 (G335):** C→S envelope settled (256-byte RSA to the **operator** public key; parse-key decrypt is garbage; S→C PKCS#1 v1.5 type-2 and §4c plaintext already closed). Exact C→S encoding-message padding **blocked** — operator private key **unheld**. See [`gen6-c2s-0xfc-padding.md`](gen6-c2s-0xfc-padding.md).
 
 ## Method notes
 
