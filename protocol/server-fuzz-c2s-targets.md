@@ -86,9 +86,11 @@ Behaviours seen (canary up throughout; all **[lab]**, 1.28b2 only):
 - **No file-path traversal.** `WANTFILE` (id 23) with `../`, `..\`, an absolute path, an
   empty name, and a 250-byte name each returned id 30 (`FILESENDFAILED`); no file contents
   came back. The empty-body id-23 in the sweep also got id 30.
-- **id sweep:** ids 40 and 222 drew a `9,33,14` burst; every other id (bar 23) drew no
-  reply. Empty id 17 (`BADDYADD`) did **not** crash the server — note it crashes the
-  6.03r7 *client*, which is the opposite direction.
+- **id sweep:** in the 2026-11-19 cumulative-account run, ids 40 and 222 drew a `9,33,14`
+  burst once the guest already carried a sticky weapon; every other id (bar 23) drew no
+  reply. With a per-case guest reset (2026-11-24) those empty ids reply `none`. Empty id 17
+  (`BADDYADD`) did **not** crash the server — note it crashes the 6.03r7 *client*, which is
+  the opposite direction.
 - **Odd login types:** type 1 (RC) and a non-login first packet closed the socket with no
   reply; types 2, 5, 64 and 127 were left open with no reply.
 - **Half-open on double login:** two valid login lines in one frame left the connection
@@ -101,19 +103,32 @@ Behaviours seen (canary up throughout; all **[lab]**, 1.28b2 only):
   reproduced id 8 on **every** frame case, always body `0x21 0x53` (player index 1 + one
   prop byte). So the unauthenticated id 8 is leave/other props from the harness guest, not
   a reply to the malformed pre-auth input.
-- **Server state persisted across cases:** from the id-40 case onward every canary login
-  also received id 33 (`NPCWEAPONADD`) — a fuzz case granted the shared `guest` account a
-  weapon that stuck server-side. So the post-login (idsweep/body) results reflect
-  cumulative state on one account, not clean per-case state.
+- **Server state persisted across cases (2026-11-19 run):** after empty `id-25` the canary
+  login note flipped to `ids=9,33,14` and stayed there for the rest of the idsweep — a fuzz
+  case had granted the shared `guest` account a weapon (`NPCWEAPONADD`) that stuck
+  server-side. The earlier write-up dated the sticky canary from `id-40` because that case's
+  *reply* also showed `9,33,14`; re-reading the held 2026-11-19 `results.tsv` puts the first
+  dirty canary at empty `id-25` (PLI weapon-upload). So those post-login results reflected
+  cumulative account state, not clean per-case state.
+- **Per-case guest reset (2026-11-24):** the same 1.28b2 build was re-run for post-login
+  categories only (`idsweep` 224 + `body` 34) with `srvfuzz --reset-cmd` restoring the
+  pristine `guest` account file before every case. **No canary note and no case reply
+  contained id 33**; empty `id-25` / `id-40` / `id-222` each replied `none` with a clean
+  canary (`ids=9,14,100,…`). Under this isolated-account harness the sticky-weapon effect
+  does not appear, so earlier cumulative rows are not per-case behaviour. Harness:
+  `--reset-cmd` in [`tools/srvfuzz/`](../tools/srvfuzz/).
 
 Follow-ups:
 
 - [x] Confirm or explain the unauthenticated id 8 — re-run on a single connection with no
   concurrent canary so a broadcast can't be the cause. **Done 2026-11-24:** solo (no canary)
   → no id 8; canary harness → id 8 on every frame case (body `0x21 0x53`). Canary artifact.
-- [ ] Re-run the post-login cases with a per-case `guest` account reset, to separate each
-  case's effect from cumulative state.
-- [ ] Narrow which case grants `NPCWEAPONADD` (id 33 first appears from the id-40 case).
+- [x] Re-run the post-login cases with a per-case `guest` account reset, to separate each
+  case's effect from cumulative state. **Done 2026-11-24:** idsweep+body with per-case
+  account restore → no sticky id 33; empty `id-40`/`id-222` replies are `none` when the
+  account is clean. Do not start the half-open follow-up from this row.
+- [ ] Narrow which case grants `NPCWEAPONADD` (original TSV: first dirty canary after empty
+  `id-25`; not reproduced under the 2026-11-24 per-case reset harness).
 - [ ] The half-open double-login socket: does it leak a slot / persist?
 
 ## GServer 1.3 test, 1.25, 1.27 — gen2 sweeps (2026-11-20) **[lab]**

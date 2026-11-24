@@ -119,9 +119,15 @@ capture facts above:
   to the malformed input. Confirmed 2026-11-24 on 1.28b2: solo frame/login with no canary
   and no other guest → no id 8; the same build under the normal canary harness → id 8 on
   every frame case (body `0x21 0x53`, player index 1). Earlier “id 8 then …” observations on
-  pre-auth sockets should be read with that in mind. GServer 1.21 (`GSERV007`) has the same
-  big level-stream login but its fuzz run is pending a redo on a quiet host (a loaded host
-  produced false canary timeouts). Per-build run status and the full taxonomy are in
+  pre-auth sockets should be read with that in mind. **[lab]**
+- Sticky `NPCWEAPONADD` (id 33) on the shared `guest` account across post-login cases is
+  **cumulative state**, not a per-case reply. Confirmed 2026-11-24 on 1.28b2: `idsweep`+`body`
+  with a per-case restore of the pristine guest account file → no canary and no case reply
+  carried id 33; empty `id-40`/`id-222` reply `none` when the account is clean. The held
+  2026-11-19 cumulative `results.tsv` first shows a dirty canary after empty `id-25`.
+  GServer 1.21 (`GSERV007`) has the same big level-stream login but its fuzz run is pending
+  a redo on a quiet host (a loaded host produced false canary timeouts). Per-build run
+  status and the full taxonomy are in
   [`server-fuzz-c2s-targets.md`](server-fuzz-c2s-targets.md). **[lab]**
 
 ## Message ids
