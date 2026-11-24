@@ -34,3 +34,7 @@ So 14923 answers both login types, and 14922 answers only the gen-5 login. For a
 ## Update 2026-11-24 (G019)
 
 One owner-approved classic shape-B login on public **14922** got a **list** (two plain-zlib frames: id 0 with 4 rows, then ids 2/3/5/6). That overturns the classic→14922 **silence** column above for today's service. See [`g019-classic-login-14922-2026-11-24.md`](g019-classic-login-14922-2026-11-24.md). Port **14923** was not re-checked in that run.
+
+## Update 2026-11-24 (G020)
+
+One owner-approved classic shape-B login on public **14923** got **three** plain-zlib frames: id 0 with 6 rows, id 0 with 4 rows, then ids 2/3/5/6. That is richer than the classic→14923 **single legacy list** column above for today's service. See [`g020-classic-login-14923-2026-11-24.md`](g020-classic-login-14923-2026-11-24.md). The previously un-run classic 2.05 shape on 14923 is now covered by this check.
