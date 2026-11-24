@@ -46,7 +46,7 @@ The `T` byte of an `EILLLT` header is the raw id, with no +32. gs2lib's client-t
 
 ## The 256-byte body
 
-The script makes the RC4 key with `generate16ByteKey`, and calls `rsa_encrypt` with a 2048-bit public key (exponent 65537) that the script carries. The 0xfc body is 256 bytes, the size of one RSA-2048 block, and is not the raw RSA of the key, so a padding scheme is used. The reading that fits is that the 0xfc body carries the session key encrypted to the operator's public key. That could not be proved without the matching private key **[lab][inf]**.
+The script makes the RC4 key with `generate16ByteKey`, and calls `rsa_encrypt` with a 2048-bit public key (exponent 65537) that the script carries. The 0xfc body is 256 bytes, the size of one RSA-2048 block, and is not the raw RSA of the key, so a padding scheme is used. The reading that fits is that the 0xfc body carries the session key encrypted to the operator's public key. **G335** (2026-11-24) settles that envelope (operator pubkey, not the parse key) and leaves the exact encoding-message padding **blocked** while the operator private key stays unheld: [`gen6-c2s-0xfc-padding.md`](gen6-c2s-0xfc-padding.md). **[lab][inf]**
 
 What follows for a server **[inf]**: a server that answers a stock 6.11 client must recover the session key from the 0xfc body. That needs the private key matching the public key in the signed connector script. A lab server does not have it, so it cannot read a stock client's encrypted stream.
 
@@ -62,10 +62,10 @@ recovered. See
 
 ## Open points
 
-- [x] ~~Decrypt the Windows 6.113 capture itself.~~ **Partial 2026-11-24 (G334):** clear prefix + RC4@287 reconfirmed on three capture streams; post-287 decrypt **blocked** (exact-session key never recorded; operator private key unheld — G335 not started; memdump alone insufficient; other-session keys do not transfer). See [`v6113-capture-decrypt.md`](v6113-capture-decrypt.md).
+- [x] ~~Decrypt the Windows 6.113 capture itself.~~ **Partial 2026-11-24 (G334):** clear prefix + RC4@287 reconfirmed on three capture streams; post-287 decrypt **blocked** (exact-session key never recorded; operator private key unheld; memdump alone insufficient; other-session keys do not transfer). See [`v6113-capture-decrypt.md`](v6113-capture-decrypt.md). C→S padding / operator-key question moved to G335.
 - [x] ~~The incoming direction.~~ *2026-11-13:* the server sends one clear `0xfd` wrapping its own `0xfc` with a 256-byte block. That block is the server-to-client key (cipher type, key, IV), RSA-wrapped to a private key that the connector script gives the client through `setEncryptionParseKey`. The two directions use different keys. Confirmed in a 6.111 lab run: `connector-script.md` §4c **[lab]**.
 - [x] ~~The padding scheme inside the **server→client** 0xfc body.~~ PKCS#1 v1.5 type-2 (`00 02…00`) on held stock blocks: [gen6-s2c-pkcs-padding-2026-11-16.md](gen6-s2c-pkcs-padding-2026-11-16.md). **[cap][lab]**
-- [ ] The padding scheme inside the **client→server** 0xfc body (needs the operator private key; unheld). (The server's 0xfc plaintext is cipher type, then length-prefixed key and IV: `connector-script.md` §4c.)
+- [x] ~~The padding scheme inside the **client→server** 0xfc body.~~ **Partial 2026-11-24 (G335):** C→S envelope settled (256-byte RSA to the **operator** public key; parse-key decrypt is garbage; S→C PKCS#1 v1.5 type-2 and §4c plaintext already closed). Exact C→S encoding-message padding **blocked** — operator private key **unheld**. See [`gen6-c2s-0xfc-padding.md`](gen6-c2s-0xfc-padding.md).
 
 ## Method notes
 

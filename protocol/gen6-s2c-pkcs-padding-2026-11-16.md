@@ -19,11 +19,14 @@ Raw RSA decrypt of held stock **server→client** `0xfc` bodies (multiple 6.113-
 | Stock server→client (held sessions) | **yes** | **yes** | type **1**, keylen **16**, ivlen **16** |
 | Stock client→server vs the client parse key | no (garbage) | n/a | Expected: wrapped to the **operator** public key, not the parse key |
 
-So: **server→client** padding is closed as PKCS#1 v1.5 type-2. **Client→server** still needs the operator private key (unheld here) and stays open. **[cap][lab][inf]**
+So: **server→client** padding is closed as PKCS#1 v1.5 type-2. **Client→server**
+still needs the operator private key (unheld here). **G335** (2026-11-24) closes
+that board item as an **honest partial**: C→S envelope settled; EM padding still
+blocked. See [`gen6-c2s-0xfc-padding.md`](gen6-c2s-0xfc-padding.md). **[cap][lab][inf]**
 
 Connector **signatures** (a different object) use PKCS#1 v1.5 **type 1** over a bare digest — same family name, not the session-key encrypt padding. **[bin][lab]**
 
 ## Still open
 
-- Recover / document client→server padding once an operator private key is available in lab (never publish the key). **[lab]**
+- Exact client→server encoding-message padding once an operator private key is available in lab (never publish the key) — tracked under G335 partial. **[lab]**
 - Whether any stock connector path ever selects AES type 2. **[lab]**
