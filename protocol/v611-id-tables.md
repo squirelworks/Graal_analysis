@@ -198,5 +198,5 @@ A lab server that serves its own connector script chooses these tables. The live
 
 ## Open
 
-- [ ] Whether the 7.x scripts load the same tables. This needs a 7.x reply decrypted for its own launch.
+- [x] ~~Whether the 7.x scripts load the same tables.~~ **Partial 2026-11-24 (G332):** remapper install model and PLI slot names match 6.11; production 7.x pair lists remain **uncompared** (decrypt blocked — G156 trust-anchor NO-GO + G028 residuals). See `v7-connector-id-tables.md`.
 - [ ] The handlers of the "—" slots that no `tclient_*` name or parse shape pins down.

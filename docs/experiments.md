@@ -303,7 +303,7 @@ the same rows as a task list. Read the source line before you start.
 | G304 | lab | The value waitfor gives when its time runs out. The three cases did not settle it. | `protocol/script-fuzz-2026-11-19.md` line 221 | free |
 | G307 | lab | Loopback weapon fixture on 5.00r7 and 5.12: which ask/body ids fire for a GS2 weapon. | `protocol/scripted-weapons-5x-status.md` line 37 | free |
 | G327 | static+lab | Trace the 108 probe and the value that 4.11 answers in 162. | `protocol/v4x-windows-403r3-411.md` line 91 | free |
-| G332 | static+lab | Whether the 7.x scripts load the same tables. This needs a 7.x reply decrypted for its own launch. | `protocol/v611-id-tables.md` line 201 | free |
+| G332 | static+lab | Partial 2026-11-24: remapper model + PLI slot names match 6.11; production 7.x pair lists uncompared (decrypt blocked). See `v7-connector-id-tables.md`. | `protocol/v611-id-tables.md` line 201 | partial |
 | G334 | static+lab | Decrypt the Windows 6.113 capture itself. That needs the session key of that exact session, read from the running client. | `protocol/v611-outgoing-cipher.md` line 65 | free |
 | G357 | lab | Stage 0: reference captures of the real 3.04 | `torque/rebuild-plan-3.04.md` line 35 | free |
 | G366 | lab | Stage 9: 4.04r2 launcher and engine split | `torque/rebuild-plan-3.04.md` line 44 | free |

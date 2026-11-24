@@ -945,3 +945,4 @@ server-notes/file-cache-and-script-size-2026-11-23.md	cited	5	5	Versioned G070 f
 protocol/v7-connector-payload-cipher.md	cited	2.10; E	2.10; E	E#616 / G028 partial: RSA container block signature-only (not AES wrap); payload cipher, plaintext and ?p= DES key remain open 2026-11-24.
 protocol/v7-connector-trust-anchor.md	cited	2.10; E	2.10; E	E#616 / G156: stock v7 connector trust-anchor swap NO-GO; production plaintext/host/port/login remain Maybe never under G028 residuals 2026-11-24.
 protocol/v7-connector-script-diff.md	cited	2.10; E	2.10; E	G246 partial 2026-11-24: outside-script 7.x vs 6.11 diffs settled; production script token/template/cipher uncompared (decrypt blocked — G156 + G028 residuals).
+protocol/v7-connector-id-tables.md	cited	2.10; E	2.10; E	G332 partial 2026-11-24: remapper model + PLI slot names match 6.11; production 7.x pair lists uncompared (decrypt blocked — G156 + G028 residuals).
