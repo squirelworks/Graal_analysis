@@ -305,6 +305,7 @@ the same rows as a task list. Read the source line before you start.
 | G327 | static+lab | Trace the 108 probe and the value that 4.11 answers in 162. | `protocol/v4x-windows-403r3-411.md` line 91 | free |
 | G332 | static+lab | Partial 2026-11-24: remapper model + PLI slot names match 6.11; production 7.x pair lists uncompared (decrypt blocked). See `v7-connector-id-tables.md`. | `protocol/v611-id-tables.md` line 201 | partial |
 | G334 | static+lab | Partial 2026-11-24: clear prefix + RC4@287 reconfirmed; post-287 decrypt blocked (exact-session key never recorded). See `v6113-capture-decrypt.md`. | `protocol/v611-outgoing-cipher.md` line 65 | partial |
+| G335 | static | Partial 2026-11-24: C→S 0xfc envelope settled; exact EM padding blocked (operator private key unheld). See `gen6-c2s-0xfc-padding.md`. | `protocol/v611-outgoing-cipher.md` line 68 | partial |
 | G357 | lab | Stage 0: reference captures of the real 3.04 | `torque/rebuild-plan-3.04.md` line 35 | free |
 | G366 | lab | Stage 9: 4.04r2 launcher and engine split | `torque/rebuild-plan-3.04.md` line 44 | free |
 | G373 | lab | Verify a complete 3D session before asserting playable compatibility. | `torque/v4-404r2-exe.md` line 42 | free |

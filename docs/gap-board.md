@@ -115,6 +115,16 @@ started; memdump alone insufficient; other-session keys do not transfer).
 token/template/cipher, G332 pair-list comparison, G248 Phase B, G155 G3D2504D
 and E#618 live frame stay untouched. **G273 stays DROPPED.**
 
+2026-11-24 update: **G335** (last Crypto / client→server `0xfc` padding) is
+**partial** in [gen6-c2s-0xfc-padding.md](../protocol/gen6-c2s-0xfc-padding.md):
+C→S envelope settled (256-byte RSA to the operator public key; parse-key decrypt
+is garbage; S→C PKCS#1 v1.5 type-2 and §4c plaintext already closed); exact C→S
+encoding-message padding **blocked** (operator private key **unheld**). **Do not
+start Machine-identity (G129 / G285 / G286 / G287) or any other group.** G028
+residuals, G156 trust-anchor residuals, G246 token/template/cipher, G332
+pair-list comparison, G334 key recovery, G248 Phase B, G155 G3D2504D and E#618
+live frame stay untouched. **G273 stays DROPPED.**
+
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback
 GServer-v2 / gs2emu profile that admits `G3D03014` sends no `addtiledef` /
