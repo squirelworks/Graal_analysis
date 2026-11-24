@@ -93,11 +93,11 @@ Builds agree on the cap but not always on rounding. The table gives the number o
 | 4.04r2, 4.20r6, 4.20r8 | `floor(len / 4)`, capped at 4; an incomplete tail takes no step. Raw bodies use `ceil(len / 4)`, capped at 12 | [bin] (protocol/v4x-clients.md#cipher-and-framing) |
 | Mac 4.04r2, Mac 4.20r6, Mac 5.12 | the same `floor` rule, read in both the encode and the decode routines | [bin] (client-internals/mac-ppc-404-512/SUMMARY.md#gen-5-frame-cipher-step-rule) |
 | Windows 4.04r2 | not read: the installer labelled "4.04r2 Windows" holds the 4.20r8 executable. Linux 4.04r2 and Windows 4.20r8 both use `floor`, so 4.04r2 on Windows very likely does too | [bin][inf] (client-internals/mac-ppc-404-512/SUMMARY.md#gen-5-frame-cipher-step-rule) |
-| 5.12 | `floor(len / 4)` for zlib and bz2 bodies, capped at 4; `ceil(len / 4)` for raw bodies; also holds on 5.00r7 (settled below) | [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count); [cap] (protocol/v5v6-windows-unpacked.md) |
+| 5.12 | `floor(len / 4)` for zlib and bz2 bodies, capped at 4; `ceil(len / 4)` for raw bodies; also holds on 5.00r7 (settled below) | [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count); [bin] 5.00r7 (protocol/gen5-cipher-step-5x.md#settled-for-windows-500r7-g3d22067); [cap] (protocol/v5v6-windows-unpacked.md) |
 | Android Classic and Era (native engine, every held package and ABI) | `floor(len / 4)`, capped at 4; raw bodies capped at 12 | [bin] (protocol/android-classic-socket-layer-2026-11-20.md#the-classic-stream-generation-5) |
 | 5.24r3 and later 5.x, 6.00 to 6.03r7 | `ceil(len / 4)`, capped at 4 | [cap] (protocol/v5v6-windows-unpacked.md); [bin][wire] (protocol/v5v6-lab-play.md#512s-cipher-step-count) |
 
-**Settled question, formerly E#2: Generation-5 step count of 5.12 and 5.00r7.** How many cipher steps a generation-5 frame advances when its compressed body is not a whole number of four-byte groups was settled for 5.12 and open for 5.00r7, a separate engine. Probe-proxy sessions with the real 5.00r7 settled it [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md).
+**Settled question, formerly E#2: Generation-5 step count of 5.12 and 5.00r7.** How many cipher steps a generation-5 frame advances when its compressed body is not a whole number of four-byte groups was settled for 5.12 and open for 5.00r7, a separate engine. Probe-proxy sessions with the real 5.00r7 settled it [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md), and a static read of the stock 5.00r7 engine confirms the same rule in both its receive and send routines [bin] (protocol/gen5-cipher-step-5x.md#settled-for-windows-500r7-g3d22067).
 
 | Part | Discussion | Source |
 | --- | --- | --- |

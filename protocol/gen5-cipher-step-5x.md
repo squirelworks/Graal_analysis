@@ -1,6 +1,6 @@
 # Gen-5 cipher step count on 5.00r7 and 5.12
 
-Date: 2026-11-16. Research-list rank **#4** (focus 5.007, 5.120). Consolidates E#2 and the lab notes without a new binary session.
+Date: 2026-11-16; 5.00r7 static read added 2026-11-24. Research-list rank **#4** (focus 5.007, 5.120). Consolidates E#2 and the lab notes without a new binary session.
 
 Tags: **[bin]** engine frame codec; **[wire]** lab / proxy / stress; **[cap]** earlier Windows dumps; **[inf]** unread builds.
 
@@ -17,22 +17,42 @@ Lab and stress confirmation:
 
 Mac PowerPC 4.04r2 / 4.20r6 / 5.12 receivers also advance compressed bodies by whole groups only (round-down) and raw bodies with a partial last group (round-up). That static Mac result agrees with Claim A’s compressed rule and does not by itself prove Windows 5.00r7. **[bin]** (`protocol/macos-ppc-receive-framing.md`, `client-internals/mac-ppc-404-512/SUMMARY.md`).
 
-## Still open: Windows 5.00r7 (`G3D22067`)
+## Settled for Windows 5.00r7 (`G3D22067`)
 
-No frame-codec read of the 5.00r7 engine for the short-compressed step rule is on record in this repo. Seihai’s 5.00r7 row uses the **default round-up** rule (every other gen-5 build except 5.12). A stock GServer-v2 accepted real 5.00r7 in the 2026-10-31 lab beside Seihai without a round-down proxy, which is consistent with round-up (or with a session that never hit a discriminating short compressed frame). **[wire][inf]** (`documentation/v5v6-profiles.md` lab check; not a closed proof).
+**5.00r7 rounds down like 5.12.** A static read of the stock 5.00r7 engine (stock `GraalEngine.dll`, without the licence-check patch) settles G252. **[bin]** (2026-11-24 static read; nothing was run)
 
-**Do not** copy 5.12’s round-down onto 5.00r7 until the 5.00r7 decoder is read or a discriminating capture is decoded both ways.
+The engine has one receive routine and one send routine for gen-5 frames. Their cipher code is the same, so both directions follow one rule. `L` is the body length after the type byte: the frame length minus one on receive, and the length after compression on send.
+
+| Frame type | Iterator steps | A partial last group (1–3 bytes) |
+|---|---|---|
+| 2 (raw) | `min(ceil(L / 4), 12)` | is stepped and XORed byte by byte with the low bytes of the iterator |
+| 4 (zlib), 6 (bzip2) | `min(floor(L / 4), 4)` | is left as it is and takes no step; a body under 4 bytes takes no step at all |
+| 1, 3, 5 | none | these share the raw, zlib and bzip2 handlers but are never XORed |
+
+Each step is `it = it * 0x08088405 + key`, then XOR the next four body bytes with `it` (little-endian). **[bin]**
+
+Other facts from the same read: **[bin]**
+
+- Receive deciphers before it decompresses; send compresses before it enciphers.
+- Send picks the frame type from the uncompressed size: 4096 bytes or more is bzip2 (6), 48 or more is zlib (4), and anything shorter is raw (2).
+- Both iterators start at `0x04A80B38`. The receive key starts at 0 and the send key at `rand() % 128`.
+- A fixed-type mode starts at 3 (the login frame). Once it is 0, each frame's own type byte is used. Where it is set to 0 and how the keys are exchanged were not traced here.
+- About 90 other multiplications by `0x08088405` in the engine are `x * 0x08088405 + 1` random-number steps, not the frame cipher.
+
+This matches the probe-proxy lab, where the real 5.00r7 ran 130 canary cases through a proxy that ciphers both directions with the round-down rule, with no lost client [lab] ([fuzz-4x-5x-win-2026-11-19.md](fuzz-4x-5x-win-2026-11-19.md)). The earlier stock GServer-v2 session without a round-down proxy (2026-10-31) must not have sent or received a short compressed body whose length was not a multiple of 4: zlib is only chosen from 48 bytes up, so such frames are uncommon in a short walk. **[inf]**
+
+**Server and profile consequence.** A server or proxy talking to 5.00r7 needs the 5.12 rule (`Gen5::round_down`). Seihai's 5.00r7 row still uses the default round-up rule and should be switched (follow-up in that repository).
 
 ## Server / proxy checklist
 
 | Client | Compressed-body steps | Lab against stock GServer-v2 |
 |---|---|---|
 | 5.12 | round **down** (`len/4`, cap 4) | needs proxy or `GS_LAB_512_ROUNDDOWN` |
-| 5.00r7 | treat as round **up** until read | worked without round-down in the 2026-10-31 stock check |
+| 5.00r7 | round **down** (`len/4`, cap 4), read in both directions | needs proxy or round-down; the 2026-10-31 stock session never hit a discriminating frame |
 | 5.24r4 and later (focus 6.037 too) | round **up** | normal |
 
 ## Open
 
-- [ ] Static read of Windows 5.00r7 frame codec (short zlib/bz2, len not multiple of 4), both directions.
+- [x] ~~Static read of Windows 5.00r7 frame codec (short zlib/bz2, len not multiple of 4), both directions.~~ Round down, both directions (G252, [above](#settled-for-windows-500r7-g3d22067)).
 - [ ] Optional: publish one 5.12 capture snippet that contains such a short compressed frame so Claim B can be retired in E#2 with a cited decode.
-- [ ] Confirm whether any non-5.12 Windows 5.x build shares 5.12’s round-down (none claimed today).
+- [x] ~~Confirm whether any non-5.12 Windows 5.x build shares 5.12’s round-down (none claimed today).~~ 5.00r7 does (G254, [above](#settled-for-windows-500r7-g3d22067)). 5.24r3 and later round up.
