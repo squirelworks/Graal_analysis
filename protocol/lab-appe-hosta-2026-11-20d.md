@@ -69,6 +69,11 @@ the x86_64 slices of the held Mac builds, started from Terminal in the logged-in
   and no connection. That looks like a beta time limit against today's date, but no clock-held run
   was possible on that guest.
 - Both clients report "MacOS version: 10.9.0". A 10.9-era guest was not run.
+- **Follow-up (2026-11-24).** A static read of the Mac 6.004 x86_64 slice confirms the beta notice
+  path fails when the wall clock is past **2011-09-08 19:22:31 UTC** (same stop day as Windows
+  6.00r4). Mac 6.015 has no that notice or cutoff. A clock-held live frame was still not run from
+  the Windows lab host used for the follow-up (no reachable Lion / Sequoia / 10.9 guest). Detail:
+  [mac-6004-beta-gate.md](../client-internals/mac-6004-beta-gate.md).
 
 ## Android Classic 1.8 on an emulator (E#18)
 

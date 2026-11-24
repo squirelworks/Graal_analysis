@@ -68,6 +68,14 @@ MAGICPOINTS, plus local mode/status ints beside STATUS/SPRITE. Checkbox
 closed. **G248 stays PARTIAL/OPEN. G273 stays DROPPED.** STOP — do not start
 E#618.
 
+2026-11-24 update: E#618 / G029 (Mac 6.004 / 6.015 game frame) is **partial** in
+[mac-6004-beta-gate](../client-internals/mac-6004-beta-gate.md): 6.015 logs in and
+requests level files but its main view stays blank on Lion and Sequoia; 6.004's
+beta quit is a wall-clock gate past **2011-09-08 19:22:31 UTC** (same stop day as
+Windows 6.00r4); clock-held live frame blocked from this host (no reachable Mac
+guest). **G248 stays PARTIAL/OPEN. G273 stays DROPPED.** STOP — Protection group
+done; do not start Crypto or Machine-identity.
+
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback
 GServer-v2 / gs2emu profile that admits `G3D03014` sends no `addtiledef` /
@@ -253,11 +261,11 @@ queue below is the suggested order; take the next free entry whose VM is idle.
 
 | # | What | Board rows | State |
 |---|---|---|---|
-| 1 | Mac 6.004 with its clock held before the beta limit, on the Sequoia guest | E#618 | free |
+| 1 | Mac 6.004 with its clock held before the beta limit, on the Sequoia guest | E#618 | partial — static gate settled 2026-11-24; clock-held live still blocked |
 | 2 | An unchanged Mac client run to the context helpers, recording the real arguments | `NEXT.md` line 302 | free |
 
-E#618's full answer needs a macOS 10.9-era guest with OpenGL. None is held; building one is
-an owner call.
+E#618's remaining live answer needs a reachable Lion / Sequoia / 10.9-era guest with
+OpenGL and the clock held for 6.004. Building or restoring that guest is an owner call.
 
 ### Android-x86 or mobile
 
