@@ -180,7 +180,7 @@ These checks credit the named merged notes and manual carry, not whole research-
   - [ ] Resolve the four unmatched mappings, ordinary-send payload path and Mac script-side table population before treating this as a complete outgoing contract.
 
 - [x] **Carry the later Windows launcher identity boundary into the manual.** ~~Keep the relabelled 5.00r7 pair separate from genuine 5.12 engine evidence.~~ [Study](../client-internals/launchers-420r8-500r7-512.md); manual §1.8.9 and §2.3.5.
-  - [ ] Compare genuine 5.12 and 5.00r7 per-property value widths; matching case sets do not settle them.
+  - [x] ~~Compare genuine 5.12 and 5.00r7 per-property value widths; matching case sets do not settle them.~~ Same widths in all four streams; NPC script (1) is dropped by 5.12 except the sparring-zone marker ([note](../protocol/player-props-5x-status.md#genuine-512-has-the-same-widths-g173--g098-2026-11-25)).
 
 - [x] **Carry the measured Linux 6.03r7 item behavior into the manual.** ~~Separate input packets, corrected idle-VM timing and screen effects from server replies.~~ [Study](../client-internals/items-603r7-black-box.md); manual §4.5.8, App. E#327.
   - [ ] Identify the missing chest art and test the proposed menu-skin dependency (App. E#327).

@@ -39,6 +39,11 @@ parsed map state from NC script input and classic script-output bounds. Original
 4.02 behavior, the historical RC editing limit and old-engine breakage remain open;
 this is partial coverage, not a completed historical confirmation.
 
+2026-11-25 update: G173 and G098 (5.12 versus 5.00r7 prop value widths) are answered in
+[player-props-5x-status](../protocol/player-props-5x-status.md#genuine-512-has-the-same-widths-g173--g098-2026-11-25):
+every id in the self, other, NPC and baddy parsers has the same width in both engines. One behaviour change found on the way:
+5.12 drops NPC scripts (prop 1) except a sparring-zone marker. Checkboxes closed.
+
 2026-11-24 update: G084 (5.00r7 event-queue cap) is answered in
 [gs2-vm-loader-diff](../client-internals/gs2-vm-loader-diff.md#500r7-event-queue-cap-g084-2026-11-24):
 both event receivers refuse at 1000 queued events in the unpatched engine and in both patched
