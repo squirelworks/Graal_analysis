@@ -47,12 +47,16 @@ is enough). **[bin][inf]**
   playable frame on those guests; only auxiliary GUI (Sequoia "Select File")
   showed the skin. **[lab]**
 - **6.004:** the beta quit on a current-date Sequoia run is explained by the
-  static date gate above. A clock-held live run that would show whether it then
-  draws a main frame / login / level was **not** available from the Windows lab
-  host used for this pass (no reachable Lion / Sequoia / 10.9 guest session;
-  only an unrelated Tiger guest exists locally and is the wrong era). **[lab][inf]**
-- The residual settler remains a **10.9-era macOS guest with OpenGL**, with the
-  clock held for 6.004 — an owner call to restore or build that guest. **[inf]**
+  static date gate above. The lab-host-A experiments list (L1) calls for a
+  clock-held Mac 6.004 run on the Sequoia guest, noting a full main-view answer
+  still wants a 10.9-era OpenGL guest. Owner confirmed Lion and Sequoia guests
+  exist on lab host A for this pass; Lion is preferred for the old binary.
+  From the Windows lab host used here, guest control (start / QMP / VNC / SSH
+  into the Mac guests) was not reachable — shared-folder sync only — so the
+  clock-held live frame was **not** observed on this pass. **[lab][inf]**
+- The residual settler remains a **clock-held Mac 6.004** on a reachable lab
+  host A Lion (preferred) or Sequoia guest, and ideally a 10.9-era OpenGL
+  guest for the main-view draw. **[inf]**
 
 ## Open
 
