@@ -28,11 +28,14 @@ The 5.x and 6.01/6.03 clients open an ordinary game connection and name the serv
 
 ## Still unobserved
 
-**Update 2026-11-13:** one read-only session with the Windows 6.03r7 against a community Login server was captured with the owner's written OK (#247). See `login-session-observed.md`. Ticked items below refer to that server only; the official Login server is still unobserved.
+**Update 2026-11-13:** one read-only session with the Windows 6.03r7 against a community Login server was captured with the owner's written OK (#247). See `login-session-observed.md`. Ticked items below refer to that server only; the official Login server is still unobserved for the lobby.
 
-- [x] The bytes a live Login server sends, including the payload of S→C 190 (empty there). Official server: still unobserved.
+**Update 2026-11-24 (G002, partial):** an owner-approved guest login of Windows 6.03r7 (`G3D0311C`) to the official Login on port **14900** got one uncompressed frame: S→C **25** then **16** with text `Please update your version..`. No 190, no `basepackage.gupd` traffic, no lobby burst. See `g002-public-login-603r7-2026-11-24.md`.
+
+- [x] The bytes a live Login server sends, including the payload of S→C 190 (empty there). Official server: version-reject for `G3D0311C` observed; lobby still unobserved.
 - [x] The server-list and login-screen GUI, as behaviour (the verbatim script stays owner-held). Still open: the account screens past the login form, and the `ChatBar` control.
 - [x] The package list behind `basepackage.gupd` (no `FILE` lines; one subpackage chain).
 - [x] The backdrop level that server chooses (`black.nw`, one tile, no chests, no NPCs).
 - The 6.11 connector script body, and with it the framing, cipher and login token a 6.11 client actually uses. (Partly known now: the token, the `EILLLT` framing and the outgoing RC4 switch at offset 287, `v611-outgoing-cipher.md`. The incoming cipher is still unknown.)
-- The resulting look (matrix unknown #3). The lab screens are the lab world's ganis and a server named by the injected 178.
+- The resulting look (matrix unknown #3). The lab screens are the lab world's ganis and a server named by the injected 178. Official Login look for an accepted client remains unobserved.
+
