@@ -263,7 +263,7 @@ In v5, the GANI lookup does the following:
 - [ ] Open the callers of the context helpers and record the real arguments, including the first refresh value.
 - [ ] Trace how callers handle a partial send, and how mission acknowledgements reach the wire.
 - [ ] Open the record constructor and payload processor behind the v5 event-name bridge.
-- [x] ~~Open the routines that read and hash the machine-identity property.~~ **Partial 2026-11-24 (G129):** property-read (`IOMACAddress`, six raw bytes) and MD5-hex hash settled on 4.04r2 / 4.20r6 / v5; login comma-list call graph still open. See [mac-ppc-machine-identity-property.md](mac-ppc-machine-identity-property.md).
+- [ ] Open the routines that read and hash the machine-identity property. **Partial 2026-11-24 (G129):** property-read (`IOMACAddress`, six raw bytes) and MD5-hex hash settled on 4.04r2 / 4.20r6 / v5; login comma-list call graph still open. See [mac-ppc-machine-identity-property.md](mac-ppc-machine-identity-property.md).
 
 ## Evidence
 

@@ -51,87 +51,69 @@ on all 18 one-field mutations; Phase B / first encrypted frames remain OPEN
 [static-reads-appendix-e-2026-11-24-g082](../client-internals/static-reads-appendix-e-2026-11-24-g082.md):
 both builds keep `b == 2` → `a * a` and take a positive `b == 0.5` in **double**
 precision. The 6.03r7 single-precision square root does not transfer. Checkbox
-closed. STOP — do not start G148.
+closed.
 
 2026-11-24 update: G148 (Themida cutoff dates for 5.30r3 / 5.31r4 / 6.00r2 /
 6.00r4) is answered in
 [v5v6-expiry-and-black-screen](../client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4):
 clock binary search — stops from 2011-01-01 / 2011-03-21 / 2011-08-27 /
-2011-09-09. Checkbox closed. **G248 stays PARTIAL/OPEN. G273 later answered (2026-11-24; not DROPPED).**
-STOP — do not start G328.
+2011-09-09. Checkbox closed.
 
 2026-11-24 update: G328 (4.11 value holder) is answered in
 [v4x-windows-403r3-411](../protocol/v4x-windows-403r3-411.md#what-the-engine-gained):
 holder wraps local-player CURPOWER (8-byte float), MAXPOWER, RUPEESCOUNT,
 ARROWSCOUNT, BOMBSCOUNT, GLOVEPOWER, SWORDPOWER, SHIELDPOWER, ALIGNMENT,
 MAGICPOINTS, plus local mode/status ints beside STATUS/SPRITE. Checkbox
-closed. **G248 stays PARTIAL/OPEN. G273 later answered (2026-11-24; not DROPPED).** STOP — do not start
-E#618.
+closed.
 
 2026-11-24 update: E#618 / G029 (Mac 6.004 / 6.015 game frame) is **partial** in
 [mac-6004-beta-gate](../client-internals/mac-6004-beta-gate.md): 6.015 logs in and
 requests level files but its main view stays blank on Lion and Sequoia; 6.004's
 beta quit is a wall-clock gate past **2011-09-08 19:22:31 UTC** (same stop day as
 Windows 6.00r4); clock-held live frame blocked from this host (no reachable Mac
-guest). **G248 stays PARTIAL/OPEN. G273 later answered (2026-11-24; not DROPPED).** STOP — Protection group
-done; do not start Crypto or Machine-identity.
+guest).
 
 2026-11-24 update: **G028 / E#616** (first Crypto) is **partial** in
 [v7-connector-payload-cipher.md](../protocol/v7-connector-payload-cipher.md): the
 connector container's 256-byte RSA block is signature-only (not an AES key wrap);
 payload cipher, plaintext script and `?p=` DES key remain open on stock v7.
-**Do not start G156 / G246 / G332 / G334 / G335.** G248 Phase B, G155 G3D2504D and
-E#618 live frame stay untouched. **G273 later answered (2026-11-24; not DROPPED).**
 
 2026-11-24 update: **G156** (second Crypto / NEXT replaced-key avenue) is **answered**
 in [v7-connector-trust-anchor.md](../protocol/v7-connector-trust-anchor.md): stock v7
 Worlds trust-anchor swap is a **NO-GO** (packed Themida verify; held unpacked dumps are
 analysis-only, not runnable patched clients). Production plaintext / host/port / login
-stay Maybe never under **G028 residuals** (untouched here). **Do not start G246 / G332 /
-G334 / G335.** G248 Phase B, G155 G3D2504D and E#618 live frame stay untouched.
-**G273 later answered (2026-11-24; not DROPPED).**
+stay Maybe never under **G028 residuals** (untouched here).
 
 2026-11-24 update: **G246** (7.x vs 6.11 connector script token/template/cipher) is
 **partial** in [v7-connector-script-diff.md](../protocol/v7-connector-script-diff.md):
 outside-script diffs stay settled in `connector-script.md` §7a; production script
 token/template/cipher remain **uncompared** (decrypt blocked — G156 trust-anchor NO-GO
-+ G028 residuals untouched). **Do not start G332 / G334 / G335.** G248 Phase B,
-G155 G3D2504D and E#618 live frame stay untouched. **G273 later answered (2026-11-24; not DROPPED).**
++ G028 residuals untouched).
 
 2026-11-24 update: **G332** (7.x vs 6.11 connector id tables) is **partial** in
 [v7-connector-id-tables.md](../protocol/v7-connector-id-tables.md): remapper install
 model and PLI `onSend*` slot names match 6.11; production 7.x pair lists remain
 **uncompared** (decrypt blocked — G156 trust-anchor NO-GO + G028 residuals
-untouched). **Do not start G334 / G335.** G028 residuals, G156 trust-anchor
-residuals, G246 token/template/cipher, G248 Phase B, G155 G3D2504D and E#618 live
-frame stay untouched. **G273 later answered (2026-11-24; not DROPPED).**
+untouched).
 
 2026-11-24 update: **G334** (Windows 6.113 capture decrypt) is **partial** in
 [v6113-capture-decrypt.md](../protocol/v6113-capture-decrypt.md): clear prefix +
 RC4@287 reconfirmed on three capture streams; post-287 decrypt **blocked**
 (exact-session key never recorded; operator private key unheld — **G335** not
 started; memdump alone insufficient; other-session keys do not transfer).
-**Do not start G335.** G028 residuals, G156 trust-anchor residuals, G246
-token/template/cipher, G332 pair-list comparison, G248 Phase B, G155 G3D2504D
-and E#618 live frame stay untouched. **G273 later answered (2026-11-24; not DROPPED).**
 
 2026-11-24 update: **G335** (last Crypto / client→server `0xfc` padding) is
 **partial** in [gen6-c2s-0xfc-padding.md](../protocol/gen6-c2s-0xfc-padding.md):
 C→S envelope settled (256-byte RSA to the operator public key; parse-key decrypt
 is garbage; S→C PKCS#1 v1.5 type-2 and §4c plaintext already closed); exact C→S
-encoding-message padding **blocked** (operator private key **unheld**). G028
-residuals, G156 trust-anchor residuals, G246 token/template/cipher, G332
-pair-list comparison, G334 key recovery, G248 Phase B, G155 G3D2504D and E#618
-live frame stay untouched. **G273 later answered (2026-11-24; not DROPPED).**
+encoding-message padding **blocked** (operator private key **unheld**).
 
 2026-11-24 update: **G129** (first Machine-identity / Mac PowerPC
 `IOMACAddress` property read + hash) is **partial** in
 [mac-ppc-machine-identity-property.md](../client-internals/mac-ppc-machine-identity-property.md):
 property-read (six raw `IOMACAddress` bytes from the primary Ethernet service)
 and plain MD5-hex hash settled on 4.04r2 / 4.20r6 / shared v5; login comma-list
-call graph still open. **Do not start G285 / G286 / G287 / G289.** Crypto
-residuals (G028 / G156 / G246 / G332 / G334 / G335), G248 Phase B, G155
-G3D2504D and E#618 live frame stay untouched. **G273 stays DROPPED.**
+call graph still open.
 
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback
@@ -151,31 +133,26 @@ immediately (no ghost). Persist while TCP held (≥10–30 s). Checkbox closed.
 [g3d30123-public-listserver-2026-11-24](../protocol/g3d30123-public-listserver-2026-11-24.md):
 owner-approved list-only `G3D30123` one-frame login got a modern list on public **14922**
 and **14923** (legacy+modern on 14923). 3.04/3.153 `port_status` moves assumed→confirmed.
-**Not DROPPED.** G302 stays **OPEN** (Wine/Pango for RC2 2.05 two-RC). Do not continue
-G129 or start G285/G286/G287; Crypto residuals, G248 Phase B, G155 G3D2504D and E#618
-live frame stay untouched.
+The 2026-11-24 drop of this row (#823) is reversed.
 
 2026-11-24 update: **G002 / E#3** (public 5.x/6.x Login session) is **partial** in
 [g002-public-login-603r7-2026-11-24](../protocol/g002-public-login-603r7-2026-11-24.md):
 official Login on **14900** answers Windows 6.03r7 guest (`G3D0311C`) with S→C **25** then
 **16** (`Please update your version..`); no 190 / `basepackage.gupd` lobby for that token.
-Official accepting-client lobby still open (community Login only). **Do not start G019/G020.**
-Crypto residuals, G248 Phase B, G155 and E#618 stay untouched; v7/Worlds and Machine-identity
-rows stay avoided/DROPPED.
+Official accepting-client lobby still open (community Login only).
 
 2026-11-24 update: **G019 / E#403** (classic logins on public 14922) is **partial** in
 [g019-classic-login-14922-2026-11-24](../protocol/g019-classic-login-14922-2026-11-24.md):
 public **14922** answers a classic shape-B login with two plain-zlib frames (id 0 list + ids 2/3/5/6),
 overturning the 2026-10-25 classic→14922 silence. Historical 2001 behaviour and a stock 2.17.1
-capture stay open. Crypto residuals, G248 Phase B, G155 and E#618 stay untouched; v7/Worlds avoided.
+capture stay open.
 
 2026-11-24 update: **G020 / E#404** (public refuse 2.05 / classic on 14923) is **partial** in
 [g020-classic-login-14923-2026-11-24](../protocol/g020-classic-login-14923-2026-11-24.md):
 public **14923** answers a classic shape-B login with **three** plain-zlib frames (id 0 list ×2
 with 6 then 4 rows, then ids 2/3/5/6). Richer than the 2026-10-25 single legacy list. Seihai 2.05
 `port_status` assumed→confirmed. Game-server S2 2.05 refuse / older version-table hypothesis
-still open (no game login). **Last classic public probe — STOP.** Crypto residuals, G248 Phase B,
-G155 and E#618 stay untouched; v7/Worlds avoided.
+still open (no game login).
 
 2026-11-24 update: G314 (post-login per-case guest account reset) is answered in
 [server-fuzz-c2s-targets](../protocol/server-fuzz-c2s-targets.md): on GServer 1.28b2,
@@ -288,7 +265,11 @@ When a row is done, tick it in its issue as well as in the source note.
 
 Grok owns the following research scopes by external reservation: `G028`, `G156`, `G246`, `G332`, `G334`, `G335`, `G082`, `G148`, `G328`, `E#618`, `G129`, `G285`, `G286`, `G287`, `G158`, `G284`, `G300`, `G302`, `G313`, `G314`, `G316`, `G273`, `G155`, `G344`, `G248`.
 
-This is ownership metadata only, not a result, closure or authorization to probe or operate.
+**Ended 2026-11-24.** Grok's run stopped when its usage ran out. The four rows it had not
+started (`G285`, `G286`, `G287`) are `free` again; every other row, G129 included (partial,
+#838), carries its own done/partial/open state.
+
+This was ownership metadata only, not a result, closure or authorization to probe or operate.
 All existing input, evidence, approval and completion limits remain in force; other agents
 should avoid duplicate work. The TSV changes only the claimant for the 24 stable G rows,
 retaining any prior partial/status qualification. `E#618` is a separately reserved evidence
@@ -332,7 +313,7 @@ queue below is the suggested order; take the next free entry whose VM is idle.
 | 1 | Server fuzz: GServer 1.21 gen-2 sweep on a quiet host (unauthenticated id 8 and per-case guest reset closed 2026-11-24) | `server-fuzz-c2s-targets` line 54 | free |
 | 2 | GServer 1.25 and 1.27: lab login of both clients and the player, NPC and baddy prop ranges | `gserv-125-127-builds` lines 128, 132 | free |
 | 3 | Serve a multi-layer level to 5.12 and 6.03r7 with the reader repair from seihai-gserver-v2 #118; live result still open | `gr-v105-fuzz` source repair and remaining level walk; `gr-v105-empty-tiles` line 33 | free |
-| 4 | NC write operations through `ncprobe.py` (attribute, class and weapon writes) | `nc-write-ops-status` line 38 | free |
+| 4 | NC write operations through `ncprobe.py` (attribute, class and weapon writes) | `nc-write-ops-status` line 38 | partial — layouts settled 2026-11-24 (G284); local-NPC list after 114 open |
 | 5 | The protocol-19 server order with a real 4.04r2 and 3.153 | `protocol19-server` lines 164, 165 | free |
 
 ### Lab host B, Tiger VM
