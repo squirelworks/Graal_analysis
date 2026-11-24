@@ -42,12 +42,10 @@ this is partial coverage, not a completed historical confirmation.
 layouts dumped; no attribute write beyond script/flags. Local-NPC list after 114 remains open.
 
 2026-11-24 update: G248 (loopback `conf.gs` harness for Windows 6.113) is
-answered in [conf-gs-fuzzing](../protocol/conf-gs-fuzzing.md#g248-close-2026-11-24):
+**PARTIAL / OPEN** in [conf-gs-fuzzing](../protocol/conf-gs-fuzzing.md#g248-close-2026-11-24):
 Phase A container fuzz via `tools/connfuzz/` against stock 6.113 fails closed
-on all 18 one-field mutations; Phase B / first encrypted frames on the stock
-path are blocked (trust-anchor NO-GO; session-key recovery stopped). Checkbox
-closed. Last line-ball gap — STOP; do not start Crypto/Protection/Machine-identity
-from this row.
+on all 18 one-field mutations; Phase B / first encrypted frames remain OPEN
+(trust-anchor NO-GO; session-key recovery stopped). Not closed.
 
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback
