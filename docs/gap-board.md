@@ -47,6 +47,12 @@ Phase A container fuzz via `tools/connfuzz/` against stock 6.113 fails closed
 on all 18 one-field mutations; Phase B / first encrypted frames remain OPEN
 (trust-anchor NO-GO; session-key recovery stopped). Not closed.
 
+2026-11-24 update: G082 (maths on unpacked 6.1.1.3 and Mac 6.11r1) is answered in
+[static-reads-appendix-e-2026-11-24-g082](../client-internals/static-reads-appendix-e-2026-11-24-g082.md):
+both builds keep `b == 2` → `a * a` and take a positive `b == 0.5` in **double**
+precision. The 6.03r7 single-precision square root does not transfer. Checkbox
+closed. STOP — do not start G148.
+
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback
 GServer-v2 / gs2emu profile that admits `G3D03014` sends no `addtiledef` /

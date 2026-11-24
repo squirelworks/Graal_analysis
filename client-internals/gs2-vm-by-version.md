@@ -96,7 +96,7 @@ recovered **[bin]**.
 | --- | --- | --- |
 | integer conversion (`int()`, bitwise operators, indices) | every VM computes `floor(x + 0.0001)`, not `floor(x)` | [bin] |
 | `a % b` | 0 when `b` is 0. 4.20r6 and 4.20r8 compute `a - floor(a/b + 0.0001) * b`; 3.153, 5.00r7 and 6.x drop the tolerance | [bin] |
-| `a ^ b` | a positive base goes to `pow`; a zero base gives 0; a negative base gives 1 for `b == 0`, `±pow(-a, b)` by parity for an integer `b`, `1/pow(a, -b)` for a negative `b`, else 0. 4.x and 5.x add `b == 0.5` → square root. 6.x checks `b == 2` first (`a * a`) and takes a positive base's square root in single precision | [bin] |
+| `a ^ b` | a positive base goes to `pow`; a zero base gives 0; a negative base gives 1 for `b == 0`, `±pow(-a, b)` by parity for an integer `b`, `1/pow(a, -b)` for a negative `b`, else 0. 4.x and 5.x add `b == 0.5` → square root. From 5.24r4 the VM checks `b == 2` first (`a * a`). 6.03r7 / 6.01r1 take a positive `b == 0.5` in single precision; unpacked 6.1.1.3 and Mac 6.11r1 keep double precision ([G082 note](static-reads-appendix-e-2026-11-24-g082.md)) | [bin] |
 | shifts | the PowerPC builds (3.153, 4.20r6) take the count modulo 64 and give 0 or -1 past 31; the x86 builds (4.20r8 on) take it modulo 32 | [bin] |
 | comparisons | two numbers are equal within 0.0001 in every VM; a string against a number compares as the number it reads as; two strings compare by bytes | [bin] |
 | number to text (3.153 and 6.x alike) | `\|x\| < 0.0001` is `"0"`; otherwise the sign, the integer part (truncated, at most 2147483647) and up to 9 decimals, truncated with trailing zeros dropped, where a fraction ending in 999 is carried up | [bin] |

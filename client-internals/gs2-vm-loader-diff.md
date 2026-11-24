@@ -156,7 +156,7 @@ The packed listing of this version has no opcode switch. The row is the unpacked
 | Parse | settled | The walker stops when the segment type is outside 1–4. Segment 1 stores one integer, the event mask. Segment 2 drops a leading `public.` and marks the function public. Segment 3 is the string table. Segment 4 uses the 6.00 marker widths, and a decoded instruction is 24 bytes. A cache file shorter than eight bytes is rejected. The magic must match, the flag must be 1, and the checksum covers the bytes after the magic. `publicsoap.` was not mentioned **[bin]** |
 | Slots | partial | Fold 242 still requires a call frame, stores a register, and skips the next opcode. The 0–1023 range was not re-measured. Official bodies from this era use dense slot indices per function, and the highest index in the seven-body slice is 10; every opcode 47 is immediately followed by 45 **[bin]** **[cap]** |
 | Opcodes | settled | Cases through 242, including 54, 121 and 200–242. No 48, no 49, no case above 242, and the 4.2 names that were never implemented stay unimplemented. An opcode with no case pops one value and continues. 54 on this image rejects a stack shorter than two (the 6.00 guard, not 5.00r7's three-value guard), drops two values, converts what is then on top to an object, and stores as opcode 50 does. 121 joins when either tag is a string, otherwise adds. The pair recogniser that produces 234–242 was not separated; the executor still accepts those results **[bin]** |
-| Maths | open | Arithmetic helpers were not re-read. Do not copy the 6.03r7 single-precision square root onto this image until it is opened |
+| Maths | partial | Power checks `b == 2` first (`a * a`). A positive `b == 0.5` takes a double-precision square root — not the 6.03r7 single-precision path ([note](static-reads-appendix-e-2026-11-24-g082.md#unpacked-windows-6113)). Remainder, shifts, stack caps and number-to-text were not re-opened **[bin]** |
 | Events | open | Not read on this image |
 | Names and clock | open | Not read on this image |
 
@@ -175,7 +175,7 @@ A partial handler read. The table was walked through a 256-entry window whose en
 | Parse | partial | The runner executes decoded 40-byte records, not the serialized bytes. The first byte is the opcode, and each record caches its handler. The bytecode-to-record mapping was not recovered, so the segment walk is not shown **[bin]** |
 | Slots | open | Not among the handlers that were read. The value stack is a pool that grows by 100; the upper limit was not read **[bin]** |
 | Opcodes | partial | Handlers read: 0 falls through, 1 jumps, 2 branches and pops, 6 calls, 8 sleeps, 9 checks the loop, 11 waits, 20 pushes a number, 21 pushes a string, 24 pushes 1, 27 pushes pi, 164 is the end marker added at preparation. Opcode 7 was not read. 1, 2 and 6 agree with 4.20r8. The loop check defaults to 10000, can be overridden from the owner's context, and the counter lives on the opcode-9 record and resets when the program is rebuilt **[bin]** |
-| Maths | open | Arithmetic and comparison handlers, and NaN, were not read |
+| Maths | partial | The power helper checks `b == 2` first (`a * a`). A positive `b == 0.5` uses a double-precision square root (`sqrtsd`), not a single-precision convert-and-root ([note](static-reads-appendix-e-2026-11-24-g082.md#mac-os-x-611r1)). Other exponents call `pow`. Remainder, shifts, NaN beyond those paths and the stack cap stay unread **[bin]** |
 | Events | partial | Sleep and waitfor snapshot the function, the index, the stack, the frames and the object context, and store the event name. A positive delay is the manager's clock plus the delay. Status 2 means suspended. The unit of the clock and the order of due snapshots were not checked **[bin]** |
 | Names and clock | partial | A call walks the stack down to the tag-0 marker, checks access and the parameter count, and can suspend on `classesdownloaded` and retry the call. The reserved-name walk was not read. The clock unit is open **[bin]** |
 
@@ -259,8 +259,8 @@ Grades only. The evidence is in the section for that build. "Open" on a whole ro
 | Linux 6.01r1 and 6.03r7 | partial | partial | settled | settled | partial | partial |
 | Windows 6.03r7 | partial | partial | settled | settled | partial | partial |
 | 6.015 and 6.034 | open | open | open | open | open | open |
-| Unpacked Windows 6.1.1.3 | settled | partial | settled | open | open | open |
-| Mac 6.11r1 | partial | open | partial | open | partial | partial |
+| Unpacked Windows 6.1.1.3 | settled | partial | settled | partial | open | open |
+| Mac 6.11r1 | partial | open | partial | partial | partial | partial |
 | Android Classic 1.8 | settled | partial | partial | settled | partial | partial |
 | Android Classic 2.2 and Era 2.0 | open | open | partial | partial | partial | open |
 | Android Era 1.7, and Classic 1.6, 1.7 and 2.0 | open | open | open | open | open | open |
@@ -275,6 +275,7 @@ gs2lib's settled cells mean the library has no script machine, not that a client
 - Windows 4.04r2 was read. It is not an unread copy of the Mac image: the handler set matches, the shift rule is the x86 one, and the clock section above is its own **[doc]** **[bin]**.
 - Windows 5.12's dispatcher matches 5.00r7. It is not an inference **[doc]**.
 - 5.24r4, 5.30r3, 5.31r4, 6.00r2 and 6.00r4 are one VM. They are not 5.00r7 (48 and 49 are gone) and they are not 6.03r7 (the stack cap and the double-precision square root remain) **[doc]**.
+- Unpacked Windows 6.1.1.3 and Mac 6.11r1 keep the double-precision positive square root. They are not 6.03r7's single-precision power rule **[bin]**.
 - Linux 4.20r6 is not the September 2006 Mac image. The Linux notes give it opcode 11 and folds 200–233; the Mac image has neither **[bin]**.
 
 ### What the script corpora do not settle
@@ -288,7 +289,7 @@ The weapon survey and the world survey grade a compiler: which source it accepts
 - [x] ~~Operand order of opcodes 48 and 49, and a single description of how many values opcode 54 pops on 5.00r7.~~ Settled in [static-reads-appendix-e-2026-11-20-b.md](static-reads-appendix-e-2026-11-20-b.md#gs2-opcodes-48-49-and-54-on-500r7-e209): 54 takes three values, 49 lists in reverse push order, 48 takes name-then-value pairs with an upward-counting loop.
 - [x] ~~The 6.x name of the loop-limit property.~~ `maxlooplimit`, scrambled ([static-reads-appendix-e-2026-11-20-j.md](static-reads-appendix-e-2026-11-20-j.md#the-6x-loop-limit-name)). 6.00r2 and 6.00r4 have the field without the plain name `maxlooplimit`.
 - [ ] Mac 4.04r2, Mac 5.12, the December 2006 Mac 4.20r6, 6.015, 6.034, Android Era 1.7, and Classic 1.6, 1.7 and 2.0. Classic 2.2 and Era 2.0 are matched to 1.8 in [static-reads-appendix-e-2026-11-20-n.md](static-reads-appendix-e-2026-11-20-n.md); their execution loop was not read case by case.
-- [ ] Maths on unpacked 6.1.1.3 and on Mac 6.11r1. The 6.03r7 single-precision square root does not transfer.
+- [x] ~~Maths on unpacked 6.1.1.3 and on Mac 6.11r1. The 6.03r7 single-precision square root does not transfer.~~ Both keep `b == 2` → `a * a` and take a positive `b == 0.5` in **double** precision ([note](static-reads-appendix-e-2026-11-24-g082.md)).
 - [ ] Whether Linux 4.20r6's fusion and opcode 11, published from a handoff the editor did not re-run, match a fresh read of that ELF.
 - [ ] The 5.00r7 event-queue cap of 1000, read on a backup from a patched install, against a stock image. 4.20r8's cap is 9999.
 - [ ] Unity 7.x, left out of scope.
