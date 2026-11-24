@@ -93,8 +93,11 @@ Behaviours seen (canary up throughout; all **[lab]**, 1.28b2 only):
   the opposite direction.
 - **Odd login types:** type 1 (RC) and a non-login first packet closed the socket with no
   reply; types 2, 5, 64 and 127 were left open with no reply.
-- **Half-open on double login:** two valid login lines in one frame left the connection
-  neither logged in nor disconnected — a half-open socket. Worth a closer look.
+- **Double login completes a session (corrected 2026-11-24):** two valid login lines in one
+  frame on 1.28b2 produce a normal login stream (`9,14,100,…`), not a half-open socket. The
+  earlier “id 8 only / neither logged in nor closed” reading was incomplete (under-drain /
+  canary crosstalk). Held double-login sockets occupy ordinary player slots; releasing them
+  frees the canary. See follow-up below.
 - **Unauthenticated id 8 — canary artifact (confirmed 2026-11-24):** pre-auth frame and
   malformed-login cases in the canary harness saw an S→C id 8 (`OTHERPLPROPS`) on sockets
   that had not logged in. A solo re-run on the same 1.28b2 build with **no canary and no
@@ -126,10 +129,17 @@ Follow-ups:
 - [x] Re-run the post-login cases with a per-case `guest` account reset, to separate each
   case's effect from cumulative state. **Done 2026-11-24:** idsweep+body with per-case
   account restore → no sticky id 33; empty `id-40`/`id-222` replies are `none` when the
-  account is clean. Do not start the half-open follow-up from this row.
+  account is clean.
 - [ ] Narrow which case grants `NPCWEAPONADD` (original TSV: first dirty canary after empty
   `id-25`; not reproduced under the 2026-11-24 per-case reset harness).
-- [ ] The half-open double-login socket: does it leak a slot / persist?
+- [x] The half-open double-login socket: does it leak a slot / persist? **Done 2026-11-24:**
+  on 1.28b2 the socket is **not** half-open — two login lines in one frame complete a normal
+  login (solo and held). While those TCP sessions are held open they occupy ordinary player
+  slots (canary fails with connection-reset once ~8 are held); closing them restores a clean
+  canary immediately — **no ghost slot after client close**. A single held session stayed
+  open for at least 10–30 s with no server-side close (`pktimeout` is 300 s). Contrast: 1.21
+  double-login left reply `none` / socket open and dropped the canary (out of this row's
+  scope).
 
 ## GServer 1.3 test, 1.25, 1.27 — gen2 sweeps (2026-11-20) **[lab]**
 
@@ -142,7 +152,8 @@ in brief:
 
 - Version-gate refusal text confirmed live and per-build (1.25 "1.2 rev1", 1.27 "1.27",
   1.3 "1.3"); empty/oversized creds → id 16 "doesn't exist", close.
-- **Double login differs by build:** 1.25/1.27/1.3 honour the second login; 1.28b2 half-opens.
+- **Double login:** 1.25/1.27/1.3 honour the second login and complete a session; 1.28b2
+  does the same (corrected 2026-11-24 — not half-open; see follow-up above / G316).
 - No `WANTFILE` traversal on any build (id 30 FILESENDFAILED, no bytes).
 - The 1.2x servers stream the whole start level on login (9,14,100,board,6,1,[5],10); the
   harness drain-to-idle fix (commit in this session) keeps that stream out of post-login

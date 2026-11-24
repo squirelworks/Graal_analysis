@@ -41,12 +41,21 @@ this is partial coverage, not a completed historical confirmation.
 158 any-order props with omit=leave / empty-str=clear; class 163/162/188 and weapon 33 GSHORT
 layouts dumped; no attribute write beyond script/flags. Local-NPC list after 114 remains open.
 
+2026-11-24 update: G316 (half-open double-login slot / persist) is answered in
+[server-fuzz-c2s-targets](../protocol/server-fuzz-c2s-targets.md): on GServer 1.28b2
+two login lines in one frame complete a normal login (`9,14,100,…`) — **not** half-open.
+Held sessions occupy ordinary player slots (canary fails once ~8 are held); close frees
+immediately (no ghost). Persist while TCP held (≥10–30 s). Checkbox closed.
+
+2026-11-24 update: G273 (3.x public listserver login on 14922/14923) is **DROPPED** —
+owner unavailable for public listserver; do not run. Board `claimed_by` marked DROPPED.
+
 2026-11-24 update: G314 (post-login per-case guest account reset) is answered in
 [server-fuzz-c2s-targets](../protocol/server-fuzz-c2s-targets.md): on GServer 1.28b2,
 `idsweep`+`body` with `srvfuzz --reset-cmd` restoring the pristine guest account before
 each case produced **no** sticky `NPCWEAPONADD` (id 33) on any canary; empty `id-40` /
 `id-222` reply `none` when the account is clean. The 2026-11-19 cumulative run's first
-dirty canary was after empty `id-25`. Checkbox closed. Do not start G316 from this row.
+dirty canary was after empty `id-25`. Checkbox closed.
 
 2026-11-24 update: G313 (unauthenticated S→C id 8 / `OTHERPLPROPS`) is answered in
 [server-fuzz-c2s-targets](../protocol/server-fuzz-c2s-targets.md): on GServer 1.28b2 a solo
