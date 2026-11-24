@@ -39,6 +39,11 @@ parsed map state from NC script input and classic script-output bounds. Original
 4.02 behavior, the historical RC editing limit and old-engine breakage remain open;
 this is partial coverage, not a completed historical confirmation.
 
+2026-11-24 update: G065 (GS1 gone in 5.12) is answered in
+[gs1-commands-by-version](../npc-library/gs1-commands-by-version.md#512-no-gs1-command-table-2026-11-24):
+`gs1scan.py x86` finds 0 commands in the genuine 5.12 engine against 193 in the 5.00r7 control; 59 names are
+gone and the other 134 survive only as GS2 built-ins. Checkbox closed.
+
 2026-11-24 update: G084 (5.00r7 event-queue cap) is answered in
 [gs2-vm-loader-diff](../client-internals/gs2-vm-loader-diff.md#500r7-event-queue-cap-g084-2026-11-24):
 both event receivers refuse at 1000 queued events in the unpatched engine and in both patched
