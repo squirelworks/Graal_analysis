@@ -20,9 +20,10 @@ order: [`connector-script.md`](connector-script.md).
 | Guessed connector DNS labels under the public site domain do not resolve | Settled **[lab]** (NXDOMAIN) |
 | Some 6.113 install trees carry an on-disk license-style host list | Settled for one lab tree **[lab]** (see below) |
 
-This does **not** close the loopback `conf.gs` harness, login-step argument
-order, `?p=` binding, or post-decrypt Login reply contract. Those stay open
-in `v6113-status.md`.
+This does **not** close login-step argument order, `?p=` binding, or the
+post-decrypt Login reply contract. Those stay open in `v6113-status.md`.
+The loopback `conf.gs` harness (G248) is answered in `conf-gs-fuzzing.md`
+(Phase A fail-closed on stock; Phase B / first encrypted frames blocked).
 
 ## Live path (behaviour only)
 
@@ -69,20 +70,21 @@ cache before Login UI. Treat “no license file” as **not universal** across
 every 6.113 tree; treat the connector fetch as the gate for `GNP1905C`.
 **[lab][inf]**
 
-## Loopback harness (still open)
+## Loopback harness (G248 — answered 2026-11-24)
 
-A loopback connector responder that a stock or redirected 6.113 accepts was
-**not** started this pass. Seeding it needs either a lab-held clear
-connector reply body or a decrypt of the `GRESCR01` `StartScript_Connector`
-cache with session script keys. Packet capture on the lab host was not
-available without elevation. **[lab]**
+The loopback connector responder + mutator harness later landed in
+`../tools/connfuzz/` (`conf-gs-fuzzing.md`). **Phase A** container fuzz
+against stock 6.113 fails closed on every one-field mutation. A
+lab-signed accept (Phase B / first encrypted frames on the stock path)
+stays **blocked**: trust-anchor swap NO-GO and session-key recovery
+stopped. **[lab]**
 
-Until that harness exists, keep using:
+Keep using:
 
-- Mac 6.111 offline connector replay for cipher / id-table facts
-  (`v611-outgoing-cipher.md`, `v611-id-tables.md`);
-- this note only for “Windows 6.113 still hits a live connector before
-  Login”.
+- Mac 6.111 offline connector replay and the clean-room repro for cipher /
+  id-table / script-content facts (`v611-outgoing-cipher.md`,
+  `v611-id-tables.md`, `conf-gs-fuzzing.md`);
+- this note for “Windows 6.113 still hits a live connector before Login”.
 
 ## Non-goals / scrub
 

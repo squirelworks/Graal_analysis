@@ -165,5 +165,5 @@ The reply container is read and sized before the signature check decides, so its
 
 Eighteen one-field mutations of the container (marker, signature, inner length, and payload shorter or longer than declared) were served to the real packed client on loopback and compared with a clean-room copy of the check. Every one failed closed: the client stayed up and showed its connect-error dialog, with no crash, no hang and no accept. The largest declared length and the length-against-body mismatches did not over-read, so the client validates the container length before it uses it [lab] (protocol/conf-gs-fuzzing.md#results-2026-11-19-lab).
 
-Two-field and transport-timing mutations against the real client, and script-content mutations through a client that owns its key, were not run [lab] (protocol/conf-gs-fuzzing.md#still-open--next).
+Two-field and transport-timing mutations against the real client, and script-content mutations through a client that owns its key, were not run; those sit outside G248 on the clean-room repro track [lab] (protocol/conf-gs-fuzzing.md#g248-close-2026-11-24).
 
