@@ -17,7 +17,7 @@ G015	manual/app-e-open-questions.md	E#324	Combat live checks still open (best gu
 G016	manual/app-e-open-questions.md	E#325	Sound census and playback limits (best guess: none yet; needs a per-backend playback test)	lab	Win10 VM on lab host B or Linux VM (Wine)	high	Lab host B Appendix E batch thread
 G017	manual/app-e-open-questions.md	E#401	Listserver reply ids 1 and 2 (best guess: the 2002 listserver used them as the RC reads them)	maybe-never	-	high	free
 G018	manual/app-e-open-questions.md	E#402	The 2000-era listserver reply (best guess: today's legacy reply is the old one unchanged)	maybe-never	-	high	free
-G019	manual/app-e-open-questions.md	E#403	Classic logins on port 14922 (best guess: 14922 answered classic logins in 2001 and stopped later)	owner	-	high	free
+G019	manual/app-e-open-questions.md	E#403	Partial 2026-11-24: public 14922 answers classic shape-B login with plain-zlib list (4 rows) + status/site/upgrade/id6; overturns 2026-10-25 classic→14922 silence. See g019-classic-login-14922-2026-11-24.md. Historical 2001 + stock 2.17.1 still open.	owner	-	high	partial — today answers classic on 14922; 2001/stock 2.17.1 open
 G020	manual/app-e-open-questions.md	E#404	A public server refusing 2.05 (best guess: an older version table with no 2.05 entry)	owner	-	high	free
 G021	manual/app-e-open-questions.md	E#406	How the official listserver assigns PC ids (best guess: a row number in a machine table)	maybe-never	-	high	free
 G022	manual/app-e-open-questions.md	E#422	Quoting of folder rights (best guess: the original server stored the CSV form)	maybe-never	-	high	free

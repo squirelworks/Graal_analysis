@@ -170,3 +170,4 @@ V2100-GANI-PREFIXES-20261123	windows	native-static-raw-literals-prefix-helper-an
 V2100-GANI-HEADER-WORDS-20261123	windows	selected-retained-parser-instructions-and-identity-bound-raw-header-word-data
 V2100-GANI-KEYWORD-REMOVAL-20261123	windows	native-static-caller-registers-concrete-list-method-and-post-removal-count-contract
 LOGIN-PROBE-G002-20261124	windows	lab
+LIST-PROBE-G019-20261124	windows	lab

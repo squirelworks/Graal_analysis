@@ -51,7 +51,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#325 | Sound census and playback limits | Lab | none yet; needs a per-backend playback test | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
-| E#403 | Classic logins on port 14922 | Owner | 14922 answered classic logins in 2001 and stopped later | [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
+| E#403 | Classic logins on port 14922 | Owner (partial) | today's public 14922 answers classic shape-B (plain-zlib list); 2001 stop/move still a guess | [cap] (protocol/g019-classic-login-14922-2026-11-24.md); [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
 | E#404 | A public server refusing 2.05 | Owner | an older version table with no 2.05 entry | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
@@ -329,17 +329,18 @@ These questions are about the programs on the other side of the connection (→ 
 
 ### E#403 Classic logins on port 14922
 
-**Question.** Why a real 2.17.1 sends a classic login to a port that does not answer it today [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes).
+**Question.** Why a real 2.17.1 sends a classic login to a port that (as of 2026-10-25) did not answer it [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Claim A | A real 2.17.1 sends a classic login (shape B) to port 14922, the port in its signed `arrays2.dat` | [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
-| Claim B | The public 14922 accepts a classic login and never answers it; the 2001-era tools put pre-2.2 clients on 14923 | [cap] (protocol/listserver-login-type-matrix-2026-10-25.md#result); [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f-src) |
-| Open | Whether the 2001 service answered classic logins on 14922, whether 2.17.1 was built for another listserver, and whether the zlib header (`78 DA` against `78 9C`) matters | [inf] (server-notes/lab-servers-2026-10-30.md#real-clients-against-it-today-lab); [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
-| Tried (2026-11-20) | The owner approved the public captures, but no lab device holds an account for the public service, so none was run; the project leaves this entry open rather than contact the service again | [doc] (AGENTS.md#labs) |
-| Best guess | 14922 answered classic logins when 2.17.1 shipped and stopped when the service moved them to 14923; the zlib header does not matter. Confidence: moderate | [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
-| Settles it | A list-only capture of a pristine 2.17.1 against the public service, with the owner's written permission | [doc] (AGENTS.md#labs) |
-| Outlook | Owner; even then, today's service may not show what 2001's did | [doc] (AGENTS.md#labs) |
+| Claim B (2026-10-25) | The public 14922 accepted a classic login and never answered it; the 2001-era tools put pre-2.2 clients on 14923 | [cap] (protocol/listserver-login-type-matrix-2026-10-25.md#result); [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f-src) |
+| Settled part (2026-11-24, G019) | Official list on port **14922** answers a classic shape-B login (`newmain` + account/password in one plain zlib frame) with two plain-zlib frames: id **0** list (4 rows that afternoon) then ids **2**, **3**, **5**, **6**. No refuse/reset. Overturns the 2026-10-25 classic→14922 silence for today's service | [cap] (protocol/g019-classic-login-14922-2026-11-24.md) |
+| Open | Whether the 2001 service answered classic logins on 14922, whether 2.17.1 was built for another listserver, and whether a stock 2.17.1 binary matches the Seihai shape-B result | [inf] (server-notes/lab-servers-2026-10-30.md#real-clients-against-it-today-lab); [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
+| Tried (2026-11-20) | The owner approved the public captures, but no lab device held an account that day, so none was run then | [doc] (AGENTS.md#labs) |
+| Best guess | 14922 once answered classic logins, went silent (as on 2026-10-25), and as of 2026-11-24 answers them again; the zlib header does not decide it. Confidence: moderate for today's answer, low for the 2001 timeline | [cap] (protocol/g019-classic-login-14922-2026-11-24.md); [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
+| Settles it | A list-only capture of a pristine 2.17.1 against the public service (still useful), and any 2001-era evidence for the old port split | [doc] (AGENTS.md#labs) |
+| Outlook | Owner (partial). Today's classic answer on 14922 is recorded; 2001 history and a stock 2.17.1 run remain open | [doc] (AGENTS.md#labs) |
 
 ### E#404 A public server refusing 2.05 inside its own range
 
