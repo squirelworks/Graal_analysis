@@ -66,7 +66,7 @@ GServer-v2 stores only the first field (the platform) and passes the whole strin
 
 ## The listserver and the Login server
 
-3.x is the last generation with a separate listserver protocol. 3.04 and 3.153 send listserver id 7, a key byte and `G3D30123newmain`, which is 2.22's `GNW30123newmain` with the new prefix. Id 1 (account, password) follows in the same plain zlib frame, and the reply is gen 5. The host and port come from the RSA-signed `license.graal`, which names a host on port 14922[^v3][^tiger]. No `G3D30123` login has been tried against a public listserver yet, so the port status for 3.x stays "assumed"[^p3x].
+3.x is the last generation with a separate listserver protocol. 3.04 and 3.153 send listserver id 7, a key byte and `G3D30123newmain`, which is 2.22's `GNW30123newmain` with the new prefix. Id 1 (account, password) follows in the same plain zlib frame, and the reply is gen 5. The host and port come from the RSA-signed `license.graal`, which names a host on port 14922[^v3][^tiger]. A `G3D30123` one-frame list login against the public listserver on 14922 and 14923 (2026-11-24) got a modern list on both ports, so the 3.x port status is **confirmed** on 14922[^p3x][^g273].
 
 From 4.x there is no listserver protocol. The client reads a host from `license.graal`, still RSA-signed and now on port 14900, and logs in to it as an ordinary game server named `Login`, with the game login above. That server sends the server list and the account screens as scripted GUI, and S→C 190 raises `onServerListerConnect`[^v4][^v5]. 6.01 and 6.03 keep this, but compile the hosts in, scrambled, and read no license file[^v6]. While the server name starts with "login", 4.x to 6.x clients draw no characters and no HUD. A server ends that mode with S→C 178 (server warp) to a server with another name[^play].
 
@@ -95,7 +95,7 @@ The Graal3D of February 2000 is a different program. It is a DirectX client with
 
 ## Open points
 
-- [ ] Try the 3.x `G3D30123` listserver login against a public listserver on 14922, then 14923, to settle the "assumed" port status. Owner approval is needed for a public login (see `AGENTS.md`).
+- [x] Try the 3.x `G3D30123` listserver login against a public listserver on 14922, then 14923, to settle the "assumed" port status. Done 2026-11-24: both ports answered; see [`g3d30123-public-listserver-2026-11-24.md`](g3d30123-public-listserver-2026-11-24.md)[^g273].
 - [ ] Read the join password and arguments that 3.153 and 4.20r6 put in their Torque connect request. Both are still "not traced"[^net].
 - [x] ~~Find a 3.0 or 3.01 binary.~~ Published Linux 3.0beta and 3.01 reads recovered `G3D16053` and `G3D27063` statically on 2026-11-13 ([catalogue](../client-internals/version-token-catalogue.md)); the [2026-11-16 installer study](../version-profiles/batch-linux-3x-clean-installers-2026-11-16.md) records the unpacked inputs. **[bin][file]**
 - [ ] Confirm, with build dates, that the 2010+ year character is a hex digit.
@@ -117,6 +117,7 @@ The Graal3D of February 2000 is a different program. It is a DirectX client with
 [^walk]: [login-and-walk.md](login-and-walk.md); [session-opcodes-cleaned.md](session-opcodes-cleaned.md).
 [^tiger]: [lab-304-linux-2026-10-30.md](../version-profiles/lab-304-linux-2026-10-30.md); [lab-mac-tiger-2026-10-31.md](../version-profiles/lab-mac-tiger-2026-10-31.md).
 [^p3x]: [3.04-3.153.md](../version-profiles/3.04-3.153.md).
+[^g273]: [g3d30123-public-listserver-2026-11-24.md](g3d30123-public-listserver-2026-11-24.md); port table in [list-ports.md](../client-internals/version-profiles/list-ports.md).
 [^play]: [v5v6-lab-play.md](v5v6-lab-play.md), "The 'Login' server mode".
 [^lion]: A Lion 10.7.5 lab run of 6.11r1 on 2026-11-11 (owner-held record) saw the HTTPS attempt, then the HTTP `conf.gs` request with `User-Agent: Graal/6.111`, as the static notes predict.
 [^v7]: [v7x-protocol.md](v7x-protocol.md); [v7-graal3d-framing-and-packet-tables.md](v7-graal3d-framing-and-packet-tables.md); [v7-graal3d-identity-and-builds.md](v7-graal3d-identity-and-builds.md).

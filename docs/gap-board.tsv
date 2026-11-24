@@ -1,6 +1,6 @@
 id	source	where_in_source	gap	kind	runs_on	priority	claimed_by
 G001	manual/app-e-open-questions.md	E#1	Compiler of the early Delphi builds (best guess: a pre-release Delphi 3 compiler; not Delphi 2 or C++Builder 1)	maybe-never	-	high	free
-G002	manual/app-e-open-questions.md	E#3	What a public 5.x or 6.x Login server sends (best guess: a GUI-script lobby built from basepackage.gupd and S→C 190)	owner	-	high	free
+G002	manual/app-e-open-questions.md	E#3	Partial 2026-11-24: official Login:14900 answers G3D0311C guest with PLO_SIGNATURE+PLO_DISCMESSAGE "Please update your version.."; no 190/basepackage lobby for that token. Official accepting-client lobby still open. See g002-public-login-603r7-2026-11-24.md.	owner	-	high	partial — 6.03r7 reject path settled; official lobby unobserved
 G003	manual/app-e-open-questions.md	E#12	Whether the GNW digits are a build date (best guess: yes, DDMMY)	maybe-never	-	high	free
 G004	manual/app-e-open-questions.md	E#15	Graal 2002 and 1.40 send sets and default routes (best guess: each build follows its token's neighbour; 1.40 and v22 logins captured)	lab	Win10 VM on lab host B or Linux VM (Wine)	high	Lab host B Appendix E batch thread
 G005	manual/app-e-open-questions.md	E#16	Classic+ 1.13 login wire layout (best guess: the desktop gen-5 login (type 5, key, token, two strings, trailer); trailer and native run open)	missing	-	high	static-read thread
@@ -17,7 +17,7 @@ G015	manual/app-e-open-questions.md	E#324	Combat live checks still open (best gu
 G016	manual/app-e-open-questions.md	E#325	Sound census and playback limits (best guess: none yet; needs a per-backend playback test)	lab	Win10 VM on lab host B or Linux VM (Wine)	high	Lab host B Appendix E batch thread
 G017	manual/app-e-open-questions.md	E#401	Listserver reply ids 1 and 2 (best guess: the 2002 listserver used them as the RC reads them)	maybe-never	-	high	free
 G018	manual/app-e-open-questions.md	E#402	The 2000-era listserver reply (best guess: today's legacy reply is the old one unchanged)	maybe-never	-	high	free
-G019	manual/app-e-open-questions.md	E#403	Classic logins on port 14922 (best guess: 14922 answered classic logins in 2001 and stopped later)	owner	-	high	free
+G019	manual/app-e-open-questions.md	E#403	Partial 2026-11-24: public 14922 answers classic shape-B login with plain-zlib list (4 rows) + status/site/upgrade/id6; overturns 2026-10-25 classic→14922 silence. See g019-classic-login-14922-2026-11-24.md. Historical 2001 + stock 2.17.1 still open.	owner	-	high	partial — today answers classic on 14922; 2001/stock 2.17.1 open
 G020	manual/app-e-open-questions.md	E#404	A public server refusing 2.05 (best guess: an older version table with no 2.05 entry)	owner	-	high	free
 G021	manual/app-e-open-questions.md	E#406	How the official listserver assigns PC ids (best guess: a row number in a machine table)	maybe-never	-	high	free
 G022	manual/app-e-open-questions.md	E#422	Quoting of folder rights (best guess: the original server stored the CSV form)	maybe-never	-	high	free
@@ -271,7 +271,7 @@ G269	protocol/linux-404r2-receive-scope.md	line 55	Capture version-specific mess
 G270	protocol/linux-603-network-gs2.md	line 53	Measure helper status, pending-name suppression, reader invocation, requests and notification delivery separately; static caller gates are qualified in the class-cache note.	lab	Linux VM on lab host B	medium	partial: static caller gates and acceptance plan; runtime cache observations open
 G271	protocol/linux-cross-version-receive.md	line 34	Capture delivery envelopes, descriptors, cache outcomes and callback behavior.	lab	Linux VM on lab host B	medium	free
 G272	protocol/linux-local-login-matrix.md	line 36	Measure the remaining delivery, parser, event and cache gates separately.	lab	Linux VM on lab host B	medium	free
-G273	protocol/login-tokens-3x-7x.md	line 98	DROPPED 2026-11-24: try the 3.x G3D30123 listserver login against a public listserver on 14922, then 14923 — owner unavailable for public listserver; do not run.	owner	-	medium	DROPPED — owner unavailable for public listserver
+G273	protocol/login-tokens-3x-7x.md	line 98	Answered 2026-11-24: G3D30123 one-frame list-only login got a modern list on public 14922 and 14923; 3.04/3.153 port_status confirmed. See g3d30123-public-listserver-2026-11-24.md.	owner	-	medium	done — both ports answered; assumed→confirmed
 G274	protocol/login-tokens-3x-7x.md	line 99	"Read the join password and arguments that 3.153 and 4.20r6 put in their Torque connect request. Both are still ""not traced""[^net]."	static	static: cloud or a host (lab host A/B)	medium	free
 G275	protocol/login-tokens-3x-7x.md	line 100	Find a Linux 3.0beta or 3.01 binary and recover its token (G3D16053 / G3D27063); resolved by the published November 13 static reads and November 16 installer study. Original transport remains separately open.	static	static: cloud or a host (lab host A/B)	medium	resolved (existing published binary and token evidence; no new run)
 G276	protocol/login-tokens-3x-7x.md	line 101	Confirm, with build dates, that the 2010+ year character is a hex digit.	static	static: cloud or a host (lab host A/B)	medium	free

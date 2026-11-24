@@ -172,3 +172,5 @@ V2100-GANI-KEYWORD-REMOVAL-20261123	windows	native-static-caller-registers-concr
 MAC-PPC-404-IDENTITY-PROPERTY-20261124-R1	macos	researcher-static-summary
 MAC-PPC-420-IDENTITY-PROPERTY-20261124-R1	macos	researcher-static-summary
 MAC-PPC-V5-IDENTITY-PROPERTY-20261124-R1	macos	researcher-static-summary
+LOGIN-PROBE-G002-20261124	windows	lab
+LIST-PROBE-G019-20261124	windows	lab

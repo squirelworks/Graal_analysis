@@ -35,7 +35,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | Entry | Question | Outlook | Best guess | Source |
 | --- | --- | --- | --- | --- |
 | E#1 | Compiler of the early Delphi builds | Maybe never | a pre-release Delphi 3 compiler; not Delphi 2 or C++Builder 1 | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
-| E#3 | What a public 5.x or 6.x `Login` server sends | Owner | a GUI-script lobby built from `basepackage.gupd` and S→C 190 | [inf] (protocol/login-session-known.md#still-unobserved) |
+| E#3 | What a public 5.x or 6.x `Login` server sends | Owner (partial) | a GUI-script lobby built from `basepackage.gupd` and S→C 190 (official Login rejects `G3D0311C` with 25+16 before that lobby) | [cap] (protocol/g002-public-login-603r7-2026-11-24.md); [inf] (protocol/login-session-known.md#still-unobserved) |
 | E#12 | Whether the `GNW` digits are a build date | Maybe never | yes, DDMMY | [inf] (client-internals/build-catalogue.md#patterns-worth-knowing) |
 | E#15 | Graal 2002 and 1.40 send sets and default routes | Lab | each build follows its token's neighbour; 1.40 and v22 logins captured | [inf] (client-internals/graal2002-and-140-builds.md#open-points) |
 | E#16 | Classic+ 1.13 login wire layout | Missing | the desktop gen-5 login (type 5, key, token, two strings, trailer); trailer read, string sources and native run open | [bin] (protocol/ios-classic-plus-113-framing.md#login) |
@@ -51,7 +51,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#325 | Sound census and playback limits | Lab | none yet; needs a per-backend playback test | [inf] (client-internals/sound-files-6x.md#what-the-files-are) |
 | E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
-| E#403 | Classic logins on port 14922 | Owner | 14922 answered classic logins in 2001 and stopped later | [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
+| E#403 | Classic logins on port 14922 | Owner (partial) | today's public 14922 answers classic shape-B (plain-zlib list); 2001 stop/move still a guess | [cap] (protocol/g019-classic-login-14922-2026-11-24.md); [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
 | E#404 | A public server refusing 2.05 | Owner | an older version table with no 2.05 entry | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
@@ -151,15 +151,14 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 
 | Part | Discussion | Source |
 | --- | --- | --- |
-| Unobserved | The bytes the server sends, including the payload of S→C 190 | [doc] (protocol/login-session-known.md#still-unobserved) |
-| Unobserved | The GUI script text for the server list, the account screens and the `ChatBar` control | [doc] (protocol/login-session-known.md#still-unobserved) |
-| Unobserved | The file list inside `basepackage.gupd` and any later update package, and the backdrop level the server chooses | [doc] (protocol/login-session-known.md#still-unobserved) |
+| Unobserved | The lobby bytes on the official Login (S→C 190 payload, GUI scripts, `ChatBar`, `basepackage.gupd` file list, backdrop level) when the client is accepted | [doc] (protocol/login-session-known.md#still-unobserved) |
 | Unobserved | The 6.11 connector script body, and with it the framing, cipher and login token a 6.11 client uses on the public service (the lab path is in → §2.10.8) | [doc] (protocol/login-session-known.md#still-unobserved) |
 | Tried | A real Windows 4.20r8 to 6.03r7 run reached a lab `Login` server, so the client side of the lobby is known; the server side is what a lab server chooses to send | [lab] (live-runs/real-win10-2026-11-18/README.md) |
-| Tried (2026-11-20) | The owner approved the public captures, but no lab device holds an account for the public service, so none was run; the project leaves this entry open rather than contact the service again | [doc] (AGENTS.md#labs) |
-| Best guess | The lobby is a set of GUI scripts delivered in the update package and driven by S→C 190, with no lobby logic in the client beyond the script runtime. Confidence: moderate | [inf] (protocol/login-session-known.md#still-unobserved) |
-| Settles it | A capture of a real `Login` session; it touches a public server, so it needs the owner's written permission | [doc] (AGENTS.md#labs) |
-| Outlook | Owner. If the service has changed since these clients shipped, part of the period behaviour may be lost for good | [doc] (AGENTS.md#labs) |
+| Tried (2026-11-20) | The owner approved the public captures, but no lab device holds an account for the public service, so none was run that day | [doc] (AGENTS.md#labs) |
+| Settled part (2026-11-24, G002) | Official Login on port **14900** answers a Windows 6.03r7 guest (`G3D0311C`) with S→C **25** then **16** (`Please update your version..`); no 190 / package / lobby burst for that token | [cap] (protocol/g002-public-login-603r7-2026-11-24.md) |
+| Best guess | When a Login accepts the client, the lobby is still a set of GUI scripts delivered in the update package and driven by S→C 190. Confidence: moderate for accepting servers; official Login no longer accepts 6.03r7 | [inf] (protocol/login-session-known.md#still-unobserved); [cap] (protocol/g002-public-login-603r7-2026-11-24.md) |
+| Settles it | A capture of an **accepted** official `Login` session (a token the service still takes), with the owner's written permission | [doc] (AGENTS.md#labs) |
+| Outlook | Owner (partial). The 6.03r7 reject path is recorded; the official lobby for a current client may need a newer build and may be partly lost for the classic era | [doc] (AGENTS.md#labs) |
 
 ### E#16 Classic+ 1.13 caller contract versus mobile wire layout
 
@@ -330,17 +329,18 @@ These questions are about the programs on the other side of the connection (→ 
 
 ### E#403 Classic logins on port 14922
 
-**Question.** Why a real 2.17.1 sends a classic login to a port that does not answer it today [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes).
+**Question.** Why a real 2.17.1 sends a classic login to a port that (as of 2026-10-25) did not answer it [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Claim A | A real 2.17.1 sends a classic login (shape B) to port 14922, the port in its signed `arrays2.dat` | [cap] (protocol/login-frames-by-version-2026-10-25.md#the-three-real-shapes) |
-| Claim B | The public 14922 accepts a classic login and never answers it; the 2001-era tools put pre-2.2 clients on 14923 | [cap] (protocol/listserver-login-type-matrix-2026-10-25.md#result); [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f-src) |
-| Open | Whether the 2001 service answered classic logins on 14922, whether 2.17.1 was built for another listserver, and whether the zlib header (`78 DA` against `78 9C`) matters | [inf] (server-notes/lab-servers-2026-10-30.md#real-clients-against-it-today-lab); [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
-| Tried (2026-11-20) | The owner approved the public captures, but no lab device holds an account for the public service, so none was run; the project leaves this entry open rather than contact the service again | [doc] (AGENTS.md#labs) |
-| Best guess | 14922 answered classic logins when 2.17.1 shipped and stopped when the service moved them to 14923; the zlib header does not matter. Confidence: moderate | [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
-| Settles it | A list-only capture of a pristine 2.17.1 against the public service, with the owner's written permission | [doc] (AGENTS.md#labs) |
-| Outlook | Owner; even then, today's service may not show what 2001's did | [doc] (AGENTS.md#labs) |
+| Claim B (2026-10-25) | The public 14922 accepted a classic login and never answered it; the 2001-era tools put pre-2.2 clients on 14923 | [cap] (protocol/listserver-login-type-matrix-2026-10-25.md#result); [src] (tools/server-tools-2001.md#gs2emu-serverlist-thedgtl-snapshot-de66a3f-src) |
+| Settled part (2026-11-24, G019) | Official list on port **14922** answers a classic shape-B login (`newmain` + account/password in one plain zlib frame) with two plain-zlib frames: id **0** list (4 rows that afternoon) then ids **2**, **3**, **5**, **6**. No refuse/reset. Overturns the 2026-10-25 classic→14922 silence for today's service | [cap] (protocol/g019-classic-login-14922-2026-11-24.md) |
+| Open | Whether the 2001 service answered classic logins on 14922, whether 2.17.1 was built for another listserver, and whether a stock 2.17.1 binary matches the Seihai shape-B result | [inf] (server-notes/lab-servers-2026-10-30.md#real-clients-against-it-today-lab); [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
+| Tried (2026-11-20) | The owner approved the public captures, but no lab device held an account that day, so none was run then | [doc] (AGENTS.md#labs) |
+| Best guess | 14922 once answered classic logins, went silent (as on 2026-10-25), and as of 2026-11-24 answers them again; the zlib header does not decide it. Confidence: moderate for today's answer, low for the 2001 timeline | [cap] (protocol/g019-classic-login-14922-2026-11-24.md); [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
+| Settles it | A list-only capture of a pristine 2.17.1 against the public service (still useful), and any 2001-era evidence for the old port split | [doc] (AGENTS.md#labs) |
+| Outlook | Owner (partial). Today's classic answer on 14922 is recorded; 2001 history and a stock 2.17.1 run remain open | [doc] (AGENTS.md#labs) |
 
 ### E#404 A public server refusing 2.05 inside its own range
 

@@ -38,7 +38,7 @@ connector machine fields) is **not** started. **[inf]**
 | Match (already known) | Master port → matching dictionary for `IOEthernetInterface` with `IOPrimaryInterface` under `IOPropertyMatch` → matching services iterator | 4.04r2, 4.20r6, v5 **[bin]** |
 | Property read | For each iterator entry: parent under `IOService`; `IOMACAddress` via `IORegistryEntryCreateCFProperty`; `CFDataGetBytes` of length **6** into a zeroed buffer; release objects | same three **[bin]** |
 | Copy | On success, copy the six bytes into a small fixed buffer used by the hasher | same three **[bin]** |
-| Hash | MD5 init (`0x67452301` / `0xefcdab89` / `0x98badcfe` / `0x10325476`), update over the six raw bytes, finalise, hex-encode all 16 digest bytes into a string | same three **[bin]** |
+| Hash | MD5 init (standard RFC 1321 initial values), update over the six raw bytes, finalise, hex-encode all 16 digest bytes into a string | same three **[bin]** |
 | Empty path | If match/read fails, the string path clears instead of hashing | same three **[bin]** |
 | Emulated empty field | QEMU/OpenBIOS without device-tree `built-in` → no `IOPrimaryInterface` → empty network hash on login | already in the Tiger lab note; fits the empty path above **[lab][inf]** |
 
