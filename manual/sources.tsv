@@ -325,7 +325,7 @@ client-internals/v3-v5-protocol-pass/torque/v3-engine-surface.md	excluded		1; 2.
 client-internals/v3-v5-protocol-pass/torque/v4-engine-surface.md	excluded		1; 2.3	repeats the 4.x split already in §1.8.5 and §10.1.5
 client-internals/v3-v5-protocol-pass/torque/v5-engine-surface.md	cited	1	1; 2.3	cross-checked 2026-11-19; what holds is in Part I, conflicts are stated where they fall
 client-internals/v4-420r8-class-surface.md	cited	1	2.4; 1	carried into §1.8.5; §2.4 already has the class ids
-client-internals/v5v6-expiry-and-black-screen.md	cited	1; 4.1; E	1; 4.1	Wine fidelity + 2026-11-16 lab re-score: 5.24r4/6.03r7 draw tiles/HUD/player with 2.22 base assets; five-client wire cells were asset/warp-timing; open checkbox closed.
+client-internals/v5v6-expiry-and-black-screen.md	cited	1; 4.1; E	1; 4.1; E	Wine fidelity + 2026-11-16 lab re-score; G148 cutoff table folded 2026-11-24 (5.30r3/5.31r4/6.00r2/6.00r4 clock-search stop days; E#14 lab notes).
 client-internals/v7-701750-bridge-clock.md	cited	4.1	4.1	Bridge/clock boundaries and unknowns carried in 4.1.7; ten-record validation includes the short leaf, while exact identities and retained evidence remain owner-held.
 client-internals/v7-gameassembly-il2cpp.md	cited	1	1	managed host, binding layer, launch inputs and build diff in §1.8.10
 client-internals/v7-graal3d-unity-bridge.md	cited	E		v7 Unity/Quattro bridge surface

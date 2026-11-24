@@ -23,7 +23,16 @@ Tags: **[bin]** read from the client's memory dump (`v5v6-windows-unpacked.md`);
 - This fits WinLicense's own expiration-date feature, or a check wrapped in its virtual-machine macros. Which of the two it is was not read. **[inf]**
 - The clock has to stay set back for the **whole** session (`v5v6-lab-play.md`): when the clock jumps forward after start, the client disconnects with "You have been disconnected due to inactivity", and on 6.00r2/r4 the check seems to run again after login. **[lab][inf]**
 - The result of expiry is an **exit**, not a black screen.
-- The cutoff dates themselves were not read. Each build runs with the clock set back to its build month (RunAsDate 2011-06-14 for 6.00r2, 2011-06-28 for 6.00r4).
+- The cutoff dates were found by a day-level clock binary search (one fresh launch per probed day at 12:00). A day **passes** when the client dials the login host within about 30 s; a day **fails** when it prints only its start / beta banner, opens no connection, and exits. Boundaries were double-checked. **[lab]** ([5.30r3 / 5.31r4](../protocol/lab-appe-hostb-2026-11-20.md#expiry-dates-of-530r3-and-531r4-e14); [6.00r2 / 6.00r4](../protocol/lab-appe-hostb-2026-11-20c.md#expiry-dates-of-600r2-and-600r4-e14))
+
+| Build | Last day it runs | First day it stops | Notes |
+|---|---|---|---|
+| 5.30r3 | 2010-12-31 | 2011-01-01 | Round year-end; no game-side expiry text in the image **[lab]** |
+| 5.31r4 | 2011-03-20 | 2011-03-21 | About 75 days after its link date (2011-01-05) **[lab]** |
+| 6.00r2 | 2011-08-26 | 2011-08-27 | 75 days after the archive exe date (2011-06-13) **[lab]** |
+| 6.00r4 | 2011-09-08 | 2011-09-09 | 74 days after the archive exe date (2011-06-27) **[lab]** |
+
+Lab sessions that need these builds still set the clock back into the pass window for the **whole** session (for example 2011-06-14 for 6.00r2, 2011-06-28 for 6.00r4) and keep it steady so the timer warning is not set off.
 
 ### 5.24r4 in detail (no expiry)
 
@@ -99,7 +108,7 @@ So the five-client “wire” cells for these two builds were an **asset / warp-
 
 ## Open
 
-- [ ] The cutoff dates of 5.30r3, 5.31r4, 6.00r2 and 6.00r4 (inside the protection layer; binary search on the clock would find them).
+- [x] The cutoff dates of 5.30r3, 5.31r4, 6.00r2 and 6.00r4 (inside the protection layer; binary search on the clock would find them). **Done 2026-11-24 [lab]** — folded from the clock sweeps already recorded for E#14; see the cutoff table under [How the expiry works](#how-the-expiry-works-530r3-to-600r4).
 - [ ] Whether the Themida builds' timer check matches 5.24r4's thresholds.
 - [ ] The lab NPC `message` text not drawing on 5.24r4/6.03r7.
 - [x] Re-score the five-client Wine “wire” cells for 5.24r4 / 6.03r7 with the 2.22 base asset set staged (draw and input may still differ from real Windows). **Done 2026-11-16 [lab]** — both draw tiles/HUD/player under Wine with assets + warp hold; see table above.
