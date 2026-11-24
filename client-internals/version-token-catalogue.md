@@ -183,7 +183,7 @@ role/build/platform identity remain unchanged.
 
 ### iPhone
 
-The published survey covers 27 packages / 26 unique executables, with 23 token-bearing unique executables (24 packages because Poker 1.2 is duplicated). All recovered values below are static construction/recovery, not device captures. Two other tokens remain server-table labels only. Alien Abuse 1.0/1.1 are unresolved, not proven offline; Era+ 1.0 declares encryption and its token remains unread. Details and scanner limits: [iphone-version-tokens.md](iphone-version-tokens.md).
+The published survey covers the 2026-11-14 Eurocenter set plus a 2026-11-24 pass over further decrypted IPAs (Classic+ 1.0/1.4/1.9/1.10, Adrenaline Golf Free/Online, French Tarot Online 1.50, Bomber Online 1.30, Ace Tennis 2010 1.10, Dino Smash 1.1). All recovered values below are static construction/recovery, not device captures. `G3D2504D` remains a server-table / connector-legacy label only. Alien Abuse 1.0/1.1 are unresolved, not proven offline; Era+ 1.0 declares encryption and its token remains unread. Details and scanner limits: [iphone-version-tokens.md](iphone-version-tokens.md).
 
 | Build | Token | Grade | Source | Platform | Role | Repro | Repro label |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -210,8 +210,18 @@ The published survey covers 27 packages / 26 unique executables, with 23 token-b
 | AlloWin Pumpkins 1.0 (iOS) | `G3D04048` | B | [B@static] [Published per-app construction survey](iphone-version-tokens.md#the-binaries-bin); static only, no capture; duplicate packages are not independent evidence | iOS | game-login | (not audited) |  |
 | GraalOnline Classic+ 1.13 (iOS) | `G3D0208A` | B | [B@static] [Published per-app construction survey](iphone-version-tokens.md#the-binaries-bin); static only, no capture; duplicate packages are not independent evidence<br>[B@caller] [Caller corroboration](classic-113-login-construction.md#scope-and-prior-work); same original input, additional bounded caller method, not an independent package. | iOS | game-login | (not audited) |  |
 | Dino Smash 1.4 (iOS) | `G3D18010` | B | [B@static] [Published per-app construction survey](iphone-version-tokens.md#the-binaries-bin); static only, no capture; duplicate packages are not independent evidence | iOS | game-login | (not audited) |  |
-| "iPhone 1.11" (app not identified) | `G3D29090` | L | [L@report] [Mobile source audit](iphone-version-tokens.md#answer); gs2lib `CLVER_IPHONE_1_11`, app unbound | iOS | game-login | (no folder) |  |
-| "iPhone Belote 1.5" (app not identified) | `G3D2504D` | L | [L@report] [Mobile source audit](iphone-version-tokens.md#answer); gs2lib `CLVER_IPHONE_BELOTE_1_5` (added 2022), app unbound | iOS | game-login | (no folder) |  |
+| Dino Smash 1.1 (iOS) | `G3D04048` | B | [B@static] [2026-11-24 IPA pass](iphone-version-tokens.md#the-binaries-bin); static only, no capture | iOS | game-login | (not audited) |  |
+| French Tarot Online 1.50 (iOS) | `G3D04048` | B | [B@static] [2026-11-24 IPA pass](iphone-version-tokens.md#the-binaries-bin); static only, no capture | iOS | game-login | (not audited) |  |
+| Adrenaline Golf Online 1.0 (iOS) | `G3D04048` | B | [B@static] [2026-11-24 IPA pass](iphone-version-tokens.md#the-binaries-bin); static only, no capture | iOS | game-login | (not audited) |  |
+| Adrenaline Golf Online 1.1 (iOS) | `G3D04048` | B | [B@static] [2026-11-24 IPA pass](iphone-version-tokens.md#the-binaries-bin); static only, no capture | iOS | game-login | (not audited) |  |
+| GraalOnline Classic+ 1.0 (iOS) | `G3D04048` | B | [B@static] [2026-11-24 IPA pass](iphone-version-tokens.md#the-binaries-bin); static only, no capture | iOS | game-login | (not audited) |  |
+| GraalOnline Classic+ 1.4 (iOS) | `G3D18010` | B | [B@static] [2026-11-24 IPA pass](iphone-version-tokens.md#the-binaries-bin); static only, no capture | iOS | game-login | (not audited) |  |
+| Bomber Online 1.30 (iOS) | `G3D18010` | B | [B@static] [2026-11-24 IPA pass](iphone-version-tokens.md#the-binaries-bin); static only, no capture | iOS | game-login | (not audited) |  |
+| Ace Tennis 2010 1.10 (iOS) | `G3D18010` | B | [B@static] [2026-11-24 IPA pass](iphone-version-tokens.md#the-binaries-bin); static only, no capture | iOS | game-login | (not audited) |  |
+| GraalOnline Classic+ 1.9 (iOS) | `G3D18010` | B | [B@static] [2026-11-24 IPA pass](iphone-version-tokens.md#the-binaries-bin); static only, no capture | iOS | game-login | (not audited) |  |
+| GraalOnline Classic+ 1.10 (iOS) | `G3D29090` | B | [B@static] [2026-11-24 IPA pass](iphone-version-tokens.md#the-binaries-bin); static only, no capture; places gs2lib `CLVER_IPHONE_1_11` | iOS | game-login | (not audited) |  |
+| Adrenaline Golf Free 1.1 (iOS) | `G3D29090` | B | [B@static] [2026-11-24 IPA pass](iphone-version-tokens.md#the-binaries-bin); static only, no capture; Clutch-decrypted store build | iOS | game-login | (not audited) |  |
+| "iPhone Belote 1.5" (app not identified) | `G3D2504D` | L | [L@report] [Mobile source audit](iphone-version-tokens.md#answer); gs2lib `CLVER_IPHONE_BELOTE_1_5` (added 2022), app unbound after 2026-11-24 IPA pass | iOS | game-login | (no folder) |  |
 | Graal Era+ 1.0 (iPhone) | unknown | U | [U@unresolved] [Mobile survey](iphone-version-tokens.md); inspected copy declares cryptid 1, token unread | iOS | unknown-game-login | (no folder) |  |
 | Alien Abuse 1.0 (iOS) | unknown | U | [U@unresolved] [Scanner boundary](iphone-version-tokens.md#scanner-boundary); no token recovered, offline status not established | iOS | unknown-game-login | (not audited) |  |
 | Alien Abuse 1.1 (iOS) | unknown | U | [U@unresolved] [Scanner boundary](iphone-version-tokens.md#scanner-boundary); no token recovered, offline status not established | iOS | unknown-game-login | (not audited) |  |
@@ -319,4 +329,5 @@ The repro's 2.3 folder is a 2.31 rebuild sending `GNW14015`. Its post-login tamp
 - [ ] Trace a v7 Worlds login to confirm the connector path supplies its token.
 - [x] ~~Read an iPhone client (a period IPA).~~ Belote 1.2/1.50 and Classic+ 1.13 read 2026-11-14 ([iphone-version-tokens.md](iphone-version-tokens.md)).
 - [x] ~~Place `G3D18010`.~~ Read in six 2010–2013 builds ([iphone-version-tokens.md](iphone-version-tokens.md)).
-- [ ] Place `G3D29090` and `G3D2504D` with another decrypted IPA, or capture one iPhone login in the lab ([iphone-version-tokens.md](iphone-version-tokens.md#how-to-close-it)).
+- [x] ~~Place `G3D29090`.~~ Classic+ 1.10 and Adrenaline Golf Free 1.1 (2026-11-24) ([iphone-version-tokens.md](iphone-version-tokens.md#how-to-close-it)).
+- [ ] Place `G3D2504D` with another decrypted IPA, or capture one iPhone login that sends it ([iphone-version-tokens.md](iphone-version-tokens.md#how-to-close-it)).

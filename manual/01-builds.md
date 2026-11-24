@@ -288,7 +288,7 @@ This is the lookup table behind the schemes: every token the notes have seen, in
 | `G3D04048` | iPhone, 2008 engine: Belote 1.2/1.50 and 14 more builds of the same publisher, 2008–2010 (gs2lib's "iPhone 1.1") | [bin] (client-internals/iphone-version-tokens.md#the-binaries-bin) |
 | `G3D0208A` | iPhone GraalOnline Classic+ 1.13 (not in gs2lib) | [bin] (client-internals/iphone-version-tokens.md#the-binaries-bin) |
 | `G3D18010` | iPhone, 2010 engine: Cocoto Kart Online 1.3, Cocoto Kart HD, Cocoto Magic Circus, Ace Tennis HD, Bomber Online 1.40, Dino Smash 1.4 (gs2lib's "iPhone 1.5") | [bin] (client-internals/iphone-version-tokens.md#the-binaries-bin) |
-| `G3D29090` | "iPhone 1.11" (server tables only, grade L; app not identified) | [srv] (client-internals/iphone-version-tokens.md#answer) |
+| `G3D29090` | Classic+ 1.10 / Adrenaline Golf Free 1.1 (grade B); gs2lib "iPhone 1.11" | [bin] (client-internals/iphone-version-tokens.md#answer) |
 | `G3D2504D` | "iPhone Belote 1.5" (server tables only, grade L; not what Belote 1.50 sends) | [srv] (client-internals/iphone-version-tokens.md#answer) |
 | `G3D2204D`, `G3D2304D`, `G3D2404D` | the legacy token table in the captured connector script (with `G3D2504D`); no client is tied to them. gs2lib names `G3D2204D` Worlds | [doc] (protocol/connector-script.md); [srv] (client-internals/version-token-catalogue.md) |
 

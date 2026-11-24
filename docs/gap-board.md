@@ -41,6 +41,8 @@ this is partial coverage, not a completed historical confirmation.
 158 any-order props with omit=leave / empty-str=clear; class 163/162/188 and weapon 33 GSHORT
 layouts dumped; no attribute write beyond script/flags. Local-NPC list after 114 remains open.
 
+2026-11-24 update: G155 (iPhone tokens G3D29090 / G3D2504D) is **partial**: `G3D29090` placed on Classic+ 1.10 and Adrenaline Golf Free 1.1 ([iphone-version-tokens](../client-internals/iphone-version-tokens.md)); `G3D2504D` still L after the expanded IPA pass. Lab wire capture not run (no device). Do not start G344 from this row.
+
 2026-11-24 update: G316 (half-open double-login slot / persist) is answered in
 [server-fuzz-c2s-targets](../protocol/server-fuzz-c2s-targets.md): on GServer 1.28b2
 two login lines in one frame complete a normal login (`9,14,100,…`) — **not** half-open.

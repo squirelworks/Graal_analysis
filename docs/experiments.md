@@ -403,7 +403,7 @@ the same rows as a task list. Read the source line before you start.
 
 | id | kind | gap | source | claimed |
 |---|---|---|---|---|
-| G155 | lab | Place G3D29090 and G3D2504D with another decrypted IPA, or capture one iPhone login in the lab (iphone-version-tokens.md). | `client-internals/version-token-catalogue.md` line 322 | free |
+| G155 | lab | Partial 2026-11-24: G3D29090 placed (Classic+ 1.10, Golf Free 1.1); G3D2504D still unbound. | `client-internals/version-token-catalogue.md` open points | partial |
 | G194 | lab | Run the GS2 loop-budget and event-queue boundaries in an Android runtime. | `docs/NEXT.md` line 250 | free |
 | G230 | lab | Establish the exact native resolver and coordinate/slot acceptance before claiming playback compatibility. | `formats/ios-gani-param1-placements.md` line 26 | free |
 | G245 | lab | What the per-launch ?p= value binds in the signature. | `protocol/connector-script.md` line 154 | free |

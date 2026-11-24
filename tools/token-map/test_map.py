@@ -36,14 +36,16 @@ class TokenMapDataTests(unittest.TestCase):
 
     def test_mobile_source_coverage_and_unresolved_apps(self):
         recovered = [r for r in ROWS if r["platform"] == "iOS" and r["role"] == "game-login" and r["grade"] == "B"]
-        assert len(recovered) == 23
-        assert len([r for r in recovered if r["token"] == "G3D04048"]) == 16
-        assert len([r for r in recovered if r["token"] == "G3D18010"]) == 6
+        assert len(recovered) == 34
+        assert len([r for r in recovered if r["token"] == "G3D04048"]) == 21
+        assert len([r for r in recovered if r["token"] == "G3D18010"]) == 10
+        assert len([r for r in recovered if r["token"] == "G3D29090"]) == 2
         assert len([r for r in recovered if r["token"] == "G3D0208A"]) == 1
         assert any("Belote (Expert Online) 1.50" in r["build"] for r in matching("G3D04048"))
+        assert any("Classic+ 1.10" in r["build"] for r in matching("G3D29090"))
         unknown = [r for r in ROWS if r["platform"] == "iOS" and r["state"] == "unresolved"]
         assert len(unknown) == 3
-        assert all(r["grade"] == "L" for r in matching("G3D29090"))
+        assert all(r["grade"] == "B" for r in matching("G3D29090") if r["state"] == "known")
         assert all("Belote 1.50" not in r["build"] for r in matching("G3D2504D"))
 
 
