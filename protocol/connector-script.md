@@ -143,9 +143,9 @@ The per-launch value is the decisive difference. It is why 6.11's live id tables
 1. A path past the per-launch value. Capture and replay, which worked for 6.11 and 6.113, does not work here.
 2. The operator's private key, so that a lab responder could sign a reply the stock client accepts. This is the same wall as for 6.113.
 3. A way to watch the client without inline hooks. The 7.x Themida self-check ends the process as soon as an inline hook touches the RSA verify, AES decrypt or RC4 key routines, so only read-only scans and hardware breakpoints under KVM work.
-4. The patched-client route: swap the compiled-in connector key for a lab key. It is not finished even for 6.113. The verify uses a pre-parsed bignum that has to be found per launch, and the payload is also encrypted under a compiled-in key that has not been recovered. 7.x adds IL2CPP on top, and the `?p=` DES key is the same unrecovered key.
+4. The patched-client route: swap the compiled-in connector key for a lab key. **Answered 2026-11-24 (G156):** on stock 7.x Worlds that swap is a **NO-GO**, same wall as 6.113 — packed Themida verify; held unpacked dumps are analysis-only (`v7-connector-trust-anchor.md`). The payload is also encrypted under a compiled-in key that has not been recovered, and the `?p=` DES key is the same unrecovered key.
 
-So 7.x needs either a genuine reply for one live launch's exact request, which means an authorised online fetch and is out of scope, or the patched-client route with both keys. The practical 7.x target stays graal-client-repro, which skips the connector and speaks the game protocol already mapped. **[inf]**
+So 7.x needs either a genuine reply for one live launch's exact request, which means an authorised online fetch and is out of scope, or a clean-room client that owns its own key. The stock patched-client avenue is closed. The practical 7.x target stays graal-client-repro, which skips the connector and speaks the game protocol already mapped. **[inf]**
 
 ## Open
 

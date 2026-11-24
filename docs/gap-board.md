@@ -83,6 +83,14 @@ payload cipher, plaintext script and `?p=` DES key remain open on stock v7.
 **Do not start G156 / G246 / G332 / G334 / G335.** G248 Phase B, G155 G3D2504D and
 E#618 live frame stay untouched. **G273 stays DROPPED.**
 
+2026-11-24 update: **G156** (second Crypto / NEXT replaced-key avenue) is **answered**
+in [v7-connector-trust-anchor.md](../protocol/v7-connector-trust-anchor.md): stock v7
+Worlds trust-anchor swap is a **NO-GO** (packed Themida verify; held unpacked dumps are
+analysis-only, not runnable patched clients). Production plaintext / host/port / login
+stay Maybe never under **G028 residuals** (untouched here). **Do not start G246 / G332 /
+G334 / G335.** G248 Phase B, G155 G3D2504D and E#618 live frame stay untouched.
+**G273 stays DROPPED.**
+
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback
 GServer-v2 / gs2emu profile that admits `G3D03014` sends no `addtiledef` /

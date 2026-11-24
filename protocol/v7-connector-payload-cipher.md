@@ -53,15 +53,20 @@ connector-**payload** cipher. **[bin][inf]**
 
 ## What settles the rest
 
-1. A client whose baked connector public key is replaced with a lab key, then a lab-signed
-   reply for that launch's exact `?p=` — or —
+1. ~~A client whose baked connector public key is replaced with a lab key, then a lab-signed
+   reply for that launch's exact `?p=`~~ — **ruled out on stock v7** (G156 /
+   [v7-connector-trust-anchor.md](v7-connector-trust-anchor.md): packed Themida verify;
+   analysis dumps not runnable).
 2. A post-decrypt read of the live script buffers by a method the anti-tamper layer tolerates
-   (hardware breakpoint / read-only scan after a genuine accepted reply), not inline hooks.
+   (hardware breakpoint / read-only scan after a genuine accepted reply), not inline hooks —
+   still needs a reply the stock client already accepts (authorised genuine launch), or a
+   clean-room client that owns its own key.
 
-Until one of those runs, production plaintext stays **Maybe never**; structure work stays
-on the clean-room repro track. **[inf]**
+Until one of those remaining routes runs, production plaintext stays **Maybe never**;
+structure work stays on the clean-room repro track. **[inf]**
 
 ## Out of scope
 
-Does not start **G156**, **G246**, **G332**, **G334**, or **G335**. Does not reopen
+Does not start **G246**, **G332**, **G334**, or **G335**. Does not reopen
 **G248** Phase B, **G155** / G3D2504D, or **E#618** live frame. **G273** stays **DROPPED**.
+**G156** is answered separately in `v7-connector-trust-anchor.md`.
