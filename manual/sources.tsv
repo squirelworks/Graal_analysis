@@ -569,6 +569,7 @@ protocol/login-recovery-start.md	excluded	2.1	2.3	superseded 2026-10-14 planning
 protocol/login-session-known.md	cited	2.2; 2.3; E	2.3	
 protocol/g002-public-login-603r7-2026-11-24.md	cited	E	2; E	official Login:14900 G3D0311C guest reject (25+16); E#3/G002 partial
 protocol/g019-classic-login-14922-2026-11-24.md	cited	E	6; E	public 14922 classic shape-B list reply; E#403/G019 partial
+protocol/g020-classic-login-14923-2026-11-24.md	cited	E	6; E	public 14923 classic shape-B dual list + status; E#404/G020 partial
 protocol/login-session-observed.md	cited	2.3	2.3	
 protocol/login-tokens-3x-7x.md	cited	1; 2.3; 10	2.3; 10	
 protocol/macos-ppc-receive-decompression.md	cited	2.1	2.1	per-build output acceptance, zlib versions and the v5 retry cutoff carried; the zlib-style header check and library hits stay in the source note

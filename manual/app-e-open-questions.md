@@ -52,7 +52,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#401 | Listserver reply ids 1 and 2 | Maybe never | the 2002 listserver used them as the RC reads them | [inf] (tools/npc-control.md#listserver-login-new-in-141-bin) |
 | E#402 | The 2000-era listserver reply | Maybe never | today's legacy reply is the old one unchanged | [inf] (protocol/listserver-login-type-matrix-2026-10-25.md#result) |
 | E#403 | Classic logins on port 14922 | Owner (partial) | today's public 14922 answers classic shape-B (plain-zlib list); 2001 stop/move still a guess | [cap] (protocol/g019-classic-login-14922-2026-11-24.md); [inf] (protocol/login-frames-by-version-2026-10-25.md#does-the-evidence-support-classic-logins-look-fake) |
-| E#404 | A public server refusing 2.05 | Owner | an older version table with no 2.05 entry | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
+| E#404 | A public server refusing 2.05 | Owner (partial) | classic 14923 answers today (dual list+status); S2 game-server 2.05 refuse / older table still a guess | [cap] (protocol/g020-classic-login-14923-2026-11-24.md); [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
 | E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 is a walk rule (read); checked G3D03014 login sent no addtiledef; drawing-side type-5 flag still open | [cap][inf] (torque/304-tile-types.md#login-capture-2026-11-24) |
@@ -350,10 +350,12 @@ These questions are about the programs on the other side of the connection (→ 
 | --- | --- | --- |
 | Claim A | The printed range runs from 1.41r1 to iPhone Belote 1.5, which in the current version table covers every 2.x to 6.x entry | [src][inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 | Claim B | The same server refused 2.05 (`GNW03081`) | [cap] (server-notes/public-allowed-versions.md#the-refusals-on-record) |
-| Tried (2026-11-20) | The owner approved the public captures, but no lab device holds an account for the public service, so none was run; the project leaves this entry open rather than contact the service again | [doc] (AGENTS.md#labs) |
-| Best guess | The server runs an older version table with no 2.05 entry, so 2.05's token falls outside the range by lookup. Confidence: moderate | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
-| Settles it | One 5.00r7 or 6.03r7 login to that server, with the owner's written permission | [inf] (server-notes/public-allowed-versions.md#open) |
-| Outlook | Owner | [inf] (server-notes/public-allowed-versions.md#open) |
+| Settled part (2026-11-24, G020) | Official list on port **14923** answers a classic shape-B login (Seihai 2.05-profile shape) with three plain-zlib frames: id **0** list (6 rows), id **0** list (4 rows), then ids **2**, **3**, **5**, **6**. No list-path refuse. Richer than the 2026-10-25 classic→14923 single legacy list. 2.05 `port_status` assumed→confirmed | [cap] (protocol/g020-classic-login-14923-2026-11-24.md) |
+| Open | Why game server S2 refused 2.05 inside a printed range that covers it in gs2lib `5c36ab8`; whether an older version table (no 2.05 entry) explains it | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
+| Tried (2026-11-20) | The owner approved the public captures, but no lab device held an account that day, so none was run then | [doc] (AGENTS.md#labs) |
+| Best guess | For the list path: today's 14923 answers classic. For the S2 refuse: the server runs an older version table with no 2.05 entry. Confidence: high for today's list answer; moderate for the refuse hypothesis | [cap] (protocol/g020-classic-login-14923-2026-11-24.md); [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
+| Settles it | One 5.00r7 or 6.03r7 (or a fresh 2.05) **game-server** login to S2, with the owner's written permission | [inf] (server-notes/public-allowed-versions.md#open) |
+| Outlook | Owner (partial). Classic 14923 list behaviour recorded; game-server refuse / table hypothesis remains open | [doc] (AGENTS.md#labs) |
 
 ### E#406 How the official listserver assigns PC ids
 

@@ -159,8 +159,15 @@ rows stay avoided/DROPPED.
 [g019-classic-login-14922-2026-11-24](../protocol/g019-classic-login-14922-2026-11-24.md):
 public **14922** answers a classic shape-B login with two plain-zlib frames (id 0 list + ids 2/3/5/6),
 overturning the 2026-10-25 classic→14922 silence. Historical 2001 behaviour and a stock 2.17.1
-capture stay open. **Do not start G020.** Crypto residuals, G248 Phase B, G155 and E#618 stay
-untouched; v7/Worlds avoided.
+capture stay open. Crypto residuals, G248 Phase B, G155 and E#618 stay untouched; v7/Worlds avoided.
+
+2026-11-24 update: **G020 / E#404** (public refuse 2.05 / classic on 14923) is **partial** in
+[g020-classic-login-14923-2026-11-24](../protocol/g020-classic-login-14923-2026-11-24.md):
+public **14923** answers a classic shape-B login with **three** plain-zlib frames (id 0 list ×2
+with 6 then 4 rows, then ids 2/3/5/6). Richer than the 2026-10-25 single legacy list. Seihai 2.05
+`port_status` assumed→confirmed. Game-server S2 2.05 refuse / older version-table hypothesis
+still open (no game login). **Last classic public probe — STOP.** Crypto residuals, G248 Phase B,
+G155 and E#618 stay untouched; v7/Worlds avoided.
 
 2026-11-24 update: G314 (post-login per-case guest account reset) is answered in
 [server-fuzz-c2s-targets](../protocol/server-fuzz-c2s-targets.md): on GServer 1.28b2,

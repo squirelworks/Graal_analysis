@@ -52,3 +52,4 @@ Read in GServer-v2 `TServer::loadAllowedVersions` and `TPlayer` (the login check
 
 - No v5 or v6 login has been made to a public server. A single 5.00r7 or 6.03r7 login to S2 would test the range reading.
 - The allowed lists of the other public servers are unknown. A server only prints its list to a client it refuses.
+- 2026-11-24 (G020): a classic shape-B **list** login on public **14923** was answered (dual id-0 lists + status); that does **not** re-test S2's game-server refuse of 2.05. See `protocol/g020-classic-login-14923-2026-11-24.md`.
