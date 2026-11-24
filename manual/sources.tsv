@@ -603,7 +603,7 @@ protocol/probe-targets-2026-11-18.md	cited	2; 2.1; 2.3; 2.4; 2.5; 2.6; 5; B; E	2
 protocol/public-listserver-2026-10-25.md	cited	6; E	6	
 protocol/public-listserver-2026-10-25.tsv	cited	6	6	
 protocol/rc-capture-2026-11-04.md	cited	6; 7; E		
-protocol/rc-fuzz-2026-11-19.md	cited	5; 7; 2.1	5; 7; 2.1	
+protocol/rc-fuzz-2026-11-19.md	cited	5; 7; 2.1	5; 7; 2.1	Includes 2026-11-24 native Linux GSERV025 rc-widths after i386 GTK2 + gtksourceview1; Wine RC2_2.05 Pango still blocked; CAN nickname cell still needs Player List
 protocol/rc-list-online.md	cited	7; E	7	
 protocol/rc-props-flags-status.md	cited	7	7; E	RC props tail / SET2 last byte / PLO 124 status; gap #42; E#420/E#421
 protocol/rc-text-escaping-status.md	cited	E	7; E	RC text escaping status: empty fields settled; backslash via server profiles; gap #41 / seihai-rc#56
