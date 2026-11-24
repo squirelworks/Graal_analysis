@@ -942,3 +942,4 @@ server-notes/versioned-server-options-reference-2026-11-22.md	cited	5	5	Full ret
 server-notes/gs1-eight-server-commands-2026-11-22.md	cited	5	5	Complete eight-command later-fork registration/argument/delegate reference with typed-store and persistence limits; original-server G069 confirmation remains open.
 tools/manual/fixtures/source-fragments.md	excluded			authored Markdown parser fixture for source-fragment checks, not research evidence or manual facts
 server-notes/file-cache-and-script-size-2026-11-23.md	cited	5	5	Versioned G070 file/checksum/cache and script input/output comparison; later modified source only, original 4.02 and old-engine/runtime questions remain open.
+protocol/v7-connector-payload-cipher.md	cited	2.10; E	2.10; E	E#616 / G028 partial: RSA container block signature-only (not AES wrap); payload cipher, plaintext and ?p= DES key remain open 2026-11-24.

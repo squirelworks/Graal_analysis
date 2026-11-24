@@ -141,3 +141,9 @@ patched-client route (route 1) — the same prerequisite stated in §5.1.
    (route 1 in §4), since an unpatched client rejects any reply we can serve.
 2. Confirm whether the production connector makes these builds send `G3D2204D` or another token.
 3. The `?p=` compiled-in DES key (shared with the 6.11 work).
+
+### 5.1 Partial (2026-11-24, E#616 / G028)
+
+The container RSA block is **signature-only**, not an AES key wrap — see
+[v7-connector-payload-cipher.md](v7-connector-payload-cipher.md). Exact payload cipher,
+plaintext and the `?p=` DES key remain open as above.
