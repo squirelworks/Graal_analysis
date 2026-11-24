@@ -37,6 +37,12 @@ parsed map state from NC script input and classic script-output bounds. Original
 4.02 behavior, the historical RC editing limit and old-engine breakage remain open;
 this is partial coverage, not a completed historical confirmation.
 
+2026-11-24 update: G252 and G254 (Windows 5.00r7 gen-5 cipher step) are answered in
+[gen5-cipher-step-5x](../protocol/gen5-cipher-step-5x.md#settled-for-windows-500r7-g3d22067):
+a static read of the stock engine shows zlib/bzip2 bodies step `min(floor(len / 4), 4)` times and
+raw bodies `min(ceil(len / 4), 12)`, in both the receive and send routines, so 5.00r7 shares
+5.12's round-down. Checkboxes closed.
+
 2026-11-24 update: G284 (NC write ops via ncprobe) settled in [nc-write-ops-status](../protocol/nc-write-ops-status.md#write-layouts-2026-11-24-lab):
 158 any-order props with omit=leave / empty-str=clear; class 163/162/188 and weapon 33 GSHORT
 layouts dumped; no attribute write beyond script/flags. Local-NPC list after 114 remains open.
