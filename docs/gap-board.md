@@ -57,7 +57,7 @@ closed. STOP — do not start G148.
 6.00r4) is answered in
 [v5v6-expiry-and-black-screen](../client-internals/v5v6-expiry-and-black-screen.md#how-the-expiry-works-530r3-to-600r4):
 clock binary search — stops from 2011-01-01 / 2011-03-21 / 2011-08-27 /
-2011-09-09. Checkbox closed. **G248 stays PARTIAL/OPEN. G273 stays DROPPED.**
+2011-09-09. Checkbox closed. **G248 stays PARTIAL/OPEN. G273 later answered (2026-11-24; not DROPPED).**
 STOP — do not start G328.
 
 2026-11-24 update: G328 (4.11 value holder) is answered in
@@ -65,7 +65,7 @@ STOP — do not start G328.
 holder wraps local-player CURPOWER (8-byte float), MAXPOWER, RUPEESCOUNT,
 ARROWSCOUNT, BOMBSCOUNT, GLOVEPOWER, SWORDPOWER, SHIELDPOWER, ALIGNMENT,
 MAGICPOINTS, plus local mode/status ints beside STATUS/SPRITE. Checkbox
-closed. **G248 stays PARTIAL/OPEN. G273 stays DROPPED.** STOP — do not start
+closed. **G248 stays PARTIAL/OPEN. G273 later answered (2026-11-24; not DROPPED).** STOP — do not start
 E#618.
 
 2026-11-24 update: E#618 / G029 (Mac 6.004 / 6.015 game frame) is **partial** in
@@ -73,7 +73,7 @@ E#618.
 requests level files but its main view stays blank on Lion and Sequoia; 6.004's
 beta quit is a wall-clock gate past **2011-09-08 19:22:31 UTC** (same stop day as
 Windows 6.00r4); clock-held live frame blocked from this host (no reachable Mac
-guest). **G248 stays PARTIAL/OPEN. G273 stays DROPPED.** STOP — Protection group
+guest). **G248 stays PARTIAL/OPEN. G273 later answered (2026-11-24; not DROPPED).** STOP — Protection group
 done; do not start Crypto or Machine-identity.
 
 2026-11-24 update: **G028 / E#616** (first Crypto) is **partial** in
@@ -81,7 +81,7 @@ done; do not start Crypto or Machine-identity.
 connector container's 256-byte RSA block is signature-only (not an AES key wrap);
 payload cipher, plaintext script and `?p=` DES key remain open on stock v7.
 **Do not start G156 / G246 / G332 / G334 / G335.** G248 Phase B, G155 G3D2504D and
-E#618 live frame stay untouched. **G273 stays DROPPED.**
+E#618 live frame stay untouched. **G273 later answered (2026-11-24; not DROPPED).**
 
 2026-11-24 update: **G156** (second Crypto / NEXT replaced-key avenue) is **answered**
 in [v7-connector-trust-anchor.md](../protocol/v7-connector-trust-anchor.md): stock v7
@@ -89,14 +89,14 @@ Worlds trust-anchor swap is a **NO-GO** (packed Themida verify; held unpacked du
 analysis-only, not runnable patched clients). Production plaintext / host/port / login
 stay Maybe never under **G028 residuals** (untouched here). **Do not start G246 / G332 /
 G334 / G335.** G248 Phase B, G155 G3D2504D and E#618 live frame stay untouched.
-**G273 stays DROPPED.**
+**G273 later answered (2026-11-24; not DROPPED).**
 
 2026-11-24 update: **G246** (7.x vs 6.11 connector script token/template/cipher) is
 **partial** in [v7-connector-script-diff.md](../protocol/v7-connector-script-diff.md):
 outside-script diffs stay settled in `connector-script.md` §7a; production script
 token/template/cipher remain **uncompared** (decrypt blocked — G156 trust-anchor NO-GO
 + G028 residuals untouched). **Do not start G332 / G334 / G335.** G248 Phase B,
-G155 G3D2504D and E#618 live frame stay untouched. **G273 stays DROPPED.**
+G155 G3D2504D and E#618 live frame stay untouched. **G273 later answered (2026-11-24; not DROPPED).**
 
 2026-11-24 update: **G332** (7.x vs 6.11 connector id tables) is **partial** in
 [v7-connector-id-tables.md](../protocol/v7-connector-id-tables.md): remapper install
@@ -104,7 +104,7 @@ model and PLI `onSend*` slot names match 6.11; production 7.x pair lists remain
 **uncompared** (decrypt blocked — G156 trust-anchor NO-GO + G028 residuals
 untouched). **Do not start G334 / G335.** G028 residuals, G156 trust-anchor
 residuals, G246 token/template/cipher, G248 Phase B, G155 G3D2504D and E#618 live
-frame stay untouched. **G273 stays DROPPED.**
+frame stay untouched. **G273 later answered (2026-11-24; not DROPPED).**
 
 2026-11-24 update: **G334** (Windows 6.113 capture decrypt) is **partial** in
 [v6113-capture-decrypt.md](../protocol/v6113-capture-decrypt.md): clear prefix +
@@ -113,7 +113,7 @@ RC4@287 reconfirmed on three capture streams; post-287 decrypt **blocked**
 started; memdump alone insufficient; other-session keys do not transfer).
 **Do not start G335.** G028 residuals, G156 trust-anchor residuals, G246
 token/template/cipher, G332 pair-list comparison, G248 Phase B, G155 G3D2504D
-and E#618 live frame stay untouched. **G273 stays DROPPED.**
+and E#618 live frame stay untouched. **G273 later answered (2026-11-24; not DROPPED).**
 
 2026-11-24 update: **G335** (last Crypto / client→server `0xfc` padding) is
 **partial** in [gen6-c2s-0xfc-padding.md](../protocol/gen6-c2s-0xfc-padding.md):
@@ -123,7 +123,7 @@ encoding-message padding **blocked** (operator private key **unheld**). **Do not
 start Machine-identity (G129 / G285 / G286 / G287) or any other group.** G028
 residuals, G156 trust-anchor residuals, G246 token/template/cipher, G332
 pair-list comparison, G334 key recovery, G248 Phase B, G155 G3D2504D and E#618
-live frame stay untouched. **G273 stays DROPPED.**
+live frame stay untouched. **G273 later answered (2026-11-24; not DROPPED).**
 
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback
@@ -139,8 +139,13 @@ two login lines in one frame complete a normal login (`9,14,100,…`) — **not*
 Held sessions occupy ordinary player slots (canary fails once ~8 are held); close frees
 immediately (no ghost). Persist while TCP held (≥10–30 s). Checkbox closed.
 
-2026-11-24 update: G273 (3.x public listserver login on 14922/14923) is **DROPPED** —
-owner unavailable for public listserver; do not run. Board `claimed_by` marked DROPPED.
+2026-11-24 update: G273 (3.x public listserver login on 14922/14923) is **answered** in
+[g3d30123-public-listserver-2026-11-24](../protocol/g3d30123-public-listserver-2026-11-24.md):
+owner-approved list-only `G3D30123` one-frame login got a modern list on public **14922**
+and **14923** (legacy+modern on 14923). 3.04/3.153 `port_status` moves assumed→confirmed.
+**Not DROPPED.** G302 stays **OPEN** (Wine/Pango for RC2 2.05 two-RC). Do not continue
+G129 or start G285/G286/G287; Crypto residuals, G248 Phase B, G155 G3D2504D and E#618
+live frame stay untouched.
 
 2026-11-24 update: G314 (post-login per-case guest account reset) is answered in
 [server-fuzz-c2s-targets](../protocol/server-fuzz-c2s-targets.md): on GServer 1.28b2,
