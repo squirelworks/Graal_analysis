@@ -408,5 +408,5 @@ the same rows as a task list. Read the source line before you start.
 | G194 | lab | Run the GS2 loop-budget and event-queue boundaries in an Android runtime. | `docs/NEXT.md` line 250 | free |
 | G230 | lab | Establish the exact native resolver and coordinate/slot acceptance before claiming playback compatibility. | `formats/ios-gani-param1-placements.md` line 26 | free |
 | G245 | lab | What the per-launch ?p= value binds in the signature. | `protocol/connector-script.md` line 154 | free |
-| G246 | lab | Whether the 7.x script differs from the 6.11 one (token, template, cipher). This needs a 7.x reply decrypted for its own launch. What differs outside the script, and what a decrypted reply would need, is in section 7a. | `protocol/connector-script.md` line 155 | free |
+| G246 | lab | Partial 2026-11-24: outside-script diffs settled; production script token/template/cipher uncompared (decrypt blocked). See `v7-connector-script-diff.md`. | `protocol/connector-script.md` line 155 | partial |
 | G258 | lab | Run the app. The binary is 32-bit ARMv6 for iOS 3–5; there is no iOS emulator for | `protocol/ios-classic-plus-113-framing.md` line 129 | free |
