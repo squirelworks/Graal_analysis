@@ -55,7 +55,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#404 | A public server refusing 2.05 | Owner | an older version table with no 2.05 entry | [inf] (server-notes/public-allowed-versions.md#what-that-means-for-5x-and-6x) |
 | E#406 | How the official listserver assigns PC ids | Maybe never | a row number in a machine table | [inf] (protocol/pcid.md#can-a-pcid-be-derived-from-the-login-fields) |
 | E#422 | Quoting of folder rights | Maybe never | the original server stored the CSV form | [inf] (protocol/rc-capture-2026-11-04.md#rights) |
-| E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 is a walk rule (read); servers sent no tile definitions | [inf] (torque/304-tile-types.md#not-settled) |
+| E#507 | 3.04 sheet type 5 and server tile definitions | Lab | type 5 is a walk rule (read); checked G3D03014 login sent no addtiledef; drawing-side type-5 flag still open | [cap][inf] (torque/304-tile-types.md#login-capture-2026-11-24) |
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | E#612 | GraalShop movie editor attribution | Missing | the 2006 editor wrote the movie format | [inf] (tools/graaleditor-vs-205.md#workflow) |
 | E#615 | v7 Worlds login token and quit reason | Owner | the connector supplies a `G3D2204D`-family token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
@@ -482,16 +482,16 @@ These questions are about the 3D side: the 2000 Graal3D client and the Torque-ba
 
 ### E#507 3.04 sheet type 5 and server tile definitions
 
-**Question.** What a `tiledefs` entry of type 5 changes in 3.04, and whether a 3.04-era server sent `addtiledef` lines at login (→ §10.7.8) [bin] (torque/304-tile-types.md#not-settled).
+**Question.** What a `tiledefs` entry of type 5 changes in 3.04, and whether a 3.04-era server sent `addtiledef` lines at login (→ §10.7.8) [bin] (torque/304-tile-types.md#how-the-sheet-type-is-chosen).
 
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Evidence | Type 5 is accepted when picking an entry and sets a flag of its own; the package ships only the offline tutorial's line | [bin][file] (torque/304-tile-types.md#how-the-sheet-type-is-chosen) |
 | Settled part (2026-11-20) | A read of 3.04: type 5 comes from a per-level tile-type table and is a walk rule, with its own path in the walk classifier and a ground height of 0; it is not only a drawing variant | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#sheet-type-5-on-304-e507) |
 | Settled part (2026-11-20) | There is no per-level tile-type table: the sheet type is one global value the level-entry picker resets to 0, so with no matching entry the client uses `pics1.png` and its compiled-in lists, and `tiletype` returns −1. Type 5 makes the walk and type tests ignore tile ids, so only the level's `setshape2` shapes decide | [bin] (client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md#what-304-uses-for-tile-types-when-no-addtiledef-arrives-e507) |
-| Best guess | Ordinary servers sent no tile definitions. Confidence: low | [bin] (client-internals/static-reads-appendix-e-2026-11-20-d.md#sheet-type-5-on-304-e507) |
-| Settles it | Any 3.04-era server capture; a read of the drawing-side type-5 flag | [inf] (client-internals/static-reads-appendix-e-2026-11-20-d.md#sheet-type-5-on-304-e507) |
-| Outlook | Read for the flag; Missing for the server side | [inf] (torque/304-tile-types.md#not-settled) |
+| Settled part (2026-11-24) | Loopback GServer-v2 / gs2emu admitting `G3D03014` sends no `addtiledef` / `addtiledef2` / `removetiledefs` at login (`CLEARWEAPONS` + `NPCWEAPONDEL` only; no `NPCWEAPONADD`) | [cap] (torque/304-tile-types.md#login-capture-2026-11-24) |
+| Open | What the drawing-side type-5 flag changes on screen | [inf] (torque/304-tile-types.md#not-settled) |
+| Outlook | Read for the drawing-side flag; server tiledef-at-login side closed for the checked profile | [cap][inf] (torque/304-tile-types.md#login-capture-2026-11-24) |
 
 ## E.10 Tools
 

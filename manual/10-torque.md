@@ -885,7 +885,7 @@ The first stage-0 capture of the archived Linux 3.04 executable. `main.cs` alrea
 | `tiledefs<server>.txt` lines are `image,levelprefix,type[,x,y]`; on entering a level the longest matching prefix of type 0, 1, 2 or 5 wins, else `pics1.png` type 0. The scripts' `addtiledef`, `addtiledef2` and `removetiledefs` change the entries. The package ships only `tiledefsOffline.txt` for the tutorial | [bin][file] (torque/304-tile-types.md#how-the-sheet-type-is-chosen) |
 | So a rebuild that shows 3.04 grass as a wall is applying another rule: a per-tile type table, the range rule on a `pics1` level, or the wrong board on a gmap | [inf] (torque/304-tile-types.md#what-this-means-for-the-rebuild) |
 | The sheet type is one global value reset to 0 on level entry; there is no per-level tile-type table, and `tiletype` returns −1 on type 0. Type 5 makes the walk and type tests ignore tile ids, so only the level's `setshape2` shapes block | [bin] (client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md#what-304-uses-for-tile-types-when-no-addtiledef-arrives-e507) |
-| Open: whether a 3.04-era server sent `addtiledef` lines at login (→ App. E#507) | [inf] (torque/304-tile-types.md#not-settled) |
+| A loopback GServer-v2 / gs2emu login that admits `G3D03014` sends no `addtiledef` / `addtiledef2` / `removetiledefs` (no `NPCWEAPONADD`; clear/delete only) | [cap] (torque/304-tile-types.md#login-capture-2026-11-24) |
 
 ## 10.8 The 3D mode in the 2D clients
 

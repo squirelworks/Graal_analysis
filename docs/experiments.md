@@ -355,7 +355,7 @@ the same rows as a task list. Read the source line before you start.
 | G314 | lab | Answered 2026-11-24: per-case guest reset on 1.28b2 idsweep+body — no sticky id 33; clean id-40/222 | `protocol/server-fuzz-c2s-targets.md` | done |
 | G317 | lab | Lab check: send a PLO_SHOOT2 with known gravity to a 5.0.0.7 client and watch the arc. | `protocol/shoot-5007.md` line 127 | free |
 | G326 | lab | Listserver VERIACC2 path when the world verifies accounts (our 4.04 lab used localhost / proxy accept without that check). | `protocol/v4-login-account-contract.md` line 37 | free |
-| G344 | lab | Whether a 3.04 game server sends addtiledef lines at login; no 3.04-era server capture was checked for them. | `torque/304-tile-types.md` line 84 | free |
+| G344 | lab | Answered 2026-11-24: loopback GServer-v2/gs2emu admitting G3D03014 sends no addtiledef at login (CLEARWEAPONS+NPCWEAPONDEL only). | `torque/304-tile-types.md` | done |
 | G354 | lab | ShapeBase's main update section and Player's update, packet data and PlayerData (Graal adds at least chat and a name colour), so other players can be shown and a Player can be the control object. Started: PlayerData is ShapeBaseData, then flag, flag → pstring, 19 × f32, int7, 17 × f32, 19 × (flag →  | `torque/protocol19-server.md` line 165 | free |
 | G368 | lab | How a server makes a 5.12 player move (movetype and movement data) and what the client then echoes. | `torque/udp-session.md` line 608 | free |
 | G407 | lab | what a real service does with id 46 | `client-internals/decomp-findings-2026-10-25-g/open-questions.tsv` row 7 | free |

@@ -10,7 +10,7 @@ The rule a tile is judged by depends on the sheet type that `tiledefs` picks for
 - with the classic `pics1.png` and type 0, it is the lists;
 - with type 1 or 2, it is a fixed id-range rule.
 
-The server can change the sheet through `tiledefs`. It does not send tile types. **[bin]**
+The server can change the sheet through `tiledefs`. It does not send tile types. **[bin]** A loopback game-server login that admits the 3.04 token also sent no `addtiledef` / `addtiledef2` / `removetiledefs` text and no weapon-add carrying those verbs — only weapon clear/delete beside the usual login props and board. **[cap]**
 
 ## The compiled-in lists
 
@@ -78,7 +78,16 @@ If a type test fails, or N is any other number, the engine falls back to the lev
   - that off-board positions use id 632.
 - **Water.** Drop ids 1824 and 1825 from the water list for 3.04 parity. **[file][bin]**
 
+## Login capture (2026-11-24)
+
+A fresh loopback login against a stock GServer-v2 / gs2emu profile that admits `G3D03014` (empty weapons folder; no scripted tiledefs) was checked for `addtiledef` lines. **[cap]**
+
+- Server→client login had `CLEARWEAPONS` and `NPCWEAPONDEL` only — **no** `NPCWEAPONADD`.
+- Neither the server network dump nor the raw receive buffers contained `addtiledef`, `addtiledef2`, `removetiledefs`, or `tiledefs`.
+- So this class of 3.04-capable game server does **not** push tile-definition script lines at login; the client keeps using its compiled-in lists / offline `tiledefs` file unless a later script runs `addtiledef`. **[cap]**
+
+Earlier same-lab Nov 9 dumps for the same profile family match (no `addtiledef` on the wire). **[cap]**
+
 ## Not settled
 
 - [ ] What the type-5 flag changes when drawing or walking.
-- [ ] Whether a 3.04 game server sends `addtiledef` lines at login; no 3.04-era server capture was checked for them.

@@ -43,7 +43,7 @@ the very start of a message should come out empty.
 
 ## What 3.04 uses for tile types when no `addtiledef` arrives (E#507)
 
-Static read of the UPX-unpacked Linux 3.04 `graalexe`. No 3.04-era server capture was available.
+Static read of the UPX-unpacked Linux 3.04 `graalexe`. A later loopback login capture for the server-tiledef question is in [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24).
 
 **There is no per-level tile-type table to fill on the default sheet.**
 - When the player enters a level, a picker walks the tile-definition entries. It starts from image
@@ -66,9 +66,11 @@ per-tile number exists only when an entry has given the level a non-zero type.
 - With type 5, `tiletype` returns 0 wherever no object shape covers the spot.
 - So type 5 means "this sheet's tiles carry no rules; only placed shapes do".
 
-**Not settled.** Whether a 3.04-era server sent `addtiledef` at login (no capture was available),
-and what the drawing-side type-5 flag changes on screen (its readers were not separated from other
-uses of that field).
+**Server tiledefs at login (settled 2026-11-24).** A loopback GServer-v2 / gs2emu profile that
+admits `G3D03014` sent no `addtiledef` at login — see [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24). **[cap]**
+
+**Not settled.** What the drawing-side type-5 flag changes on screen (its readers were not
+separated from other uses of that field).
 
 ## Wire rounding of a position off the half tile, 2.22 (E#304)
 
