@@ -108,6 +108,13 @@ C→S envelope settled (256-byte RSA to the operator public key; parse-key decry
 is garbage; S→C PKCS#1 v1.5 type-2 and §4c plaintext already closed); exact C→S
 encoding-message padding **blocked** (operator private key **unheld**).
 
+2026-11-24 update: **G129** (first Machine-identity / Mac PowerPC
+`IOMACAddress` property read + hash) is **partial** in
+[mac-ppc-machine-identity-property.md](../client-internals/mac-ppc-machine-identity-property.md):
+property-read (six raw `IOMACAddress` bytes from the primary Ethernet service)
+and plain MD5-hex hash settled on 4.04r2 / 4.20r6 / shared v5; login comma-list
+call graph still open.
+
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback
 GServer-v2 / gs2emu profile that admits `G3D03014` sends no `addtiledef` /
@@ -252,8 +259,8 @@ When a row is done, tick it in its issue as well as in the source note.
 Grok owns the following research scopes by external reservation: `G028`, `G156`, `G246`, `G332`, `G334`, `G335`, `G082`, `G148`, `G328`, `E#618`, `G129`, `G285`, `G286`, `G287`, `G158`, `G284`, `G300`, `G302`, `G313`, `G314`, `G316`, `G273`, `G155`, `G344`, `G248`.
 
 **Ended 2026-11-24.** Grok's run stopped when its usage ran out. The four rows it had not
-started (`G285`, `G286`, `G287`, and `G129` once its open PR is settled) are `free` again;
-every other row above carries its own done/partial/open state.
+started (`G285`, `G286`, `G287`) are `free` again; every other row, G129 included (partial,
+#838), carries its own done/partial/open state.
 
 This was ownership metadata only, not a result, closure or authorization to probe or operate.
 All existing input, evidence, approval and completion limits remain in force; other agents
