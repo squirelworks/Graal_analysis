@@ -39,6 +39,11 @@ parsed map state from NC script input and classic script-output bounds. Original
 4.02 behavior, the historical RC editing limit and old-engine breakage remain open;
 this is partial coverage, not a completed historical confirmation.
 
+2026-11-25 update: G255 (genuine 5.12 send set) is answered in
+[ids-sent-512-status](../protocol/ids-sent-512-status.md#full-send-sets-500r7-and-genuine-512-g255-2026-11-25):
+every send site in both engines uses a fixed id; 5.00r7 sends 62 ids and 5.12 the same minus 21 (`PUTNPC`) and 40 (`SHOOT`),
+plus 48 (`SHOOT2`). Scripts cannot send an arbitrary id. Profile rows updated. Checkbox closed.
+
 2026-11-25 update: G173 and G098 (5.12 versus 5.00r7 prop value widths) are answered in
 [player-props-5x-status](../protocol/player-props-5x-status.md#genuine-512-has-the-same-widths-g173--g098-2026-11-25):
 every id in the self, other, NPC and baddy parsers has the same width in both engines. One behaviour change found on the way:

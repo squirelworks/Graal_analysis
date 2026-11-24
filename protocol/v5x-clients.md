@@ -92,6 +92,8 @@ S→C 82 (server text) now also feeds the buddy list (`getbuddylist`, `lister`).
 
 From the connection's send wrappers: 1, 2, 4, 5, 6, 7, 8, 9, 10, 12–19, 21–24, 26, 28, 29, 32–36, 37, 41, 44, 47, 50, 79, 80, 81, 92, 93, 96, 97, 98, 130, 152, 154–159, 161. Ids sent through a variable aren't captured, so treat this list as a floor. **[bin]**
 
+**Superseded 2026-11-25:** a complete trace of every send site finds 62 ids, all fixed: 0, 1, 2, 4–24, 26–30, 32–38, 40, 41, 43–47, 50, 79, 80, 81, 92, 93, 96, 97, 98, 130, 152, 154–159, 161, 162 ([G255](ids-sent-512-status.md#full-send-sets-500r7-and-genuine-512-g255-2026-11-25)). **[bin]**
+
 That original wrapper scan missed the carried-object throw path. The later [backup-engine call-path read](../client-internals/windows-404r2-500r7-static-2026-11-09.md#500r7-sends-id-11-when-throwing) finds id **11** with an empty body when a game connection exists. It did not separately check the adjacent patched engine or server acceptance. An independent [unchanged 5.00r7 lab run](lab-appe-hostb-2026-11-20.md#throw-id-on-500r7-e4) then observed empty-body id 11 on both completed throws. Include 11 in the combined 5.00r7 floor; this does not make the wrapper scan complete or establish a genuine 5.12 send-code census. **[bin][lab]**
 
 Ids whose purpose shows from the code that sends them **[bin][inf]**:
