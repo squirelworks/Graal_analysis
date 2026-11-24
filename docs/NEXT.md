@@ -126,7 +126,7 @@ These checks credit the named merged notes and manual carry, not whole research-
 
 - [x] **RC text escaping (status).** ~~Original backslash/empty-field GET/SET?~~ Trailing empties settled; escaped-`\\` deferred to server profiles (seihai-rc#56); original RC2/RC3 S open. [Note](../protocol/rc-text-escaping-status.md); gap #41.
 
-- [x] **Gen-5 cipher step for 5.12 (E#2); 5.00r7 still open.** ~~Prefer Claim A (round-down on short compressed frames) for Windows 5.12.~~ [Note](../protocol/gen5-cipher-step-5x.md). 5.00r7 codec read 2026-11-24: round-down too, both directions (G252/G254).
+- [x] **Gen-5 cipher step for 5.12 and 5.00r7 (E#2).** ~~Prefer Claim A (round-down on short compressed frames) for Windows 5.12.~~ [Note](../protocol/gen5-cipher-step-5x.md). 5.00r7 codec read 2026-11-24: round-down too, both directions (G252/G254).
 
 - [x] **Pre-gmap clients in a gmap world.** ~~How did original servers present gmaps to builds without gmaps?~~ Client limits settled for 1.39 (no `.nw`/gmap); period server behaviour unobserved; seihai linked-level output still open. [Note](../protocol/pre-gmap-in-gmap-world.md).
 

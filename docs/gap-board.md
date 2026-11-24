@@ -39,6 +39,12 @@ parsed map state from NC script input and classic script-output bounds. Original
 4.02 behavior, the historical RC editing limit and old-engine breakage remain open;
 this is partial coverage, not a completed historical confirmation.
 
+2026-11-24 update: G084 (5.00r7 event-queue cap) is answered in
+[gs2-vm-loader-diff](../client-internals/gs2-vm-loader-diff.md#500r7-event-queue-cap-g084-2026-11-24):
+both event receivers refuse at 1000 queued events in the unpatched engine and in both patched
+engines; the patches touch only the licence check and auto-update gates. A January 2007 4.x
+engine uses 10000 in the same routines. Checkbox closed.
+
 2026-11-24 update: G252 and G254 (Windows 5.00r7 gen-5 cipher step) are answered in
 [gen5-cipher-step-5x](../protocol/gen5-cipher-step-5x.md#settled-for-windows-500r7-g3d22067):
 a static read of the stock engine shows zlib/bzip2 bodies step `min(floor(len / 4), 4)` times and
