@@ -59,5 +59,6 @@ it before the lookup was not followed here.
   lab host A.
 - Where the `on` prefix is added, and whether the function table that scripts call through uses the
   same lookup as event firing.
-- The other E#209 checklist items (maths on 6.1.1.3 and Mac 6.11r1, the Linux 4.20r6 fusion re-read,
-  the 5.00r7 event-queue cap on a stock image).
+- The other E#209 checklist items (the Linux 4.20r6 fusion re-read, the 5.00r7 event-queue cap on a
+  stock image). Maths on 6.1.1.3 and Mac 6.11r1 is settled for the power/square-root rule in
+  [static-reads-appendix-e-2026-11-24-g082.md](static-reads-appendix-e-2026-11-24-g082.md).

@@ -221,7 +221,7 @@ is not proof the shipped 5.00r7 used 1000. **[bin]**
 | `int` / bitwise / index | `floor(x+1e-4)` | same | same | same | same | toward-0 on some paths; native bool uses `floor(v+1e-4)` | [bin] |
 | `a % b`, b=0 | 0 | 0 | 0 | 0 | 0 | 0 | [bin] |
 | `%` formula | no +1e-4 | **with** +1e-4 | **with** | no | no | floor form | [bin] |
-| `a ^ b` | pow / sign branches | + `b==0.5` √ | same | same | `b==2` first; + √ float | partial | [bin] |
+| `a ^ b` | pow / sign branches | + `b==0.5` √ | same | same | `b==2` first; √ float on 6.03r7/6.01r1 only — 6.1.1.3 and Mac 6.11r1 keep √ double | partial | [bin] |
 | shifts | **mod 64**, past 31 → 0/−1 | same PPC | **mod 32** x86 | mod 32 | mod 32 | — | [bin] |
 | number == | ±1e-4 | same | same | same | same | same | [bin] |
 | string == | bytes (3.153 note) | — | — | — | — | **ignore case** | [bin] |
