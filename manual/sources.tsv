@@ -625,7 +625,7 @@ protocol/v3x-clients.md	cited	2.2; 2.3; 2.5; 10; 3.1; 1	1; 2.3; 10
 protocol/v4-gui-survive-serverwarp.md	cited	2.3	2; E	v4 Login GUI after 178 (C5 lead); loopback stock 4.20r8 confirm open; adjacent C4
 protocol/v4-login-account-contract.md	cited	2.3	2; E	4.x typed-account Login vs 5.x/6.x guest-first; C4 stock-UI rows still open; consolidates v4x + named-login + login-session-known
 protocol/v4x-clients.md	cited	2.1; 2.2; 2.3; 2.4; 2.5; 2.6; 2.8; 8.3; 10; E; 3.1; 1; C; A; 2.10	1; 2.3; 10	
-protocol/v4x-windows-403r3-411.md	cited	2.3; 2.5; 3.1; 10	2.3; 2.5; 3.1; 10	
+protocol/v4x-windows-403r3-411.md	cited	2.3; 2.5; 3.1; 10	2.3; 2.5; 3.1; 10	G328 2026-11-24: 4.11 value holder wraps local-player CURPOWER/MAXPOWER/RUPEESCOUNT/ARROWSCOUNT/BOMBSCOUNT/GLOVEPOWER/SWORDPOWER/SHIELDPOWER/ALIGNMENT/MAGICPOINTS (+ local mode/status ints).
 protocol/v5-props.md	cited	2.6; B; C	2.6	§2.6.6 carries the 5.x and 6.x case sets; the 6.x name decoding and open items stay in the note
 protocol/v5v6-lab-play.md	cited	4; 0; 2.2; 4.1; 4.2; 4.3; 4.5; 8.3; 1	1; 2.3	§2.3 not needed: the 5.x and 6.x login facts are carried in §2.3 from the profile notes; this lab note is cited for play behaviour and builds (coverage audit 2026-11-04)
 protocol/v5v6-windows-unpacked.md	cited	2.2; 2.3; 1	1; 2.3	

@@ -60,6 +60,14 @@ clock binary search — stops from 2011-01-01 / 2011-03-21 / 2011-08-27 /
 2011-09-09. Checkbox closed. **G248 stays PARTIAL/OPEN. G273 stays DROPPED.**
 STOP — do not start G328.
 
+2026-11-24 update: G328 (4.11 value holder) is answered in
+[v4x-windows-403r3-411](../protocol/v4x-windows-403r3-411.md#what-the-engine-gained):
+holder wraps local-player CURPOWER (8-byte float), MAXPOWER, RUPEESCOUNT,
+ARROWSCOUNT, BOMBSCOUNT, GLOVEPOWER, SWORDPOWER, SHIELDPOWER, ALIGNMENT,
+MAGICPOINTS, plus local mode/status ints beside STATUS/SPRITE. Checkbox
+closed. **G248 stays PARTIAL/OPEN. G273 stays DROPPED.** STOP — do not start
+E#618.
+
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback
 GServer-v2 / gs2emu profile that admits `G3D03014` sends no `addtiledef` /
