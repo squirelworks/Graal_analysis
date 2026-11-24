@@ -76,6 +76,13 @@ Windows 6.00r4); clock-held live frame blocked from this host (no reachable Mac
 guest). **G248 stays PARTIAL/OPEN. G273 stays DROPPED.** STOP — Protection group
 done; do not start Crypto or Machine-identity.
 
+2026-11-24 update: **G028 / E#616** (first Crypto) is **partial** in
+[v7-connector-payload-cipher.md](../protocol/v7-connector-payload-cipher.md): the
+connector container's 256-byte RSA block is signature-only (not an AES key wrap);
+payload cipher, plaintext script and `?p=` DES key remain open on stock v7.
+**Do not start G156 / G246 / G332 / G334 / G335.** G248 Phase B, G155 G3D2504D and
+E#618 live frame stay untouched. **G273 stays DROPPED.**
+
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback
 GServer-v2 / gs2emu profile that admits `G3D03014` sends no `addtiledef` /

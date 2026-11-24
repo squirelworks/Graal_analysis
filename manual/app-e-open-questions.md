@@ -59,7 +59,7 @@ The table lists every open entry with its outlook and a one-line best guess, so 
 | E#611 | 4.04r2 pickup semantics | Lab | the bound field is the carried object's kind | [inf] (client-internals/404r2-carry-state.md#open-questions) |
 | E#612 | GraalShop movie editor attribution | Missing | the 2006 editor wrote the movie format | [inf] (tools/graaleditor-vs-205.md#workflow) |
 | E#615 | v7 Worlds login token and quit reason | Owner | the connector supplies a `G3D2204D`-family token | [inf] (client-internals/v7-il2cpp-names-and-startup-gate.md#still-open) |
-| E#616 | v7 connector script plaintext | Maybe never | the RSA block wraps an AES key for the payload | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
+| E#616 | v7 connector script plaintext | Maybe never / Partial | RSA container block is signature-only (not AES key wrap); payload cipher, plaintext and `?p=` DES key still open | [bin][inf] (protocol/v7-connector-payload-cipher.md) |
 | E#618 | Whether Mac 6.004 and 6.015 draw a game frame | Lab | Partial 2026-11-24: 6.015 logs in / requests level files but main view blank on Lion and Sequoia; 6.004 beta cutoff is 2011-09-08 19:22:31 UTC (static); clock-held live frame still needs a Mac guest | [lab][bin] (client-internals/mac-6004-beta-gate.md) |
 
 ## E.2 Builds, identity and protection
@@ -197,14 +197,15 @@ These questions are about the layer under the messages: how a frame is cut, ciph
 | Part | Discussion | Source |
 | --- | --- | --- |
 | Evidence | Container layout, an RSA-2048 signature bound to the per-launch request, and both AES-CBC and RC4 exported | [lab][bin] (protocol/v7-connector-live-20261111.md#3-the-real-reply-container-lab) |
-| Open | The payload cipher and whether the RSA block also wraps its key; the plaintext; the `?p=` DES key | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
+| Settled part (2026-11-24) | The container's 256-byte RSA block is **signature-only** (verify API, bare SHA-256), not an AES key wrap. Key wrap belongs to the later game-session `0xfc` frame. The held v7 engine image exports AES-CBC and RC4 and has **no DES export** | [bin] (protocol/v7-connector-payload-cipher.md) |
+| Open | Exact payload cipher and key/IV source; the plaintext script; the `?p=` DES key | [inf] (protocol/v7-connector-payload-cipher.md#still-open-honest-partial) |
 | Tried | The live date gate was read from outside a QEMU guest without tripping the anti-tamper layer (→ App. E#615); the script buffers were not read | [cap] (client-internals/v7-il2cpp-names-and-startup-gate.md#for-a-live-debugger-where-to-break-and-what-to-read) |
 | Method (2026-11-18) | Host-side debugging through QEMU/KVM's gdb server reads a running packed client with nothing inside the guest; it stopped the v7 date gate at entry and read its inputs live. Bochs was assessed and not used | [lab] (client-internals/hypervisor-live-debug.md#short-answer); [lab] (client-internals/hypervisor-live-debug.md#what-was-done-on-v7-lab) |
 | Evidence (6.1.1.3, 2026-11-19) | The 6.1.1.3 request is deterministic across launches, and its connector gate can be passed in a lab only by a lab trust anchor; the joined login and connector chain has not been run (→ §2.10.8) | [lab][inf] (protocol/v6113-login-lab-method.md#replay-forge-and-the-only-lab-bypass); [lab] (protocol/v6113-login-lab-method.md#still-open-carried-not-closed) |
 | Tried (2026-11-19) | On 6.1.1.3 the trust-anchor bypass named above was tried and is a NO-GO: the key the signature check uses never appears in a patchable form, and the reply's payload decrypt is inside the same protector machine. Container fuzzing of the stock client fails closed on every malformation | [lab] (protocol/conf-gs-fuzzing.md) |
-| Best guess | The RSA block wraps an AES key for the payload, and the script follows the 6.11 script's structure (→ §2.10): set protocol, set ciphers, id tables, connect, login. Confidence: moderate | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
-| Settles it | A read of the live script buffers after decryption, by a method the anti-tamper layer tolerates, on a client whose baked public key is replaced | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
-| Outlook | Maybe never for the production script, which only the operator's service produces for a live launch; Lab for the structure, using a lab-signed script | [inf] (protocol/v7-connector-live-20261111.md#5-open) |
+| Best guess | The script still follows the 6.11 structure once decrypted (set protocol, set ciphers, id tables, connect, login). Confidence: moderate for structure; the old RSA-wraps-AES guess is withdrawn | [inf] (protocol/v7-connector-payload-cipher.md) |
+| Settles the rest | A read of the live script buffers after decryption, by a method the anti-tamper layer tolerates, on a client whose baked public key is replaced | [inf] (protocol/v7-connector-payload-cipher.md#what-settles-the-rest) |
+| Outlook | Partial: RSA-wrap question settled. Maybe never for the production plaintext; Lab for structure with a lab-signed script | [inf] (protocol/v7-connector-payload-cipher.md) |
 
 ## E.4 Messages, props and what they do
 

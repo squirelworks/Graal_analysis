@@ -29,7 +29,7 @@ These checks credit the named merged notes and manual carry, not whole research-
 
 - [x] **v7 Worlds builds and connector in the manual.** ~~Fold the nine pending v7 notes (#463, #466, #623, the Unity 6000 unpack and the live connector capture) into Part I and §2.10.~~ Manual §1.8.10 (builds, identity, unpack and names, start-up and date gate) and §2.10.7 (connector); App. E#615, E#616. Static and earlier lab evidence only; no new run.
   - [x] ~~Read the engine's quit call sites and the caller of its calendar function in the unpacked Unity 6000 engine: the boot-quit reason and the baked date.~~ Done in #629: a 180-day window after a per-release reference date, dormant in 610; instant-quit reason `QuitInstant` (§1.8.10, E#615). A boundary-date boot of 614 is the remaining live check.
-  - [ ] Decrypted v7 connector script, game host/port and login (E#616); needs a client with a replaced public key.
+  - [ ] Decrypted v7 connector script, game host/port and login (E#616); needs a client with a replaced public key. Partial 2026-11-24: RSA container block settled as signature-only (not AES wrap) in `protocol/v7-connector-payload-cipher.md`; payload cipher / plaintext / `?p=` DES key still open.
 
 - [x] **Offline level-editor teardown (#619).** ~~Assimilator batch / tiledef type 4 / GraalEditor BOARD.~~ Notes on [#621](https://github.com/squirelworks/Graal_analysis/pull/621); E#600 writer settled (base64); type-4 consumer remains E#614; optional Save As confirm open.
 
