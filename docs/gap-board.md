@@ -119,11 +119,19 @@ and E#618 live frame stay untouched. **G273 stays DROPPED.**
 **partial** in [gen6-c2s-0xfc-padding.md](../protocol/gen6-c2s-0xfc-padding.md):
 C→S envelope settled (256-byte RSA to the operator public key; parse-key decrypt
 is garbage; S→C PKCS#1 v1.5 type-2 and §4c plaintext already closed); exact C→S
-encoding-message padding **blocked** (operator private key **unheld**). **Do not
-start Machine-identity (G129 / G285 / G286 / G287) or any other group.** G028
+encoding-message padding **blocked** (operator private key **unheld**). G028
 residuals, G156 trust-anchor residuals, G246 token/template/cipher, G332
 pair-list comparison, G334 key recovery, G248 Phase B, G155 G3D2504D and E#618
 live frame stay untouched. **G273 stays DROPPED.**
+
+2026-11-24 update: **G129** (first Machine-identity / Mac PowerPC
+`IOMACAddress` property read + hash) is **partial** in
+[mac-ppc-machine-identity-property.md](../client-internals/mac-ppc-machine-identity-property.md):
+property-read (six raw `IOMACAddress` bytes from the primary Ethernet service)
+and plain MD5-hex hash settled on 4.04r2 / 4.20r6 / shared v5; login comma-list
+call graph still open. **Do not start G285 / G286 / G287 / G289.** Crypto
+residuals (G028 / G156 / G246 / G332 / G334 / G335), G248 Phase B, G155
+G3D2504D and E#618 live frame stay untouched. **G273 stays DROPPED.**
 
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback

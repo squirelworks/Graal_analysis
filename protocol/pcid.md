@@ -40,7 +40,7 @@ Notes on the Windows fields:
 | Field | Input | Source |
 | --- | --- | --- |
 | platform | `mac` | [bin] |
-| network | MD5 of the 6 raw bytes of `IOMACAddress` on the Ethernet interface marked `IOPrimaryInterface` (the built-in port). Empty if there is none; an emulated card counted only once it was marked built-in | [bin][lab] |
+| network | MD5 of the 6 raw bytes of `IOMACAddress` on the Ethernet interface marked `IOPrimaryInterface` (the built-in port). Empty if there is none; an emulated card counted only once it was marked built-in. **G129** (2026-11-24) opened the property-read and MD5-hex bodies: [mac-ppc-machine-identity-property.md](../client-internals/mac-ppc-machine-identity-property.md) | [bin][lab] |
 | second | MD5 of 4 bytes taken from `stat("/etc")`, probably the inode number as on Linux | [bin][inf] |
 | third | empty | [bin] |
 
