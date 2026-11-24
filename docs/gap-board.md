@@ -106,6 +106,15 @@ untouched). **Do not start G334 / G335.** G028 residuals, G156 trust-anchor
 residuals, G246 token/template/cipher, G248 Phase B, G155 G3D2504D and E#618 live
 frame stay untouched. **G273 stays DROPPED.**
 
+2026-11-24 update: **G334** (Windows 6.113 capture decrypt) is **partial** in
+[v6113-capture-decrypt.md](../protocol/v6113-capture-decrypt.md): clear prefix +
+RC4@287 reconfirmed on three capture streams; post-287 decrypt **blocked**
+(exact-session key never recorded; operator private key unheld — **G335** not
+started; memdump alone insufficient; other-session keys do not transfer).
+**Do not start G335.** G028 residuals, G156 trust-anchor residuals, G246
+token/template/cipher, G332 pair-list comparison, G248 Phase B, G155 G3D2504D
+and E#618 live frame stay untouched. **G273 stays DROPPED.**
+
 2026-11-24 update: G344 (`addtiledef` at 3.04 login) is answered in
 [304-tile-types](../torque/304-tile-types.md#login-capture-2026-11-24): a loopback
 GServer-v2 / gs2emu profile that admits `G3D03014` sends no `addtiledef` /

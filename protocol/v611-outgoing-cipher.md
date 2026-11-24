@@ -62,7 +62,7 @@ recovered. See
 
 ## Open points
 
-- [ ] Decrypt the Windows 6.113 capture itself. That needs the session key of that exact session, read from the running client.
+- [x] ~~Decrypt the Windows 6.113 capture itself.~~ **Partial 2026-11-24 (G334):** clear prefix + RC4@287 reconfirmed on three capture streams; post-287 decrypt **blocked** (exact-session key never recorded; operator private key unheld — G335 not started; memdump alone insufficient; other-session keys do not transfer). See [`v6113-capture-decrypt.md`](v6113-capture-decrypt.md).
 - [x] ~~The incoming direction.~~ *2026-11-13:* the server sends one clear `0xfd` wrapping its own `0xfc` with a 256-byte block. That block is the server-to-client key (cipher type, key, IV), RSA-wrapped to a private key that the connector script gives the client through `setEncryptionParseKey`. The two directions use different keys. Confirmed in a 6.111 lab run: `connector-script.md` §4c **[lab]**.
 - [x] ~~The padding scheme inside the **server→client** 0xfc body.~~ PKCS#1 v1.5 type-2 (`00 02…00`) on held stock blocks: [gen6-s2c-pkcs-padding-2026-11-16.md](gen6-s2c-pkcs-padding-2026-11-16.md). **[cap][lab]**
 - [ ] The padding scheme inside the **client→server** 0xfc body (needs the operator private key; unheld). (The server's 0xfc plaintext is cipher type, then length-prefixed key and IV: `connector-script.md` §4c.)
