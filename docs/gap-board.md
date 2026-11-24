@@ -15,20 +15,22 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 
 ## Columns
 
+2026-11-24 update: G147 now has a [three-input reader comparison](../client-internals/v2100-gani-reader.md#selected-reader-comparison-with-ver7-and-v22-2026-11-24). The selected public image, ver7 and v22 agree on the documented normal storage contracts, with separate reader/data/helper checks. This closes only that finite comparison; whole-reader/callee/runtime equivalence, malformed/error behavior and other builds are not established. All 426 IDs remain.
+
 2026-11-23 update: G146's [keyword-removal question](../client-internals/v2100-gani-reader.md#keyword-removal-and-field-counts-static-follow-up-2026-11-23)
 is answered on the selected reader's normal path: a concrete list method deletes
 index zero before count checks, binding minima six/five/two/one after the keyword.
-This does not establish malformed/runtime behavior or G147's cross-build scope.
+This does not establish malformed/runtime behavior; G147's later comparison has its own finite scope above.
 
 2026-11-23 update: G145's [header-word recovery](../client-internals/v2100-gani-reader.md#block-opener-and-third-flag-static-follow-up-2026-11-23)
 is answered for the same examined input: `ANI` selects the block mode and `LOOP`
 sets a distinct stored flag. This does not establish rendered repetition or flag
-defaults/interactions; G147 remains open and all 426 IDs are retained.
+defaults/interactions; G147 is covered separately above and all 426 IDs are retained.
 
 2026-11-23 update: G144's [placement-prefix spelling question](../client-internals/v2100-gani-reader.md#placement-prefixes-static-follow-up-2026-11-23)
 is answered for the examined public-labelled 2.1.0.0 input: `PARAM` and `ATTR`,
 with raw literal bytes and separate instruction paths. Rendering and malformed-input
-behavior are not established; G147 remains open. The stable inventory
+behavior are not established; G147 is covered separately above. The stable inventory
 still contains 426 IDs.
 
 2026-11-23 update: G070 has a [versioned source comparison](../server-notes/file-cache-and-script-size-2026-11-23.md)
