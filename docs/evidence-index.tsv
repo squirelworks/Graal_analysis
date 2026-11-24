@@ -169,6 +169,9 @@ FILE-CACHE-SCRIPT-SIZE-20261123	source	pinned-file-verification-package-metadata
 V2100-GANI-PREFIXES-20261123	windows	native-static-raw-literals-prefix-helper-and-selected-placement-instructions
 V2100-GANI-HEADER-WORDS-20261123	windows	selected-retained-parser-instructions-and-identity-bound-raw-header-word-data
 V2100-GANI-KEYWORD-REMOVAL-20261123	windows	native-static-caller-registers-concrete-list-method-and-post-removal-count-contract
+MAC-PPC-404-IDENTITY-PROPERTY-20261124-R1	macos	researcher-static-summary
+MAC-PPC-420-IDENTITY-PROPERTY-20261124-R1	macos	researcher-static-summary
+MAC-PPC-V5-IDENTITY-PROPERTY-20261124-R1	macos	researcher-static-summary
 LOGIN-PROBE-G002-20261124	windows	lab
 LIST-PROBE-G019-20261124	windows	lab
 LIST-PROBE-G020-20261124	windows	lab

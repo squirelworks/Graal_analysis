@@ -102,12 +102,16 @@ These are packaged defaults. They say nothing about the hardware of any guest.
 
 ## Machine identity
 
-[bin] **What the helper does.** In 4.04r2, 4.20r6 and v5, one helper does the following:
+[bin] **What the match helper does.** In 4.04r2, 4.20r6 and v5, one helper does the following:
 - gets the I/O Kit master port;
 - builds matching criteria for `IOEthernetInterface`, with an `IOPrimaryInterface` property match;
 - asks for the matching services.
 
-[inf] This is presumably where the MAC address comes from for the hash sent at login. It does not explain why that field was empty in the emulated 4.20r6 run; see [the lab note](../version-profiles/lab-mac-tiger-2026-10-31.md). The routine that reads the property and the routine that hashes it were not opened.
+[bin] **Property read and hash (G129, 2026-11-24).** Those three builds also have the follow-on bodies:
+- a reader that walks the matching iterator, climbs each entry to its `IOService` parent, reads the `IOMACAddress` CFData property and copies **six** raw bytes into a zeroed buffer;
+- a hasher that runs plain **MD5** over those six bytes and hex-encodes the sixteen digest bytes into a string, or leaves the string empty when the match/read path fails.
+
+That is the network field of the login machine list; see [pcid.md](../protocol/pcid.md) and the focused note [mac-ppc-machine-identity-property.md](mac-ppc-machine-identity-property.md). It fits the empty field on an emulated card that is not marked built-in / primary; see [the lab note](../version-profiles/lab-mac-tiger-2026-10-31.md). The full call graph into the login comma-list assembler is still open.
 
 ## 3D mission stages in Mac 4.04r2
 
@@ -259,7 +263,7 @@ In v5, the GANI lookup does the following:
 - [ ] Open the callers of the context helpers and record the real arguments, including the first refresh value.
 - [ ] Trace how callers handle a partial send, and how mission acknowledgements reach the wire.
 - [ ] Open the record constructor and payload processor behind the v5 event-name bridge.
-- [ ] Open the routines that read and hash the machine-identity property.
+- [x] ~~Open the routines that read and hash the machine-identity property.~~ **Partial 2026-11-24 (G129):** property-read (`IOMACAddress`, six raw bytes) and MD5-hex hash settled on 4.04r2 / 4.20r6 / v5; login comma-list call graph still open. See [mac-ppc-machine-identity-property.md](mac-ppc-machine-identity-property.md).
 
 ## Evidence
 
@@ -272,3 +276,6 @@ digests are owner-held.
 - `MAC-PPC-420-BROAD-STATIC-20261109-R1`
 - `MAC-PPC-V5-BROAD-STATIC-20261109-R1`
 - `MAC-PPC-RESOURCES-BROAD-20261109-R1`
+- `MAC-PPC-404-IDENTITY-PROPERTY-20261124-R1`
+- `MAC-PPC-420-IDENTITY-PROPERTY-20261124-R1`
+- `MAC-PPC-V5-IDENTITY-PROPERTY-20261124-R1`
