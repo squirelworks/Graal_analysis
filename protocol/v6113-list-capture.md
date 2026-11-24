@@ -75,3 +75,10 @@ stream offset **287**, three answered sessions and one unanswered SYN, and no
 port jump off 14900 after Login in that file. No keys recovered. See
 [`v6113-live-handshake-2026-11-16.md`](v6113-live-handshake-2026-11-16.md).
 **[cap]**
+
+## Decrypt status (G334, 2026-11-24)
+
+The clear prefix and the offset-**287** cut are reconfirmed on three reassembled
+client streams in this capture. Post-287 decrypt stays **blocked**: the
+exact-session keys were never recorded from the running client. See
+[`v6113-capture-decrypt.md`](v6113-capture-decrypt.md). **[cap][inf]**
