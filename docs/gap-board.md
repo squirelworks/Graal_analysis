@@ -155,6 +155,13 @@ Official accepting-client lobby still open (community Login only). **Do not star
 Crypto residuals, G248 Phase B, G155 and E#618 stay untouched; v7/Worlds and Machine-identity
 rows stay avoided/DROPPED.
 
+2026-11-24 update: **G019 / E#403** (classic logins on public 14922) is **partial** in
+[g019-classic-login-14922-2026-11-24](../protocol/g019-classic-login-14922-2026-11-24.md):
+public **14922** answers a classic shape-B login with two plain-zlib frames (id 0 list + ids 2/3/5/6),
+overturning the 2026-10-25 classic→14922 silence. Historical 2001 behaviour and a stock 2.17.1
+capture stay open. **Do not start G020.** Crypto residuals, G248 Phase B, G155 and E#618 stay
+untouched; v7/Worlds avoided.
+
 2026-11-24 update: G314 (post-login per-case guest account reset) is answered in
 [server-fuzz-c2s-targets](../protocol/server-fuzz-c2s-targets.md): on GServer 1.28b2,
 `idsweep`+`body` with `srvfuzz --reset-cmd` restoring the pristine guest account before

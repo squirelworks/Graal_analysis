@@ -30,3 +30,7 @@ So 14923 answers both login types, and 14922 answers only the gen-5 login. For a
 ## Defaults that follow
 
 `client-internals/version-profiles/` now gives the profiles the port of the login type the Seihai profile sends: 14923 for 1.41 to 2.17 (classic), 14922 for 2.22, 2.3 and 2.31 (gen-5). The ports are marked `confirmed` for every profile whose own login type was run on its port: the 15 classic profiles on 14923 and 2.22, 2.3 and 2.31 on 14922. 2.05 is `assumed` on 14923, because its classic login was not run. `list-ports.md` has the table.
+
+## Update 2026-11-24 (G019)
+
+One owner-approved classic shape-B login on public **14922** got a **list** (two plain-zlib frames: id 0 with 4 rows, then ids 2/3/5/6). That overturns the classic→14922 **silence** column above for today's service. See [`g019-classic-login-14922-2026-11-24.md`](g019-classic-login-14922-2026-11-24.md). Port **14923** was not re-checked in that run.
