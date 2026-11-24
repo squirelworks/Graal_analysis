@@ -147,3 +147,10 @@ patched-client route (route 1) — the same prerequisite stated in §5.1.
 The container RSA block is **signature-only**, not an AES key wrap — see
 [v7-connector-payload-cipher.md](v7-connector-payload-cipher.md). Exact payload cipher,
 plaintext and the `?p=` DES key remain open as above.
+
+### 5.2 Trust-anchor avenue closed (2026-11-24, G156)
+
+Stock v7 Worlds **cannot** take a lab-replaced connector public key — see
+[v7-connector-trust-anchor.md](v7-connector-trust-anchor.md). The §4 / §5.1 patched-client
+route is a **NO-GO** on stock; clean-room repro remains the practical path. G028 residuals
+(payload cipher / plaintext / `?p=`) stay open.
