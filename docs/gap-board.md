@@ -39,6 +39,10 @@ parsed map state from NC script input and classic script-output bounds. Original
 4.02 behavior, the historical RC editing limit and old-engine breakage remain open;
 this is partial coverage, not a completed historical confirmation.
 
+2026-11-25 update: G173 and G098 (5.12 versus 5.00r7 prop value widths) are answered in
+[player-props-5x-status](../protocol/player-props-5x-status.md#genuine-512-has-the-same-widths-g173--g098-2026-11-25):
+every id in the self, other, NPC and baddy parsers has the same width in both engines. One behaviour change found on the way:
+5.12 drops NPC scripts (prop 1) except a sparring-zone marker. Checkboxes closed.
 2026-11-24 update: G065 (GS1 gone in 5.12) is answered in
 [gs1-commands-by-version](../npc-library/gs1-commands-by-version.md#512-no-gs1-command-table-2026-11-24):
 `gs1scan.py x86` finds 0 commands in the genuine 5.12 engine against 193 in the 5.00r7 control; 59 names are

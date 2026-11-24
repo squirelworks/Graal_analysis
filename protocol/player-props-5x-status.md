@@ -72,18 +72,58 @@ For the already bound newly constructed shared receiver, concrete getter/setter 
 
 The compact image routing selects four sword presets for decoded values 1–4 and three shield presets for 1–3; other compact values retain the initially empty image path. Extended image text uses its separate length and available-bounded slice. Image assignment and numeric storage converge, but neither successful asset loading nor gameplay follows from those stores. The nominal extents stay as recorded in the cursor census. Own-player concrete storage, existing/shared subclasses, sender behavior, genuine 5.12 and full P6 remain open. **[bin][inf]**
 
+## Genuine 5.12 has the same widths (G173 / G098, 2026-11-25)
+
+The genuine 5.12 engine and the unpatched 5.00r7 engine give every property the same value width, in all four streams: self
+(PLO 9), other (PLO 8), NPC (PLO 3) and baddy (PLO 2). So the 5.00r7 numeric table in the
+[cursor census](player-props-selected-backup-cursors-2026-11-22.md) also holds for 5.12. **[bin]**
+
+Method: in both engines the four parsers were found by their switch (id byte minus 32 and its bound), and the case sets rebuilt
+from the dispatch tables; they match `v5-props.md`. Each case handler was then compared instruction by instruction up to the
+blocks shared by many cases, with addresses masked, called functions compared recursively, and offset-only differences (object
+field and stack-frame offsets) kept apart from code changes. Each whole parser was also compared in straight-line order. **[bin]**
+
+| Stream | Cases | Result |
+|---|---|---|
+| self | 76, plus 7 default ids | all identical; the two parsers differ only in call targets |
+| other | 69, plus 14 default ids | 68 identical; id 11 differs in code but not in width |
+| NPC | 73 | 34 identical; 36 differ only in object field and frame offsets (part of the NPC object moved 8 to 12 bytes); ids 1, 4 and 22 differ in code, all with the same width |
+| baddy | 11 | whole parser and every callee equivalent |
+
+The shared readers (character at cursor, substring, prefix removal that advances the cursor, and the string helpers) are
+equivalent. There are no separate two- or three-byte reader functions: multi-byte values are decoded inline in the handlers,
+which are part of the identical bodies. Callees that changed (the bomb setter used by self 7, image and gani loading, sound,
+rendering, NPC image setters) act after the width is fixed. **[bin]**
+
+The code differences:
+
+- **Other 11 and NPC 22 (head image).** Same encoding in both: with `p` the first value byte minus 32, one byte naming
+  `head<p>.png` when `p < 100`, otherwise `1 + (p - 100)` bytes holding the image name. 5.12 only builds the default
+  `head0.png` name once and keeps it, where 5.00r7 uses a literal each time. **[bin]**
+- **NPC 4.** Flagged only because a block it shares changed its field offsets; it reads one byte in both. **[bin]**
+- **NPC 1 (script) — same width, different effect.** Both read a two-byte length `L = 128·a + b − 0x1020` (0 if negative) and
+  then `L` bytes, so the record is `L + 3` bytes with the id. 5.00r7 stores the script when the NPC has none yet and goes on to
+  its player-enters path. 5.12 never stores it: it only checks the text for the `sparringzone` marker (bare, or after
+  `//#CLIENTSIDE`) and, on a match, sets a sparring-zone flag; any other script is dropped. This fits 5.1's removal of GS1
+  ([gs1-commands-by-version](../npc-library/gs1-commands-by-version.md#512-no-gs1-command-table-2026-11-24)). Runtime effect not
+  tested. **[bin][inf]**
+
+Inputs: the unpatched 5.00r7 engine and a memory image of the genuine 5.12 engine (link date 2007-10-19). The census's 5.00r7
+widths were spot-checked against the same 5.00r7 code (self 3 and 14, other 11, NPC 1) and agree. This pass proves equality; it
+does not add an NPC or baddy width table. **[bin]**
+
 ## Still open for #6
 
 A [complete selected own/shared cursor census](player-props-selected-backup-cursors-2026-11-22.md), with a numeric per-ID table, now records these two backup functions' dispatch membership, nominal extents, short guards and default behavior. It distinguishes own prefix-copy delegation from shared cursor advancement. This closes that selected static census only; the multi-build/genuine-5.12 checklist below and semantic/runtime questions remain open. **[bin][inf]**
 
 | Question | Why | Next |
 |---|---|---|
-| Per-id **value widths** beyond the ids named in `v5-props.md` | Needed for safe encode / fuzz-free lab fixtures | **S** width table on 5.00r7 + 5.12 engines |
+| ~~Per-id **value widths** beyond the ids named in `v5-props.md`~~ | Needed for safe encode / fuzz-free lab fixtures | Done for self and other: 5.00r7 census, and 5.12 identical ([above](#genuine-512-has-the-same-widths-g173--g098-2026-11-25)) |
 | Two-client prop **diff** on the wire | Confirms other-player accept set live | **L** after #1 assets |
 | Pyreborn leads **P4** COLORS 5↔8 via PLO 177; **P5** ascending-id stop; **P6** sword/shield bias | Leads only until our **S** | Same static pass as widths |
 
 ## Open checklist
 
-- [ ] Publish a 5.00r7 / 5.12 per-id width table (self + other).
+- [x] ~~Publish a 5.00r7 / 5.12 per-id width table (self + other).~~ The 5.00r7 table is the [cursor census](player-props-selected-backup-cursors-2026-11-22.md); 5.12 has the same widths in all four streams ([above](#genuine-512-has-the-same-widths-g173--g098-2026-11-25)).
 - [ ] Confirm or reject P4–P6 against that table / two-client capture.
 - [ ] Optional: unknown own-id long-value desync lab (called out in `v5-props.md`).
