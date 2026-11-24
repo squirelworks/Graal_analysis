@@ -120,7 +120,7 @@ The pair lists the 6.111 script passes, read live, are in `v611-id-tables.md`, w
 | --- | --- | --- | --- |
 | Request order and container | HTTPS → `conf.gs`; same container **[cap][lab]** | same design **[bin][cap]** | same design and container **[lab]** |
 | Script read | yes, decrypted in a lab replay **[lab]** | string table read from memory in a live run; id lists not recovered **[lab]** | no; anti-tamper ends inline-hook traces **[lab]** |
-| Token | `GNP1905C` from the script | `GNP1905C` from the script and on the wire **[lab][cap]** | not established |
+| Token | `GNP1905C` from the script | `GNP1905C` from the script and on the wire **[lab][cap]** | production script literal **uncompared** (G246 partial; decrypt blocked) |
 
 None of this exists in 6.01 or 6.03 (no connector, no RC4/AES, no script-set id tables). **[bin]** (`v6x-clients.md`)
 
@@ -147,12 +147,14 @@ The per-launch value is the decisive difference. It is why 6.11's live id tables
 
 So 7.x needs either a genuine reply for one live launch's exact request, which means an authorised online fetch and is out of scope, or a clean-room client that owns its own key. The stock patched-client avenue is closed. The practical 7.x target stays graal-client-repro, which skips the connector and speaks the game protocol already mapped. **[inf]**
 
+**G246 (2026-11-24, honest partial):** outside-the-script diffs above stay settled. The production 7.x script's **token**, **template**, and **cipher** remain **uncompared** — a decrypted reply for its own launch is still required, and stock decrypt stays blocked (G156 trust-anchor NO-GO + G028 residuals untouched). See `v7-connector-script-diff.md`. **[inf]**
+
 ## Open
 
 - [x] ~~The pair lists that `setoutdatahandlers` and `setindatahandlers` receive.~~ Read live from a 6.111 lab run, with gs2lib names joined by wire id: `v611-id-tables.md`.
 - [ ] The arguments and order of the login steps (`connectToGameServer`, `setLoginAccount`, `getPassword`, `sendLoginNewProtocol` / `sendPasswordAndIDs`). The names are confirmed for 6.113 (section 4a); their arguments are not.
 - [ ] What the per-launch `?p=` value binds in the signature.
-- [ ] Whether the 7.x script differs from the 6.11 one (token, template, cipher). This needs a 7.x reply decrypted for its own launch. What differs outside the script, and what a decrypted reply would need, is in section 7a.
+- [x] ~~Whether the 7.x script differs from the 6.11 one (token, template, cipher).~~ **Partial 2026-11-24 (G246):** outside-script diffs settled in §7a; production script token/template/cipher **uncompared** (decrypt blocked — G156 NO-GO + G028 residuals). See `v7-connector-script-diff.md`.
 - [x] ~~Does the server's stream follow the same clear-then-cipher pattern?~~ Yes: one clear `0xfd` frame, then ciphertext (section 4b).
 - [x] ~~Which key the server's stream uses, and how the client sets it with no `setEncryptionIn` in the script (also open in #396).~~ The server picks its own key and sends it RSA-wrapped in its `0xfc`. The client unwraps it with the private key that `setEncryptionParseKey` supplies (section 4c, **[lab]**).
 - [ ] Old versus new protocol: which servers set `usenewprotocol`. (The two incoming sets differ only in wire 100 and the 252/253 pairs: `v611-id-tables.md`.)

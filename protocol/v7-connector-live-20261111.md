@@ -154,3 +154,10 @@ Stock v7 Worlds **cannot** take a lab-replaced connector public key — see
 [v7-connector-trust-anchor.md](v7-connector-trust-anchor.md). The §4 / §5.1 patched-client
 route is a **NO-GO** on stock; clean-room repro remains the practical path. G028 residuals
 (payload cipher / plaintext / `?p=`) stay open.
+
+### 5.3 G246 partial (2026-11-24): script token / template / cipher uncompared
+
+Outside-script 7.x vs 6.11 diffs stay in `connector-script.md` §7a. The production
+script's token, template and cipher remain **uncompared** while decrypt stays blocked —
+see [v7-connector-script-diff.md](v7-connector-script-diff.md). G028 residuals and the
+G156 NO-GO were not re-opened.
