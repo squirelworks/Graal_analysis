@@ -200,9 +200,9 @@ The rules below give what a script can do with terrain, with the live results so
 | In 4.04r2 a script's `new TerrainBlock(...)` is created and `terrainFile` reads back as set, but the block loads no terrain by either path; only a ghosted block does | [lab] (torque/terrain-512.md#8-older-builds-the-ter-file-path) |
 | The 4.04r2 `.ter` file path is taken only for a block whose `terrainFile` names a `.ter` that loads, which the network update never sets, so it is reachable only from a script-made block and was not reached live; 5.12 keeps the property name but only streams | [bin][inf] (torque/terrain-512.md#8-older-builds-the-ter-file-path) |
 | No path from a 2D level's `HEIGHTS` block into a `TerrainBlock` was seen; the 2001–2003 `TerrainGenerator` writes 2D gmaps and levels, not Torque terrain | [bin][inf] (torque/script-and-terrain-tools-by-build.md#the-original-terraingenerator-is-a-different-tool) |
-| The event list of the streaming is in → §10.5.3 | [bin] (graal3d/torque-engine-4x.md#terrain-streaming-graal) |
+| The terrain and water wire layouts are in → §10.5.4 and → §10.5.5 | [bin] (graal3d/torque-engine-4x.md#terrain-streaming-graal) |
 
-**The streamed terrain a script reads (5.12).** In 5.12 the terrain never comes from a `.ter` file: the server ghosts a `TerrainBlock` that carries only settings and then streams heights, materials and holes as 256 chunks of 16 × 16 squares, which the client caches per server [bin] (torque/terrain-512.md#graal-512-streamed-terrain-terrainblock-chunk-events-and-the-heights-cache). The rules give what a script sees of it; the full chunk layout and stamp rule are in the note, not yet folded into Part X.
+**The streamed terrain a script reads (5.12).** In 5.12 the terrain never comes from a `.ter` file: the server ghosts a `TerrainBlock` that carries only settings and then streams heights, materials and holes as 256 chunks of 16 × 16 squares, which the client caches per server [bin] (torque/terrain-512.md#graal-512-streamed-terrain-terrainblock-chunk-events-and-the-heights-cache). The rules give what a script sees of it; the chunk layout, stamp rule and cache files are in → §10.5.4.
 
 | Rule | Source |
 | --- | --- |
