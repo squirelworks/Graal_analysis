@@ -173,3 +173,28 @@ T3D-023.
 - 4.04r2's plug-in names only `.wav`. Its other sound goes through the 2D engine.
 
 Open: whether the 3D audio classes (`AudioEmitter`, `Sim3DAudioEvent`) play in 4.04r2. This is T3D-061, a lab.
+
+### How the Camera control object behaves on the wire (T3D-023, live 5.12)
+
+A series-3 lab run drove a 5.12 client with a `Camera` control object and
+varied the fields. **[lab]**
+
+- **Field of view.** The per-packet FOV works: 30 zooms in, 120 widens, and
+  90 is pixel-identical to sending no FOV, so the default is 90.
+- **Which camera draws.** The client draws through whichever `Camera` the
+  packet names. A second, unnamed `Camera` does nothing; naming it switches
+  the view to it.
+- **Camera mode.** Mode 1 turns the view to look at the player's own control
+  object. Mode 0 and the follow-ghost index change nothing, and even with
+  mode 1 the follow index does not change the target.
+- **Wire shape.** With a `Camera` as the control object the client draws the
+  same view as with a `GameObject`, and on the wire it writes the
+  `GameObject` sections first (the first update is transform plus flags 0, no
+  shape), then two extra `Camera` flags (mode, follow). When the packet also
+  carries events, exactly two extra bits make every packet parse (0, 1 or 3
+  do not), confirming the Sharp3D-route reader.
+
+A side note for our gserver: its mission-route reader does not expect those
+two extra bits and loses every client event while a Camera is in control.
+That is harmless today because the mission route never makes a Camera the
+control object, but it is a reader gap to close if it ever does.
