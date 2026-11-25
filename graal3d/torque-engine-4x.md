@@ -168,7 +168,7 @@ Every event, every ghost update and every datablock is sent as `int14 bitLength`
 ### Ghosts (Graal changes)
 
 1. flag (ghost data follows).
-2. int4 **index width** (the number of bits of the highest index, sent as is; TGE 1.1 sends it in 3 bits as width − 3, see [stock-baseline-mbg-2026-11-25.md](../torque/stock-baseline-mbg-2026-11-25.md)).
+2. int4 **index width** (the number of bits of the highest index, sent as is; for contrast, the stock TGE 1.1 reference in [stock-tge-reference-mbg-2026-11-25.md](../torque/stock-tge-reference-mbg-2026-11-25.md) sends it in 3 bits as width − 3).
 3. For each ghost: flag 1, index, flag (delete). If not deleted: int12 class id (**sent on every update, not only the first**), sized update data.
 4. flag 0 at the end.
 
@@ -292,14 +292,14 @@ The DLL matches open TGE 1.x in:
 - the DTS, DIF and TER versions;
 - its class list.
 
-It has none of TGE 1.4's new lighting system. Its `getVersionNumber` is 1150, on the TGE 1.1 line (Marble Blast Gold 1.4.1 is 1101, Graal 3.04 is 1100); see `torque/stock-baseline-mbg-2026-11-25.md`. **[bin]**
+It has none of TGE 1.4's new lighting system. Its `getVersionNumber` is 1150 (2026-11-25 static read), on the TGE 1.1 numbering; Graal 3.04 is 1100. **[bin]** For a stock reference point, see `torque/stock-tge-reference-mbg-2026-11-25.md`.
 
 Open TGE-line source (Torque2D's net layer, Torque3D for the rest; see `torque/open-source-lineage.md`) is a good base for the formats and the low-level net layer. A compatible client or server must add the Graal changes:
 
 - the class table in connect accept, with 12-bit class ids;
 - 14-bit length prefixes on events, ghosts and datablocks;
 - a class id on every ghost update;
-- the 4-bit raw ghost index width and 12-bit ghost ids (TGE 1.1 sends a 3-bit width − 3 and 10-bit ids; `torque/stock-baseline-mbg-2026-11-25.md`);
+- the 4-bit raw ghost index width and 12-bit ghost ids (the stock TGE 1.1 reference in `torque/stock-tge-reference-mbg-2026-11-25.md` uses a 3-bit width − 3 and 10-bit ids);
 - 12-bit datablock ids;
 - the server time and client state in the game packets;
 - the acks without a sequence number;

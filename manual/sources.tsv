@@ -834,7 +834,7 @@ torque/scripting.md	cited	10	10
 torque/skipped-v4-read.md	cited	10	10	§10.1.9 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
 torque/skipped-v5-read.md	cited	10	10	§10.1.9 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
 torque/skipped-version-stamps.md	cited	10	10	§10.1.9 carries the version strings, fixed words and companies on the skipped exports
-torque/stock-baseline-mbg-2026-11-25.md	pending		10	stock TGE 1.1 baseline (Marble Blast Gold demo) against 4.04r2 and 5.12: 5.12 DTS bounds 17-24, class CRC stock, raw 4-bit ghost index width Graal-only, protocol-19 string buffer; to fold into §10
+torque/stock-tge-reference-mbg-2026-11-25.md	pending		10	stock-Torque reference only (Marble Blast Gold demo, TGE 1.1), not Graal evidence; Graal values beside it cite 4.04r2/5.12 DLL reads and labs; to fold into §10 as a reference
 torque/stub-512.md	cited	10	10	packer stub; §10.1.6 carries the file version and that the engine DLL is not in the zip
 torque/stub-5243.md	cited	10	10	packer stub; §10.1.6 carries the file version 5.243
 torque/stub-524r4.md	cited	10	10	packer stub; §10.1.6 carries the file version 5.244
