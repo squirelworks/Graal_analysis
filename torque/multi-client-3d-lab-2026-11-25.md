@@ -101,6 +101,17 @@ MissionStartPhase1Ack fix holds.
   and draws white; 5.12 fetches the textures only on the next visit. Clearing
   `levels3d/heights` before each run keeps it on a perpetual first visit,
   which is why it looked like it never fetched textures.
+- **Push on first visit (GDI run, server pushes once per account).** With
+  the server pushing the terrain file set up front (rather than waiting for
+  the client to ask on a second visit), a real 5.12 under GDI gets
+  `heights.info` *and* all four terrain textures on the first visit, before
+  the terrain loads, and logs no "Missing terrain texture". So the textures
+  are available to the client on the first visit when the server pushes them
+  — the earlier "textures only on the second visit" was a consequence of the
+  server waiting to be asked, not a client limit. **Still open:** whether
+  5.12 *draws* those first-visit textures (vs. still drawing white) on a GLSL
+  driver — the GDI run confirms arrival, not the rendered result. A Mesa run
+  with the cache cleared and the server pushing is needed to settle the draw.
 
 ### M3 (Mac 3.153 on Tiger + 5.12)
 
