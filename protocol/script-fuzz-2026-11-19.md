@@ -120,6 +120,25 @@ So 208–215, which fuse arithmetic with assign, run as plain binary operations 
 
 **Silent on all three clients** (Seihai runs them): an unknown segment type placed first, the segments in reverse order, and the code segment twice.
 
+### Why case 30789 crashes 6.03r7 (static read, 2026-11-25)
+
+The expression is `(((2 in |"  pad  ", -0.0001|) + (-0.0001 >= 0.00011)) * getangle((-2147483649 ^ 0.000000001), ("a").substring(2.00001, 2147483647)))`. The fault is in **`substring` (opcode 115)**, not in `getangle` or `^`. GS2 is a stack machine, so `getangle`'s second argument — the `substring` — is evaluated first and faults before the `getangle` opcode runs. `-2147483649 ^ 0.000000001` is a negative base to a non-integer exponent, so `pow` returns NaN, which is only a pushed value (6.03r7 prints it as `0.-000000000`); the range test and `>=` just produce 0. **[bin]**
+
+`("a").substring(2.00001, 2147483647)` on a one-character string hits a signed-overflow bug that all three builds share. The start `2.00001` becomes `floor(x + 0.0001)` = 2, clamped down to the length (1). The length 2147483647 (INT_MAX) is not re-clamped, because the bound test is signed: `start + length` = 1 + 2147483647, which wraps to −2147483648, the most-negative int, so the signed `≤ strlen` test passes and the "length = strlen − start" fixup is skipped. The copy count handed to the string-grow helper is then `end − start` ≈ 2.1 billion.
+
+The builds differ only in that terminal grow/append helper:
+
+| Build | Grow/append helper | Result |
+|---|---|---|
+| 6.03r7 | no length cap and no allocation-success check: requests ~2 GB and writes through the result unconditionally | **faults** — access violation on Windows; on Linux the ~2 GB libstdc++ resize throws with no catch around the VM, so the client terminates |
+| 4.20r8 | caps the copy at 1,000,000 bytes (it skips the copy when the count is larger) | empty string (the "substring with a huge length → empty" row above) |
+| 5.12 | no cap, but tests the ~2 GB allocation result and bails on failure | empty string |
+
+So 6.03r7 is the odd one out: it carries the same signed-overflow length bug as 4.20r8 and 5.12 but dropped both guards (the million-byte cap and the allocation-null check). Seihai's own VM predicts the script completes with value 0, so a server's own run of this script would not reproduce the client crash.
+
+Caveats: the lab crash was on **Linux** 6.03r7 while the static target was the **Windows** 6.0.3.7 unpack (same C++ handlers; only the fault flavour differs), and 5.24r4 was not located, so 5.12 stood in for 5.x. Confidence is high on the dispatch, handler and guard reads, and medium-high (from the libstdc++ contract) on the exact Linux fault type.
+
+
 ## GS2: limits
 
 - **Loop passes.** A `while` loop of 10001 passes finishes on 6.03r7 (`ran-past`). 5.24r4 and 4.20r8 stop it, as Seihai predicts.
@@ -219,5 +238,5 @@ Each `differs` row above is a candidate fix for seihai-core's GS2 VM or GS1 engi
 
 - [ ] Runtime behavior of opcodes 48 and 49 on a build that dispatches them (5.00r7 or 5.12). The [retained 5.00r7 backup-engine handler read](gs2-client-only-opcodes.md#48-and-49-retained-500r7-backup-engine) supplies a bounded static contract; genuine 5.12 and runtime validation remain open.
 - [ ] The value `waitfor` gives when its time runs out. The three cases did not settle it. A separate [static follow-up](../client-internals/gs2-wait-results-2026-11-22.md) binds saved-one preparation, deadline payload zeroing and conditional restoration in two selected inputs; it does not supply a new native timeout experiment.
-- [ ] Why the expression in case 30789 crashes 6.03r7.
+- [x] ~~Why the expression in case 30789 crashes 6.03r7.~~ [Answered 2026-11-25](#why-case-30789-crashes-603r7-static-read-2026-11-25): a shared signed-overflow in `substring`, with both of 6.03r7's length guards dropped. **[bin]**
 - [ ] Why control 30000 reads `stopped` on 5.24r4 while 30001 and every canary reported.

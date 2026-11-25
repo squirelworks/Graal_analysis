@@ -39,6 +39,12 @@ parsed map state from NC script input and classic script-output bounds. Original
 4.02 behavior, the historical RC editing limit and old-engine breakage remain open;
 this is partial coverage, not a completed historical confirmation.
 
+2026-11-25 update: G305 (why fuzz case 30789 crashes 6.03r7) is answered in
+[script-fuzz-2026-11-19](../protocol/script-fuzz-2026-11-19.md#why-case-30789-crashes-603r7-static-read-2026-11-25):
+the crash is in `substring` (opcode 115), not `getangle`/`^`. A one-char `substring(2.00001, 0x7FFFFFFF)` hits a signed `start+length`
+overflow that skips the length fixup in all three builds; 4.20r8 caps the copy at 1,000,000 bytes and 5.12 checks the ~2 GB allocation,
+but 6.03r7 dropped both guards and faults. Checkbox closed.
+
 2026-11-25 update: G323 (4.20r8 login-account script API) is answered in
 [v4-login-account-contract](../protocol/v4-login-account-contract.md#login-account-script-api-by-build-g323-2026-11-25):
 4.20r8 has no `getLoginAccountName()` and no `GuiAccountPasswordCtrl` (both arrive in 5.00r7), but has `Adventure_setAccountName` /
