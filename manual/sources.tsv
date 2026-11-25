@@ -988,3 +988,5 @@ torque/3d-link-drop-420r6-2026-11-25.md	pending		10.3	3D link loss behaviour (T3
 torque/3d-client-events-420r6-2026-11-25.md	pending		10.3	3D client-to-server events (T3D-018), static and lab; to carry into §10
 torque/3d-file-preference-420r6-2026-11-25.md	pending		10.3	3D file preference (T3D-107), lab; to carry into §10
 torque/3d-shape-textures-420r6-2026-11-25.md	pending		10.3	3D shape texture handling and cache naming (T3D-090), lab; to carry into §10
+torque/3d-2d-level-packets-420r6-2026-11-25.md	pending		10.3	2D level packets in a 3D session (T3D-060), lab; to carry into §10
+torque/3d-world-limits-420r6-2026-11-25.md	pending		10.3	3D world-limit fuzz (T3D-091), lab; to carry into §10
