@@ -127,8 +127,22 @@ properties on the player's shape. **[lab]**
 That fits the static read. The compile happens only when the driver supports
 shaders and the shape has a program object.
 
-Open: the compile path and its visible effect. These need a VM with a
-GLSL-capable GL.
+Second live check, with a GLSL-capable GL (32-bit Mesa 26.3 beside the 5.12
+client in a VM clone). **[lab]**
+
+- Mesa's default D3D12 back end makes 5.12 exit silently at its first draw.
+- With the llvmpipe driver (OpenGL 4.6 compatibility), 5.12 runs. Torque
+  turns on multitexture, combine, fog coordinates, S3TC and anisotropic
+  filtering.
+- GLSL source in `pixelshader` / `vertexshader` works. The lantern shape drew
+  solid magenta from the test fragment shader, against the plain draw.
+- A file name in either field does nothing: no change and no download.
+- No compile log text was found in `console.log`, `game_console.log` or any
+  other file, for good or bad shaders. It may go only to the in-game
+  console; still open.
+
+So on a GLSL-capable driver, a client script can replace the material of any
+shape it can reach with its own shader.
 
 Side finding: 5.12 caches each 3D weapon's compiled script as
 `weblevels/weapons/<server>/<weapon>.code`.
