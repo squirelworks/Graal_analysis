@@ -58,10 +58,14 @@ Series 1 on the real 5.12 client, one change per run. **[lab][cap]**
   was black, with a fog-coloured band fading up from the horizon. The fog
   colour tints it (checked with red). Face order and mirroring are the same
   on both drivers.
-- **Visible distance.** Values of 0, 50, 200 and 1000 gave pixel-identical
-  frames. Markers at 100 and 300 always showed and a marker at 800 never
-  did, so this field does not drive clipping or fog on the client. What
-  does is still open.
+- **Visible distance and fog.** Values of 0, 50, 200 and 1000 gave
+  pixel-identical frames. A dedicated fog run (Mesa) drew every 1x1 cube
+  along +y out to 800 m, untinted, even behind a visible distance of 100.
+  Only the sky takes the fog: a band of the fog colour fades up from the
+  horizon with solid fog colour below. So the client does not fog or
+  distance-clip GameObjects, and the Sky's visible-distance field changes
+  nothing visible. This is not a driver limit (confirmed on Mesa, not just
+  GDI).
 - **Flags.** The first flag turns sky textures on; with it off, a solid
   colour fills the sky. The second and third flags showed nothing when
   looking up. Whether either turns on the bottom face is still being run.
