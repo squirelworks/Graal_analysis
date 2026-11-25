@@ -121,4 +121,4 @@ texture 0 bark.png
 }
 ```
 
-Open: a live run (render, `seed` and `levels` effects, texture rows) is queued for the Mirae lab.
+Open: a live run (render, `seed` and `levels` effects, texture rows) is queued for the lab Windows VM.
