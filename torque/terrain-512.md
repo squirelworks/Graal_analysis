@@ -231,11 +231,20 @@ Live on 5.12 (a block at z 20 with z scale 20, wave magnitude 0.3) **[lab]**:
   scale (a corner, not the centre), stops at its scale, and a 512 scale is taken. Turned 90°
   about z it covers x 0…256, y −512…0: it turns about its position. (An earlier reading over
   terrain that seemed to run past the scale was stale.)
-- Waves: at wave magnitude 0 `liquidheight` is flat. At magnitude 1 on a 256 × 256 block one
-  point swung exactly ±0.5 (±0.5 × magnitude) with a 6.0 s period. Earlier readings that gave
-  other periods, and that suggested different points move out of step, read `liquidheight` in
-  the same tick as moving the probe, which returns the previous value; they are being redone.
-  Note for probes: read `liquidheight` one tick after moving the object.
+- Waves (a 5 × 5 grid over a 256 × 256 block at magnitude 1, read one tick after each probe
+  move, 12 passes): every point is a clean sine with the same period, and the whole field fits
+  (r.m.s. error 0.005)
+
+  `liquidheight = surface + 0.25 · m · (sin(ω·t + k·x + φ) + sin(ω·t + k·y + φ))`
+
+  with m the wave magnitude, ω ≈ 0.984 rad/s (period about 6.4 s) and x, y in world units: two
+  equal waves, one along x and one along y. So on the diagonal x = y a point swings ±0.5 · m,
+  and elsewhere less (down to ±0.05 · m). The grid alone allows a wavelength 2π/k of about 126 or
+  about 101 units (aliasing); the same block moved by (1000, 1000) lags by about 0.3 s, which
+  fits 126 (crests travel toward −x and −y), so k ≈ +0.050 per unit. The waves follow world
+  position, not the block's own corner. **[lab][inf]** (fit)
+  Note for probes: read `liquidheight` one tick after moving the object; read in the same tick
+  it returns the previous point's value.
 - A 32 × 16 × 2 block at (0, 16, 0) covers exactly x 0…32, y 16…32 with its surface at 2, with
   or without terrain and whatever `ignoreTerrain`; `ignoreTerrain` changed only a thin band where
   the water meets the ground.
