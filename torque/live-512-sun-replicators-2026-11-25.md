@@ -27,7 +27,7 @@ T3D-045, T3D-047, T3D-048. **[lab][cap]**
   crash is in the animation-key path, reached only when the gating flags and
   the key strings are both present. (Crash address withheld per repo rules.)
 
-  **Open: how many flag bits.** This series's GwenTea2 static read of the
+  **Open: how many flag bits.** This series's static read of the
   update counted 16 animation flag bits; the terrain thread's independent
   read (`torque/fxsunlight-512.md`, PR #895) counts 14. The rest of the
   layout agrees between the two reads — a name and a 6-float transform
