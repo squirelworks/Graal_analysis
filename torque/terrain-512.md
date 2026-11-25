@@ -211,6 +211,21 @@ changes the live view only. **[bin]**
 Research board rows (`torque/3d-capability-board.tsv`): T3D-040 (`TerrainBlock`, chunks, cache),
 T3D-044 (terrain texture rules), T3D-045 (`WaterBlock`).
 
+## 8. Older builds: the `.ter` file path
+
+4.04r2 and 3.153 still carry stock Torque's file path beside the chunk path. In 4.04r2, adding a
+`TerrainBlock` takes the file path only when the object's `terrainFile` property names a `.ter`
+resource that loads (the resource filter serves `.ter` from `levels3d/terrain/`). The client then
+logs `Loaded terrain from terrain file.` and does not ask for chunks. With no file name, or a file
+that does not load, it falls back to `Loading terrain from terrain chunks.` and the chunk path of
+§1. **[bin]**
+
+The network update never sets `terrainFile`: only the property setter does. So a ghosted
+`TerrainBlock` always streams chunks, and the `.ter` path is reachable only from a script that
+creates a `TerrainBlock` locally and sets `terrainFile` before adding it **[bin][inf]**. In 5.12
+the property name survives, but adding a block no longer branches on it: 5.12 only streams.
+**[bin]** Board row T3D-041.
+
 ## Lab results
 
 Run 2026-11-25: the real 5.12 client in the Windows 10 lab VM, joined to the Seihai gserver
@@ -230,6 +245,14 @@ logs are kept with the owner's lab material. **[lab]**
 | Corrupt or truncated zlib | chunk zeroed and saved |
 | Chunk before the `TerrainBlock` | logged, not stored |
 | `TerrainBlock` with init 0 | still loads chunks |
+| Chunk with 3 and 5 materials, ids out of order, an unused id; chunks at x or y = 15 | accepted; saved with the used ids only, ascending |
+| `TerrainBlock` named `Foo`; square size 0, 1, 32; repeat 1 | accepted, chunks saved, no log difference (the lab VM draws terrain untextured, so the visual effect is not settled) |
+| `heights.info` naming a 128 × 128 RGB and a 256 × 256 RGBA texture | no `bad format` or `Missing` log, no crash (not settled whether the texture was used) |
+| `WaterBlock` with the §5 layout (with terrain) | ghost created, the surface texture fetched over TCP, a large surface drawn |
+| `WaterBlock` liquid type 0 to 7 (eight blocks) | all created, no error |
+| `WaterBlock` scale 512 alone | nothing drawn, as the static read predicts (scale taken only from 1024 up) |
+| `WaterBlock` scale 1024 and 4096 | created |
+| `WaterBlock` opacity 0 and 1; empty and missing surface texture | accepted (one run of opacity 1 and one of the missing texture lost the TCP link during phase 1; the same bytes worked on the next login, so this reads as transient, not layout) |
 
 No case crashed the client. Corrections this run made to the static read: `heights.info` is
 one name per line; the folder-name escape; the canonical re-encoding before the stamp.
