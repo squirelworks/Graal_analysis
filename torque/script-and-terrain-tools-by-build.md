@@ -12,7 +12,7 @@ narrows board rows T3D-006, T3D-007, T3D-008, T3D-019 and T3D-041
 |---|---|---|---|
 | TorqueScript compiler messages (`%s Line: %d - Syntax error.`, `Compiling %s...`) | present | absent | absent |
 | `exec`, `compile` console names | present | absent | absent |
-| `eval` console name | present | present | absent |
+| `eval` console name | present | string only, not a registered function | absent |
 | `schedule`, `dumpConsoleFunctions` | present | present | absent |
 | `.dso` extension literal | present | present (download filter) | present (download filter list) |
 | Ships TorqueScript | yes (`main3D.cs` and `.dso` files) | no | no |
@@ -25,7 +25,15 @@ narrows board rows T3D-006, T3D-007, T3D-008, T3D-019 and T3D-041
   functions, so a part of the console survives, but with no compiler messages and no `exec` it has no
   visible way to turn text into code. The earlier lab run found that it opens no `.cs`, `.dso` or
   `.mis` beside it in a normal 3D session ([manual §10.6](../manual/10-torque.md), formerly E#502 and
-  E#503). What `eval` does when called is still open (T3D-008). **[bin][lab]**
+  E#503). **[bin][lab]**
+- **4.04r2's console table.** The plug-in still registers about 277 stock console functions and
+  class methods (string and math helpers, `schedule`, `echo`, `screenShot`, the OpenAL, redbook,
+  video-mode and container-search functions, `getTerrainHeight`, `makeTestTerrain`, per-class methods
+  of `GameConnection`, `PathCamera`, `fxSunLight`, `Shape3ds` and others). None of them is `exec`,
+  `eval` or `compile`. The `eval` string is used once, by native code that queues a console call
+  named `eval` with one text argument; with no `eval` registered, that call has nothing to run.
+  So no text reaches a TorqueScript interpreter. Whether GS2 can call the registered console
+  functions by name is open (T3D-008). **[bin][inf]**
 - **5.12** has no compiler, no `exec`, `eval` or `compile`, and no `schedule`. Its `.cs` literal is
   one entry of a list of file extensions that also holds `.txt`, `.nw`, `.gani`, `.gmap`, `.png` and
   others, next to the folder list `levels/`, `levels3d/`, `translations/`, `offline/`,
@@ -76,7 +84,7 @@ run of the original tool against `seihai-servertools gen terrain` is under way (
 
 ## Open
 
-- [ ] T3D-008: what `eval` does on 4.04r2 and whether any input reaches it.
+- [ ] T3D-008: whether GS2 can call 4.04r2's registered console functions by name.
 - [ ] T3D-019 / T3D-050: create `Terraformer` and `TerrainEditor` from GS2; what `setTerrain` writes.
 - [ ] T3D-041: when 4.04r2 takes the local `.ter` path over the chunk path.
 - [ ] T3D-013: confirm the 5.12 extension list is GS2 file access.
