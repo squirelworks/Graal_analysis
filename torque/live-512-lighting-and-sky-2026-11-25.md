@@ -13,21 +13,31 @@ on a `.3ds` shape the Sun's direction, colour and ambient have no effect.
 
 - With a Sun present, each face draws at exactly material x texture (grey
   128 draws 128, white 255 draws 255, a mid texture 128).
-- One visible side draws at 0.85 of that (109 against 217), and that factor
-  does not change with the Sun. Its rule (which face, and why) is a
-  follow-up.
-- With no Sun at all (L7), every face is exactly one quarter (32, 64, 32),
-  and the background is 0.
+- The 0.85 factor is set by the face's **world-space normal**, not the model
+  face and not the camera: faces pointing -y, -x or up draw at 1.0; faces
+  pointing +x or +y draw at 0.85. No in-between levels appear. This is
+  consistent with a fixed built-in light from about (-x, -y, +z) with 0.85
+  as the floor, not the Sun object.
+- With no Sun at all (L7), every `.3ds` face is exactly one quarter (32, 64,
+  32), and the background is 0.
 
 So the Sun acts as an on/off switch for full brightness on a `.3ds` shape,
-not as a directional light. Whether it shades `.dts`, `.dif` or terrain is a
-follow-up.
+not as a directional light.
+
+**Other content (follow-up 11).** The Sun's direction and colour shade
+nothing on a `.dts` (MBG `superJump.dts`), a `.dif` (MBG `training1.dif`) or
+streamed terrain: a side-lit run and a top-lit run were pixel-identical.
+With no Sun at all, the `.dts` is not drawn or is black, the `.dif` is
+entirely black (it shows no lightmap shading), and terrain is unchanged.
+Native terrain: the client downloaded `heights.info` and the chunks, logged
+"Terrain lit", never requested the (`.png`-named) terrain textures, and drew
+the ground white; it also requested `lightfalloffmono`.
 
 ## Shape rotation
 
-The client turns a shape by the right-hand rule: a positive angle is
-counter-clockwise about +z. That is the opposite sense to the camera's turn
-rule.
+The client turns a shape by a positive angle about +z as **clockwise seen
+from above** (at +90 degrees the +x face looks toward -y), the same sense as
+the camera. (An earlier note here said the opposite; this run corrects it.)
 
 ## Sky geometry and field of view (T3D-046, T3D-055)
 
