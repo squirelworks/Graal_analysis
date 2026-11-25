@@ -51,8 +51,10 @@ The Mac 4.04r2 and Mac 5.12 rows take their Windows twin's values, all assumed (
   ([script-and-terrain-tools-by-build.md](../torque/script-and-terrain-tools-by-build.md)). A server
   must not send `.cs` or `.dso` to a build that does not compile them.
 - **Formats** (`dts_max`, `dif_version`, `three_ds`, `md3_version`): what shapes a server may name.
-  DTS version 24 and DIF version 44 are read for 4.04r2 only; 5.12 has DTS bounds whose values were
-  not read (T3D-029). 4.04r2 has an MD3 loader and 5.12 has none.
+  Both 4.04r2 and 5.12 take the DTS version from the low byte of the version word and accept up to
+  24 (4.04r2 from 19, 5.12 from 17), and both require DIF InteriorResource version 44 with Interior
+  version 0 (T3D-029, static). Whether every version in range draws is still for the renderer lab.
+  4.04r2 has an MD3 loader and 5.12 has none.
 - **Files** (`texture_names`, `download_refused`, `bigdata`, `bigdata_chunk_max`,
   `udp_port_offset`): 5.12 strips `.png` from material texture names and requests and stores the
   bare name, so a server must serve the image under its bare name too. The resource-miss path never
