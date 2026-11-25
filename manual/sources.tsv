@@ -548,7 +548,7 @@ protocol/lab-appe-hostb-2026-11-20.md	cited	1; 2.4; 2.7; 3.1; 4.3; 4.5; 4.6; 4.8
 protocol/lab-appe-hostb-2026-11-20b.md	cited	2.3; 2.6; 5; E; 3.1	2.3; 2.6; 5; E	Lab host B loopback lab for App. E, second batch: 1.40 login, 2.31 sign-list end, original GServer 1.3 prop limits and old-build drop, prop 81 in the 5.00r7 player list
 protocol/lab-appe-hostb-2026-11-20c.md	cited	1; 2.3; 3.5; 4.1; 4.2; 4.3; 4.5; 4.6; 4.8; 5; 8.1; 8.2; 8.3; 10; E; 8.4	1; 2.3; 3.5; 4.1; 4.2; 4.3; 4.5; 4.6; 4.8; 5; 8.1; 8.2; 8.3; 10; E; 8.4	Lab host B loopback lab for App. E, batch 3: GServer 1.3 other-level props, 2.05 riding and shield speeds, 2.22 rock stops, stamped bush blocks, 1.39 GS1 truth, 2.05 argument conversion, 1.39 item draw order, 6.00 expiry dates, 4.04r2 opens no .mis/.dso, v22 login, early-build 50 ms frames, 2.05 start levels by link, 5.00r7 Latin-1 chat
 protocol/lab-appe-hostb-2026-11-20d.md	cited	4.2; 4.3; 4.8; 8.2; 8.4; 10; E	4.2; 4.3; 4.8; 8.2; 8.4; 10; E	Lab host B loopback lab for App. E, batch 4: Mac 3.153 completes the protocol-19 camera path (needs HQ level 4 in the list), 2.05 sleep-gani walk factor 0.4, 2.22 low shot types hurt, 2.05 move timing, replaceani and showimg conversion, 5.00r7 Latin-1 showtext
-protocol/lab-baddyprops-ganiscript-156-2026-11-19.md	cited	2.5; 2.6	2.5; E	Lab: 6.03r7 baddy props end at id 11; compiled gani script in 134 runs on 6.03r7; 2.31 serverstartparams confirmed.
+protocol/lab-baddyprops-ganiscript-156-2026-11-19.md	cited	2.5; 2.6; 3.3	2.5; E	Lab: 6.03r7 baddy props end at id 11; compiled gani script in 134 runs on 6.03r7; 2.31 serverstartparams confirmed.
 protocol/lab-checks-2026-10-24.md	cited	2.2; 2.4	2	
 protocol/large-file-thresholds-focus.md	cited	2.7	2.5	Focus-build large-file / FILE reply ladder (1.39–6.037); token-table trap; consolidates file-transfer.md + labs; ~300 KB push still open
 protocol/link-probe-bigmap-status.md	cited	E	2.5; E	2.x link probe / PLO_BIGMAP / gmap entry-save status; gap #34; E#308/E#314
@@ -562,6 +562,7 @@ protocol/listserver-141r1-silent-list.md	cited	E	1; C; E	1.41r1 silent list: cli
 protocol/listserver-login-type-matrix-2026-10-25.md	cited	6; E	6	
 protocol/listserver-login-type-matrix-2026-10-25.tsv	cited	6	6	
 protocol/g3d30123-public-listserver-2026-11-24.md	cited	6; E	6	3.x G3D30123 public list-only login; ports 14922/14923 confirmed
+protocol/g428-stock-304-public-list-2026-11-25.md	cited	6; E	6	stock 3.04 Linux public list login; 14922 works, 14923 disconnects on plain-zlib legacy frame; list id 6 = 000
 protocol/listserver.md	cited	6; E	6	
 protocol/login-and-walk.md	cited	2.3; 2.4; 7; 2.1	2.3	
 protocol/login-frames-by-version-2026-10-25.md	cited	2.1; 6; E	2.3	§2.3 not needed: the login frames by version are carried in §2.3 from the per-generation notes; this note is cited for framing, the listserver and App. E (coverage audit 2026-11-04)
@@ -824,6 +825,7 @@ torque/engine-and-formats.md	cited	10; E	10
 torque/freetype6-5007.md	cited	10	10	FreeType 2.1.10.2079 beside the 5.0.0.7 launcher; §10.1.6 carries the one-line identification
 torque/g3d-5007.md	cited	10	10	static read of the 5.0.0.7 Graal3DEngine.dll; §10.1.6 carries the GameObject-era facts, and the event names and setter calls stay in the note
 torque/lab-2026-11-12-udp-trace.md	cited	10; E	10; E	
+torque/lab-2026-11-25-g3d-worlds.md	pending		10	Linux 4.206 one-change world lab (GameObject section 2 is the scale, malformed .3ds crashes, .dts/.dif version bounds); to fold into §10 beside wire-by-build.md
 torque/launcher-5007.md	cited	10	10	static read of the 5.0.0.7 Delphi launcher; §10.1.6 carries what it loads, and the setter split is cited from torque/engine-5007.md
 torque/linux-304-seven-operation-contract.md	cited	10	10	exact-input identities and static-derived vectors remain in source note; operation contract and limits carried
 torque/network.md	cited	10	10	
@@ -834,6 +836,7 @@ torque/scripting.md	cited	10	10
 torque/skipped-v4-read.md	cited	10	10	§10.1.9 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
 torque/skipped-v5-read.md	cited	10	10	§10.1.9 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
 torque/skipped-version-stamps.md	cited	10	10	§10.1.9 carries the version strings, fixed words and companies on the skipped exports
+torque/stock-tge-reference-mbg-2026-11-25.md	pending		10	stock-Torque reference only (Marble Blast Gold demo, TGE 1.1), not Graal evidence; Graal values beside it cite 4.04r2/5.12 DLL reads and labs; to fold into §10 as a reference
 torque/stub-512.md	cited	10	10	packer stub; §10.1.6 carries the file version and that the engine DLL is not in the zip
 torque/stub-5243.md	cited	10	10	packer stub; §10.1.6 carries the file version 5.243
 torque/stub-524r4.md	cited	10	10	packer stub; §10.1.6 carries the file version 5.244
@@ -859,6 +862,15 @@ torque/v3-python-engines/tge-rewrite/used.md	excluded		1	weighed 2026-11-19: Pyt
 torque/v4-404r2-exe.md	cited	10; 1	10; 1	the historical exe export remains a packer stub; §1 distinguishes the later recovery inputs, not a gameplay result
 torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1.5 names both
 torque/wire-by-build.md	cited	10	10	
+torque/3d-capability-board.md	pending	E	10; E	2026-11-25 Torque-era 3D capability board: 64 claimable questions; to fold into Part 10 open points and App. E
+torque/3d-capability-board.tsv	pending	E	10; E	data table for the 3D capability board
+torque/3d-multi-client-lab-design.md	pending	E	10.3	plan for multi-client 3D labs (T3D-065 to T3D-076); to fold into the session section when results exist
+torque/3d-formats-renderer-camera-by-build.md	pending	E	10.6	shape loaders, file-access gate, renderer prefs, camera classes and sound formats in 4.04r2 and 5.12; to fold into the formats section
+torque/3d-server-entry-and-udp-port.md	pending	E	10.3	the 3 list prefix and the 3D UDP port rule in 4.04r2 and 5.12; to fold into the session section
+torque/gs2-3d-objects-404r2-512.md	pending	E	10.5	script-creatable 3D classes in 4.04r2 and 5.12, 5.12 property names, getz in 3D mode, 3D event names; to fold into the object model
+torque/live-512-own-server-textures-2026-11-25.md	pending	E	10.3; 10.6	5.12 against our graal3d server: texture naming and formats, control-object updates, sky; to fold into the session and formats sections
+torque/live-512-third-party-session-2026-11-24.md	pending	E	10.3	real 5.12 on a third-party 3D server: no mission phases, Camera control object, client strips .png; to fold into the session section
+torque/script-and-terrain-tools-by-build.md	pending	E	10.4; 10.6	TorqueScript compiler and terrain tools by build, 5.12 download filter; to fold into DSO and formats sections
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/222-inferred-from-21-inventory.md	cited	1	1; C	carried into §1.8.3; App. C cells change only after the static pass it asks for
@@ -910,6 +922,8 @@ version-profiles/plo-playerprops-layouts.tsv	cited	2.6	2.5; A	Appendix A and §2
 version-profiles/save-games-142-2171.md	cited	1	1	
 version-profiles/tampercheck-values.tsv	cited	2.4	4.10	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4 (coverage audit 2026-11-04)
 version-profiles/tampercheck-words.tsv	cited	2.4	4.10	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4 (coverage audit 2026-11-04)
+version-profiles/three-d.md	excluded			Seihai version-profile companion (reimplementation settings, many values assumed), out of scope per §0.1; its facts come from the torque/ notes
+version-profiles/three-d.toml	excluded			Seihai version-profile data mirrored into seihai-core, out of scope per §0.1; its facts come from the torque/ notes
 version-profiles/udp-ids-200-204.tsv	cited	2.9	2.9; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 version-profiles/version-coverage-2026-10-24.md	excluded		1; C	dated planning review for the Seihai version selector; its facts come from the per-build notes and lab records the manual cites
 version-profiles/version-coverage-2026-10-24.tsv	excluded		1; C	table form of the coverage review above
@@ -954,3 +968,5 @@ protocol/v7-connector-id-tables.md	cited	2.10; E	2.10; E	G332 partial 2026-11-24
 protocol/v6113-capture-decrypt.md	cited	2.10; E	2.10; E	G334 partial 2026-11-24: clear prefix + RC4@287 reconfirmed on three Windows 6.113 capture streams; post-287 decrypt blocked (exact-session key never recorded; G335 not started).
 protocol/gen6-c2s-0xfc-padding.md	cited	2.10; E	2.10; E	G335 partial 2026-11-24: C→S 0xfc envelope settled (RSA to operator pubkey); exact EM padding blocked (operator private key unheld).
 client-internals/mac-ppc-machine-identity-property.md	cited	2.10; E	2.10; E	G129 partial 2026-11-24: Mac PPC IOMACAddress property-read + MD5-hex settled on 4.04r2/4.20r6/v5; login comma-list call graph still open.
+torque/live-512-gs2-3d-probe-2026-11-25.md	pending	E	10.3; 10.6	5.12 GS2 3D probe on our own server: events, script-made objects, terrain functions, sky functions, switchToOpenGL
+torque/terraingenerator-original-vs-servertools-2026-11-25.md	pending	E	10.6	Original TerrainGenerator output compared with servertools gen terrain and gen 3d

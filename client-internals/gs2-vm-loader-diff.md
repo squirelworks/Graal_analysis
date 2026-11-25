@@ -282,6 +282,18 @@ gs2lib's settled cells mean the library has no script machine, not that a client
 
 The weapon survey and the world survey grade a compiler: which source it accepts, and which event names the weapons spell (`onCreated`, `onTimeout`, `onActionClientSide`, and the server binding `onActionServerSide`). They were compiled in the compiler's legacy mode. A strict mode, a legacy mode and an automatic choice between them change how much source is accepted. They do not change a client's opcode, a slot rule or a clock. Mode-split counts stay out of this page; the working tally names the exports. The published aggregates are [gs2-weapon-corpus-2026-11-14.md](../npc-library/gs2-weapon-corpus-2026-11-14.md) and [gs2-world-corpus-2026-11-12.md](../npc-library/gs2-world-corpus-2026-11-12.md) **[lab]**.
 
+## Focus-build close-out of E#209 (G187, G088, 2026-11-25)
+
+Static read of the stock 4.20r8 engine and the 5.12 engine image; nothing run. **[bin]** unless marked.
+
+**`waitfor` on stock 4.20r8.** `waitfor(object, event, timeout)` returns 0 at once when the event is empty, the timeout is not above 0, or there is no owning script. Otherwise it saves the script state with result 1, the event name (lower-cased, a leading `on` removed) and a deadline of now + timeout, and pauses. If the deadline passes first, the timer clears it, sets the saved result to 0 and re-queues the event, so the script resumes with **0**; if the event arrives first, it resumes with the saved **1**. This matches the [retained 4.20r8-labelled input](gs2-wait-results-2026-11-22.md#separately-retained-420r8-labelled-input) point for point. Of the three 4.20r8 engines held, one differs from stock by a single patched byte and the packet-logger build by 290 bytes; the earlier export matches stock at every byte where the other two differ, so that retained input was very likely the stock file. **[bin][inf]**
+
+**`sleep` on stock 4.20r8.** `sleep(t)` with t > 0 re-arms the object's own timeout timer (the one `settimer` uses) and resumes on `onTimeout` with no value, so a sleep replaces any pending `settimer`. `sleep(t)` with t ≤ 0 does not pause.
+
+**5.12.** Opcodes 48, 49 and 54 are instruction-for-instruction the same as 5.00r7's, so the [5.00r7 results](static-reads-appendix-e-2026-11-20-b.md#gs2-opcodes-48-49-and-54-on-500r7-e209) hold: 54 takes object, member name and value and stores like 50; 49 lists in pop order with its count clamped to 0–10000; 48 takes name-then-value pairs with the upward-counting loop. The `waitfor` path and timer check also match 5.00r7: saved with 1, resumed with 0 on timeout and 1 if the event comes first. This promotes the earlier [doc] claim for 5.12 to [bin].
+
+**48, 49 and 54 on stock 4.20r8.** None is handled; each is skipped with nothing popped, pushed or logged. For 48 and 49 the count and items stay on the stack, so the expression's value is whatever is on top (normally the count) and the following code runs on a misaligned stack. The 2026-11-19 fuzz recorded an empty value for 48/49 on 4.20r8; the static reading suggests that observation depended on the surrounding expression, not on a handler. **[bin][inf]**
+
 ## Still open
 
 - [x] ~~Function-table case.~~ Read on 6.03r7 in [static-reads-appendix-e-2026-11-20-j.md](static-reads-appendix-e-2026-11-20-j.md#event-names-and-the-function-table-603r7): the lookup for a fired event ignores case. Other builds not read. Earlier text: No client reading shows whether `onTimeout` and `onTimeOut` are one function. seihai-core treats them as different; the C++ loader treats them as the same; GServer-v2's JavaScript bindings are the exact identifiers.

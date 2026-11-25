@@ -39,6 +39,17 @@ parsed map state from NC script input and classic script-output bounds. Original
 4.02 behavior, the historical RC editing limit and old-engine breakage remain open;
 this is partial coverage, not a completed historical confirmation.
 
+2026-11-25 update: G305 (why fuzz case 30789 crashes 6.03r7) is answered in
+[script-fuzz-2026-11-19](../protocol/script-fuzz-2026-11-19.md#why-case-30789-crashes-603r7-static-read-2026-11-25):
+the crash is in `substring` (opcode 115), not `getangle`/`^`. A one-char `substring(2.00001, 0x7FFFFFFF)` hits a signed `start+length`
+overflow that skips the length fixup in all three builds; 4.20r8 caps the copy at 1,000,000 bytes and 5.12 checks the ~2 GB allocation,
+but 6.03r7 dropped both guards and faults. Checkbox closed.
+
+2026-11-25 update: G323 (4.20r8 login-account script API) is answered in
+[v4-login-account-contract](../protocol/v4-login-account-contract.md#login-account-script-api-by-build-g323-2026-11-25):
+4.20r8 has no `getLoginAccountName()` and no `GuiAccountPasswordCtrl` (both arrive in 5.00r7), but has `Adventure_setAccountName` /
+`Adventure_setPassWord` and a `password` flag on `GuiTextEditCtrl`, which every build masks with `*`. Checkbox closed.
+
 2026-11-25 update: G262 (large-file receive on 4.208 to 6.037) is answered in
 [large-file-thresholds-focus](../protocol/large-file-thresholds-focus.md#receive-handlers-on-4208-to-6037-g262-2026-11-25):
 all four stock engines handle 68, 69 and 84; 84 only feeds progress, 69 never checks it, and no receive-side size constant exists.
@@ -267,18 +278,29 @@ clearing and 0.5-second observation limits; the new selected static input is sep
 G136 and overall E#210 remain open/partial. Stable board IDs and the historical
 426-row inventory are retained.
 
+2026-11-25 update: two follow-ups from G273's [public list check](../protocol/g3d30123-public-listserver-2026-11-24.md)
+are added as new rows. **G427** traces list reply id 6, seen on both ports and not in earlier
+notes. **G428** repeats the check with a stock 3.04 or 3.153 client (owner OK given for the community
+listserver only, not the official one). The
+board now has 428 IDs.
+
+2026-11-25 update: G428's [stock 3.04 run](../protocol/g428-stock-304-public-list-2026-11-25.md)
+answers G428. A stock 3.04 sends the same one-frame login. It works on 14922, but on 14923
+the server's first frame is plain zlib and the client disconnects. G427 is partial: id 6 was
+the text `000` on both ports.
+
 ## Counts
 
 | Kind | Items |
 |---|---|
 | static | 264 |
-| lab | 99 |
-| static+lab | 28 |
+| lab | 100 |
+| static+lab | 29 |
 | missing | 13 |
 | owner | 10 |
 | maybe-never | 7 |
 | umbrella | 5 |
-| **Total** | **426** |
+| **Total** | **428** |
 
 Lab items by where they run: Windows 10 VM on lab host B or Linux VM under Wine 74, Linux VM on lab host B
 with the lab servers 24, Linux VM on lab host B (Linux clients) 14, Android-x86 or mobile 6, lab host B
