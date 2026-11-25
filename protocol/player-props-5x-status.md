@@ -128,7 +128,7 @@ Sword (prop 8) and shield (prop 9) use the same wire form from 2.05 to 6.03r7, s
 - **Power 0 with an image** goes out as byte 0 on 4.x to 6.x, so the image is lost. **[bin]**
 - **Receivers do not clamp**, so a server that sends a sword above 20 or a shield above 3 has it taken as is. **[bin]**
 - **Lab:** two real Linux 6.03r7 clients on PR #149's server (`healswords=true`, `swordlimit=20`, `shieldlimit=255`). The client sent 27 + `heal.png` for −3, 10 for −20 and −25, 36 for 6 and 50 for 25. The server forwarded the same bytes to the second client, a client that joined later got the stored values, and the props after them were not shifted. **[lab]**
-- **Writer addresses:** 4.20r8 0x1005ce71 / 0x1005d055; 5.00r7 0x100a2e5e / 0x100a3048; 6.03r7 Linux 0x507b90 / 0x507e8e, Windows 0x486465. **[bin]**
+- **Where:** in each engine the send side is the self-prop writer, the switch that builds the client's own PLI 2 prop record, in its sword and shield arms. **[bin]**
 - **Open:** the send side of the genuine 5.12 3D engine (04f7a133) was not read; its receive side matches (above). 4.20r8 and 5.00r7 were not run in the lab.
 
 ## Still open for #6
