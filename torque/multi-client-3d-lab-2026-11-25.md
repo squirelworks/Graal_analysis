@@ -52,3 +52,62 @@ close to invisible. These are the next things for the gserver to fix.
   GameObjects, relayed with chat; movement and leave are not yet relayed.
 - **Leave and reconnect (T3D-076):** no delete is sent on leave; the ghost
   returns on reconnect.
+
+## Re-run on the fixed gserver (PR #154 at 944a5bb2)
+
+After the gserver fixes, the same pairs were re-run with the trace on.
+
+### S1 (two 5.12), confirmed
+
+- Spawns are now 2 units apart (on a first visit).
+- `g3dpos` moves relay and stick; a "tcp position" line appears for each
+  step.
+- Both clients draw the other player's cube moving through the walk.
+- On leave the trace shows "left: its object goes from 1 other 3D clients"
+  and the other client drops the cube.
+- A client still logging in briefly shows as a `G2DPlayer`.
+- **Still off:** on reconnect, B spawned on A's point (first-visit spawns
+  are correct).
+
+### H1 (5.24r3 2D + 5.12 3D)
+
+- The 3D client now shows the 2D player as `G2DPlayer`: shown, moved, with
+  its chat, and gone on leave. The 3D walk reaches the TCP side as tcp
+  positions.
+- **Still open on the 2D side:** its `players` list never contains the 3D
+  player (count is 2, but only itself is listed), and it draws no sprite
+  because this world has no head or body images. Whether 3D chat shows on
+  the 2D client is not settled (its console was overwritten on reconnect).
+
+### Return visit to a 1-object world
+
+Two visits, no stall in phase 1, the world drew both times. The
+MissionStartPhase1Ack fix holds.
+
+### 4.20r8 terrain (T3D-117)
+
+4.20r8 under Wine on Mesa llvmpipe, with a 5.12, on a TerrainBlock world:
+
+- The server marks 4.20r8 "terrain none" and sends it no TerrainBlock.
+- 4.20r8 runs with no crash and draws the ground and three cubes, including
+  the 5.12 player. So the earlier 4.20r8 crash was the VM's basic Windows
+  OpenGL, not the client: on a real GL driver it runs.
+- 5.12 draws the streamed terrain white even with `levels3d/heights`
+  cleared first, and never fetches the textures. So the white terrain is not
+  a stale cache.
+
+### M3 (Mac 3.153 on Tiger + 5.12)
+
+- 3.153's six sky `.gif` requests are all answered with the PNGs, and it
+  gets past the loading screen to the sky view with no crash. So the
+  gserver's PNG-for-GIF answer works for 3.153.
+- 3.153 gets the 5.12 player as a TGE `Player`; the 5.12 gets
+  `G3DPlayer_<account>`.
+
+### M1 (4.04r2 + 5.12)
+
+- The 4.04r2 script `player` x/y now follows the walk (settling at 0, 15.44),
+  matching the server's relay.
+- 5.12 draws the 4.04r2 player moving but leaves a trail of copies in the
+  band between the sky and the ground. A redraw or ghost-clear gap, still
+  open.
