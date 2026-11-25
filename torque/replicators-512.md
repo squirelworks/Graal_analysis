@@ -101,8 +101,13 @@ Placing each copy in a cell **[bin]**:
 5. **Surface type.** When `surfacetype` is 0–31, the copy is also tested against the terrain
    material at that spot, with `surfaceexclusionmode` choosing whether that material is
    required or excluded **[inf]**.
-6. Then the copy is created, drawing its scale and rotation between the min and max vectors.
-   The order of those draws is not read yet.
+6. Then the copy is created (`DynamicShapeReplicator`), drawing in this order from the same
+   stream: a number whose remainder by the shape count picks the shape from `shapefiles`; for a
+   shape that is animated, one more number (`r mod 64 + 1`), used for its animation **[inf]**;
+   the rotation's z, y and x angles, each uniform between `shaperotatemin` and `shaperotatemax`
+   (degrees); then the scale's z, y and x, each uniform between `shapescalemin` and
+   `shapescalemax`. A min above its max is swapped first. The copy sits at the ground hit
+   plus `offsetz`.
  Each object
 is then placed by casting rays onto the allowed surfaces. **[bin]** So a box of (−1,−1) to (1,1)
 allows only the one cell whose corner is at the world origin; a server wanting cover over an area
