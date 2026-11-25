@@ -861,6 +861,15 @@ torque/v3-python-engines/tge-rewrite/used.md	excluded		1	weighed 2026-11-19: Pyt
 torque/v4-404r2-exe.md	cited	10; 1	10; 1	the historical exe export remains a packer stub; §1 distinguishes the later recovery inputs, not a gameplay result
 torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1.5 names both
 torque/wire-by-build.md	cited	10	10	
+torque/3d-capability-board.md	pending	E	10; E	2026-11-25 Torque-era 3D capability board: 64 claimable questions; to fold into Part 10 open points and App. E
+torque/3d-capability-board.tsv	pending	E	10; E	data table for the 3D capability board
+torque/3d-multi-client-lab-design.md	pending	E	10.3	plan for multi-client 3D labs (T3D-065 to T3D-076); to fold into the session section when results exist
+torque/3d-formats-renderer-camera-by-build.md	pending	E	10.6	shape loaders, file-access gate, renderer prefs, camera classes and sound formats in 4.04r2 and 5.12; to fold into the formats section
+torque/3d-server-entry-and-udp-port.md	pending	E	10.3	the 3 list prefix and the 3D UDP port rule in 4.04r2 and 5.12; to fold into the session section
+torque/gs2-3d-objects-404r2-512.md	pending	E	10.5	script-creatable 3D classes in 4.04r2 and 5.12, 5.12 property names, getz in 3D mode, 3D event names; to fold into the object model
+torque/live-512-own-server-textures-2026-11-25.md	pending	E	10.3; 10.6	5.12 against our graal3d server: texture naming and formats, control-object updates, sky; to fold into the session and formats sections
+torque/live-512-third-party-session-2026-11-24.md	pending	E	10.3	real 5.12 on a third-party 3D server: no mission phases, Camera control object, client strips .png; to fold into the session section
+torque/script-and-terrain-tools-by-build.md	pending	E	10.4; 10.6	TorqueScript compiler and terrain tools by build, 5.12 download filter; to fold into DSO and formats sections
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/222-inferred-from-21-inventory.md	cited	1	1; C	carried into §1.8.3; App. C cells change only after the static pass it asks for
@@ -958,3 +967,5 @@ protocol/v7-connector-id-tables.md	cited	2.10; E	2.10; E	G332 partial 2026-11-24
 protocol/v6113-capture-decrypt.md	cited	2.10; E	2.10; E	G334 partial 2026-11-24: clear prefix + RC4@287 reconfirmed on three Windows 6.113 capture streams; post-287 decrypt blocked (exact-session key never recorded; G335 not started).
 protocol/gen6-c2s-0xfc-padding.md	cited	2.10; E	2.10; E	G335 partial 2026-11-24: C→S 0xfc envelope settled (RSA to operator pubkey); exact EM padding blocked (operator private key unheld).
 client-internals/mac-ppc-machine-identity-property.md	cited	2.10; E	2.10; E	G129 partial 2026-11-24: Mac PPC IOMACAddress property-read + MD5-hex settled on 4.04r2/4.20r6/v5; login comma-list call graph still open.
+torque/live-512-gs2-3d-probe-2026-11-25.md	pending	E	10.3; 10.6	5.12 GS2 3D probe on our own server: events, script-made objects, terrain functions, sky functions, switchToOpenGL
+torque/terraingenerator-original-vs-servertools-2026-11-25.md	pending	E	10.6	Original TerrainGenerator output compared with servertools gen terrain and gen 3d
