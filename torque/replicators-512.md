@@ -74,14 +74,36 @@ only if:
   `allowonstatics` or `allowonwater` is on;
 - at least one shape from `shapefiles` is loaded;
 - the cell's corner lies inside the box in **world** x and y: `boxmin.x ≤ x < boxmax.x` and
-  `boxmin.y ≤ y < boxmax.y`. The box's z values are not used in this test. **[bin]**
+  `boxmin.y ≤ y < boxmax.y`. The box's z values are used later, on each copy's ground height. **[bin]**
 
 Inside a cell the count is random between `mingridobjects` and `maxgridobjects`, from a random
 stream seeded by `seed` and the cell, so the same cell always grows the same cover. The stream is
 stock Torque's R250 generator (`MRandomR250`), seeded per cell with
 `seed + 256·(cy & 255) + (cx & 255)`, where `cx` and `cy` are the cell corner's world x and y
 divided by 8 and cut toward zero. The count is `min + r mod (max − min + 1)` from the first
-number drawn, or just `min` when the two are equal. **[bin]** Each object
+number drawn, or just `min` when the two are equal. **[bin]**
+
+Placing each copy in a cell **[bin]**:
+
+1. **Where in x/y.** `DynamicShapeReplicator` places copies at random: for each copy it draws two
+   more numbers r₁, r₂ from the cell's stream and puts the copy at
+   `x = cx·8 + (r₁/2³¹ − 0.5)·8`, `y = cy·8 + (r₂/2³¹ − 0.5)·8`, so within ±4 units of the cell
+   corner. `DynamicGrass` uses a regular sub-grid instead: with n pieces it takes
+   `cols = min(16, ⌊√n⌋)` (at least 1) and `rows = min(16, ⌊n / cols⌋)`, draws `cols × rows` pieces
+   (so 5 becomes 4), and puts piece i at `x = cx·8 + ((i mod cols)/cols − 0.5)·8`,
+   `y = cy·8 + ((i div cols)/rows − 0.5)·8`.
+2. **Ground.** A ray is cast straight down from z = 2000 to z = −2000 through the client's world.
+   No hit, or a hit on a surface kind whose allow flag is off (terrain, interiors, statics,
+   water), drops the copy.
+3. **Height box.** The hit height must satisfy `boxmin.z ≤ z < boxmax.z`.
+4. **Slope.** The surface may tilt at most `allowedterrainslope` degrees: the copy is dropped when
+   `sin((90 − slope)°)` is greater than the surface normal's z.
+5. **Surface type.** When `surfacetype` is 0–31, the copy is also tested against the terrain
+   material at that spot, with `surfaceexclusionmode` choosing whether that material is
+   required or excluded **[inf]**.
+6. Then the copy is created, drawing its scale and rotation between the min and max vectors.
+   The order of those draws is not read yet.
+ Each object
 is then placed by casting rays onto the allowed surfaces. **[bin]** So a box of (−1,−1) to (1,1)
 allows only the one cell whose corner is at the world origin; a server wanting cover over an area
 must send that area as the box, in world units. **[bin]**
@@ -127,9 +149,16 @@ Further runs on the same terrain, each changing one value against that base **[l
 So the cover is the same for every client that gets the same values. The two grass classes take
 the same update but do not draw a `.3ds` this way; what they draw is still open. **[lab]** Statically, the grass
 classes replace the cell-filling and the grid-count setters (their counts are clamped to 0–100
-per cell instead of 0–20) and build their own geometry instead of placing shapes, so they likely
-expect textures rather than shape files **[inf]**.
+per cell instead of 0–20) and build their own geometry instead of placing shapes, so they expect textures rather than shape files.
+
+With a texture name (`lp_white.png`) in `shapefiles` and the same update, both grass classes
+**draw**: many small flat pieces lying on the ground, over the same area the shapes covered,
+denser at 50 per cell than at 5. Under the GDI renderer they showed untextured. A 64×64 RGBA
+texture that is almost all transparent drew nothing visible. Both textures were already cached,
+so whether grass fetches a missing texture is still open. **[lab]**
 
 On 4.20r8 the replicator ghost is created without a crash or error, but with the camera kept
-250 units up (to avoid 4.20r8's terrain crash) no cover was in frame, so whether 4.20r8 grows it
-is still open. **[lab]**
+250 units up (to avoid 4.20r8's terrain crash) no cover was in frame. With the camera pitched down over the
+ground around the player (radius 8, scale 10) still nothing grew, against the same view without
+the replicator. So 4.20r8 takes the ghost but grows no cover under GDI; a full OpenGL renderer
+may differ. **[lab]**
