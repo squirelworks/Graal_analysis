@@ -32,7 +32,7 @@ Others Work C4 / G3 claims below are **not** promoted to settled behaviour. Conf
 
 - [x] ~~Built-in account dialog layout and which fields feed the first Login frame (account vs nickname vs password).~~ [Read 2026-11-25](#built-in-account-dialog-and-the-first-login-frame-g322-2026-11-25): engine-side GS2 start screen; account + password in the frame, nickname sent later as prop 0. **[bin]**
 - [x] ~~Whether `getloginaccountname()` and a password GUI control exist on 4.20r8.~~ [Read 2026-11-25](#login-account-script-api-by-build-g323-2026-11-25): no `getloginaccountname()` on 4.20r8; a `password` flag on `GuiTextEditCtrl` exists in every build. **[bin]**
-- [ ] Behaviour of a v6 `-LoginScreen` / `-Serverlist` weapon when pushed to a 4.x Login session (hidden vs bail on empty account-name).
+- [x] ~~Behaviour of a v6 `-LoginScreen` / `-Serverlist` weapon when pushed to a 4.x Login session (hidden vs bail on empty account-name).~~ [Read 2026-11-25](#v6-login-screen-weapons-on-a-420r8-login-session-g324-2026-11-25): hidden, because 4.20r8 drops 140/197 and the weapon gets no script. **[bin]**
 - [x] ~~C21 event order: login-signature before weapons; PLO 190 relative to weapon delivery — for login-weapon authors.~~ [Read 2026-11-25](#login-event-order-for-login-weapon-authors-g325-2026-11-25): 25 gates nothing; weapons must be loaded before 190 to see `onServerListerConnect`; ghost mode drops weapon packets. **[bin]**
 - [ ] Listserver `VERIACC2` path when the world verifies accounts (our 4.04 lab used localhost / proxy accept without that check).
 
@@ -116,6 +116,20 @@ Static read of the 4.20r8 engine, the 5.12 engine memory image and the 6.03r7 th
 | 5 | the level | before or after 190 |
 
 The GServer-v2 login path sends 190 before the weapon list (its source comment says so). On these clients, login weapons sent that way would not see `onServerListerConnect`. **[src][inf]** That server-side point is from the read of the fork's login path, not a lab run.
+
+## v6 login-screen weapons on a 4.20r8 Login session (G324, 2026-11-25)
+
+Static read of the 4.20r8 engine, with the 6.03r7 third-party unpack for its function list; nothing run. **[bin]** unless marked.
+
+**Verdict: the weapons stay hidden because their script never arrives, not because the script bails out on an empty account name.**
+
+1. **Sent the 6.x way** (33, then the compiled script in 140 or 197). 33 creates the weapon object with no script. 4.20r8 has no case for 140 or 197; it drops them with no log and no state change, and the stream stays aligned. The weapon list ends up holding script-less `-LoginScreen` and `-Serverlist` weapons: no `onCreated`, no GUI. With the Login-mode draw mask (no players, no HUD) the player sees an empty Login screen.
+2. **Forcing a compiled script in another way.** 4.20r8 has no script compiler. Compiled scripts enter only through its local script cache (193, checked by CRC); on a match the script installs and `onCreated` runs at once. How 4.20r8 receives a fresh compiled script after its `PLI_UPDATESCRIPT` (158) request was not found. The compiled-script container is the same in 4.x and 6.x, but 4.20r8 has no handler for newer opcodes, among them the one-step computed member store (54) and string-join `+` (121), plus other 5.x/6.x-only ones. It skips them silently, leaving wrong values for the instructions that follow, so a 6.x-compiled script that joins strings would misbehave quietly.
+3. **If the script did load.** Missing on 4.20r8, from a comparison of the 6.03r7 built-in function table: `getLoginAccountName`, `GuiAccountPasswordCtrl` (both as in G323), the newer list-selection functions (`selectedrow`, `setselectedrows` and the like), text-selection functions, the JSON functions, `clearcontrols`, the TCP object and about 120 more. Present: `requesttext`/`sendtext` with `lister`, the `onReceiveText` event, `serverwarp`, `setaccountname`, `openurl`, and the main GUI controls (window, scroll, text list, multi-line text, button, text edit). A missing function logs `Function X not found`, returns 0, and the script carries on; too few parameters is also non-fatal. The `adventure_*` functions work only for weapons from a server whose name starts with `login`; elsewhere they fail with `Unauthorized call of adventure_…`.
+
+If such a script were force-loaded, `getLoginAccountName()` would return 0, which compares equal to an empty name, so a typical v6 screen would take its no-account branch, have no password box and show half-working lists: a partly broken screen that logs errors, not a clean hide. **[inf]**
+
+Still open: how 4.20r8 receives a fresh compiled script after 158, what the `#c#` weapon property does, and what `new` does with an unknown control class.
 
 ## Server / script checklist
 
