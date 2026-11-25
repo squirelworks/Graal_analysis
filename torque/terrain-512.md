@@ -221,6 +221,15 @@ stock TGE 1.x writer used; the meaning of each float is stock Torque's **[inf]**
 update is a file name the client downloads by itself; textures go through the normal resource
 path **[inf]**.
 
+Live on 5.12 (a block at z 20 with z scale 20, wave magnitude 0.3) **[lab]**:
+
+- The water surface is at position z + scale z (40 here), not at position z. `liquidheight`
+  reads that height with about ±0.15 of wave motion; `watercoverage` is 1 below it, a small
+  fraction just above it, and `liquidtype` reads `Water`.
+- Along x the water reached past the block's own x scale (still covered 44 units beyond each end
+  of the footprint); a rotated block's footprint has not been mapped yet.
+- `ignoreTerrain` 0 and 1 draw visibly differently over terrain.
+
 ## 6. For a server
 
 1. Ghost one `TerrainBlock`: init 1, name `Terrain`, 0, two empty strings, 1.0, 0.01, 8, square
