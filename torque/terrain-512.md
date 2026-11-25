@@ -26,7 +26,7 @@ update is one guarded block **[bin]**:
 
 | # | Field | Width | Client use |
 |---|---|---|---|
-| 1 | init | flag | 0: nothing more follows, nothing changes |
+| 1 | init | flag | 0: nothing more follows. A create with init 0 is still added and still loads and streams the terrain, with no name and a zero square size **[lab]** |
 | 2 | object name | `pstring` | assigned as the object's name (use `Terrain`) |
 | 3 | value | raw 32 | stored, then reset to 1 when the block is added; a server may send 0 |
 | 4 | text | `pstring` | read and dropped (the stock writer sends an empty string) |
@@ -67,8 +67,10 @@ n bytes zlib stream (RFC 1950, with the 2-byte header) holding the chunk data be
 On receipt, if n > 0 and the client has a current terrain, it logs
 `received terrain chunk (x, y): len n`, inflates the bytes, applies the chunk to the terrain,
 re-encodes the chunk, stores the new stamp and writes the cache file, then rebuilds that 16 × 16
-area. A chunk that arrives before the `TerrainBlock` is added is dropped, so send chunks only
-after the block's create is acknowledged. **[bin]** The stock writer of these events lives in the
+area. A chunk that arrives before the `TerrainBlock` is added is logged but not stored, so send
+chunks only after the block's create is acknowledged. **[bin][lab]** An event with n = 0 is
+ignored. A corrupt or truncated zlib stream is not rejected: the chunk is applied as all zeros
+(height 0, material 0) and that flat chunk is saved to the cache. **[lab]** The stock writer of these events lives in the
 same DLL (the server half of the engine, logging `sending terrain chunk`).
 
 ### Chunk data (inflated)
@@ -125,7 +127,15 @@ Event class `TerrainRequestUpdatesEvent`. Payload: 256 raw 32-bit stamps, index 
 the `TerrainBlock` is added, after loading its cache. **[bin]** A server should answer by sending a
 `TerrainChunkEvent` for every chunk whose stamp differs from its own.
 
-**Stamp** = Torque's `calculateCRC` over the inflated chunk bytes: the standard CRC-32 table
+**Canonical re-encoding.** The client never keeps the bytes it was sent. After applying a chunk
+it encodes it again with its own writer and saves that: mode is always 2, the material list holds
+only the ids actually used in the chunk, sorted ascending (the per-square indices are remapped),
+and a blend is stored with the larger-alpha material as primary (a received primary 0, secondary 1,
+alpha 7 is saved as primary 1, secondary 0, alpha 8). The file is that stream compressed with
+zlib's default level. **[bin][lab]**
+
+**Stamp** = Torque's `calculateCRC` over the client's re-encoded chunk bytes (above), not the
+bytes the server sent: the standard CRC-32 table
 (polynomial 0xEDB88320), starting value 0xFFFFFFFF, **no** final inversion. In zlib terms,
 `crc32(data) XOR 0xFFFFFFFF`. The client computes it itself after applying each chunk and after
 loading each cache file. **[bin]**
@@ -133,19 +143,19 @@ loading each cache file. **[bin]**
 ## 4. The cache folder
 
 Path: the user folder, then `levels3d/heights/<server>/`, where `<server>` is the current Graal
-server name, escaped for use as a folder name. **[bin]**
+server name escaped for use as a folder name: a space becomes `%032` (a percent sign and the character's code as three decimal digits), so the lab server `Lab 3D` is cached in `levels3d/heights/Lab%0323D/`. **[bin][lab]**
 
 | File | Content |
 |---|---|
-| `heights.info` | the material list: up to 32 texture names, comma-separated, in material-id order. Fetched once over TCP when missing, then kept. **[bin]** |
-| `heights<x>-<y>.dat` | one per chunk, x and y in decimal without padding (`heights0-0.dat` … `heights15-15.dat`): the zlib-compressed chunk data of §2, exactly as the client re-encoded it. **[bin]** |
+| `heights.info` | the material list: up to 32 texture names, **one per line**, in material-id order. A comma does not separate names: `grass,rock` on one line is one texture called `grass,rock`. Fetched once over TCP when missing, then kept. **[bin]** |
+| `heights<x>-<y>.dat` | one per chunk, x and y in decimal without padding (`heights0-0.dat` … `heights15-15.dat`): the zlib-compressed chunk data of §2, exactly as the client re-encoded it. **[bin][lab]** |
 
 A cached chunk is loaded with the same decoder as a received one, so a server can pre-seed a
 client by shipping these files (or a lab can plant them). The client rewrites a chunk file every
 time it receives that chunk. **[bin]**
 
-**Material textures.** Each name in `heights.info` is loaded as a texture through the normal
-resource path. It must be 256 × 256 and 24-bit; anything else logs
+**Material textures.** Each name in `heights.info` is requested by its bare name with the normal
+Graal file request and cached as `levels3d/images/<name>`. **[lab]** It must be 256 × 256 and 24-bit; anything else logs
 `Terrain texture of bad format (must be 256x256x24): <name>` and falls back to `default`, and a
 missing one logs `Missing terrain texture: <name>`. **[bin]** A server can also change the list
 during play with the `setmaterials` BigData text message ([udp-session.md](udp-session.md) §7).
@@ -180,7 +190,7 @@ path **[inf]**.
 
 1. Ghost one `TerrainBlock`: init 1, name `Terrain`, 0, two empty strings, 1.0, 0.01, 8, square
    size 8, repeat 0 or 1.
-2. Serve `heights.info` (and the textures it names) as ordinary level files.
+2. Serve `heights.info` (one texture name per line) and the textures it names as ordinary level files.
 3. When the client's `TerrainRequestUpdatesEvent` arrives, send a `TerrainChunkEvent` for each chunk
    whose stamp differs. Most chunks compress to well under the 1023-byte limit; a flat chunk is a
    few dozen bytes.
@@ -203,4 +213,23 @@ T3D-044 (terrain texture rules), T3D-045 (`WaterBlock`).
 
 ## Lab results
 
-_Pending: the live run against the Seihai gserver's raw-object harness on 2026-11-25._
+Run 2026-11-25: the real 5.12 client in the Windows 10 lab VM, joined to the Seihai gserver
+(seihai-gserver-v2 PR #150, commit `05a4fcdf`, `graal3d = true`, raw-object harness) on the
+loopback address. The test set was 256 chunks of rolling hills with two materials. Captures and
+logs are kept with the owner's lab material. **[lab]**
+
+| Check | Result |
+|---|---|
+| `TerrainBlock` with the §1 layout: log line, cache folder created, `heights.info` requested over TCP, request event with 256 zero stamps | pass |
+| 256 chunk events: one cache file per chunk, terrain drawn | pass |
+| Reconnect: the 256 stamps in the request equal the expected stamps | pass, 256 of 256 |
+| Planted `heights.info` and chunk files before the first connect: loaded, stamps non-zero in the first request | pass, 256 of 256 |
+| Chunk mode 0 and 1; mode 2 with holes | accepted; holes kept |
+| N = 0 materials | accepted; squares take material 0 |
+| Chunk with n = 0 | ignored |
+| Corrupt or truncated zlib | chunk zeroed and saved |
+| Chunk before the `TerrainBlock` | logged, not stored |
+| `TerrainBlock` with init 0 | still loads chunks |
+
+No case crashed the client. Corrections this run made to the static read: `heights.info` is
+one name per line; the folder-name escape; the canonical re-encoding before the stamp.
