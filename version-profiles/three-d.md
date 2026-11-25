@@ -58,8 +58,9 @@ The Mac 4.04r2 and Mac 5.12 rows take their Windows twin's values, all assumed (
   must not send `.cs` or `.dso` to a build that does not compile them.
 - **Formats** (`dts_min`, `dts_max`, `dif_version`, `three_ds`, `md3_version`): what shapes a server may name.
   Both 4.04r2 and 5.12 take the DTS version from the low byte of the version word and accept up to
-  24 (4.04r2 from 19, 5.12 from 17), and both require DIF InteriorResource version 44 with Interior
-  version 0 (T3D-029, static). Whether every version in range draws is still for the renderer lab.
+  24. 4.04r2 has no floor: as in stock TGE, versions below 19 go to an old-format reader. 5.12
+  rejects anything below 17 and sends 17 and 18 to the old reader. Both require DIF
+  InteriorResource version 44 with Interior version 0 (T3D-029, static). Whether every version in range draws is still for the renderer lab.
   On Linux 4.20 a DTS 17 shape froze the client although its loader takes it, so a server should
   serve DTS 24. That build also crashed on a `.3ds` with no materials, a truncated `.3ds`, or a
   chunk length past the end of the file, so a server should check `.3ds` files before it names
