@@ -70,5 +70,24 @@ Static read of the stock 4.20r8, 5.00r7, 5.12 and Windows 6.03r7 engines; nothin
 | 5.00r7, 5.12 | `join()` with a "simple" flag (class-list joins use the simple form) | Both modes create the placeholder (requesting it if needed) and ignore repeats. A permission check requires the class's level not to exceed the object's; on failure nothing is joined and nothing is logged. Only a non-simple (script) join updates the object's stored function links at once; a simple join is reachable through the normal lookup but its links wait for a later update. 5.12's join code is instruction-for-instruction the same as 5.00r7's. |
 | 6.03r7 | as 5.x | As 5.x, and `join()` also requires the caller's level to be at least the target object's. A failed check logs `Object doesn't have rights to join class …`. Deferred leaving and the class-list path were not traced. |
 
-Still open: runtime confirmation, cyclic join graphs and recursion limits, and 6.03r7's leave/class-list paths.
+Still open after the static read: runtime confirmation, cyclic join graphs and recursion limits, and 6.03r7's leave/class-list paths. The first three are answered by the lab run below; 6.03r7's leave/class-list paths and its join-rights check remain open.
+
+## Runtime check on 5.12, Windows 6.037 and 4.20r8 (G090, 2026-11-25)
+
+Loopback Wine lab, the lab server's own GS2 compile, results read from the client's own chat. On 5.12 and 6.037 the test weapon came from the server (197/140); on 4.20r8 it was injected as 33 + 132, because the lab server sends 4.20r8 a `//#GS2` weapon as source text in 33, which does not run (as on [5.00r7](../protocol/scripted-weapons-5x-status.md#lab-gs2-weapon-fixture-on-500r7-g307-2026-11-25)). Classes were injected as answers to 161: 133 on 5.12 and 4.20r8, 197 + 140 on 6.037. Rows `gs2rt512-*`, `gs2rt6037-*` and `gs2rt420-*` in [probe-results.tsv](../protocol/probe-results.tsv). **[lab]**
+
+| Check | 5.12 | 6.037 | 4.20r8 |
+| --- | --- | --- | --- |
+| Object and joined class both define `foo()`: an ordinary call runs the object's | yes | yes | yes |
+| Two joined classes define `bar()`, the object none: the first-joined class's runs | yes | yes | yes |
+| Object and class both define `onTimeout`: one handler, the object's | yes | yes | yes |
+| Object and class both define `onCreated`, class already loaded at the join: the object's runs to the end, then the class's | yes | yes | yes |
+| Cyclic join (`cC` joins `cD` in its `onCreated`, `cD` joins `cC`) | no hang; each `onCreated` once | same | same |
+| A function calling itself 10 000 deep | "Callstack overrun" logged; that statement is dropped, later events still run | overrun logged; the deepest call returns nothing, so the result is 9999 | as 6.037 |
+
+Not predicted by the static read:
+
+- When the class body arrives after the `join()` (the client had to ask 161), the class's `onCreated` never runs, and the script waits: the weapon stayed silent until the class arrived, then ran its overdue scheduled event at once. With 161 unanswered it never ran.
+- `join()` of an already-loaded class from a later event (not from `onCreated`) does not run the class's `onCreated`.
+- The 6.03r7 join-rights check was not tested.
 

@@ -210,6 +210,32 @@ Two exceptions, the same in all four builds:
 
 For writers: spell handlers `on` + anything; avoid an upper-case `ON`/`On` prefix, and pass event names to `scheduleevent` without `on` or with a lower-case `on`. A server-side or clean-room VM that matches handler names exactly (seihai-core, GServer-v2 wrappers above) differs from every focus client here.
 
+#### Runtime check (G087, 2026-11-25)
+
+Loopback Wine lab on 5.12, Windows 6.037 and 4.20r8 with small GS2 weapons compiled by the lab server (5.12 and 6.037 delivered by the server; 4.20r8 injected as 33 + 132). Results came from the client's chat, or on 4.20r8 from its PLI 18 reports of `client.*` variables. Rows `evc512-a`, `evc6037-a`, `evc420-a` in [probe-results.tsv](../protocol/probe-results.tsv). 5.00r7 was not run. **[lab]**
+
+| Test | 5.12 | 6.037 (Windows) | 4.20r8 |
+| --- | --- | --- | --- |
+| Timer handler `onTimeout`, `ONTIMEOUT`, `ontimeout`, `OnTimeOut`, `oNTimeout` | all fire | all fire | all fire |
+| Timer handler `Timeout` (no `on`) | never | never | never |
+| `scheduleevent` names `Foo`, `foo`, `FOO`, `onFoo`, `OnFoo`, `ONFOO`, `onfoo` → `onFoo` | all seven reach it | all seven | all seven |
+| `trigger` names `Bar`, `bar`, `BAR`, `onBar` → `onBar` | reach it | reach it | reach it |
+| `trigger` names `OnBar`, `ONBAR` → `onBar` | no | **yes** | no |
+| Handlers named `ON…`, `On…`, `oN…`, called by `trigger` or `scheduleevent` | run | run | run |
+| Handler with no `on`, called the same way | never | never | never |
+| `playerenters` handler `onPlayerEnters`, `onPLAYERENTERS`, `onplayerenters` | fire | fire | fire |
+| `playerenters` handler `ONPLAYERENTERS`, `OnPlayerEnters` | never | **fire** | never |
+| `foo()` then `FOO()` in one script, called as `foo`, `FOO`, `Foo` | **first** wins | **first** wins | later wins |
+
+Against the static matrix:
+
+- Case-insensitive matching of built-in events: confirmed on all three.
+- Exception 1 (gated events need a lower-case `on`): confirmed on 4.20r8 and 5.12 for `playerenters`; **refuted on Windows 6.037**, where every spelling fires (its delivery check had been inferred). Other gated events were not tested.
+- Exception 2 (only a lower-case `on` is stripped from queued names): **refuted for `scheduleevent`** on all three builds, where `OnFoo` and `ONFOO` still reach `onFoo`. It holds for `trigger` on 4.20r8 and 5.12, and not on 6.037.
+- Duplicate names differing only in case: the later definition wins on 4.20r8, as read; on 5.12 and 6.037 the **first** wins.
+
+So for writers the safe rule stays the same: spell handlers `on` + anything, and pass event names to `trigger` without `on` or with a lower-case `on`.
+
 ### Corpus exposure (compile-side)
 
 Published weapon surveys count `onTimeout` heavily among client handlers
@@ -358,10 +384,10 @@ in those notes:
 ## 11. Still open
 
 - [ ] Fuller Android Classic / Era GS2 static findings → replace interim Android cells (§2 / §5 / §6).
-- [ ] ~~Full spelling × client matrix~~ [static matrix for the four focus builds](#focus-build-matrix-g087-2026-11-25) done 2026-11-25: case-insensitive everywhere, with two 4.20r8 prefix exceptions. Still open: runtime acceptance. Earlier: [Selected static event-handler comparisons](gs2-event-handler-case-2026-11-22.md) are followed; Linux ASCII matching is bound, while Windows helper state and other builds remain qualified.
-- [ ] Full semantics of 48, 49, 54; `waitfor` timeout-expiry return value on 4.20r8.
+- [x] ~~Full spelling × client matrix~~ [static matrix for the four focus builds](#focus-build-matrix-g087-2026-11-25) done 2026-11-25: case-insensitive everywhere, with two 4.20r8 prefix exceptions. Runtime on 4.20r8, 5.12 and Windows 6.037: [lab 2026-11-25](#runtime-check-g087-2026-11-25), which refutes exception 2 for `scheduleevent` and exception 1 on 6.037. Earlier: [Selected static event-handler comparisons](gs2-event-handler-case-2026-11-22.md) are followed; Linux ASCII matching is bound, while Windows helper state and other builds remain qualified.
+- [x] ~~Full semantics of 48, 49, 54; `waitfor` timeout-expiry return value on 4.20r8.~~ Static semantics settled earlier; the lab run of 2026-11-25 confirms at runtime on 4.20r8, 5.12 and Windows 6.037 that `waitfor(obj, event, 1)` returns 0 after 1.0 s with no event and 1 as soon as the event comes (0.3–0.4 s in the test), and that the caught event's own `on…` handler then does not run ([runtime check](gs2-joined-function-lookup-2026-11-22.md#runtime-check-on-512-windows-6037-and-420r8-g090-2026-11-25)). **[lab]**
 - [ ] 4.04r2 / mid-5.x / 6.00r2 clock step confirmation where still partial; Unity 7.x VM.
-- [ ] Cross-build/runtime joined-class function visibility; [three selected ordinary-call lookup chains](gs2-joined-function-lookup-2026-11-22.md) are statically followed, and [collisions and join modes](gs2-joined-function-lookup-2026-11-22.md#collisions-and-join-modes-on-the-focus-builds-g090-2026-11-25) are read on the four focus builds (2026-11-25). Runtime confirmation, cyclic joins and 6.03r7 leave/class-list paths remain open.
+- [ ] Cross-build/runtime joined-class function visibility; [three selected ordinary-call lookup chains](gs2-joined-function-lookup-2026-11-22.md) are statically followed, and [collisions and join modes](gs2-joined-function-lookup-2026-11-22.md#collisions-and-join-modes-on-the-focus-builds-g090-2026-11-25) are read on the four focus builds (2026-11-25). Runtime confirmation and cyclic joins: [lab 2026-11-25](gs2-joined-function-lookup-2026-11-22.md#runtime-check-on-512-windows-6037-and-420r8-g090-2026-11-25). 6.03r7 leave/class-list paths and its join-rights check remain open.
 - [ ] Further world-scan aggregates → refresh §10 only.
 
 Also tracked with grades in [gs2-vm-loader-diff.md](gs2-vm-loader-diff.md#still-open)
