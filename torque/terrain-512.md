@@ -309,6 +309,7 @@ logs are kept with the owner's lab material. **[lab]**
 | `Terraformer.loadGreyscale` with a 24-bit RGB PNG (256 × 256, 128 × 128) or an 8-bit grey PNG | client crashes (access violation in the 3D engine) |
 | Chunk edge cases (wrong stamp, modes 3/127/255, cut streams, trailing bytes, truncated zlib, duplicate chunk, ±127 deltas, `h0` 65535) | all accepted; results in §2 "Edge cases seen live" |
 | `setmaterials` then reconnect | list saved to the cache `heights.info` (32 CRLF lines) and reloaded |
+| 4.20r8 with the same `TerrainBlock` and chunk bytes | logs `Loading terrain from terrain chunks.`, requests with 256 zero stamps, saves the first chunks byte for byte as 5.12 does (same stamps), then crashes on a null call; the same crash with the `TerrainBlock` alone and no chunks. Without a `TerrainBlock` it plays normally. Cause not yet found. |
 | 5.00r7 | not run: its licence points the login at a fixed LAN address the isolated VM cannot answer; its terrain strings match 5.12 (static) |
 | Script moves a `GameObject` over terrain; `getdropz` sampled | no clamping (z stays as set); `getdropz` values are multiples of 1/8 |
 
