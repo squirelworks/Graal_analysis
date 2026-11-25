@@ -88,10 +88,12 @@ manual/09-graal3d.md	A disc of radius 5 is an approximation of the plus-shaped p
 manual/09-graal3d.md	Where it advances each tick was not traced; that standing still freezes it is an	graal3d/client-behaviour.md#animation-counter-prop-5	
 manual/09-graal3d.md	Origin of the world and actor	graal3d/beta3-genesis.md#what-changes	n/a | `genvs.bsp`, `dema.act`, `MovingPlat` and `DeathMatchStart` match the public Genesis3D SDK demo
 manual/09-graal3d.md	A server that accepted `GR3DV003` as well as `GR3DV002` should be enough to log 	graal3d/beta3-genesis.md#does-the-archived-server-accept-it	
+manual/10-torque.md	A protocol-19 server that ghosts a `MissionArea` to a Linux or Mac 4.0x client w	torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-004-linux-and-mac-against-their-windows-twins	
 manual/10-torque.md	chat, PMs, the player list, file transfer, RC	graal3d/torque-engine-4x.md#the-tcp-gserver-connection-in-3d-mode	not touched by the switch, so presumably still TCP
 manual/10-torque.md	C→S first flag	torque/wire-by-build.md#512-game-packets-the-gameobject-era	first person [inf] | set when a connection float is 0; meaning not traced
 manual/10-torque.md	Left over	torque/protocol19-server.md#open	Other players need the unread `Player` layouts and a real `.dts` player shape, which is not held; the drawn view under QEMU's software renderer was not checked
 manual/10-torque.md	Left over	protocol/lab-appe-hostb-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503	A compiled-code reader linked in but never called can't be ruled out from the stripped image or a run
 manual/10-torque.md	Left over	protocol/lab-appe-hostb-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503	A file reader linked in but never called can't be ruled out by a run
+manual/10-torque.md	Archive members are never requested from the server, so a newer copy on the serv	torque/3d-archives-404r2-512-2026-11-25.md#lab-linux-420r6-zip420-2026-11-25	
 manual/10-torque.md	So a rebuild that shows 3.04 grass as a wall is applying another rule: a per-til	torque/304-tile-types.md#what-this-means-for-the-rebuild	
 manual/11-tools.md	Save: GLEVNW01 with a new `HEIGHTS` section; the GR-V1 writer strings are still 	tools/graaleditor-vs-205.md#what-graaleditor-adds-over-205	

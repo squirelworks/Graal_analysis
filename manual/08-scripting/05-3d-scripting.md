@@ -76,7 +76,7 @@ What follows from the two sets:
 | In 5.12, players, vehicles, projectiles, particles, datablocks, interiors and audio emitters are gone; a `GameObject` with a shape takes their place | [bin] (torque/gs2-3d-objects-404r2-512.md#512-68-classes-22-of-them-3d) |
 | The other 46 classes in 5.12's registry are 2D GS2 classes (GUI controls, `TStaticVar`, `Color`, `Array`, `Sound`, `Date`, `String`, two random generators) | [bin] (torque/gs2-3d-objects-404r2-512.md#512-68-classes-22-of-them-3d) |
 | 4.20r6 already has the `GameObject` layer in place of the game classes; its GS2 class list has not been read | [bin] (torque/wire-by-build.md#the-networked-class-sets) |
-| The switch falls at 4.11, the first held build with `GameObject` and no datablocks (protocol 21); 5.00r7 has the same GS2 3D object set as 5.12 (→ §10.1.12) | [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-003-411-is-the-switch-point); [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-005-500r7-is-3d-equal-to-512) [bin] (torque/wire-by-build.md#the-networked-class-sets) |
+| The switch falls between 4.04r2 and 4.10r2: Linux and Mac 4.10r2 and every 4.11 already have `GameObject` and no datablocks (protocol 21); 5.00r7 has the same GS2 3D object set as 5.12 (→ §10.1.12) | [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-004-linux-and-mac-against-their-windows-twins); [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-005-500r7-is-3d-equal-to-512) [bin] (torque/wire-by-build.md#the-networked-class-sets) |
 
 ## 8.5.4 Properties and functions in 5.12
 
@@ -282,6 +282,7 @@ A 3D script runs inside a session that the server list and the 3D server set up.
 | A `RemoteCommandEvent` one bit shorter than its declared length made 5.12 run a garbled remote command and then crash, so a server's event lengths must be exact; 4.04r2 crashes on an update to a ghost index it never created (→ §10.3.12) | [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md#crashes-and-bad-behaviour) |
 | 3.153 asks for `.dts` shapes and textures by bare name and for sky textures as `.gif`, never `.png` | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153) |
 | 5.12 asks the TCP connection for any missing 3D resource except `.dso`, `.cs` and `.ter` | [bin] (torque/script-and-terrain-tools-by-build.md#does-the-client-take-and-run-torque-files) |
+| Content can ship as a `.zip` (or keyed `.gpake`) anywhere under the client's data or user folder: shapes and textures load from it by bare name and are not asked from the server; a plain `.gpak` is ignored (→ §10.6) | [bin][lab] (torque/3d-archives-404r2-512-2026-11-25.md#answers) |
 
 The 3D file formats and the builds that read them are in → §10.6.
 
