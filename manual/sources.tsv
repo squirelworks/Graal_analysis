@@ -982,3 +982,4 @@ torque/3d-fuzz-net-tier1-2026-11-25.md	pending	E	10.6	3D network fuzz tier 1: ev
 torque/live-512-shapes-2026-11-25.md	pending	E	10.3	5.12 shapes: .3ds materials and collision meshes, .dts per-version behaviour, .dif, .ft
 torque/3d-engines-5007-512-and-403-411-2026-11-25.md	pending		10.3	Static 3D engine compare (T3D-005, T3D-003): protocol and class sets by build; to carry into §10
 torque/3d-archives-404r2-512-2026-11-25.md	pending		10.3	Static read of 3D archive mounting (T3D-012); to carry into §10
+torque/3d-link-drop-420r6-2026-11-25.md	pending		10.3	3D link loss behaviour (T3D-027), static and lab; to carry into §10
