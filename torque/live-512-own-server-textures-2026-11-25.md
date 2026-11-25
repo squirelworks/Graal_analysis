@@ -1,7 +1,7 @@
 # 5.12 on our own 3D server: texture names, formats, client updates (2026-11-25)
 
-Lab: the real 5.12 client against seihai-gserver-v2 in graal3d mode, inside the
-GwenTea2 VM. Run by the renderer lab. Behaviour only. The captures and
+Lab: the real 5.12 client against seihai-gserver-v2 in graal3d mode, inside a
+lab VM. Run by the renderer lab. Behaviour only. The captures and
 screenshots stay in the lab share. Board rows: T3D-023, T3D-032, T3D-033,
 T3D-046. **[lab][cap]**
 

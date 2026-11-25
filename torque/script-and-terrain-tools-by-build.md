@@ -82,7 +82,7 @@ is whether a server can get new script into it. The static answer is no:
   None of the script files that define them contains `exec` or `eval`. **[file][inf]**
 
 So a 3.153 server drives the client only through those handlers and the ghosted objects.
-Confirming this in a session (T3D-009 lab side) needs the Tiger VM.
+Confirming this in a session (T3D-009 lab side) needs the lab Mac OS X (PPC) VM.
 
 So the answer for the 4.x and 5.x clients is no: they keep Torque's engine, file readers and
 network layer, but GS2 replaced TorqueScript, and the TorqueScript compiler is gone. Only 3.153 (and
@@ -132,4 +132,4 @@ run of the original tool against `seihai-servertools gen terrain` is under way (
 - [ ] T3D-019 / T3D-050: create `Terraformer` and `TerrainEditor` from GS2; what `setTerrain` writes.
 - [ ] T3D-041: when 4.04r2 takes the local `.ter` path over the chunk path.
 - [x] T3D-013: the 5.12 extension list is the GS2 file-access gate.
-- [ ] T3D-009 lab side: a 3.153 session on the Tiger VM that pushes a `.cs` and calls an unknown `clientCmd`.
+- [ ] T3D-009 lab side: a 3.153 session on the lab Mac OS X (PPC) VM that pushes a `.cs` and calls an unknown `clientCmd`.
