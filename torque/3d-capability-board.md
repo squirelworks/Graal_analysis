@@ -61,3 +61,16 @@ to the client from our own server only.
   IFL, DML, `TSShapeConstructor`, `PathCamera` and `AdvancedCamera` are 4.04r2 only; 5.12 keeps DTS,
   DIF, 3DS and lists `.dsq`; the `.cs` in 5.12's file list is the GS2 file-access gate (T3D-013,
   T3D-031, T3D-034, T3D-035, T3D-051, T3D-055, T3D-062).
+- [5.12 GS2 3D probe on our own server](live-512-gs2-3d-probe-2026-11-25.md): script-made objects do
+  not draw, the sky and fog functions change nothing, loadGreyscale crashes without a TerrainBlock,
+  and switchToOpenGL alone draws nothing (T3D-016, T3D-021, T3D-050, T3D-063, T3D-064).
+- [The original TerrainGenerator compared with servertools](terraingenerator-original-vs-servertools-2026-11-25.md)
+  (T3D-043).
+
+## Second batch (T3D-077 to T3D-092, 2026-11-25)
+
+Added from the day's findings: texture and heightmap image limits per build, the 4.20r8 terrain
+crash, protocol 21 against 24, which object classes each build draws, control-object variants,
+ghost visibility between players, 3D sound and particles, the rest of the sky, `.dif` interiors and
+collision, the 3D script functions on 4.04r2 and 5.00r7, what 3.153 accepts, shape packaging and
+caching, out-of-range worlds, and mission lighting.
