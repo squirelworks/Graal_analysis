@@ -665,6 +665,17 @@ Once the 3D world was up, the lab server sent a Linux 4.20r6 client (3D-equal to
 | The client acted on none of it: no NPC or baddy image request, no further packets but heartbeats | [lab] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab) |
 | The packets are dropped because the 3D view control owns the screen and the 2D level renderer is not shown; no static trace was done | [inf] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab) |
 
+### 10.3.17 A world past its limits (Linux 4.20r6)
+
+A Linux 4.20r6 client (3D-equal to Windows 4.20r8) was fed far positions, odd shapes and many `GameObject`s from the project's own 3D lab server; every run reached "Graal3D has been activated!", stayed connected and logged no error, clamp or "too many" [lab] (torque/3d-world-limits-420r6-2026-11-25.md#results-lab).
+
+| Rule | Source |
+| --- | --- |
+| Finite positions up to ±1e9 on any axis are accepted, ghosted and drawn, with no clamp | [lab] (torque/3d-world-limits-420r6-2026-11-25.md#findings) |
+| The project's gserver refuses to ghost a `GameObject` with an `inf` or `nan` position, so the client's own handling of a non-finite ghost was not exercised | [lab] (torque/3d-world-limits-420r6-2026-11-25.md#findings) |
+| A shape about 5000 units across draws (the camera ends up inside it); a negative-size shape draws; a `.3ds` with a NaN vertex draws as a normal cube | [lab] (torque/3d-world-limits-420r6-2026-11-25.md#findings) |
+| 100 and 1000 `GameObject`s were all created and drawn, with no ghost-count limit and no disconnect over 55 s; frame rate was not measured | [lab] (torque/3d-world-limits-420r6-2026-11-25.md#findings) |
+
 ## 10.4 DSO v33
 
 Graal 3.x keeps menus, options, key binds, message boxes and the 3D mission-loading flow in compiled TorqueScript; from 4.x on no `.dso` files ship [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts).
