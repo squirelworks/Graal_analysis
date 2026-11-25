@@ -39,6 +39,11 @@ parsed map state from NC script input and classic script-output bounds. Original
 4.02 behavior, the historical RC editing limit and old-engine breakage remain open;
 this is partial coverage, not a completed historical confirmation.
 
+2026-11-25 update: G323 (4.20r8 login-account script API) is answered in
+[v4-login-account-contract](../protocol/v4-login-account-contract.md#login-account-script-api-by-build-g323-2026-11-25):
+4.20r8 has no `getLoginAccountName()` and no `GuiAccountPasswordCtrl` (both arrive in 5.00r7), but has `Adventure_setAccountName` /
+`Adventure_setPassWord` and a `password` flag on `GuiTextEditCtrl`, which every build masks with `*`. Checkbox closed.
+
 2026-11-25 update: G262 (large-file receive on 4.208 to 6.037) is answered in
 [large-file-thresholds-focus](../protocol/large-file-thresholds-focus.md#receive-handlers-on-4208-to-6037-g262-2026-11-25):
 all four stock engines handle 68, 69 and 84; 84 only feeds progress, 69 never checks it, and no receive-side size constant exists.
