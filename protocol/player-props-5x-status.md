@@ -112,6 +112,25 @@ Inputs: the unpatched 5.00r7 engine and a memory image of the genuine 5.12 engin
 widths were spot-checked against the same 5.00r7 code (self 3 and 14, other 11, NPC 1) and agree. This pass proves equality; it
 does not add an NPC or baddy width table. **[bin]**
 
+## Sword and shield power on 4.20r8 to 6.03r7 (2026-11-25)
+
+Sword (prop 8) and shield (prop 9) use the same wire form from 2.05 to 6.03r7, so P6 is settled for these builds. With `b` the value byte minus 32: below 10 is a bare preset, and from 10 up it is power + 30 (sword) or power + 10 (shield) followed by a length byte and the image. Healing swords −20..−1 go out as bytes 10..29. seihai-gserver-v2 PR #149 decodes and encodes this form. **[bin][lab]**
+
+| Client | Receive | Send | Lab |
+|---|---|---|---|
+| 2.05 rev2 | threshold 10, −30 / −10 | sword byte clamped to 10..50 (power −20..20) | yes (PR #149) |
+| 4.20r8 (engine 828e9311) | same | sword clamped to 10..50; byte 30 (power 0) goes as 0. Presets `sword1`–`sword4` and `shield1`–`shield3` go as bytes 1..4 and 1..3. Shield is capped at power 3 (byte 13); 10 or less goes as 0 | no |
+| 5.00r7 (stock dde0fc85; 5.12 2D engine 1d100a7a is the same code) | same | same as 4.20r8 | no |
+| 6.03r7 Linux x64 and Windows | same | as 4.20r8 but never uses the preset bytes: `sword1.png` power 1 goes as 31 + `sword1.png` | yes, two Linux clients |
+
+- **Shield cap.** From 4.20r8 on, the client never sends a shield power above 3, whatever the script sets. The 6.03r7 lab sent 13 for powers 5 and 250. **[bin][lab]**
+- **Clamped locally, not on the wire.** 6.03r7 keeps −25 or 25 as its own sword power and sends −20 or 20 (bytes 10 and 50). **[lab]**
+- **Power 0 with an image** goes out as byte 0 on 4.x to 6.x, so the image is lost. **[bin]**
+- **Receivers do not clamp**, so a server that sends a sword above 20 or a shield above 3 has it taken as is. **[bin]**
+- **Lab:** two real Linux 6.03r7 clients on PR #149's server (`healswords=true`, `swordlimit=20`, `shieldlimit=255`). The client sent 27 + `heal.png` for −3, 10 for −20 and −25, 36 for 6 and 50 for 25. The server forwarded the same bytes to the second client, a client that joined later got the stored values, and the props after them were not shifted. **[lab]**
+- **Where:** in each engine the send side is the self-prop writer, the switch that builds the client's own PLI 2 prop record, in its sword and shield arms. **[bin]**
+- **Open:** the send side of the genuine 5.12 3D engine (04f7a133) was not read; its receive side matches (above). 4.20r8 and 5.00r7 were not run in the lab.
+
 ## Still open for #6
 
 A [complete selected own/shared cursor census](player-props-selected-backup-cursors-2026-11-22.md), with a numeric per-ID table, now records these two backup functions' dispatch membership, nominal extents, short guards and default behavior. It distinguishes own prefix-copy delegation from shared cursor advancement. This closes that selected static census only; the multi-build/genuine-5.12 checklist below and semantic/runtime questions remain open. **[bin][inf]**
@@ -120,10 +139,10 @@ A [complete selected own/shared cursor census](player-props-selected-backup-curs
 |---|---|---|
 | ~~Per-id **value widths** beyond the ids named in `v5-props.md`~~ | Needed for safe encode / fuzz-free lab fixtures | Done for self and other: 5.00r7 census, and 5.12 identical ([above](#genuine-512-has-the-same-widths-g173--g098-2026-11-25)) |
 | Two-client prop **diff** on the wire | Confirms other-player accept set live | **L** after #1 assets |
-| Pyreborn leads **P4** COLORS 5↔8 via PLO 177; **P5** ascending-id stop; **P6** sword/shield bias | Leads only until our **S** | Same static pass as widths |
+| Pyreborn leads **P4** COLORS 5↔8 via PLO 177; **P5** ascending-id stop; ~~**P6** sword/shield bias~~ | Leads only until our **S** | P6 done ([sword and shield](#sword-and-shield-power-on-420r8-to-603r7-2026-11-25)); P4, P5 open |
 
 ## Open checklist
 
 - [x] ~~Publish a 5.00r7 / 5.12 per-id width table (self + other).~~ The 5.00r7 table is the [cursor census](player-props-selected-backup-cursors-2026-11-22.md); 5.12 has the same widths in all four streams ([above](#genuine-512-has-the-same-widths-g173--g098-2026-11-25)).
-- [ ] Confirm or reject P4–P6 against that table / two-client capture.
+- [ ] Confirm or reject P4–P5 against that table / two-client capture. P6 is confirmed ([sword and shield](#sword-and-shield-power-on-420r8-to-603r7-2026-11-25)).
 - [ ] Optional: unknown own-id long-value desync lab (called out in `v5-props.md`).
