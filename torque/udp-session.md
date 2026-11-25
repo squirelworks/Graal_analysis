@@ -615,5 +615,6 @@ stock class-id widths, no length prefixes) and ships no 3D scripts. No 3D server
   chatting (the 5.x client only moves when a GS2 script moves it; lab 11 is testing that).
 - [x] ~~`TerrainBlock` and `WaterBlock` layouts~~: read from the 5.12 binary in
   [terrain-512.md](terrain-512.md), with the chunk event, the request event and the heights cache.
-- [ ] The replicators (`DynamicGrass`, `DynamicGrassReplicator`, `DynamicShapeReplicator`) and
-  `fxSunLight` are not sent by any server we have; their layouts are unread.
+- [x] ~~`fxSunLight` layout~~: read from the 5.12 binary in [fxsunlight-512.md](fxsunlight-512.md).
+- [x] ~~Replicator layouts~~ (`DynamicGrass`, `DynamicGrassReplicator`, `DynamicShapeReplicator`):
+  read from the 5.12 binary in [replicators-512.md](replicators-512.md); a live ghost is still open.
