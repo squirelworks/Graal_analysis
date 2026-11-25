@@ -2,7 +2,7 @@
 
 Date: 2026-11-25. Client: the real 5.12 `Graal3DEngine.dll` (SHA-256 `04f7a133…`), static read.
 Tags as in `README.md`: **[bin]** read from that binary for behaviour, **[inf]** inferred,
-**[lab]** seen live (none yet). Nothing here is decompiled text. Encoding terms as in
+**[lab]** seen live. Nothing here is decompiled text. Encoding terms as in
 [udp-session.md](udp-session.md) §2 and [fxsunlight-512.md](fxsunlight-512.md).
 
 The three classes are ghosted objects. `DynamicGrass` and `DynamicGrassReplicator` derive from
@@ -63,5 +63,11 @@ regrows its replications. **[bin]**
   between the min and max vectors. `hidereplications` hides the cover without dropping the
   object. **[inf]**
 
-Open: a live ghost of a `DynamicShapeReplicator` beside the terrain world, varying radius, grid
-counts and the allow flags.
+## Live
+
+The real 5.12 client (GDI renderer) accepted this layout for all three classes: each ghost was
+created and the client stayed up, for radius 1, 4, 64 and 100 cells, grid counts 0/20 and 25/25,
+`allowonterrain` 0 and `hidereplications` 1. Nothing about the replicator was logged. **[lab]**
+No copies of the shape were seen in any of these runs, but the ground under the object was about
+100 units above the camera, so the copies may have been out of view. A rerun on flat ground at
+camera height is next. **[lab]**
