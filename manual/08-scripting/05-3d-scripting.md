@@ -76,6 +76,7 @@ What follows from the two sets:
 | In 5.12, players, vehicles, projectiles, particles, datablocks, interiors and audio emitters are gone; a `GameObject` with a shape takes their place | [bin] (torque/gs2-3d-objects-404r2-512.md#512-68-classes-22-of-them-3d) |
 | The other 46 classes in 5.12's registry are 2D GS2 classes (GUI controls, `TStaticVar`, `Color`, `Array`, `Sound`, `Date`, `String`, two random generators) | [bin] (torque/gs2-3d-objects-404r2-512.md#512-68-classes-22-of-them-3d) |
 | 4.20r6 already has the `GameObject` layer in place of the game classes; its GS2 class list has not been read | [bin] (torque/wire-by-build.md#the-networked-class-sets) |
+| The switch falls between 4.04r2 and 4.10r2: Linux and Mac 4.10r2 and every 4.11 already have `GameObject` and no datablocks (protocol 21); 5.00r7 has the same GS2 3D object set as 5.12 (→ §10.1.12) | [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-004-linux-and-mac-against-their-windows-twins); [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-005-500r7-is-3d-equal-to-512) [bin] (torque/wire-by-build.md#the-networked-class-sets) |
 
 ## 8.5.4 Properties and functions in 5.12
 
@@ -105,9 +106,20 @@ What a script can do with them:
 | Rule | Source |
 | --- | --- |
 | `GameObject` carries the calls a script needs to drive an object: mounting, node transforms, `setDirection`, `getdropz` and the two collision checks | [bin][inf] (torque/gs2-3d-objects-404r2-512.md#script-properties-and-functions-in-512) |
+| Live on 5.12, a static scenery `GameObject` accepts skin, chat, `attr1` to `attr3` and nickname but draws none of them, and a `.ft` text shape never drew; only flag `0x0004` hides an object (→ §10.5.2, §10.6) | [lab][cap] (torque/live-512-gameobject-fields-2026-11-25.md#fields-accepted-but-not-drawn-on-a-static-gameobject); [lab][cap] (torque/live-512-shapes-2026-11-25.md#ft-text-shapes-t3d-036) |
 | `findimg`, `hideimg` and `hideimgs` on `GameObject` mean 2D-style show-images work on 3D objects (→ §8.3.8) | [bin][inf] (torque/gs2-3d-objects-404r2-512.md#script-properties-and-functions-in-512) |
 | The client carries a scriptable 3D world and terrain editor: `WorldEditor`, `TerrainEditor` and `EditManager` are registered GUI controls with their full stock sets | [bin][inf] (torque/gs2-3d-objects-404r2-512.md#script-properties-and-functions-in-512) |
 | The shape subclasses (`GameShapeDTS` animation calls, `GameShapeDIF` lights, `GameShape` shaders) and how each `GameObject` property travels on the wire are in → §10.5.2 | [bin] (torque/engine-and-formats.md#the-512-3d-object-model) |
+
+5.12 replaces the Torque particle datablocks with a GS2 particle system; none of it was driven live (→ §10.1.12) [bin] (torque/3d-particles-512-vs-404r2-2026-11-25.md#what-512-has-instead-bin).
+
+| Object | Script names | Source |
+| --- | --- | --- |
+| `TParticleEmitter` | `particletypes`, `maxparticles`, `nrofparticles`, `emitautomatically`, `delaymin`, `delaymax`, `emissionoffset`, `attachposition`, `autorotation`, `clippingbox`, `emitatterrainheight`, `dropemitter`, `dropwateremitter`, read-only `currentparticlecount` and `emittedparticles`; `emit()`, `emitat(str)`, `advancetime(float)`, `addemitmodifier(…)`, `addlocalmodifier(…)`, `addglobalmodifier(…)`, `removemodifiers()`, `removeparticles()` | [bin] (torque/3d-particles-512-vs-404r2-2026-11-25.md#what-512-has-instead-bin) |
+| `TParticle` | angle, lifetime, speed, movement vector, sound and others | [bin] (torque/3d-particles-512-vs-404r2-2026-11-25.md#what-512-has-instead-bin) |
+| `TParticleModifier` | `addmod(…)` | [bin] (torque/3d-particles-512-vs-404r2-2026-11-25.md#what-512-has-instead-bin) |
+| reaching an emitter | a 3D drawable object's `.emitter` (2D: `GuiShowImgCtrl.emitter`); the global `particleeffectsenabled` turns effects on or off | [bin] (torque/3d-particles-512-vs-404r2-2026-11-25.md#what-512-has-instead-bin) |
+| live use | not run: on the lab route a client weapon could not find its own 3D object to read `.emitter` from | [lab] (torque/3d-particles-512-vs-404r2-2026-11-25.md#not-driven-live-this-session-and-why) |
 
 ## 8.5.5 Properties and functions in 4.04r2
 
@@ -174,6 +186,19 @@ The rules below give how the steps behave [bin] (torque/gs2-3d-objects-404r2-512
 | Live on 4.04r2 (all three phases), a probe weapon received `onGraal3DLoginStep` 2, 4 and 5, and `onGhostAlwaysStarted` 2 | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#404r2) |
 | The `on…` events fired for each 3D connection outcome (`onConnectionAccepted` and the rest) are listed in → §8.3.5 | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
 
+A client weapon on Linux 4.20r6 (3D-equal to Windows 4.20r8) stepped through one call every 3 s against the project's own 3D lab server; the table gives what reached the server for each (the wire form is in → §10.3.14) [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab).
+
+| Script call in 3D mode | What the server gets | Source |
+| --- | --- | --- |
+| `triggerserver("weapon", name, …)` | a weapon trigger over UDP | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| `triggerserver("gui", name, …)` | a `gui` trigger line over UDP | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| `client.<flag> = value` | a flag write over UDP | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| `player.chat = …` once the world is up | the chat field of the player's 3D object update, over UDP | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| `player.chat = …` in `onCreated` | nothing seen | [lab][inf] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| `sendpm(…)`, `player.sendpm(…)`, `setplayerprop("#c", …)`, `clientr.… = …` | nothing on either link | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| a chat line the player types | the normal 2D chat over TCP | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| the weapon sent as GS1 source instead of GS2 bytecode | nothing: it was delivered but never ran, so a 3D weapon must be GS2 bytecode | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+
 ## 8.5.8 Terrain and water from script
 
 Torque ships two terrain tools as engine classes, the procedural `Terraformer` and the brush editor `TerrainEditor`. Both survive in all three builds read, cut down differently [bin] (torque/script-and-terrain-tools-by-build.md#the-terrain-tools-inside-the-client).
@@ -239,6 +264,8 @@ The rules give what a 5.12 script can change in how the world is drawn, and what
 | Live on 5.12, none of `setSkyBandColors`, `setSkyBandSizes`, `setFogColors`, `setSunColors`, `lightScene`, `updateVisibleDistance`, `syncTimeOfDay` or `setInteriorRenderMode` changed a pixel; the ghosted `Sky` and `Sun` stayed as they were while a script camera move redrew at once | [lab] (torque/live-512-gs2-3d-probe-2026-11-25.md#sky-fog-sun-and-view-distance-functions-t3d-063) |
 | Why: in the 5.00r7 engine, `setSunColors`, `setSkyBandColors`, `setFogColors` and `setSkyBandSizes` each take one list and fill a client-side day and night keyframe table; they do not touch the ghosted `Sky` or `Sun` | [bin] (torque/3d-engine-static-reads-2026-11-25.md#sky-fog-and-view-functions-t3d-063) |
 | `syncTimeOfDay` takes two numbers; `updateVisibleDistance` takes no argument and re-reads `$pref::Video::visibleDistance`; there is no `updateFogDistance`; `lightScene` does a full relight | [bin] (torque/3d-engine-static-reads-2026-11-25.md#sky-fog-and-view-functions-t3d-063) |
+| Lighting is not a script tool on 5.12: the ghosted `Sun` only switches shapes to full brightness and shades nothing by direction or colour (→ §10.5.6) | [lab][cap] (torque/live-512-lighting-and-sky-2026-11-25.md#lighting-on-3ds-shapes-t3d-047-t3d-052) |
+| A script that sets a rotation should expect a positive angle about +z to turn a shape clockwise seen from above; the default horizontal field of view is 90 degrees (→ §10.5.6) | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#shape-rotation); [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#sky-geometry-and-field-of-view-t3d-046-t3d-055) |
 | `GuiShapeNameHud` has `nameMaxDistance` and `nameDistanceFade` and reads the `GameObject` fields `nickname`, `nickcolor`, `movetype` and `liquidtype` | [bin] (torque/3d-engine-static-reads-2026-11-25.md#name-tags-t3d-065) |
 | 5.12 gives GS2 no camera functions and no camera properties; the only camera-named property is `cameraz` on the `GuiPlayerView` preview widget, and there is no first-person toggle name; the 3D camera is driven only by the server through the `Camera` ghost when it is the control object | [bin] (torque/3d-formats-renderer-camera-by-build.md#camera-classes-t3d-055) |
 | `PathCamera` and `AdvancedCamera` are 4.04r2 only; 5.12 keeps `Camera` | [bin] (torque/3d-formats-renderer-camera-by-build.md#camera-classes-t3d-055) |
@@ -270,13 +297,21 @@ A 3D script runs inside a session that the server list and the 3D server set up.
 | 5.12 caches each 3D weapon's compiled script as `weblevels/weapons/<server>/<weapon>.code` | [lab] (torque/3d-formats-renderer-camera-by-build.md#gameshape-shaders-in-512-t3d-039) |
 | 5.12 drops any image extension (`.png`, `.jpg`, `.jpeg`, `.bmp`, `.gif`, `.tga`, `.dds`) from material and sky texture names, lower-cases the name and requests the bare name; shape names keep their extension; after "not found" it does not ask again | [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#texture-names-t3d-033-final) |
 | A bare texture name with an underscore is stored in a subfolder named after the part before the first underscore; others go to `images/` | [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#texture-names-t3d-033-final) |
+| On Linux 4.20r6 a shape texture fetched during the session stays unapplied (the shape draws white) because it is saved without `.png`; it must already be on disk as `<name>.png` (→ §10.6) | [lab] (torque/3d-shape-textures-420r6-2026-11-25.md#does-the-shape-draw-and-does-the-texture-apply) |
+| Linux 4.20r6 decodes PNG, JPEG, GIF, 24-bit BMP and 24/32-bit TGA from disk for shapes and sky, any size tried up to 2048 × 2048; DDS stays white (→ §10.6) | [lab] (torque/3d-texture-formats-420r6-2026-11-25.md#for-a-server) |
 | 5.12 decodes a texture by content: 8-bit PNG (RGB, RGBA, paletted, grey, interlaced), JPEG and GIF draw; 16-bit PNG, BMP, TGA and DDS draw white, as does a missing texture; alpha 0 is cut out and alpha 128 draws opaque | [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#texture-formats-t3d-032) |
 | Whatever the control object's class, the 5.12 client sends its position plus an update in the `GameObject` layout: a `Camera` sends the transform once and then an empty update each second; a `GameObject` sends shape, transform and flags | [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#what-the-client-sends-for-its-control-object-t3d-023) |
 | With `levels3d/` deleted but `FILENAMECACHE.txt` kept, 5.12 requests no meshes and then crashes; this is a client cache state a server cannot cause | [lab] (torque/live-512-own-server-textures-2026-11-25.md#client-fault) |
 | Live on 4.04r2 the control object is the stock TGE `Player`; the client sends Torque moves only, no position reports; the server walked the Player while keys were held, but the script `player` object still read the spawn position, so the 2D player position does not follow the 3D Player | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#404r2) |
 | First multi-client runs on the project's early lab server (its relay of other players was still changing, so these describe that build, not settled client rules): a 5.12 3D client received a 2D client's chat as `onRemotePlayerChats` over TCP while its `players` count stayed 0; a 2D 5.24r3 client counted the 3D player but drew nothing; no leave event reached either side (→ §10.3.11) | [lab] (torque/multi-client-3d-lab-2026-11-25.md#h1-a-2d-client-and-a-3d-client-in-one-level) |
+| A `RemoteCommandEvent` one bit shorter than its declared length made 5.12 run a garbled remote command and then crash, so a server's event lengths must be exact; 4.04r2 crashes on an update to a ghost index it never created (→ §10.3.12) | [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md#crashes-and-bad-behaviour) |
 | 3.153 asks for `.dts` shapes and textures by bare name and for sky textures as `.gif`, never `.png` | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153) |
 | 5.12 asks the TCP connection for any missing 3D resource except `.dso`, `.cs` and `.ter` | [bin] (torque/script-and-terrain-tools-by-build.md#does-the-client-take-and-run-torque-files) |
+| A 3D session ends when its TCP link closes or UDP is silent for about 40 s, and the client goes back to the login screen without reconnecting; a shorter UDP gap heals silently (Linux 4.20r6, → §10.3.13) | [bin][lab] (torque/3d-link-drop-420r6-2026-11-25.md#for-server-work) |
+| 2D level packets (board, NPCs, baddies, signs, links, chests) reach a 3D session but are ignored, so a 3D server shows content only through 3D objects and the 3D text channel (Linux 4.20r6, → §10.3.16) | [lab] (torque/3d-2d-level-packets-420r6-2026-11-25.md#answer) |
+| A world of 1000 `GameObject`s, positions up to ±1e9 and very large or negative-size shapes all drew with no clamp or disconnect (Linux 4.20r6, → §10.3.17) | [lab] (torque/3d-world-limits-420r6-2026-11-25.md#verdict) |
+| Content can ship as a `.zip` (or keyed `.gpake`) anywhere under the client's data or user folder: shapes and textures load from it by bare name and are not asked from the server; a plain `.gpak` is ignored (→ §10.6) | [bin][lab] (torque/3d-archives-404r2-512-2026-11-25.md#answers) |
+| A loose 3D file the client already has is used unless the server's copy has a newer modtime, so a player can override server content with a newer local file, and a server can force its content only by keeping its copy newest (Linux 4.20r6, → §10.3.15) | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#answers) |
 
 The 3D file formats and the builds that read them are in → §10.6.
 
@@ -320,5 +355,6 @@ Each row is one board question that bears on 3D scripting, with where it stands.
 | What the shader properties do (T3D-039) | confirmed: GLSL source replaces a shape's material on a GLSL-capable driver; where the compile log goes is open | [bin][lab] (torque/3d-formats-renderer-camera-by-build.md#gameshape-shaders-in-512-t3d-039) |
 | How a 5.12 player moves in 3D (T3D-054) | answered (read): 5.12 always reports its own position and sends no Torque `Move` (→ §10.3.5); how a server moves it is in §10.3.8 | [bin] (torque/wire-by-build.md#512-game-packets-the-gameobject-era) |
 | Whether the sky, fog, sun and lighting functions override the ghosted `Sky` and `Sun` (T3D-063) | answered: the functions fill a client-side keyframe table and never touch the ghosted `Sky` or `Sun` (read, 5.00r7), which fits no pixel changing live | [bin][lab] (torque/3d-engine-static-reads-2026-11-25.md#sky-fog-and-view-functions-t3d-063) |
+| What the `Sun` does to shapes (T3D-047, T3D-052) | answered (live 5.12): an on/off brightness switch; no directional shading on `.3ds`, `.dts`, `.dif` or terrain | [lab][cap] (torque/live-512-lighting-and-sky-2026-11-25.md#lighting-on-3ds-shapes-t3d-047-t3d-052) |
 | Whether `switchToOpenGL` can build a world with no server (T3D-064) | confirmed no | [lab] (torque/3d-capability-board.tsv) |
 | The 4.20r6 and 4.20r8 GS2 3D surface | unmeasured | [bin] (torque/gs2-3d-objects-404r2-512.md#open) |
