@@ -1006,3 +1006,4 @@ torque/3d-authoring-surface-2026-11-25.md	pending		10.3	3D authoring surface: pl
 torque/3d-gui-overlay-420r6-2026-11-25.md	pending		10.3	2D GUI layers over the 3D view; GS2 GUIs draw in 3D (T3D-058), lab+bin; to carry into §10
 torque/3d-sound-paths-2026-11-25.md	pending		10.3	3D sound on 5.12 is the GS2 play2/play3d path; Torque audio classes 4.04r2-only (T3D-084), lab+bin; to carry into §10
 torque/3d-player-identity-420r6-2026-11-25.md	pending		10.3	3D player keeps the 2D identity (gani/head/body/nick/chat) alongside its 3D shape (T3D-056), lab+bin; to carry into §10
+torque/3d-weather-404r2-2026-11-25.md	pending		10.3	Precipitation/Lightning are 4.04r2-only client classes; our server has no emit path (T3D-049), lab+bin; to carry into §10
