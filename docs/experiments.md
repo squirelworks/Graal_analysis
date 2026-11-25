@@ -49,14 +49,17 @@ the issue it closes. Part 2 lists every other lab row on the [gap board](gap-boa
   - 5.12 runs under Wine with `runwine.sh 512`.
   - 6.037 runs natively in the Win10 VM, with the proxy and `probectl.py` on a `tcp:PORT`
     control address (see the README's "Windows hosts").
-  - The 2.02 builds run under Wine with `run12.sh`/`login1x.sh` for gen 3. Add a client entry for
+  - The 2.02 builds do not run under Wine (G425, 2026-11-25: all three crash with an access violation
+    when Start is pressed, before any connection). Run them natively in a Windows 10 VM, as 2.00 to
+    2.05 rev 1 were. Earlier wording: run under Wine with `run12.sh`/`login1x.sh` for gen 3. Add a client entry for
     them as for 2.00 to 2.05 rev 1.
 - **Steps:**
   - For 5.12 and 6.037, run each plan in turn: `wine-core`, `widths`, `widths-fix`, `bytes2x`,
     `baddytypes` and `loadgani3w`. For example:
     `sh tools/probe/lab/runwine.sh 512 tools/probe/lab/wine-core.plan x1-512-core`
   - For the 2.02 family, run the 32-case gen-3 plan from
-    `python3 tools/probe/fuzz12.py plan 3`, the same set that 2.00 to 2.05 rev 1 ran.
+    `wine-core.plan` (props 3, 77–83, 90 and PLO 60/78/81/83/110), the 32-case set that 2.00 to
+    2.05 rev 1 ran (`w200` … `w205r1`). `fuzz12.py plan 3` is the gen-2 width sweep, not that set.
 - **Expected output:** one row per case in `probe-results.tsv`: `landed`, `lost`, `crash` or
   `disconnect`, read from the bomb-count canary (`canary.py`). Compare the results with 5.00r7,
   6.03r7 and 2.05 rev 1 respectively.
