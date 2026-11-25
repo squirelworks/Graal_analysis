@@ -95,9 +95,10 @@ Loopback run in the headless Debian lab VM on the second lab host; our own lab s
 | 6.03r7 Linux native | `G3D0511C` | same | one request | byte-identical |
 | 2.22, Wine | `GNW03014` | same (from the server's packet log) | saved to `levels/webgifs` | byte-identical |
 | 2.31, Wine | `GNW28015` | same (from the server's packet log) | saved to `levels/webgifs` | byte-identical |
-| 5.00r7 | `G3D22067` | not run | the lab's CRC-patched 5.00r7 install stalls before connecting (known lab issue); the stock engine was not tried | — |
+| 5.00r7 (CRC-patched engine), Wine | `G3D22067` | 68 → 84 (307 961) → 10 × 102 (9 × 32 000 + 19 961, each inside 100) → 69; regenerated test file (see below) | one request; afterwards one ordinary 34 check, answered 45 (as 5.12) | byte-identical (`levels/images/downloads`) |
+| 6.03r7 (6.037), Wine | `G3D0311C` | same as 5.00r7 (307 961-byte regenerated file) | one request; no 34 check seen afterwards | byte-identical (`levels/images/downloads`) |
 
-No client disconnected, re-asked or saved a partial file. The server sent 84 to 2.22 as well as 2.31, and neither broke on it. This matches the [static result](#receive-side-ceilings-on-4208-to-6037-g265-2026-11-25) that none of these clients caps file size. Not covered: 5.00r7, Windows 6.03r7, and a server with a recorded commit.
+No client disconnected, re-asked or saved a partial file. The server sent 84 to 2.22 as well as 2.31, and neither broke on it. This matches the [static result](#receive-side-ceilings-on-4208-to-6037-g265-2026-11-25) that none of these clients caps file size. The 5.00r7 row was run later the same day (`lf500-a`), once the lab's 5.00r7 stall was fixed ([lab note](scripted-weapons-5x-status.md#lab-gs2-weapon-fixture-on-500r7-g307-2026-11-25)); the first test file had been deleted, so it used a new random-noise PNG made the same way, 307 961 bytes. Windows 6.03r7 under Wine (`lf6037-a`) followed with another regenerated file of the same size. Not covered: a server with a recorded commit.
 
 ## Client ask side (related, not the threshold)
 
@@ -110,7 +111,7 @@ No client disconnected, re-asked or saved a partial file. The server sent 84 to 
 ## Open
 
 - [x] ~~Exact per-exe `large_files` / `large_file_size` on stock 4.208 / 5.007 / 5.12 / 6.037.~~ [Read 2026-11-25](#receive-handlers-on-4208-to-6037-g262-2026-11-25): all four handle 68, 69 and 84; no receive-side size limit. **[bin]**
-- [x] ~~Discriminating **~300 KB** image push on each focus build against seihai-gserver (confirm chunk boundaries and 84 handling on 2.22 vs 2.31).~~ [Lab 2026-11-25](#lab-300-kb-push-to-the-focus-clients-g263-2026-11-25): 4.20r8, 5.12, Linux 6.03r7, 2.22 and 2.31 all saved the file byte-identical from 68/84/10×102/69; 5.00r7 and Windows 6.03r7 not run. **[lab]**
+- [x] ~~Discriminating **~300 KB** image push on each focus build against seihai-gserver (confirm chunk boundaries and 84 handling on 2.22 vs 2.31).~~ [Lab 2026-11-25](#lab-300-kb-push-to-the-focus-clients-g263-2026-11-25): 4.20r8, 5.12, Linux 6.03r7, 2.22, 2.31, 5.00r7 and Windows 6.03r7 all saved the file byte-identical from 68/84/10×102/69. **[lab]**
 - [x] ~~Reconcile the recorded 1.41r1 direct receive set: no 68/69.~~ [Exact-input scope](file-profile-evidence-2026-11-21.md#the-recorded-141r1-input).
 - [ ] Read the exact 1.41r1 raw/file subpath and FILE body; G264 remains partial.
 - [x] ~~Whether any focus client enforces a **stricter** on-disk limit than the server's 32000-byte chunks.~~ [Read 2026-11-25](#receive-side-ceilings-on-4208-to-6037-g265-2026-11-25): none does; 4.208 caps one packet near 1 MB, and 5.x/6.x a bundle's inflated size at 4 MiB. **[bin]**
