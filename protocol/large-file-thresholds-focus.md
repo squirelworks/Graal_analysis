@@ -53,9 +53,33 @@ The handlers have the same shape in every build:
 - **102** appends each chunk. The expected size is only the total passed to `onFileChunkReceived` and the progress ratio.
 - **69** clears the name if it matches, logs `File download: … (size: N) done` using the bytes actually received, fires `onFileDownloaded`, saves the file and frees the buffer. It never compares the received length with the 84 value.
 
-**No receive-side size constant.** Every `32000` (`0x7d00`) in these engines is the RC upload chunker (sending 155), the `GetLogicalDriveStringsA` buffer (5.x/6.x) or FreeType. The only ceilings are the encodings: 32 bits for the 84 value and 2 097 151 bytes per raw (100) packet. Not traced: the string-append growth and the socket raw-data reader, so an allocation cap there is not ruled out.
+**No receive-side size constant.** Every `32000` (`0x7d00`) in these engines is the RC upload chunker (sending 155), the `GetLogicalDriveStringsA` buffer (5.x/6.x) or FreeType. In the handlers themselves, the only ceilings are the encodings: 32 bits for the 84 value and 2 097 151 bytes per raw (100) packet. The string-append growth and the socket raw-data reader are traced in [G265](#receive-side-ceilings-on-4208-to-6037-g265-2026-11-25).
 
 Consequence for profiles: `large_files = true` and `large_file_size = true` on 4.208, 5.007, 5.12 and 6.037 are now **[bin]**, not inferred from 2.14. 32000-byte chunks remain a server choice.
+
+## Receive-side ceilings on 4.208 to 6.037 (G265, 2026-11-25)
+
+Static read of the same four engines as G262; nothing run. It follows the three paths G262 left untraced: the buffer each 102 chunk is appended to, the raw-data (100) reader and bundle inflate, and the save step in 69 (and the single-piece 102 save). **[bin]**
+
+**Answer: no focus client limits a whole file to less than the server's 32000-byte chunks.** The ceilings that exist apply to one packet or one compressed bundle, not to the file.
+
+| Build | Append to the file buffer | Bundle inflate | Raw (100) packet | Save |
+|---|---|---|---|---|
+| 4.208 | String class silently skips any **single** append over 1 000 000 bytes | Fixed 1 000 000-byte output buffer; a bundle that inflates past it disconnects with no log | Must fit in one bundle (2-byte length, at most 65 535 bytes on the wire) | One unchecked `ofstream` write, no size check |
+| 5.007 | No per-append limit; exact-size realloc on a signed 32-bit length | Output buffer grows from 64 KiB to 4 MiB; past that, disconnect with `Received illegal data (2)` | Same one-bundle rule; 2 097 151-byte raw length is the per-packet limit | Same as 4.208 |
+| 5.12 | Same as 5.007 | Same as 5.007 | Same as 5.007 | Same as 4.208 |
+| 6.037 | Same as 5.007 | Same as 5.007 | Bundle length 0xFFFF is an escape followed by a 32-bit length | One unchecked `fopen`/`fwrite` |
+
+Details:
+
+- **Whole-file buffer.** No build checks the accumulated length against the 84 value or any constant. The practical ceiling is free address space in a 32-bit process (a few hundred MB at best). When the realloc fails, 4.208 and 6.037 crash (no null check); 5.007 and 5.12 empty the buffer and go on to save a truncated file.
+- **Per-packet.** 4.208 is the strictest: one 102 chunk or raw packet must stay under about 1 MB, below the 2 097 151-byte raw ceiling. 32000-byte chunks are far inside every limit.
+- **Raw packet overrunning its bundle.** In all four builds the rest of the bundle is discarded silently and the stream loses sync; no error is shown.
+- **Save routing.** The extension-to-folder routing has no reject branch that this read found.
+- **6.037 only:** a script-settable threshold for keeping files below a size in memory. It defaults to 0 and is a lower bound, not a cap.
+- The 20 000 000-byte constant in these engines is the RC upload limit, not a receive limit.
+
+Not pinned down: rejection by path or extension beyond the routing table, and buffering on the 6.037 SSL path beyond its 8 KB read size.
 
 ## Client ask side (related, not the threshold)
 
@@ -71,4 +95,4 @@ Consequence for profiles: `large_files = true` and `large_file_size = true` on 4
 - [ ] Discriminating **~300 KB** image push on each focus build against seihai-gserver (confirm chunk boundaries and 84 handling on 2.22 vs 2.31).
 - [x] ~~Reconcile the recorded 1.41r1 direct receive set: no 68/69.~~ [Exact-input scope](file-profile-evidence-2026-11-21.md#the-recorded-141r1-input).
 - [ ] Read the exact 1.41r1 raw/file subpath and FILE body; G264 remains partial.
-- [ ] Whether any focus client enforces a **stricter** on-disk limit than the server's 32000-byte chunks (none claimed today).
+- [x] ~~Whether any focus client enforces a **stricter** on-disk limit than the server's 32000-byte chunks.~~ [Read 2026-11-25](#receive-side-ceilings-on-4208-to-6037-g265-2026-11-25): none does; 4.208 caps one packet near 1 MB, and 5.x/6.x a bundle's inflated size at 4 MiB. **[bin]**

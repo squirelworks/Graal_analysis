@@ -30,7 +30,7 @@ The machine fields arrive after the password in the first login message, as one 
 Notes on the Windows fields:
 
 - **The product-id slot is often empty on 64-bit Windows.** The client opens the registry with plain read access and no 64-bit-view flag. A 32-bit program on 64-bit Windows therefore reads the redirected 32-bit view of `Windows NT\CurrentVersion`, where the product-id values are normally absent. This explains the `""` in the 6.03r7 capture on Windows 10. **[bin]** for the flag, **[cap]** for the empty field, **[inf]** for the cause. On a modern 64-bit PC, only two hardware fields carry anything.
-- **The presence of an additional product-id fallback does not prove a different hash.** In the retained 6.03r7-labelled selector, the order is `DigitalProductId`, then `DigitalProductId4` under the first Windows key, then those two names under the Windows NT key; each later attempt is conditional on the current result being empty. A non-empty `DigitalProductId4` can therefore win before the second key is tried. Equality with a 4.x result depends on selecting the same raw value, not merely on the first key being empty. The genuine 5.12 reader remains unverified, so this does not establish a 5.12-versus-5.24 hash difference or how often hashes match. Evidence `W603-PRODUCT-FALLBACK-20261122`: a static reread of the retained selector, not a registry observation or a new end-to-end hash-input audit. **[bin]**
+- **The presence of an additional product-id fallback does not prove a different hash.** (5.12 is now read: it has no `DigitalProductId4` fallback; see [G287](#500r7-and-512-machine-fields-and-getlockcomputer-g287-g288-2026-11-25).) In the retained 6.03r7-labelled selector, the order is `DigitalProductId`, then `DigitalProductId4` under the first Windows key, then those two names under the Windows NT key; each later attempt is conditional on the current result being empty. A non-empty `DigitalProductId4` can therefore win before the second key is tried. Equality with a 4.x result depends on selecting the same raw value, not merely on the first key being empty. The genuine 5.12 reader remains unverified, so this does not establish a 5.12-versus-5.24 hash difference or how often hashes match. Evidence `W603-PRODUCT-FALLBACK-20261122`: a static reread of the retained selector, not a registry observation or a new end-to-end hash-input audit. **[bin]**
 - **The network field follows whichever adapter has an address.** If the user switches between cable and Wi-Fi, or a VPN or virtual-machine adapter is listed first with an address, a 5.24+ client sends a different hash. If no adapter has an address, the field is empty. Windows can also give Wi-Fi a random hardware address per network. 4.x used the RPC UUID node instead, which does not depend on which link is up. **[bin][inf]**
 - **The disk field changes when `C:` is formatted** (a Windows reinstall). It is the same on every PC restored from one disk image, and Wine reports its own made-up serial. **[inf]**
 - **The OS-version field changes with Windows feature updates and service packs.** **[inf]**
@@ -101,7 +101,7 @@ What this shows: the decision to give a machine a PCID, and the value, belong to
 | --- | --- | --- |
 | RC (scripted RC of the 5.x/6.x era) | The RC command `/openaccess <account>` makes GServer-v2 send `PLO_SERVERTEXT` `GraalEngine,lister,ban,<account>,<pcid>` to the RC. The RC's scripted ban window opens for that account and that PC id. | [src] (`TPlayerRC.cpp`) |
 | Listserver ban queries | GServer-v2's text-command list documents `lister getbanhistory <account>` and `lister getbanbyid <id>`, both answered by the listserver. Ban history is kept at the listserver, not on the game server. | [src] (`docs/graal_requesttext_sendtext_info.txt`) |
-| Login server list | The 6.03r7 Login session's server-list weapon asks `getlockcomputer`. By its name this is the "lock account to this computer" option. What it compares was not seen. | [cap] (`login-session-observed.md`); [inf] |
+| Login server list | The 6.03r7 Login session's server-list weapon asks `getlockcomputer` through `requesttext`. The client holds no such function; the server answers (G288 below). | [cap] (`login-session-observed.md`); [bin] |
 | Game scripts | No GS2 variable or function exposing a PCID was found in our GS2 notes. | [bin] (absence) |
 | 1999 to 2002 servers and RCs | The 1.25 and 1.27 GServers and RemoteControl 1.33 to 2.01 have no machine id. The RCs' ban window bans an account ("Local Ban of account", with a time and reason). | [bin] |
 
@@ -115,6 +115,26 @@ Not from anything we hold.
 - The official listserver is not held. The held `serverlist3` (an early 2000s ELF listserver) predates machine fields, and the held C# listserver rewrite only serves the client lobby. **[bin][src]**
 
 Because of the AGENTS rules, settling this by sending crafted identity strings to the official listserver is out of scope.
+
+## 5.00r7 and 5.12 machine fields, and `getlockcomputer` (G287, G288, 2026-11-25)
+
+Static read of the 4.20r8 engine, the 5.00r7 stock engine, the 5.12 engine memory image and the 6.03r7 third-party unpack; nothing run. The shipped 5.12 `Graal3DEngine.dll` was not on hand. **[bin]**
+
+**Correction.** The earlier note that 5.12's unpacked image "did not show the strings" does not hold for the engine image: it holds `DigitalProductId` and both `CurrentVersion` key names in plain text. The machine-field builder is in the 2D engine image in every build read; the earlier search most likely looked at the 3D engine.
+
+| Field | 4.20r8 | 5.00r7 | 5.12 | 6.03r7 |
+| --- | --- | --- | --- | --- |
+| product id | `Windows\CurrentVersion` then `Windows NT\CurrentVersion`, `DigitalProductId` only | same as 4.20r8 | same as 4.20r8: no `DigitalProductId4` fallback | each key tried with `DigitalProductId` then `DigitalProductId4` |
+| registry access | read only, no 64-bit-view flag | same | same | same |
+| network | UUID node | first adapter with a real IPv4 address (not zero, not loopback); empty if none, no UUID fallback | same as 5.00r7 | same as 5.00r7 |
+| disk | `C:` volume serial | same | same | same |
+| OS version | absent | absent | **present**, `"<major>.<minor> <build> <service pack>"`, also readable by scripts | present |
+
+So 5.12 sends `win`, then the product-id, adapter and disk hashes, then the quoted OS string. Its product-id read matches 4.x and 5.00r7, not 5.24+; its network and OS fields match 5.24+. The adapter switch moved to 5.00r7, earlier than the 5.24r3 lower bound in the table above. **[bin]**
+
+5.12 also builds an 8-byte machine key from the UUID node and the product id. It looks like the key for locally scrambled passwords and settings; it is not part of the Login frame. **[bin][inf]**
+
+**`getlockcomputer` is not a client function.** No build read (4.20r8, 5.00r7, 5.12, 6.03r7) has a script function, embedded script, pref or string named `getlockcomputer` or `setlockcomputer`; for 6.03r7 the full script-function table was decoded. The Login server-list script passes `getlockcomputer` as a text option to the generic `requesttext`, which the client sends as a `PLI_REQUESTTEXT` (152); the server answers with `PLO_SERVERTEXT` (82). The client compares nothing and sends no separate "locked to this computer" flag or hash. The comparison, if any, is server side, most likely against the machine fields already received in the Login frame. **[bin]** for the absence and the transport; **[inf]** for what the server compares.
 
 ## What a Seihai listserver should do
 
@@ -136,6 +156,6 @@ The lab listserver in `tools/lab-servers/listserver.py` logs the identity it rec
 - [ ] The official listserver's PCID rule (hash or lookup, which fields).
 - [x] ~~Whether the Windows MAC digest is over raw bytes or hex text.~~ Raw bytes, in every build read.
 - [ ] Why the product-id slot is empty on 6.03r7 under Windows 10: the 32-bit registry view is the likely cause (above); not yet confirmed in a lab.
-- [ ] Whether 5.12 reads the product id the same way (its unpacked image did not show the strings).
-- [ ] What `getlockcomputer` compares.
+- [x] ~~Whether 5.12 reads the product id the same way.~~ [Read 2026-11-25](#500r7-and-512-machine-fields-and-getlockcomputer-g287-g288-2026-11-25): yes, as 4.x and 5.00r7 (no `DigitalProductId4`); network and OS fields as 5.24+. **[bin]**
+- [x] ~~What `getlockcomputer` compares.~~ [Read 2026-11-25](#500r7-and-512-machine-fields-and-getlockcomputer-g287-g288-2026-11-25): nothing client-side; it is a `requesttext` option answered by the server. **[bin][inf]**
 - [ ] What 6.11+ connector scripts send as machine fields.

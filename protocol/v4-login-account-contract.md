@@ -30,7 +30,7 @@ The 4.x Delphi launcher hands the engine login-related callbacks through the `gr
 
 Others Work C4 / G3 claims below are **not** promoted to settled behaviour. Confirm on **stock** 4.20r8 (not the packet-logger engine) under loopback before citing as ours:
 
-- [ ] Built-in account dialog layout and which fields feed the first Login frame (account vs nickname vs password).
+- [x] ~~Built-in account dialog layout and which fields feed the first Login frame (account vs nickname vs password).~~ [Read 2026-11-25](#built-in-account-dialog-and-the-first-login-frame-g322-2026-11-25): engine-side GS2 start screen; account + password in the frame, nickname sent later as prop 0. **[bin]**
 - [x] ~~Whether `getloginaccountname()` and a password GUI control exist on 4.20r8.~~ [Read 2026-11-25](#login-account-script-api-by-build-g323-2026-11-25): no `getloginaccountname()` on 4.20r8; a `password` flag on `GuiTextEditCtrl` exists in every build. **[bin]**
 - [ ] Behaviour of a v6 `-LoginScreen` / `-Serverlist` weapon when pushed to a 4.x Login session (hidden vs bail on empty account-name).
 - [ ] C21 event order: login-signature before weapons; PLO 190 relative to weapon delivery — for login-weapon authors.
@@ -57,6 +57,38 @@ What the natives do:
 - `password` on the text-edit control: when set, drawing replaces each character with a hard-coded `*`, and the copy path returns early. There is no mask-character field and nothing named `passwordmask` or `ispassword`.
 
 So a 4.20r8 login script has no `getLoginAccountName()` to read the account back; it uses a `GuiTextEditCtrl` with `password = true`, and calls `Adventure_setPassWord(text)` itself. A v5/v6 login weapon that calls `getLoginAccountName()` or creates a `GuiAccountPasswordCtrl` will not find them on 4.20r8.  Whether 4.20r8 exposes any other script getter for the login account was not part of this read.
+
+## Built-in account dialog and the first Login frame (G322, 2026-11-25)
+
+Static read of the 4.20r8 launcher (`Graal4.exe`) resources and the same 4.20r8 and 5.00r7 engines as G323; nothing run. **[bin]**
+
+**Where the dialog lives.** The 4.20r8 launcher has no account form among its Delphi form resources (Options, controls, player list, profile and message forms only). The dialog is in the engine: the engine carries 13 compressed, compiled GS2 scripts, and one of them builds the start screen (`MainMenuGui2D`). It was decoded with our GS2 opcode table.
+
+| Control | Class | Label / role | Notes |
+|---|---|---|---|
+| `NickEdit` | `GuiTextEditCtrl` | Nickname: | Separate input; not derived from the account |
+| Play as: Guest / Member | radio pair | account kind | Guest is hidden; on wake the dialog always checks Member |
+| Save password | checkbox | tied to the `dontsavepasswords` pref | |
+| `AccountEdit` | `GuiPopUpEditCtrl` | Account name: | Drop-down of the account history |
+| `PassEdit` | `GuiTextEditCtrl` | Password: | `password` flag set |
+| Start | button | starts the login | see below |
+| Become a Member / Options / Offline Test | buttons | signup URL, options, offline mode | |
+
+No edit field sets a maximum length. Account, password and nickname are each cut to 223 bytes only when the packet is built.
+
+**What Start does.** It calls `Adventure_setNickName`, `Adventure_setAccountName` and `Adventure_setPassWord` with the three field values, clears the password field, then calls `Adventure_openServerList`, which connects to the server named `Login` (a game server on 4.x). The hidden Guest path would pass `guest` as both account and password instead.
+
+- Each native setter fills its own global and saves a pref; the account name is also copied to the local player.
+- The account history keeps five entries. Names that are `guest` or start with `guest_` are never saved.
+- Each account's password is saved under its own per-account pref and refilled when that account is picked from the history (unless `dontsavepasswords` is set).
+
+**The first Login frame** (type 5) carries the version token, then the account as a length-prefixed string, then the password the same way, then the PC-id list; a language packet follows. **The nickname is not in the Login frame.** It goes out afterwards as own player prop 0 in a player-props packet, which matches the `Real404` lab row above. The account-before-password order and the frame contents agree with `login_layout` in the 4.04–4.20 profile; the event that sends the nickname after login was not pinned down.
+
+**`-guestaccount` and `setDefaultGuestAccount`.** The launcher passes the switch value to the engine at startup (empty without the switch). It only prefills: when no account is saved, account and password both become that name. It never skips the dialog, and because the dialog blanks any `guest`/`guest_*` name on wake, such a value is not actually shown. What does skip the dialog is `-connect` or a `graal://` URL, and only when Member is checked and a saved password exists.
+
+**5.00r7 for contrast.** There is no built-in start dialog. The client logs in first with no user input: account = the `-guestaccount` value if given, else `guest`, with a built-in password the client decodes at run time (not decoded here); or, when a browser-plugin cookie is set, account `cookie` with the cookie as password. The Login server's script then asks for the real account, using the new getters (nickname, account history, `getLoginAccountName()`). Login details are held scrambled in memory rather than in plain globals, and `cookie` joins the never-saved names. The Login frame has the same shape as 4.20r8, and the nickname is still separate.
+
+So the first Login frame on 4.20r8 carries whatever the player typed (or picked from history) as the account, never the nickname; on 5.00r7 it carries the guest (or cookie) identity, and the real account arrives only after the Login script runs.
 
 ## Server / script checklist
 
