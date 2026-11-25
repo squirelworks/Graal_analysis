@@ -53,9 +53,11 @@ Series 1 on the real 5.12 client, one change per run. **[lab][cap]**
 - **Mirroring.** The side faces draw mirrored left to right, with up still
   up. The up face has the top of its image toward +y.
 - **Entry 5** (the bottom face) is not drawn with the default options.
-- **Below the horizon** the sky is black, with a band in the fog colour that
-  fades up from the horizon. The fog colour tints the band (checked with
-  red).
+- **Below the horizon** the sky shows the fog colour under Mesa (llvmpipe),
+  even looking straight down. Under the VM's GDI Generic OpenGL 1.1 driver it
+  was black, with a fog-coloured band fading up from the horizon. The fog
+  colour tints it (checked with red). Face order and mirroring are the same
+  on both drivers.
 - **Visible distance.** Values of 0, 50, 200 and 1000 gave pixel-identical
   frames. Markers at 100 and 300 always showed and a marker at 800 never
   did, so this field does not drive clipping or fog on the client. What
