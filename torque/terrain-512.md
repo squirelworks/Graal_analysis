@@ -205,7 +205,7 @@ the whole block **[bin]**:
 |---|---|---|
 | 1 | name follows | flag → `pstring` object name |
 | 2 | transform | position 3 × `f32`, then rotation as a quaternion: x, y, z as 3 × `f32` and a flag "w is negative" (w = √(1 − x² − y² − z²)). This is Torque's compact matrix read, not the axis-angle of the `GameObject` update. |
-| 3 | scale | 3 × `f32` (the water's extent in metres). The client only takes it when x and y are both at least 1024. |
+| 3 | scale | 3 × `f32` (the water's extent in metres). The static read suggested the client only takes it from 1024 up; live, a 512 × 256 block covers exactly 512 × 256 (see below). |
 | 4 | textures | 5 × `pstring`: surface, specular mask, environment map over, environment map under, shore |
 | 5 | submerge textures | 2 × `pstring`, loaded as the under-water overlay textures |
 | 6 | liquid type | raw 32, integer (stock TGE: 0 water, 1 ocean, 2 river, 3 stagnant, 4 lava, 5 hot lava, 6 crusty lava, 7 quicksand **[inf]**) |
@@ -226,8 +226,15 @@ Live on 5.12 (a block at z 20 with z scale 20, wave magnitude 0.3) **[lab]**:
 - The water surface is at position z + scale z (40 here), not at position z. `liquidheight`
   reads that height with about ±0.15 of wave motion; `watercoverage` is 1 below it, a small
   fraction just above it, and `liquidtype` reads `Water`.
-- Along x the water reached past the block's own x scale (still covered 44 units beyond each end
-  of the footprint); a rotated block's footprint has not been mapped yet.
+- Footprint (a 2-D `watercoverage` grid, no terrain): a block at (0, 0, 0) with scale
+  512 × 256 covers exactly x 0…512, y 0…256. The block runs from its position to position +
+  scale (a corner, not the centre), stops at its scale, and a 512 scale is taken. Turned 90°
+  about z it covers x 0…256, y −512…0: it turns about its position. (An earlier reading over
+  terrain that seemed to run past the scale was stale.)
+- Waves: at wave magnitude 0 `liquidheight` is flat; at 0.3 it spans 0.095 and at 2 it spans
+  0.63 (peak to peak about 0.32 × magnitude, centred on the surface). The period is about 8.75 s
+  at both, with a 3.25 s rise and a 5.5 s fall, so it is not a plain sine.
+- `liquidheight` keeps its last value after an object leaves the water.
 - `ignoreTerrain` 0 and 1 draw visibly differently over terrain.
 
 ## 6. For a server
@@ -322,7 +329,7 @@ logs are kept with the owner's lab material. **[lab]**
 | `heights.info` naming a 128 × 128 RGB and a 256 × 256 RGBA texture | no `bad format` or `Missing` log, no crash (not settled whether the texture was used) |
 | `WaterBlock` with the §5 layout (with terrain) | ghost created, the surface texture fetched over TCP, a large surface drawn |
 | `WaterBlock` liquid type 0 to 7 (eight blocks) | all created, no error |
-| `WaterBlock` scale 512 alone | nothing drawn, as the static read predicts (scale taken only from 1024 up) |
+| `WaterBlock` scale 512 alone | nothing seen in that view; the later coverage grid shows a 512 scale is taken |
 | `WaterBlock` scale 1024 and 4096 | created |
 | `WaterBlock` opacity 0 and 1; empty and missing surface texture | accepted (one run of opacity 1 and one of the missing texture lost the TCP link during phase 1; the same bytes worked on the next login, so this reads as transient, not layout) |
 | Four `GameObject`s with flags 0x10 and 0x30 (show terrain) at heights 0 and 200, beside terrain and water | all created, no error (visual effect not readable in the lab VM) |
@@ -346,6 +353,7 @@ logs are kept with the owner's lab material. **[lab]**
 | The malformed `WaterBlock` and `TerrainBlock` rows above on 4.20r8 (camera high) | same as 5.12: all survived |
 | A `.3ds` cut to half its length | **client dies** while loading it, no dialog |
 | A `.dts` of random bytes / a `.dif` of zeros | logs `attempt to load a version … dts-shape, can currently only load version 24 and before` / nothing; no crash |
+| Texture numbering: one chunk with columns 0–7 id 0 and 8–15 id 2, `heights.info` water, sand, grass | the saved chunk decodes to ids [0, 2] with each row `00000000 22222222`: id N is line N + 1 of `heights.info`, same row order as the heights; on the second visit every listed texture is fetched, used or not |
 | Script moves a `GameObject` over terrain; `getdropz` sampled | no clamping (z stays as set); `getdropz` values are multiples of 1/8 |
 
 No chunk or ghost case crashed the client; only the `loadGreyscale` cases above did. Corrections this run made to the static read: `heights.info` is
