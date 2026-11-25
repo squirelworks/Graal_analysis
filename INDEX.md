@@ -11,6 +11,7 @@ When you add a note, add a line for it here in the same pull request.
 - [5.12 on our own 3D server: textures and client updates (2026-11-25)](torque/live-512-own-server-textures-2026-11-25.md) — texture names requested bare and lower-cased, saved by underscore prefix; 8-bit PNG, JPEG and GIF draw, BMP/TGA/DDS/16-bit PNG are white; control-object updates; lab.
 - [Entering a 3D server and the UDP ports (4.04r2, 5.12)](torque/3d-server-entry-and-udp-port.md) — the `3 ` list prefix starts the 3D hand-over, the 3D UDP port is the listed port + 1, and the client's own UDP port options (`fixedport`, `fixedudpport`, `noudp`); static.
 - [3D formats, renderer, camera and sound by build (4.04r2, 5.12)](torque/3d-formats-renderer-camera-by-build.md) — shape loaders (MD3, IFL, DML only in 4.04r2; `.dsq` listed in 5.12), the GS2 file-access gate that explains `.cs` in 5.12, OpenGL and the D3D wrapper, camera classes, FMOD formats; static.
+- [3D capabilities by build (3.04 to 5.12)](version-profiles/three-d.md) — per-build Torque 3D capabilities for Seihai's version profile ([`three-d.toml`](version-profiles/three-d.toml)): protocol and framing, game layer and control objects, `.ter` vs streamed terrain and its cache, TorqueScript, Terraformer, format bounds, texture naming, download filter; each field tagged bin, lab, cap or assumed; index.
 - [Windows 5.12 selected own-prop canaries under Wine](protocol/probe-wine512-widths-2026-11-21.md) — 100 selected payloads across widths and nine nonzero follow-ups, 96 landed and four lost; case 76 is a threshold result rather than an exact reset match, and wider width semantics remain open.
 
 - [2.14–2.16 documentary feature attribution](client-internals/214-216-feature-evidence.md) — release-note feature families, documentary token associations and the reference server's large-file gate; revision and native-client limits remain explicit.
@@ -245,6 +246,7 @@ When you add a note, add a line for it here in the same pull request.
 
 - [Bound Linux 3.04 startup and successful compiled-script reading](client-internals/linux-304-startup-reader.md) — Separate duplicate unpacked labels, startup-check outcomes and a successful unchanged-original compiled reader return.
 
+- [Stock TGE 1.1 reference (Marble Blast Gold demo)](torque/stock-tge-reference-mbg-2026-11-25.md) — stock-Torque reference only, not Graal evidence: a static read and live loopback run of a non-Graal TGE 1.1 program, set beside Graal 4.04r2 and 5.12 values that each cite their own Graal read or lab.
 - [Windows 4.04r2 3D filtering](torque/404r2-resource-filter.md) — short script-extension checks and positive native mission paths, with local-reader reachability still open.
 
 - [Windows 4.04r2 gmap heights](formats/gmap-heights-404r2.md) — coarse and named per-level blocks in the gmap reader, with a separately scoped Mac file fixture.

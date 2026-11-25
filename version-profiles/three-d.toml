@@ -1,0 +1,481 @@
+# Per-build 3D (Torque) capabilities: Graal 3.04 to 5.12
+#
+# Machine-readable source for the `three_d` part of Seihai's version profile
+# (seihai-core `VersionProfile::three_d`, mirrored by seihai tools/gen_three_d_fixture.py).
+# The prose and the reasons are in version-profiles/three-d.md. Only builds with a Torque 3D side
+# are listed. 1.x/2.x (Delphi) and 5.24r4 onwards have none; Graal3D 2000 (DirectX) is a separate
+# program and out of scope.
+#
+# Every field has an evidence tag in the build's `evidence` table, one word per field:
+#   bin      read statically from that build's binary
+#   lab      seen with the real client against our gserver in a lab VM
+#   cap      seen in a capture of the real client (normal play)
+#   assumed  not read for this build; carried from the nearest read build or from stock TGE 1.x.
+#            Seihai must treat it as a default, not a fact. Board row in `why` where one exists.
+# A field tagged with several words ("bin cap") is backed by each.
+#
+# Sources: torque/wire-by-build.md, torque/script-and-terrain-tools-by-build.md,
+# torque/terrain-512.md, torque/404r2-resource-filter.md, torque/live-512-third-party-session-2026-11-24.md,
+# torque/engine-and-formats.md, torque/engine-304.md, torque/5007-g3d.md, graal3d/torque-engine-4x.md,
+# torque/udp-session.md, torque/3d-capability-board.tsv.
+#
+# Field meanings (values are closed sets so a generator can check them):
+#   protocol            Torque protocol number, sent twice in the connect request; the accept must match
+#   game                game string in the connect request
+#   class_table         class types in the accept's class table: 0 none (stock), 3 object/datablock/event, 2 object/event
+#   class_ids_12bit     class ids are a fixed 12 bits in the server's numbering
+#   length_prefixes     every event and ghost update carries an int14 bit length
+#   game_layer          "tge" (datablocks, Player, moves) or "gameobject" (Graal's GameObject model)
+#   mission_phases      mission phases the client walks: 3 (TGE) or 2 (GameObject era)
+#   phases_optional     the client still builds the world when the server sends no mission phases
+#   client_moves        true: the client sends Torque Move structures; false: it reports its own position
+#   control_objects     classes the client accepts as its control object
+#   ter_file            loads a local .ter terrain file (levels3d/terrain/)
+#   ter_max             highest .ter version read (0 = no .ter reader)
+#   terrain_chunks      takes streamed terrain (TerrainChunkEvent / TerrainRequestUpdatesEvent)
+#   chunk_cache         "heights" = levels3d/heights/<server, %NNN-escaped>/heights<x>-<y>.dat + heights.info
+#                       (one texture name per line); "none"
+#   terrain_texture     required terrain texture format ("256x256x24") or "" when not read
+#   water               WaterBlock is a networked class
+#   torque_script       "compiles" (TorqueScript compiler, exec) or "none"
+#   server_scripts      a server can make the client run new TorqueScript (send .cs/.dso, or script text)
+#   terraformer         "full" (stock generator), "greyscale" (loadGreyscale/saveGreyscale/setTerrain only), "none"
+#   terrain_editor      Torque's TerrainEditor is present
+#   dts_max             highest DTS shape version read
+#   dif_version         DIF interior resource version accepted (0 = none)
+#   three_ds            reads .3ds shapes
+#   md3_version         Quake 3 .md3 version read (0 = none)
+#   texture_names       "strip_png": the client strips .png from a material texture name and requests and
+#                       stores the bare name; "as_named": requested with the name it was given
+#   download_refused    extensions the resource-miss path will not ask the gserver for
+#   bigdata             BigDataStartEvent/BigDataChunkEvent text channel present
+#   bigdata_chunk_max   largest BigDataChunkEvent payload in bytes (int8 length)
+#   terrain_chunk_max   largest TerrainChunkEvent zlib payload in bytes (int10 length; 0 = no chunks)
+#   udp_port_offset     the Torque UDP port is the listed gserver port plus this
+
+schema = 1
+
+[[build]]
+label = "3.04"
+platform = "linux-i386"
+protocol = 9
+game = "Torque Game Engine Demo"
+class_table = 0
+class_ids_12bit = false
+length_prefixes = false
+game_layer = "tge"
+mission_phases = 3
+phases_optional = false
+client_moves = true
+control_objects = ["Player", "Camera"]
+ter_file = true
+ter_max = 3
+terrain_chunks = false
+chunk_cache = "none"
+terrain_texture = ""
+water = true
+torque_script = "compiles"
+server_scripts = false
+terraformer = "full"
+terrain_editor = true
+dts_max = 24
+dif_version = 44
+three_ds = false
+md3_version = 0
+texture_names = "as_named"
+download_refused = []
+bigdata = false
+bigdata_chunk_max = 0
+terrain_chunk_max = 0
+udp_port_offset = 1
+why = "stock TGE 1.x net layer with no Graal changes; no BigData or terrain-chunk classes (wire-by-build). Format bounds, phases and control classes are stock TGE, not read in 3.04. Seihai's gserver refuses it on the game string."
+[build.evidence]
+protocol = "bin"
+game = "bin"
+class_table = "bin"
+class_ids_12bit = "bin"
+length_prefixes = "bin"
+game_layer = "bin"
+mission_phases = "assumed"
+phases_optional = "assumed"
+client_moves = "assumed"
+control_objects = "assumed"
+ter_file = "assumed"
+ter_max = "assumed"
+terrain_chunks = "bin"
+chunk_cache = "bin"
+terrain_texture = "assumed"
+water = "assumed"
+torque_script = "bin"
+server_scripts = "assumed"
+terraformer = "bin"
+terrain_editor = "bin"
+dts_max = "assumed"
+dif_version = "assumed"
+three_ds = "assumed"
+md3_version = "assumed"
+texture_names = "assumed"
+download_refused = "assumed"
+bigdata = "bin"
+bigdata_chunk_max = "bin"
+terrain_chunk_max = "bin"
+udp_port_offset = "assumed"
+
+[[build]]
+label = "3.153"
+platform = "mac-ppc"
+protocol = 19
+game = "Graal3D"
+class_table = 3
+class_ids_12bit = true
+length_prefixes = true
+game_layer = "tge"
+mission_phases = 3
+phases_optional = false
+client_moves = true
+control_objects = ["Player", "Camera"]
+ter_file = true
+ter_max = 3
+terrain_chunks = true
+chunk_cache = "heights"
+terrain_texture = ""
+water = true
+torque_script = "compiles"
+server_scripts = false
+terraformer = "full"
+terrain_editor = true
+dts_max = 24
+dif_version = 44
+three_ds = true
+md3_version = 15
+texture_names = "as_named"
+download_refused = []
+bigdata = true
+bigdata_chunk_max = 191
+terrain_chunk_max = 1023
+udp_port_offset = 1
+why = "Graal's net changes already in (class table, 12-bit ids, length prefixes, BigData, TerrainChunkEvent); full TGE game layer and TorqueScript compiler, though no server path makes it run new script (T3D-009, static); both .ter and chunk load messages (wire-by-build, script-and-terrain-tools-by-build). Not run (T3D-009); format bounds, cache layout and texture naming carried from 4.04r2/5.12."
+[build.evidence]
+protocol = "bin"
+game = "bin"
+class_table = "bin"
+class_ids_12bit = "bin"
+length_prefixes = "bin"
+game_layer = "bin"
+mission_phases = "assumed"
+phases_optional = "assumed"
+client_moves = "bin"
+control_objects = "assumed"
+ter_file = "bin"
+ter_max = "assumed"
+terrain_chunks = "bin"
+chunk_cache = "assumed"
+terrain_texture = "assumed"
+water = "assumed"
+torque_script = "bin"
+server_scripts = "bin"
+terraformer = "bin"
+terrain_editor = "bin"
+dts_max = "assumed"
+dif_version = "assumed"
+three_ds = "bin"
+md3_version = "assumed"
+texture_names = "assumed"
+download_refused = "assumed"
+bigdata = "bin"
+bigdata_chunk_max = "assumed"
+terrain_chunk_max = "assumed"
+udp_port_offset = "bin"
+
+[[build]]
+label = "4.04r2"
+platform = "win32"
+protocol = 19
+game = "Graal3D"
+class_table = 3
+class_ids_12bit = true
+length_prefixes = true
+game_layer = "tge"
+mission_phases = 3
+phases_optional = false
+client_moves = true
+control_objects = ["Player", "Camera"]
+ter_file = true
+ter_max = 3
+terrain_chunks = true
+chunk_cache = "heights"
+terrain_texture = ""
+water = true
+torque_script = "none"
+server_scripts = false
+terraformer = "greyscale"
+terrain_editor = true
+dts_max = 24
+dif_version = 44
+three_ds = true
+md3_version = 15
+texture_names = "as_named"
+download_refused = [".dso", ".cs", ".ter"]
+bigdata = true
+bigdata_chunk_max = 191
+terrain_chunk_max = 1023
+udp_port_offset = 1
+why = "Graal3DEngine.dll: 117 class registrations, 34 datablocks; no TorqueScript compiler, exec or eval; cut-down Terraformer; keeps both the .ter and the chunk path; resource-miss filter refuses .dso/.cs/.ter (graal3d/torque-engine-4x, script-and-terrain-tools-by-build, 404r2-resource-filter). No 3D session played on it yet (T3D-025), so the control classes are assumed."
+[build.evidence]
+protocol = "bin"
+game = "bin"
+class_table = "bin"
+class_ids_12bit = "bin"
+length_prefixes = "bin"
+game_layer = "bin"
+mission_phases = "bin"
+phases_optional = "assumed"
+client_moves = "bin"
+control_objects = "assumed"
+ter_file = "bin"
+ter_max = "bin"
+terrain_chunks = "bin"
+chunk_cache = "assumed"
+terrain_texture = "assumed"
+water = "bin"
+torque_script = "bin"
+server_scripts = "bin"
+terraformer = "bin"
+terrain_editor = "bin"
+dts_max = "bin"
+dif_version = "bin"
+three_ds = "bin"
+md3_version = "bin"
+texture_names = "assumed"
+download_refused = "bin"
+bigdata = "bin"
+bigdata_chunk_max = "bin"
+terrain_chunk_max = "assumed"
+udp_port_offset = "bin"
+
+[[build]]
+label = "4.04r2 Mac"
+platform = "mac-ppc"
+base = "4.04r2"
+why = "The Mac 4.04r2 3D side was not read (T3D-004); every value is the Windows 4.04r2's and every field is assumed."
+[build.evidence]
+all = "assumed"
+
+[[build]]
+label = "4.20r6"
+platform = "mac-ppc"
+protocol = 21
+game = "Graal3D"
+class_table = 2
+class_ids_12bit = true
+length_prefixes = true
+game_layer = "gameobject"
+mission_phases = 2
+phases_optional = false
+client_moves = false
+control_objects = ["GameObject", "Camera"]
+ter_file = false
+ter_max = 0
+terrain_chunks = true
+chunk_cache = "heights"
+terrain_texture = "256x256x24"
+water = true
+torque_script = "none"
+server_scripts = false
+terraformer = "greyscale"
+terrain_editor = true
+dts_max = 24
+dif_version = 44
+three_ds = true
+md3_version = 0
+texture_names = "strip_png"
+download_refused = [".dso", ".cs", ".ter"]
+bigdata = true
+bigdata_chunk_max = 191
+terrain_chunk_max = 1023
+udp_port_offset = 1
+why = "Protocol 21, two-type class table with TerrainBlock, WaterBlock and TerrainChunkEvent, and a game packet the same shape as 5.12's (wire-by-build). Scripts, terrain tools, formats and file rules were not read for 4.20r6 and are 5.12's (T3D-026)."
+[build.evidence]
+protocol = "bin"
+game = "bin"
+class_table = "bin"
+class_ids_12bit = "bin"
+length_prefixes = "bin"
+game_layer = "bin"
+mission_phases = "assumed"
+phases_optional = "assumed"
+client_moves = "bin"
+control_objects = "assumed"
+ter_file = "assumed"
+ter_max = "assumed"
+terrain_chunks = "bin"
+chunk_cache = "assumed"
+terrain_texture = "assumed"
+water = "bin"
+torque_script = "assumed"
+server_scripts = "assumed"
+terraformer = "assumed"
+terrain_editor = "assumed"
+dts_max = "assumed"
+dif_version = "assumed"
+three_ds = "assumed"
+md3_version = "assumed"
+texture_names = "assumed"
+download_refused = "assumed"
+bigdata = "bin"
+bigdata_chunk_max = "assumed"
+terrain_chunk_max = "assumed"
+udp_port_offset = "assumed"
+
+[[build]]
+label = "4.20r8"
+platform = "win32"
+base = "4.20r6"
+why = "Values are 4.20r6's. The Windows 4.2.0.8 Graal3DEngine.dll (torque/4208-g3d.md) shows the GameObject layer with no ShapeBase or Player, no TorqueScript compiler and no .dso, two mission phases, and the terrain chunk send and event. Its protocol number, class set and file rules were not read (T3D-002), so those stay assumed."
+[build.evidence]
+all = "assumed"
+game_layer = "bin"
+mission_phases = "bin"
+torque_script = "bin"
+server_scripts = "bin"
+terrain_chunks = "bin"
+
+[[build]]
+label = "5.00r7"
+platform = "win32"
+protocol = 24
+game = "Graal3D"
+class_table = 2
+class_ids_12bit = true
+length_prefixes = true
+game_layer = "gameobject"
+mission_phases = 2
+phases_optional = true
+client_moves = false
+control_objects = ["GameObject", "Camera"]
+ter_file = false
+ter_max = 0
+terrain_chunks = true
+chunk_cache = "heights"
+terrain_texture = "256x256x24"
+water = true
+torque_script = "none"
+server_scripts = false
+terraformer = "greyscale"
+terrain_editor = true
+dts_max = 24
+dif_version = 44
+three_ds = true
+md3_version = 0
+texture_names = "strip_png"
+download_refused = [".dso", ".cs", ".ter"]
+bigdata = true
+bigdata_chunk_max = 191
+terrain_chunk_max = 1023
+udp_port_offset = 1
+why = "5.00 3D DLL: protocol check passes only 24, writes Graal3D, GameObject registered, two mission phases, no ShapeBase or datablock phase, TerrainChunkEvent and the levels3d/heights cache (5007-g3d). Class set, scripts, tools and formats are 5.12's until T3D-005 closes."
+[build.evidence]
+protocol = "bin"
+game = "bin"
+class_table = "bin"
+class_ids_12bit = "assumed"
+length_prefixes = "assumed"
+game_layer = "bin"
+mission_phases = "bin"
+phases_optional = "assumed"
+client_moves = "assumed"
+control_objects = "assumed"
+ter_file = "assumed"
+ter_max = "assumed"
+terrain_chunks = "bin"
+chunk_cache = "bin"
+terrain_texture = "assumed"
+water = "assumed"
+torque_script = "assumed"
+server_scripts = "assumed"
+terraformer = "assumed"
+terrain_editor = "assumed"
+dts_max = "assumed"
+dif_version = "assumed"
+three_ds = "assumed"
+md3_version = "assumed"
+texture_names = "assumed"
+download_refused = "assumed"
+bigdata = "assumed"
+bigdata_chunk_max = "assumed"
+terrain_chunk_max = "assumed"
+udp_port_offset = "assumed"
+
+[[build]]
+label = "5.12"
+platform = "win32"
+protocol = 24
+game = "Graal3D"
+class_table = 2
+class_ids_12bit = true
+length_prefixes = true
+game_layer = "gameobject"
+mission_phases = 2
+phases_optional = true
+client_moves = false
+control_objects = ["GameObject", "Camera"]
+ter_file = false
+ter_max = 0
+terrain_chunks = true
+chunk_cache = "heights"
+terrain_texture = "256x256x24"
+water = true
+torque_script = "none"
+server_scripts = false
+terraformer = "greyscale"
+terrain_editor = true
+dts_max = 24
+dif_version = 44
+three_ds = true
+md3_version = 0
+texture_names = "strip_png"
+download_refused = [".dso", ".cs", ".ter"]
+bigdata = true
+bigdata_chunk_max = 191
+terrain_chunk_max = 1023
+udp_port_offset = 1
+why = "The most-read build: wire, game packets and class set (wire-by-build), streamed terrain and its cache (terrain-512, lab 2026-11-25), Camera control and bare-name textures (live session 2026-11-24), no TorqueScript compiler, cut-down Terraformer, .dso/.cs/.ter download filter (script-and-terrain-tools-by-build). DTS bounds exist but their values were not read (T3D-029); The DIF version is not read for 5.12 (T3D-030); 5.12 has no MD3 loader (3d-formats-renderer-camera-by-build). The first control object alone takes it to login steps 5 and 6, so mission phases are optional (gs2-3d-objects-404r2-512)."
+[build.evidence]
+protocol = "bin lab"
+game = "bin lab"
+class_table = "bin lab"
+class_ids_12bit = "bin lab"
+length_prefixes = "bin lab"
+game_layer = "bin lab"
+mission_phases = "bin"
+phases_optional = "bin cap"
+client_moves = "bin"
+control_objects = "bin cap"
+ter_file = "bin"
+ter_max = "bin"
+terrain_chunks = "bin lab"
+chunk_cache = "bin lab"
+terrain_texture = "bin"
+water = "bin"
+torque_script = "bin"
+server_scripts = "bin"
+terraformer = "bin"
+terrain_editor = "bin"
+dts_max = "bin"
+dif_version = "bin"
+three_ds = "cap"
+md3_version = "bin"
+texture_names = "cap"
+download_refused = "bin"
+bigdata = "bin lab"
+bigdata_chunk_max = "bin"
+terrain_chunk_max = "bin"
+udp_port_offset = "bin lab"
+
+[[build]]
+label = "5.12 Mac"
+platform = "mac"
+base = "5.12"
+why = "The Mac 5.12 3D side was not read (T3D-004); every value is the Windows 5.12's and every field is assumed."
+[build.evidence]
+all = "assumed"

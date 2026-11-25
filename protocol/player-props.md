@@ -24,8 +24,8 @@ Encodings: `c` = GCHAR, `s` = GSHORT, `i3` = GINT3, `i5` = GINT5, `str` = GSTRIN
 | 5 | BOMBSCOUNT | c | |
 | 6 | GLOVEPOWER | c | |
 | 7 | BOMBPOWER | c | |
-| 8 | SWORDPOWER | c(power + 30) + str(image) | |
-| 9 | SHIELDPOWER | c(power + 10) + str(image) | |
+| 8 | SWORDPOWER | c(power + 30) + str(image) | below 10 is a bare preset, so healing −20..−1 is 10..29; same from 2.05 to 6.03r7 (`player-props-5x-status.md`) [bin][lab] |
+| 9 | SHIELDPOWER | c(power + 10) + str(image) | below 10 is a bare preset; 4.20r8 to 6.03r7 never send above power 3 (`player-props-5x-status.md`) [bin][lab] |
 | 10 | GANI / BOWGIF | str (≥ 2.1) · pre-2.1: c(10 + len) + image, or c(bowpower) if no image | **2.05 uses the pre-2.1 form** [srv][inf] |
 | 11 | HEADGIF | c(len + 100) + image | |
 | 12 | CURCHAT | str | chat bubble text |
