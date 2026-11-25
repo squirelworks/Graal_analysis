@@ -974,3 +974,4 @@ torque/terraingenerator-original-vs-servertools-2026-11-25.md	pending	E	10.6	Ori
 torque/live-3153-and-404r2-sessions-2026-11-25.md	cited	E; 8.5; 10	10.3	3.153 and 4.04r2 against our 3D server: phases, requests, clientCmds, control object; carried into §8.5 and §10
 torque/3d-engine-static-reads-2026-11-25.md	cited	E; 8.5; 10	10.3; 10.6	Static reads of the 5.00r7 3D engine: sky functions, name HUD, protocol, loaders, input; carried into §8.5 and §10
 torque/3d-fuzz-targets-by-build.md	pending	E	10.6	Fuzz target list for the 3D client inputs, ranked by reach
+torque/multi-client-3d-lab-2026-11-25.md	pending	E	10.3	First multi-client 3D lab pairs: 2D+3D and 3D+3D, what crosses between clients
