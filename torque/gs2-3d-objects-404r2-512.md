@@ -94,6 +94,70 @@ Notes:
   returns true. No chunk-cache write or stamp update was seen on that path, so it changes the live
   view only. **[bin]**
 
+### Script properties and functions in 4.04r2
+
+Read the same way from the plug-in; inherited names are not repeated. **[bin]** `Player` registers the
+same list as `AIPlayer` and is folded into it here. Where a name equals a class name
+(`AudioProfile`, `ParticleEmitterData`, `ExplosionData`, `WheeledVehicleData`), it is a field that
+holds an object of that class. Classes not listed register no names of their own.
+
+| Class | Count | Names |
+|---|---|---|
+| `SimObject` | 1 | `isdatablock` |
+| `SimGroup` | 1 | `addcontrol` |
+| `Terraformer` | 4 | `loadGrayscale`, `loadGreyscale`, `saveGreyscale`, `setTerrain` |
+| `TerrainEditor` | 45 | `isDirty`, `isMissionDirty`, `renderBorder`, `borderHeight`, `borderFillColor`, `borderFrameColor`, `borderLineMode`, `selectionHidden`, `enableSoftBrushes`, `renderVertexSelection`, `processUsesBrush`, `brushPos`, `adjustHeightVal`, `setHeightVal`, `scaleVal`, `smoothFactor`, `materialGroup`, `softSelectRadius`, `softSelectFilter`, `softSelectDefaultFilter`, `adjustHeightMouseScale`, `paintMaterial`, `attachTerrain`, `getTerrainMaterials`, `setTerrainMaterials`, `setBrushType`, `setBrushSize`, `getBrushPos`, `setBrushPos`, `setAction`, `getNumActions`, `getActionName`, `getCurrentAction`, `resetSelWeights`, `clearSelection`, `processAction`, `buildMaterialMap`, `getNumTextures`, `getTextureName`, `markEmptySquares`, `clearModifiedFlags`, `mirrorTerrain`, `pushBaseMaterialInfo`, `popBaseMaterialInfo`, `setLoneBaseMaterial` |
+| `WorldEditor` | 62 | `automaticsync`, `isDirty`, `planarMovement`, `undoLimit`, `dropType`, `projectDistance`, `boundingBoxCollision`, `renderPlane`, `renderPlaneHashes`, `gridColor`, `planeDim`, `gridSize`, `renderPopupBackground`, `popupBackgroundColor`, `popupTextColor`, `objectTextColor`, `objectsUseBoxCenter`, `axisGizmoMaxScreenLen`, `axisGizmoActive`, `mouseMoveScale`, `mouseRotateScale`, `mouseScaleScale`, `minScaleFactor`, `maxScaleFactor`, `objSelectColor`, `objMouseOverSelectColor`, `objMouseOverColor`, `showMousePopupInfo`, `dragRectColor`, `renderObjText`, `renderObjHandle`, `objTextFormat`, `faceSelectColor`, `renderSelectionBox`, `selectionBoxColor`, `selectionLocked`, `snapToGrid`, `snapRotations`, `rotationSnap`, `toggleIgnoreList`, `renderNav`, `selectHandle`, `defaultHandle`, `lockedHandle`, `ignoreObjClass`, `clearIgnoreList`, `getSelectedObject`, `getSelectionSize`, `clearSelection`, `selectObject`, `unselectObject`, `getSelectionCentroid`, `dropSelection`, `deleteSelection`, `getMode`, `setMode`, `hideSelection`, `lockSelection`, `addUndoState`, `lightSelection`, `syncSelection`, `reloadSelection` |
+| `FlyingVehicleData` | 2 | `AudioProfile`, `ParticleEmitterData` |
+| `FlyingVehicle` | 2 | `FlyingVehicleData`, `useCreateHeight` |
+| `HoverVehicleData` | 2 | `AudioProfile`, `ParticleEmitterData` |
+| `HoverVehicle` | 1 | `HoverVehicleData` |
+| `VehicleData` | 2 | `AudioProfile`, `ParticleEmitterData` |
+| `WheeledVehicleData` | 2 | `AudioProfile`, `ParticleEmitterData` |
+| `WheeledVehicle` | 6 | `WheeledVehicleData`, `getWheelCount`, `setWheelPowered`, `setWheelSpring`, `setWheelSteering`, `setWheelTire` |
+| `DynamicShapeReplicator` | 7 | `boxmin`, `boxmax`, `mingridobjects`, `maxgridobjects`, `radius`, `shapefiles`, `surfacetype` |
+| `ExplosionData` | 3 | `DebrisData`, `ExplosionData`, `ParticleEmitterData` |
+| `Explosion` | 1 | `ExplosionData` |
+| `FractalTree` | 2 | `levels`, `deffile` |
+| `fxLight` | 1 | `fxLightData` |
+| `LightningData` | 1 | `AudioProfile` |
+| `Lightning` | 1 | `strikesPerMinute` |
+| `ParticleEmitterNode` | 2 | `ParticleEmitterNodeData`, `ParticleEmitterNode` |
+| `ParticleEmitterData` | 1 | `particles` |
+| `PrecipitationData` | 1 | `PrecipitationData` |
+| `Precipitation` | 6 | `maxspeed`, `minspeed`, `maxmass`, `minmass`, `percentage`, `modifyStorm` |
+| `SplashData` | 2 | `ExplosionData`, `AudioProfile` |
+| `AIPlayer` | 13 | `clearAim`, `setMoveSpeed`, `setMoveDestination`, `getMoveDestination`, `setAimLocation`, `getAimLocation`, `setAimObject`, `getAimObject`, `isMoving`, `maxTurnPitch`, `maxTurnYaw`, `simpleMovement`, `wallcheck` |
+| `AudioEmitter` | 3 | `AudioDescription`, `filename`, `AudioProfiler` |
+| `DebrisData` | 1 | `ExplosionData` |
+| `GameBaseData` | 3 | `DebrisData`, `ExplosionData`, `ParticleEmitterData` |
+| `Item` | 2 | `ItemData`, `startFade` |
+| `SpawnSphere` | 4 | `radius`, `sphereWeight`, `indoorWeight`, `outdoorWeight` |
+| `PlayerData` | 24 | `decalData`, `footPuffEmitter`, `dustEmitter`, `splash`, `FootSoftSound`, `FootHardSound`, `FootMetalSound`, `FootSnowSound`, `FootShallowSound`, `FootWadingSound`, `FootUnderwaterSound`, `FootBubblesSound`, `movingBubblesSound`, `waterBreathSound`, `impactSoftSound`, `impactHardSound`, `impactMetalSound`, `impactSnowSound`, `impactWaterEasy`, `impactWaterMedium`, `impactWaterHard`, `exitingWater`, `JumpingSound`, `AudioProfile` |
+| `ProjectileData` | 11 | `lightRadius`, `velInheritFactor`, `muzzleVelocity`, `lifetime`, `armingDelay`, `fadeDelay`, `bounceElasticity`, `bounceFriction`, `gravityMod`, `ParticleEmitterData`, `ExplosionData` |
+| `Projectile` | 4 | `ProjectileData`, `initialPosition`, `initialVelocity`, `sourceObject` |
+| `ShapeBaseData` | 2 | `ParticleEmitterData`, `AudioProfile` |
+| `ShapeBaseImageData` | 2 | `ProjectileData`, `DebrisData` |
+| `Trigger` | 1 | `TriggerData` |
+| `TSStatic` | 2 | `ItemData`, `startFade` |
+| `GuiMapOverviewCtrl` | 2 | `mapalpha`, `pointsize` |
+| `GuiPlayerView` | 9 | `ambientcolor`, `cameraz`, `lightcolor`, `lightdirection`, `modelrotx`, `modelrotz`, `mountShape`, `setModel`, `unmountShape` |
+| `GuiShapeNameHud` | 13 | `alignBottom`, `chatprofile`, `damageAlignBottom`, `damageOffset`, `damageTimeout`, `verticalDamageOffset`, `useShapeSize`, `fillColor`, `frameColor`, `showFill`, `showFrame`, `verticalOffset`, `distanceFade` |
+| `InteriorInstance` | 4 | `interiorFile`, `showTerrainInside`, `AudioProfile`, `AudioEnvironment` |
+| `PathedInteriorData` | 1 | `AudioProfile` |
+| `ActionMap` | 3 | `getBinding`, `getCommand`, `unbind` |
+| `DecalData` | 1 | `lifetime` |
+| `SceneObject` | 2 | `levels`, `deffile` |
+| `Sky` | 9 | `materialList`, `skyfadetime`, `windVelocity`, `getWindowVelocity`, `stormClouds`, `stormFog`, `realFog`, `stormCloudsShow`, `stormFogShow` |
+| `TerrainBlock` | 7 | `detailTexture`, `terrainFile`, `squareSize`, `bumpTexture`, `bumpScale`, `bumpOffset`, `zeroBumpScale` |
+| `WaterBlock` | 28 | `AudioEnvironment`, `useDepthMask`, `surfaceTexture`, `shoreTexture`, `envMapOverTexture`, `envMapUnderTexture`, `specularMaskTex`, `liquidType`, `density`, `viscosity`, `waveMagnitude`, `surfaceOpacity`, `envMapIntensity`, `tessSurface`, `tessShore`, `surfaceParallax`, `flowAngle`, `flowRate`, `distortGridScale`, `distortMag`, `distortTime`, `shoreDepth`, `depthGradient`, `minAlpha`, `maxAlpha`, `removeWetEdges`, `specularColor`, `specularPower` |
+| `AudioProfile` | 2 | `AudioDescription`, `AudioSampleEnvironment` |
+
+What this shows: in 4.04r2 a script can tune only a few fields of each datablock (a `PlayerData`'s
+sounds and emitters, a `ProjectileData`'s speed, life and bounce), and can steer a `Player` or
+`AIPlayer` with the stock AI movement calls (`setMoveDestination`, `setAimObject`). The rest of each
+datablock keeps its native defaults. **[bin][inf]**
+
 ## `getz` in 3D mode (5.12)
 
 The GS2 function `getz(x, y)` picks its source by mode. In 3D mode it asks the 3D world: a ray straight
@@ -117,4 +181,4 @@ text channel. Which object receives each, and with what parameters, was not read
 - [ ] T3D-050: `new Terraformer`, `loadGreyscale` and `setTerrain` on a live client with a
   streamed `TerrainBlock`.
 - [ ] T3D-020: open `WorldEditor` / `TerrainEditor` from a GS2 GUI in a 3D session.
-- [ ] T3D-014: the 4.04r2 per-class property lists, and `Sky`/`Sun` in 5.12.
+- [ ] T3D-014: `Sky`/`Sun` in 5.12, and which 4.04r2 classes register their names elsewhere.
