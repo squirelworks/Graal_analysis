@@ -340,6 +340,11 @@ logs are kept with the owner's lab material. **[lab]**
 | 4.04r2 script-made `TerrainBlock`, with and without `terrainFile` | created, but neither the file nor the chunk path runs |
 | Peaks world from the Seihai gserver: five trees, `getdropz` at each tree | every tree's z within 0.06 of the ground: server placement and the client's terrain agree |
 | `heights.info` with bare names vs `.png` names, two visits each | visit 1: only `heights.info` fetched; visit 2: `Missing terrain texture` per name, then each downloaded and saved under the listed name |
+| Malformed `WaterBlock`: update cut after the textures; NaN position; +Inf or 1e9 scale; liquid type 8, 255, 2³¹−1; 200-character texture names; zero quaternion | all accepted, client stays up (long names are requested and answered not found) |
+| Malformed `TerrainBlock`: square size −8; NaN in the ignored floats; 250-character name; two blocks named `Terrain` | accepted, client stays up |
+| `TerrainBlock` square size 2³¹−1 | **client dies** right after `Terrain lit` |
+| A `.3ds` cut to half its length | **client dies** while loading it, no dialog |
+| A `.dts` of random bytes / a `.dif` of zeros | logs `attempt to load a version … dts-shape, can currently only load version 24 and before` / nothing; no crash |
 | Script moves a `GameObject` over terrain; `getdropz` sampled | no clamping (z stays as set); `getdropz` values are multiples of 1/8 |
 
 No chunk or ghost case crashed the client; only the `loadGreyscale` cases above did. Corrections this run made to the static read: `heights.info` is
