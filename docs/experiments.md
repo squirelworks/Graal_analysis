@@ -37,8 +37,9 @@ the issue it closes. Part 2 lists every other lab row on the [gap board](gap-boa
 - **Partial results (2026-11-21):** the [32-case 5.12 core slice under Wine](../protocol/probe-wine512-core-2026-11-21.md)
   measured 29 landed and three lost canaries. A separate [100 selected own-prop canaries](../protocol/probe-wine512-widths-2026-11-21.md)
   across `widths` and nine nonzero `widths-fix` follow-ups measured 96 landed and four lost.
-  These do not complete G424/G191 or the other plans/builds below. Reconcile
-  `loadgani3w` with the eight existing 5.12 PLO 195 rows before another GANI run.
+  On 2026-11-25 [bytes2x, baddytypes and loadgani3w](../protocol/probe-wine512-core-2026-11-21.md#remaining-plans-on-512-g424-2026-11-25)
+  ran on 5.12 as well, closing G424; the `loadgani3w` run supersedes the old 5.12 NUL-name row.
+  G191 and the other builds below stay open.
 - **Goal:** close the probe holes found while building the board. At the original 2026-11-20
   triage, 5.12 had only the 8-row 195 gani set; the partial results above add core and selected own-prop cases.
   6.037 had 32 rows. 2.02, 2.02 rev 1 and 2.02 rev 2 had none. Board rows G424, G425,
@@ -325,7 +326,7 @@ the same rows as a task list. Read the source line before you start.
 | G420 | static+lab | the push/pull block probes | `client-internals/decomp-findings-2026-10-25-m/open-questions.tsv` row 6 | free |
 | G422 | static+lab | stopping positions on a live 2.22 client | `client-internals/decomp-findings-2026-10-25-m/open-questions.tsv` row 8 | free |
 | G423 | lab | wire rounding of a nudged position | `client-internals/decomp-findings-2026-10-25-m/open-questions.tsv` row 9 | free |
-| G424 | lab | Windows 5.12 has only the 8-row 195 gani set; the 4.x/5.x plan set (wine-core, widths, widths-fix, bytes2x, baddytypes, loadgani3w) was never run on it | `protocol/probe-results.tsv` (new, 2026-11-20 triage) | free |
+| G424 | lab | Windows 5.12 has only the 8-row 195 gani set; the 4.x/5.x plan set (wine-core, widths, widths-fix, bytes2x, baddytypes, loadgani3w) was never run on it | `protocol/probe-results.tsv` (new, 2026-11-20 triage) | done (lab, 2026-11-25) |
 | G426 | lab | Windows 6.037 has 32 rows; the full 4.x/5.x plan set has not been run on it | `protocol/probe-results.tsv` (new, 2026-11-20 triage) | free |
 
 ### Win10 VM on lab host B (#743, 1 rows)

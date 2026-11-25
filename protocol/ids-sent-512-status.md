@@ -70,9 +70,25 @@ Other points:
 
 There is no remaining “does 2.31 send 44?” disagreement once S→C vs C→S are separated. Profile `pli_sent` for 2.31 still lists C→S 44.
 
+## Lab: controlled 5.12 throw (G256, 2026-11-25)
+
+Loopback lab in the headless Debian lab VM: Windows 5.12 (`G3D14097`) under Wine, the lab's `gs2emu-73` world (commit unrecorded) behind `gen5probe.py`, run `thr512-a`. The plan injected a bush below the player and held A for 0.3 s to lift and again to throw; no level file, glove or flag was changed, and the start level was unchanged afterwards. Captures stay in the VM. **[lab]**
+
+| Step | C→S ids |
+|---|---|
+| Idle, 10 s | only 24 (one byte), about every 5.1 s |
+| Lift 1 | 1 (board change, 2×2 bush tiles); 2 (gani `lift`, prop 19 = 1, gani `carrystill`); 34, 157, 23 for the lift gani, carry gani and lift sound |
+| Carrying, 4 s | only 24 |
+| Throw 1 | **11** with an empty body, in the same bundle as props (gani `idle`, prop 19 = −1); then 23 for the crush sound |
+| Lift 2 | as lift 1, without 34/157/23 (files cached) |
+| Throw 2 | **11** with an empty body, with the same props |
+| Idle after | only 24 |
+
+Id 11 appears exactly once per throw and never while idle, lifting or carrying, matching the 2026-11-20 5.00r7 result.
+
 ## Still open
 
 - [x] ~~Full **5.12** send-wrapper / variable-send floor on genuine engine (**S**).~~ Complete for both 5.00r7 and 5.12; no variable-id sends ([above](#full-send-sets-500r7-and-genuine-512-g255-2026-11-25)).
 - [x] ~~Wire-confirm id 11 on a 5.00r7 throw.~~ The published November 20 lab records two throws; this does not supply a controlled 5.12 throw comparison.
-- [ ] A controlled **5.12 throw capture** tying id 11 to the throw action; its existing partial capture sample is not that comparison.
+- [x] ~~A controlled **5.12 throw capture** tying id 11 to the throw action.~~ [Lab 2026-11-25](#lab-controlled-512-throw-g256-2026-11-25): one empty-body 11 per throw, none at idle, lift or carry. **[lab]**
 - [x] ~~Align `v5x-clients.md` wrapper-list text with the separately traced throw path.~~ The original scan and combined floor are now distinguished, with the later lab cited separately.

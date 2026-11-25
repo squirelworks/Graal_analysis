@@ -66,9 +66,12 @@ table follows from this slice. Replies were not scored as an outcome here.
 
 - [x] The 32-case `wine-core` slice on Windows 5.12 under Wine, with positive
   session/HUD controls and per-case evidence.
-- [ ] `widths`, `widths-fix`, `bytes2x` and `baddytypes` on this client.
-- [ ] Reconcile `loadgani3w` with the eight already published 5.12 PLO 195
-  rows before claiming or repeating any additional GANI coverage.
+- [x] `widths`, `widths-fix`, `bytes2x` and `baddytypes` on this client
+  (widths: [2026-11-21 note](probe-wine512-widths-2026-11-21.md); the rest:
+  [below](#remaining-plans-on-512-g424-2026-11-25)).
+- [x] Reconcile `loadgani3w` with the eight already published 5.12 PLO 195
+  rows before claiming or repeating any additional GANI coverage
+  ([below](#loadgani3w-lg3w512-a-and-the-eight-lgw512-rows)).
 - [ ] The wider 0–90 own-prop sweep, other-player/NPC streams, script read-back
   and remaining builds of G191/G424.
 
@@ -77,3 +80,82 @@ session or accepted case outputs. It contributes **zero** rows here. Accepted
 coverage comes from the controlled run above, not a marker, process count or
 runner success message. The separate runner exit-status repair does not
 retroactively validate that attempt.
+
+## Remaining plans on 5.12 (G424, 2026-11-25)
+
+Same setup as above: Windows 5.12 (packed `Graal.exe`) under Wine in the
+loopback-only lab VM, the lab GS2Emu behind the probe proxy, started by the
+stock `runwine.sh 512` with the stock plans. Captures stayed in the VM. Rows
+are in `probe-results.tsv` under runs `b512-a`, `bt512-a` and `lg3w512-a`.
+
+### bytes2x (`b512-a`)
+
+The stock plan: bombs set to 1, then in one frame a PLO 60 test body followed by
+the PLO 9 bombs = 99 canary. The canary was read from the client itself, not the
+HUD: a stub NPC on the start level ran the G191 read-back script
+(`player.chat` reports the bomb count every 0.3 s, injected as PLO 131). The
+packets under test were unchanged, and every case shows `b1` after the reset and
+`b99` after the probe frame, so no case is a stale 99. The NPC was removed
+afterwards.
+
+All seven canaries landed: NUL in the middle, NUL at the end, `ff`, `80`, `1f`,
+plain text and a NUL inside prop 12. 5.12 behaves like 4.20r8 (`b420-a`): a NUL
+or high byte inside a message never loses the rest of the frame. The 2.x "NUL
+ends the frame" behaviour (`b222-a`, `b231-a`) is absent.
+
+### baddytypes (`bt512-a`)
+
+The client stays up for every type, 223 included, as on 4.20r8 (`bt420-a`) and
+4.03r3/4.04r2/4.11 under Wine. Two things the earlier rows do not record:
+
+- The injected baddies attack. From about type 6 the client reports `hurt` with
+  falling power (prop 2: 2.5 down to 0.5), and at about 105 s it reports `dead`.
+  From then on the level view stays black while the HUD and the baddies are
+  still drawn, and the client keeps sending.
+- In the type-11 slot the client asked for an image with a 22-byte binary name,
+  bare and with nine extensions (`png mng jng gif jpg jpeg jp2 dds bmp`); the
+  server failed all ten.
+
+A second run (`bt512-p`) kept the player alive by re-sending PLO 9 prop 2 (three
+full hearts) every 0.5 s; the baddy packets and timing were unchanged, and the
+client never reported `dead`. It separates the two effects:
+
+- The binary-name request still appears, 0.135 s after the type-11 baddy, with
+  the same 22 bytes as in `bt512-a` (the first run's 23 was the packet length
+  with the id byte). Type 10 and types 12 to 223 request nothing new. Types 0 to
+  9 fetch the stock sheets (`baddygray` to `baddydragon`), so 11 looks like the
+  first type past the client's baddy image table [inf].
+- The level view stays drawn for the whole run, so the black view in `bt512-a`
+  is a consequence of the death, not of any baddy type.
+- A 4.20r8 control with the stock plan (`bt420-b`) also died (in the type-11
+  slot, at about 122 s) and also went black afterwards, but made no
+  binary-name request. The garbage-name request is specific to 5.12.
+- Both 5.12 runs send PLI 9 (arrow add) from about type 4 on with no key
+  pressed, probably the client reporting arrows from the archer baddies it
+  simulates [inf].
+
+### loadgani3w (`lg3w512-a`) and the eight `lgw512` rows
+
+The stock 11-19 plan with the M2 quoting fix, read from the C→S gani reports
+(prop 10), 157 and 23.
+
+| # | existing `lgw512` row | verdict |
+|---|---|---|
+| 1 | 195 for a gani not loaded yet: asks for the file, sends 157, header replaces the 195 | request half matches; the header half needs an existing-but-unloaded gani, which this plan lacks, so it was not re-tested |
+| 2 | KICK / kick.gani / empty name | matches |
+| 3 | SETBACKTO nosuchgani | matches |
+| 4 | kick→hurt, hurt→sit in one frame | matches |
+| 5 | sword SETBACKTO sword repeats | matches; idle at once on the next 195 |
+| 6 | unknown keyword ignored | matches |
+| 7 | LOOP stays | matches |
+| 8 | malformed lists: no crash, next 195 works, NUL ends the name | **differs**: no crash and the next 195 works, but after `SETBACKTO 00 ff 80` hurt falls back to a gani named `00 ff 80` and the client asks for that file |
+
+Row 8 now agrees with every build in the 11-19 fixed-plan runs (`c500b`,
+`c524r3b`, `c530b`, `c531d`, `w403/404/411`, `c524n`). The "NUL ends the name"
+reading came from the 11-18 reference run and is an artifact of it; the old row
+is marked superseded. Cases new for 5.12: no 195 at all gives the file defaults
+(kick and hurt → `idle`, lift → `carrystill`); DEFAULT* lines cause no image
+requests; `SETBACKTOsit` without a space is ignored.
+
+- [x] Re-run `baddytypes` on 5.12 with the player protected, to separate the
+  image request from the death (`bt512-p`, above).
