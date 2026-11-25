@@ -46,10 +46,28 @@ update in the GameObject layout.
 
 ## Sky (T3D-046, partial)
 
-- When the camera looks along +y, the client shows the third sky entry.
-- It draws a fog horizon.
+Series 1 on the real 5.12 client, one change per run. **[lab][cap]**
 
-Open: the full face order, the cloud layers and the fog bands.
+- **Face order.** Sky-line texture entries 0 to 4 map to these directions:
+  0 is -y, 1 is +x, 2 is +y, 3 is -x and 4 is up.
+- **Mirroring.** The side faces draw mirrored left to right, with up still
+  up. The up face has the top of its image toward +y.
+- **Entry 5** (the bottom face) is not drawn with the default options.
+- **Below the horizon** the sky is black, with a band in the fog colour that
+  fades up from the horizon. The fog colour tints the band (checked with
+  red).
+- **Visible distance.** Values of 0, 50, 200 and 1000 gave pixel-identical
+  frames. Markers at 100 and 300 always showed and a marker at 800 never
+  did, so this field does not drive clipping or fog on the client. What
+  does is still open.
+- **Flags.** The first flag turns sky textures on; with it off, a solid
+  colour fills the sky. The second and third flags showed nothing when
+  looking up. Whether either turns on the bottom face is still being run.
+- **Scale.** The client's faces look about twice as magnified as a plain
+  cube box. Not explained yet.
+
+Still open: cloud layers, what limits the view distance, flags 2 and 3, and
+the magnification.
 
 ## Client fault
 
