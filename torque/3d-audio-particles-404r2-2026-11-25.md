@@ -38,6 +38,33 @@ A `weapon3d` GS2 script ran on 4.04r2 (showtext reached "t12").
 
 Audio not verifiable headless ([T3D-084](3d-sound-paths-2026-11-25.md)). Script particle sprites would be renderable under llvmpipe (it draws textures fine), so they'd be visually verifiable — but none emitted here, so there was nothing to see.
 
+## Second lab: v2 gserver — ghost-class table and the event path **[lab]**
+
+A follow-up run against the **v2 gserver** (protocol-19 session, real 4.04r2
+under Wine/Mesa, loopback) pinned down *why* the networked effect objects
+can't be placed, and found one path that **does** reach the client:
+
+- **Object (ghost) class table is fixed and small.** Asking the v2 gserver
+  to ghost each effect object logged, verbatim, `cannot ghost
+  Precipitation: no class id or ghost slot` — and the same for `Lightning`,
+  `ParticleEmitterNode` and `AudioEmitter`. The protocol-19 **ghost class
+  table** holds only **Camera, Player, Sky, TerrainBlock, WaterBlock**, and
+  `rawobject` only sends a class already in that table. So these effect
+  classes can't be ghosted at all on this build — the client connected
+  cleanly (reached the Initial Control Object, no crash) and received only
+  the normal Sky + Player ghosts. This is the object-side counterpart to the
+  datablock-set limit above.
+- **The event path works.** A `rawevent Sim3DAudioEvent` **was** sent
+  ("gets 1 raw events"), and the 4.04r2 client **read it cleanly** — carried
+  on to the control object with **no unknown-event / parse error and no
+  crash**. So the client accepts a `Sim3DAudioEvent` *event* even though it
+  can't be handed the *object*; whether it actually plays is still not
+  checkable headless, but the accept-without-error is the verifiable point.
+
+So on 4.04r2 the gap is entirely server-side placement: the client tolerates
+the 3D-audio event, and the blocker for the visual objects is the fixed
+protocol-19 ghost-class table, not the client.
+
 ## For a server
 
 - **Networked** `AudioEmitter`/`Sim3DAudioEvent`/`ParticleEmitterNode` on 4.04r2 would need new server support (a world audio/particle keyword, the matching datablocks in the protocol-19 set, ghost-after-datablock code) — a server gap to scope separately, not built here.
