@@ -91,7 +91,11 @@ MissionStartPhase1Ack fix holds.
 - The server marks 4.20r8 "terrain none" and sends it no TerrainBlock.
 - 4.20r8 runs with no crash and draws the ground and three cubes, including
   the 5.12 player. So the earlier 4.20r8 crash was the VM's basic Windows
-  OpenGL, not the client: on a real GL driver it runs.
+  OpenGL, not the client: on a real GL driver it runs. **Caveat:** in this
+  run the server sent 4.20r8 no TerrainBlock ("terrain none"), so this shows
+  only that 4.20r8 starts and draws on Mesa, not that it draws *streamed
+  terrain*. A Mesa run that does send 4.20r8 a TerrainBlock is still needed
+  to answer T3D-117.
 - 5.12 draws the streamed terrain white even with `levels3d/heights`
   cleared first, and never fetches the textures. So the white terrain is not
   a stale cache.
