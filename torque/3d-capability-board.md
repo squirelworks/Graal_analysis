@@ -48,3 +48,6 @@ to the client from our own server only.
   vehicles, particles, `Projectile`); 5.12 registers 22 3D ones (`GameObject`, `Sky`, `Sun`,
   `TerrainBlock`, `WaterBlock`, the replicators, the editors). The 5.12 property and function names
   per class are listed (T3D-014, T3D-016, T3D-019, T3D-020, T3D-050).
+- [Entering a 3D server and the UDP ports](3d-server-entry-and-udp-port.md): a list name starting
+  with `3 ` starts the 3D hand-over; the 3D UDP port is always the listed port + 1; only the client's
+  own UDP port can be set (`fixedport`, `fixedudpport` 14899, `noudp`) (T3D-028, T3D-059).
