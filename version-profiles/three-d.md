@@ -21,7 +21,7 @@ Seihai's profile has no `three_d` for those builds.
 | Client sends moves | yes *assumed* | yes | yes | no, reports position | no *assumed* | no *assumed* | no, reports position | no *assumed* |
 | Mission phases | 3 *assumed* | 3 (lab) | 3 (lab) | 2 *assumed* | 2 | 2 | 2, and optional (cap) | 2 (lab) |
 | Local `.ter` terrain | yes *assumed* | yes | yes | no *assumed* | no *assumed* | no *assumed* | no | no *assumed* |
-| Streamed terrain chunks | no | yes | yes | yes | yes on Mesa (lab); crashes near the camera only under basic GDI GL | yes | yes (lab) | yes (lab) |
+| Streamed terrain chunks | no | yes | yes | yes | yes on Mesa (lab); crashes with the camera 150 units or less above the ground only under basic GDI GL | yes | yes (lab) | yes (lab) |
 | Fetches terrain textures | no | yes, asks for `heights.info` (lab) | yes *assumed* | yes *assumed* | no: terrain draws white (lab) | yes *assumed* | yes, one visit late (lab) | yes (lab) |
 | TorqueScript | compiles | compiles | none | none *assumed* | none | none *assumed* | none | none *assumed* |
 | Runs script a server sends | no *assumed* | no | no | no *assumed* | no | no *assumed* | no | no *assumed* |
