@@ -640,6 +640,19 @@ In builds where the 2D and 3D engines share a binary, the 3D side gives the 2D s
 | Live, the 2D TCP link carried only start-up file requests, update checks, a one-byte id 24 about every 0.4 s, id 162 every 30 s (answered by 108) and typed chat as player prop 12; no script marker went over TCP | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
 | So a 3D server reads script triggers, flag writes and requests from the UDP `events` text, script chat from the player's object update, and typed chat from TCP; script PMs and `setplayerprop` never arrive | [lab] (torque/3d-client-events-420r6-2026-11-25.md#for-server-work) |
 
+### 10.3.15 Local files against the server's copy (Linux 4.20r6)
+
+When the 3D world names a file, a Linux 4.20r6 client checks it over the 2D TCP link, and the server decides which copy is used [lab] (torque/3d-file-preference-420r6-2026-11-25.md#the-check-on-the-wire-lab).
+
+| Rule | Source |
+| --- | --- |
+| If the client has the file it sends `PLI_UPDATEFILE` (34) with a GINT5 modtime (the local file's Unix mtime in seconds) and the name; if not, `PLI_WANTFILE` (23) with the name | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#the-check-on-the-wire-lab) |
+| If the server's copy is newer it sends the file (`PLO_RAWDATA` 100, then `PLO_FILE` 102 carrying the server's modtime); otherwise it answers `PLO_FILEUPTODATE` (45). The client compares nothing itself | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#the-check-on-the-wire-lab) |
+| Between two local copies (data folder and user folder `levels3d/`), the newer one is sent and drawn, whichever folder it is in | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#lab-lab) |
+| A download is saved in the user folder under `levels3d/images/` with the server's modtime, never over a data-folder copy, and keeps winning in later sessions while it is the newest | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#lab-lab) |
+| The client never wrote `FILENAMECACHE.txt` in seven sessions, so a stale cache could not be tested | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#answers) |
+| Zip members are never checked (→ §10.6), so a zip in `levels3d/` overrides the server whatever the modtimes | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#answers) |
+
 ## 10.4 DSO v33
 
 Graal 3.x keeps menus, options, key binds, message boxes and the 3D mission-loading flow in compiled TorqueScript; from 4.x on no `.dso` files ship [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts).

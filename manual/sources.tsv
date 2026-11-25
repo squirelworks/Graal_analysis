@@ -984,3 +984,4 @@ torque/3d-engines-5007-512-and-403-411-2026-11-25.md	cited	8.5; 10	10.3	Static 3
 torque/3d-archives-404r2-512-2026-11-25.md	cited	8.5; 10	10.3	Static read and Linux 4.20r6 lab run of 3D archive mounting (T3D-012); carried into §8.5 and §10
 torque/3d-link-drop-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D link loss behaviour (T3D-027), static and lab; carried into §8.5 and §10
 torque/3d-client-events-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D client-to-server events (T3D-018), static and lab; carried into §8.5 and §10
+torque/3d-file-preference-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D file preference (T3D-107), lab; carried into §8.5 and §10
