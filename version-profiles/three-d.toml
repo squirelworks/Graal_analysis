@@ -17,7 +17,8 @@
 # Sources: torque/wire-by-build.md, torque/script-and-terrain-tools-by-build.md,
 # torque/terrain-512.md, torque/404r2-resource-filter.md, torque/live-512-third-party-session-2026-11-24.md,
 # torque/engine-and-formats.md, torque/engine-304.md, torque/5007-g3d.md, graal3d/torque-engine-4x.md,
-# torque/udp-session.md, torque/3d-capability-board.tsv.
+# torque/udp-session.md, torque/3d-capability-board.tsv, torque/live-3153-and-404r2-sessions-2026-11-25.md,
+# torque/multi-client-3d-lab-2026-11-25.md, torque/3d-engine-static-reads-2026-11-25.md.
 #
 # Field meanings (values are closed sets so a generator can check them):
 #   protocol            Torque protocol number, sent twice in the connect request; the accept must match
@@ -54,6 +55,15 @@
 #   bigdata_chunk_max   largest BigDataChunkEvent payload in bytes (int8 length)
 #   terrain_chunk_max   largest TerrainChunkEvent zlib payload in bytes (int10 length; 0 = no chunks)
 #   udp_port_offset     the Torque UDP port is the listed gserver port plus this
+#   requires_sky        the client crashes unless a Sky is ghosted before the mission starts
+#   sky_gif             the client asks for sky textures as .gif (never .png)
+#   drawn               the most the client has been seen to draw on Seihai's gserver: "world" (terrain,
+#                       shapes or GameObjects), "sky_only", or "nothing" (stays on the loading picture).
+#                       A lab state, not a ceiling: it moves up when the gserver sends what the build needs
+#   mirrors_2d_position the client's 3D movement also moves its 2D player on the gserver (TCP), so 2D
+#                       clients in the level see it walk without server help
+#   sees_2d_players     the client draws 2D players that share its level
+#   takes_2d_chat       chat from 2D players in the level reaches the client (onRemotePlayerChats, over TCP)
 
 schema = 1
 
@@ -92,6 +102,12 @@ bigdata = false
 bigdata_chunk_max = 0
 terrain_chunk_max = 0
 udp_port_offset = 1
+requires_sky = false
+sky_gif = false
+drawn = "world"
+mirrors_2d_position = false
+sees_2d_players = false
+takes_2d_chat = false
 why = "stock TGE 1.x net layer with no Graal changes; no BigData or terrain-chunk classes (wire-by-build). Format bounds, phases and control classes are stock TGE, not read in 3.04. Seihai's gserver refuses it on the game string."
 [build.evidence]
 protocol = "bin"
@@ -126,6 +142,12 @@ bigdata = "bin"
 bigdata_chunk_max = "bin"
 terrain_chunk_max = "bin"
 udp_port_offset = "assumed"
+requires_sky = "assumed"
+sky_gif = "assumed"
+drawn = "assumed"
+mirrors_2d_position = "assumed"
+sees_2d_players = "assumed"
+takes_2d_chat = "assumed"
 
 [[build]]
 label = "3.153"
@@ -157,12 +179,18 @@ dif_version = 44
 three_ds = true
 md3_version = 15
 texture_names = "as_named"
-download_refused = []
+download_refused = [".dso", ".cs", ".ter"]
 bigdata = true
 bigdata_chunk_max = 191
 terrain_chunk_max = 1023
 udp_port_offset = 1
-why = "Graal's net changes already in (class table, 12-bit ids, length prefixes, BigData, TerrainChunkEvent); full TGE game layer and TorqueScript compiler, though no server path makes it run new script (T3D-009, static); both .ter and chunk load messages (wire-by-build, script-and-terrain-tools-by-build). Not run (T3D-009); format bounds, cache layout and texture naming carried from 4.04r2/5.12."
+requires_sky = true
+sky_gif = true
+drawn = "nothing"
+mirrors_2d_position = false
+sees_2d_players = false
+takes_2d_chat = false
+why = "Graal's net changes already in (class table, 12-bit ids, length prefixes, BigData, TerrainChunkEvent); full TGE game layer and TorqueScript compiler (wire-by-build, script-and-terrain-tools-by-build). Lab on our gserver (torque/live-3153-and-404r2-sessions-2026-11-25.md): protocol 19 with no special handling, all three mission phases, a stock Player as control object; it never asks for .cs, .dso or .ter, so a server cannot push script and only its 12 shipped clientCmd handlers run (unknown ones are dropped; T3D-009); a TerrainBlock makes it ask for heights.info, so it uses the chunk path; it crashes without a ghosted Sky and with an empty TerrainBlock; sky textures are asked for as .gif; nothing was drawn past the loading picture (T3D-067, T3D-089). Format bounds and texture naming carried from 4.04r2/5.12."
 [build.evidence]
 protocol = "bin"
 game = "bin"
@@ -170,18 +198,18 @@ class_table = "bin"
 class_ids_12bit = "bin"
 length_prefixes = "bin"
 game_layer = "bin"
-mission_phases = "assumed"
+mission_phases = "lab"
 phases_optional = "assumed"
 client_moves = "bin"
-control_objects = "assumed"
+control_objects = "lab"
 ter_file = "bin"
 ter_max = "assumed"
-terrain_chunks = "bin"
-chunk_cache = "assumed"
+terrain_chunks = "bin lab"
+chunk_cache = "lab"
 terrain_texture = "assumed"
 water = "assumed"
 torque_script = "bin"
-server_scripts = "bin"
+server_scripts = "bin lab"
 terraformer = "bin"
 greyscale_rgba32_only = "assumed"
 terrain_editor = "bin"
@@ -191,11 +219,17 @@ dif_version = "assumed"
 three_ds = "bin"
 md3_version = "assumed"
 texture_names = "assumed"
-download_refused = "assumed"
+download_refused = "lab"
 bigdata = "bin"
 bigdata_chunk_max = "assumed"
 terrain_chunk_max = "assumed"
 udp_port_offset = "bin"
+requires_sky = "lab"
+sky_gif = "lab"
+drawn = "lab"
+mirrors_2d_position = "assumed"
+sees_2d_players = "assumed"
+takes_2d_chat = "assumed"
 
 [[build]]
 label = "4.04r2"
@@ -232,7 +266,13 @@ bigdata = true
 bigdata_chunk_max = 191
 terrain_chunk_max = 1023
 udp_port_offset = 1
-why = "Graal3DEngine.dll: 117 class registrations, 34 datablocks; no TorqueScript compiler, exec or eval; cut-down Terraformer; keeps both the .ter and the chunk path; resource-miss filter refuses .dso/.cs/.ter (graal3d/torque-engine-4x, script-and-terrain-tools-by-build, 404r2-resource-filter). No 3D session played on it yet (T3D-025), so the control classes are assumed."
+requires_sky = false
+sky_gif = false
+drawn = "sky_only"
+mirrors_2d_position = false
+sees_2d_players = false
+takes_2d_chat = false
+why = "Graal3DEngine.dll: 117 class registrations, 34 datablocks; no TorqueScript compiler, exec or eval; cut-down Terraformer; keeps both the .ter and the chunk path; resource-miss filter refuses .dso/.cs/.ter (graal3d/torque-engine-4x, script-and-terrain-tools-by-build, 404r2-resource-filter). Lab on our gserver under Wine (it crashes at start on Windows 10; torque/live-3153-and-404r2-sessions-2026-11-25.md, T3D-025): all three phases on protocol 19, a stock TGE Player as control object, Torque moves only, and the script player object stays at the spawn, so the 2D position does not follow the 3D Player; only the Sky gradient drew."
 [build.evidence]
 protocol = "bin"
 game = "bin"
@@ -240,10 +280,10 @@ class_table = "bin"
 class_ids_12bit = "bin"
 length_prefixes = "bin"
 game_layer = "bin"
-mission_phases = "bin"
+mission_phases = "bin lab"
 phases_optional = "assumed"
-client_moves = "bin"
-control_objects = "assumed"
+client_moves = "bin lab"
+control_objects = "lab"
 ter_file = "bin"
 ter_max = "bin"
 terrain_chunks = "bin"
@@ -266,6 +306,12 @@ bigdata = "bin"
 bigdata_chunk_max = "bin"
 terrain_chunk_max = "assumed"
 udp_port_offset = "bin"
+requires_sky = "assumed"
+sky_gif = "assumed"
+drawn = "lab"
+mirrors_2d_position = "lab"
+sees_2d_players = "assumed"
+takes_2d_chat = "assumed"
 
 [[build]]
 label = "4.04r2 Mac"
@@ -310,6 +356,12 @@ bigdata = true
 bigdata_chunk_max = 191
 terrain_chunk_max = 1023
 udp_port_offset = 1
+requires_sky = false
+sky_gif = false
+drawn = "world"
+mirrors_2d_position = false
+sees_2d_players = false
+takes_2d_chat = true
 why = "Protocol 21, two-type class table with TerrainBlock, WaterBlock and TerrainChunkEvent, and a game packet the same shape as 5.12's (wire-by-build). Scripts, terrain tools, formats and file rules were not read for 4.20r6 and are 5.12's (T3D-026)."
 [build.evidence]
 protocol = "bin"
@@ -344,6 +396,12 @@ bigdata = "bin"
 bigdata_chunk_max = "assumed"
 terrain_chunk_max = "assumed"
 udp_port_offset = "assumed"
+requires_sky = "assumed"
+sky_gif = "assumed"
+drawn = "assumed"
+mirrors_2d_position = "assumed"
+sees_2d_players = "assumed"
+takes_2d_chat = "assumed"
 
 [[build]]
 label = "4.20r8"
@@ -351,6 +409,7 @@ platform = "win32"
 base = "4.20r6"
 protocol = 24
 terrain_chunks = false
+drawn = "world"
 why = "Values are 4.20r6's except where read. The Windows 4.2.0.8 Graal3DEngine.dll (torque/4208-g3d.md) shows the GameObject layer with no ShapeBase or Player, no TorqueScript compiler and no .dso, two mission phases, and the terrain chunk send and event. A lab run (Graal_analysis PR #854, terrain-512 lab table) found it links as protocol 24 and plays normally, and that it takes the 5.12 TerrainBlock and TerrainChunkEvent layout and fills the levels3d/heights cache byte for byte like 5.12, but then crashes on a null call soon after the TerrainBlock is added, even with no chunks sent. So a server must not offer it streamed terrain: terrain_chunks is false. Its class set and file rules were not read (T3D-002), so those stay assumed."
 [build.evidence]
 all = "assumed"
@@ -362,6 +421,7 @@ protocol = "lab"
 game = "lab"
 terrain_chunks = "lab"
 chunk_cache = "lab"
+drawn = "lab"
 
 [[build]]
 label = "5.00r7"
@@ -398,7 +458,13 @@ bigdata = true
 bigdata_chunk_max = 191
 terrain_chunk_max = 1023
 udp_port_offset = 1
-why = "5.00 3D DLL: protocol check passes only 24, writes Graal3D, GameObject registered, two mission phases, no ShapeBase or datablock phase, TerrainChunkEvent and the levels3d/heights cache (5007-g3d). Class set, scripts, tools and formats are 5.12's until T3D-005 closes."
+requires_sky = false
+sky_gif = false
+drawn = "world"
+mirrors_2d_position = false
+sees_2d_players = false
+takes_2d_chat = true
+why = "5.00 3D DLL: protocol check passes only 24, writes Graal3D, GameObject registered, two mission phases, no ShapeBase or datablock phase, TerrainChunkEvent and the levels3d/heights cache (5007-g3d). The engine DLL read (torque/3d-engine-static-reads-2026-11-25.md, T3D-093 to T3D-098) adds: no TorqueScript exec and no SimDataBlockEvent, .3ds/.dts/.dif loaders, and terrain textures that must be 256x256x24. Its five exports (load, run, end, resize, fullscreen) are loaded by name with no version check. Class ids, formats bounds and file rules are 5.12's until T3D-005 closes."
 [build.evidence]
 protocol = "bin"
 game = "bin"
@@ -414,17 +480,17 @@ ter_file = "assumed"
 ter_max = "assumed"
 terrain_chunks = "bin"
 chunk_cache = "bin"
-terrain_texture = "assumed"
+terrain_texture = "bin"
 water = "assumed"
-torque_script = "assumed"
-server_scripts = "assumed"
+torque_script = "bin"
+server_scripts = "bin"
 terraformer = "assumed"
 greyscale_rgba32_only = "assumed"
 terrain_editor = "assumed"
 dts_min = "assumed"
 dts_max = "assumed"
 dif_version = "assumed"
-three_ds = "assumed"
+three_ds = "bin"
 md3_version = "assumed"
 texture_names = "assumed"
 download_refused = "assumed"
@@ -432,6 +498,12 @@ bigdata = "assumed"
 bigdata_chunk_max = "assumed"
 terrain_chunk_max = "assumed"
 udp_port_offset = "assumed"
+requires_sky = "assumed"
+sky_gif = "assumed"
+drawn = "assumed"
+mirrors_2d_position = "assumed"
+sees_2d_players = "assumed"
+takes_2d_chat = "assumed"
 
 [[build]]
 label = "5.12"
@@ -468,7 +540,13 @@ bigdata = true
 bigdata_chunk_max = 191
 terrain_chunk_max = 1023
 udp_port_offset = 1
-why = "The most-read build: wire, game packets and class set (wire-by-build), streamed terrain and its cache (terrain-512, lab 2026-11-25), Camera control and bare-name textures (live session 2026-11-24), no TorqueScript compiler, cut-down Terraformer that GS2 can create (live: setTerrain needs a TerrainBlock, loadGreyscale is only safe with a 32-bit RGBA PNG; PR #854 terrain-512 section 7), 256x256x24 terrain textures with wrong sizes ignored (lab), .dso/.cs/.ter download filter (script-and-terrain-tools-by-build). DTS bounds exist but their values were not read (T3D-029); The DIF version is not read for 5.12 (T3D-030); 5.12 has no MD3 loader (3d-formats-renderer-camera-by-build). The first control object alone takes it to login steps 5 and 6, so mission phases are optional (gs2-3d-objects-404r2-512)."
+requires_sky = false
+sky_gif = false
+drawn = "world"
+mirrors_2d_position = false
+sees_2d_players = false
+takes_2d_chat = true
+why = "The most-read build: wire, game packets and class set (wire-by-build), streamed terrain and its cache (terrain-512, lab 2026-11-25), Camera control and bare-name textures (live session 2026-11-24), no TorqueScript compiler, cut-down Terraformer that GS2 can create (live: setTerrain needs a TerrainBlock, loadGreyscale is only safe with a 32-bit RGBA PNG; PR #854 terrain-512 section 7), 256x256x24 terrain textures with wrong sizes ignored (lab), .dso/.cs/.ter download filter (script-and-terrain-tools-by-build). DTS bounds exist but their values were not read (T3D-029); The DIF version is not read for 5.12 (T3D-030); 5.12 has no MD3 loader (3d-formats-renderer-camera-by-build). The first control object alone takes it to login steps 5 and 6, so mission phases are optional (gs2-3d-objects-404r2-512). Mixed lab H1 (torque/multi-client-3d-lab-2026-11-25.md, T3D-073, T3D-115, T3D-116): next to a 5.24r3 2D client, 5.12 does not see the 2D player, 2D chat reaches it as onRemotePlayerChats over TCP, and its 3D walk never moves its 2D player. Terrain textures named in heights.info drew white and were never requested in one 5.12 run (live-512-gs2-3d-probe, T3D-044), unlike Linux 4.20; the 256x256x24 rule stands."
 [build.evidence]
 protocol = "bin lab"
 game = "bin lab"
@@ -502,6 +580,12 @@ bigdata = "bin lab"
 bigdata_chunk_max = "bin"
 terrain_chunk_max = "bin"
 udp_port_offset = "bin lab"
+requires_sky = "assumed"
+sky_gif = "assumed"
+drawn = "lab"
+mirrors_2d_position = "lab"
+sees_2d_players = "lab"
+takes_2d_chat = "lab"
 
 [[build]]
 label = "5.12 Mac"
@@ -527,3 +611,4 @@ three_ds = "lab"
 dts_min = "lab"
 dts_max = "lab"
 dif_version = "lab"
+drawn = "lab"
