@@ -129,13 +129,16 @@ client's `foreach` over `players` (and over `allplayers`) only visited the
 first element, while **indexed** access showed both. With `players[]` the 3D
 player is listed, in the 2D player's own level.
 
-**Open (possible position-prop gap):** `players[1]` stayed at 30,22 for the
-whole window even though the drawn sprite moved in the earlier run — the 2D
-script's view of the 3D player's x/y did not update. A rerun that keeps the
-server trace and walks the 3D player will compare the trace's "tcp position"
-lines against `players[1].x/y`; if the trace moves and the script does not,
-the gap is in which props the 2D client reads for x/y (gserver thread to
-investigate).
+**Resolved — no position-prop gap (follow-up 3).** A rerun that kept the full
+server trace and walked the 3D player showed the 2D script's `players[1].x/y`
+and the trace's "tcp position" lines move **together**, within one 2 s sample
+at each step: trace 30,26 → 34,26 (205.4 s) → 34,22 (209.5 s) → 30,22
+(213.6 s, walk end), and the 2D script reads 30,26 → 34,26 (207.4 s) → 34,22
+(209.6 s) → 30,22 (214.3 s), both in `onlinestartlocal.nw` throughout. So the
+2D client's scripted view of the 3D player's position does track the server;
+the earlier "static 30,22" was a stale window — 30,22 is exactly where the
+walk ended, and the 2D read it again from its first sample after
+reconnecting.
 
 ### Return visit to a 1-object world
 
