@@ -91,4 +91,12 @@ No copies of the shape were seen in any of these runs, but the ground under the 
 100 units above the camera, so the copies may have been out of view. A rerun on fresh flat ground (a `TerrainBlock` with no chunks) with the camera 15 units away
 also grew nothing visible, with grid counts 5/5 and 20/20 and with no `TerrainBlock`. All these
 runs used the box (−1,−1) to (1,1), which allows a single cell, and the flat block had no
-heights for the rays to hit; a run with a wide box over streamed terrain is next. **[lab]**
+heights for the rays to hit; with a wide box over streamed terrain, cover grows. **[lab]**
+
+**Cover grows** on the real 5.12 client (GDI renderer) under these conditions: a
+`DynamicShapeReplicator` over streamed hilly terrain, with box (−256,−256) to (256,256), radius 4
+cells, 5 objects per cell, `labcube.3ds` at scale 3, slope 90 and all allow flags on. The client
+drew a dense carpet of cube copies, each scaled and randomly turned, sitting on the terrain and
+following its slopes around the player (about 19% of the frame changed against the same scene
+without the replicator). This confirms the layout above, and that the earlier misses came from
+the one-cell box and the missing ground. **[lab]**
