@@ -103,4 +103,7 @@ cells, 5 objects per cell, `labcube.3ds` at scale 3, slope 90 and all allow flag
 drew a dense carpet of cube copies, each scaled and randomly turned, sitting on the terrain and
 following its slopes around the player (about 19% of the frame changed against the same scene
 without the replicator). This confirms the layout above, and that the earlier misses came from
-the one-cell box and the missing ground. **[lab]**
+the one-cell box and the missing ground. **[lab]** With 20 objects per cell the
+covered area grew only a little, since at scale 3 the copies from 5 per cell already nearly
+fill the near cells. With `allowonterrain` off and `allowonstatics` on, nothing was placed on
+the bare terrain. **[lab]**
