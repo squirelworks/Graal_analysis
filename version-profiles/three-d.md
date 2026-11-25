@@ -119,3 +119,15 @@ command and then crashed it, so every event a server writes must carry its exact
 5.12 and 4.20r8 crash on a huge TerrainBlock `squareSize`. On DTS, 5.12's header takes 17 to 24,
 but only 24 is known to draw: v24 bodies relabelled 17 to 22 hung or crashed and 23 drew nothing
 ([live-512-shapes-2026-11-25.md](../torque/live-512-shapes-2026-11-25.md)).
+
+## Not in the profile
+
+Two 4.20r8 differences from 5.12 are recorded here rather than as fields, because nothing on the
+server or in Ato depends on them ([live-512-shapes-2026-11-25.md](../torque/live-512-shapes-2026-11-25.md)):
+
+- Under the VM's basic Windows OpenGL (GDI Generic), 4.20r8 draws no textures at all (a textured
+  `.3ds` stays white, the sky is a grey gradient), where 5.12 draws both. This is a driver limit, so
+  4.20r8's texture behaviour has to be read on Mesa or a real GPU.
+- 4.20r8 caches downloads in subfolders named by the file's prefix (`images/lp/lp_white`,
+  `sky/sky_...`); 5.12 keeps them flat in `levels3d/images` with only `sky/` as a subfolder. The
+  server serves the same names either way.
