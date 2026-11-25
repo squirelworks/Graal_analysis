@@ -976,6 +976,6 @@ torque/3d-engine-static-reads-2026-11-25.md	cited	E; 8.5; 10	10.3; 10.6	Static r
 torque/3d-fuzz-targets-by-build.md	pending	E	10.6	Fuzz target list for the 3D client inputs, ranked by reach
 torque/multi-client-3d-lab-2026-11-25.md	cited	E; 8.5; 10	10.3	First multi-client 3D lab pairs: 2D+3D and 3D+3D, what crosses between clients; carried into §8.5.11 and §10.3.11 as a state of the lab server build
 torque/live-512-lighting-and-sky-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 lighting probe and sky grid on Mesa: Sun as on/off brightness, rotation sense, FOV; carried into §8.5 and §10
-torque/live-512-gameobject-fields-2026-11-25.md	pending	E	10.3	5.12 GameObject update fields tested live: scale, rotation, flags, undrawn fields
+torque/live-512-gameobject-fields-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 GameObject update fields tested live: scale, rotation, flags, undrawn fields; carried into §8.5 and §10
 torque/3d-fuzz-net-tier1-2026-11-25.md	cited	E; 8.5; 10	10.6	3D network fuzz tier 1: event-length and ghost-index crashes on 5.12 and 4.04r2; carried into §8.5 and §10
-torque/live-512-shapes-2026-11-25.md	pending	E	10.3	5.12 shapes: .3ds materials and collision meshes, .dts per-version behaviour, .dif, .ft
+torque/live-512-shapes-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 shapes: .3ds materials and collision meshes, .dts per-version behaviour, .dif, .ft; carried into §8.5 and §10

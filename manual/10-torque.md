@@ -785,6 +785,15 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 | 12 | `0x400000` | string, then 4 colour bytes RGBA 0–255 (nickname and `nickcolor`, inferred) | [bin][inf] (torque/wire-by-build.md#the-512-gameobject-update) |
 | 13 | `0x800000` | int16 of booleans; bits `0x01`, `0x04`, `0x08`, `0x10`, `0x20`, `0x40` are used | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
 
+The rules below give what a live 5.12 did with single `GameObject` fields sent one at a time [lab][cap] (torque/live-512-gameobject-fields-2026-11-25.md).
+
+| Rule | Source |
+| --- | --- |
+| Section 2 scales the shape about its origin: (2, 2, 2) doubles it, (1, 1, 3) makes it three times taller, 0.5 halves it; (0, 0, 0) draws it at normal size, so that value means unset | [lab][cap] (torque/live-512-gameobject-fields-2026-11-25.md#section-2-is-scale-not-velocity) |
+| Rotations about x, y and z all apply | [lab][cap] (torque/live-512-gameobject-fields-2026-11-25.md#rotation-and-visibility-flags) |
+| Of the section-13 flags only `0x0004` hides the object; `0x01`, `0x02`, `0x08`, `0x10`, `0x40`, `0x80` and `0x100` each drew a pixel-identical frame; `0x20` is being rerun | [lab][cap] (torque/live-512-gameobject-fields-2026-11-25.md#rotation-and-visibility-flags) |
+| On a static scenery `GameObject`, skin (with or without `.png`), chat, `attr1` to `attr3` and nickname with colour are accepted but show nothing: no pixels, no file request, no name tag and no chat bubble; a skin is never requested for a `.3ds` shape | [lab][cap] (torque/live-512-gameobject-fields-2026-11-25.md#fields-accepted-but-not-drawn-on-a-static-gameobject); [lab] (torque/live-512-gameobject-fields-2026-11-25.md#sky-bottom-face-and-ft) |
+
 ### 10.5.3 Graal events over Torque
 
 Graal sends its own events over the Torque connection. Each row gives an event, its direction and its layout [bin] (graal3d/torque-engine-4x.md#graal-events-and-text-big-data-channel).
@@ -906,7 +915,7 @@ These runs used the real 5.12 on a GLSL-capable driver (Mesa llvmpipe) with a li
 | On a `.3ds` shape the `Sun`'s direction, colour and ambient have no effect: with a `Sun` each face draws at material × texture, times 1.0 for faces whose world-space normal points −y, −x or up and 0.85 for +x or +y; with no `Sun` every face is exactly one quarter and the background 0. So the `Sun` is an on/off switch for full brightness, and the shading comes from a fixed built-in light | [lab][cap] (torque/live-512-lighting-and-sky-2026-11-25.md#lighting-on-3ds-shapes-t3d-047-t3d-052) |
 | The `Sun` shades nothing on a `.dts`, a `.dif` or streamed terrain either; with no `Sun` the `.dts` is not drawn or black, the `.dif` is entirely black, and terrain is unchanged | [lab][cap] (torque/live-512-lighting-and-sky-2026-11-25.md#lighting-on-3ds-shapes-t3d-047-t3d-052) |
 | A positive rotation about +z turns a shape clockwise seen from above (at +90 degrees the +x face looks toward −y), the same sense as the camera | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#shape-rotation) |
-| Sky texture entries: 2 is ahead (+y), 1 right, 0 behind, 3 left, 4 up; side faces are upright and mirrored left to right; entry 5 (bottom) is not drawn with the default options; one face spans the full screen width | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#sky-geometry-and-field-of-view-t3d-046-t3d-055); [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#sky-t3d-046-partial) |
+| Sky texture entries: 2 is ahead (+y), 1 right, 0 behind, 3 left, 4 up; side faces are upright and mirrored left to right; entry 5 (bottom) is not drawn with the default options, and draws as a floor below the horizon with sky flags `1 1 1`; one face spans the full screen width | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#sky-geometry-and-field-of-view-t3d-046-t3d-055); [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#sky-t3d-046-partial); [lab] (torque/live-512-gameobject-fields-2026-11-25.md#sky-bottom-face-and-ft) |
 | The default horizontal field of view is 90 degrees (measured 89.4) | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#sky-geometry-and-field-of-view-t3d-046-t3d-055) |
 | Below the horizon the sky shows the fog colour on Mesa; on a GDI OpenGL 1.1 driver it was black with a fog-coloured band | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#sky-geometry-and-field-of-view-t3d-046-t3d-055); [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#sky-t3d-046-partial) |
 | The sky's visible-distance field did not clip or fog anything on the client in the runs so far | [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#sky-t3d-046-partial) |
@@ -945,6 +954,18 @@ The Torque clients read Torque's 3D formats. Each row gives an extension, its fo
 | Settled | Marker `.mis` files in the client folder and under `levels3d` were listed by the client's folder scan but never opened, and no marker reached the console; the mission was built from the network | [lab] (protocol/lab-appe-hostb-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503) |
 | Verdict | Verified for a normal 3D session, and it agrees with the read (no `exec` or `compile` command, no `.mis` literal) | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#mis-and-dso-in-the-404r2-3d-plug-in-e502-e503) |
 | Left over | A file reader linked in but never called can't be ruled out by a run | [inf] (protocol/lab-appe-hostb-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503) |
+
+The rules below give how a live 5.12 handled shape content, one change per run [lab][cap] (torque/live-512-shapes-2026-11-25.md).
+
+| Rule | Source |
+| --- | --- |
+| `.3ds`: a mesh with no material is not drawn; a colour-only material draws its diffuse colour; a material naming a missing texture draws white | [lab][cap] (torque/live-512-shapes-2026-11-25.md#3ds-materials-and-meshes-t3d-032) |
+| `.3ds`: `Col-` collision meshes are drawn; there is no back-face culling (both windings draw, the two-sided flag changes nothing); material transparency is ignored | [lab][cap] (torque/live-512-shapes-2026-11-25.md#3ds-materials-and-meshes-t3d-032) |
+| `.3ds`: 400 objects in one file, and one mesh at the u16 cap (32,761 vertices, 64,800 faces), both drew | [lab][cap] (torque/live-512-shapes-2026-11-25.md#3ds-materials-and-meshes-t3d-032) |
+| `.dts` version word on a v24 body: 16 rejected ("not supported anymore", play continues); 17 and 18 hang on a black view; 19 and 22 crash; 23 loads and draws nothing; 24 draws; 25 rejected ("only version 24 and before"). So the header accepts 17 to 24 and the reader trusts the version word without checking the body; genuine old-version shapes were not tested | [lab][cap] (torque/live-512-shapes-2026-11-25.md#dts-versions-t3d-029) |
+| Stock v24 `.dts` shapes (with sequences) and a v44 `.dif` draw; the client also asks for `lightfalloffmono` | [lab][cap] (torque/live-512-shapes-2026-11-25.md#dts--dif-that-do-draw) |
+| A `.ft` text-shape `GameObject` never drew (flags 0, `0x08`, `0x18`; levels 1, 2, 6; malformed), though the file and its texture downloaded and nothing was logged | [lab][cap] (torque/live-512-shapes-2026-11-25.md#ft-text-shapes-t3d-036) |
+| 4.20r8 matched 5.12 on these fuzz rows, including the crash on a huge `TerrainBlock` square size | [lab] (torque/live-512-shapes-2026-11-25.md#420r8) |
 
 The rules below give where 3D content came from and how terrain textures are mapped [file] (torque/engine-and-formats.md#3d-resource-formats).
 

@@ -105,6 +105,7 @@ What a script can do with them:
 | Rule | Source |
 | --- | --- |
 | `GameObject` carries the calls a script needs to drive an object: mounting, node transforms, `setDirection`, `getdropz` and the two collision checks | [bin][inf] (torque/gs2-3d-objects-404r2-512.md#script-properties-and-functions-in-512) |
+| Live on 5.12, a static scenery `GameObject` accepts skin, chat, `attr1` to `attr3` and nickname but draws none of them, and a `.ft` text shape never drew; only flag `0x0004` hides an object (→ §10.5.2, §10.6) | [lab][cap] (torque/live-512-gameobject-fields-2026-11-25.md#fields-accepted-but-not-drawn-on-a-static-gameobject); [lab][cap] (torque/live-512-shapes-2026-11-25.md#ft-text-shapes-t3d-036) |
 | `findimg`, `hideimg` and `hideimgs` on `GameObject` mean 2D-style show-images work on 3D objects (→ §8.3.8) | [bin][inf] (torque/gs2-3d-objects-404r2-512.md#script-properties-and-functions-in-512) |
 | The client carries a scriptable 3D world and terrain editor: `WorldEditor`, `TerrainEditor` and `EditManager` are registered GUI controls with their full stock sets | [bin][inf] (torque/gs2-3d-objects-404r2-512.md#script-properties-and-functions-in-512) |
 | The shape subclasses (`GameShapeDTS` animation calls, `GameShapeDIF` lights, `GameShape` shaders) and how each `GameObject` property travels on the wire are in → §10.5.2 | [bin] (torque/engine-and-formats.md#the-512-3d-object-model) |
