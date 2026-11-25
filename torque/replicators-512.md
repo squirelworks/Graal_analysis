@@ -125,7 +125,10 @@ Further runs on the same terrain, each changing one value against that base **[l
 | `DynamicGrass` or `DynamicGrassReplicator` with the same values | the ghost is created and nothing is drawn |
 
 So the cover is the same for every client that gets the same values. The two grass classes take
-the same update but do not draw a `.3ds` this way; what they draw is still open. **[lab]**
+the same update but do not draw a `.3ds` this way; what they draw is still open. **[lab]** Statically, the grass
+classes replace the cell-filling and the grid-count setters (their counts are clamped to 0–100
+per cell instead of 0–20) and build their own geometry instead of placing shapes, so they likely
+expect textures rather than shape files **[inf]**.
 
 On 4.20r8 the replicator ghost is created without a crash or error, but with the camera kept
 250 units up (to avoid 4.20r8's terrain crash) no cover was in frame, so whether 4.20r8 grows it
