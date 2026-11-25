@@ -58,10 +58,10 @@ What follows from this:
 - The 4.x and 5.x clients cannot generate terrain procedurally any more. What they keep is the
   import, export and apply path: read a greyscale image as heights, save heights as a greyscale image,
   and apply the result to a `TerrainBlock`. **[bin][inf]**
-- Both tools are registered in Graal's script object system, not only in a dead console, so a GS2
-  script may be able to create and drive them. Whether `new Terraformer` or a `TerrainEditor` control
-  can be made from GS2, and what `setTerrain` writes (the live block, the `levels3d/heights` cache, or
-  nothing a server sees), is open (T3D-019, T3D-050). **[inf]**
+- Both tools are registered in Graal's script object-creator registry, so GS2 can name them in
+  `new` ([gs2-3d-objects-404r2-512.md](gs2-3d-objects-404r2-512.md)). `setTerrain` applies the
+  register to the client's current `TerrainBlock` and relights it, with no cache write seen. A live
+  call is still open (T3D-019, T3D-050). **[bin][inf]**
 - 4.04r2 still has the local `.ter` file path beside the streamed chunks; 5.12 only builds terrain
   from chunks (see the terrain notes for the chunk layout). **[bin]**
 

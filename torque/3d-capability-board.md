@@ -43,3 +43,8 @@ to the client from our own server only.
 - [A real 5.12 on a third-party 3D server](live-512-third-party-session-2026-11-24.md): a session with
   no mission phases, a `Camera` as the control object, and textures stored without an extension
   (T3D-022, T3D-023, T3D-033).
+- [The GS2 3D objects](gs2-3d-objects-404r2-512.md): the classes a script can create. 4.04r2's plug-in
+  registers 86, including the whole Torque game layer and its datablocks (`Player`, `PlayerData`,
+  vehicles, particles, `Projectile`); 5.12 registers 22 3D ones (`GameObject`, `Sky`, `Sun`,
+  `TerrainBlock`, `WaterBlock`, the replicators, the editors). The 5.12 property and function names
+  per class are listed (T3D-014, T3D-016, T3D-019, T3D-020, T3D-050).
