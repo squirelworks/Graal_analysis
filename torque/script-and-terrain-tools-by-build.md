@@ -32,8 +32,20 @@ narrows board rows T3D-006, T3D-007, T3D-008, T3D-019 and T3D-041
   of `GameConnection`, `PathCamera`, `fxSunLight`, `Shape3ds` and others). None of them is `exec`,
   `eval` or `compile`. The `eval` string is used once, by native code that queues a console call
   named `eval` with one text argument; with no `eval` registered, that call has nothing to run.
-  So no text reaches a TorqueScript interpreter. Whether GS2 can call the registered console
-  functions by name is open (T3D-008). **[bin][inf]**
+  So no text reaches a TorqueScript interpreter. **[bin][inf]**
+- **Can GS2 call 4.04r2's console functions by name? (T3D-008)** No path for it was found.
+  - The plug-in exports only three functions (load, run and end the engine).
+  - The host hands it about 75 `graal_set...` callbacks. None of them takes a function name to run
+    on the Torque side.
+  - The callbacks that cross from the 2D engine to the 3D side all carry data, not code: script
+    events, server text, datablock properties, the player's script object, files, drawing and
+    window state.
+  - GS2 reaches the 3D side only through the classes the plug-in registers with GS2, and those
+    classes' own property and function tables
+    ([gs2-3d-objects-404r2-512.md](gs2-3d-objects-404r2-512.md)).
+
+  The registered console functions are therefore reachable only from native code inside the
+  plug-in. **[bin][inf]**
 - **5.12** has no compiler, no `exec`, `eval` or `compile`, and no `schedule`. Its `.cs` literal is
   one entry of a list of file extensions that also holds `.txt`, `.nw`, `.gani`, `.gmap`, `.png` and
   others, next to the folder list `levels/`, `levels3d/`, `translations/`, `offline/`,
@@ -116,7 +128,7 @@ run of the original tool against `seihai-servertools gen terrain` is under way (
 
 ## Open
 
-- [ ] T3D-008: whether GS2 can call 4.04r2's registered console functions by name.
+- [x] T3D-008: no by-name path from GS2 to 4.04r2's console functions (static).
 - [ ] T3D-019 / T3D-050: create `Terraformer` and `TerrainEditor` from GS2; what `setTerrain` writes.
 - [ ] T3D-041: when 4.04r2 takes the local `.ter` path over the chunk path.
 - [x] T3D-013: the 5.12 extension list is the GS2 file-access gate.
