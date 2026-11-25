@@ -999,3 +999,4 @@ torque/3d-object-classes-by-build-2026-11-25.md	pending		10.3	Networked object c
 torque/3d-shared-world-subset-2026-11-25.md	pending		10.3	Common 3D content subset across builds; one world, two protocol encodings (T3D-109), lab; to carry into §10
 torque/3d-state-authority-420r6-2026-11-25.md	pending		10.3	Which 3D state is server-authoritative vs client-trusts-self (T3D-111), lab; to carry into §10
 torque/3d-lightscene-cache-2026-11-25.md	pending		10.3	lightScene/lightmap caching retained in 5.12 but interior content gone (T3D-092), lab+bin; to carry into §10
+torque/3d-frame-rate-scaling-420r6-2026-11-25.md	pending		10.3	Client frame-rate scaling with ghosts and triangles, software GL (T3D-113), lab; to carry into §10
