@@ -39,6 +39,11 @@ parsed map state from NC script input and classic script-output bounds. Original
 4.02 behavior, the historical RC editing limit and old-engine breakage remain open;
 this is partial coverage, not a completed historical confirmation.
 
+2026-11-25 update: G262 (large-file receive on 4.208 to 6.037) is answered in
+[large-file-thresholds-focus](../protocol/large-file-thresholds-focus.md#receive-handlers-on-4208-to-6037-g262-2026-11-25):
+all four stock engines handle 68, 69 and 84; 84 only feeds progress, 69 never checks it, and no receive-side size constant exists.
+`large_files` and `large_file_size` for these builds are now read, not inferred. Checkbox closed.
+
 2026-11-25 update: G255 (genuine 5.12 send set) is answered in
 [ids-sent-512-status](../protocol/ids-sent-512-status.md#full-send-sets-500r7-and-genuine-512-g255-2026-11-25):
 every send site in both engines uses a fixed id; 5.00r7 sends 62 ids and 5.12 the same minus 21 (`PUTNPC`) and 40 (`SHOOT`),

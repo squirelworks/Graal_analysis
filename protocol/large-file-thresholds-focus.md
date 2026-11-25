@@ -33,6 +33,30 @@ Clients before 2.14 cannot receive files over 64000 bytes on a correct server ta
 
 If the server **does not** know the login token, every focus 4.x–6.x build is treated as pre-2.1: no modtime, no LARGEFILE\*, and big files fail with 30. That is how stock gs2lib broke **5.24** (`G3D15010` missing) — fixed for labs by `gs2lib-CLVER_5_24.patch`. Focus **5.007 / 5.120 / 6.037** are already in the stock table; **4.208** must be listed the same way on any Seihai / fork table used in labs. **[srv][cap]**
 
+## Receive handlers on 4.208 to 6.037 (G262, 2026-11-25)
+
+Static read of the stock engines (capstone/pefile, nothing run). Files: 4.20r8 unhooked `GraalEngine.dll` from the unpacked set (sha256 `828e9311…`); 5.00r7 stock engine (`dde0fc85…`); 5.12 memory image of the engine (`ac01cd79…`; the shipped `04f7a133` engine was not on hand); 6.03r7 third-party unpack of `Graal 6.0.3.7.exe` (`2be6bf4b…`). **[bin]**
+
+| Build | 68 `LARGEFILESTART` | 84 `LARGEFILESIZE` | 69 `LARGEFILEEND` | Receive-side size limit |
+|---|---|---|---|---|
+| 4.208 | handled | handled | handled | none |
+| 5.007 | handled | handled | handled | none |
+| 5.12 | handled | handled | handled | none |
+| 6.037 | handled | handled | handled | none |
+
+The switch takes the already-decoded id (no extra bias); 100 (`RAWDATA`) and 108 are tested before it. 30, 45 and 102 are switch cases in all four.
+
+The handlers have the same shape in every build:
+
+- **68** stores the current large-file name, zeroes the expected size and resets any buffer already held under that name.
+- **84** reads a 5-byte encoded number into the expected-size global (0 if the payload is shorter than 5 bytes). No bounds check.
+- **102** appends each chunk. The expected size is only the total passed to `onFileChunkReceived` and the progress ratio.
+- **69** clears the name if it matches, logs `File download: … (size: N) done` using the bytes actually received, fires `onFileDownloaded`, saves the file and frees the buffer. It never compares the received length with the 84 value.
+
+**No receive-side size constant.** Every `32000` (`0x7d00`) in these engines is the RC upload chunker (sending 155), the `GetLogicalDriveStringsA` buffer (5.x/6.x) or FreeType. The only ceilings are the encodings: 32 bits for the 84 value and 2 097 151 bytes per raw (100) packet. Not traced: the string-append growth and the socket raw-data reader, so an allocation cap there is not ruled out.
+
+Consequence for profiles: `large_files = true` and `large_file_size = true` on 4.208, 5.007, 5.12 and 6.037 are now **[bin]**, not inferred from 2.14. 32000-byte chunks remain a server choice.
+
 ## Client ask side (related, not the threshold)
 
 | Pattern | Builds | Note |
@@ -43,7 +67,7 @@ If the server **does not** know the login token, every focus 4.x–6.x build is 
 
 ## Open
 
-- [ ] Exact per-exe `large_files` / `large_file_size` (or equivalent receive constants) on stock **4.208 / 5.007 / 5.12 / 6.037** — profile-audit cells that still say “inferred from 2.14” are **unverified on these binaries**, not false. **[inf]**
+- [x] ~~Exact per-exe `large_files` / `large_file_size` on stock 4.208 / 5.007 / 5.12 / 6.037.~~ [Read 2026-11-25](#receive-handlers-on-4208-to-6037-g262-2026-11-25): all four handle 68, 69 and 84; no receive-side size limit. **[bin]**
 - [ ] Discriminating **~300 KB** image push on each focus build against seihai-gserver (confirm chunk boundaries and 84 handling on 2.22 vs 2.31).
 - [x] ~~Reconcile the recorded 1.41r1 direct receive set: no 68/69.~~ [Exact-input scope](file-profile-evidence-2026-11-21.md#the-recorded-141r1-input).
 - [ ] Read the exact 1.41r1 raw/file subpath and FILE body; G264 remains partial.
