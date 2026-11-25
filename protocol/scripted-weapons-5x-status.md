@@ -35,7 +35,8 @@ Pure 4.x takes **classic only**. Answering a class ask with 197/140 is the wrong
 ## Open checklist
 
 - [x] Loopback weapon fixture on 5.12: which ask/body ids fire for a GS2 weapon ([below](#lab-gs2-weapon-fixture-on-512-g307-2026-11-25)).
-- [ ] The same fixture on 5.00r7 (the lab install still stalls before connecting).
+- [x] The same fixture on 5.00r7 ([below](#lab-gs2-weapon-fixture-on-500r7-g307-2026-11-25)).
+- [ ] Why a weapon whose 33 carried source text ignores later bytecode on 5.00r7 (static).
 - [x] Same fixture with CLASS prop / empty line variants (#55), on 5.12: the empty line does not suppress 158; classes arrive on 133 or 140 after a 161, and prop 74 also triggers 161 ([class delivery](#lab-class-delivery-on-512-g307-follow-up-2026-11-25)).
 - [ ] Static read of the leading byte that 5.12 skips in prop 74, and whether a prop-74 NPC runs the class once answered.
 - [ ] Confirm C6 empty-program threshold if a modern compile oracle is available.
@@ -116,3 +117,40 @@ makes 5.12 ask 161, about 50 ms later. The client skips the first byte of the
 value: `g307cls` gives an ask for `307cls`, and `_g307xyz` gives `g307xyz`. So a
 server must put one leading byte before the class name [wire only; what that
 byte means is open]. Whether such an NPC then runs the class was not tested.
+
+## Lab: GS2 weapon fixture on 5.00r7 (G307, 2026-11-25)
+
+Windows 5.00r7 (unpacked `Graal.exe`, the lab's licence-check-patched engine)
+under Wine in the same loopback-only lab, with the same `GS2Fix` weapon as the
+5.12 runs. Rows are under `wpn500-a` to `wpn500-e`.
+
+**Lab note: why 5.00r7 had stalled.** The client needs its signed licence files
+(`license/license.graal` and `license/sig.license`); without them it never dials.
+With them it dials the login host and port 14900 named in the signed licence,
+which does not exist in a closed lab. The licence cannot be edited, so the lab
+redirects that one connect to the local login server with a preloaded connect
+shim. Under Wine 10 the shim must also load into wineserver, which is the process
+that performs the connect. **[lab]**
+
+**What the lab server sends.** To 5.00r7 the lab GS2Emu sends each weapon's
+script as **source text inside 33**, with no 197, 193, 140 or 132, and the client
+asks nothing (no 158). GS1 weapons sent that way run. The GS2 weapon does not
+run, on a cold or warm login, and no cache file is written. (To 5.12 the same
+server sends a bare 33 and then 197/140.)
+
+**Bytecode paths, injected.**
+
+| what was sent | ask | runs? |
+|---|---|---|
+| server's source-text 33, then 197 | 158; server answers 100 + 140; 195-byte cache file | **no** |
+| server's source-text 33, then 193, then 100 + 132 | 158; 204-byte cache file | **no** |
+| **bare** 33 (image only), then 100 + 132 | — | yes, 0.004 s after the 132 |
+| **bare** 33, then 100 + 140 | — | yes, 0.97 s after the 140 |
+
+So 5.00r7 handles 197 → 158 → 140 and 193 → 158 → 132 like 5.12 (same ask id,
+same cache sizes), and both bodies run GS2 bytecode, but only for a weapon whose
+33 carried no script text. A weapon first created from source text ignores
+bytecode that arrives later on either path [lab; the reason is not traced].
+
+**Server rule for 5.00r7:** send a bare 33 and then 197/140 or 193/132. Do not
+send GS2 as source text in 33.
