@@ -278,6 +278,10 @@ notes. **G428** repeats the check with a stock 3.04 or 3.153 client (owner OK gi
 listserver only, not the official one). The
 board now has 428 IDs.
 
+2026-11-25 update: G428's [stock 3.04 run](../protocol/g428-stock-304-public-list-2026-11-25.md)
+covers port 14922: a stock 3.04 sends the same one-frame login and gets the same reply family.
+Port 14923 is still open. G427 is partial: id 6 was the text `000` on that run.
+
 ## Counts
 
 | Kind | Items |
