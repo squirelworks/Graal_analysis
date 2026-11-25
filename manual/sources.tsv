@@ -1002,3 +1002,4 @@ torque/3d-lightscene-cache-2026-11-25.md	pending		10.3	lightScene/lightmap cachi
 torque/3d-frame-rate-scaling-420r6-2026-11-25.md	pending		10.3	Client frame-rate scaling with ghosts and triangles, software GL (T3D-113), lab; to carry into §10
 torque/3d-gs2-functions-by-build-2026-11-25.md	pending		10.3	3D GS2/console functions across 4.04r2/5.00r7/5.12 (T3D-088), bin; to carry into §10
 torque/3d-authoring-surface-2026-11-25.md	pending		10.3	3D authoring surface: placeable keywords/fields and what draws per build (T3D-106), srv+lab; to carry into §10
+torque/3d-gui-overlay-420r6-2026-11-25.md	pending		10.3	2D GUI layers over the 3D view; GS2 GUIs draw in 3D (T3D-058), lab+bin; to carry into §10
