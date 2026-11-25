@@ -77,7 +77,11 @@ only if:
   `boxmin.y ≤ y < boxmax.y`. The box's z values are not used in this test. **[bin]**
 
 Inside a cell the count is random between `mingridobjects` and `maxgridobjects`, from a random
-stream seeded by `seed` and the cell, so the same cell always grows the same cover. Each object
+stream seeded by `seed` and the cell, so the same cell always grows the same cover. The stream is
+stock Torque's R250 generator (`MRandomR250`), seeded per cell with
+`seed + 256·(cy & 255) + (cx & 255)`, where `cx` and `cy` are the cell corner's world x and y
+divided by 8 and cut toward zero. The count is `min + r mod (max − min + 1)` from the first
+number drawn, or just `min` when the two are equal. **[bin]** Each object
 is then placed by casting rays onto the allowed surfaces. **[bin]** So a box of (−1,−1) to (1,1)
 allows only the one cell whose corner is at the world origin; a server wanting cover over an area
 must send that area as the box, in world units. **[bin]**
@@ -91,4 +95,15 @@ No copies of the shape were seen in any of these runs, but the ground under the 
 100 units above the camera, so the copies may have been out of view. A rerun on fresh flat ground (a `TerrainBlock` with no chunks) with the camera 15 units away
 also grew nothing visible, with grid counts 5/5 and 20/20 and with no `TerrainBlock`. All these
 runs used the box (−1,−1) to (1,1), which allows a single cell, and the flat block had no
-heights for the rays to hit; a run with a wide box over streamed terrain is next. **[lab]**
+heights for the rays to hit; with a wide box over streamed terrain, cover grows. **[lab]**
+
+**Cover grows** on the real 5.12 client (GDI renderer) under these conditions: a
+`DynamicShapeReplicator` over streamed hilly terrain, with box (−256,−256) to (256,256), radius 4
+cells, 5 objects per cell, `labcube.3ds` at scale 3, slope 90 and all allow flags on. The client
+drew a dense carpet of cube copies, each scaled and randomly turned, sitting on the terrain and
+following its slopes around the player (about 19% of the frame changed against the same scene
+without the replicator). This confirms the layout above, and that the earlier misses came from
+the one-cell box and the missing ground. **[lab]** With 20 objects per cell the
+covered area grew only a little, since at scale 3 the copies from 5 per cell already nearly
+fill the near cells. With `allowonterrain` off and `allowonstatics` on, nothing was placed on
+the bare terrain. **[lab]**
