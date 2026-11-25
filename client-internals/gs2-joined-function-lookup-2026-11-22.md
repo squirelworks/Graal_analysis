@@ -45,3 +45,30 @@ Thus joined-program functions are reachable through this selected plain-name ord
 For these three selected inputs, joined functions participate in ordinary-call lookup, beyond event masks and top-level instruction walking. The earlier current-script-only observation was incomplete for the separately traced older program lookup, as well as insufficient to describe the later receiver-based paths. This correction stays with the selected inputs, not every executable carrying those version labels. **[bin][inf]**
 
 This does not establish authenticated behavior for every version, all join/update modes, arbitrary cyclic join graphs, recursion limits, collisions, custom receivers, host/native fallbacks or actual runtime delivery. It supplies no compiler or VM implementation port. The broader cross-build question remains partial. **[bin][inf]**
+
+## Collisions and join modes on the focus builds (G090, 2026-11-25)
+
+Static read of the stock 4.20r8, 5.00r7, 5.12 and Windows 6.03r7 engines; nothing run. **[bin]** unless marked.
+
+**Inputs.** The stock 5.00r7 engine read here is very likely the same file as the "archive-labelled backup" above: every retained backup copy is byte-identical to it, and the findings above all match. No other 5.00r7 engine was found to compare against. **[inf]**
+
+### Same function name in the object and a joined class
+
+| Call kind | Who runs | Builds |
+| --- | --- | --- |
+| Ordinary call | one function: the object's own first, then the first-joined class (including that class's own joins, depth first), then the next class | 4.20r8, 5.00r7, 5.12, 6.03r7 |
+| Ordinary event (`timeout`, `playerchats`, …) | **one** handler, chosen in the same order | read directly on 4.20r8, 5.00r7 and Windows 6.03r7; 5.12 inferred from its identical join code |
+| `onCreated`, `onInitialized` (and `onInitFrame` from 5.00r7) | **every** matching handler, once each: the object's own first, then the classes in join order | same |
+
+4.20r8 and 5.00r7 repeat the created/initialized pass until nothing new turns up, so a class joined inside `onCreated` also gets its own `onCreated` in the same pass. In 4.20r8, two functions in one script whose names differ only in letter case collapse to one, and the later definition wins (names are stored lower-cased; see [G087](gs2-vm-quirks-by-version.md#focus-build-matrix-g087-2026-11-25)).
+
+### Join modes
+
+| Build | Ways to join | Effect |
+| --- | --- | --- |
+| 4.20r8 | `join()`, a "simple" join, and replacing the whole class list | Adds the class at once; a repeat join is ignored. Functions are looked up fresh on each call, so an already-loaded class is callable immediately. An unknown class is joined as an empty placeholder, requested from the server, and its functions appear when it arrives. Leaving takes effect at the next event dispatch. No permission check. |
+| 5.00r7, 5.12 | `join()` with a "simple" flag (class-list joins use the simple form) | Both modes create the placeholder (requesting it if needed) and ignore repeats. A permission check requires the class's level not to exceed the object's; on failure nothing is joined and nothing is logged. Only a non-simple (script) join updates the object's stored function links at once; a simple join is reachable through the normal lookup but its links wait for a later update. 5.12's join code is instruction-for-instruction the same as 5.00r7's. |
+| 6.03r7 | as 5.x | As 5.x, and `join()` also requires the caller's level to be at least the target object's. A failed check logs `Object doesn't have rights to join class …`. Deferred leaving and the class-list path were not traced. |
+
+Still open: runtime confirmation, cyclic join graphs and recursion limits, and 6.03r7's leave/class-list paths.
+

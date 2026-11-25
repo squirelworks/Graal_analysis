@@ -361,7 +361,7 @@ in those notes:
 - [ ] ~~Full spelling × client matrix~~ [static matrix for the four focus builds](#focus-build-matrix-g087-2026-11-25) done 2026-11-25: case-insensitive everywhere, with two 4.20r8 prefix exceptions. Still open: runtime acceptance. Earlier: [Selected static event-handler comparisons](gs2-event-handler-case-2026-11-22.md) are followed; Linux ASCII matching is bound, while Windows helper state and other builds remain qualified.
 - [ ] Full semantics of 48, 49, 54; `waitfor` timeout-expiry return value on 4.20r8.
 - [ ] 4.04r2 / mid-5.x / 6.00r2 clock step confirmation where still partial; Unity 7.x VM.
-- [ ] Cross-build/runtime joined-class function visibility; [three selected ordinary-call lookup chains](gs2-joined-function-lookup-2026-11-22.md) are statically followed, with authenticated identity, all join modes and collision cases still open.
+- [ ] Cross-build/runtime joined-class function visibility; [three selected ordinary-call lookup chains](gs2-joined-function-lookup-2026-11-22.md) are statically followed, and [collisions and join modes](gs2-joined-function-lookup-2026-11-22.md#collisions-and-join-modes-on-the-focus-builds-g090-2026-11-25) are read on the four focus builds (2026-11-25). Runtime confirmation, cyclic joins and 6.03r7 leave/class-list paths remain open.
 - [ ] Further world-scan aggregates → refresh §10 only.
 
 Also tracked with grades in [gs2-vm-loader-diff.md](gs2-vm-loader-diff.md#still-open)
