@@ -159,6 +159,19 @@ MissionStartPhase1Ack fix holds.
 
 - The 4.04r2 script `player` x/y now follows the walk (settling at 0, 15.44),
   matching the server's relay.
-- 5.12 draws the 4.04r2 player moving but leaves a trail of copies in the
-  band between the sky and the ground. A redraw or ghost-clear gap, still
-  open.
+- 5.12 draws the 4.04r2 player moving but leaves a dotted orange trail in
+  the black band between the sky and the ground.
+
+**M1 (c) clean rerun (gserver #154 @ ca00d9a6, no edits during the run),
+`graal3dworld.m1c`, skyoptions 1 1 1:** the trail is a 5.12 frame-clearing
+smear, not stale ghosts. The 4.04r2 links as protocol 19 at 2,-6,1; each
+side gets exactly **one** ghost create for the other; 305 relay lines carry
+the 4.04r2 walk to the 5.12 (ending near 2,13.5); on close the server logs
+"left: its object goes from 1 other 3D clients" and sends **one** ghost-out
+kill to the 5.12. The trail persists ~40 s after the kill, while the
+4.04r2's cube itself is gone — so with exactly one create and one kill it
+cannot be stale server ghosts. It sits only in the black horizon band where
+nothing draws (the sky faces don't cover that band), i.e. 5.12 is not
+clearing that part of the frame — a smear, unchanged since 944a5bb2. A
+server-side mitigation (not a client fix) would be a world that covers the
+horizon band: a larger ground, or a sky whose lower half is filled.
