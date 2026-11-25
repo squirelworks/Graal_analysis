@@ -4,6 +4,7 @@ Every research note in this repository, listed by topic and roughly in the order
 
 When you add a note, add a line for it here in the same pull request.
 
+- [3D capabilities by build (3.04 to 5.12)](version-profiles/three-d.md) — per-build Torque 3D capabilities for Seihai's version profile ([`three-d.toml`](version-profiles/three-d.toml)): protocol and framing, game layer and control objects, `.ter` vs streamed terrain and its cache, TorqueScript, Terraformer, format bounds, texture naming, download filter; each field tagged bin, lab, cap or assumed; index.
 - [Windows 5.12 selected own-prop canaries under Wine](protocol/probe-wine512-widths-2026-11-21.md) — 100 selected payloads across widths and nine nonzero follow-ups, 96 landed and four lost; case 76 is a threshold result rather than an exact reset match, and wider width semantics remain open.
 
 - [2.14–2.16 documentary feature attribution](client-internals/214-216-feature-evidence.md) — release-note feature families, documentary token associations and the reference server's large-file gate; revision and native-client limits remain explicit.
