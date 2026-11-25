@@ -1043,6 +1043,16 @@ The rules below give how a Linux 4.20r6 client (3D-equal to Windows 4.20r8) name
 | The shape always draws; a missing or unapplied texture leaves it white | [lab] (torque/3d-shape-textures-420r6-2026-11-25.md#does-the-shape-draw-and-does-the-texture-apply) |
 | A texture downloaded during the session is not applied, because the material loader looks for `<name>.png` and the download has no extension; the same material drew textured when `labtex.png` was already on disk. So the texture must be on disk as `<name>.png` before the shape binds: shipped, in a mounted zip, or kept from an earlier session. Whether a later re-bind picks up the download was not seen in 55 s | [lab] (torque/3d-shape-textures-420r6-2026-11-25.md#does-the-shape-draw-and-does-the-texture-apply) |
 
+The rules below give which image files the same Linux 4.20r6 client decodes for shape and sky textures, each pre-placed on disk with its real extension (T3D-077) [lab] (torque/3d-texture-formats-420r6-2026-11-25.md#formats-and-bit-depths-lab).
+
+| Rule | Source |
+| --- | --- |
+| PNG (8-bit indexed, 24-bit, 32-bit), JPEG, GIF, BMP (24-bit) and TGA (24 and 32-bit) all draw with correct colours and orientation | [lab] (torque/3d-texture-formats-420r6-2026-11-25.md#formats-and-bit-depths-lab) |
+| DDS (BC1/DXT1) is not decoded: the shape stays white with no error, though the GL driver offers S3TC | [lab] (torque/3d-texture-formats-420r6-2026-11-25.md#formats-and-bit-depths-lab) |
+| 100 × 100, 32 × 256, 1 × 1 and 2048 × 2048 PNGs all draw; no size ceiling was found | [lab] (torque/3d-texture-formats-420r6-2026-11-25.md#sizes-lab-png-24-base) |
+| The sky box uses the same loader: pre-placed PNG faces drew; six JPEG faces delivered by the server were downloaded but not applied, as with shape textures | [lab] (torque/3d-texture-formats-420r6-2026-11-25.md#sky-textures) |
+| This differs from 5.12, which drew BMP and TGA white (→ §8.5.11) | [lab] (torque/3d-texture-formats-420r6-2026-11-25.md#formats-and-bit-depths-lab); [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#texture-formats-t3d-032) |
+
 The rules below give how the 3D side mounts archives of content (T3D-012) [bin][lab] (torque/3d-archives-404r2-512-2026-11-25.md).
 
 | Rule | Source |
