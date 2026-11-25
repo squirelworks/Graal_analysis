@@ -54,5 +54,46 @@ This matches the probe-proxy lab, where the real 5.00r7 ran 130 canary cases thr
 ## Open
 
 - [x] ~~Static read of Windows 5.00r7 frame codec (short zlib/bz2, len not multiple of 4), both directions.~~ Round down, both directions (G252, [above](#settled-for-windows-500r7-g3d22067)).
-- [ ] Optional: publish one 5.12 capture snippet that contains such a short compressed frame so Claim B can be retired in E#2 with a cited decode.
+- [x] ~~Optional: publish one 5.12 capture snippet that contains such a short compressed frame so Claim B can be retired in E#2 with a cited decode.~~ Done (G253, [below](#a-short-compressed-512-frame-under-both-rules-g253-2026-11-25)).
 - [x] ~~Confirm whether any non-5.12 Windows 5.x build shares 5.12’s round-down (none claimed today).~~ 5.00r7 does (G254, [above](#settled-for-windows-500r7-g3d22067)). 5.24r3 and later round up.
+
+## A short compressed 5.12 frame under both rules (G253, 2026-11-25)
+
+Windows 5.12 (packed `Graal.exe`) under Wine in the loopback-only lab VM, behind
+the probe proxy, which deciphers zlib and bzip2 frames with round-down and raw
+frames with round-up. A lab-only switch logged the iterator state, the key and
+the raw bytes of each short compressed frame. Rows are in `probe-results.tsv`
+under `raw512-a` and `raw512-b`. **[lab]**
+
+**Normal play does not produce a discriminating frame.** The client compresses
+only bodies of 48 bytes or more, and ordinary traffic compresses to about 50
+bytes or more: in a 75-second baddy session (`raw512-a`) the smallest of 385
+client zlib frames had L = 51, and the server's five compressed frames had L ≥ 47.
+This is why the ten earlier captures (Claim B) decoded with round-up.
+
+**A repetitive chat does.** A GS2 NPC set the player's chat to 44, 45, … 99 × `a`
+every 0.7 s (`raw512-b`). Each chat packet compresses to 14 or 15 bytes: 64 of
+the 66 client zlib frames had L < 16 and L % 4 ≠ 0. All 64 inflate under
+round-down and none under round-up. The proxy reported no decode error for any
+frame of the session in either direction, and each short frame's state after
+round-down equals the logged state before the next client frame.
+
+One of them, client to server, type 4, L = 15:
+
+```
+iterator before da556298 (hex), key 64
+raw (len, type, body):  0010 04 40d112cda92bf370884aaabe2f1151
+round-down, 3 steps:    789c53d2f1492401700100a42f1151
+  -> inflates to 22 2c 4c + 44 x 61 + 0a: PLI 2 (player props), prop 12 (chat), 44 x "a"
+  -> iterator after 1aaa4bf8 (hex)
+round-up, 4 steps:      789c53d2f1492401700100a4374d6e
+  -> zlib error (incorrect data check: the Adler-32 trailer is XORed)
+```
+
+Each step is `it = it * 0x08088405 + key`, then the next four body bytes are
+XORed with `it` little-endian. The two rules agree on the first 12 bytes and
+differ only on the partial last group. The next client frame (L = 15, raw
+`0010 04 60c06ca649615d94a8be2cce6711b3`) inflates to the 45 × `a` chat from
+state `1aaa4bf8` (hex) and fails from the round-up state, so a round-up decoder
+loses the stream at the first such frame. The decode above was re-checked
+offline from the quoted bytes.
