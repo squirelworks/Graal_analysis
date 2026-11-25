@@ -614,6 +614,19 @@ Real 5.12 and 4.04r2 clients were fed one seeded mutation per link from the proj
 | wrong protocol number in the connect accept | link dropped within about 70 ms, black screen, no message | the same | [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md#crashes-and-bad-behaviour) |
 | event classes dropped or renamed in the class table; unknown event class; double ghost delete; a different ghost-index width; control object set to a `Sky` or `Sun` ghost; control object deleted | survived, some logging "Invalid event received (unknown event type)" or "(wrong direction)" | survived where run | [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md#survived-sometimes-with-a-console-line) |
 
+### 10.3.13 When UDP or TCP drops (Linux 4.20r6)
+
+A Linux 4.20r6 client (3D-equal to Windows 4.20r8, → §10.1.12) was run on loopback against the project's own 3D lab server, through a relay that could drop UDP or close TCP; each change was made at 40 s, after the world was up [lab] (torque/3d-link-drop-420r6-2026-11-25.md#lab-lab).
+
+| Rule | Source |
+| --- | --- |
+| Every 4500 ms without a sent ping or a received packet, the client sends a ping; after 8 unanswered pings it times the connection out, so a silent server is dropped about 40.5 s after its last packet | [bin] (torque/3d-link-drop-420r6-2026-11-25.md#static-the-ping-and-timeout-rule-bin) |
+| A received packet resets the ping count | [inf] (torque/3d-link-drop-420r6-2026-11-25.md#static-the-ping-and-timeout-rule-bin) |
+| UDP lost for 10 s with TCP kept: nothing visible or logged, and the link healed silently when UDP returned, with no new connect | [lab] (torque/3d-link-drop-420r6-2026-11-25.md#lab-lab) |
+| UDP lost for good: 8 pings 4.51 s apart, updates stop after 30 unacknowledged, timeout 40.6 s after the last server packet; the client sends a 7-byte disconnect, closes its own TCP to the gserver and returns to the login screen ("The 3D server connection has timed out") | [lab] (torque/3d-link-drop-420r6-2026-11-25.md#lab-lab) |
+| Both TCP legs closed: the server sent a UDP disconnect within 1 ms and the client returned to login ("The Graal3D server has dropped the connection: …"); only the client's TCP leg closed: the client sent a UDP disconnect within about 10 ms and returned to login | [lab] (torque/3d-link-drop-420r6-2026-11-25.md#lab-lab) |
+| No run crashed the client and none made it reconnect on its own; the 3D link never outlives the TCP link | [lab] (torque/3d-link-drop-420r6-2026-11-25.md#for-server-work) |
+
 ## 10.4 DSO v33
 
 Graal 3.x keeps menus, options, key binds, message boxes and the 3D mission-loading flow in compiled TorqueScript; from 4.x on no `.dso` files ship [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts).

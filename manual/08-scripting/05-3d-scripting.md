@@ -282,6 +282,7 @@ A 3D script runs inside a session that the server list and the 3D server set up.
 | A `RemoteCommandEvent` one bit shorter than its declared length made 5.12 run a garbled remote command and then crash, so a server's event lengths must be exact; 4.04r2 crashes on an update to a ghost index it never created (→ §10.3.12) | [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md#crashes-and-bad-behaviour) |
 | 3.153 asks for `.dts` shapes and textures by bare name and for sky textures as `.gif`, never `.png` | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153) |
 | 5.12 asks the TCP connection for any missing 3D resource except `.dso`, `.cs` and `.ter` | [bin] (torque/script-and-terrain-tools-by-build.md#does-the-client-take-and-run-torque-files) |
+| A 3D session ends when its TCP link closes or UDP is silent for about 40 s, and the client goes back to the login screen without reconnecting; a shorter UDP gap heals silently (Linux 4.20r6, → §10.3.13) | [bin][lab] (torque/3d-link-drop-420r6-2026-11-25.md#for-server-work) |
 | Content can ship as a `.zip` (or keyed `.gpake`) anywhere under the client's data or user folder: shapes and textures load from it by bare name and are not asked from the server; a plain `.gpak` is ignored (→ §10.6) | [bin][lab] (torque/3d-archives-404r2-512-2026-11-25.md#answers) |
 
 The 3D file formats and the builds that read them are in → §10.6.
