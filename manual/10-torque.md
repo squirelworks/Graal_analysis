@@ -306,6 +306,22 @@ The game engine export inventory includes Torque GUI/math classes, Graal script/
 
 Header-date differences leave repack-versus-later-build lineage open; date the release independently before choosing either account. The RTTI counts still need a stock-Torque-versus-Graal class map, and shell forms/event handlers remain unread in this report. Embedded library/source-area names are leads for that work, not recovered implementations; detailed counts and source-area inventory stay in the source. [cap][inf] (client-internals/windows-404r2-components.md#notes-on-dating); (client-internals/windows-404r2-components.md#still-open)
 
+### 10.1.12 The 3D engine DLL as a whole (4.20r8, 5.00r7)
+
+5.12's engine is packed inside its exe, so the 4.20r8 and 5.00r7 `Graal3DEngine.dll` stand in for it. The rules give what the DLL exposes and how the client drives it [bin] (torque/3d-engine-static-reads-2026-11-25.md#the-engine-dll-as-a-whole-t3d-093-to-t3d-104-bin-420r8-500r7).
+
+| Rule | Source |
+| --- | --- |
+| 4.20r8 exports about 200 names, including the 76 `graal_set*` callback setters; 5.00r7 exports five: load, run, end, resize and toggle full screen | [bin] (torque/3d-engine-static-reads-2026-11-25.md#the-engine-dll-as-a-whole-t3d-093-to-t3d-104-bin-420r8-500r7) |
+| Both import most of their runtime from `GraalEngine.dll` (strings, file streams, the GS2 variable and object types, and in 5.x the maths types) | [bin] (torque/3d-engine-static-reads-2026-11-25.md#the-engine-dll-as-a-whole-t3d-093-to-t3d-104-bin-420r8-500r7) |
+| The 5.00r7 exe loads the DLL by name and resolves load, run and end; no version check between exe and DLL was found | [bin] (torque/3d-engine-static-reads-2026-11-25.md#the-engine-dll-as-a-whole-t3d-093-to-t3d-104-bin-420r8-500r7) |
+| In 5.x the 78 `graal_set*` names exist but are not exported, so the callbacks come in through the load entry point; against 4.20r8, 5.x adds ScreenCapture, ForceTextureTransparency, PushColorMatrix and PopColorMatrix, and drops MakeGraalScreenshot and DrawGraphicsStretched | [bin] (torque/3d-engine-static-reads-2026-11-25.md#the-engine-dll-as-a-whole-t3d-093-to-t3d-104-bin-420r8-500r7) |
+| Neither DLL carries a TGE version banner; neither can exec TorqueScript; 5.00r7 has no `SimDataBlockEvent`, so no datablocks | [bin] (torque/3d-engine-static-reads-2026-11-25.md#the-engine-dll-as-a-whole-t3d-093-to-t3d-104-bin-420r8-500r7) |
+| The engine logs to `console.log` in the client folder and saves terrain under `levels3d/terrain/` | [bin] (torque/3d-engine-static-reads-2026-11-25.md#the-engine-dll-as-a-whole-t3d-093-to-t3d-104-bin-420r8-500r7) |
+| It creates no threads and imports no DirectInput: it is single-threaded, ticked by the client, and gets input through the client's action names; it binds the `moveMap2D` move commands itself | [bin] (torque/3d-engine-static-reads-2026-11-25.md#the-engine-dll-as-a-whole-t3d-093-to-t3d-104-bin-420r8-500r7); [bin] (torque/3d-engine-static-reads-2026-11-25.md#input-t3d-057) |
+| The connect reject has separate texts for a protocol too old, a protocol too new and a wrong game; the held builds use protocols 19, 21 and 24 | [bin] (torque/3d-engine-static-reads-2026-11-25.md#protocol-check-t3d-072-t3d-080) |
+| `.3ds`, `.dts` and `.dif` loaders are registered; the DIF and ForceField readers check their version numbers; the terrain loader requires 256 × 256 24-bit textures | [bin] (torque/3d-engine-static-reads-2026-11-25.md#loaders-t3d-098) |
+
 ## 10.2 Join sequence
 
 Joining a 3D server runs the same routine in several builds. The steps below are in order [bin] (protocol/v3x-clients.md#listserver).
@@ -558,6 +574,20 @@ Protocol 19 has static layout evidence, earlier partial GPL-server runs and sepa
 | Settled | 3.153 picks a 3D server from the list tag: a server listed at HQ level 1 (tag `H `) is filed as Hosted and treated as 2D, and no UDP is sent; HQ level 4 (tag `3 `) works | [lab] (protocol/lab-appe-hostb-2026-11-20d.md#protocol-19-on-the-mac-3153-e506) |
 | Verdict | Verified for the camera path on 3.153 and 4.04r2; the best guess holds | [lab] (protocol/lab-appe-hostb-2026-11-20d.md#protocol-19-on-the-mac-3153-e506) |
 | Left over | Other players need the unread `Player` layouts and a real `.dts` player shape, which is not held; the drawn view under QEMU's software renderer was not checked | [inf] (torque/protocol19-server.md#open) |
+
+### 10.3.10 3.153 and 4.04r2 against a lab server
+
+Both older builds were run against the project's own gserver in 3D mode. The table gives what each did; the script side is in → §8.5.1 and → §8.5.7 [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md).
+
+| Item | 3.153 (Mac OS X PPC) | 4.04r2 | Source |
+| --- | --- | --- | --- |
+| acceptance | protocol 19, no special handling by the server | ran under Wine on Linux; crashes at start on the Windows 10 VM | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153); [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#404r2) |
+| mission phases | all three stock phases | all three: datablocks, ghosts, lighting | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153); [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#404r2) |
+| control object | stock `Player` | stock `Player`; the client sends Torque moves only, no position reports | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153); [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#404r2) |
+| requirements seen | crashes without a ghosted `Sky`; with one, holds the link about three minutes and quits cleanly | n/a | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153) |
+| what it requests | `.dts` shapes and textures by bare name; sky textures as `.gif`, never `.png`; never `.cs`, `.dso` or `.ter` | unmeasured | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153) |
+| terrain | a `TerrainBlock` makes it request chunks and `heights.info`; with no terrain on the server it then crashes | n/a | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153) |
+| what drew | nothing 3D; the screen stayed on the loading picture | only the sky gradient | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153); [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#404r2) |
 
 ## 10.4 DSO v33
 
@@ -818,10 +848,12 @@ The rules below give how heights, materials and stamps are decoded and computed 
 | A server answers the request with a `TerrainChunkEvent` for every chunk whose stamp differs from its own; a real 5.12 matched all 256 stamps on reconnect against a generated world, so none were resent | [bin][lab] (torque/terrain-512.md#3-terrainrequestupdatesevent-client--server); [lab] (torque/terrain-512.md#lab-results) |
 | Cache folder: the user folder, then `levels3d/heights/<server>/`, a space in the server name written `%032`; `heights.info` holds up to 32 texture names, one per line (a comma does not separate names); `heights<x>-<y>.dat` holds one re-encoded chunk, x and y in unpadded decimal | [bin][lab] (torque/terrain-512.md#4-the-cache-folder) |
 | Cached chunks go through the same decoder as received ones, so a server or a lab can pre-seed a client by shipping these files | [bin][lab] (torque/terrain-512.md#4-the-cache-folder); [lab] (torque/terrain-512.md#lab-results) |
-| Terrain textures are requested by bare name and cached as `levels3d/images/<name>`; they must be 256 × 256 at 24 bits, else "Terrain texture of bad format (must be 256x256x24)" and `default`; a missing one logs "Missing terrain texture" | [bin][lab] (torque/terrain-512.md#4-the-cache-folder) |
+| Terrain textures are requested by name and cached as `levels3d/images/<name>`; they must be 256 × 256 at 24 bits, else "Terrain texture of bad format (must be 256x256x24)" and `default`; a missing one logs "Missing terrain texture" | [bin][lab] (torque/terrain-512.md#4-the-cache-folder) |
+| Texture fetching is one visit late: the first visit fetches only `heights.info`; the second logs "Missing terrain texture" per name, then downloads each and saves it under exactly the listed name; list names with their extension, since extensionless cached textures failed to load on later visits in another lab | [lab] (torque/terrain-512.md#4-the-cache-folder) |
+| 3.153 streams too: a ghosted `TerrainBlock` makes it send `TerrainRequestUpdatesEvent` and ask for `heights.info` | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153) |
 | The BigData `setmaterials` message sets the list with comma-separated names (it is not split at newlines) and the client persists it as a 32-line CRLF `heights.info` in the cache folder | [lab] (torque/terrain-512.md#4-the-cache-folder) |
 | 4.04r2 and 3.153 keep stock Torque's `.ter` path: a block whose `terrainFile` names a `.ter` that loads logs "Loaded terrain from terrain file." and asks for no chunks; the network update never sets `terrainFile`, so a ghosted block always streams; 5.12 only streams | [bin][inf] (torque/terrain-512.md#8-older-builds-the-ter-file-path) |
-| 4.20r8 logs the chunk line, requests chunks and saves the first ones as 5.12 does, then crashes; it crashes with the `TerrainBlock` alone too; the cause is open | [lab] (torque/terrain-512.md#lab-results) |
+| 4.20r8 logs the chunk line, requests chunks and saves the first ones as 5.12 does; it crashed in runs with `GameObject`s at ground level and a low spawn, and ran 110 s with no objects and a high spawn; a `WaterBlock` alone is fine; collision versus shadow is not yet separated | [lab] (torque/terrain-512.md#lab-results) |
 
 ### 10.5.5 `WaterBlock` update (5.12)
 
