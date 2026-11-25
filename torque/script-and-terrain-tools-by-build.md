@@ -37,8 +37,9 @@ narrows board rows T3D-006, T3D-007, T3D-008, T3D-019 and T3D-041
 - **5.12** has no compiler, no `exec`, `eval` or `compile`, and no `schedule`. Its `.cs` literal is
   one entry of a list of file extensions that also holds `.txt`, `.nw`, `.gani`, `.gmap`, `.png` and
   others, next to the folder list `levels/`, `levels3d/`, `translations/`, `offline/`,
-  `tileobjects/`, `updatepackages/` and `scriptfiles/`. That reads like a script file-access allow
-  list, not a TorqueScript loader (T3D-013). **[bin][inf]**
+  `tileobjects/`, `updatepackages/` and `scriptfiles/`. It is the file-access gate of the GS2
+  file functions, not a TorqueScript loader (T3D-013, answered in
+  [3d-formats-renderer-camera-by-build.md](3d-formats-renderer-camera-by-build.md)). **[bin]**
 
 **What a 5.12 server can make the client download.** When a resource the 3D side needs is missing,
 5.12 normalises the name, takes its extension and asks the Graal TCP connection for the file unless
@@ -46,6 +47,30 @@ the extension is `.dso`, `.cs` or `.ter`: the same three exclusions as 4.04r2
 ([404r2-resource-filter.md](404r2-resource-filter.md)). Every other extension (shapes, interiors,
 images, sounds, archives) is requested. 5.12 has no `.mis` literal either. **[bin]** (T3D-011,
 T3D-010 static side)
+
+**Does 3.153 run scripts a 3D server sends? (T3D-009)** 3.153 can run TorqueScript, so the question
+is whether a server can get new script into it. The static answer is no:
+
+- The resource-miss filter is the same as in the later builds. 3.153 asks the server for any missing
+  resource except `.dso`, `.cs` and `.ter`. **[bin]**
+- The download sorter files a pushed file by extension (`shapes`, `anis`, `interior`, `gpaks`,
+  `ganis`, under `levels/` or `levels3d/`). It has no rule that executes anything it stores. **[bin]**
+- Only the shipped scripts call `exec`. `main.cs` execs `main2D.cs`, and the shipped `main3D` script
+  execs its own fixed list: `defaults`, `clientprefs3D`, `message`, `actionMap`, `canvas`, the GUI
+  profiles, `playGui`, `loadingGui`, `missionDownload`, `missionDownload2`, `serverConnection`,
+  `centerPrint` and the `.gui` files. **[file]**
+- A server reaches client script only through Torque's `commandToClient`, which calls a
+  `clientCmd` function the client already defines. The shipped scripts define these:
+  - `clientCmdCenterPrint`, `clientCmdBottomPrint`, `clientCmdClearCenterPrint`,
+    `clientCmdClearBottomPrint` (print messages);
+  - `clientCmdChatMessage`, `clientCmdServerMessage` (chat);
+  - `clientCmdMissionStart`, `clientCmdMissionEnd`, `clientCmdSyncClock` (mission and clock);
+  - `clientCmdMissionStartPhase1` to `clientCmdMissionStartPhase3` (mission download).
+
+  None of the script files that define them contains `exec` or `eval`. **[file][inf]**
+
+So a 3.153 server drives the client only through those handlers and the ghosted objects.
+Confirming this in a session (T3D-009 lab side) needs the Tiger VM.
 
 So the answer for the 4.x and 5.x clients is no: they keep Torque's engine, file readers and
 network layer, but GS2 replaced TorqueScript, and the TorqueScript compiler is gone. Only 3.153 (and
@@ -94,4 +119,5 @@ run of the original tool against `seihai-servertools gen terrain` is under way (
 - [ ] T3D-008: whether GS2 can call 4.04r2's registered console functions by name.
 - [ ] T3D-019 / T3D-050: create `Terraformer` and `TerrainEditor` from GS2; what `setTerrain` writes.
 - [ ] T3D-041: when 4.04r2 takes the local `.ter` path over the chunk path.
-- [ ] T3D-013: confirm the 5.12 extension list is GS2 file access.
+- [x] T3D-013: the 5.12 extension list is the GS2 file-access gate.
+- [ ] T3D-009 lab side: a 3.153 session on the Tiger VM that pushes a `.cs` and calls an unknown `clientCmd`.
