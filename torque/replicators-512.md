@@ -56,7 +56,7 @@ regrows its replications. **[bin]**
 - Setting `radius`, `mingridobjects`, `maxgridobjects`, `shapefiles` or `surfacetype` to a new
   value regrows the cover. **[bin]**
 - `shapefiles` is a comma-separated list of shape file names: the client splits it at each `,`
-  and keeps every non-empty part as one shape. **[bin]** Whether spaces around a comma are
+  and keeps each part as one shape name. **[bin]** Whether spaces around a comma are
   trimmed is not read. **[inf]**
 - The meanings follow the names: allowed surfaces, a slope limit (degrees **[inf]**), optional
   alignment to the terrain normal, a height offset, and per-object random scale and rotation
