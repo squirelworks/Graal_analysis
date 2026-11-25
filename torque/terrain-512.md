@@ -120,6 +120,26 @@ material with the largest alpha and sends that alpha divided by 16. **[bin]**
 **Holes** are bit 3 (value 8) of the square's flag byte, as in stock TGE (`Material::Empty`).
 **[bin][inf]**
 
+### Edge cases seen live
+
+All with the real 5.12 client; it stayed up through every case. **[lab]**
+
+- The event's stamp is ignored: a chunk sent with stamp `0xDEADBEEF` is saved with the client's
+  own stamp, and that is what the next request reports.
+- Any mode other than 2 (3, 127, 255 tested) behaves like "no hole flags": heights apply and the
+  chunk is saved as mode 2 with no holes.
+- A plain stream cut short reads the missing fields as zero: cut after the deltas gives the
+  heights with material list `[0]`; cut after the material ids gives a flat chunk at `h0`.
+- Bytes after the end of the chunk data are ignored; the saved chunk is the canonical one.
+- A zlib stream cut at n = 1023 bytes (short of its end) is accepted without an error: whatever
+  inflated is applied and the rest is zero.
+- The same chunk twice in a row: the second wins.
+- Heights are not clamped. All deltas +127 climb steadily (800 to 2705 in one chunk); all −127
+  wrap below 0 to the top of the 16-bit range. `h0` = 65535 is kept as 16383, because the stored
+  value is shifted up 2 bits into 16 bits, so only 14 bits of `h0` survive; later sums can still
+  pass 16383.
+- 256 chunk events in one burst were all saved (256 of 256, several runs).
+
 ## 3. `TerrainRequestUpdatesEvent` (client → server)
 
 Event class `TerrainRequestUpdatesEvent`. Payload: 256 raw 32-bit stamps, index y × 16 + x
@@ -162,6 +182,12 @@ during play with the `setmaterials` BigData text message ([udp-session.md](udp-s
 **[bin]** That message is **not** split at newlines: a text of `rock`, newline, `grass` was logged
 as `setting terrain materials to` the whole text and then reported missing as a single name.
 The `setmaterials` list is **comma**-separated: `t_a,t_b` set two materials and fetched both textures. So `heights.info` (one per line) and `setmaterials` (commas) use different separators. **[lab]**
+
+The client persists a `setmaterials` list: it writes `heights.info` in the cache folder as 32
+lines with CRLF endings, one per material slot, blank for unused slots, with control characters
+stripped from each name (so a name holding a newline becomes the two halves joined). It loads
+that file on the next connect. The `heights.info` fetched over TCP is cached separately under
+`levels3d/images/`. **[lab]**
 
 ## 5. `WaterBlock` (read beside the terrain)
 
@@ -281,6 +307,9 @@ logs are kept with the owner's lab material. **[lab]**
 
 | `Terraformer.loadGreyscale` with a 256 × 256 32-bit RGBA PNG | returns 1, no crash |
 | `Terraformer.loadGreyscale` with a 24-bit RGB PNG (256 × 256, 128 × 128) or an 8-bit grey PNG | client crashes (access violation in the 3D engine) |
+| Chunk edge cases (wrong stamp, modes 3/127/255, cut streams, trailing bytes, truncated zlib, duplicate chunk, ±127 deltas, `h0` 65535) | all accepted; results in §2 "Edge cases seen live" |
+| `setmaterials` then reconnect | list saved to the cache `heights.info` (32 CRLF lines) and reloaded |
+| 5.00r7 | not run: its licence points the login at a fixed LAN address the isolated VM cannot answer; its terrain strings match 5.12 (static) |
 | Script moves a `GameObject` over terrain; `getdropz` sampled | no clamping (z stays as set); `getdropz` values are multiples of 1/8 |
 
 No chunk or ghost case crashed the client; only the `loadGreyscale` cases above did. Corrections this run made to the static read: `heights.info` is
