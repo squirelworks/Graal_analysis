@@ -598,6 +598,17 @@ Real clients were paired against the project's own gserver while its relay of ot
 | 5.24r3 2D and 5.12 3D, one level | the 2D client's `players` count was 2 but the 3D entry was empty and never drew; the 3D client never saw the 2D player (`players` 0, no ghost); 2D chat reached the 3D client as `onRemotePlayerChats` over TCP; 3D chat and flags never reached the 2D client; neither side got a leave event | [lab][cap] (torque/multi-client-3d-lab-2026-11-25.md#h1-a-2d-client-and-a-3d-client-in-one-level) |
 | two 5.12 3D clients | each got a `G3DPlayer_<other>` object within the same second of the other's join; chat was relayed but positions were not, so each kept the other at the shared spawn; `players` stayed 0 and no per-player events fired; no ghost delete on leave, and the ghost returned under the same index on reconnect | [lab][cap] (torque/multi-client-3d-lab-2026-11-25.md#s1-two-3d-clients-in-one-world) |
 
+### 10.3.12 Malformed server packets (network fuzz, tier 1)
+
+Real 5.12 and 4.04r2 clients were fed one seeded mutation per link from the project's own server: 27 runs on 5.12 and 9 on 4.04r2 under Wine; both baselines load cleanly [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md). The table gives each kind of mutation and what the clients did.
+
+| Mutation | 5.12 | 4.04r2 | Source |
+| --- | --- | --- | --- |
+| `RemoteCommandEvent` one bit shorter than its declared length | one seed ran a garbled remote command and then crashed in the 3D engine; the other seeds survived; the event length wrapper is trusted | survived where run | [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md#crashes-and-bad-behaviour) |
+| update to a ghost index never created | logs and drops the update (all three seeds) | crash (access violation) | [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md#crashes-and-bad-behaviour) |
+| wrong protocol number in the connect accept | link dropped within about 70 ms, black screen, no message | the same | [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md#crashes-and-bad-behaviour) |
+| event classes dropped or renamed in the class table; unknown event class; double ghost delete; a different ghost-index width; control object set to a `Sky` or `Sun` ghost; control object deleted | survived, some logging "Invalid event received (unknown event type)" or "(wrong direction)" | survived where run | [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md#survived-sometimes-with-a-console-line) |
+
 ## 10.4 DSO v33
 
 Graal 3.x keeps menus, options, key binds, message boxes and the 3D mission-loading flow in compiled TorqueScript; from 4.x on no `.dso` files ship [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts).
@@ -761,10 +772,10 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 | # | Dirty bits | Payload after the flag | Source |
 | ---: | --- | --- | --- |
 | 1 | `0x1` | string, the object's name | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
-| 2 | `0x2` or `0x200` | 3 × 32 bits (velocity, inferred) | [bin][inf] (torque/wire-by-build.md#the-512-gameobject-update) |
+| 2 | `0x2` or `0x200` | 3 × F32, the shape's scale about its origin (live 5.12; earlier read as velocity) | [bin][lab] (torque/wire-by-build.md#the-512-gameobject-update) |
 | 3 | `0x8` | string, a setting of the movement object | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
 | 4 | `0x10` | string, also passed to the movement object | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
-| 5 | `0x20` | transform: position, rotation, then 32 bits; the packing is unmeasured | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
+| 5 | `0x20` | transform: position 3 × F32, then rotation as axis 3 × F32 and angle in radians F32 (Torque's axis-angle write); no scale | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
 | 6 | `0x80` | string that creates or replaces the shape object (`shape`, inferred) | [bin][inf] (torque/wire-by-build.md#the-512-gameobject-update) |
 | 7 | `0x40`, with a shape object | the shape object's own data | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
 | 8 | any of `0xF00`, with a movement object | int14 bit length, then the movement object's data | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
@@ -885,6 +896,20 @@ Unlike `TerrainBlock`, only the name is guarded and every update carries the who
 | 12 | ignore terrain | raw 8 | [bin] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain) |
 
 Live on 5.12 the surface texture was fetched over TCP and a large surface drawn [lab] (torque/terrain-512.md#lab-results).
+
+### 10.5.6 Lighting, sky and view (5.12, live)
+
+These runs used the real 5.12 on a GLSL-capable driver (Mesa llvmpipe) with a lighting probe and a sky grid [lab][cap] (torque/live-512-lighting-and-sky-2026-11-25.md).
+
+| Rule | Source |
+| --- | --- |
+| On a `.3ds` shape the `Sun`'s direction, colour and ambient have no effect: with a `Sun` each face draws at material × texture, times 1.0 for faces whose world-space normal points −y, −x or up and 0.85 for +x or +y; with no `Sun` every face is exactly one quarter and the background 0. So the `Sun` is an on/off switch for full brightness, and the shading comes from a fixed built-in light | [lab][cap] (torque/live-512-lighting-and-sky-2026-11-25.md#lighting-on-3ds-shapes-t3d-047-t3d-052) |
+| The `Sun` shades nothing on a `.dts`, a `.dif` or streamed terrain either; with no `Sun` the `.dts` is not drawn or black, the `.dif` is entirely black, and terrain is unchanged | [lab][cap] (torque/live-512-lighting-and-sky-2026-11-25.md#lighting-on-3ds-shapes-t3d-047-t3d-052) |
+| A positive rotation about +z turns a shape clockwise seen from above (at +90 degrees the +x face looks toward −y), the same sense as the camera | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#shape-rotation) |
+| Sky texture entries: 2 is ahead (+y), 1 right, 0 behind, 3 left, 4 up; side faces are upright and mirrored left to right; entry 5 (bottom) is not drawn with the default options; one face spans the full screen width | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#sky-geometry-and-field-of-view-t3d-046-t3d-055); [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#sky-t3d-046-partial) |
+| The default horizontal field of view is 90 degrees (measured 89.4) | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#sky-geometry-and-field-of-view-t3d-046-t3d-055) |
+| Below the horizon the sky shows the fog colour on Mesa; on a GDI OpenGL 1.1 driver it was black with a fog-coloured band | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#sky-geometry-and-field-of-view-t3d-046-t3d-055); [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#sky-t3d-046-partial) |
+| The sky's visible-distance field did not clip or fog anything on the client in the runs so far | [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#sky-t3d-046-partial) |
 
 ## 10.6 3D formats
 
