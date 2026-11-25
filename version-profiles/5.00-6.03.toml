@@ -9,6 +9,10 @@
 #   cap  = seen on the wire in the 2026-10-29/30 lab runs
 #   inf  = inferred
 # Field names follow 3.04-3.153.toml where they mean the same thing.
+#
+# plo_known includes 100 (RAWDATA) and 108, which every build tests before its
+# server-to-client switch (read on 5.00r7, 5.12 and 6.03r7 for G262, 2026-11-25;
+# the rows between are bracketed by those reads). Earlier lists held switch cases only.
 
 schema = 1
 
@@ -33,8 +37,8 @@ guest_login = true                     # cap: every Windows build logs in as gue
 label = "5.00r7"
 token = "G3D22067"
 token_src = "bin cap"
-plo_known = "0-25, 27-43, 45-49, 67-69, 74, 75, 82, 84, 101, 102, 104-107, 131-134, 140, 150, 151, 153-156, 165, 166, 168-176, 178-187, 189-191, 193-195, 197"
-plo_known_count = 100
+plo_known = "0-25, 27-43, 45-49, 67-69, 74, 75, 82, 84, 100-102, 104-108, 131-134, 140, 150, 151, 153-156, 165, 166, 168-176, 178-187, 189-191, 193-195, 197"
+plo_known_count = 102
 plo_known_src = "bin"
 # Every client-to-server send site, read statically (2026-11-25); each uses a fixed id.
 pli_sent = "0-2, 4-24, 26-30, 32-38, 40, 41, 43-47, 50, 79-81, 92, 93, 96-98, 130, 152, 154-159, 161, 162"   # bin: every send site has a fixed id (protocol/ids-sent-512-status.md)
@@ -48,8 +52,8 @@ gen5_round_down = true                 # bin: zlib/bz2 frames step len/4 rounded
 label = "5.12"
 token = "G3D14097"
 token_src = "bin cap"
-plo_known = "0-25, 27-43, 45-49, 67-69, 74, 75, 82, 84, 101, 102, 104-107, 131-134, 140, 150, 151, 153-156, 165, 166, 168-176, 178-187, 189-191, 193-195, 197"
-plo_known_count = 100
+plo_known = "0-25, 27-43, 45-49, 67-69, 74, 75, 82, 84, 100-102, 104-108, 131-134, 140, 150, 151, 153-156, 165, 166, 168-176, 178-187, 189-191, 193-195, 197"
+plo_known_count = 102
 plo_known_src = "bin"
 pli_sent = "0-2, 4-20, 22-24, 26-30, 32-38, 41, 43-48, 50, 79-81, 92, 93, 96-98, 130, 152, 154-159, 161, 162"   # bin: 5.00r7 minus 21 and 40, plus 48 (SHOOT2)
 pli_sent_src = "bin cap"
@@ -61,8 +65,8 @@ gen5_round_down = true                 # bin cap: zlib/bz2 frames step len/4 rou
 label = "5.24r4"
 token = "G3D15010"
 token_src = "bin cap"
-plo_known = "0-25, 27-43, 45-49, 67-69, 74, 82, 84, 101, 102, 104-107, 109, 131, 134, 140, 150, 151, 153-156, 165, 166, 168-170, 172-176, 178-187, 189-191, 194, 195, 197, 198"
-plo_known_count = 97
+plo_known = "0-25, 27-43, 45-49, 67-69, 74, 82, 84, 100-102, 104-109, 131, 134, 140, 150, 151, 153-156, 165, 166, 168-170, 172-176, 178-187, 189-191, 194, 195, 197, 198"
+plo_known_count = 99
 plo_known_src = "bin"
 pli_sent = "1, 2, 11, 23, 24, 34, 37, 38, 44, 47, 157, 158"   # cap only
 pli_sent_src = "cap"
@@ -74,8 +78,8 @@ chat = "font=Arial in its config"
 label = "5.30r3"
 token = "G3D26090"
 token_src = "bin cap"
-plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 101, 102, 104-107, 109, 131, 134, 140, 150, 151, 153-156, 165, 166, 168-170, 172-176, 178-180, 182-187, 189-191, 194, 195, 197, 198"
-plo_known_count = 95
+plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 100-102, 104-109, 131, 134, 140, 150, 151, 153-156, 165, 166, 168-170, 172-176, 178-180, 182-187, 189-191, 194, 195, 197, 198"
+plo_known_count = 97
 plo_known_src = "bin"
 pli_sent = "1, 11, 37, 38"             # cap only (push, lift, throw, sword)
 pli_sent_src = "cap"
@@ -87,8 +91,8 @@ expires = "runs only with the clock set back"
 label = "5.31r4"
 token = "G3D26090"
 token_src = "bin cap"
-plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 101, 102, 104-107, 109, 131, 134, 140, 150, 151, 153-156, 165, 166, 168-170, 172-176, 178-180, 182-187, 189-191, 194, 195, 197, 198"
-plo_known_count = 95
+plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 100-102, 104-109, 131, 134, 140, 150, 151, 153-156, 165, 166, 168-170, 172-176, 178-180, 182-187, 189-191, 194, 195, 197, 198"
+plo_known_count = 97
 plo_known_src = "bin"
 pli_sent = "2, 37"                     # cap only (walk)
 pli_sent_src = "cap"
@@ -101,8 +105,8 @@ login_mode_tiles = false               # cap: draws no tiles before the warp
 label = "6.00r2"
 token = "G3D26090"
 token_src = "bin cap"
-plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 101, 102, 104-107, 109, 131, 134, 140, 150, 151, 153-156, 166, 168, 170, 172-176, 178-180, 182-187, 189-191, 194, 195, 197, 198"
-plo_known_count = 93
+plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 100-102, 104-109, 131, 134, 140, 150, 151, 153-156, 166, 168, 170, 172-176, 178-180, 182-187, 189-191, 194, 195, 197, 198"
+plo_known_count = 95
 plo_known_src = "bin"
 # Not read (Themida). Linux 6.01r1, three months later, sends 6.03r7's set without 160.
 pli_sent = "0-20, 22-24, 26-30, 32-38, 41, 44-48, 50, 79, 92, 93, 96-98, 130, 152, 154-159, 161, 162"
@@ -117,8 +121,8 @@ label = "6.00r4"                       # Windows, product version 6.004, built t
 token = "G3D26090"                     # cap: same token as 6.00r2 (protocol/v5v6-windows-unpacked.md)
 token_src = "bin cap"
 # Same 93 ids as 6.00r2 (client-internals/engine-600r4.md, v5v6/6x-findings).
-plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 101, 102, 104-107, 109, 131, 134, 140, 150, 151, 153-156, 166, 168, 170, 172-176, 178-180, 182-187, 189-191, 194, 195, 197, 198"
-plo_known_count = 93
+plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 100-102, 104-109, 131, 134, 140, 150, 151, 153-156, 166, 168, 170, 172-176, 178-180, 182-187, 189-191, 194, 195, 197, 198"
+plo_known_count = 95
 plo_known_src = "bin"
 # Not read (Themida). Taken from 6.00r2, which takes Linux 6.01r1's.
 pli_sent = "0-20, 22-24, 26-30, 32-38, 41, 44-48, 50, 79, 92, 93, 96-98, 130, 152, 154-159, 161, 162"
@@ -143,8 +147,8 @@ label = "6.015"                        # sent by 6.00r7 and 6.01r5 (Windows)
 token = "G3D3007A"
 token_src = "cap"                      # Windows 6.007 and 6.015 first login frames; token association only
 inferred = true
-plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 101, 102, 104-107, 109, 131, 134, 140, 150, 151, 153-156, 166, 168, 170, 172-174, 176, 178-180, 182, 183, 185-187, 189-191, 194, 195, 197, 198"
-plo_known_count = 91
+plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 100-102, 104-109, 131, 134, 140, 150, 151, 153-156, 166, 168, 170, 172-174, 176, 178-180, 182, 183, 185-187, 189-191, 194, 195, 197, 198"
+plo_known_count = 93
 plo_known_src = "inf"                  # Linux 6.01r1
 pli_sent = "0-20, 22-24, 26-30, 32-38, 41, 44-48, 50, 79, 92, 93, 96-98, 130, 152, 154-159, 161, 162"
 pli_sent_src = "inf"                   # Linux 6.01r1
@@ -157,8 +161,8 @@ label = "6.034"                        # sent by 6.03r4 (Windows)
 token = "G3D2505C"
 token_src = "inf"                      # GServer-v2 allowedversions.txt and gs2lib only, never captured
 inferred = true
-plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 101, 102, 104-107, 109, 111, 131, 134, 140, 150, 151, 153-156, 166, 168, 170, 172-174, 176, 178-180, 182, 183, 185-187, 189-191, 194, 195, 197, 198"
-plo_known_count = 92
+plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 100-102, 104-109, 111, 131, 134, 140, 150, 151, 153-156, 166, 168, 170, 172-174, 176, 178-180, 182, 183, 185-187, 189-191, 194, 195, 197, 198"
+plo_known_count = 94
 plo_known_src = "inf"                  # Linux 6.03r7; whether 6.03r4 already has 111 is not known
 pli_sent = "0-20, 22-24, 26-30, 32-38, 41, 44-48, 50, 79, 92, 93, 96-98, 130, 152, 154-162"
 pli_sent_src = "inf"                   # Linux 6.03r7; whether 6.03r4 already sends 160 is not known
@@ -170,8 +174,8 @@ chat = "Tempus Sans ITC 24"            # inf: as 6.00r2 and 6.03r7
 label = "6.03r7"
 token = "G3D0311C"                     # the Linux 6.03r7 sends G3D0511C
 token_src = "bin cap"
-plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 101, 102, 104-107, 109, 111, 131, 134, 140, 150, 151, 153-156, 166, 168, 170, 172-174, 176, 178-180, 182, 183, 185-187, 189-191, 194, 195, 197, 198"
-plo_known_count = 92
+plo_known = "0-25, 27-40, 42, 43, 45-49, 67-69, 74, 82, 84, 100-102, 104-109, 111, 131, 134, 140, 150, 151, 153-156, 166, 168, 170, 172-174, 176, 178-180, 182, 183, 185-187, 189-191, 194, 195, 197, 198"
+plo_known_count = 94
 plo_known_src = "bin"
 pli_sent = "0-20, 22-24, 26-30, 32-38, 41, 44-48, 50, 79, 92, 93, 96-98, 130, 152, 154-162"   # Linux 6.03r7, same release
 pli_sent_src = "bin"

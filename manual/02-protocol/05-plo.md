@@ -50,10 +50,10 @@ Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive sw
 | 4.20r8 against 4.11 | | adds 196; so 107 and 108 arrived between March and September 2006, 196 between September 2006 and January 2007; the four prop switches have the same case sets in 4.03r3, 4.04r2, 4.11 and 4.20r8 | [bin] (protocol/v4x-windows-403r3-411.md#server-messages-the-client-handles) |
 | 4.04r2 (Mac) | 97 | the Mac 4.20r6 set without 107 and 108; one switch with bound 195, and 100 a case of it | [bin] (client-internals/mac-ppc-404-512/SUMMARY.md#plo-ids-handled-server--client) |
 | 4.20r6 (Mac) | 99 | the 4.20r8 set without 41 and 196 | [bin] (protocol/v4x-clients.md#server--client-ids); [bin] (client-internals/mac-ppc-404-512/SUMMARY.md#plo-ids-handled-server--client) |
-| 5.12 (Mac) | 101 | the Mac 4.20r6 set plus 140 and 197; against Windows 5.12 it lacks 41 and adds 100 and 108 | [bin] (client-internals/mac-ppc-404-512/SUMMARY.md#plo-ids-handled-server--client) |
-| 5.00r7 | 100 | 0–25, 27–43, 45–49, 67–69, 74, 75, 82, 84, 101, 102, 104–107, 131–134, 140, 150, 151, 153–156, 165, 166, 168–176, 178–187, 189–191, 193–195, 197 | [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
-| 6.01r1 | 91 | the 6.03r7 set without 111 | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
-| 6.03r7 | 92 | 0–25, 27–40, 42, 43, 45–49, 67–69, 74, 82, 84, 101, 102, 104–107, 109, 111, 131, 134, 140, 150, 151, 153–156, 166, 168, 170, 172–174, 176, 178–180, 182, 183, 185–187, 189–191, 194, 195, 197, 198 | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
+| 5.12 (Mac) | 101 | the Mac 4.20r6 set plus 140 and 197; against Windows 5.12 it lacks 41 | [bin] (client-internals/mac-ppc-404-512/SUMMARY.md#plo-ids-handled-server--client) |
+| 5.00r7 | 102 | 0–25, 27–43, 45–49, 67–69, 74, 75, 82, 84, 100–102, 104–108, 131–134, 140, 150, 151, 153–156, 165, 166, 168–176, 178–187, 189–191, 193–195, 197 | [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
+| 6.01r1 | 93 | the 6.03r7 set without 111 | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
+| 6.03r7 | 94 | 0–25, 27–40, 42, 43, 45–49, 67–69, 74, 82, 84, 100–102, 104–109, 111, 131, 134, 140, 150, 151, 153–156, 166, 168, 170, 172–174, 176, 178–180, 182, 183, 185–187, 189–191, 194, 195, 197, 198 | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
 
 The id table above shows which ids each build handles. The rules below explain its gaps and steps: ids nobody handles after a point, why one revision stands for its siblings, and what changed in particular builds [bin] (protocol/packet-ids.md#server--client-plo_).
 
@@ -68,7 +68,7 @@ The id table above shows which ids each build handles. The rules below explain i
 | 2.31 drops 44 (`HASNPCSERVER`); the 2.3 release notes say Classic switched to the NPC server | 2.31 | [bin][doc] (protocol/client-versions.md#server--client-ids-handled) |
 | 3.04 lacks 170, 177, 182 and 183, which 2.22 handles, and adds 84, 101 and 102 | 3.04 | [bin] (version-profiles/3.04-3.153.md#server--client-ids) |
 | 4.20r8 drops nothing against 3.153 and adds 13 ids | 4.20r8 | [bin] (protocol/v4x-clients.md#server--client-ids) |
-| 5.00r7's list does not include 100 | 5.00r7 | [bin] (protocol/v5x-clients.md#server--client-ids-500r7) |
+| 100 and 108 are tested before the packet switch, as in 4.11 and 4.20r8; earlier lists read from the switch alone left them out | 5.00r7, 5.12, 6.01r1, 6.03r7 | [bin] (protocol/v5x-clients.md#server--client-ids-500r7); [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
 | Against 5.00r7, 6.x drops 41, 75, 132, 133, 165, 169, 171, 175, 181, 184 and 193 and adds 109, 111 and 198 | 6.01r1, 6.03r7 | [bin] (protocol/v6x-clients.md#server--client-ids-601-603) |
 | A later client (5.07 and up, or 6.037, as the source note marks each id) ignores 26, 41, 44, 55, 56, 60, 78, 80, 81, 83, 132, 157, 159–164, 165, 167, 171, 175, 188 and 192 | 5.07, 6.037 | [srv] (protocol/packet-ids.md#server--client-plo_) |
 

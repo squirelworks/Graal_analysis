@@ -53,7 +53,7 @@ Other points:
 - **11** is confirmed in both, from the throw path. **[bin]**
 - **5** has two uses: the bomb-removal wrapper, and the login packet's type byte, sent by the connect routine before 37
   (language). **[bin]**
-- **162** is sent from the receive dispatcher's S→C 108 branch. 43, 45, 46, 79, 92, 96–98, 130 and 162 were not named from the
+- **162** is sent from the receive dispatcher's S→C 108 branch, which both builds test before the main switch, so 162 is reachable ([v5x-clients](v5x-clients.md#server--client-ids-500r7)). 43, 45, 46, 79, 92, 96–98, 130 and 162 were not named from the
   code here; their labels in the profile are the server's. **[bin][inf]**
 - The original 5.00r7 floor is fully reproduced; it had missed 0, 11, 20, 27, 30, 38, 40, 43, 45, 46 and 162. Every id of the
   5.12 capture sample (`1, 2, 11, 23, 24, 34, 37, 38, 44, 47, 157`) is in the 5.12 set. **[bin][cap]**

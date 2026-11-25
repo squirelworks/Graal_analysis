@@ -69,7 +69,9 @@ The 5.00r7 folder had been used by a player and later updated by the auto-update
 
 100 ids are handled: 0–25, 27–43, 45–49, 67, 68, 69, 74, 75, 82, 84, 101, 102, 104–107, 131–134, 140, 150, 151, 153–156, 165, 166, 168–176, 178–187, 189, 190, 191, 193, 194, 195, 197. **[bin]**
 
-Compared with Mac 3.153 (`v3x-clients.md`), 5.00r7 drops 100 and adds the following:
+**Before the switch:** 100 (`PLO_RAWDATA`) and 108 (ping, answered with 162) are tested before the main switch, as in 4.20r8 and 6.x; the list above was read from the switch alone, so 5.00r7 handles 102 ids. The same holds for 5.12 (G262 read, 2026-11-25, `large-file-thresholds-focus.md`). **[bin]**
+
+Compared with Mac 3.153 (`v3x-clients.md`), 5.00r7's switch drops 100 (now tested before it) and adds the following:
 
 | Id | What the handler does |
 |---|---|
