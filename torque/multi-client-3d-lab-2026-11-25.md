@@ -84,12 +84,17 @@ After the gserver fixes, the same pairs were re-run with the trace on.
 Clients: 5.12 (3D) plus 5.12 / 5.24r3 (2D), each in its own lab Windows 10
 VM clone; server on loopback.
 
-- **(a) Reconnect spawn (T3D-076).** A spawns at 30,-26,1. B's first join
-  lands at 32,-26,1 (the +2 offset). B then leaves and reconnects while A is
-  still in, and lands at 30,-26,1 — on A's point, *without* the +2 offset.
-  So the spawn offset is applied on a first join but not on a reconnect.
-  Whether a reconnect should also get the offset is a gserver design call
-  (left to the gserver thread), not a client fact.
+- **(a) Reconnect spawn (T3D-076) — correct, not a bug.** A spawns at
+  30,-26,1. B's first join lands at 32,-26,1 (the +2 offset, because A still
+  held the base point). B then leaves and reconnects while A is still in, and
+  lands at 30,-26,1 — the base point, with no offset. The trace (S1 rerun,
+  `g3dtrace.tsv`) shows why this is correct, not a missing offset: by the
+  time B reconnected, A's server-side object had walked ~4 units off the base
+  (A's last relay before the reconnect reads `at=30,-22,1`), so the base
+  point was free and `spawnPosition()` handed it to B. A never drew on top of
+  B. The offset is only applied to avoid a point within ~1 unit of a linked
+  player's *current* object; a vacated base point is reused. Both TCP sides
+  are in `onlinestartlocal.nw`.
 - **(b) 2D sees a 3D player (T3D-115, T3D-073) — PASS.** With stock
   head/body/sword/shield ganis in the world, the 5.24r3 2D client gets the
   3D player's full look in one players-props packet, then position updates
