@@ -302,7 +302,7 @@ the same rows as a task list. Read the source line before you start.
 | G293 | lab | Whether the extra flag on the 2.31 gmap lookup changes anything a player can see. | `protocol/plo-156-setactivelevel-231.md` line 90 | free |
 | G294 | lab | Whether 24 with an unchanged image name stops before the level-list removal (needs the raw comparison or a lab run). | `protocol/plo-24-29-30-45-205r2.md` line 60 | free |
 | G304 | lab | The value waitfor gives when its time runs out. The three cases did not settle it. | `protocol/script-fuzz-2026-11-19.md` line 221 | free |
-| G307 | lab | Loopback weapon fixture on 5.00r7 and 5.12: which ask/body ids fire for a GS2 weapon. | `protocol/scripted-weapons-5x-status.md` line 37 | free |
+| G307 | lab | Loopback weapon fixture on 5.00r7 and 5.12: which ask/body ids fire for a GS2 weapon. | `protocol/scripted-weapons-5x-status.md` line 37 | 5.12 done (2026-11-25); 5.00r7 open |
 | G327 | static+lab | Trace the 108 probe and the value that 4.11 answers in 162. | `protocol/v4x-windows-403r3-411.md` line 91 | free |
 | G332 | static+lab | Partial 2026-11-24: remapper model + PLI slot names match 6.11; production 7.x pair lists uncompared (decrypt blocked). See `v7-connector-id-tables.md`. | `protocol/v611-id-tables.md` line 201 | partial |
 | G334 | static+lab | Partial 2026-11-24: clear prefix + RC4@287 reconfirmed; post-287 decrypt blocked (exact-session key never recorded). See `v6113-capture-decrypt.md`. | `protocol/v611-outgoing-cipher.md` line 65 | partial |

@@ -34,6 +34,53 @@ Pure 4.x takes **classic only**. Answering a class ask with 197/140 is the wrong
 
 ## Open checklist
 
-- [ ] Loopback weapon fixture on 5.00r7 and 5.12: which ask/body ids fire for a GS2 weapon.
-- [ ] Same fixture with CLASS prop / empty line variants (#55).
+- [x] Loopback weapon fixture on 5.12: which ask/body ids fire for a GS2 weapon ([below](#lab-gs2-weapon-fixture-on-512-g307-2026-11-25)).
+- [ ] The same fixture on 5.00r7 (the lab install still stalls before connecting).
+- [ ] Same fixture with CLASS prop / empty line variants (#55). Empty line done on 5.12 (does not suppress 158); the class body path and the CLASS prop are still open, because the lab server leaves 161 unanswered.
 - [ ] Confirm C6 empty-program threshold if a modern compile oracle is available.
+
+## Lab: GS2 weapon fixture on 5.12 (G307, 2026-11-25)
+
+Windows 5.12 (packed `Graal.exe`) under Wine in the loopback-only lab VM,
+against the lab GS2Emu (`generation = modern`, `serverside = false`) behind the
+probe proxy. Rows are in `probe-results.tsv` under runs `wpn512-b` to `wpn512-h`.
+5.00r7 was tried and still stalls before it connects, so this covers 5.12 only.
+
+**Fixture.** A weapon `GS2Fix` on the default account whose clientside
+`onCreated` sets `player.chat = "wpn ok"` and starts a one-second timer that
+reports `wpn t1`, `wpn t2` and so on. The client reports its own chat in prop
+12, so "the weapon runs" is read from the wire. The compiled body is 187 bytes.
+This server needs a `//#GS2` line: without it the weapon is lexed as GS1 and the
+server sends only the 33 with no script. The client keeps weapon code under
+`weblevels/weapons/<server>/<weapon>.code` with the server name escaped (space as
+`%032`). "Cold" means that folder was removed first.
+
+**Both paths run the weapon on 5.12.**
+
+| path | sequence | weapon runs |
+|---|---|---|
+| modern (server default) | 33 → 197 → client 158 (0.08 s later) → 100 + 140 | 0.04 s after the 140 |
+| classic (forced at the proxy) | 33 → 193 (CRC-32 of the bytecode + name) → client 158 (1 ms later) → 100 + 132 with the same 187 bytes | 0.036 s after the 132 |
+
+The lab server never sends 193, 132 or 133 to 5.12; it always picks 197/140. The
+classic case was forced by dropping the server's 197s and the client's 158s at
+the proxy and injecting 193 and 132.
+
+**Cache.** With a warm cache the client skips the ask on either path: 197 alone
+or 193 alone is enough, and the weapon runs from the cached file (a later 132
+re-runs `onCreated`). The two paths write different files (195 bytes after a
+140, 204 bytes after a 132), and a file written by one path counts as a miss for
+the other path's check: the client asks 158 again in both directions. So the
+cache format or the hash basis differs between 193 and 197 [inf on which].
+
+**#55 variants.**
+
+- A weapon whose clientside part is empty (`//#GS2` and `//#CLIENTSIDE` only)
+  still gets a 197 and still causes a 158 on a cold cache; the server answers a
+  71-byte 140 holding an empty program. An empty script line does not suppress
+  the ask.
+- A level NPC whose clientside GS2 joins a class makes 5.12 ask **161** (body:
+  GINT5 0 + class name) 64 ms after the level arrives. The lab server never
+  answers it (no 133, no class 140 or 197), so the class does not run and the
+  client asks again on every login. The class body path and the CLASS prop
+  variant need a server that answers 161, or an injected 133/140.
