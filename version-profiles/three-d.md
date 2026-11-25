@@ -25,6 +25,7 @@ Seihai's profile has no `three_d` for those builds.
 | TorqueScript | compiles | compiles | none | none *assumed* | none | none *assumed* | none | none *assumed* |
 | Runs script a server sends | no *assumed* | no | no | no *assumed* | no | no *assumed* | no | no *assumed* |
 | Terraformer | full | full | greyscale only | greyscale *assumed* | greyscale *assumed* | greyscale *assumed* | greyscale only | greyscale *assumed* |
+| Greyscale import | any *assumed* | any *assumed* | 32-bit RGBA only *assumed* | 32-bit RGBA only *assumed* | 32-bit RGBA only *assumed* | 32-bit RGBA only *assumed* | 32-bit RGBA only (lab) | 32-bit RGBA only *assumed* |
 | Texture names | as named *assumed* | as named *assumed* | as named *assumed* | strip `.png` *assumed* | strip `.png` *assumed* | strip `.png` *assumed* | strip `.png` (cap) | strip `.png` *assumed* |
 | Download refuses | *not read* | *not read* | `.dso .cs .ter` | *assumed as 5.12* | *assumed as 5.12* | *assumed as 5.12* | `.dso .cs .ter` | *assumed as 5.12* |
 
@@ -51,11 +52,14 @@ The Mac 4.04r2 and Mac 5.12 rows take their Windows twin's values, all assumed (
   (`levels3d/heights/<server>/heights<x>-<y>.dat` and `heights.info`, one name per line, in
   [terrain-512.md](../torque/terrain-512.md)), and the 1023-byte limit on one compressed chunk.
   Chunk payloads for 4.20 and 5.00r7 are assumed to be 5.12's; only 5.12's has been read in full.
-- **Scripts and tools** (`torque_script`, `server_scripts`, `terraformer`, `terrain_editor`): only 3.04 and 3.153 run
+- **Scripts and tools** (`torque_script`, `server_scripts`, `terraformer`, `greyscale_rgba32_only`, `terrain_editor`): only 3.04 and 3.153 run
   TorqueScript, and no read build has a path for a server to make it run new script (3.153: T3D-009, static). 4.04r2 and 5.12 keep `TerrainEditor` and a Terraformer cut to `loadGreyscale`,
   `saveGreyscale` and `setTerrain`
   ([script-and-terrain-tools-by-build.md](../torque/script-and-terrain-tools-by-build.md)). A server
   must not send `.cs` or `.dso` to a build that does not compile them.
+  On 5.12 a GS2 weapon can create the Terraformer; `loadGreyscale` fetches the image over TCP, and
+  only a 32-bit RGBA PNG is safe there: a 24-bit RGB or 8-bit grey PNG crashes the client (lab,
+  PR #854). `setTerrain` returns 1 only when a TerrainBlock exists.
 - **Formats** (`dts_min`, `dts_max`, `dif_version`, `three_ds`, `md3_version`): what shapes a server may name.
   Both 4.04r2 and 5.12 take the DTS version from the low byte of the version word and accept up to
   24. 4.04r2 has no floor: as in stock TGE, versions below 19 go to an old-format reader. 5.12
