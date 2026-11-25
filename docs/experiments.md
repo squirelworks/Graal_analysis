@@ -39,7 +39,8 @@ the issue it closes. Part 2 lists every other lab row on the [gap board](gap-boa
   across `widths` and nine nonzero `widths-fix` follow-ups measured 96 landed and four lost.
   On 2026-11-25 [bytes2x, baddytypes and loadgani3w](../protocol/probe-wine512-core-2026-11-21.md#remaining-plans-on-512-g424-2026-11-25)
   ran on 5.12 as well, closing G424; the `loadgani3w` run supersedes the old 5.12 NUL-name row.
-  G191 and the other builds below stay open.
+  Windows 6.037 under Wine then ran widths, widths-fix and the read-back, closing G191 (2026-11-25);
+  the rest of the 6.037 plan set followed, closing G426; the 2.02 family (G425) stays open.
 - **Goal:** close the probe holes found while building the board. At the original 2026-11-20
   triage, 5.12 had only the 8-row 195 gani set; the partial results above add core and selected own-prop cases.
   6.037 had 32 rows. 2.02, 2.02 rev 1 and 2.02 rev 2 had none. Board rows G424, G425,
@@ -48,14 +49,17 @@ the issue it closes. Part 2 lists every other lab row on the [gap board](gap-boa
   - 5.12 runs under Wine with `runwine.sh 512`.
   - 6.037 runs natively in the Win10 VM, with the proxy and `probectl.py` on a `tcp:PORT`
     control address (see the README's "Windows hosts").
-  - The 2.02 builds run under Wine with `run12.sh`/`login1x.sh` for gen 3. Add a client entry for
+  - The 2.02 builds do not run under Wine (G425, 2026-11-25: all three crash with an access violation
+    when Start is pressed, before any connection). Run them natively in a Windows 10 VM, as 2.00 to
+    2.05 rev 1 were. Earlier wording: run under Wine with `run12.sh`/`login1x.sh` for gen 3. Add a client entry for
     them as for 2.00 to 2.05 rev 1.
 - **Steps:**
   - For 5.12 and 6.037, run each plan in turn: `wine-core`, `widths`, `widths-fix`, `bytes2x`,
     `baddytypes` and `loadgani3w`. For example:
     `sh tools/probe/lab/runwine.sh 512 tools/probe/lab/wine-core.plan x1-512-core`
   - For the 2.02 family, run the 32-case gen-3 plan from
-    `python3 tools/probe/fuzz12.py plan 3`, the same set that 2.00 to 2.05 rev 1 ran.
+    `wine-core.plan` (props 3, 77–83, 90 and PLO 60/78/81/83/110), the 32-case set that 2.00 to
+    2.05 rev 1 ran (`w200` … `w205r1`). `fuzz12.py plan 3` is the gen-2 width sweep, not that set.
 - **Expected output:** one row per case in `probe-results.tsv`: `landed`, `lost`, `crash` or
   `disconnect`, read from the bomb-count canary (`canary.py`). Compare the results with 5.00r7,
   6.03r7 and 2.05 rev 1 respectively.
@@ -284,7 +288,7 @@ the same rows as a task list. Read the source line before you start.
 | G177 | static+lab | Reconcile the reported 255 WAVs with both subtotals of 254, and establish exact-build playback separately (App. E#325). | `docs/NEXT.md` line 181 | free |
 | G178 | lab | Establish original 2.3 identity and exact-build behavior separately; a repack label or matching community executable cannot settle the missing input. | `docs/NEXT.md` line 186 | free |
 | G186 | lab | Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in live-runs/client-harness-2026-11-13; 5.00r7 partial (walk 4/4, sword 3/3; place-dependent actions not reached) in the 2026-11-14 run and manual §4.11.12.1. | `docs/NEXT.md` line 222 | free |
-| G191 | static+lab | The same probe on 4.20r8, 5.24r4 and 6.037 under Wine, the 0–90 self-prop width table, and a GS2 read-back of player.rupees (next batches). | `docs/NEXT.md` line 239 | free |
+| G191 | static+lab | The same probe on 4.20r8, 5.24r4 and 6.037 under Wine, the 0–90 self-prop width table, and a GS2 read-back of player.rupees (next batches). | `docs/NEXT.md` line 239 | done (lab, 2026-11-25) |
 | G193 | static+lab | Read the v5 end consumers per event type, the key lookup table and the two post-window start-up helpers; then observe input delivery in a guest. | `docs/NEXT.md` line 243 | free |
 | G200 | lab | Feed valid zlib members to an unchanged receiver near each build's capacity boundary, after a raw-frame positive control. | `docs/NEXT.md` line 304 | free |
 | G202 | static+lab | Observe the bridge initializer/callback and establish its ABI; static registration is not a live 3D session. | `docs/NEXT.md` line 308 | free |
@@ -302,7 +306,7 @@ the same rows as a task list. Read the source line before you start.
 | G293 | lab | Whether the extra flag on the 2.31 gmap lookup changes anything a player can see. | `protocol/plo-156-setactivelevel-231.md` line 90 | free |
 | G294 | lab | Whether 24 with an unchanged image name stops before the level-list removal (needs the raw comparison or a lab run). | `protocol/plo-24-29-30-45-205r2.md` line 60 | free |
 | G304 | lab | The value waitfor gives when its time runs out. The three cases did not settle it. | `protocol/script-fuzz-2026-11-19.md` line 221 | free |
-| G307 | lab | Loopback weapon fixture on 5.00r7 and 5.12: which ask/body ids fire for a GS2 weapon. | `protocol/scripted-weapons-5x-status.md` line 37 | 5.12 done (2026-11-25); 5.00r7 open |
+| G307 | lab | Loopback weapon fixture on 5.00r7 and 5.12: which ask/body ids fire for a GS2 weapon. | `protocol/scripted-weapons-5x-status.md` line 37 | done (lab, 2026-11-25) |
 | G327 | static+lab | Trace the 108 probe and the value that 4.11 answers in 162. | `protocol/v4x-windows-403r3-411.md` line 91 | free |
 | G332 | static+lab | Partial 2026-11-24: remapper model + PLI slot names match 6.11; production 7.x pair lists uncompared (decrypt blocked). See `v7-connector-id-tables.md`. | `protocol/v611-id-tables.md` line 201 | partial |
 | G334 | static+lab | Partial 2026-11-24: clear prefix + RC4@287 reconfirmed; post-287 decrypt blocked (exact-session key never recorded). See `v6113-capture-decrypt.md`. | `protocol/v611-outgoing-cipher.md` line 65 | partial |
@@ -327,7 +331,7 @@ the same rows as a task list. Read the source line before you start.
 | G422 | static+lab | stopping positions on a live 2.22 client | `client-internals/decomp-findings-2026-10-25-m/open-questions.tsv` row 8 | free |
 | G423 | lab | wire rounding of a nudged position | `client-internals/decomp-findings-2026-10-25-m/open-questions.tsv` row 9 | free |
 | G424 | lab | Windows 5.12 has only the 8-row 195 gani set; the 4.x/5.x plan set (wine-core, widths, widths-fix, bytes2x, baddytypes, loadgani3w) was never run on it | `protocol/probe-results.tsv` (new, 2026-11-20 triage) | done (lab, 2026-11-25) |
-| G426 | lab | Windows 6.037 has 32 rows; the full 4.x/5.x plan set has not been run on it | `protocol/probe-results.tsv` (new, 2026-11-20 triage) | free |
+| G426 | lab | Windows 6.037 has 32 rows; the full 4.x/5.x plan set has not been run on it | `protocol/probe-results.tsv` (new, 2026-11-20 triage) | done (lab, 2026-11-25) |
 
 ### Win10 VM on lab host B (#743, 1 rows)
 
