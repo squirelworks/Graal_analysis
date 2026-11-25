@@ -63,11 +63,32 @@ regrows its replications. **[bin]**
   between the min and max vectors. `hidereplications` hides the cover without dropping the
   object. **[inf]**
 
+## Where cover grows
+
+The grid is not centred on the replicator: it follows the client's control object. Each tick the
+client snaps that object's position to the 8-unit grid and keeps a (2r+1)² block of cells around
+it, growing cells that come into range and dropping those that leave. **[bin]** A cell grows
+only if:
+
+- `hidereplications` is off and at least one of `allowonterrain`, `allowoninteriors`,
+  `allowonstatics` or `allowonwater` is on;
+- at least one shape from `shapefiles` is loaded;
+- the cell's corner lies inside the box in **world** x and y: `boxmin.x ≤ x < boxmax.x` and
+  `boxmin.y ≤ y < boxmax.y`. The box's z values are not used in this test. **[bin]**
+
+Inside a cell the count is random between `mingridobjects` and `maxgridobjects`, from a random
+stream seeded by `seed` and the cell, so the same cell always grows the same cover. Each object
+is then placed by casting rays onto the allowed surfaces. **[bin]** So a box of (−1,−1) to (1,1)
+allows only the one cell whose corner is at the world origin; a server wanting cover over an area
+must send that area as the box, in world units. **[bin]**
+
 ## Live
 
 The real 5.12 client (GDI renderer) accepted this layout for all three classes: each ghost was
 created and the client stayed up, for radius 1, 4, 64 and 100 cells, grid counts 0/20 and 25/25,
 `allowonterrain` 0 and `hidereplications` 1. Nothing about the replicator was logged. **[lab]**
 No copies of the shape were seen in any of these runs, but the ground under the object was about
-100 units above the camera, so the copies may have been out of view. A rerun on flat ground at
-camera height is next. **[lab]**
+100 units above the camera, so the copies may have been out of view. A rerun on fresh flat ground (a `TerrainBlock` with no chunks) with the camera 15 units away
+also grew nothing visible, with grid counts 5/5 and 20/20 and with no `TerrainBlock`. All these
+runs used the box (−1,−1) to (1,1), which allows a single cell, and the flat block had no
+heights for the rays to hit; a run with a wide box over streamed terrain is next. **[lab]**
