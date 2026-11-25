@@ -114,8 +114,24 @@ Open: whether 5.12 can still be put on the D3D wrapper by any means. This needs 
   `tex2` (two texture units).
 - Nothing happens when the driver has no shader support.
 
-Open: which shape data the shader sees beyond those uniforms. This needs a probe
-with a small shader.
+Live check on 5.12 (renderer lab, 2026-11-25). A client weapon set both
+properties on the player's shape. **[lab]**
+
+- Both strings were stored and read back exactly.
+- No file was requested.
+- Neither property arrives from the server; only client script sets them.
+- The lab VM has a software OpenGL 1.1 driver with no GLSL, so the client wrote
+  no compile log.
+- Plain text, GLSL source and a file name all drew pixel-identical.
+
+That fits the static read. The compile happens only when the driver supports
+shaders and the shape has a program object.
+
+Open: the compile path and its visible effect. These need a VM with a
+GLSL-capable GL.
+
+Side finding: 5.12 caches each 3D weapon's compiled script as
+`weblevels/weapons/<server>/<weapon>.code`.
 
 ## Camera classes (T3D-055)
 
