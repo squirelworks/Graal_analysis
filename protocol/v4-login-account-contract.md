@@ -138,6 +138,7 @@ Follow-ups (2026-11-25): a fresh compiled script reaches 4.20r8 in 132 after its
 | Lab Login for 4.x | Accept a typed / saved account on first connect; do not require a guest→reconnect dance. |
 | Lab Login for 5.24+ / 6.03 | Expect `guest` first; use a clientside setter weapon (or equivalent) before world warp if flags must save. |
 | Login-weapon authors | Treat 4.x and 5.x/6.x as different account machines until the open rows above are closed. |
+| Login-weapon authors (4.x) | Hide or delete your own GUI windows: they and the Login weapon survive the 178 warp ([v4-gui-survive-serverwarp.md](v4-gui-survive-serverwarp.md#static-read-what-178-keeps-g318g320-2026-11-25)). |
 
 ## Open
 
