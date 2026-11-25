@@ -562,6 +562,7 @@ protocol/listserver-141r1-silent-list.md	cited	E	1; C; E	1.41r1 silent list: cli
 protocol/listserver-login-type-matrix-2026-10-25.md	cited	6; E	6	
 protocol/listserver-login-type-matrix-2026-10-25.tsv	cited	6	6	
 protocol/g3d30123-public-listserver-2026-11-24.md	cited	6; E	6	3.x G3D30123 public list-only login; ports 14922/14923 confirmed
+protocol/g428-stock-304-public-list-2026-11-25.md	cited	6; E	6	stock 3.04 Linux public list login on 14922; same reply family; list id 6 = 000
 protocol/listserver.md	cited	6; E	6	
 protocol/login-and-walk.md	cited	2.3; 2.4; 7; 2.1	2.3	
 protocol/login-frames-by-version-2026-10-25.md	cited	2.1; 6; E	2.3	§2.3 not needed: the login frames by version are carried in §2.3 from the per-generation notes; this note is cited for framing, the listserver and App. E (coverage audit 2026-11-04)
