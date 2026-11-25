@@ -992,3 +992,4 @@ torque/3d-2d-level-packets-420r6-2026-11-25.md	cited	8.5; 10	10.3	2D level packe
 torque/3d-world-limits-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D world-limit fuzz (T3D-091), lab; carried into §8.5 and §10
 torque/3d-texture-formats-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D texture image formats, bit depths and sizes (T3D-077), lab; carried into §8.5 and §10
 torque/3d-particles-512-vs-404r2-2026-11-25.md	cited	8.5; 10	10.3	Particles dropped from 5.12, GS2 TParticleEmitter replaces them (T3D-085), bin; carried into §8.5 and §10
+torque/3d-recovery-420r6-2026-11-25.md	pending		10.3	3D client recovery from partial/bad data mid-session (T3D-108), lab; to carry into §10
