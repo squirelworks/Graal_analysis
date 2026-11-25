@@ -40,6 +40,13 @@ narrows board rows T3D-006, T3D-007, T3D-008, T3D-019 and T3D-041
   `tileobjects/`, `updatepackages/` and `scriptfiles/`. That reads like a script file-access allow
   list, not a TorqueScript loader (T3D-013). **[bin][inf]**
 
+**What a 5.12 server can make the client download.** When a resource the 3D side needs is missing,
+5.12 normalises the name, takes its extension and asks the Graal TCP connection for the file unless
+the extension is `.dso`, `.cs` or `.ter`: the same three exclusions as 4.04r2
+([404r2-resource-filter.md](404r2-resource-filter.md)). Every other extension (shapes, interiors,
+images, sounds, archives) is requested. 5.12 has no `.mis` literal either. **[bin]** (T3D-011,
+T3D-010 static side)
+
 So the answer for the 4.x and 5.x clients is no: they keep Torque's engine, file readers and
 network layer, but GS2 replaced TorqueScript, and the TorqueScript compiler is gone. Only 3.153 (and
 the stock 3.04 TGE base) runs Torque scripts. **[bin]**
