@@ -77,7 +77,11 @@ only if:
   `boxmin.y ≤ y < boxmax.y`. The box's z values are not used in this test. **[bin]**
 
 Inside a cell the count is random between `mingridobjects` and `maxgridobjects`, from a random
-stream seeded by `seed` and the cell, so the same cell always grows the same cover. Each object
+stream seeded by `seed` and the cell, so the same cell always grows the same cover. The stream is
+stock Torque's R250 generator (`MRandomR250`), seeded per cell with
+`seed + 256·(cy & 255) + (cx & 255)`, where `cx` and `cy` are the cell corner's world x and y
+divided by 8 and cut toward zero. The count is `min + r mod (max − min + 1)` from the first
+number drawn, or just `min` when the two are equal. **[bin]** Each object
 is then placed by casting rays onto the allowed surfaces. **[bin]** So a box of (−1,−1) to (1,1)
 allows only the one cell whose corner is at the world origin; a server wanting cover over an area
 must send that area as the box, in world units. **[bin]**
