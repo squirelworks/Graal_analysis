@@ -175,3 +175,27 @@ nothing draws (the sky faces don't cover that band), i.e. 5.12 is not
 clearing that part of the frame — a smear, unchanged since 944a5bb2. A
 server-side mitigation (not a client fix) would be a world that covers the
 horizon band: a larger ground, or a sky whose lower half is filled.
+
+### S2 (two 4.04r2, protocol 19)
+
+Two Windows 4.04r2 clients under Wine (separate hard-linked prefix copies —
+a second Wine client can't share the first's prefix; its window fails to
+open on the second display), against gserver #154 @ ca00d9a6 on loopback,
+world `m3`. Board rows: T3D-066, T3D-074.
+
+- **Server side — full relay, like the 5.12 pair.** Both link as protocol
+  19: the first at 30,-26,1 (0 others), the second at 32,-26,1 (1 other, the
+  ring offset). Each gets a **`Player`** ghost for the other. Walks relay
+  both ways (314 and 312 relay lines). When the first leaves, the second
+  gets one ghost-out kill, then the second leaves cleanly.
+- **Client side — nothing drawn.** Both windows draw only the sky gradient
+  for the whole session. There is no ground (GameObjects are not sent to
+  protocol 19), and neither client draws the other's `Player` in view. No
+  crashes.
+
+So on 4.04r2 another player arrives as a stock Torque `Player` ghost
+server-side (T3D-066: a `Player`, not a Graal GameObject or AIPlayer) and
+the walk relays fine, but the 4.04r2 client renders neither the ground nor
+the other player in a bare GameObject-less world — there is nothing on
+screen to see them by. Two 4.04r2 players therefore have no visible
+interaction in this world (T3D-074) despite the clean server-side relay.
