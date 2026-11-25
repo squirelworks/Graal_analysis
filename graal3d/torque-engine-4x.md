@@ -248,8 +248,8 @@ The sender compresses with bzip2 over 4,095 bytes and with zlib over 49 bytes. I
 
 ### Terrain streaming (Graal)
 
-- `TerrainChunkEvent` carries: int4 chunk x, int4 chunk y, u32 stamp **[inf]**, int10 length, then a zlib-compressed 16 × 16 piece of heights and materials. 16 × 16 chunks make a 256 × 256 terrain. **[bin]**
-- The client tells the server what it already has with `TerrainRequestUpdatesEvent` (256 × u32). It caches terrain under `levels3d/terrain/`. **[bin][inf]**
+- `TerrainChunkEvent` carries int4 chunk x, int4 chunk y, a 32-bit stamp, an int10 length, then a zlib stream with one 16 × 16 chunk of heights, materials and holes; 16 × 16 chunks make a 256 × 256 terrain. **[bin]**
+- The client tells the server what it already has with `TerrainRequestUpdatesEvent` (256 × u32 stamps). In 5.12 it caches chunks under `levels3d/heights/<server>/`; the 3.x and 4.04r2 `.ter` reader uses `levels3d/terrain/`. Full layouts: `torque/terrain-512.md`. **[bin]**
 - `.ter` files are never requested over TCP. **[bin]**
 
 ## The TCP gserver connection in 3D mode
