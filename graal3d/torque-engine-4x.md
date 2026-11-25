@@ -114,7 +114,7 @@ The server lists its own networked classes this way, inside connect accept. The 
 |---|---|---|
 | `pref::Net::PacketRateToServer` | 32 | 8–32 |
 | `pref::Net::PacketRateToClient` | 32 | 1–32 |
-| `pref::Net::PacketSize` | 800 | 100–450 |
+| `pref::Net::PacketSize` | 450 (a 2026-11-25 re-read; first read as 800) | 100–450 |
 
   The update delay is 1024 / rate ms. So in practice the client runs at 32 packets/s, 450 bytes each. **[bin]**
 
@@ -168,7 +168,7 @@ Every event, every ghost update and every datablock is sent as `int14 bitLength`
 ### Ghosts (Graal changes)
 
 1. flag (ghost data follows).
-2. int4 **index width** (the number of bits of the highest index, sent as is; TGE sends width − 3).
+2. int4 **index width** (the number of bits of the highest index, sent as is; TGE 1.1 sends it in 3 bits as width − 3, see [stock-baseline-mbg-2026-11-25.md](../torque/stock-baseline-mbg-2026-11-25.md)).
 3. For each ghost: flag 1, index, flag (delete). If not deleted: int12 class id (**sent on every update, not only the first**), sized update data.
 4. flag 0 at the end.
 
@@ -292,13 +292,14 @@ The DLL matches open TGE 1.x in:
 - the DTS, DIF and TER versions;
 - its class list.
 
-It has none of TGE 1.4's new lighting system. So it comes from the same TGE 1.2/1.3 line as the 3.x client. **[bin][inf]**
+It has none of TGE 1.4's new lighting system. Its `getVersionNumber` is 1150, on the TGE 1.1 line (Marble Blast Gold 1.4.1 is 1101, Graal 3.04 is 1100); see `torque/stock-baseline-mbg-2026-11-25.md`. **[bin]**
 
 Open TGE-line source (Torque2D's net layer, Torque3D for the rest; see `torque/open-source-lineage.md`) is a good base for the formats and the low-level net layer. A compatible client or server must add the Graal changes:
 
 - the class table in connect accept, with 12-bit class ids;
 - 14-bit length prefixes on events, ghosts and datablocks;
-- a class id on every ghost update (the 4-bit index width is TGE-line behaviour, Torque2D's `GhostIndexBitSize`; see `torque/open-source-lineage.md`);
+- a class id on every ghost update;
+- the 4-bit raw ghost index width and 12-bit ghost ids (TGE 1.1 sends a 3-bit width − 3 and 10-bit ids; `torque/stock-baseline-mbg-2026-11-25.md`);
 - 12-bit datablock ids;
 - the server time and client state in the game packets;
 - the acks without a sequence number;

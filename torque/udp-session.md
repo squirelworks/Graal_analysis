@@ -608,7 +608,9 @@ stock class-id widths, no length prefixes) and ships no 3D scripts. No 3D server
 - [ ] How a server makes a 5.12 player move (movetype and movement data) and what the client then echoes.
 - [ ] Protocol 19 past the handshake: the per-packet string buffer, the move layout and the
   datablock phase against a real 3.153 or 4.04r2 client. (Static read done:
-  [protocol19-server.md](protocol19-server.md); the real-client run is still open.)
+  [protocol19-server.md](protocol19-server.md); the real-client run is still open. The string
+  buffer is now settled statically: 4.04r2 attaches it as stock TGE 1.1 does,
+  [stock-baseline-mbg-2026-11-25.md](stock-baseline-mbg-2026-11-25.md).)
 - [ ] What the 5.12 client sends in sections 5, 9 and 3 of its own update while walking and
   chatting (the 5.x client only moves when a GS2 script moves it; lab 11 is testing that).
 - [ ] `TerrainBlock`, `WaterBlock` and the replicators are not sent by any server we have;

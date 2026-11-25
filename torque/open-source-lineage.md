@@ -19,7 +19,7 @@ Repositories that carry the TGE 1.x or Tribes 2 sources themselves have no open 
 
 **Huffman strings.** The character-frequency table in `tools/tbits.py` already came from Torque3D's `bitStream.cpp`. Torque2D has the same table. **[doc]**
 
-**Ghost index widths.** Graal's 12-bit ghost index (control object, camera) and the 4-bit "index width" field before each ghost block are Torque2D's `GhostIdBitSize = 12` and `GhostIndexBitSize = 4` (the bit count is sent as width − 3). So the "raw index width" that `graal3d/torque-engine-4x.md` lists among Graal's changes is TGE-line behaviour. Torque3D raised `GhostIdBitSize` to 18, so a server that copies Torque3D's constants writes every ghost index 6 bits too wide. **[doc][bin]**
+**Ghost index widths.** Graal's 12-bit ghost index (control object, camera) and the 4-bit "index width" field before each ghost block are Torque2D's `GhostIdBitSize = 12` and `GhostIndexBitSize = 4` (the bit count is sent as width − 3). ~~So the "raw index width" that `graal3d/torque-engine-4x.md` lists among Graal's changes is TGE-line behaviour.~~ Corrected 2026-11-25: Graal sends the raw width in 4 bits, while TGE 1.1 sends width − 3 in 3 bits and Torque2D width − 3 in 4 bits, so the field is Graal's own ([stock-baseline-mbg-2026-11-25.md](stock-baseline-mbg-2026-11-25.md)). The 12-bit ghost id is also wider than TGE 1.1's 10. Torque3D raised `GhostIdBitSize` to 18, so a server that copies Torque3D's constants writes every ghost index 6 bits too wide. **[doc][bin]**
 
 **Connection messages.** Ghosting starts and stops through `ConnectionMessageEvent` (registered in every Graal build) with the stock message enum: `GhostAlwaysDone`, `ReadyForNormalGhosts`, `EndGhosting`, `GhostAlwaysStarting`, `SendNextDownloadRequest`, `FileDownloadSizeMessage`. Torque2D's `activateGhosting` shows the server's order. **[doc][inf]**
 
@@ -39,13 +39,14 @@ Repositories that carry the TGE 1.x or Tribes 2 sources themselves have no open 
 
 The writer takes the object's transform, builds a quaternion from it (Torque's `QuatF::set(MatrixF)`), then the axis and angle (`AngAxisF::set(QuatF)`: angle = 2·acos(w), axis = xyz / sqrt(1 − w²), or (1, 0, 0) when that is 0). The reader reads the same seven floats and rebuilds the matrix from the axis and angle, then sets the position. The "then 32 bits" in `wire-by-build.md` is the angle. Scale is not sent. **[bin][doc]**
 
-**Strings in data packets (protocol 24).** TGE's `BitStream::readString` has a prefix-reuse mode: when a string buffer is attached, each string starts with a flag and, if set, an 8-bit count of characters taken from the previous string. The 5.12 reader still contains that branch. ~~No code in the 5.12 decompile attaches a buffer, so for 5.12 every string is a plain Huffman string, as `tools/tq.py` sends it.~~ Corrected 2026-11-12: a later read of the 5.00r7 DLL found the buffer attached in the game packet reader and writer, and the real 5.12 client read the Seihai gserver's strings with the prefix flag in every lab ([udp-session.md](udp-session.md#2-bit-stream-conventions)). **[lab]** Torque3D stubs the buffer out altogether. **[bin][doc]** Not checked for protocol 19: 4.04r2 still has the stock TGE `GameConnection`, and stock TGE attaches the buffer at the start of each game packet. A protocol-19 server should test both forms against the client.
+**Strings in data packets (protocol 24).** TGE's `BitStream::readString` has a prefix-reuse mode: when a string buffer is attached, each string starts with a flag and, if set, an 8-bit count of characters taken from the previous string. The 5.12 reader still contains that branch. ~~No code in the 5.12 decompile attaches a buffer, so for 5.12 every string is a plain Huffman string, as `tools/tq.py` sends it.~~ Corrected 2026-11-12: a later read of the 5.00r7 DLL found the buffer attached in the game packet reader and writer, and the real 5.12 client read the Seihai gserver's strings with the prefix flag in every lab ([udp-session.md](udp-session.md#2-bit-stream-conventions)). **[lab]** Torque3D stubs the buffer out altogether. **[bin][doc]** ~~Not checked for protocol 19: 4.04r2 still has the stock TGE `GameConnection`, and stock TGE attaches the buffer at the start of each game packet. A protocol-19 server should test both forms against the client.~~ Settled 2026-11-25: 4.04r2 attaches the buffer in both directions, the same as stock TGE 1.1 ([stock-baseline-mbg-2026-11-25.md](stock-baseline-mbg-2026-11-25.md)). **[bin]**
 
 ## What stays Graal's own
 
 None of the open code bases has these. They still come only from the client binaries and lab runs:
 
-- the class-name table in the connect accept, with fixed 12-bit class ids in the server's numbering (`network.md`);
+- the class-name table in the connect accept, with fixed 12-bit class ids in the server's numbering (`network.md`); a stock TGE 1.1 accept is only the sequence and protocol **[lab]**;
+- the 4-bit raw ghost index width and 12-bit ghost and datablock ids (TGE 1.1: 3-bit width − 3, 10-bit ids);
 - the 14-bit length prefix on every event and ghost update;
 - the server time in the server → client game packet, and the 5.12 packet shapes (client-reported position, no moves);
 - `BigDataStartEvent` / `BigDataChunkEvent`, `TerrainChunkEvent` / `TerrainRequestUpdatesEvent`, `DynamicGrass…`;
@@ -54,7 +55,7 @@ None of the open code bases has these. They still come only from the client bina
 
 ## 3D formats
 
-- **DTS.** Torque3D's `TSShape::read` loads versions 19 to 28; TGE wrote 24. 5.12 checks a minimum and a maximum version (the "not supported anymore" and "can only load version %i and before" messages) and still keeps a reader for versions below 19. The two bounds are data values that were not read. Torque3D and the Marble Blast parser can both read version-24 shapes for content tools. **[doc][bin]**
+- **DTS.** Torque3D's `TSShape::read` loads versions 19 to 28; TGE wrote 24. 5.12 checks a minimum and a maximum version (the "not supported anymore" and "can only load version %i and before" messages) and still keeps a reader for versions below 19. ~~The two bounds are data values that were not read.~~ They are 17 and 24; stock TGE 1.1 and 4.04r2 have no floor ([stock-baseline-mbg-2026-11-25.md](stock-baseline-mbg-2026-11-25.md)). Torque3D and the Marble Blast parser can both read version-24 shapes for content tools. **[doc][bin]**
 - **DIF.** Torque3D no longer has interiors. The Marble Blast parser reads TGE-era DIF, and `io_dif` (Blender) writes it. 5.12 rejects an incompatible `Interior`, `InteriorResource` or `ForceField` version. **[doc][bin]**
 - **TER.** Torque3D's `TerrainFile` still loads the old TGE `.ter` layout (`_loadLegacy`, versions below 7). 3.x and 4.04r2 read `.ter`; 5.12 streams terrain chunks instead (`engine-and-formats.md`). **[doc][bin]**
 
