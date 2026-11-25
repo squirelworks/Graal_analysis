@@ -861,6 +861,7 @@ torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1
 torque/wire-by-build.md	cited	10	10	
 torque/3d-capability-board.md	pending	E	10; E	2026-11-25 Torque-era 3D capability board: 64 claimable questions; to fold into Part 10 open points and App. E
 torque/3d-capability-board.tsv	pending	E	10; E	data table for the 3D capability board
+torque/3d-multi-client-lab-design.md	pending	E	10.3	plan for multi-client 3D labs (T3D-065 to T3D-076); to fold into the session section when results exist
 torque/3d-formats-renderer-camera-by-build.md	pending	E	10.6	shape loaders, file-access gate, renderer prefs, camera classes and sound formats in 4.04r2 and 5.12; to fold into the formats section
 torque/3d-server-entry-and-udp-port.md	pending	E	10.3	the 3 list prefix and the 3D UDP port rule in 4.04r2 and 5.12; to fold into the session section
 torque/gs2-3d-objects-404r2-512.md	pending	E	10.5	script-creatable 3D classes in 4.04r2 and 5.12, 5.12 property names, getz in 3D mode, 3D event names; to fold into the object model

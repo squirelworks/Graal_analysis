@@ -51,6 +51,9 @@ to the client from our own server only.
 - [Entering a 3D server and the UDP ports](3d-server-entry-and-udp-port.md): a list name starting
   with `3 ` starts the 3D hand-over; the 3D UDP port is always the listed port + 1; only the client's
   own UDP port can be set (`fixedport`, `fixedudpport` 14899, `noudp`) (T3D-028, T3D-059).
+- [Several 3D clients in one world: questions and lab design](3d-multi-client-lab-design.md): how
+  each build shows other players, which channel carries them, what passes between clients, and mixed-build
+  worlds; pair-by-pair lab plan (T3D-065 to T3D-076).
 - [5.12 on our own 3D server: textures and client updates](live-512-own-server-textures-2026-11-25.md):
   texture naming and folders, which image formats draw, what the client sends for a Camera or GameObject
   control object, sky face order (T3D-023, T3D-032, T3D-033, T3D-046).
