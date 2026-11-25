@@ -986,3 +986,4 @@ torque/3d-engines-5007-512-and-403-411-2026-11-25.md	pending		10.3	Static 3D eng
 torque/3d-archives-404r2-512-2026-11-25.md	pending		10.3	Static read of 3D archive mounting (T3D-012); to carry into §10
 torque/3d-link-drop-420r6-2026-11-25.md	pending		10.3	3D link loss behaviour (T3D-027), static and lab; to carry into §10
 torque/3d-client-events-420r6-2026-11-25.md	pending		10.3	3D client-to-server events (T3D-018), static and lab; to carry into §10
+torque/3d-file-preference-420r6-2026-11-25.md	pending		10.3	3D file preference (T3D-107), lab; to carry into §10
