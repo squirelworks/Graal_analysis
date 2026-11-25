@@ -653,6 +653,18 @@ When the 3D world names a file, a Linux 4.20r6 client checks it over the 2D TCP 
 | The client never wrote `FILENAMECACHE.txt` in seven sessions, so a stale cache could not be tested | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#answers) |
 | Zip members are never checked (→ §10.6), so a zip in `levels3d/` overrides the server whatever the modtimes | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#answers) |
 
+### 10.3.16 2D level packets in a 3D session (Linux 4.20r6)
+
+Once the 3D world was up, the lab server sent a Linux 4.20r6 client (3D-equal to Windows 4.20r8) the normal 2D level packets over TCP: `PLO_LEVELNAME` (6), `PLO_BOARDPACKET` (101), `PLO_NPCPROPS` (3), `PLO_LEVELSIGN` (5), `PLO_LEVELLINK` (1), `PLO_LEVELCHEST` (4) and `PLO_BADDYPROPS` (2) [lab] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab).
+
+| Rule | Source |
+| --- | --- |
+| The gserver already sends the start level's name, board and chests at login, so 2D level content reaches a 3D session even when nothing is injected | [lab] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab) |
+| Every packet arrived and was accepted without a disconnect | [lab] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab) |
+| Nothing was drawn: every screenshot matched the plain 3D view | [lab] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab) |
+| The client acted on none of it: no NPC or baddy image request, no further packets but heartbeats | [lab] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab) |
+| The packets are dropped because the 3D view control owns the screen and the 2D level renderer is not shown; no static trace was done | [inf] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab) |
+
 ## 10.4 DSO v33
 
 Graal 3.x keeps menus, options, key binds, message boxes and the 3D mission-loading flow in compiled TorqueScript; from 4.x on no `.dso` files ship [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts).

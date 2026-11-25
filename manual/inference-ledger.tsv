@@ -93,6 +93,7 @@ manual/10-torque.md	chat, PMs, the player list, file transfer, RC	graal3d/torque
 manual/10-torque.md	C→S first flag	torque/wire-by-build.md#512-game-packets-the-gameobject-era	first person [inf] | set when a connection float is 0; meaning not traced
 manual/10-torque.md	Left over	torque/protocol19-server.md#open	Other players need the unread `Player` layouts and a real `.dts` player shape, which is not held; the drawn view under QEMU's software renderer was not checked
 manual/10-torque.md	A received packet resets the ping count	torque/3d-link-drop-420r6-2026-11-25.md#static-the-ping-and-timeout-rule-bin	
+manual/10-torque.md	The packets are dropped because the 3D view control owns the screen and the 2D l	torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab	
 manual/10-torque.md	Left over	protocol/lab-appe-hostb-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503	A compiled-code reader linked in but never called can't be ruled out from the stripped image or a run
 manual/10-torque.md	Left over	protocol/lab-appe-hostb-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503	A file reader linked in but never called can't be ruled out by a run
 manual/10-torque.md	Archive members are never requested from the server, so a newer copy on the serv	torque/3d-archives-404r2-512-2026-11-25.md#lab-linux-420r6-zip420-2026-11-25	
