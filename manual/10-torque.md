@@ -1011,6 +1011,15 @@ The rules below give how a live 5.12 handled shape content, one change per run [
 | A `.ft` text-shape `GameObject` never drew (flags 0, `0x08`, `0x18`; levels 1, 2, 6; malformed), though the file and its texture downloaded and nothing was logged | [lab][cap] (torque/live-512-shapes-2026-11-25.md#ft-text-shapes-t3d-036) |
 | 4.20r8 matched 5.12 on these fuzz rows, including the crash on a huge `TerrainBlock` square size | [lab] (torque/live-512-shapes-2026-11-25.md#420r8) |
 
+The rules below give how a Linux 4.20r6 client (3D-equal to Windows 4.20r8) names, fetches and applies a `GameObject` shape's textures, with one textured `.3ds` cube and only the material's texture name varied (T3D-090) [lab] (torque/3d-shape-textures-420r6-2026-11-25.md#results-lab).
+
+| Rule | Source |
+| --- | --- |
+| The client strips the texture name to its leaf (`sub/subtex` → `subtex`) and drops `.png`, asks for the bare name once, and does not ask again after a failure (`PLO_FILESENDFAILED`, 30) | [lab] (torque/3d-shape-textures-420r6-2026-11-25.md#naming-rules-lab) |
+| A download is saved under the user folder's `levels3d/images/` exactly as requested, so without an extension; the part of a name before the first `_` becomes a subfolder (`sky_fr` → `images/sky/sky_fr`); shapes keep `.3ds` | [lab] (torque/3d-shape-textures-420r6-2026-11-25.md#naming-rules-lab) |
+| The shape always draws; a missing or unapplied texture leaves it white | [lab] (torque/3d-shape-textures-420r6-2026-11-25.md#does-the-shape-draw-and-does-the-texture-apply) |
+| A texture downloaded during the session is not applied, because the material loader looks for `<name>.png` and the download has no extension; the same material drew textured when `labtex.png` was already on disk. So the texture must be on disk as `<name>.png` before the shape binds: shipped, in a mounted zip, or kept from an earlier session. Whether a later re-bind picks up the download was not seen in 55 s | [lab] (torque/3d-shape-textures-420r6-2026-11-25.md#does-the-shape-draw-and-does-the-texture-apply) |
+
 The rules below give how the 3D side mounts archives of content (T3D-012) [bin][lab] (torque/3d-archives-404r2-512-2026-11-25.md).
 
 | Rule | Source |
