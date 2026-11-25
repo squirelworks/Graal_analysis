@@ -21,7 +21,7 @@ Seihai's profile has no `three_d` for those builds.
 | Client sends moves | yes *assumed* | yes | yes | no, reports position | no *assumed* | no *assumed* | no, reports position | no *assumed* |
 | Mission phases | 3 *assumed* | 3 (lab) | 3 (lab) | 2 *assumed* | 2 | 2 | 2, and optional (cap) | 2 (lab) |
 | Local `.ter` terrain | yes *assumed* | yes | yes | no *assumed* | no *assumed* | no *assumed* | no | no *assumed* |
-| Streamed terrain chunks | no | yes | yes | yes | no: crashes after the TerrainBlock (lab) | yes | yes (lab) | no *assumed as 4.20r8* |
+| Streamed terrain chunks | no | yes | yes | yes | no: crashes drawing terrain near the camera under GDI GL 1.1 (lab); untested on Mesa or a GPU | yes | yes (lab) | no *assumed as 4.20r8* |
 | TorqueScript | compiles | compiles | none | none *assumed* | none | none *assumed* | none | none *assumed* |
 | Runs script a server sends | no *assumed* | no | no | no *assumed* | no | no *assumed* | no | no *assumed* |
 | Terraformer | full | full | greyscale only | greyscale *assumed* | greyscale *assumed* | greyscale *assumed* | greyscale only | greyscale *assumed* |
