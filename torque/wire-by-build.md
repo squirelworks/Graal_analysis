@@ -87,7 +87,7 @@ So in 5.12 the client always reports its own position, and no Torque `Move` stru
 | # | Dirty bits | Payload after the flag |
 |---|---|---|
 | 1 | `0x1` | string, the object's name (empty for `unknown_object`) |
-| 2 | `0x2` or `0x200` | 3 × 32 bits (velocity **[inf]**) |
+| 2 | `0x2` or `0x200` | 3 × F32, the shape **scale** about its origin (live 5.12; was read as velocity) **[lab]** |
 | 3 | `0x8` | string (a setting of the movement object) |
 | 4 | `0x10` | string (also passed to the movement object) |
 | 5 | `0x20` | transform: position (3 × F32), then the rotation as axis (3 × F32) and angle in radians (F32), Torque's `mathWrite` of an `AngAxisF`; no scale ([open-source-lineage.md](open-source-lineage.md#what-this-closes)) |
