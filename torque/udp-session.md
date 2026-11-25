@@ -611,5 +611,7 @@ stock class-id widths, no length prefixes) and ships no 3D scripts. No 3D server
   [protocol19-server.md](protocol19-server.md); the real-client run is still open.)
 - [ ] What the 5.12 client sends in sections 5, 9 and 3 of its own update while walking and
   chatting (the 5.x client only moves when a GS2 script moves it; lab 11 is testing that).
-- [ ] `TerrainBlock`, `WaterBlock` and the replicators are not sent by any server we have;
-  their layouts are unread.
+- [x] ~~`TerrainBlock` and `WaterBlock` layouts~~: read from the 5.12 binary in
+  [terrain-512.md](terrain-512.md), with the chunk event, the request event and the heights cache.
+- [ ] The replicators (`DynamicGrass`, `DynamicGrassReplicator`, `DynamicShapeReplicator`) and
+  `fxSunLight` are not sent by any server we have; their layouts are unread.
