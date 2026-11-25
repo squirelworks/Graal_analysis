@@ -146,10 +146,27 @@ Against the static reads:
 - **Gravity is 2 bytes /256, then a GCHAR gani length: confirmed.** GServer-v2's one byte `gravity × 16` (2.0 → byte 64) followed by a GSHORT gani length is read as gravity 8, which is 4× the intent. The second GSHORT byte is then taken as the GCHAR gani length, so the rest of the body stays aligned.
 - **Power `(b − 32) / 44` and a vertical drop of `gravity × 0.05` per step: confirmed.** The drop is applied after the move, and the projectile lands on the first step where z goes below 0. That gives 16 steps for g = 2 and 5 for g = 8; lowering the speed before the move would give 14 and 4.
 
-**Server rule:** to 5.0.0.7, write x, y and z X2-style and gravity as a 2-byte X2 value × 256, followed by a GCHAR gani length.
+### Start height and the 5.12 reader (G317, 2026-11-25)
+
+Same method, rows `shoot500-b` and `shoot512-a`. **[lab]**
+
+| Client | Shot (client layout unless noted, g = 2) | Landed x | Steps |
+| --- | --- | --- | --- |
+| 5.00r7 | z = 0 | 51.40 | 16 |
+| 5.00r7 | z = +16 px (`20 40`) | 52.11 | 17 |
+| 5.00r7 | z = +32 px (`20 60`) | 52.81 | 18 |
+| 5.00r7 | z = −16 px (sign bit, `20 41`) | 51.40 | 16 |
+| 5.12 | as S2 above | 51.40 | 16 |
+| 5.12 | GServer-v2 layout, as S4 above | 23.62 (y 17) | 5 |
+
+- **z is X2 pixels** and a higher start lengthens the flight exactly as the step model predicts.
+- **A negative start z acts as 0**: the same 16-step flight, not a landing at step 1 and not a 14-step rise and fall. Whether the reader or the projectile set-up clamps it was not traced.
+- **5.12 reads PLO_SHOOT2 exactly like 5.0.0.7**: the client layout flies the same, and GServer-v2's layout gives half position and 4× gravity. 5.12 also fires `onActionProjectile2` on landing.
+
+**Server rule:** to 5.0.0.7 and 5.12, write x, y and z X2-style and gravity as a 2-byte X2 value × 256, followed by a GCHAR gani length.
 
 ## Not done
 
 - [x] ~~Read the PLI_SHOOT2 (48) senders~~: 5.12, 5.24r4, 6.00b1 and 6.03r7 all send 2-byte gravity ×256 (above).
 - [x] Lab check: send a PLO_SHOOT2 with known gravity to a 5.0.0.7 client and watch the arc ([lab](#lab-plo_shoot2-on-500r7-g317-2026-11-25)).
-- [ ] Lab: a non-zero z in PLO_SHOOT2 (z was 0 in every lab shot).
+- [x] Lab: a non-zero z in PLO_SHOOT2 ([start height and 5.12](#start-height-and-the-512-reader-g317-2026-11-25)).
