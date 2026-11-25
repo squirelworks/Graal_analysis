@@ -983,6 +983,7 @@ torque/live-512-sun-replicators-2026-11-25.md	pending	E	10.3	5.12 fxSunLight dra
 torque/live-512-gameobject-fields-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 GameObject update fields tested live: scale, rotation, flags, undrawn fields; carried into §8.5 and §10
 torque/3d-fuzz-net-tier1-2026-11-25.md	cited	E; 8.5; 10	10.6	3D network fuzz tier 1: event-length and ghost-index crashes on 5.12 and 4.04r2; carried into §8.5 and §10
 torque/3d-fuzz-content-512-2026-11-25.md	pending	E	10.6	5.12 content fuzzing: .3ds/.dts/PNG crash on unchecked fields, no PNG CRC check, .dif robust; damage stays in the one client
+torque/3d-path-traversal-512-2026-11-25.md	pending	E	10.6	5.12 confines server-sent terrain-texture file names to its own folder (no path traversal); strips the directory part to the basename
 torque/live-512-shapes-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 shapes: .3ds materials and collision meshes, .dts per-version behaviour, .dif, .ft; carried into §8.5 and §10
 torque/3d-engines-5007-512-and-403-411-2026-11-25.md	cited	8.5; 10	10.3	Static 3D engine compare (T3D-005, T3D-003): protocol and class sets by build; to carry into §10
 torque/3d-archives-404r2-512-2026-11-25.md	cited	8.5; 10	10.3	Static read and Linux 4.20r6 lab run of 3D archive mounting (T3D-012); carried into §8.5 and §10
