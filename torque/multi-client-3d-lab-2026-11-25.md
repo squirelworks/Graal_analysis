@@ -96,9 +96,11 @@ MissionStartPhase1Ack fix holds.
   only that 4.20r8 starts and draws on Mesa, not that it draws *streamed
   terrain*. A Mesa run that does send 4.20r8 a TerrainBlock is still needed
   to answer T3D-117.
-- 5.12 draws the streamed terrain white even with `levels3d/heights`
-  cleared first, and never fetches the textures. So the white terrain is not
-  a stale cache.
+- 5.12 draws the streamed terrain white on this run. The terrain thread then
+  found the cause: a first visit (empty cache) fetches only `heights.info`
+  and draws white; 5.12 fetches the textures only on the next visit. Clearing
+  `levels3d/heights` before each run keeps it on a perpetual first visit,
+  which is why it looked like it never fetched textures.
 
 ### M3 (Mac 3.153 on Tiger + 5.12)
 
