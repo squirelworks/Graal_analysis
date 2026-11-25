@@ -37,5 +37,5 @@ names come from the class's own property names in the same binary, which follow 
 order. The meanings are stock Torque's **[inf]**: a key string is a run of letters `A`–`Z`, read
 as a value from min (`A`) to max (`Z`), stepped through over the matching cycle time.
 
-A first live try with the transform's flag left out crashed the client while it unpacked the ghost, as a one-bit slip would. **[lab]** Not yet tried live with the corrected layout. A lab check would ghost one `fxSunLight` beside the terrain world and vary
+A first live try with the transform's flag left out crashed the client while it unpacked the ghost, as a one-bit slip would. **[lab]** With the corrected layout the real 5.12 client accepts the ghost: nine cases (azimuth, elevation, size, colour, blend modes 0, 1, 2 and 9, enable 0) all stayed up, and the flare texture was fetched once over TCP and cached. No `Invalid Blend Mode` line appeared, even for 9. The flare was not in view looking along +y; its screen position is still to be found. **[lab]** A lab check would ghost one `fxSunLight` beside the terrain world and vary
 azimuth, elevation, size and colour.
