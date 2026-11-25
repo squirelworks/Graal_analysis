@@ -124,14 +124,14 @@ So 208–215, which fuse arithmetic with assign, run as plain binary operations 
 
 The expression is `(((2 in |"  pad  ", -0.0001|) + (-0.0001 >= 0.00011)) * getangle((-2147483649 ^ 0.000000001), ("a").substring(2.00001, 2147483647)))`. The fault is in **`substring` (opcode 115)**, not in `getangle` or `^`. GS2 is a stack machine, so `getangle`'s second argument — the `substring` — is evaluated first and faults before the `getangle` opcode runs. `-2147483649 ^ 0.000000001` is a negative base to a non-integer exponent, so `pow` returns NaN, which is only a pushed value (6.03r7 prints it as `0.-000000000`); the range test and `>=` just produce 0. **[bin]**
 
-`("a").substring(2.00001, 2147483647)` on a one-character string hits a signed-overflow bug that all three builds share. The start `2.00001` becomes `floor(x + 0.0001)` = 2, clamped down to the length (1). The length `0x7FFFFFFF` is not re-clamped, because the bound test is signed: `start + length` = `1 + 0x7FFFFFFF` = `0x80000000`, the most-negative int, so the signed `≤ strlen` test passes and the "length = strlen − start" fixup is skipped. The copy count handed to the string-grow helper is then `end − start` ≈ 2.1 billion.
+`("a").substring(2.00001, 2147483647)` on a one-character string hits a signed-overflow bug that all three builds share. The start `2.00001` becomes `floor(x + 0.0001)` = 2, clamped down to the length (1). The length 2147483647 (INT_MAX) is not re-clamped, because the bound test is signed: `start + length` = 1 + 2147483647, which wraps to −2147483648, the most-negative int, so the signed `≤ strlen` test passes and the "length = strlen − start" fixup is skipped. The copy count handed to the string-grow helper is then `end − start` ≈ 2.1 billion.
 
 The builds differ only in that terminal grow/append helper:
 
 | Build | Grow/append helper | Result |
 |---|---|---|
 | 6.03r7 | no length cap and no allocation-success check: requests ~2 GB and writes through the result unconditionally | **faults** — access violation on Windows; on Linux the ~2 GB libstdc++ resize throws with no catch around the VM, so the client terminates |
-| 4.20r8 | caps the copy at 1,000,000 bytes (`cmp count, 0xF4240; jg skip`) | empty string (the "substring with a huge length → empty" row above) |
+| 4.20r8 | caps the copy at 1,000,000 bytes (it skips the copy when the count is larger) | empty string (the "substring with a huge length → empty" row above) |
 | 5.12 | no cap, but tests the ~2 GB allocation result and bails on failure | empty string |
 
 So 6.03r7 is the odd one out: it carries the same signed-overflow length bug as 4.20r8 and 5.12 but dropped both guards (the million-byte cap and the allocation-null check). Seihai's own VM predicts the script completes with value 0, so a server's own run of this script would not reproduce the client crash.
