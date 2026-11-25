@@ -24,6 +24,8 @@ So a `G3D30123` login is answered on both ports, in the same reply family as the
 - Row counts (6 / 10) are that afternoon's list size; they are not a protocol constant.
 - Id **6** on the status frame was present on both ports; its layout was not traced this run (earlier public notes listed 2, 3 and 5 only).
 
+Correction (2026-11-25): on 14923 the first (legacy) frame is plain zlib, not gen 5. A stock 3.04 client disconnects on it; see [`g428-stock-304-public-list-2026-11-25.md`](g428-stock-304-public-list-2026-11-25.md).
+
 ## Defaults that follow
 
 `3.04` and `3.153` keep default port **14922** (`supported` / gen-5 family). `port_status` moves from **assumed** to **confirmed** for both: Seihai's own 3.x list login got a list on that port. A real 3.04 / 3.153 client was not captured against the public service in this run.
