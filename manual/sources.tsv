@@ -824,6 +824,7 @@ torque/engine-and-formats.md	cited	10; E	10
 torque/freetype6-5007.md	cited	10	10	FreeType 2.1.10.2079 beside the 5.0.0.7 launcher; §10.1.6 carries the one-line identification
 torque/g3d-5007.md	cited	10	10	static read of the 5.0.0.7 Graal3DEngine.dll; §10.1.6 carries the GameObject-era facts, and the event names and setter calls stay in the note
 torque/lab-2026-11-12-udp-trace.md	cited	10; E	10; E	
+torque/lab-2026-11-25-g3d-worlds.md	pending		10	Linux 4.206 one-change world lab (GameObject section 2 is the scale, malformed .3ds crashes, .dts/.dif version bounds); to fold into §10 beside wire-by-build.md
 torque/launcher-5007.md	cited	10	10	static read of the 5.0.0.7 Delphi launcher; §10.1.6 carries what it loads, and the setter split is cited from torque/engine-5007.md
 torque/linux-304-seven-operation-contract.md	cited	10	10	exact-input identities and static-derived vectors remain in source note; operation contract and limits carried
 torque/network.md	cited	10	10	
