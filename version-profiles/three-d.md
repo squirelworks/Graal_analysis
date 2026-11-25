@@ -21,7 +21,8 @@ Seihai's profile has no `three_d` for those builds.
 | Client sends moves | yes *assumed* | yes | yes | no, reports position | no *assumed* | no *assumed* | no, reports position | no *assumed* |
 | Mission phases | 3 *assumed* | 3 (lab) | 3 (lab) | 2 *assumed* | 2 | 2 | 2, and optional (cap) | 2 (lab) |
 | Local `.ter` terrain | yes *assumed* | yes | yes | no *assumed* | no *assumed* | no *assumed* | no | no *assumed* |
-| Streamed terrain chunks | no | yes | yes | yes | not sent: crashed only under basic GDI GL (lab); runs clean on Mesa without terrain, terrain there untested | yes | yes (lab) | no *assumed as 4.20r8* |
+| Streamed terrain chunks | no | yes | yes | yes | yes on Mesa (lab); crashes with the camera 150 units or less above the ground only under basic GDI GL | yes | yes (lab) | yes (lab) |
+| Fetches terrain textures | no | yes, asks for `heights.info` (lab) | yes *assumed* | yes *assumed* | no: terrain draws white (lab) | yes *assumed* | yes, one visit late (lab) | yes (lab) |
 | TorqueScript | compiles | compiles | none | none *assumed* | none | none *assumed* | none | none *assumed* |
 | Runs script a server sends | no *assumed* | no | no | no *assumed* | no | no *assumed* | no | no *assumed* |
 | Terraformer | full | full | greyscale only | greyscale *assumed* | greyscale *assumed* | greyscale *assumed* | greyscale only | greyscale *assumed* |
@@ -119,3 +120,15 @@ command and then crashed it, so every event a server writes must carry its exact
 5.12 and 4.20r8 crash on a huge TerrainBlock `squareSize`. On DTS, 5.12's header takes 17 to 24,
 but only 24 is known to draw: v24 bodies relabelled 17 to 22 hung or crashed and 23 drew nothing
 ([live-512-shapes-2026-11-25.md](../torque/live-512-shapes-2026-11-25.md)).
+
+## Not in the profile
+
+Two 4.20r8 differences from 5.12 are recorded here rather than as fields, because nothing on the
+server or in Ato depends on them ([live-512-shapes-2026-11-25.md](../torque/live-512-shapes-2026-11-25.md)):
+
+- Under the VM's basic Windows OpenGL (GDI Generic), 4.20r8 draws no textures at all (a textured
+  `.3ds` stays white, the sky is a grey gradient), where 5.12 draws both. This is a driver limit, so
+  4.20r8's texture behaviour has to be read on Mesa or a real GPU.
+- 4.20r8 caches downloads in subfolders named by the file's prefix (`images/lp/lp_white`,
+  `sky/sky_...`); 5.12 keeps them flat in `levels3d/images` with only `sky/` as a subfolder. The
+  server serves the same names either way.
