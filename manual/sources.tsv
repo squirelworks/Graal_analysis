@@ -970,3 +970,5 @@ protocol/gen6-c2s-0xfc-padding.md	cited	2.10; E	2.10; E	G335 partial 2026-11-24:
 client-internals/mac-ppc-machine-identity-property.md	cited	2.10; E	2.10; E	G129 partial 2026-11-24: Mac PPC IOMACAddress property-read + MD5-hex settled on 4.04r2/4.20r6/v5; login comma-list call graph still open.
 torque/live-512-gs2-3d-probe-2026-11-25.md	cited	E; 8.5	10.3; 10.6	5.12 GS2 3D probe on our own server: events, script-made objects, terrain functions, sky functions, switchToOpenGL; scripting side carried into §8.5
 torque/terraingenerator-original-vs-servertools-2026-11-25.md	pending	E	10.6	Original TerrainGenerator output compared with servertools gen terrain and gen 3d
+torque/live-3153-and-404r2-sessions-2026-11-25.md	pending	E	10.3	3.153 and 4.04r2 against our 3D server: phases, requests, clientCmds, control object
+torque/3d-engine-static-reads-2026-11-25.md	pending	E	10.3; 10.6	Static reads of the 5.00r7 3D engine: sky functions, name HUD, protocol, loaders, input

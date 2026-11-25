@@ -42,3 +42,8 @@ size, because it expects the (8w+1)² grid. So there were no chunk stamps to
 compare. Reading an original gmap would need `gen 3d` to accept the
 corner-per-level grid and either interpolate it or take the level HEIGHTS
 from somewhere else.
+
+**Update.** servertools PR #118 now reads the original gmaps and interpolates
+the corners. With it, the chunks outside the levels match (190 to 207 of 256
+per map) and every chunk over the levels differs, as expected for a plane
+interpolated from the corners.
