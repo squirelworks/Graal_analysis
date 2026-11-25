@@ -237,12 +237,12 @@ Live on 5.12 (a block at z 20 with z scale 20, wave magnitude 0.3) **[lab]**:
 
   `liquidheight = surface + 0.25 · m · (sin(ω·t + k·x + φ) + sin(ω·t + k·y + φ))`
 
-  with m the wave magnitude, ω ≈ 0.984 rad/s (period about 6.4 s) and x, y in world units: two
-  equal waves, one along x and one along y. So on the diagonal x = y a point swings ±0.5 · m,
-  and elsewhere less (down to ±0.05 · m). The grid alone allows a wavelength 2π/k of about 126 or
-  about 101 units (aliasing); the same block moved by (1000, 1000) lags by about 0.3 s, which
-  fits 126 (crests travel toward −x and −y), so k ≈ +0.050 per unit. The waves follow world
-  position, not the block's own corner. **[lab][inf]** (fit)
+  with m the wave magnitude, x and y in world units, k = 0.050 per unit (wavelength 2π/k ≈
+  125.7 units) and ω ≈ 0.983 rad/s (period about 6.39 s). A finer line of 33 points 8 units apart
+  fixed k (r.m.s. error 0.0004, each term 0.250 · m). Two equal waves, one along x and one along
+  y, crests travelling toward −x and −y: on the diagonal x = y a point swings ±0.5 · m, elsewhere
+  less. The waves follow world position, not the block's own corner (the same block moved by
+  (1000, 1000) shifts phase as the formula predicts). **[lab]** (fit)
   Note for probes: read `liquidheight` one tick after moving the object; read in the same tick
   it returns the previous point's value.
 - A 32 × 16 × 2 block at (0, 16, 0) covers exactly x 0…32, y 16…32 with its surface at 2, with

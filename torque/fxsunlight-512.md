@@ -18,7 +18,7 @@ and colours are four raw bytes. **[bin]**
 |---|---|---|
 | 0 | anything follows | flag; 0 ends the update |
 | 1 | object name | `pstring` |
-| 2 | transform | 6 × raw 32 floats: a position, then a second 3-vector (rotation **[inf]**) |
+| 2 | transform | position 3 × raw 32 floats, then rotation as a quaternion's x, y, z (3 × raw 32 floats) and a flag set when w is negative (w is rebuilt as the positive or negative root); the same encoding as the `WaterBlock` transform |
 | 3 | enable | raw 8 (non-zero = on) |
 | 4 | local flare bitmap | `pstring` (texture name) |
 | 5 | remote flare bitmap | `pstring` (texture name) |
@@ -37,5 +37,5 @@ names come from the class's own property names in the same binary, which follow 
 order. The meanings are stock Torque's **[inf]**: a key string is a run of letters `A`–`Z`, read
 as a value from min (`A`) to max (`Z`), stepped through over the matching cycle time.
 
-Not yet tried live. A lab check would ghost one `fxSunLight` beside the terrain world and vary
+A first live try with the transform's flag left out crashed the client while it unpacked the ghost, as a one-bit slip would. **[lab]** Not yet tried live with the corrected layout. A lab check would ghost one `fxSunLight` beside the terrain world and vary
 azimuth, elevation, size and colour.
