@@ -981,3 +981,4 @@ torque/live-512-sun-replicators-2026-11-25.md	pending	E	10.3	5.12 fxSunLight dra
 torque/live-512-gameobject-fields-2026-11-25.md	pending	E	10.3	5.12 GameObject update fields tested live: scale, rotation, flags, undrawn fields
 torque/3d-fuzz-net-tier1-2026-11-25.md	pending	E	10.6	3D network fuzz tier 1: event-length and ghost-index crashes on 5.12 and 4.04r2
 torque/live-512-shapes-2026-11-25.md	pending	E	10.3	5.12 shapes: .3ds materials and collision meshes, .dts per-version behaviour, .dif, .ft
+torque/3d-engines-5007-512-and-403-411-2026-11-25.md	pending		10.3	Static 3D engine compare (T3D-005, T3D-003): protocol and class sets by build; to carry into §10
