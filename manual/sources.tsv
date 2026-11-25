@@ -965,3 +965,5 @@ protocol/v7-connector-id-tables.md	cited	2.10; E	2.10; E	G332 partial 2026-11-24
 protocol/v6113-capture-decrypt.md	cited	2.10; E	2.10; E	G334 partial 2026-11-24: clear prefix + RC4@287 reconfirmed on three Windows 6.113 capture streams; post-287 decrypt blocked (exact-session key never recorded; G335 not started).
 protocol/gen6-c2s-0xfc-padding.md	cited	2.10; E	2.10; E	G335 partial 2026-11-24: C→S 0xfc envelope settled (RSA to operator pubkey); exact EM padding blocked (operator private key unheld).
 client-internals/mac-ppc-machine-identity-property.md	cited	2.10; E	2.10; E	G129 partial 2026-11-24: Mac PPC IOMACAddress property-read + MD5-hex settled on 4.04r2/4.20r6/v5; login comma-list call graph still open.
+torque/live-512-gs2-3d-probe-2026-11-25.md	pending	E	10.3; 10.6	5.12 GS2 3D probe on our own server: events, script-made objects, terrain functions, sky functions, switchToOpenGL
+torque/terraingenerator-original-vs-servertools-2026-11-25.md	pending	E	10.6	Original TerrainGenerator output compared with servertools gen terrain and gen 3d
