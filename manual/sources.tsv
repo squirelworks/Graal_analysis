@@ -863,6 +863,7 @@ torque/3d-capability-board.tsv	pending	E	10; E	data table for the 3D capability 
 torque/3d-formats-renderer-camera-by-build.md	pending	E	10.6	shape loaders, file-access gate, renderer prefs, camera classes and sound formats in 4.04r2 and 5.12; to fold into the formats section
 torque/3d-server-entry-and-udp-port.md	pending	E	10.3	the 3 list prefix and the 3D UDP port rule in 4.04r2 and 5.12; to fold into the session section
 torque/gs2-3d-objects-404r2-512.md	pending	E	10.5	script-creatable 3D classes in 4.04r2 and 5.12, 5.12 property names, getz in 3D mode, 3D event names; to fold into the object model
+torque/live-512-own-server-textures-2026-11-25.md	pending	E	10.3; 10.6	5.12 against our graal3d server: texture naming and formats, control-object updates, sky; to fold into the session and formats sections
 torque/live-512-third-party-session-2026-11-24.md	pending	E	10.3	real 5.12 on a third-party 3D server: no mission phases, Camera control object, client strips .png; to fold into the session section
 torque/script-and-terrain-tools-by-build.md	pending	E	10.4; 10.6	TorqueScript compiler and terrain tools by build, 5.12 download filter; to fold into DSO and formats sections
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
