@@ -1,0 +1,77 @@
+# 3D file formats, renderer, camera and sound by build (4.04r2, 5.12)
+
+Static read of the two Graal3DEngine.dll builds we hold unpacked. It records
+which loaders, settings and classes are present in each build, by their names
+and messages. Presence is not proof that a feature works in a session; the
+open boxes say what still needs a lab. Board rows: T3D-013, T3D-031, T3D-034,
+T3D-035, T3D-051, T3D-055, T3D-062.
+
+## Shape and model formats (T3D-031, T3D-034, T3D-035)
+
+| Format | 4.04r2 | 5.12 |
+|---|---|---|
+| `.dts` shapes | yes | yes |
+| `.dif` interiors | yes | yes |
+| `.3ds` | yes | yes |
+| `.dsq` sequence files | no extension literal | yes, in the shape extension list next to `.dts`, `.3ds`, `.dif` |
+| `TSShapeConstructor` (adds sequences to a shape) | registered class | gone |
+| `.md3` (Quake 3 player model) | yes: an MD3 loader that builds a model from `<name>_lower.md3`, `_upper.md3`, `_head.md3` and `<name>_lower_default.skin`, with its own error messages per part | gone |
+| `.ifl` animated textures | yes (material list code) | no literal |
+| `.dml` material lists | yes | no literal |
+
+So MD3 models, IFL textures, DML lists and the shape constructor are 4.04r2
+features. 5.12 keeps DTS, DIF and 3DS and adds a `.dsq` entry to its shape
+list.
+
+Open: whether 5.12 actually merges a `.dsq` into a shape, and how 4.04r2 picks
+the MD3 animation. Both need a lab.
+
+## The `.cs` entry in 5.12's file list (T3D-013)
+
+The 5.12 list `.txt, .rtf, .htm, .html, .xml, .nw, .gani, .gmap, .gupd, .hfl,
+.cs, .gs, .arc, .dat, .css, .ini, .uis, .png, .mng, .gif, .jpeg, .jpg, .jp2,
+.bmp, .bm8, .tga, .dds` is the file-access gate for the GS2 file functions:
+- the file read and write methods,
+- getFileModTime,
+- requestURL.
+
+Before one of these functions touches a path, the path's extension must be
+on the list. If the path has a folder, it must be under one of
+`levels/, levels3d/, translations/, offline/, tileobjects/, updatepackages/`;
+`scriptfiles/` is the scripts' own folder. A path that fails returns empty.
+
+So `.cs` there means a GS2 script may read or write a `.cs` text file. It does
+not mean the client runs TorqueScript: 5.12 has no TorqueScript compiler
+(see [script-and-terrain-tools-by-build.md](script-and-terrain-tools-by-build.md)).
+
+## Renderer and video settings (T3D-051)
+
+Both builds carry Torque's OpenGL renderer and its Direct3D wrapper
+(`opengl2d3d.dll`, `glu2d3d.dll`, the `D3DDevice` screen-mode messages).
+
+- 4.04r2 exposes the stock settings:
+  - `$pref::Video::allowOpenGL` and `$pref::Video::allowD3D`, the video mode prefs;
+  - the full `$pref::OpenGL::` set: texture compression, anisotropy, trilinear, mip reduction for interiors and sky, nPatch, maximum hardware lights, gamma correction, and per-extension switches.
+- 5.12 keeps only eight `$pref::Video::` names: `resolution`, `fullScreenMode`, `windowMode`, `detailFactor`, `fogDistance`, `visibleDistance`, `screenShotFormat` and `defaultguistyle`. There are no `$pref::OpenGL::` names and no allowD3D or allowOpenGL switch.
+
+Open: whether 5.12 can still be put on the D3D wrapper by any means. This needs a lab.
+
+## Camera classes (T3D-055)
+
+| Class | 4.04r2 | 5.12 |
+|---|---|---|
+| `Camera`, `CameraData` | yes | `Camera` only (the control object in a real 5.12 session) |
+| `PathCamera`, `PathCameraData` | yes | gone |
+| `AdvancedCamera`, `AdvancedCameraData` | yes | gone |
+| camera functions | `setCameraPosition`, `getCameraPosition`, `setCameraFov`, `getCameraFov`, `setControlCameraFov`, `getControlCameraFov`, `shakeCamera` | none of these names |
+
+5.12 keeps the names `atCamera`, `atCameraRot` and `belowCamera`.
+
+Open: what a 5.12 server can set on the `Camera`. This needs a lab or probe.
+
+## Sound formats (T3D-062)
+
+- 5.12 plays sound through FMOD. Besides `.wav`, it lists `.mp2 .mp3 .ogg .wma .asf` for music and streams. It also has the music-data event and the MP3 and radio volume hooks.
+- 4.04r2's plug-in names only `.wav`. Its other sound goes through the 2D engine.
+
+Open: whether the 3D audio classes (`AudioEmitter`, `Sim3DAudioEvent`) play in 4.04r2. This is T3D-061, a lab.

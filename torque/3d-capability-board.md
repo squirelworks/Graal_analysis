@@ -51,3 +51,7 @@ to the client from our own server only.
 - [Entering a 3D server and the UDP ports](3d-server-entry-and-udp-port.md): a list name starting
   with `3 ` starts the 3D hand-over; the 3D UDP port is always the listed port + 1; only the client's
   own UDP port can be set (`fixedport`, `fixedudpport` 14899, `noudp`) (T3D-028, T3D-059).
+- [3D formats, renderer, camera and sound by build](3d-formats-renderer-camera-by-build.md): MD3,
+  IFL, DML, `TSShapeConstructor`, `PathCamera` and `AdvancedCamera` are 4.04r2 only; 5.12 keeps DTS,
+  DIF, 3DS and lists `.dsq`; the `.cs` in 5.12's file list is the GS2 file-access gate (T3D-013,
+  T3D-031, T3D-034, T3D-035, T3D-051, T3D-055, T3D-062).
