@@ -627,6 +627,19 @@ A Linux 4.20r6 client (3D-equal to Windows 4.20r8, → §10.1.12) was run on loo
 | Both TCP legs closed: the server sent a UDP disconnect within 1 ms and the client returned to login ("The Graal3D server has dropped the connection: …"); only the client's TCP leg closed: the client sent a UDP disconnect within about 10 ms and returned to login | [lab] (torque/3d-link-drop-420r6-2026-11-25.md#lab-lab) |
 | No run crashed the client and none made it reconnect on its own; the 3D link never outlives the TCP link | [lab] (torque/3d-link-drop-420r6-2026-11-25.md#for-server-work) |
 
+### 10.3.14 Script events from client to server (Linux 4.20r6)
+
+In builds where the 2D and 3D engines share a binary, the 3D side gives the 2D side a hook that queues a line for the 3D server and a per-frame flush that sends the queued lines [bin] (torque/3d-client-events-420r6-2026-11-25.md#static-bin). What a weapon script sees is in → §8.5.7.
+
+| Rule | Source |
+| --- | --- |
+| Each queued line starts with a one-letter code: `t` trigger (`triggerserver`, weapon or rc form), `o` object, `g` class or gani request, `w` weapon request, `s` flag write | [bin] (torque/3d-client-events-420r6-2026-11-25.md#static-bin) |
+| At the end of each 2D object tick the lines are joined with newlines and sent as one BigData text of kind `events`, with an empty weapon name and option, over the Torque UDP link | [bin] (torque/3d-client-events-420r6-2026-11-25.md#static-bin) |
+| The same code handles server-to-client texts of kinds `set`, `unset`, `events`, `addweapon`, `weaponscript`, `deleteweapon`, `npcscript`, `classscript`, `ganiscript`, `setmaterials` and `rpg` | [bin] (torque/3d-client-events-420r6-2026-11-25.md#static-bin) |
+| Live: `triggerserver("weapon","Ev3D",…)` went out as `t weapon,Ev3D,<params>`, a flag write as `s client.evflag3=<value>`, and after `weaponscript` arrived the client sent `w Ev3D` | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| Live, the 2D TCP link carried only start-up file requests, update checks, a one-byte id 24 about every 0.4 s, id 162 every 30 s (answered by 108) and typed chat as player prop 12; no script marker went over TCP | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| So a 3D server reads script triggers, flag writes and requests from the UDP `events` text, script chat from the player's object update, and typed chat from TCP; script PMs and `setplayerprop` never arrive | [lab] (torque/3d-client-events-420r6-2026-11-25.md#for-server-work) |
+
 ## 10.4 DSO v33
 
 Graal 3.x keeps menus, options, key binds, message boxes and the 3D mission-loading flow in compiled TorqueScript; from 4.x on no `.dso` files ship [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts).

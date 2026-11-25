@@ -176,6 +176,19 @@ The rules below give how the steps behave [bin] (torque/gs2-3d-objects-404r2-512
 | Live on 4.04r2 (all three phases), a probe weapon received `onGraal3DLoginStep` 2, 4 and 5, and `onGhostAlwaysStarted` 2 | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#404r2) |
 | The `on…` events fired for each 3D connection outcome (`onConnectionAccepted` and the rest) are listed in → §8.3.5 | [bin] (protocol/v4x-clients.md#the-3d-plug-in-graal3denginedll) |
 
+A client weapon on Linux 4.20r6 (3D-equal to Windows 4.20r8) stepped through one call every 3 s against the project's own 3D lab server; the table gives what reached the server for each (the wire form is in → §10.3.14) [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab).
+
+| Script call in 3D mode | What the server gets | Source |
+| --- | --- | --- |
+| `triggerserver("weapon", name, …)` | a weapon trigger over UDP | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| `triggerserver("gui", name, …)` | a `gui` trigger line over UDP | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| `client.<flag> = value` | a flag write over UDP | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| `player.chat = …` once the world is up | the chat field of the player's 3D object update, over UDP | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| `player.chat = …` in `onCreated` | nothing seen | [lab][inf] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| `sendpm(…)`, `player.sendpm(…)`, `setplayerprop("#c", …)`, `clientr.… = …` | nothing on either link | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| a chat line the player types | the normal 2D chat over TCP | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| the weapon sent as GS1 source instead of GS2 bytecode | nothing: it was delivered but never ran, so a 3D weapon must be GS2 bytecode | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+
 ## 8.5.8 Terrain and water from script
 
 Torque ships two terrain tools as engine classes, the procedural `Terraformer` and the brush editor `TerrainEditor`. Both survive in all three builds read, cut down differently [bin] (torque/script-and-terrain-tools-by-build.md#the-terrain-tools-inside-the-client).
