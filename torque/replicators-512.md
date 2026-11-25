@@ -65,7 +65,7 @@ regrows its replications. **[bin]**
 
 ## Where cover grows
 
-The grid is not centred on the replicator: it follows the client's control object. Each tick the
+The grid is not centred on the replicator: it follows the client's control object. The
 client snaps that object's position to the 8-unit grid and keeps a (2r+1)² block of cells around
 it, growing cells that come into range and dropping those that leave. **[bin]** A cell grows
 only if:
