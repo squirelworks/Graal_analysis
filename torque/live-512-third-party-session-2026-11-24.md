@@ -17,9 +17,12 @@ The server is not a specification. This note records only what the **client** ac
   `RemoteCommandEvent` in its class table. The client still linked, built the world, took its control
   object and drew the scene. **[cap][lab]**
 - **The world as ghost-always events.** Every object arrived as a `GhostAlwaysObjectEvent`: an int12
-  ghost index, a flag, an int12 class id, the int14 bit length and the object's update. **[cap]**
+  ghost index, a flag, an int12 class id, the int14 bit length and the object's update. All eight
+  payloads end exactly on their stated length. **[cap]**
 - **A `Camera` as the control object.** The control object was a `Camera` ghost, not a
-  `GameObject`; the client accepted it and the view followed it. **[cap][lab]**
+  `GameObject`; the client accepted it and the view followed it. Its update is the `Camera`'s own
+  (the `GameObject` section flags plus mode and follow flags), not a `GameObject` update.
+  **[cap][lab]**
 - **Connect sequence 0.** The connect sequence in the challenge exchange was 0. **[cap]**
 - **No terrain.** No `TerrainBlock`, no `TerrainChunkEvent`; the hills were part of a mesh. No
   `.dts` or `.dif` either: every shape was `.3ds`. **[cap]**
@@ -48,8 +51,11 @@ The client fetched 92 files over the Graal TCP connection and stored all of them
 
 - The `.3ds` files kept their extension.
 - All 89 images were stored **without** an extension, although materials and the sky named them
-  with `.png`. Whether the client strips the extension when it asks, or the server answered under a
-  bare name, is open (T3D-033). **[cap][inf]**
+  with `.png`. The client's own TCP file requests settle who drops it: the client strips `.png` from
+  a material's texture name and requests the bare name, then saves the file bare in
+  `levels3d\images`. Shapes keep their extension (the `.3ds` files are requested with it). A mesh's
+  textures are requested only after that mesh has arrived (T3D-033, renderer lab read of the same
+  capture). **[cap]**
 
 ## Replay
 
@@ -61,5 +67,5 @@ textures) and water (missing in the rebuild). **[cap][lab]**
 ## Open
 
 - [ ] T3D-023: what the client sends back each packet while a `Camera` is its control object.
-- [ ] T3D-033: who drops the image extension.
+- [x] ~~T3D-033: who drops the image extension.~~ The client does (above).
 - [ ] T3D-022: login steps with no mission phases, compared on our server's two routes.

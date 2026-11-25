@@ -94,6 +94,14 @@ Notes:
   returns true. No chunk-cache write or stamp update was seen on that path, so it changes the live
   view only. **[bin]**
 
+## `getz` in 3D mode (5.12)
+
+The GS2 function `getz(x, y)` picks its source by mode. In 3D mode it asks the 3D world: a ray straight
+down from z = 2000 to z = −2000 at (x, y) against terrain objects, returning the hit height, or 0 if
+nothing is hit. In 2D mode it returns the 2D board height (the level's heights, as before). So a 3D
+session reads terrain height from the `TerrainBlock`, not from a level's `HEIGHTS` block, and no path
+from 2D heights into a `TerrainBlock` was seen (T3D-042). **[bin][inf]**
+
 ## Open
 
 - [ ] T3D-016: create a `GameObject`, `Sky` and `Sun` from a client weapon with no server ghost,
