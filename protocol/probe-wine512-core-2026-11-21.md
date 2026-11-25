@@ -111,14 +111,28 @@ The client stays up for every type, 223 included, as on 4.20r8 (`bt420-a`) and
 - The injected baddies attack. From about type 6 the client reports `hurt` with
   falling power (prop 2: 2.5 down to 0.5), and at about 105 s it reports `dead`.
   From then on the level view stays black while the HUD and the baddies are
-  still drawn, and the client keeps sending. The older rows say only "client
-  stays up", so whether 4.x died the same way is unknown.
-- In the type-10 slot the client asked for an image with a 23-byte binary name,
+  still drawn, and the client keeps sending.
+- In the type-11 slot the client asked for an image with a 22-byte binary name,
   bare and with nine extensions (`png mng jng gif jpg jpeg jp2 dds bmp`); the
-  server failed all ten. Type 9 is the last stock baddy, so this looks like a
-  read past the client's baddy image table [inf]. Types 11 and up caused no
-  further requests. It happened in the same second as the death, so a re-run
-  with the player protected is needed to separate the two.
+  server failed all ten.
+
+A second run (`bt512-p`) kept the player alive by re-sending PLO 9 prop 2 (three
+full hearts) every 0.5 s; the baddy packets and timing were unchanged, and the
+client never reported `dead`. It separates the two effects:
+
+- The binary-name request still appears, 0.135 s after the type-11 baddy, with
+  the same 22 bytes as in `bt512-a` (the first run's 23 was the packet length
+  with the id byte). Type 10 and types 12 to 223 request nothing new. Types 0 to
+  9 fetch the stock sheets (`baddygray` to `baddydragon`), so 11 looks like the
+  first type past the client's baddy image table [inf].
+- The level view stays drawn for the whole run, so the black view in `bt512-a`
+  is a consequence of the death, not of any baddy type.
+- A 4.20r8 control with the stock plan (`bt420-b`) also died (in the type-11
+  slot, at about 122 s) and also went black afterwards, but made no
+  binary-name request. The garbage-name request is specific to 5.12.
+- Both 5.12 runs send PLI 9 (arrow add) from about type 4 on with no key
+  pressed, probably the client reporting arrows from the archer baddies it
+  simulates [inf].
 
 ### loadgani3w (`lg3w512-a`) and the eight `lgw512` rows
 
@@ -143,5 +157,5 @@ is marked superseded. Cases new for 5.12: no 195 at all gives the file defaults
 (kick and hurt → `idle`, lift → `carrystill`); DEFAULT* lines cause no image
 requests; `SETBACKTOsit` without a space is ignored.
 
-- [ ] Re-run `baddytypes` on 5.12 with the player protected, to separate the
-  type-10 image request from the death.
+- [x] Re-run `baddytypes` on 5.12 with the player protected, to separate the
+  image request from the death (`bt512-p`, above).
