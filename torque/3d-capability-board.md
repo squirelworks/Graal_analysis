@@ -83,3 +83,13 @@ version it is built from; the full console registry; the NetEvent and ghost clas
 their fields; the resource loaders and their checks; error paths and logs; the files it reads and
 writes; its threads and frame loop; input; dead code against Graal additions; and the 4.20r8 and
 5.00r7 differences from 5.12.
+
+## Third batch (T3D-105 to T3D-114, 2026-11-25)
+
+How close our renderer is to each client; what a level author can place and which files win (disk
+or server); recovery from partial or bad data; the content subset that 4.04r2, 4.20r8 and 5.12
+all draw; flags, weapons and NPCs across 2D and 3D; which state lives on the server and which on
+the client; whether a server-sent name can make a client write outside its folders; frame rate
+against content size; and a ranked fuzz target list per build. Overlapping questions already on
+the board are not repeated: mixed-build worlds (T3D-072), 2D views of 3D players (T3D-073), ghost
+scoping (T3D-075, T3D-083) and hard limits (T3D-037, T3D-091).
