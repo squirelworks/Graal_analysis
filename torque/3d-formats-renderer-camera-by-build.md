@@ -3,7 +3,7 @@
 Static read of the two Graal3DEngine.dll builds we hold unpacked. It records
 which loaders, settings and classes are present in each build, by their names
 and messages. Presence is not proof that a feature works in a session; the
-open boxes say what still needs a lab. Board rows: T3D-013, T3D-031, T3D-039, T3D-034,
+open boxes say what still needs a lab. Board rows: T3D-013, T3D-029, T3D-031, T3D-039, T3D-034,
 T3D-035, T3D-051, T3D-055, T3D-062.
 
 ## Shape and model formats (T3D-031, T3D-034, T3D-035)
@@ -18,6 +18,19 @@ T3D-035, T3D-051, T3D-055, T3D-062.
 | `.md3` (Quake 3 player model) | yes: an MD3 loader that builds a model from `<name>_lower.md3`, `_upper.md3`, `_head.md3` and `<name>_lower_default.skin`, with its own error messages per part | gone |
 | `.ifl` animated textures | yes (material list code) | no literal |
 | `.dml` material lists | yes | no literal |
+
+Version bounds (T3D-029):
+
+| Check | 4.04r2 | 5.12 |
+|---|---|---|
+| DTS shape version accepted (low byte of the version word) | 19 to 24 | 17 to 24 |
+| DIF `InteriorResource` file version | exactly 44 | exactly 44 |
+| DIF `Interior` version | exactly 0 | exactly 0 |
+
+If a shape's version is above the maximum, the client logs "can currently only
+load version 24 and before". If it is below the minimum, the client logs "not
+supported anymore". An interior with any other version fails with
+"incompatible file version found". **[bin]**
 
 So MD3 models, IFL textures, DML lists and the shape constructor are 4.04r2
 features. 5.12 keeps DTS, DIF and 3DS and adds a `.dsq` entry to its shape
