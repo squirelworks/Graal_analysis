@@ -104,7 +104,7 @@ Builds agree on the cap but not always on rounding. The table gives the number o
 | Claim A (holds) | 5.12 steps the iterator `len / 4` times rounded down for zlib and bz2 frames (capped at 4) and rounded up for raw frames, both ways | [bin][wire] (protocol/gen5-cipher-step-5x.md) |
 | Claim B (superseded) | Every later frame of ten 5.x and 6.x captures decodes with one step per group present, rounded up; it is not a competing decoder once short compressed frames are counted | [cap] (protocol/v5v6-windows-unpacked.md) |
 | Settled | The probe proxy ciphers both directions with Claim A's rule. The real 5.00r7 (native, Windows 10 lab VM), 5.24r3, 5.30r3 and 5.31r4, and before them 5.12 and 5.24r4, ran through it for 130 canary cases each: no lost client and no result different from the reference. Most zlib frames are not a multiple of four bytes long, so a wrong step rule would desynchronise the cipher at the first such frame in either direction | [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md); [doc] (tools/probe/README.md) |
-| Verdict | Verified by session survival on the exact builds. No single short frame was set beside both rules by hand, which is no longer needed | [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md) |
+| Verdict | Verified by session survival on the exact builds. A 15-byte zlib frame sent by 5.12 inflates under round-down and fails under round-up, and normal play never compresses below about 47 bytes, which is why the captures behind Claim B decoded with round-up | [lab] (protocol/fuzz-4x-5x-win-2026-11-19.md); [lab] (protocol/gen5-cipher-step-5x.md#a-short-compressed-512-frame-under-both-rules-g253-2026-11-25) |
 
 ### 2.2.3.1 Exact-input Mac PowerPC receive qualification
 
