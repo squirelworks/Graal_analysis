@@ -5073,3 +5073,156 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-25	win-5.00r7 (wine)	s2c	193	-	193 crc d6d8c5bf + GS2Fix, then 100+132, after the source-text 33	-	yes	158 (ask)	client asks 158 (server answers 140); 132 writes GS2Fix.code (204 B); weapon still does not run	wpn500-d	03-after-132
 2026-11-25	win-5.00r7 (wine)	s2c	132	-	bare 33 GSX1 (image only) + 100+132 GCHAR 4 GSX1 + GS2Fix bytecode	-	yes	chat	weapon runs (wpn ok 0.004 s after 132); cache GSX1.code 204 B	wpn500-e	01-after-132
 2026-11-25	win-5.00r7 (wine)	s2c	140	-	bare 33 GSX2 + 100+140 weapon,GSX2,1,<hash> + GS2Fix bytecode	-	yes	chat	weapon runs (fresh timer chat 0.97 s after 140); cache GSX2.code 195 B	wpn500-e	02-after-140
+2026-11-25	win-5.00r7 (wine)	s2c	68	-	start level NPC shows a 307,961-byte random-noise PNG (one WANTFILE)	-	yes	34 (cache check) answered 45	server sends 68, 84 (GINT5 307961), 10 x 102 each inside 100 (9 x 32000 + 19961 data bytes), 69; no re-ask, no 30; file saved to levels/images/downloads, byte-identical (sha256 match)	lf500-a	01-after
+2026-11-25	win-5.00r7 (wine)	s2c	84	-	84 LARGEFILESIZE 20 20 32 85 99 (= 307961) before the chunks	-	yes	none	accepted; the client keeps going and completes the transfer	lf500-a	01-after
+2026-11-25	win-6.037 (wine)	s2c	9	0	9 c:0 str:Probe c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id00
+2026-11-25	win-6.037 (wine)	s2c	9	1	9 c:1 c:3 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id01
+2026-11-25	win-6.037 (wine)	s2c	9	2	9 c:2 c:6 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id02
+2026-11-25	win-6.037 (wine)	s2c	9	3	9 c:3 i3:7 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id03
+2026-11-25	win-6.037 (wine)	s2c	9	4	9 c:4 c:10 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id04
+2026-11-25	win-6.037 (wine)	s2c	9	5	9 c:5 c:3 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id05
+2026-11-25	win-6.037 (wine)	s2c	9	6	9 c:6 c:1 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id06
+2026-11-25	win-6.037 (wine)	s2c	9	7	9 c:7 c:1 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id07
+2026-11-25	win-6.037 (wine)	s2c	9	8	9 c:8 c:31 str:sword1.png c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id08
+2026-11-25	win-6.037 (wine)	s2c	9	9	9 c:9 c:11 str:shield1.png c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id09
+2026-11-25	win-6.037 (wine)	s2c	9	10	9 c:10 str:idle c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id10
+2026-11-25	win-6.037 (wine)	s2c	9	11	9 c:11 c:109 t:head0.png c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id11
+2026-11-25	win-6.037 (wine)	s2c	9	12	9 c:12 str:hi c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id12
+2026-11-25	win-6.037 (wine)	s2c	9	13	9 c:13 c:0 c:0 c:0 c:0 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id13
+2026-11-25	win-6.037 (wine)	s2c	9	15	9 c:15 c:60 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id15
+2026-11-25	win-6.037 (wine)	s2c	9	16	9 c:16 c:61 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id16
+2026-11-25	win-6.037 (wine)	s2c	9	17	9 c:17 c:2 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id17
+2026-11-25	win-6.037 (wine)	s2c	9	18	9 c:18 c:20 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id18
+2026-11-25	win-6.037 (wine)	s2c	9	19	9 c:19 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id19
+2026-11-25	win-6.037 (wine)	s2c	9	21	9 c:21 str: c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id21
+2026-11-25	win-6.037 (wine)	s2c	9	22	9 c:22 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id22
+2026-11-25	win-6.037 (wine)	s2c	9	23	9 c:23 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id23
+2026-11-25	win-6.037 (wine)	s2c	9	24	9 c:24 i3:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id24
+2026-11-25	win-6.037 (wine)	s2c	9	25	9 c:25 s:1 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id25
+2026-11-25	win-6.037 (wine)	s2c	9	26	9 c:26 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id26
+2026-11-25	win-6.037 (wine)	s2c	9	27	9 c:27 i3:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id27
+2026-11-25	win-6.037 (wine)	s2c	9	28	9 c:28 i3:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id28
+2026-11-25	win-6.037 (wine)	s2c	9	29	9 c:29 i3:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id29
+2026-11-25	win-6.037 (wine)	s2c	9	30	9 c:30 i5:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id30
+2026-11-25	win-6.037 (wine)	s2c	9	31	9 c:31 i3:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id31
+2026-11-25	win-6.037 (wine)	s2c	9	32	9 c:32 c:50 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id32
+2026-11-25	win-6.037 (wine)	s2c	9	33	9 c:33 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	no case in the 6.x self parser: skipped as one byte	w6037-a	id33
+2026-11-25	win-6.037 (wine)	s2c	9	34	9 c:34 str:guest c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id34
+2026-11-25	win-6.037 (wine)	s2c	9	35	9 c:35 str:body.png c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id35
+2026-11-25	win-6.037 (wine)	s2c	9	36	9 c:36 i3:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id36
+2026-11-25	win-6.037 (wine)	s2c	9	37	9 c:37 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id37
+2026-11-25	win-6.037 (wine)	s2c	9	38	9 c:38 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id38
+2026-11-25	win-6.037 (wine)	s2c	9	39	9 c:39 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id39
+2026-11-25	win-6.037 (wine)	s2c	9	40	9 c:40 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id40
+2026-11-25	win-6.037 (wine)	s2c	9	41	9 c:41 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id41
+2026-11-25	win-6.037 (wine)	s2c	9	42	9 c:42 c:0 i3:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id42
+2026-11-25	win-6.037 (wine)	s2c	9	43	9 c:43 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id43
+2026-11-25	win-6.037 (wine)	s2c	9	44	9 c:44 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id44
+2026-11-25	win-6.037 (wine)	s2c	9	45	9 c:45 c:50 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id45
+2026-11-25	win-6.037 (wine)	s2c	9	46	9 c:46 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id46
+2026-11-25	win-6.037 (wine)	s2c	9	47	9 c:47 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id47
+2026-11-25	win-6.037 (wine)	s2c	9	48	9 c:48 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id48
+2026-11-25	win-6.037 (wine)	s2c	9	49	9 c:49 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id49
+2026-11-25	win-6.037 (wine)	s2c	9	50	9 c:50 c:1 c:5 c:99	yes	yes	chat (GS2 read-back)	no case in the 6.x self parser: skipped as one byte	w6037-a	id50
+2026-11-25	win-6.037 (wine)	s2c	9	52	9 c:52 str:English c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id52
+2026-11-25	win-6.037 (wine)	s2c	9	53	9 c:53 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	no case in the 6.x self parser: skipped as one byte	w6037-a	id53
+2026-11-25	win-6.037 (wine)	s2c	9	54	9 c:54 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id54
+2026-11-25	win-6.037 (wine)	s2c	9	55	9 c:55 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id55
+2026-11-25	win-6.037 (wine)	s2c	9	56	9 c:56 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id56
+2026-11-25	win-6.037 (wine)	s2c	9	57	9 c:57 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id57
+2026-11-25	win-6.037 (wine)	s2c	9	58	9 c:58 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id58
+2026-11-25	win-6.037 (wine)	s2c	9	59	9 c:59 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id59
+2026-11-25	win-6.037 (wine)	s2c	9	60	9 c:60 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id60
+2026-11-25	win-6.037 (wine)	s2c	9	61	9 c:61 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id61
+2026-11-25	win-6.037 (wine)	s2c	9	62	9 c:62 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id62
+2026-11-25	win-6.037 (wine)	s2c	9	63	9 c:63 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id63
+2026-11-25	win-6.037 (wine)	s2c	9	64	9 c:64 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id64
+2026-11-25	win-6.037 (wine)	s2c	9	65	9 c:65 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id65
+2026-11-25	win-6.037 (wine)	s2c	9	66	9 c:66 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id66
+2026-11-25	win-6.037 (wine)	s2c	9	67	9 c:67 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id67
+2026-11-25	win-6.037 (wine)	s2c	9	68	9 c:68 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id68
+2026-11-25	win-6.037 (wine)	s2c	9	69	9 c:69 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id69
+2026-11-25	win-6.037 (wine)	s2c	9	70	9 c:70 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id70
+2026-11-25	win-6.037 (wine)	s2c	9	71	9 c:71 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id71
+2026-11-25	win-6.037 (wine)	s2c	9	72	9 c:72 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id72
+2026-11-25	win-6.037 (wine)	s2c	9	73	9 c:73 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id73
+2026-11-25	win-6.037 (wine)	s2c	9	74	9 c:74 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id74
+2026-11-25	win-6.037 (wine)	s2c	9	75	9 c:75 str:linux c:5 c:99	yes	yes	chat (GS2 read-back)	no case in the 6.x self parser: skipped as one byte (landed only by chance: the string bytes parse as other props)	w6037-a	id75
+2026-11-25	win-6.037 (wine)	s2c	9	76	9 c:76 i3:1252 c:5 c:99	no	yes	chat (GS2 read-back)	no case in the 6.x self parser: skipped as one byte (the value given was longer, so the canary was lost)	w6037-a	id76
+2026-11-25	win-6.037 (wine)	s2c	9	77	9 c:77 i5:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id77
+2026-11-25	win-6.037 (wine)	s2c	9	78	9 c:78 s:960 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id78
+2026-11-25	win-6.037 (wine)	s2c	9	79	9 c:79 s:960 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id79
+2026-11-25	win-6.037 (wine)	s2c	9	80	9 c:80 s:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id80
+2026-11-25	win-6.037 (wine)	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id81
+2026-11-25	win-6.037 (wine)	s2c	9	82	9 c:82 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id82
+2026-11-25	win-6.037 (wine)	s2c	9	83	9 c:83 i5:7 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id83
+2026-11-25	win-6.037 (wine)	s2c	9	84	9 c:84 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	unknown id: skipped as one byte	w6037-a	id84
+2026-11-25	win-6.037 (wine)	s2c	9	85	9 c:85 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	unknown id: skipped as one byte	w6037-a	id85
+2026-11-25	win-6.037 (wine)	s2c	9	86	9 c:86 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	unknown id: skipped as one byte	w6037-a	id86
+2026-11-25	win-6.037 (wine)	s2c	9	87	9 c:87 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	unknown id: skipped as one byte	w6037-a	id87
+2026-11-25	win-6.037 (wine)	s2c	9	88	9 c:88 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	unknown id: skipped as one byte	w6037-a	id88
+2026-11-25	win-6.037 (wine)	s2c	9	89	9 c:89 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	unknown id: skipped as one byte	w6037-a	id89
+2026-11-25	win-6.037 (wine)	s2c	9	90	9 c:90 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	unknown id: skipped as one byte	w6037-a	id90
+2026-11-25	win-6.037 (wine)	s2c	9	51	9 c:51  c:5 c:99	no	yes	chat (GS2 read-back)	no case in the 6.x self parser: skipped as one byte (the value given was longer, so the canary was lost)	w6037-a	id51
+2026-11-25	win-6.037 (wine)	s2c	9	20	9 c:20 str:probe_start.nw c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id20
+2026-11-25	win-6.037 (wine)	s2c	9	14	9 c:14 s:1 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds	w6037-a	id14
+2026-11-25	win-6.037 (wine)	s2c	9	24	9 c:24 i3:16511 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds (re-check with values whose too-short read would swallow the canary)	w6037-b	id24
+2026-11-25	win-6.037 (wine)	s2c	9	27	9 c:27 i3:16511 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds (re-check with values whose too-short read would swallow the canary)	w6037-b	id27
+2026-11-25	win-6.037 (wine)	s2c	9	28	9 c:28 i3:16511 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds (re-check with values whose too-short read would swallow the canary)	w6037-b	id28
+2026-11-25	win-6.037 (wine)	s2c	9	29	9 c:29 i3:16511 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds (re-check with values whose too-short read would swallow the canary)	w6037-b	id29
+2026-11-25	win-6.037 (wine)	s2c	9	31	9 c:31 i3:16511 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds (re-check with values whose too-short read would swallow the canary)	w6037-b	id31
+2026-11-25	win-6.037 (wine)	s2c	9	36	9 c:36 i3:16511 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds (re-check with values whose too-short read would swallow the canary)	w6037-b	id36
+2026-11-25	win-6.037 (wine)	s2c	9	30	9 c:30 i5:2080768 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds (re-check with values whose too-short read would swallow the canary)	w6037-b	id30
+2026-11-25	win-6.037 (wine)	s2c	9	77	9 c:77 i5:2080768 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds (re-check with values whose too-short read would swallow the canary)	w6037-b	id77
+2026-11-25	win-6.037 (wine)	s2c	9	42	9 c:42 c:0 i3:16511 c:5 c:99	yes	yes	chat (GS2 read-back)	documented width holds (re-check with values whose too-short read would swallow the canary)	w6037-b	id42
+2026-11-25	win-6.037 (wine)	s2c	9	3	9 c:3 i3:1234	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 1234	w6037-c	01-p3-1234
+2026-11-25	win-6.037 (wine)	s2c	9	3	9 c:3 i3:65535	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 65535	w6037-c	02-p3-65535
+2026-11-25	win-6.037 (wine)	s2c	9	3	9 c:3 i3:2097151	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 2097151	w6037-c	03-p3-2097151
+2026-11-25	win-6.037 (wine)	s2c	9	3	9 c:3 i3:0	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 0	w6037-c	04-p3-0
+2026-11-25	win-6.037 (wine)	s2c	9	83	9 c:83 i5:5555	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 5555	w6037-c	05-p83-5555
+2026-11-25	win-6.037 (wine)	s2c	9	3	9 c:3 i3:777	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 777	w6037-c	06-p3-777
+2026-11-25	win-6.037 (wine)	s2c	9	83	9 c:83 i5:123456789	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 123456789	w6037-c	07-p83-123456789
+2026-11-25	win-6.037 (wine)	s2c	68	-	start level NPC shows a 307,961-byte random-noise PNG (one WANTFILE)	-	yes	none	server sends 68, 84 (GINT5 307961), 10 x 102 each inside 100 (9 x 32000 + 19961 data bytes), 69; no re-ask, no 30; file saved to levels/images/downloads, byte-identical (sha256 match)	lf6037-a	01-after
+2026-11-25	win-6.037 (wine)	s2c	84	-	84 LARGEFILESIZE 20 20 32 85 99 (= 307961) before the chunks	-	yes	none	accepted; the client completes the transfer	lf6037-a	01-after
+2026-11-25	win-6.037 (wine)	s2c	9	83	9 c:83 i5:1234 c:5 c:99	yes	yes	chat (GS2 read-back)	gralat counter 1234; bombs 99	core6037-a	p83-i5
+2026-11-25	win-6.037 (wine)	s2c	9	83	9 c:83 c:1 c:5 c:99	no	yes	chat (GS2 read-back)	canary lost (83 read as 5 bytes)	core6037-a	p83-c1
+2026-11-25	win-6.037 (wine)	s2c	9	77	9 c:77 i5:123456 c:5 c:99	yes	yes	chat (GS2 read-back)	canary landed (77 is 5 bytes)	core6037-a	p77-i5
+2026-11-25	win-6.037 (wine)	s2c	9	77	9 c:77 c:1 c:5 c:99	no	yes	chat (GS2 read-back)	canary lost	core6037-a	p77-c1
+2026-11-25	win-6.037 (wine)	s2c	9	78	9 c:78 s:960 c:5 c:99	yes	yes	chat (GS2 read-back)	canary landed	core6037-a	p78-s
+2026-11-25	win-6.037 (wine)	s2c	9	79	9 c:79 s:960 c:5 c:99	yes	yes	chat (GS2 read-back)	canary landed	core6037-a	p79-s
+2026-11-25	win-6.037 (wine)	s2c	9	80	9 c:80 s:0 c:5 c:99	yes	yes	chat (GS2 read-back)	canary landed	core6037-a	p80-s
+2026-11-25	win-6.037 (wine)	s2c	9	81	9 c:81 c:0 c:5 c:99	yes	yes	chat (GS2 read-back)	canary landed	core6037-a	p81-c
+2026-11-25	win-6.037 (wine)	s2c	9	82	9 c:82 str:x c:5 c:99	yes	yes	chat (GS2 read-back)	canary landed	core6037-a	p82-str
+2026-11-25	win-6.037 (wine)	s2c	9	90	9 c:90 c:1 c:5 c:99	yes	yes	chat (GS2 read-back)	canary landed (unknown id skips 1 byte)	core6037-a	p90-c1
+2026-11-25	win-6.037 (wine)	s2c	9	90	9 c:90 i3:300000 c:5 c:99	no	yes	chat (GS2 read-back)	canary lost	core6037-a	p90-i3
+2026-11-25	win-6.037 (wine)	s2c	9	3	9 c:3 i3:4321 c:5 c:99	yes	yes	chat (GS2 read-back)	gralat counter 4321; bombs 99	core6037-a	p3-i3
+2026-11-25	win-6.037 (wine)	s2c	60	-	60  then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo60-empty
+2026-11-25	win-6.037 (wine)	s2c	60	-	60 c:1 then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo60-c1
+2026-11-25	win-6.037 (wine)	s2c	60	-	60 t:"probe body 0123456789" then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo60-text
+2026-11-25	win-6.037 (wine)	s2c	60	-	60 hex:ff00ff00 then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo60-bin
+2026-11-25	win-6.037 (wine)	s2c	78	-	78  then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo78-empty
+2026-11-25	win-6.037 (wine)	s2c	78	-	78 c:1 then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo78-c1
+2026-11-25	win-6.037 (wine)	s2c	78	-	78 t:"probe body 0123456789" then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo78-text
+2026-11-25	win-6.037 (wine)	s2c	78	-	78 hex:ff00ff00 then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo78-bin
+2026-11-25	win-6.037 (wine)	s2c	81	-	81  then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo81-empty
+2026-11-25	win-6.037 (wine)	s2c	81	-	81 c:1 then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo81-c1
+2026-11-25	win-6.037 (wine)	s2c	81	-	81 t:"probe body 0123456789" then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo81-text
+2026-11-25	win-6.037 (wine)	s2c	81	-	81 hex:ff00ff00 then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo81-bin
+2026-11-25	win-6.037 (wine)	s2c	83	-	83  then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo83-empty
+2026-11-25	win-6.037 (wine)	s2c	83	-	83 c:1 then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo83-c1
+2026-11-25	win-6.037 (wine)	s2c	83	-	83 t:"probe body 0123456789" then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo83-text
+2026-11-25	win-6.037 (wine)	s2c	83	-	83 hex:ff00ff00 then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo83-bin
+2026-11-25	win-6.037 (wine)	s2c	110	-	110  then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo110-empty
+2026-11-25	win-6.037 (wine)	s2c	110	-	110 c:1 then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo110-c1
+2026-11-25	win-6.037 (wine)	s2c	110	-	110 t:"probe body 0123456789" then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo110-text
+2026-11-25	win-6.037 (wine)	s2c	110	-	110 hex:ff00ff00 then 9 c:5 c:99	yes	yes	chat (GS2 read-back)	ignored; canary landed	core6037-a	plo110-bin
+2026-11-25	win-6.037 (wine)	s2c	60	-	60 hex:410042	yes	yes	none	canary in the same frame landed	b6037-a	nul-mid
+2026-11-25	win-6.037 (wine)	s2c	60	-	60 hex:4100	yes	yes	none	canary in the same frame landed	b6037-a	nul-end
+2026-11-25	win-6.037 (wine)	s2c	60	-	60 hex:41ff42	yes	yes	none	canary in the same frame landed	b6037-a	ff
+2026-11-25	win-6.037 (wine)	s2c	60	-	60 hex:418042	yes	yes	none	canary in the same frame landed	b6037-a	80
+2026-11-25	win-6.037 (wine)	s2c	60	-	60 hex:411f42	yes	yes	none	canary in the same frame landed	b6037-a	1f
+2026-11-25	win-6.037 (wine)	s2c	60	-	60 t:AB	yes	yes	none	canary in the same frame landed	b6037-a	plain
+2026-11-25	win-6.037 (wine)	s2c	9	12	9 c:12 str:a hex:00	yes	yes	none	canary in the same frame landed	b6037-a	nul-known
+2026-11-25	win-6.037 (wine)	s2c	2	3 (TYPE)	types 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 20, 31, 50, 100, 150, 200, 223; player power refilled to 3 hearts (PLO 9 prop 2) every 0.5 s	-	yes	none	client stays up for every type, 223 included; player hurt (power stays 2.5) but never dead; types 0-9 fetch the stock baddy sheets	bt6037-p	type*
+2026-11-25	win-6.037 (wine)	s2c	2	3 (TYPE)	types 10, 11, 12, 15 (new baddy each), player protected	-	yes	WANTFILE x1 each	the client asks for a bare name with no extension: type 10 graysoldier, 11 bluesoldier, 12 redsoldier, 15 frog (types 20-223 ask nothing); unlike 5.12 (type 11: one 22-byte binary name with 9 extensions)	bt6037-p	type010-type015
+2026-11-25	win-6.037 (wine)	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as Linux 6.03r7 (lg603-b/-d) in every section; after M4 (NUL, ff, 80 in the SETBACKTO name) hurt does not fall back at all (no request for a 00 ff 80 gani; it stays on hurt until the M6 195), so NUL ends the name (empty = no fallback), unlike the 4.x/5.x fixed-plan builds	lg3w6037-a	-

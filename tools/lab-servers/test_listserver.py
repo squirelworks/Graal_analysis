@@ -26,8 +26,11 @@ def check(name, ok, detail=''):
 def frame(body): return struct.pack('>H', len(body)) + body
 
 
-def read_frames(s, wait=1.0):
-    s.settimeout(wait)
+def read_frames(s, wait=1.0, first=5.0):
+    # Wait up to `first` seconds for the reply to start, then read until
+    # the server has been quiet for `wait` seconds. A single short timeout
+    # for both made slow CI runners (Windows) see an empty reply.
+    s.settimeout(first)
     data = b''
     try:
         while True:
@@ -35,6 +38,7 @@ def read_frames(s, wait=1.0):
             if not d:
                 break
             data += d
+            s.settimeout(wait)
     except socket.timeout:
         pass
     out = []
