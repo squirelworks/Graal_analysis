@@ -220,9 +220,16 @@ is not cached; it returns 0 until the file has arrived. **[lab]**
 pixel into a 0–1 value with luminance weights (0.299 R, 0.587 G, 0.114 B, over 256). It walks the
 register's 256 × 256 squares and reads the image bottom row first, so together with `setTerrain`'s
 own flip, image row r lands on terrain row r. It does not check the image's depth or size.
-**[bin]** A 256 × 256 8-bit greyscale PNG (PNG colour type 0) crashes the client inside the 3D
-engine with an access violation on a wild address, with or without a `TerrainBlock`; use a 24-bit
-RGB image. **[lab]**
+**[bin]** In the lab only a 32-bit RGBA PNG is safe: a 256 × 256 RGBA image returns 1 and the
+client keeps running. A 24-bit RGB PNG (256 × 256 and 128 × 128) and an 8-bit greyscale PNG
+(colour type 0) both crash the client inside the 3D engine with an access violation at the same
+place, with or without a `TerrainBlock`. So the reader expects 4 bytes per pixel in practice;
+use RGBA images. **[lab]**
+
+The client does not clamp a script-moved `GameObject` to the terrain: its z stays at the value
+set (60 in the lab) while `getdropz(x, y, 500)` reports the ground below. Every `getdropz` value
+over the planted terrain was a multiple of 1/8, which fits one wire height unit being 1/8 m.
+`player.getdropz()` returned 0. **[lab]**
 
 Research board rows (`torque/3d-capability-board.tsv`): T3D-040 (`TerrainBlock`, chunks, cache),
 T3D-044 (terrain texture rules), T3D-045 (`WaterBlock`).
@@ -272,5 +279,9 @@ logs are kept with the owner's lab material. **[lab]**
 | Four `GameObject`s with flags 0x10 and 0x30 (show terrain) at heights 0 and 200, beside terrain and water | all created, no error (visual effect not readable in the lab VM) |
 | Native terrain from the Seihai gserver (`terrain` world line, a 256-chunk generated world) | first connect: 256 chunks sent, 256 cache files written, hills drawn; reconnect: the client's stamps matched all 256, so the server sent none |
 
-No case crashed the client. Corrections this run made to the static read: `heights.info` is
+| `Terraformer.loadGreyscale` with a 256 × 256 32-bit RGBA PNG | returns 1, no crash |
+| `Terraformer.loadGreyscale` with a 24-bit RGB PNG (256 × 256, 128 × 128) or an 8-bit grey PNG | client crashes (access violation in the 3D engine) |
+| Script moves a `GameObject` over terrain; `getdropz` sampled | no clamping (z stays as set); `getdropz` values are multiples of 1/8 |
+
+No chunk or ghost case crashed the client; only the `loadGreyscale` cases above did. Corrections this run made to the static read: `heights.info` is
 one name per line; the folder-name escape; the canonical re-encoding before the stamp.
