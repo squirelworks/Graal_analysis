@@ -972,3 +972,4 @@ torque/live-512-gs2-3d-probe-2026-11-25.md	cited	E; 8.5	10.3; 10.6	5.12 GS2 3D p
 torque/terraingenerator-original-vs-servertools-2026-11-25.md	pending	E	10.6	Original TerrainGenerator output compared with servertools gen terrain and gen 3d
 torque/live-3153-and-404r2-sessions-2026-11-25.md	pending	E	10.3	3.153 and 4.04r2 against our 3D server: phases, requests, clientCmds, control object
 torque/3d-engine-static-reads-2026-11-25.md	pending	E	10.3; 10.6	Static reads of the 5.00r7 3D engine: sky functions, name HUD, protocol, loaders, input
+torque/3d-fuzz-targets-by-build.md	pending	E	10.6	Fuzz target list for the 3D client inputs, ranked by reach
