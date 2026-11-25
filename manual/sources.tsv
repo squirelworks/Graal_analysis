@@ -872,7 +872,7 @@ torque/3d-multi-client-lab-design.md	pending	E	10.3	plan for multi-client 3D lab
 torque/3d-formats-renderer-camera-by-build.md	cited	E; 8.5	10.6	shape loaders, file-access gate, renderer prefs, camera classes and sound formats in 4.04r2 and 5.12; to fold into the formats section; scripting side carried into §8.5
 torque/3d-server-entry-and-udp-port.md	cited	E; 8.5	10.3	the 3 list prefix and the 3D UDP port rule in 4.04r2 and 5.12; to fold into the session section; scripting side carried into §8.5
 torque/gs2-3d-objects-404r2-512.md	cited	E; 8.5	10.5	script-creatable 3D classes in 4.04r2 and 5.12, 5.12 property names, getz in 3D mode, 3D event names; to fold into the object model; scripting side carried into §8.5
-torque/live-512-own-server-textures-2026-11-25.md	cited	E; 8.5	10.3; 10.6	5.12 against our graal3d server: texture naming and formats, control-object updates, sky; to fold into the session and formats sections; scripting side carried into §8.5
+torque/live-512-own-server-textures-2026-11-25.md	cited	E; 8.5; 10	10.3; 10.6	5.12 against our graal3d server: texture naming and formats, control-object updates, sky; to fold into the session and formats sections; scripting side carried into §8.5
 torque/live-512-third-party-session-2026-11-24.md	pending	E	10.3	real 5.12 on a third-party 3D server: no mission phases, Camera control object, client strips .png; to fold into the session section
 torque/script-and-terrain-tools-by-build.md	cited	E; 8.5	10.4; 10.6	TorqueScript compiler and terrain tools by build, 5.12 download filter; to fold into DSO and formats sections; scripting side carried into §8.5
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
@@ -978,17 +978,17 @@ torque/live-3153-and-404r2-sessions-2026-11-25.md	cited	E; 8.5; 10	10.3	3.153 an
 torque/3d-engine-static-reads-2026-11-25.md	cited	E; 8.5; 10	10.3; 10.6	Static reads of the 5.00r7 3D engine: sky functions, name HUD, protocol, loaders, input; carried into §8.5 and §10
 torque/3d-fuzz-targets-by-build.md	pending	E	10.6	Fuzz target list for the 3D client inputs, ranked by reach
 torque/multi-client-3d-lab-2026-11-25.md	cited	E; 8.5; 10	10.3	First multi-client 3D lab pairs: 2D+3D and 3D+3D, what crosses between clients; carried into §8.5.11 and §10.3.11 as a state of the lab server build
-torque/live-512-lighting-and-sky-2026-11-25.md	pending	E	10.3	5.12 lighting probe and sky grid on Mesa: Sun as on/off brightness, rotation sense, FOV
-torque/live-512-gameobject-fields-2026-11-25.md	pending	E	10.3	5.12 GameObject update fields tested live: scale, rotation, flags, undrawn fields
-torque/3d-fuzz-net-tier1-2026-11-25.md	pending	E	10.6	3D network fuzz tier 1: event-length and ghost-index crashes on 5.12 and 4.04r2
-torque/live-512-shapes-2026-11-25.md	pending	E	10.3	5.12 shapes: .3ds materials and collision meshes, .dts per-version behaviour, .dif, .ft
-torque/3d-engines-5007-512-and-403-411-2026-11-25.md	pending		10.3	Static 3D engine compare (T3D-005, T3D-003): protocol and class sets by build; to carry into §10
-torque/3d-archives-404r2-512-2026-11-25.md	pending		10.3	Static read of 3D archive mounting (T3D-012); to carry into §10
-torque/3d-link-drop-420r6-2026-11-25.md	pending		10.3	3D link loss behaviour (T3D-027), static and lab; to carry into §10
-torque/3d-client-events-420r6-2026-11-25.md	pending		10.3	3D client-to-server events (T3D-018), static and lab; to carry into §10
-torque/3d-file-preference-420r6-2026-11-25.md	pending		10.3	3D file preference (T3D-107), lab; to carry into §10
-torque/3d-shape-textures-420r6-2026-11-25.md	pending		10.3	3D shape texture handling and cache naming (T3D-090), lab; to carry into §10
-torque/3d-2d-level-packets-420r6-2026-11-25.md	pending		10.3	2D level packets in a 3D session (T3D-060), lab; to carry into §10
-torque/3d-world-limits-420r6-2026-11-25.md	pending		10.3	3D world-limit fuzz (T3D-091), lab; to carry into §10
-torque/3d-texture-formats-420r6-2026-11-25.md	pending		10.3	3D texture image formats, bit depths and sizes (T3D-077), lab; to carry into §10
-torque/3d-particles-512-vs-404r2-2026-11-25.md	pending		10.3	Particles dropped from 5.12, GS2 TParticleEmitter replaces them (T3D-085), bin; to carry into §10
+torque/live-512-lighting-and-sky-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 lighting probe and sky grid on Mesa: Sun as on/off brightness, rotation sense, FOV; carried into §8.5 and §10
+torque/live-512-gameobject-fields-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 GameObject update fields tested live: scale, rotation, flags, undrawn fields; carried into §8.5 and §10
+torque/3d-fuzz-net-tier1-2026-11-25.md	cited	E; 8.5; 10	10.6	3D network fuzz tier 1: event-length and ghost-index crashes on 5.12 and 4.04r2; carried into §8.5 and §10
+torque/live-512-shapes-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 shapes: .3ds materials and collision meshes, .dts per-version behaviour, .dif, .ft; carried into §8.5 and §10
+torque/3d-engines-5007-512-and-403-411-2026-11-25.md	cited	8.5; 10	10.3	Static 3D engine compare (T3D-005, T3D-003): protocol and class sets by build; to carry into §10
+torque/3d-archives-404r2-512-2026-11-25.md	cited	8.5; 10	10.3	Static read and Linux 4.20r6 lab run of 3D archive mounting (T3D-012); carried into §8.5 and §10
+torque/3d-link-drop-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D link loss behaviour (T3D-027), static and lab; carried into §8.5 and §10
+torque/3d-client-events-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D client-to-server events (T3D-018), static and lab; carried into §8.5 and §10
+torque/3d-file-preference-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D file preference (T3D-107), lab; carried into §8.5 and §10
+torque/3d-shape-textures-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D shape texture handling and cache naming (T3D-090), lab; carried into §8.5 and §10
+torque/3d-2d-level-packets-420r6-2026-11-25.md	cited	8.5; 10	10.3	2D level packets in a 3D session (T3D-060), lab; carried into §8.5 and §10
+torque/3d-world-limits-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D world-limit fuzz (T3D-091), lab; carried into §8.5 and §10
+torque/3d-texture-formats-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D texture image formats, bit depths and sizes (T3D-077), lab; carried into §8.5 and §10
+torque/3d-particles-512-vs-404r2-2026-11-25.md	cited	8.5; 10	10.3	Particles dropped from 5.12, GS2 TParticleEmitter replaces them (T3D-085), bin; carried into §8.5 and §10
