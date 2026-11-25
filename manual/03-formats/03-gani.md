@@ -90,6 +90,8 @@ The header keywords set how an animation plays. Each row gives a keyword and its
 | `SCRIPT` … `SCRIPTEND` | copied through as text; the editor does not execute it | [bin] (formats/gani.txt) |
 | `ROTATEPROJECTILE` | from 6.036: a projectile drawn with this GANI is turned to its flight path; the GANI must also be `SINGLEDIRECTION` and drawn facing right; not yet seen in a binary | [doc] (client-internals/graal-wiki-crosscheck-2026-11-11.md#where-the-wiki-corrects-or-extends-this-repo) |
 
+The `DEFAULT*` rows describe the gani editor. The 4.20r8, 5.12 and 6.03r7 clients store `DEFAULTHEAD`, `DEFAULTBODY`, `DEFAULTPARAM1`–`8` and `DEFAULTATTR1`–`9` but never read them when drawing or fetching files [bin] (protocol/lab-baddyprops-ganiscript-156-2026-11-19.md#default-gani-lines-static-follow-up-g261-2026-11-25).
+
 ## 3.3.5 Sprite mode body
 
 In sprite mode the body is a list of steps. The rules below say what a step can hold and how directions are laid out [bin] (formats/gani.txt).
