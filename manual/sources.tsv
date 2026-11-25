@@ -910,6 +910,8 @@ version-profiles/plo-playerprops-layouts.tsv	cited	2.6	2.5; A	Appendix A and §2
 version-profiles/save-games-142-2171.md	cited	1	1	
 version-profiles/tampercheck-values.tsv	cited	2.4	4.10	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4 (coverage audit 2026-11-04)
 version-profiles/tampercheck-words.tsv	cited	2.4	4.10	Part 4 not needed: a protocol or format note whose distinctive terms are all carried in §2.4 (coverage audit 2026-11-04)
+version-profiles/three-d.md	excluded			Seihai version-profile companion (reimplementation settings, many values assumed), out of scope per §0.1; its facts come from the torque/ notes
+version-profiles/three-d.toml	excluded			Seihai version-profile data mirrored into seihai-core, out of scope per §0.1; its facts come from the torque/ notes
 version-profiles/udp-ids-200-204.tsv	cited	2.9	2.9; A	Appendix A not needed: App. A indexes messages by id and points to the canonical sections, where this per-build table is carried (coverage audit 2026-11-04)
 version-profiles/version-coverage-2026-10-24.md	excluded		1; C	dated planning review for the Seihai version selector; its facts come from the per-build notes and lab records the manual cites
 version-profiles/version-coverage-2026-10-24.tsv	excluded		1; C	table form of the coverage review above
