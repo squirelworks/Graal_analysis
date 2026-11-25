@@ -693,7 +693,7 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-19	win-5.12	s2c	195	-	195 sword "SETBACKTO sword"	-	yes	gani reports, file requests, shots	sword repeats until a new 195	lgw512	-
 2026-11-19	win-5.12	s2c	195	-	195 kick "FOO bar","SETBACKTO sit"	-	yes	gani reports, file requests, shots	unknown keyword ignored, SETBACKTO applied	lgw512	-
 2026-11-19	win-5.12	s2c	195	-	195 lift "LOOP" then "SETBACKTO idle"	-	yes	gani reports, file requests, shots	LOOP stays	lgw512	-
-2026-11-19	win-5.12	s2c	195	-	malformed: 300 empty items, 3000-byte item, 60 KB list, NUL in name	-	yes	gani reports, file requests, shots	no crash; next 195 works; NUL ends the name (empty = no fallback)	lgw512	-
+2026-11-19	win-5.12	s2c	195	-	malformed: 300 empty items, 3000-byte item, 60 KB list, NUL in name	-	yes	gani reports, file requests, shots	no crash; next 195 works; NUL ends the name (empty = no fallback) [superseded 2026-11-25 by lg3w512-a: NUL does not end the name]	lgw512	-
 2026-11-19	linux-6.03r7	s2c	195	-	195 idle "SINGLEDIRECTION"	-	yes	gani reports, file requests, shots	idle shows one (up) frame in every direction (shots)	lg603-d	-
 2026-11-19	linux-6.03r7	s2c	195	-	195 idle DEFAULTHEAD/BODY/ATTR1 (own player)	-	yes	gani reports, file requests, shots	no image requests, no visible effect	lg603-d	-
 2026-11-19	linux-6.03r7	s2c	195	-	195 kick DEFAULT* + a minimal other player playing kick	-	yes	gani reports, file requests, shots	no image requests; the client gives it its default head	lg603-e	-
@@ -5039,3 +5039,12 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-25	win-5.24r4 (wine)	s2c	9	83	9 c:83 i5:5555	-	yes	none	no case: player.rupees unchanged (0)	rbk524-a	05-p83-5555
 2026-11-25	win-5.24r4 (wine)	s2c	9	3	9 c:3 i3:777	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 777	rbk524-a	06-p3-777
 2026-11-25	win-5.24r4 (wine)	s2c	9	83	9 c:83 i5:123456789	-	yes	none	no case: player.rupees unchanged (777)	rbk524-a	07-p83-123456789
+2026-11-25	win-5.12 (wine)	s2c	60	-	60 hex:410042	yes	yes	none	canary in the same frame landed	b512-a	nul-mid
+2026-11-25	win-5.12 (wine)	s2c	60	-	60 hex:4100	yes	yes	none	canary in the same frame landed	b512-a	nul-end
+2026-11-25	win-5.12 (wine)	s2c	60	-	60 hex:41ff42	yes	yes	none	canary in the same frame landed	b512-a	ff
+2026-11-25	win-5.12 (wine)	s2c	60	-	60 hex:418042	yes	yes	none	canary in the same frame landed	b512-a	80
+2026-11-25	win-5.12 (wine)	s2c	60	-	60 hex:411f42	yes	yes	none	canary in the same frame landed	b512-a	1f
+2026-11-25	win-5.12 (wine)	s2c	60	-	60 t:AB	yes	yes	none	canary in the same frame landed	b512-a	plain
+2026-11-25	win-5.12 (wine)	s2c	9	12	9 c:12 str:a hex:00	yes	yes	none	canary in the same frame landed	b512-a	nul-known
+2026-11-25	win-5.12 (wine)	s2c	2	3 (TYPE)	types 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 20, 31, 50, 100, 150, 200, 223	-	yes	none	client stays up for every type, 223 included (same as 4.20r8); the baddies hurt and kill the player (dead at ~105 s), after which the level view stays black with HUD and baddies drawn; in the type-10 slot the client requested a 23-byte binary image name with 9 extensions (server: 30 x10)	bt512-a	type*
+2026-11-25	win-5.12 (wine)	s2c	195	-	loadgani3w set (P, R1-R8, M1-M6; M2 line quoting fixed)	-	yes	gani reports, file requests	same gani outcome as 5.24r4 (lgw524) in every section; after M4 (NUL, ff, 80 in the SETBACKTO name) hurt falls back to a gani named 00 ff 80 (asks for it: 23 + 157), so NUL does not end the name, as in all 11-19 fixed-plan builds; this replaces the lgw512 "NUL ends the name" reading	lg3w512-a	-
