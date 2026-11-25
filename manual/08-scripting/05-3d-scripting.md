@@ -111,6 +111,16 @@ What a script can do with them:
 | The client carries a scriptable 3D world and terrain editor: `WorldEditor`, `TerrainEditor` and `EditManager` are registered GUI controls with their full stock sets | [bin][inf] (torque/gs2-3d-objects-404r2-512.md#script-properties-and-functions-in-512) |
 | The shape subclasses (`GameShapeDTS` animation calls, `GameShapeDIF` lights, `GameShape` shaders) and how each `GameObject` property travels on the wire are in → §10.5.2 | [bin] (torque/engine-and-formats.md#the-512-3d-object-model) |
 
+5.12 replaces the Torque particle datablocks with a GS2 particle system; none of it was driven live (→ §10.1.12) [bin] (torque/3d-particles-512-vs-404r2-2026-11-25.md#what-512-has-instead-bin).
+
+| Object | Script names | Source |
+| --- | --- | --- |
+| `TParticleEmitter` | `particletypes`, `maxparticles`, `nrofparticles`, `emitautomatically`, `delaymin`, `delaymax`, `emissionoffset`, `attachposition`, `autorotation`, `clippingbox`, `emitatterrainheight`, `dropemitter`, `dropwateremitter`, read-only `currentparticlecount` and `emittedparticles`; `emit()`, `emitat(str)`, `advancetime(float)`, `addemitmodifier(…)`, `addlocalmodifier(…)`, `addglobalmodifier(…)`, `removemodifiers()`, `removeparticles()` | [bin] (torque/3d-particles-512-vs-404r2-2026-11-25.md#what-512-has-instead-bin) |
+| `TParticle` | angle, lifetime, speed, movement vector, sound and others | [bin] (torque/3d-particles-512-vs-404r2-2026-11-25.md#what-512-has-instead-bin) |
+| `TParticleModifier` | `addmod(…)` | [bin] (torque/3d-particles-512-vs-404r2-2026-11-25.md#what-512-has-instead-bin) |
+| reaching an emitter | a 3D drawable object's `.emitter` (2D: `GuiShowImgCtrl.emitter`); the global `particleeffectsenabled` turns effects on or off | [bin] (torque/3d-particles-512-vs-404r2-2026-11-25.md#what-512-has-instead-bin) |
+| live use | not run: on the lab route a client weapon could not find its own 3D object to read `.emitter` from | [lab] (torque/3d-particles-512-vs-404r2-2026-11-25.md#not-driven-live-this-session-and-why) |
+
 ## 8.5.5 Properties and functions in 4.04r2
 
 Read the same way from the 4.04r2 plug-in; `Player` registers the same list as `AIPlayer`. A name equal to a class name is a field that holds an object of that class [bin] (torque/gs2-3d-objects-404r2-512.md#script-properties-and-functions-in-404r2). The table keeps the classes a game script would touch; the editors match 5.12 except that `WorldEditor` has 62 names (no `nameMaxDistance`, `nameDistanceFade`) and `GuiShapeNameHud` has no `maxDistance`.
