@@ -161,7 +161,7 @@ missing one logs `Missing terrain texture: <name>`. **[bin]** A server can also 
 during play with the `setmaterials` BigData text message ([udp-session.md](udp-session.md) §7).
 **[bin]** That message is **not** split at newlines: a text of `rock`, newline, `grass` was logged
 as `setting terrain materials to` the whole text and then reported missing as a single name.
-So `heights.info` and `setmaterials` use different separators. **[lab]**
+The `setmaterials` list is **comma**-separated: `t_a,t_b` set two materials and fetched both textures. So `heights.info` (one per line) and `setmaterials` (commas) use different separators. **[lab]**
 
 ## 5. `WaterBlock` (read beside the terrain)
 
@@ -215,6 +215,14 @@ Live: a GS2 weapon can create the object (`new Terraformer(...)` gives object ty
 before and after, and the stamps on the next connect were unchanged. `loadGreyscale` resolves its
 file name through the client's own file system and asks the server for that file over TCP when it
 is not cached; it returns 0 until the file has arrived. **[lab]**
+
+`loadGreyscale(register, file)` reads the image as at least three bytes per pixel and turns each
+pixel into a 0–1 value with luminance weights (0.299 R, 0.587 G, 0.114 B, over 256). It walks the
+register's 256 × 256 squares and reads the image bottom row first, so together with `setTerrain`'s
+own flip, image row r lands on terrain row r. It does not check the image's depth or size.
+**[bin]** A 256 × 256 8-bit greyscale PNG (PNG colour type 0) crashes the client inside the 3D
+engine with an access violation on a wild address, with or without a `TerrainBlock`; use a 24-bit
+RGB image. **[lab]**
 
 Research board rows (`torque/3d-capability-board.tsv`): T3D-040 (`TerrainBlock`, chunks, cache),
 T3D-044 (terrain texture rules), T3D-045 (`WaterBlock`).
