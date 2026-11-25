@@ -157,10 +157,20 @@ MissionStartPhase1Ack fix holds.
   the terrain loads, and logs no "Missing terrain texture". So the textures
   are available to the client on the first visit when the server pushes them
   — the earlier "textures only on the second visit" was a consequence of the
-  server waiting to be asked, not a client limit. **Still open:** whether
-  5.12 *draws* those first-visit textures (vs. still drawing white) on a GLSL
-  driver — the GDI run confirms arrival, not the rendered result. A Mesa run
-  with the cache cleared and the server pushing is needed to settle the draw.
+  server waiting to be asked, not a client limit.
+- **ANSWERED — Mesa draws the pushed terrain textured on the first visit.**
+  Real 5.12 under Wine on Mesa llvmpipe (vendor Mesa, renderer llvmpipe),
+  cache cleared first; gserver #154 @ ca00d9a6 with `graal3dpushterrain =
+  true`, world `g2t`, one `heights.info` in the folders. The server streams
+  the TerrainBlock and all 256 chunks; on the first visit, before ghost
+  download starts, the client logs `heights.info` done, then `g3d_water.png`,
+  `g3d_sand.png`, `g3d_grass.png` and `g3d_rock.png` done (~60 KB each).
+  From ~30 s on, the terrain fills the view to the horizon with the **water**
+  texture (the first entry in `heights.info`, as expected for this flat low
+  terrain); the cubes stand on it; no white ground and no crash in 150 s. So
+  the push fixes the first visit and Mesa draws the textures — the earlier
+  white was the GDI/no-push case (white on first visit, textures only on the
+  second), not a GLSL-driver limit. T3D-044 first-visit draw is settled.
 
 ### M3 (Mac 3.153 on Tiger + 5.12)
 
