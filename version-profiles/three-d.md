@@ -21,7 +21,7 @@ Seihai's profile has no `three_d` for those builds.
 | Client sends moves | yes *assumed* | yes | yes | no, reports position | no *assumed* | no *assumed* | no, reports position | no *assumed* |
 | Mission phases | 3 *assumed* | 3 (lab) | 3 (lab) | 2 *assumed* | 2 | 2 | 2, and optional (cap) | 2 (lab) |
 | Local `.ter` terrain | yes *assumed* | yes | yes | no *assumed* | no *assumed* | no *assumed* | no | no *assumed* |
-| Streamed terrain chunks | no | yes | yes | yes | no: crashes drawing terrain near the camera under GDI GL 1.1 (lab); untested on Mesa or a GPU | yes | yes (lab) | no *assumed as 4.20r8* |
+| Streamed terrain chunks | no | yes | yes | yes | not sent: crashed only under basic GDI GL (lab); runs clean on Mesa without terrain, terrain there untested | yes | yes (lab) | no *assumed as 4.20r8* |
 | TorqueScript | compiles | compiles | none | none *assumed* | none | none *assumed* | none | none *assumed* |
 | Runs script a server sends | no *assumed* | no | no | no *assumed* | no | no *assumed* | no | no *assumed* |
 | Terraformer | full | full | greyscale only | greyscale *assumed* | greyscale *assumed* | greyscale *assumed* | greyscale only | greyscale *assumed* |
@@ -30,10 +30,11 @@ Seihai's profile has no `three_d` for those builds.
 | Download refuses | *not read* | `.dso .cs .ter` (lab: never asked) | `.dso .cs .ter` | *assumed as 5.12* | *assumed as 5.12* | *assumed as 5.12* | `.dso .cs .ter` | *assumed as 5.12* |
 | Needs a ghosted Sky | no *assumed* | yes, crashes without (lab) | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no *assumed* |
 | Sky textures as `.gif` | no *assumed* | yes (lab) | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no *assumed* |
-| Drawn on our gserver | world *assumed* | nothing past loading (lab) | Sky only (lab) | world *assumed* | world (lab) | world *assumed* | world (lab) | world (lab) |
+| Drawn on our gserver | world *assumed* | sky view (lab) | Sky only (lab) | world *assumed* | world (lab) | world *assumed* | world (lab) | world (lab) |
 | 3D walk moves the 2D player | no *assumed* | no *assumed* | no (lab) | no *assumed* | no *assumed* | no *assumed* | no (lab) | no *assumed* |
 | Draws 2D players | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no (lab) | no *assumed* |
 | Gets 2D chat | no *assumed* | no *assumed* | no *assumed* | yes *assumed* | yes *assumed* | yes *assumed* | yes (lab) | yes *assumed* |
+| Drops an update to an uncreated ghost | no *assumed* | no *assumed* | no: crashes (lab) | yes *assumed* | yes (lab) | yes *assumed* | yes (lab) | yes *assumed* |
 
 The Mac 4.04r2 and Mac 5.12 rows take their Windows twin's values, all assumed (T3D-004).
 
@@ -89,7 +90,8 @@ The Mac 4.04r2 and Mac 5.12 rows take their Windows twin's values, all assumed (
   ones are dropped), so a server can steer it only through those
   ([live-3153-and-404r2-sessions-2026-11-25.md](../torque/live-3153-and-404r2-sessions-2026-11-25.md),
   T3D-009, T3D-089). `drawn` is the most each build has been seen to draw on our gserver: 3.153
-  stayed on its loading picture and 4.04r2 (under Wine) drew only the Sky gradient. It is a lab
+  reached its sky view once the gserver answered its `.gif` sky requests with the PNGs (M3), and
+  4.04r2 (under Wine) drew only the Sky gradient. It is a lab
   state, not a limit of the client, and moves up as the gserver learns what each build needs.
 - **2D and 3D in one level** (`mirrors_2d_position`, `sees_2d_players`, `takes_2d_chat`): in lab
   pair H1 a 5.24r3 2D client and a 5.12 3D client shared a level. The 2D client counted the 3D
@@ -106,3 +108,14 @@ When a board row in [`torque/3d-capability-board.tsv`](../torque/3d-capability-b
 change the value and its evidence tag in `three-d.toml`. Seihai mirrors the file with
 `seihai/tools/gen_three_d_fixture.py`, and seihai-core's unit tests compare every `three_d` row
 with the mirrored fixture.
+
+## Robustness (fuzz tier 1)
+
+`drops_unknown_ghost`: 5.12 and 4.20r8 log and drop an update for a ghost index that was never
+created; 4.04r2 crashes on it, so a server must never update a ghost before its create reaches a
+protocol 19 client ([3d-fuzz-net-tier1-2026-11-25.md](../torque/3d-fuzz-net-tier1-2026-11-25.md)).
+5.12 also trusts an event's declared length: one under-length RemoteCommandEvent ran a garbled
+command and then crashed it, so every event a server writes must carry its exact length. Both
+5.12 and 4.20r8 crash on a huge TerrainBlock `squareSize`. On DTS, 5.12's header takes 17 to 24,
+but only 24 is known to draw: v24 bodies relabelled 17 to 22 hung or crashed and 23 drew nothing
+([live-512-shapes-2026-11-25.md](../torque/live-512-shapes-2026-11-25.md)).
