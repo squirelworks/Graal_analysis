@@ -28,7 +28,7 @@ that object or file; **C** = needs a script or a rare path.
 |---|---|---|---|---|---|
 | Connect accept | all | A | sequence, class table, protocol | class table length and names, protocol number (19, 21, 24, others) | T3D-072, T3D-080 |
 | Event section | all | A | flag, 12-bit class id, int14 bit length, payload | unknown class ids, length longer or shorter than the payload | T3D-097 |
-| Ghost section | all | A | ghost index width sent raw in 4 bits | index width, unknown class, update for a ghost never created, delete twice | T3D-105 |
+| Ghost section | all | A | ghost index width sent raw in 4 bits | index width, unknown class, update for a ghost never created, delete twice | T3D-108 |
 | Control object | all | A | int12 ghost index of a GameObject, Camera or Player | index of the wrong class, of a deleted ghost | T3D-082 |
 | `TerrainChunkEvent` | 512W | B | see terrain-512.md section 2 | chunk position out of range, inflated size, compressed stream damage | T3D-040 |
 | `TerrainBlock` / `WaterBlock` / `Sky` / `Sun` ghosts | all | A or B | per-class fields | scale (zero, negative, huge), coordinates far out, texture counts | T3D-091 |
