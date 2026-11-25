@@ -743,8 +743,8 @@ Graal sends its own events over the Torque connection. Each row gives an event, 
 | --- | --- | --- | --- |
 | `BigDataStartEvent` | both | int16 transfer id, three strings (`s1`, `s2`, `s3`, each up to 255 characters), int24 total length, int3 coding (0 none, 1 zlib, 2 bzip2) | [bin] (graal3d/torque-engine-4x.md#graal-events-and-text-big-data-channel) |
 | `BigDataChunkEvent` | both | int16 transfer id, int8 length (up to 191), the bytes | [bin] (graal3d/torque-engine-4x.md#graal-events-and-text-big-data-channel) |
-| `TerrainChunkEvent` | S→C | int4 chunk x, int4 chunk y, u32 (a stamp, inferred), int10 length, then a zlib 16 × 16 piece of heights and materials; 16 × 16 chunks make a 256 × 256 terrain | [bin][inf] (graal3d/torque-engine-4x.md#terrain-streaming-graal) |
-| `TerrainRequestUpdatesEvent` | C→S | 256 × u32, one per chunk, telling the server what the client already has | [bin] (graal3d/torque-engine-4x.md#events) |
+| `TerrainChunkEvent` | S→C | int4 chunk x, int4 chunk y, raw 32 stamp (ignored by the receiver), int10 length, then a zlib 16 × 16 piece of heights, materials and holes; 16 × 16 chunks make a 256 × 256 terrain (→ §10.5.4) | [bin] (torque/terrain-512.md#2-terrainchunkevent-server--client) |
+| `TerrainRequestUpdatesEvent` | C→S | 256 raw 32-bit stamps, index y × 16 + x, telling the server what the client already has; 0 means no data (→ §10.5.4) | [bin] (torque/terrain-512.md#3-terrainrequestupdatesevent-client--server) |
 | `RequestReloadEvent` | C→S | asks the server to resend an object | [bin] (graal3d/torque-engine-4x.md#events) |
 | `SimDataBlockEvent` (4.04r2) | S→C | int12 (id − 3), int12 class id, int12 index, int13 total, sized datablock data | [bin] (graal3d/torque-engine-4x.md#events) |
 | `RemoteCommandEvent` | both | int5 argc, tagged-string arguments; the 4.04r2 client acts only on the mission phases | [bin] (graal3d/torque-engine-4x.md#events) |
@@ -764,6 +764,86 @@ The rules below give how a BigData message is shaped and how the sender compress
 | The 5.12 client streams terrain from the server instead of reading `.ter` files ("Loading terrain from terrain chunks."); terrain textures must be 256×256 at 24 bits | [bin] (torque/engine-and-formats.md#3d-resource-formats) |
 | The 4.04r2 client caches terrain under `levels3d/terrain/` and never requests `.ter` over TCP | [bin][inf] (graal3d/torque-engine-4x.md#terrain-streaming-graal) |
 
+### 10.5.4 Streamed terrain (5.12)
+
+Graal's terrain is a 256 × 256 grid of squares, but 5.12 never reads it from a `.ter` file. The server ghosts a `TerrainBlock` that carries only settings, then streams heights, materials and holes as 256 chunks of 16 × 16 squares; the client caches every chunk per server and tells the server which chunks it already has [bin] (torque/terrain-512.md#graal-512-streamed-terrain-terrainblock-chunk-events-and-the-heights-cache). What a script can do with the terrain is in → §8.5.8. All fields are Torque bit-stream fields; "raw" values are copied through the stream's byte write at the current bit position [bin] (torque/terrain-512.md#graal-512-streamed-terrain-terrainblock-chunk-events-and-the-heights-cache).
+
+`TerrainBlock` update, 5.12: one guarded block. Each row gives a field in wire order [bin] (torque/terrain-512.md#1-the-terrainblock-ghost).
+
+| # | Field | Width | Client use | Source |
+| ---: | --- | --- | --- | --- |
+| 1 | init | flag | 0: nothing more follows; a create with init 0 is still added and still loads and streams terrain, with no name and a zero square size | [bin][lab] (torque/terrain-512.md#1-the-terrainblock-ghost) |
+| 2 | object name | `pstring` | the object's name (use `Terrain`) | [bin] (torque/terrain-512.md#1-the-terrainblock-ghost) |
+| 3 | value | raw 32 | stored, then reset to 1 when the block is added | [bin] (torque/terrain-512.md#1-the-terrainblock-ghost) |
+| 4, 5 | text | `pstring` each | read and dropped (the stock writer sends empty strings) | [bin] (torque/terrain-512.md#1-the-terrainblock-ghost) |
+| 6, 7, 8 | values | raw 32 each | dropped (the stock writer sends 1.0, 0.01 and the integer 8) | [bin] (torque/terrain-512.md#1-the-terrainblock-ghost) |
+| 9 | square size | raw 32, integer | metres per square; use 8 | [bin] (torque/terrain-512.md#1-the-terrainblock-ghost) |
+| 10 | repeat | raw 8 | non-zero: the terrain tiles beyond its edges | [bin] (torque/terrain-512.md#1-the-terrainblock-ghost) |
+
+When the block is first added, the client does the steps below in order [bin] (torque/terrain-512.md#1-the-terrainblock-ghost).
+
+| Step | What the client does | Source |
+| ---: | --- | --- |
+| 1 | becomes the current terrain if there is none (a later block named `Terrain` replaces it) | [bin] (torque/terrain-512.md#1-the-terrainblock-ghost) |
+| 2 | places the corner at (−128 × square size, −128 × square size, 0), so the grid is centred on the origin; chunk (0, 0) is the −x, −y corner and chunk rows grow toward +y | [bin][lab] (torque/terrain-512.md#1-the-terrainblock-ghost) |
+| 3 | logs "Loading terrain from terrain chunks." | [bin] (torque/terrain-512.md#1-the-terrainblock-ghost) |
+| 4 | loads the material list from `heights.info` in the cache folder, or asks for it with the normal Graal file request over TCP; an empty answer leaves the list as it was | [bin] (torque/terrain-512.md#1-the-terrainblock-ghost) |
+| 5 | loads each cached chunk file that exists | [bin] (torque/terrain-512.md#1-the-terrainblock-ghost) |
+| 6 | sends one `TerrainRequestUpdatesEvent` with the stamp of every chunk | [bin] (torque/terrain-512.md#1-the-terrainblock-ghost) |
+
+Chunk data, after inflating the zlib stream (RFC 1950, with its 2-byte header) of a `TerrainChunkEvent`. Each row gives a field in order [bin] (torque/terrain-512.md#chunk-data-inflated).
+
+| Field | Width | Meaning | Source |
+| --- | --- | --- | --- |
+| mode | int8 | 2: hole flags follow at the end; 1: clear all holes in the chunk; 0: leave holes; any other value behaves like 0 for holes | [bin][lab] (torque/terrain-512.md#chunk-data-inflated); [lab] (torque/terrain-512.md#edge-cases-seen-live) |
+| h0 | int16 | height of square (0, 0) of the chunk | [bin] (torque/terrain-512.md#chunk-data-inflated) |
+| deltas | 256 raw bytes | signed deltas `d[y][x]`, rows then columns | [bin] (torque/terrain-512.md#chunk-data-inflated) |
+| N | int6 | number of materials used in the chunk (only ids 0–31 make sense) | [bin] (torque/terrain-512.md#chunk-data-inflated) |
+| ids | N × int5 | material ids, indices into the `heights.info` list | [bin] (torque/terrain-512.md#chunk-data-inflated) |
+| squares | if N > 1, per square, rows then columns | flag blend; intW primary index; if blend, intW secondary index and int4 `a`; W is the bit count for N choices (N rounded up to a power of two, then its base-2 logarithm); with N of 0 or 1 every square takes the first id | [bin] (torque/terrain-512.md#chunk-data-inflated) |
+| holes | if mode 2, 256 flags | rows then columns; 1 = hole (bit 3 of the square's flag byte, as in stock TGE) | [bin][inf] (torque/terrain-512.md#chunk-data-inflated) |
+
+The rules below give how heights, materials and stamps are decoded and computed [bin][lab] (torque/terrain-512.md#chunk-data-inflated).
+
+| Rule | Source |
+| --- | --- |
+| Decoding, 16-bit for heights and 8-bit signed for deltas, `/2` truncating toward zero: `h[0][0] = h0`; row 0 `h[0][x] = h[0][x−1] + d[0][x]`; column 0 `h[y][0] = h[y−1][0] + d[y][0]`; elsewhere `d[y][x] += (d[y−1][x] + d[y][x−1]) / 2` over already-decoded neighbours, then `h[y][x] = (h[y−1][x] + h[y][x−1]) / 2 + d[y][x]` | [bin] (torque/terrain-512.md#chunk-data-inflated) |
+| The writer clamps first-pass deltas to −127…127 against the same predictors, then replaces each with itself minus the mean of its upper and left first-pass deltas, clamped again; large steps are lossy | [bin] (torque/terrain-512.md#chunk-data-inflated) |
+| The client stores each decoded height shifted up 2 bits; one world unit is 8 wire units (a flat chunk at 3200 reports `getdropz` 400), so only 14 bits of `h0` survive and heights are not clamped | [bin][lab] (torque/terrain-512.md#chunk-data-inflated); [lab] (torque/terrain-512.md#edge-cases-seen-live) |
+| Materials: the primary's alpha becomes `a` × 16 and the secondary's 255 − `a` × 16, every other material's 0; without blend the primary's alpha is 255; the writer takes the largest-alpha material as primary and sends its alpha divided by 16 | [bin] (torque/terrain-512.md#chunk-data-inflated) |
+| On receipt with length > 0 and a current terrain, the client inflates, applies, re-encodes with its own writer, stores the new stamp, writes the cache file and rebuilds that area; length 0 is ignored; a chunk before the `TerrainBlock` is added is logged but not stored | [bin][lab] (torque/terrain-512.md#2-terrainchunkevent-server--client) |
+| A corrupt or truncated zlib stream is applied as zeros and cached that way; a short plain stream reads the missing fields as zero; trailing bytes are ignored; the same chunk twice: the second wins; no chunk case crashed 5.12 | [lab] (torque/terrain-512.md#2-terrainchunkevent-server--client); [lab] (torque/terrain-512.md#edge-cases-seen-live) |
+| Canonical re-encoding: mode always 2, the material list holds only the ids used, sorted ascending (per-square indices remapped), and a blend is stored with the larger-alpha material as primary; the file is that stream at zlib's default level | [bin][lab] (torque/terrain-512.md#3-terrainrequestupdatesevent-client--server) |
+| Stamp = the standard CRC-32 table (polynomial 0xEDB88320), start 0xFFFFFFFF, no final inversion, over the client's re-encoded bytes, not the bytes sent; in zlib terms `crc32(data) XOR 0xFFFFFFFF`; the stamp in the event is ignored | [bin][lab] (torque/terrain-512.md#3-terrainrequestupdatesevent-client--server); [lab] (torque/terrain-512.md#edge-cases-seen-live) |
+| A server answers the request with a `TerrainChunkEvent` for every chunk whose stamp differs from its own; a real 5.12 matched all 256 stamps on reconnect against a generated world, so none were resent | [bin][lab] (torque/terrain-512.md#3-terrainrequestupdatesevent-client--server); [lab] (torque/terrain-512.md#lab-results) |
+| Cache folder: the user folder, then `levels3d/heights/<server>/`, a space in the server name written `%032`; `heights.info` holds up to 32 texture names, one per line (a comma does not separate names); `heights<x>-<y>.dat` holds one re-encoded chunk, x and y in unpadded decimal | [bin][lab] (torque/terrain-512.md#4-the-cache-folder) |
+| Cached chunks go through the same decoder as received ones, so a server or a lab can pre-seed a client by shipping these files | [bin][lab] (torque/terrain-512.md#4-the-cache-folder); [lab] (torque/terrain-512.md#lab-results) |
+| Terrain textures are requested by bare name and cached as `levels3d/images/<name>`; they must be 256 × 256 at 24 bits, else "Terrain texture of bad format (must be 256x256x24)" and `default`; a missing one logs "Missing terrain texture" | [bin][lab] (torque/terrain-512.md#4-the-cache-folder) |
+| The BigData `setmaterials` message sets the list with comma-separated names (it is not split at newlines) and the client persists it as a 32-line CRLF `heights.info` in the cache folder | [lab] (torque/terrain-512.md#4-the-cache-folder) |
+| 4.04r2 and 3.153 keep stock Torque's `.ter` path: a block whose `terrainFile` names a `.ter` that loads logs "Loaded terrain from terrain file." and asks for no chunks; the network update never sets `terrainFile`, so a ghosted block always streams; 5.12 only streams | [bin][inf] (torque/terrain-512.md#8-older-builds-the-ter-file-path) |
+| 4.20r8 logs the chunk line, requests chunks and saves the first ones as 5.12 does, then crashes; it crashes with the `TerrainBlock` alone too; the cause is open | [lab] (torque/terrain-512.md#lab-results) |
+
+### 10.5.5 `WaterBlock` update (5.12)
+
+Unlike `TerrainBlock`, only the name is guarded and every update carries the whole block. Field names come from the class's own property names in the order the stock TGE 1.x writer used; the meaning of each float is stock Torque's [bin][inf] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain).
+
+| # | Field | Width | Source |
+| ---: | --- | --- | --- |
+| 1 | name follows | flag, then `pstring` object name | [bin] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain) |
+| 2 | transform | position 3 × `f32`, then a quaternion as x, y, z 3 × `f32` and a flag "w is negative" (w = √(1 − x² − y² − z²)); Torque's compact matrix read, not the `GameObject` axis-angle | [bin] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain) |
+| 3 | scale | 3 × `f32`, the water's extent in metres; taken only when x and y are both at least 1024 (512 drew nothing live) | [bin][lab] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain); [lab] (torque/terrain-512.md#lab-results) |
+| 4 | textures | 5 × `pstring`: surface, specular mask, environment map over, environment map under, shore | [bin] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain) |
+| 5 | submerge textures | 2 × `pstring` | [bin] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain) |
+| 6 | liquid type | raw 32 integer; 0 to 7 all accepted live (stock names: water, ocean, river, stagnant, lava, hot lava, crusty lava, quicksand) | [bin][inf] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain); [lab] (torque/terrain-512.md#lab-results) |
+| 7 | physics and look | 5 × raw 32 floats: density, viscosity, wave magnitude, surface opacity, environment-map intensity | [bin] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain) |
+| 8 | switches | 2 × raw 8: remove wet edges, use depth mask | [bin] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain) |
+| 9 | shading | 12 × raw 32 floats: surface and shore tessellation, surface parallax, flow angle, flow rate, distortion grid scale, magnitude and time, shore depth, minimum and maximum alpha, depth gradient | [bin] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain) |
+| 10 | specular colour | 4 × `int8` RGBA, divided by 255 | [bin] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain) |
+| 11 | specular power | raw 32 float | [bin] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain) |
+| 12 | ignore terrain | raw 8 | [bin] (torque/terrain-512.md#5-waterblock-read-beside-the-terrain) |
+
+Live on 5.12 the surface texture was fetched over TCP and a large surface drawn [lab] (torque/terrain-512.md#lab-results).
+
 ## 10.6 3D formats
 
 The Torque clients read Torque's 3D formats. Each row gives an extension, its format and the builds that read it [bin] (torque/engine-and-formats.md#3d-resource-formats).
@@ -773,7 +853,7 @@ The Torque clients read Torque's 3D formats. Each row gives an extension, its fo
 | `.dts`, `.dsq` | Torque shape and sequence; 4.04r2 reads up to version 24; 5.12 rejects shapes that are too old | 3.x, 4.04r2, 5.12 | [bin] (torque/engine-and-formats.md#3d-resource-formats); [bin] (graal3d/torque-engine-4x.md#files) |
 | `.dif` | Torque interior; 4.04r2 reads resource version 44, interior version 0 | all | [bin] (graal3d/torque-engine-4x.md#files) |
 | `.ter` | Torque terrain, version 3 or older, from `levels3d/terrain/` | 3.x, 4.04r2 | [bin] (graal3d/torque-engine-4x.md#files) |
-| terrain chunks | streamed with `TerrainChunkEvent` (→ §10.5.3) | 5.12 | [bin] (torque/engine-and-formats.md#3d-resource-formats) |
+| terrain chunks | streamed with `TerrainChunkEvent` (→ §10.5.4) | 5.12 | [bin] (torque/engine-and-formats.md#3d-resource-formats) |
 | `.3ds` | 3D Studio (`Shape3ds`, then `GameShape3DS`) | 3.153, 4.04r2, 5.12 | [bin] (torque/engine-and-formats.md#3d-resource-formats) |
 | `.md3` | Quake 3 model in head, upper and lower parts, version 15 | 3.153, 4.04r2 | [bin] (torque/engine-and-formats.md#3d-resource-formats); [bin] (graal3d/torque-engine-4x.md#files) |
 | `.mis` | Torque mission file; 5.12 has no `.mis` loader and builds its `MissionGroup` from ghosts (inferred) | 3.x; 4.04r2 not: no `.mis` is opened in a lab session (settled below) | [bin][inf] (torque/engine-and-formats.md#3d-resource-formats); [bin][inf] (graal3d/torque-engine-4x.md#files) |
