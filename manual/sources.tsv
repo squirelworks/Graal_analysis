@@ -978,3 +978,4 @@ torque/multi-client-3d-lab-2026-11-25.md	cited	E; 8.5; 10	10.3	First multi-clien
 torque/live-512-lighting-and-sky-2026-11-25.md	pending	E	10.3	5.12 lighting probe and sky grid on Mesa: Sun as on/off brightness, rotation sense, FOV
 torque/live-512-gameobject-fields-2026-11-25.md	pending	E	10.3	5.12 GameObject update fields tested live: scale, rotation, flags, undrawn fields
 torque/3d-fuzz-net-tier1-2026-11-25.md	pending	E	10.6	3D network fuzz tier 1: event-length and ghost-index crashes on 5.12 and 4.04r2
+torque/live-512-shapes-2026-11-25.md	pending	E	10.3	5.12 shapes: .3ds materials and collision meshes, .dts per-version behaviour, .dif, .ft
