@@ -231,9 +231,15 @@ Live on 5.12 (a block at z 20 with z scale 20, wave magnitude 0.3) **[lab]**:
   scale (a corner, not the centre), stops at its scale, and a 512 scale is taken. Turned 90°
   about z it covers x 0…256, y −512…0: it turns about its position. (An earlier reading over
   terrain that seemed to run past the scale was stale.)
-- Waves: at wave magnitude 0 `liquidheight` is flat; at 0.3 it spans 0.095 and at 2 it spans
-  0.63 (peak to peak about 0.32 × magnitude, centred on the surface). The period is about 8.75 s
-  at both, with a 3.25 s rise and a 5.5 s fall, so it is not a plain sine.
+- Waves: at wave magnitude 0 `liquidheight` is flat. The waves are a field travelling across the
+  surface, not one bob: on a 32 × 16 block at magnitude 1, five points read different heights at
+  the same instant, the far corner peaking about 0.6 s before the near one (travel toward −x, −y),
+  each swinging about ±0.5 with a cycle near 4.4 s. One point in a 512 × 256 block swung only
+  about ±0.16 × magnitude with an 8.75 s cycle, so height and period depend on where you sample.
+  The wave function is not fitted yet.
+- A 32 × 16 × 2 block at (0, 16, 0) covers exactly x 0…32, y 16…32 with its surface at 2, with
+  or without terrain and whatever `ignoreTerrain`; `ignoreTerrain` changed only a thin band where
+  the water meets the ground.
 - `liquidheight` keeps its last value after an object leaves the water.
 - `ignoreTerrain` 0 and 1 draw visibly differently over terrain.
 
