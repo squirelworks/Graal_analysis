@@ -39,7 +39,7 @@ Pure 4.x takes **classic only**. Answering a class ask with 197/140 is the wrong
 - [x] Why a weapon whose 33 carried source text ignores later bytecode on 5.00r7 (static): the 33 text marks the weapon as a GS1 object, and event dispatch then goes only to GS1 ([5.00r7 section](#lab-gs2-weapon-fixture-on-500r7-g307-2026-11-25)).
 - [x] Same fixture with CLASS prop / empty line variants (#55), on 5.12: the empty line does not suppress 158; classes arrive on 133 or 140 after a 161, and prop 74 also triggers 161 ([class delivery](#lab-class-delivery-on-512-g307-follow-up-2026-11-25)).
 - [x] Static read of the leading byte that 5.12 skips in prop 74: there is no skipped byte. Prop 74 has a GSHORT length, and the lab runs sent a GCHAR length ([CLASS prop 74](#lab-class-delivery-on-512-g307-follow-up-2026-11-25)).
-- [ ] Lab: a prop-74 NPC sent with a GSHORT length, and whether it runs the class once 161 is answered.
+- [x] Lab: a prop-74 NPC sent with a GSHORT length asks 161 for the full name and runs the class once answered (`cls512-g`, `cls512-i`).
 - [ ] Confirm C6 empty-program threshold if a modern compile oracle is available.
 
 ## Lab: GS2 weapon fixture on 5.12 (G307, 2026-11-25)
@@ -125,8 +125,19 @@ gave `307cls`) [lab, re-read 2026-11-25]. A malformed prop 74 like that also
 swallows every prop after it in the same message. If the object had no script
 before, the parser then fires `created` [static].
 
-**Server rule:** prop id 74, a GSHORT length, then the class name(s). Whether
-such an NPC runs the class once 161 is answered has not been run.
+**Server rule:** prop id 74, a GSHORT length, then the class name(s).
+
+Lab check with the correct encoding (5.12, rows `cls512-g` second half and
+`cls512-i`) [lab]:
+
+- Prop 74 = `20 27` + `g307cls`, followed by prop 0 in the same PLO 3: the client
+  asks 161 for the full name `g307cls` and applies the trailing image prop.
+- Once 100 + 133 answers, an NPC with its own script runs the class's handlers
+  (`onProbe` via `trigger`), but the class's `onCreated` does not run on it.
+- An NPC with no script that gets prop 74 for an already-loaded class runs the
+  class's `onCreated` at once, with no 161. This matches the static read: the
+  parser fires `created` only when the object had no script before.
+- A comma-separated list (`g307cls,g307c2`) joins each class: one 161 per name.
 
 ## Lab: GS2 weapon fixture on 5.00r7 (G307, 2026-11-25)
 
@@ -166,8 +177,9 @@ The block is in event dispatch, not in the 132/140 handlers. On 4.20r8 and
 5.00r7, a weapon whose 33 carried script text counts as a GS1 object, so every
 event goes to the GS1 interpreter and never reaches the bytecode loaded later
 [static]. The 4.20r8 text-prop parser also stores script text only while the
-GS1 slot is empty [static]. 5.12 has no GS1 branch, so the same 33 should not
-block it there [inferred; not run].
+GS1 slot is empty [static]. 5.12 has no GS1 branch, and the lab confirms it:
+on 5.12 a weapon whose 33 carried GS2 text still runs bytecode sent later by
+100 + 140 or 100 + 132 (`txt512-a`) [lab].
 
 **Server rule for 5.00r7:** send a bare 33 and then 197/140 or 193/132. Do not
 send GS2 as source text in 33.
