@@ -81,6 +81,24 @@ Details:
 
 Not pinned down: rejection by path or extension beyond the routing table, and buffering on the 6.037 SSL path beyond its 8 KB read size.
 
+## Lab: ~300 KB push to the focus clients (G263, 2026-11-25)
+
+Loopback run in the headless Debian lab VM on the second lab host; our own lab server only. Captures, logs and screenshots stay in the VM. **[lab]**
+
+- **Server.** The lab's Seihai GServer-v2 build `gs2emu-73` (GS2Emu 4.0.0-beta, built 2026-11-14). The binary and the lab do not record its commit, so the commit is unknown.
+- **Test file.** A random-noise PNG, `g263nba3070.png`, 307 678 bytes, shown by one NPC in each server's start level. Before: absent from every client cache. After the run the lab levels were restored and the test file removed.
+
+| Client | Token | Sequence from the server | Client behaviour | Saved file |
+|---|---|---|---|---|
+| 4.20r8 stock, Wine | `G3D20126` | 68 → 84 (307 678) → 10 × 102 (9 × 32 000 + 19 678, each inside 100) → 69 | one request, no re-ask | byte-identical |
+| 5.12, Wine | `G3D14097` | same | one request; afterwards one ordinary 34 check, answered 45 (up to date), not a re-download | byte-identical |
+| 6.03r7 Linux native | `G3D0511C` | same | one request | byte-identical |
+| 2.22, Wine | `GNW03014` | same (from the server's packet log) | saved to `levels/webgifs` | byte-identical |
+| 2.31, Wine | `GNW28015` | same (from the server's packet log) | saved to `levels/webgifs` | byte-identical |
+| 5.00r7 | `G3D22067` | not run | the lab's CRC-patched 5.00r7 install stalls before connecting (known lab issue); the stock engine was not tried | — |
+
+No client disconnected, re-asked or saved a partial file. The server sent 84 to 2.22 as well as 2.31, and neither broke on it. This matches the [static result](#receive-side-ceilings-on-4208-to-6037-g265-2026-11-25) that none of these clients caps file size. Not covered: 5.00r7, Windows 6.03r7, and a server with a recorded commit.
+
 ## Client ask side (related, not the threshold)
 
 | Pattern | Builds | Note |
@@ -92,7 +110,7 @@ Not pinned down: rejection by path or extension beyond the routing table, and bu
 ## Open
 
 - [x] ~~Exact per-exe `large_files` / `large_file_size` on stock 4.208 / 5.007 / 5.12 / 6.037.~~ [Read 2026-11-25](#receive-handlers-on-4208-to-6037-g262-2026-11-25): all four handle 68, 69 and 84; no receive-side size limit. **[bin]**
-- [ ] Discriminating **~300 KB** image push on each focus build against seihai-gserver (confirm chunk boundaries and 84 handling on 2.22 vs 2.31).
+- [x] ~~Discriminating **~300 KB** image push on each focus build against seihai-gserver (confirm chunk boundaries and 84 handling on 2.22 vs 2.31).~~ [Lab 2026-11-25](#lab-300-kb-push-to-the-focus-clients-g263-2026-11-25): 4.20r8, 5.12, Linux 6.03r7, 2.22 and 2.31 all saved the file byte-identical from 68/84/10×102/69; 5.00r7 and Windows 6.03r7 not run. **[lab]**
 - [x] ~~Reconcile the recorded 1.41r1 direct receive set: no 68/69.~~ [Exact-input scope](file-profile-evidence-2026-11-21.md#the-recorded-141r1-input).
 - [ ] Read the exact 1.41r1 raw/file subpath and FILE body; G264 remains partial.
 - [x] ~~Whether any focus client enforces a **stricter** on-disk limit than the server's 32000-byte chunks.~~ [Read 2026-11-25](#receive-side-ceilings-on-4208-to-6037-g265-2026-11-25): none does; 4.208 caps one packet near 1 MB, and 5.x/6.x a bundle's inflated size at 4 MiB. **[bin]**
