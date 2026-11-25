@@ -192,21 +192,21 @@ Built-in events are matched **without regard to ASCII letter case** in all four 
 
 - **4.20r8** (read in full): on script load every function name is stored lower-cased; calls, including `this.(name)()`, lower-case the name before lookup. The event scanner lower-cases the event name and compares it with each stored name that starts with `on`, minus that prefix.
 - **5.00r7 and 5.12** (same code): build `on` + event name and compare it with every full function name, lower-casing both sides.
-- **6.03r7**: the Linux build lower-cases both sides at lookup. The Windows build has its own A–Z-only compare helpers; its handler lookup itself was not traced, and the Linux rule is assumed. **[inf]**
+- **6.03r7**: the Linux build lower-cases both sides at lookup. The Windows build compares `on` + name with every function name case-insensitively for `created`, `initialized` and `initframe`, and finds every other event through a case-insensitive hash of `on` + name (the same hash as 4.20r8). **[bin]**
 - **Locale**: none of this depends on the Windows locale. 4.x and 5.x use the C library's `tolower` with no locale set; 6.x does its own A–Z conversion.
 
 | Handler spelling | 4.20r8 | 5.00r7 | 5.12 | 6.03r7 |
 | --- | --- | --- | --- | --- |
 | `onTimeout` | fires | fires | fires | fires |
-| `onTimeOut` | fires | fires | fires | fires [inf] on Windows |
-| `ontimeout` | fires | fires | fires | fires [inf] on Windows |
-| `ONTIMEOUT` | fires | fires | fires | fires [inf] on Windows |
+| `onTimeOut` | fires | fires | fires | fires |
+| `ontimeout` | fires | fires | fires | fires |
+| `ONTIMEOUT` | fires | fires | fires | fires |
 | `onActionServerSide` / `onactionserverside` | only if a script queues the event by name (no client engine produces it; clients produce `actionclientside`) | same | same | same |
 
-Two 4.20r8 exceptions:
+Two exceptions, the same in all four builds:
 
-1. **Some events need a lower-case `on` in the source.** Player, mouse and hit events (`playerenters`, `playerchats`, `mousedown`, `washit` and others) are delivered only if the handler's name began with a literal lower-case `on` when the script loaded. `ONPLAYERENTERS` never fires; `onPLAYERENTERS` does. `timeout` and `created` are not in that group, so `ONTIMEOUT` still fires. Whether 5.x/6.x keep this check was not read.
-2. **Script-queued event names** (`scheduleevent` and the like): `timeout`, `Timeout` and `ontimeout` reach `onTimeout`, but `OnTimeout` does not, because only a lower-case `on` is stripped from a queued name. Not checked for 5.x/6.x.
+1. **Some events need a lower-case `on` in the source.** On load, a handler marks its event as listened-to only if its source name starts with exactly `on`. Events gated by that mark are delivered only when it is set: `playerenters`, `playertouchsme`, `playertouchsother`, `playerchats`, `playerhurt`, `playerdies`, `playerlaysitem`, `playerendsreading`, `compusdied`, `emoticon`, `mousedown`, `mouseup`, `mousewheel`, `exploded`, `wasshot`, `waspelt`, `keypressed`, `actionprojectile2`, `playerleaves`, `washit`, `shapetrigger`, `playanimation`; 6.03r7 adds `pkzonechanges`. So `ONPLAYERENTERS` and `OnPlayerChats` never fire, while `onPLAYERENTERS` does. `timeout` and `created` are not gated, so `ONTIMEOUT` still fires. Marking and delivery check are [bin] on 4.20r8 and 5.00r7; on 5.12 and 6.03r7 the marking is [bin] and the delivery check is inferred from the identical mechanism.
+2. **Script-queued event names** (`scheduleevent` and the like): only a lower-case `on` is stripped, so `timeout`, `Timeout`, `TIMEOUT` and `ontimeout` reach `onTimeout`, while `OnTimeout` and `ONTIMEOUT` match nothing. [bin] in all four builds (for 5.12 the strip itself; the rest of its event path is inferred to match 5.00r7).
 
 For writers: spell handlers `on` + anything; avoid an upper-case `ON`/`On` prefix, and pass event names to `scheduleevent` without `on` or with a lower-case `on`. A server-side or clean-room VM that matches handler names exactly (seihai-core, GServer-v2 wrappers above) differs from every focus client here.
 
@@ -358,7 +358,7 @@ in those notes:
 ## 11. Still open
 
 - [ ] Fuller Android Classic / Era GS2 static findings → replace interim Android cells (§2 / §5 / §6).
-- [ ] ~~Full spelling × client matrix~~ [static matrix for the four focus builds](#focus-build-matrix-g087-2026-11-25) done 2026-11-25: case-insensitive everywhere, with two 4.20r8 prefix exceptions. Still open: runtime acceptance, Windows 6.03r7 handler lookup, and the prefix exceptions on 5.x/6.x. Earlier: [Selected static event-handler comparisons](gs2-event-handler-case-2026-11-22.md) are followed; Linux ASCII matching is bound, while Windows helper state and other builds remain qualified.
+- [ ] ~~Full spelling × client matrix~~ [static matrix for the four focus builds](#focus-build-matrix-g087-2026-11-25) done 2026-11-25: case-insensitive everywhere, with two 4.20r8 prefix exceptions. Still open: runtime acceptance. Earlier: [Selected static event-handler comparisons](gs2-event-handler-case-2026-11-22.md) are followed; Linux ASCII matching is bound, while Windows helper state and other builds remain qualified.
 - [ ] Full semantics of 48, 49, 54; `waitfor` timeout-expiry return value on 4.20r8.
 - [ ] 4.04r2 / mid-5.x / 6.00r2 clock step confirmation where still partial; Unity 7.x VM.
 - [ ] Cross-build/runtime joined-class function visibility; [three selected ordinary-call lookup chains](gs2-joined-function-lookup-2026-11-22.md) are statically followed, with authenticated identity, all join modes and collision cases still open.
