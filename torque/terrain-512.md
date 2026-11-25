@@ -177,7 +177,12 @@ client by shipping these files (or a lab can plant them). The client rewrites a 
 time it receives that chunk. **[bin]**
 
 **Material textures.** Each name in `heights.info` is requested by its bare name with the normal
-Graal file request and cached as `levels3d/images/<name>`. **[lab]** It must be 256 × 256 and 24-bit; anything else logs
+Graal file request and cached as `levels3d/images/<name>`. **[lab]** The timing is one visit late: on the first visit
+the client fetches only `heights.info` (saved under `levels3d/images/`) and requests no texture;
+on the second visit it logs `Missing terrain texture: <name>` for each and then downloads them,
+saving each under exactly the listed name (a bare `grass` is saved with no extension, `grass.png`
+as `grass.png`; the bare names were each downloaded twice). The 4.20 Linux lab found extensionless
+cached textures fail to load on later visits, so list names with their extension. **[lab]** It must be 256 × 256 and 24-bit; anything else logs
 `Terrain texture of bad format (must be 256x256x24): <name>` and falls back to `default`, and a
 missing one logs `Missing terrain texture: <name>`. **[bin]** A server can also change the list
 during play with the `setmaterials` BigData text message ([udp-session.md](udp-session.md) §7).
@@ -324,6 +329,8 @@ logs are kept with the owner's lab material. **[lab]**
 | `getdropz` at the far edge | the last square before +128·sq blends toward the opposite edge's first vertex (wraps); at or beyond +128·sq and below −128·sq it returns 0 (repeat 0: nothing tiles) |
 | `loadGreyscale` RGBA 64, 128 / 256 / 512, 256 × 128 (with terrain) | 1 / 1 in one run, crash in another / crash / crash |
 | 4.04r2 script-made `TerrainBlock`, with and without `terrainFile` | created, but neither the file nor the chunk path runs |
+| Peaks world from the Seihai gserver: five trees, `getdropz` at each tree | every tree's z within 0.06 of the ground: server placement and the client's terrain agree |
+| `heights.info` with bare names vs `.png` names, two visits each | visit 1: only `heights.info` fetched; visit 2: `Missing terrain texture` per name, then each downloaded and saved under the listed name |
 | Script moves a `GameObject` over terrain; `getdropz` sampled | no clamping (z stays as set); `getdropz` values are multiples of 1/8 |
 
 No chunk or ghost case crashed the client; only the `loadGreyscale` cases above did. Corrections this run made to the static read: `heights.info` is
