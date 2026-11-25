@@ -990,3 +990,5 @@ torque/3d-file-preference-420r6-2026-11-25.md	pending		10.3	3D file preference (
 torque/3d-shape-textures-420r6-2026-11-25.md	pending		10.3	3D shape texture handling and cache naming (T3D-090), lab; to carry into §10
 torque/3d-2d-level-packets-420r6-2026-11-25.md	pending		10.3	2D level packets in a 3D session (T3D-060), lab; to carry into §10
 torque/3d-world-limits-420r6-2026-11-25.md	pending		10.3	3D world-limit fuzz (T3D-091), lab; to carry into §10
+torque/3d-texture-formats-420r6-2026-11-25.md	pending		10.3	3D texture image formats, bit depths and sizes (T3D-077), lab; to carry into §10
+torque/3d-particles-512-vs-404r2-2026-11-25.md	pending		10.3	Particles dropped from 5.12, GS2 TParticleEmitter replaces them (T3D-085), bin; to carry into §10
