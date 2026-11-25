@@ -97,7 +97,22 @@ it never retried and each run kept whatever it got first. Runs here used a copy 
 a Python with Pillow installed. Install Pillow for the harness Python before relying on
 the retry.
 
+## DEFAULT* gani lines: static follow-up (G261, 2026-11-25)
+
+Static read of the 4.20r8 engine, the 5.12 engine memory image and the 6.03r7 third-party unpack; nothing run. In the 6.03r7 unpack the gani keyword strings are hidden, so its keyword list and slot ranges were taken from 6.00r4, which has them in plain text; the 6.03r7 draw path was read directly. **[bin]**
+
+**Verdict.** In all three clients the `DEFAULT*` lines are parsed and stored on the gani but never read. The 2026-11-19 result (no visible change, no file requested) is therefore expected for every drawn character, not only the player's own. The guess that a default fills in for an NPC with no head of its own is not supported.
+
+- **Keywords.** Only `DEFAULTHEAD`, `DEFAULTBODY`, `DEFAULTPARAM1`–`8` and `DEFAULTATTR1`–`9` are recognised. `DEFAULTSWORD`, `DEFAULTSHIELD`, `DEFAULTHORSE`, `DEFAULTSPRITE` and `DEFAULTCOLOR` do not exist and are ignored like any unknown line. Numbers outside those ranges are dropped, and `DEFAULTHEAD` with no value is skipped. The values go into 19 text slots on the gani object (same layout in 4.20r8 and 5.12; 6.x shifted).
+- **Readers.** In 4.20r8 the only code touching those slots is the gani's parse, create, copy, clear and free paths. The routine that picks each sprite's image (4.20r8, 5.12 and 6.03r7 alike) takes head, body, attributes and params from the drawn character. An empty character value draws nothing; there is no fallback to the gani default. The one fallback found is unrelated: an attached object borrows its parent's params.
+- **No file request.** The pass that requests missing images walks the same character values, so a default's file name is never looked up at all, not merely deferred until first drawn.
+- **Builds.** 4.20r8 and 5.12 are identical; 6.03r7 draws the same way.
+
+The manual's gani keyword table (§3.3) describes the editor, where these lines fill the preview; that is separate from the clients above.
+
+A negative-control lab case, not run: an NPC with `showcharacter`, no head or attributes set, and a gani with `DEFAULTHEAD head19.png`, `DEFAULTATTR1 hat0.png` and HEAD/ATTR1 sprites, on 4.20r8 and 6.03r7. Expected: those sprites draw nothing and no file is requested. Positive control: set the NPC's head to `head19.png`, which should then be requested and drawn.
+
 ## Open
 
 - [x] ~~#646 on 4.20r8 and 5.24r4 under Wine.~~ Same as 6.03r7 (above). 5.12 not run.
-- [ ] The `DEFAULT*` header lines in 195 (still no visible effect).
+- [x] ~~The `DEFAULT*` header lines in 195 (still no visible effect).~~ [Static read 2026-11-25](#default-gani-lines-static-follow-up-g261-2026-11-25): stored but never read on 4.20r8, 5.12 and 6.03r7. **[bin]**
