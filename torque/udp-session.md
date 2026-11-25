@@ -616,5 +616,5 @@ stock class-id widths, no length prefixes) and ships no 3D scripts. No 3D server
 - [x] ~~`TerrainBlock` and `WaterBlock` layouts~~: read from the 5.12 binary in
   [terrain-512.md](terrain-512.md), with the chunk event, the request event and the heights cache.
 - [x] ~~`fxSunLight` layout~~: read from the 5.12 binary in [fxsunlight-512.md](fxsunlight-512.md).
-- [ ] The replicators (`DynamicGrass`, `DynamicGrassReplicator`, `DynamicShapeReplicator`) are
-  not sent by any server we have; their layouts are unread.
+- [x] ~~Replicator layouts~~ (`DynamicGrass`, `DynamicGrassReplicator`, `DynamicShapeReplicator`):
+  read from the 5.12 binary in [replicators-512.md](replicators-512.md); a live ghost is still open.
