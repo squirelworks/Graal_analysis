@@ -124,7 +124,7 @@ material with the largest alpha and sends that alpha divided by 16. **[bin]**
 
 All with the real 5.12 client; it stayed up through every case. **[lab]**
 
-- The event's stamp is ignored: a chunk sent with stamp `0xDEADBEEF` is saved with the client's
+- The event's stamp is ignored: a chunk sent with a made-up stamp is saved with the client's
   own stamp, and that is what the next request reports.
 - Any mode other than 2 (3, 127, 255 tested) behaves like "no hole flags": heights apply and the
   chunk is saved as mode 2 with no holes.
