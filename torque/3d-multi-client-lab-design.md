@@ -46,6 +46,24 @@ graal3d mode on the lab network.
 Same-build pairs (S) come first. They give the baseline for the mixed
 pairs (M), the hybrid pair (H) and the crowd run (N).
 
+### Join first, and capture and observe together
+
+The main question is what each client does when other players join. Every
+pair therefore starts with a join phase: A connects and idles, then B joins,
+then C where the setup allows.
+
+Every step records two things together, never one without the other:
+
+- **Packets.** A capture of each client's own traffic, TCP and UDP in both
+  directions. Each client gets its own capture.
+- **Client-side observation.** A screenshot, the console log and the 3D event
+  trace from the probe weapon.
+
+Clocks are kept in sync, and each step's start time goes on a step log. For
+each join, leave and reconnect, the report gives a timeline: what B sends,
+what A receives because of B's join, what A draws or logs, and how long that
+takes.
+
 ### Steps for each pair
 
 1. Start the server with one small world: flat terrain, one shape and a Sun.
