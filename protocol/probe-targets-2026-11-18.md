@@ -421,6 +421,24 @@ packet's working role is "load this gani now and apply these header overrides".
 **`DEFAULT*` lines on an NPC (`lg603-h`).** A level NPC showing a character played `kick` after
 195 named three `DEFAULT*` images. No image was requested.
 
+## GS2 read-back of player.rupees (G191, 2026-11-25)
+
+Loopback lab in the headless Debian lab VM: the lab's own login and world servers (`gs2emu-73`, commit unrecorded) behind `gen5probe.py`, clients under Wine. A level NPC carried a Seihai-compiled GS2 client script, delivered as 131, that every 0.3 s set `player.chat` to the current `player.rupees` and `player.bombs`; the value came back as the client's chat prop. Runs `rbk420-a` and `rbk524-a` in [probe-results.tsv](probe-results.tsv). The world start level was restored afterwards; captures stay in the VM. **[lab]**
+
+| Sent | Windows 4.20r8 | Windows 5.24r4 |
+|---|---|---|
+| prop 3 = 1234 | 1234 | 1234 |
+| prop 3 = 65535 | 65535 | 65535 |
+| prop 3 = 2097151 (largest GINT3) | 2097151 | 2097151 |
+| prop 3 = 0 | 0 | 0 |
+| prop 83 = 5555 | unchanged (0) | unchanged (0) |
+| prop 3 = 777 | 777 | 777 |
+| prop 83 = 123456789 | unchanged (777) | unchanged (777) |
+
+Prop 3 reaches GS2 `player.rupees` exactly on both clients, and prop 83 is ignored, matching batch 2's "no case" result. Both clients stayed connected throughout.
+
+The other parts of this item were already in the table: the 0–90 self-prop widths on 4.20r8 (`w420-wid`, `wf420-a`) and 5.24r4 (`w524-wid`, `wf524-a`), and batch 2 on 4.20r8, 5.24r4 and 6.037 (`w420-c`, `w524-b`, `w603`). Still not run: the 0–90 width table on Windows 6.037, which is not installed in that VM.
+
 ## Recommended next batches
 
 1. ~~**Self-prop width table for 0–90 on 6.03r7.**~~ Done in run `cwid-b`. Next, run the same

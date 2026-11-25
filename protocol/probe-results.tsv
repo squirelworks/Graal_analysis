@@ -5025,3 +5025,17 @@ date	client	dir	packet	prop	payload	canary_landed	alive	client_reply	observed	ru
 2026-11-21	win-5.12 (wine)	s2c	110	-	110 c:1	yes	yes	not scored	subsequent bomb canary 99 visible; no visible client loss for selected body	wine512-core-2026-11-21	plo110-c1
 2026-11-21	win-5.12 (wine)	s2c	110	-	110 t:"probe body 0123456789"	yes	yes	not scored	subsequent bomb canary 99 visible; no visible client loss for selected body	wine512-core-2026-11-21	plo110-text
 2026-11-21	win-5.12 (wine)	s2c	110	-	110 hex:ff00ff00	yes	yes	not scored	subsequent bomb canary 99 visible; no visible client loss for selected body	wine512-core-2026-11-21	plo110-bin
+2026-11-25	win-4.20r8 (wine)	s2c	9	3	9 c:3 i3:1234	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 1234	rbk420-a	01-p3-1234
+2026-11-25	win-4.20r8 (wine)	s2c	9	3	9 c:3 i3:65535	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 65535	rbk420-a	02-p3-65535
+2026-11-25	win-4.20r8 (wine)	s2c	9	3	9 c:3 i3:2097151	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 2097151	rbk420-a	03-p3-2097151
+2026-11-25	win-4.20r8 (wine)	s2c	9	3	9 c:3 i3:0	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 0	rbk420-a	04-p3-0
+2026-11-25	win-4.20r8 (wine)	s2c	9	83	9 c:83 i5:5555	-	yes	none	no case: player.rupees unchanged (0)	rbk420-a	05-p83-5555
+2026-11-25	win-4.20r8 (wine)	s2c	9	3	9 c:3 i3:777	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 777	rbk420-a	06-p3-777
+2026-11-25	win-4.20r8 (wine)	s2c	9	83	9 c:83 i5:123456789	-	yes	none	no case: player.rupees unchanged (777)	rbk420-a	07-p83-123456789
+2026-11-25	win-5.24r4 (wine)	s2c	9	3	9 c:3 i3:1234	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 1234	rbk524-a	01-p3-1234
+2026-11-25	win-5.24r4 (wine)	s2c	9	3	9 c:3 i3:65535	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 65535	rbk524-a	02-p3-65535
+2026-11-25	win-5.24r4 (wine)	s2c	9	3	9 c:3 i3:2097151	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 2097151	rbk524-a	03-p3-2097151
+2026-11-25	win-5.24r4 (wine)	s2c	9	3	9 c:3 i3:0	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 0	rbk524-a	04-p3-0
+2026-11-25	win-5.24r4 (wine)	s2c	9	83	9 c:83 i5:5555	-	yes	none	no case: player.rupees unchanged (0)	rbk524-a	05-p83-5555
+2026-11-25	win-5.24r4 (wine)	s2c	9	3	9 c:3 i3:777	-	yes	chat (GS2 read-back)	GS2 client script reads player.rupees = 777	rbk524-a	06-p3-777
+2026-11-25	win-5.24r4 (wine)	s2c	9	83	9 c:83 i5:123456789	-	yes	none	no case: player.rupees unchanged (777)	rbk524-a	07-p83-123456789
