@@ -188,6 +188,19 @@ path **[inf]**.
 A reference encoder and decoder that follows this note (kept with the owner's lab material, not in
 this repo) produced 256 chunks of rolling hills at about 150 compressed bytes each.
 
+## 7. Script access: `Terraformer.setTerrain`
+
+The 5.12 DLL keeps a cut-down `Terraformer` (`loadGrayscale` / `loadGreyscale`, `saveGreyscale`,
+`setTerrain`). `setTerrain(register)` returns false and does nothing unless a streamed
+`TerrainBlock` is the client's current terrain. Otherwise it copies the 256 × 256 register into
+that terrain's heights with the rows flipped (register row 255 becomes terrain row 0),
+rebuilds the grid, relights it with a fixed light (direction 0.5, 0.5, −0.5; ambient 0.35;
+colour 0.8) and returns true. No chunk file is written and no stamp changes on that path, so it
+changes the live view only. **[bin]**
+
+Research board rows (`torque/3d-capability-board.tsv`): T3D-040 (`TerrainBlock`, chunks, cache),
+T3D-044 (terrain texture rules), T3D-045 (`WaterBlock`).
+
 ## Lab results
 
 _Pending: the live run against the Seihai gserver's raw-object harness on 2026-11-25._
