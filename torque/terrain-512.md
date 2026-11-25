@@ -177,12 +177,12 @@ client by shipping these files (or a lab can plant them). The client rewrites a 
 time it receives that chunk. **[bin]**
 
 **Material textures.** Each name in `heights.info` is requested by its bare name with the normal
-Graal file request and cached as `levels3d/images/<name>`. **[lab]** The timing is one visit late: on the first visit
+Graal file request and cached as `levels3d/images/<name>`. **[lab]** Without a server push the timing is one visit late: on the first visit
 the client fetches only `heights.info` (saved under `levels3d/images/`) and requests no texture;
 on the second visit it logs `Missing terrain texture: <name>` for each and then downloads them,
 saving each under exactly the listed name (a bare `grass` is saved with no extension, `grass.png`
 as `grass.png`; the bare names were each downloaded twice). The 4.20 Linux lab found extensionless
-cached textures fail to load on later visits, so list names with their extension. **[lab]** It must be 256 × 256 and 24-bit; anything else logs
+cached textures fail to load on later visits, so list names with their extension. **[lab]** When the server pushes the terrain files (`graal3dpushterrain`), the first visit fetches `heights.info` and every texture before the ghosts arrive and draws the terrain textured at once (real 5.12 under Mesa, T3D-044); the white first visit was the no-push case, not a renderer limit. **[lab]** It must be 256 × 256 and 24-bit; anything else logs
 `Terrain texture of bad format (must be 256x256x24): <name>` and falls back to `default`, and a
 missing one logs `Missing terrain texture: <name>`. **[bin]** A server can also change the list
 during play with the `setmaterials` BigData text message ([udp-session.md](udp-session.md) §7).
