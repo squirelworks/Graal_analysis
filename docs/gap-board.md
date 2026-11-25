@@ -267,18 +267,23 @@ clearing and 0.5-second observation limits; the new selected static input is sep
 G136 and overall E#210 remain open/partial. Stable board IDs and the historical
 426-row inventory are retained.
 
+2026-11-25 update: two follow-ups from G273's [public list check](../protocol/g3d30123-public-listserver-2026-11-24.md)
+are added as new rows. **G427** traces list reply id 6, seen on both ports and not in earlier
+notes. **G428** repeats the check with a stock 3.04 or 3.153 client (owner OK needed). The
+board now has 428 IDs.
+
 ## Counts
 
 | Kind | Items |
 |---|---|
 | static | 264 |
 | lab | 99 |
-| static+lab | 28 |
+| static+lab | 29 |
 | missing | 13 |
-| owner | 10 |
+| owner | 11 |
 | maybe-never | 7 |
 | umbrella | 5 |
-| **Total** | **426** |
+| **Total** | **428** |
 
 Lab items by where they run: Windows 10 VM on lab host B or Linux VM under Wine 74, Linux VM on lab host B
 with the lab servers 24, Linux VM on lab host B (Linux clients) 14, Android-x86 or mobile 6, lab host B
