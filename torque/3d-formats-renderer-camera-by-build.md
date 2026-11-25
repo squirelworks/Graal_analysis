@@ -13,7 +13,7 @@ T3D-035, T3D-051, T3D-055, T3D-062.
 | `.dts` shapes | yes | yes |
 | `.dif` interiors | yes | yes |
 | `.3ds` | yes | yes |
-| `.dsq` sequence files | no extension literal | yes, in the shape extension list next to `.dts`, `.3ds`, `.dif` |
+| `.dsq` sequence files | not in the plug-in; the 2D engine files `.dsq` downloads under `anis` | yes, in the shape extension list next to `.dts`, `.3ds`, `.dif` |
 | `TSShapeConstructor` (adds sequences to a shape) | registered class | gone |
 | `.md3` (Quake 3 player model) | yes: an MD3 loader that builds a model from `<name>_lower.md3`, `_upper.md3`, `_head.md3` and `<name>_lower_default.skin`, with its own error messages per part | gone |
 | `.ifl` animated textures | yes (material list code) | no literal |
@@ -25,6 +25,35 @@ list.
 
 Open: whether 5.12 actually merges a `.dsq` into a shape, and how 4.04r2 picks
 the MD3 animation. Both need a lab.
+
+## Where downloaded 3D files are stored (T3D-053, part)
+
+When a download arrives, the client picks a subfolder by extension. The 5.12
+mapping for the 3D types:
+
+| Extension | Subfolder |
+|---|---|
+| `.dts` | `shapes` |
+| `.dsq` | `anis` |
+| `.dif`, `.ml` | `interior` |
+| `.ft` | `trees` |
+| `.gpak`, `.gpake` | `gpaks` |
+| `.gani` | `ganis` |
+| `.ttf` | `fonts` |
+| `.wav` | `sounds` |
+| `.mp3`, `.mid`, `.ogg`, `.wma` | `music` |
+| `.avi`, `.wmv`, `.mov` | `videos` |
+| `.gmap` | `maps` |
+| `.gupd` | `updatepackages` |
+
+Level text and images go under `levels` or `levels3d`.
+
+`.ml` is Torque's mission-lighting file type. The client files a downloaded
+`.ml` with the interiors, but this read found no code that writes one. So
+whether a 5.12 lighting pass leaves a cache on disk is still open.
+
+The 4.04r2 sorter is in its 2D engine (GraalEngine.dll). It has the same
+folder names except `trees`, `vector` and `guistyles`.
 
 ## The `.cs` entry in 5.12's file list (T3D-013)
 
