@@ -23,3 +23,4 @@ Graal has had two script languages, and they reach the client in different forms
 - → §8.2 GS1 reference by version (`02-gs1-reference.md`)
 - → §8.3 GS2 language (`03-gs2-language.md`)
 - → §8.4 GS2 bytecode (`04-gs2-bytecode.md`)
+- → §8.5 3D scripting, Torque-era clients (`05-3d-scripting.md`)

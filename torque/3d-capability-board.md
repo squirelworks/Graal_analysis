@@ -61,3 +61,35 @@ to the client from our own server only.
   IFL, DML, `TSShapeConstructor`, `PathCamera` and `AdvancedCamera` are 4.04r2 only; 5.12 keeps DTS,
   DIF, 3DS and lists `.dsq`; the `.cs` in 5.12's file list is the GS2 file-access gate (T3D-013,
   T3D-031, T3D-034, T3D-035, T3D-051, T3D-055, T3D-062).
+- [5.12 GS2 3D probe on our own server](live-512-gs2-3d-probe-2026-11-25.md): script-made objects do
+  not draw, the sky and fog functions change nothing, loadGreyscale crashes without a TerrainBlock,
+  and switchToOpenGL alone draws nothing (T3D-016, T3D-021, T3D-050, T3D-063, T3D-064).
+- [The original TerrainGenerator compared with servertools](terraingenerator-original-vs-servertools-2026-11-25.md)
+  (T3D-043).
+
+## Second batch (T3D-077 to T3D-092, 2026-11-25)
+
+Added from the day's findings: texture and heightmap image limits per build, the 4.20r8 terrain
+crash, protocol 21 against 24, which object classes each build draws, control-object variants,
+ghost visibility between players, 3D sound and particles, the rest of the sky, `.dif` interiors and
+collision, the 3D script functions on 4.04r2 and 5.00r7, what 3.153 accepts, shape packaging and
+caching, out-of-range worlds, and mission lighting.
+
+## The 3D DLL itself (T3D-093 to T3D-104, 2026-11-25)
+
+Questions that cover the 3D engine DLL as a whole, build by build: its exports and imports and
+how the client loads it; the interface between the 2D client and the 3D side in 5.12; which Torque
+version it is built from; the full console registry; the NetEvent and ghost class tables with
+their fields; the resource loaders and their checks; error paths and logs; the files it reads and
+writes; its threads and frame loop; input; dead code against Graal additions; and the 4.20r8 and
+5.00r7 differences from 5.12.
+
+## Third batch (T3D-105 to T3D-114, 2026-11-25)
+
+How close our renderer is to each client; what a level author can place and which files win (disk
+or server); recovery from partial or bad data; the content subset that 4.04r2, 4.20r8 and 5.12
+all draw; flags, weapons and NPCs across 2D and 3D; which state lives on the server and which on
+the client; whether a server-sent name can make a client write outside its folders; frame rate
+against content size; and a ranked fuzz target list per build. Overlapping questions already on
+the board are not repeated: mixed-build worlds (T3D-072), 2D views of 3D players (T3D-073), ghost
+scoping (T3D-075, T3D-083) and hard limits (T3D-037, T3D-091).

@@ -18,7 +18,7 @@ This folder is the reference manual for Graal itself: clients, wire protocol, fi
 | `05-servers.md` | V Game servers |
 | `06-listserver.md` | VI Listserver |
 | `07-rc-nc.md` | VII RC and NC |
-| `08-scripting/` | VIII NPC scripting (§8.1 to §8.4) |
+| `08-scripting/` | VIII NPC scripting (§8.1 to §8.5; §8.5 is 3D scripting) |
 | `09-graal3d.md` | IX Graal3D (2000) |
 | `10-torque.md` | X Torque-era 3D |
 | `11-tools.md` | XI Tools and the formats they define |
