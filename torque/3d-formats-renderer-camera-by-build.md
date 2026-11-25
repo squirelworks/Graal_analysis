@@ -115,7 +115,14 @@ with a small shader.
 
 5.12 keeps the names `atCamera`, `atCameraRot` and `belowCamera`.
 
-Open: what a 5.12 server can set on the `Camera`. This needs a lab or probe.
+5.12 gives GS2 no camera functions and no camera properties. The only
+camera-named script property is `cameraz` on `GuiPlayerView`, which is the
+preview widget. 5.12 has no first-person toggle name either. So in 5.12 the
+3D camera is driven only by the server, through the `Camera` ghost when it is
+the control object.
+
+Open: which fields of that ghost the client applies. This is the renderer lab's
+T3D-023.
 
 ## Sound formats (T3D-062)
 
