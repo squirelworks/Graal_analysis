@@ -36,7 +36,8 @@ Pure 4.x takes **classic only**. Answering a class ask with 197/140 is the wrong
 
 - [x] Loopback weapon fixture on 5.12: which ask/body ids fire for a GS2 weapon ([below](#lab-gs2-weapon-fixture-on-512-g307-2026-11-25)).
 - [ ] The same fixture on 5.00r7 (the lab install still stalls before connecting).
-- [ ] Same fixture with CLASS prop / empty line variants (#55). Empty line done on 5.12 (does not suppress 158); the class body path and the CLASS prop are still open, because the lab server leaves 161 unanswered.
+- [x] Same fixture with CLASS prop / empty line variants (#55), on 5.12: the empty line does not suppress 158; classes arrive on 133 or 140 after a 161, and prop 74 also triggers 161 ([class delivery](#lab-class-delivery-on-512-g307-follow-up-2026-11-25)).
+- [ ] Static read of the leading byte that 5.12 skips in prop 74, and whether a prop-74 NPC runs the class once answered.
 - [ ] Confirm C6 empty-program threshold if a modern compile oracle is available.
 
 ## Lab: GS2 weapon fixture on 5.12 (G307, 2026-11-25)
@@ -82,5 +83,36 @@ cache format or the hash basis differs between 193 and 197 [inf on which].
 - A level NPC whose clientside GS2 joins a class makes 5.12 ask **161** (body:
   GINT5 0 + class name) 64 ms after the level arrives. The lab server never
   answers it (no 133, no class 140 or 197), so the class does not run and the
-  client asks again on every login. The class body path and the CLASS prop
-  variant need a server that answers 161, or an injected 133/140.
+  client asks again on every login. The follow-up below answers 161 by
+  injection.
+
+## Lab: class delivery on 5.12 (G307 follow-up, 2026-11-25)
+
+Same lab and client as above; rows under runs `cls512-a` to `cls512-h`. A level
+NPC's clientside GS2 joins class `g307cls`, whose timer reports `cls ok N` in the
+player's chat. The class body is the lab server's own compile, taken from a run
+where the same script was briefly delivered as a weapon. The client's 161 was
+dropped at the proxy so the server stayed out of it, and answers were injected.
+
+| answer to 161 | runs the class? | cache |
+|---|---|---|
+| 100 + **133**: GCHAR name length, name, bytecode (no hash, no header) | yes, 0.05 s after the 133 | none written |
+| **197** `class,<name>,1,<hash>,"<5 bytes>"` alone | no, and no further ask in 8 s | none |
+| 197, then 100 + **140**: GSHORT header length, `class,<name>,1,<hash>`, bytecode | yes, 0.043 s after the 140 | `weblevels/classes/<server>/<name>.code` |
+
+The 133 layout matches [class-bytecode-v4.md](class-bytecode-v4.md); the class
+140 is the weapon 140 with `class` as the type. Whether a 140 works without a
+preceding 197 was not tested.
+
+**161 on every login.** The 161 body is GINT5 + class name. With no cached class
+(including after a 133 delivery) the GINT5 is 0. After a 140 delivery it is the
+second, 5-byte field of the 197 descriptor that came with the body, not the
+CRC-32 of the bytecode. The client asks even with the class cached, and the
+cached class does not run until the server answers. How short a server may
+answer a matching hash (a 197 alone?) is open.
+
+**CLASS prop 74.** An NPC with no `join` whose prop 74 is set by PLO 3 also
+makes 5.12 ask 161, about 50 ms later. The client skips the first byte of the
+value: `g307cls` gives an ask for `307cls`, and `_g307xyz` gives `g307xyz`. So a
+server must put one leading byte before the class name [wire only; what that
+byte means is open]. Whether such an NPC then runs the class was not tested.
