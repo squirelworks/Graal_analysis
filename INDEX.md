@@ -238,6 +238,7 @@ When you add a note, add a line for it here in the same pull request.
 
 - [Bound Linux 3.04 startup and successful compiled-script reading](client-internals/linux-304-startup-reader.md) — Separate duplicate unpacked labels, startup-check outcomes and a successful unchanged-original compiled reader return.
 
+- [Stock TGE 1.1 reference (Marble Blast Gold demo)](torque/stock-tge-reference-mbg-2026-11-25.md) — stock-Torque reference only, not Graal evidence: a static read and live loopback run of a non-Graal TGE 1.1 program, set beside Graal 4.04r2 and 5.12 values that each cite their own Graal read or lab.
 - [Windows 4.04r2 3D filtering](torque/404r2-resource-filter.md) — short script-extension checks and positive native mission paths, with local-reader reachability still open.
 
 - [Windows 4.04r2 gmap heights](formats/gmap-heights-404r2.md) — coarse and named per-level blocks in the gmap reader, with a separately scoped Mac file fixture.
