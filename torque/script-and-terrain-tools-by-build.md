@@ -35,7 +35,7 @@ narrows board rows T3D-006, T3D-007, T3D-008, T3D-019 and T3D-041
   So no text reaches a TorqueScript interpreter. **[bin][inf]**
 - **Can GS2 call 4.04r2's console functions by name? (T3D-008)** No path for it was found.
   - The plug-in exports only three functions (load, run and end the engine).
-  - The host hands it about 75 `graal_set...` callbacks. None of them takes a function name to run
+  - The host hands it 77 `graal_set...` callbacks. None of them takes a function name to run
     on the Torque side.
   - The callbacks that cross from the 2D engine to the 3D side all carry data, not code: script
     events, server text, datablock properties, the player's script object, files, drawing and
