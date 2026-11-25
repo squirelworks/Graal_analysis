@@ -109,7 +109,7 @@ The gravity and gani-length fields happen to total 3 bytes either way, so the fo
 - Positions arrive at half their value, and an odd value flips the sign.
 - For gani names under 128 characters, the client reads the gravity byte and the high byte of the gani length together as one gravity value. That gives `server byte / 4`, which is 4× the intended gravity.
 
-Neither prediction has been checked in a lab. The GServer reader for PLI_SHOOT2 (48) assumes the same one-byte gravity with a GSHORT gani length. That layout has not been checked against a client that sends 48.
+Both predictions are confirmed in the lab on 5.00r7 ([below](#lab-plo_shoot2-on-500r7-g317-2026-11-25)). The GServer reader for PLI_SHOOT2 (48) assumes the same one-byte gravity with a GSHORT gani length. That layout has not been checked against a client that sends 48.
 
 ### GServer-v2 `beta4` uses three gravity units **[srv]**
 
@@ -121,7 +121,35 @@ Upstream `beta4` (2026-11-09) is not consistent with itself either:
 
 None of the three is the client's 2-byte ×256 form above. The Reborn protocol docs (`hosler/reborn-protocol-docs`, `packet-structures.md`) copy the server's one-byte gravity and GSHORT gani length, and say they did not derive the SHOOT2 body independently, so they are not a second source for that layout. **[srv][doc]**
 
+## Lab: PLO_SHOOT2 on 5.00r7 (G317, 2026-11-25)
+
+Windows 5.00r7 (the 5.0.0.7 engine, licence-check patched) under Wine in the loopback-only lab. The PLO_SHOOT2 (191) bodies were injected by the lab proxy. Rows are under `shoot500-a` in [probe-results.tsv](probe-results.tsv). **[lab]**
+
+**How it was observed.** When a SHOOT2 projectile lands, 5.00r7 fires `onActionProjectile2(x, y, shootparams, 0)` on its weapons, with the landing point in tiles. A small GS2 logger weapon wrote those values to its chat and to a `client.` variable (sent back as PLI 18). A projectile with gravity 0 lives about 12 s (243 steps) and ends with a final `actionprojectile2` at its last position.
+
+Every shot used angle 0, zangle byte 165 (π/4), power byte 44 (1 tile per step) and gani `idle`, from (40, 30) tiles with z = 0. Horizontal and vertical start speeds were 0.7071 tiles per step.
+
+| Shot | Layout | Landed at (tiles) | Steps | Reading |
+|---|---|---|---|---|
+| S1 | client, gravity 0 | 211.91, 32 | 243 | never falls; flies until its life ends |
+| S2 | client, gravity 2 (`28 20`) | 51.40, 32 | 16 | |
+| S3 | client, gravity 8 (`40 20`) | 43.62, 32 | 5 | |
+| S4 | GServer-v2, gravity 2, x 640 px (even) | 23.62, 17 | 5 | started at (20, 15): half; flight identical to S3, so gravity read as 8 |
+| S5 | GServer-v2, gravity 2, x 641 px (odd) | −16.38, 17 | 5 | started at x −20: the low bit read as the sign |
+| S6 | client, gravity 2, x −640 (sign bit) | −28.60, 32 | 16 | started at x −40 |
+
+The landing y is always start + 2, and the landing x always carries +0.086, so these look like the projectile's offset from its anchor [inf].
+
+Against the static reads:
+
+- **Positions are X2-style: confirmed** for x and y. Plain GSHORT pixels land at half the position, and an odd value flips the sign. z was 0 in every shot, so it is untested.
+- **Gravity is 2 bytes /256, then a GCHAR gani length: confirmed.** GServer-v2's one byte `gravity × 16` (2.0 → byte 64) followed by a GSHORT gani length is read as gravity 8, which is 4× the intent. The second GSHORT byte is then taken as the GCHAR gani length, so the rest of the body stays aligned.
+- **Power `(b − 32) / 44` and a vertical drop of `gravity × 0.05` per step: confirmed.** The drop is applied after the move, and the projectile lands on the first step where z goes below 0. That gives 16 steps for g = 2 and 5 for g = 8; lowering the speed before the move would give 14 and 4.
+
+**Server rule:** to 5.0.0.7, write x, y and z X2-style and gravity as a 2-byte X2 value × 256, followed by a GCHAR gani length.
+
 ## Not done
 
 - [x] ~~Read the PLI_SHOOT2 (48) senders~~: 5.12, 5.24r4, 6.00b1 and 6.03r7 all send 2-byte gravity ×256 (above).
-- [ ] Lab check: send a PLO_SHOOT2 with known gravity to a 5.0.0.7 client and watch the arc.
+- [x] Lab check: send a PLO_SHOOT2 with known gravity to a 5.0.0.7 client and watch the arc ([lab](#lab-plo_shoot2-on-500r7-g317-2026-11-25)).
+- [ ] Lab: a non-zero z in PLO_SHOOT2 (z was 0 in every lab shot).

@@ -68,9 +68,9 @@ Static read of the stock 4.20r8, 5.00r7, 5.12 and Windows 6.03r7 engines; nothin
 | --- | --- | --- |
 | 4.20r8 | `join()`, a "simple" join, and replacing the whole class list | Adds the class at once; a repeat join is ignored. Functions are looked up fresh on each call, so an already-loaded class is callable immediately. An unknown class is joined as an empty placeholder, requested from the server, and its functions appear when it arrives. Leaving takes effect at the next event dispatch. No permission check. |
 | 5.00r7, 5.12 | `join()` with a "simple" flag (class-list joins use the simple form) | Both modes create the placeholder (requesting it if needed) and ignore repeats. A permission check requires the class's level not to exceed the object's; on failure nothing is joined and nothing is logged. Only a non-simple (script) join updates the object's stored function links at once; a simple join is reachable through the normal lookup but its links wait for a later update. 5.12's join code is instruction-for-instruction the same as 5.00r7's. |
-| 6.03r7 | as 5.x | As 5.x, and `join()` also requires the caller's level to be at least the target object's. A failed check logs `Object doesn't have rights to join class …`. Deferred leaving and the class-list path were not traced. |
+| 6.03r7 | as 5.x | As 5.x, but the rights check allows a join only if the class's level is at most max(the joining object's level, the current server level), and a failure logs `Object doesn't have rights to join class …`. Leaving is deferred to the end of the current event; the class-list path leaves every class at once and rejoins through the same check ([6.03r7 section below](#603r7-rights-check-leave-and-the-class-list-g090-2026-11-25)). |
 
-Still open after the static read: runtime confirmation, cyclic join graphs and recursion limits, and 6.03r7's leave/class-list paths. The first three are answered by the lab run below; 6.03r7's leave/class-list paths and its join-rights check remain open.
+Still open after the static read: runtime confirmation, cyclic join graphs and recursion limits, and 6.03r7's leave/class-list paths. All are answered by the lab run and the 6.03r7 section below.
 
 ## Runtime check on 5.12, Windows 6.037 and 4.20r8 (G090, 2026-11-25)
 
@@ -89,5 +89,51 @@ Not predicted by the static read:
 
 - When the class body arrives after the `join()` (the client had to ask 161), the class's `onCreated` never runs, and the script waits: the weapon stayed silent until the class arrived, then ran its overdue scheduled event at once. With 161 unanswered it never ran.
 - `join()` of an already-loaded class from a later event (not from `onCreated`) does not run the class's `onCreated`.
-- The 6.03r7 join-rights check was not tested.
+- The 6.03r7 join-rights check is tested in the [next section](#603r7-rights-check-leave-and-the-class-list-g090-2026-11-25).
 
+## 6.03r7: rights check, leave and the class list (G090, 2026-11-25)
+
+Static read of the unpacked Windows 6.037 executable, then a loopback Wine lab run on the same build (rows `jr6037-b` in [probe-results.tsv](../protocol/probe-results.tsv)). This corrects the 6.03r7 row of the join-modes table above, which had read the check as "the caller's level must be at least the target object's".
+
+### `join()` and the rights check **[bin]**
+
+`join(name)` makes sure the object has a script space, then joins in script mode:
+
+1. It cancels a pending `leave` of the same name.
+2. It gets the class by name, creating an empty placeholder (asked for with 161) if it does not exist yet. A class already joined is left alone.
+3. **Rights check:** the join is allowed only if **class level ≤ max(object level, current server level)**. On failure nothing is joined, and the client logs `Script: Object doesn't have rights to join class <name> in script of <object>`. Simple and script mode check and log the same way.
+4. On success the class is appended to the joined list. In script mode the class's functions are linked into the object at once.
+
+**What the levels are.**
+
+| | Value |
+| --- | --- |
+| Current server level | 2 when offline, 1 when the server's lower-cased name starts with `login`, otherwise 0 |
+| Weapon | the current server level when the weapon is added or updated by 33 or 140 |
+| Object made with `new` | its creator's level |
+| Class | the current server level when the class object is created, at its first reference (a join placeholder) or when its body arrives, whichever comes first |
+| Level NPC, player | not traced |
+
+The check compares the class with the object being joined (`this` of `join()`); the level of the script that calls `join()` is not consulted separately. A class whose level is above the current server level also refuses a new body, so a class made on a `login*` server cannot be replaced from a normal server.
+
+### Leave **[bin]**
+
+`leave(name)` adds the name to the object's pending-leave list. If the object is running a script event, it stops there; otherwise the list is processed at once. The list is processed right after each event dispatch: each named class's functions are unlinked and the class is taken off the joined list. No event runs on leave. A `join()` of the same name before the dispatch ends cancels the pending leave.
+
+### The class list (prop 74 and setting the list wholesale) **[bin]**
+
+The class-list setter first leaves every joined class at once, not deferred. It then splits the comma-separated list and joins each name in simple mode through the same rights check, then links the functions. So prop 74 is subject to the rights check exactly like `join()`.
+
+### Lab (`jr6037-b`) **[lab]**
+
+To get a class with a higher level than a weapon, the client was moved with server warps (178) to the same lab world under two names: first `loginlab` (level 1), then `GS1 Lab` (level 0). Classes and weapons came from the lab server's compile, injected as 197 + 140 and bare 33 + 140.
+
+| Step | Server level | Result |
+| --- | --- | --- |
+| Class `cR` created and weapon `JL` joins it, on `loginlab` | 1 | join passes; `rf()` answers |
+| Warp to `GS1 Lab`; `JL` calls `rf()` again | 0 | still answers: the class kept level 1, and so did the weapon |
+| New weapon `JN` joins `cR` | 0 | **refused**: `Object doesn't have rights to join class cR` in `game_console.log`; `rf()` is not found and returns 0 |
+| Weapon `LV` joins `cS` (level 0); in one event `sf()`, `leave("cS")`, `sf()` | 0 | `S/S`: the class still answers after `leave` in the same event |
+| Next event: `sf()` | 0 | `Function sf not found…`, returns 0 |
+
+Confirmed: the rights rule and its log line, classes keeping their level across a warp, and `leave` deferred to the end of the event. Not run: the class-list path under the check, a cross-object `obj.join()`, and the levels of level NPCs and the player. On 6.037 a call to a missing function returns 0 and logs `Function <name> not found in function <event> in script of <object>`.
