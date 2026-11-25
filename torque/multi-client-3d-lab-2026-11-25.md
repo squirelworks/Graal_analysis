@@ -79,6 +79,35 @@ After the gserver fixes, the same pairs were re-run with the trace on.
   because this world has no head or body images. Whether 3D chat shows on
   the 2D client is not settled (its console was overwritten on reconnect).
 
+### gserver PR #154 at ca00d9a6 — checks (a), (b), (d)
+
+Clients: 5.12 (3D) plus 5.12 / 5.24r3 (2D), each in its own lab Windows 10
+VM clone; server on loopback.
+
+- **(a) Reconnect spawn (T3D-076).** A spawns at 30,-26,1. B's first join
+  lands at 32,-26,1 (the +2 offset). B then leaves and reconnects while A is
+  still in, and lands at 30,-26,1 — on A's point, *without* the +2 offset.
+  So the spawn offset is applied on a first join but not on a reconnect.
+  Whether a reconnect should also get the offset is a gserver design call
+  (left to the gserver thread), not a client fact.
+- **(b) 2D sees a 3D player (T3D-115, T3D-073) — PASS.** With stock
+  head/body/sword/shield ganis in the world, the 5.24r3 2D client gets the
+  3D player's full look in one players-props packet, then position updates
+  as the 3D player walks, plus its chat ("hello from 3D"). B's 2D screen
+  shows two complete player sprites from the first join shot on, and the 3D
+  one moves. (Before the fix the 3D player was invisible on the 2D screen.)
+  **One gap:** the 2D client's own GS2 `players` list still counts only
+  itself — the 3D player shows as a sprite but is absent from the scripted
+  list.
+- **(d) Shadowed heights.info (T3D-044) — PASS.** With a second
+  `heights.info` left in another world folder, the server logs an error at
+  start-up that names the file clients will receive and says to remove or
+  rename the other. With a single `heights.info`: visit 1 streams
+  `heights.info` and all 256 terrain chunks; visit 2 streams 0 chunks (the
+  cache is current). The ground still draws **white** on the GDI GL
+  renderer, so whether the terrain draws textured is a renderer question —
+  the Mesa draw check is still pending (item 4 of the queue).
+
 ### Return visit to a 1-object world
 
 Two visits, no stall in phase 1, the world drew both times. The
