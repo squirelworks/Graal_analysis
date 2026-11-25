@@ -20,12 +20,22 @@ T3D-045, T3D-047, T3D-048. **[lab][cap]**
   shape in the same world the fixed built-in light still does all the
   shading (see `live-512-lighting-and-sky-2026-11-25.md`); the fxSunLight
   contributes nothing on top of it.
-- **All-16-flags + animation keys crashes the client.** Setting every flag
+- **All flag bits + animation keys crashes the client.** Setting every flag
   bit at once together with animation-key strings in the update makes the
   client jump to a data address and fault (access violation). A single flag,
   or flags without the animation strings, is read without crashing. So the
   crash is in the animation-key path, reached only when the gating flags and
   the key strings are both present. (Crash address withheld per repo rules.)
+
+  **Open: how many flag bits.** This series's GwenTea2 static read of the
+  update counted 16 animation flag bits; the terrain thread's independent
+  read (`torque/fxsunlight-512.md`, PR #895) counts 14. The rest of the
+  layout agrees between the two reads — a name and a 6-float transform
+  first, raw-byte bools, then RGBA colours — so only the flag-bit width is
+  in dispute. The crash probe set "all bits" of its own 16-bit flag word, so
+  the crash result does not depend on which count is right. The terrain
+  thread has a live fxSunLight run queued that should settle 14 vs 16; this
+  note will be reconciled against it.
 
 ## Replicators (T3D-048)
 
