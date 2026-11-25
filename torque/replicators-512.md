@@ -55,8 +55,9 @@ regrows its replications. **[bin]**
   minimum. **[bin]**
 - Setting `radius`, `mingridobjects`, `maxgridobjects`, `shapefiles` or `surfacetype` to a new
   value regrows the cover. **[bin]**
-- `shapefiles` is kept as one string; how a list of several shapes is separated is not read
-  yet. **[inf]**
+- `shapefiles` is a comma-separated list of shape file names: the client splits it at each `,`
+  and keeps every non-empty part as one shape. **[bin]** Whether spaces around a comma are
+  trimmed is not read. **[inf]**
 - The meanings follow the names: allowed surfaces, a slope limit (degrees **[inf]**), optional
   alignment to the terrain normal, a height offset, and per-object random scale and rotation
   between the min and max vectors. `hidereplications` hides the cover without dropping the
