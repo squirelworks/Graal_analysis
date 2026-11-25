@@ -102,6 +102,14 @@ nothing is hit. In 2D mode it returns the 2D board height (the level's heights, 
 session reads terrain height from the `TerrainBlock`, not from a level's `HEIGHTS` block, and no path
 from 2D heights into a `TerrainBlock` was seen (T3D-042). **[bin][inf]**
 
+## 3D event names (5.12)
+
+Among the GS2 event names the 5.12 engine dispatches, these belong to the 3D side:
+`onGraal3DConnectionEstablished`, `onGraal3DLoginStep`, `onGhostAlwaysStarted`,
+`onGhostAlwaysObjectReceived`, `onCollision`, `onImpact`, `onEnterLiquid`, `onLeaveLiquid`,
+`onMount`, `onUnmount` and `onMouseYawPitch`; `onRPGMessage` and `onRCChat` come from the BigData
+text channel. Which object receives each, and with what parameters, was not read (T3D-021). **[bin]**
+
 ## Open
 
 - [ ] T3D-016: create a `GameObject`, `Sky` and `Sun` from a client weapon with no server ghost,
