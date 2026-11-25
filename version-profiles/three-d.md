@@ -23,6 +23,7 @@ Seihai's profile has no `three_d` for those builds.
 | Local `.ter` terrain | yes *assumed* | yes | yes | no *assumed* | no *assumed* | no *assumed* | no |
 | Streamed terrain chunks | no | yes | yes | yes | yes | yes | yes (lab) |
 | TorqueScript | compiles | compiles | none | none *assumed* | none | none *assumed* | none |
+| Runs script a server sends | no *assumed* | no | no | no *assumed* | no | no *assumed* | no |
 | Terraformer | full | full | greyscale only | greyscale *assumed* | greyscale *assumed* | greyscale *assumed* | greyscale only |
 | Texture names | as named *assumed* | as named *assumed* | as named *assumed* | strip `.png` *assumed* | strip `.png` *assumed* | strip `.png` *assumed* | strip `.png` (cap) |
 | Download refuses | *not read* | *not read* | `.dso .cs .ter` | *assumed as 5.12* | *assumed as 5.12* | *assumed as 5.12* | `.dso .cs .ter` |
@@ -44,14 +45,14 @@ The Mac 4.04r2 and Mac 5.12 rows take their Windows twin's values, all assumed (
   (`levels3d/heights/<server>/heights<x>-<y>.dat` and `heights.info`, one name per line, in
   [terrain-512.md](../torque/terrain-512.md)), and the 1023-byte limit on one compressed chunk.
   Chunk payloads for 4.20 and 5.00r7 are assumed to be 5.12's; only 5.12's has been read in full.
-- **Scripts and tools** (`torque_script`, `terraformer`, `terrain_editor`): only 3.04 and 3.153 run
-  TorqueScript. 4.04r2 and 5.12 keep `TerrainEditor` and a Terraformer cut to `loadGreyscale`,
+- **Scripts and tools** (`torque_script`, `server_scripts`, `terraformer`, `terrain_editor`): only 3.04 and 3.153 run
+  TorqueScript, and no read build has a path for a server to make it run new script (3.153: T3D-009, static). 4.04r2 and 5.12 keep `TerrainEditor` and a Terraformer cut to `loadGreyscale`,
   `saveGreyscale` and `setTerrain`
   ([script-and-terrain-tools-by-build.md](../torque/script-and-terrain-tools-by-build.md)). A server
   must not send `.cs` or `.dso` to a build that does not compile them.
 - **Formats** (`dts_max`, `dif_version`, `three_ds`, `md3_version`): what shapes a server may name.
   DTS version 24 and DIF version 44 are read for 4.04r2 only; 5.12 has DTS bounds whose values were
-  not read (T3D-029).
+  not read (T3D-029). 4.04r2 has an MD3 loader and 5.12 has none.
 - **Files** (`texture_names`, `download_refused`, `bigdata`, `bigdata_chunk_max`,
   `udp_port_offset`): 5.12 strips `.png` from material texture names and requests and stores the
   bare name, so a server must serve the image under its bare name too. The resource-miss path never
