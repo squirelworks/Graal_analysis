@@ -413,7 +413,7 @@ supersedes the order in `wire-by-build.md`, which had sections 3, 6, 7 and 8 shi
 | # | Present when | Payload |
 |---|---|---|
 | 1 | name | `pstring` object name (`G3DPlayer_<account>` for players in the Seihai server) |
-| 2 | velocity | 3 × `f32` |
+| 2 | scale | 3 × `f32`, the shape scale about its origin ((2,2,2) doubles, (1,1,3) is 3x taller, (0,0,0) means unset/normal); live 5.12 showed this is scale, not velocity **[lab]** |
 | 3 | shape | `pstring` file name (`.dts`, `.dif`, `.3ds`, `.ft`); the client fetches a missing file over TCP |
 | 4 | skin | `pstring` |
 | 5 | transform | position 3 × `f32`, rotation axis 3 × `f32`, angle `f32` (radians) |

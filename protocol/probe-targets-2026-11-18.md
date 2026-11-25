@@ -437,7 +437,24 @@ Loopback lab in the headless Debian lab VM: the lab's own login and world server
 
 Prop 3 reaches GS2 `player.rupees` exactly on both clients, and prop 83 is ignored, matching batch 2's "no case" result. Both clients stayed connected throughout.
 
-The other parts of this item were already in the table: the 0–90 self-prop widths on 4.20r8 (`w420-wid`, `wf420-a`) and 5.24r4 (`w524-wid`, `wf524-a`), and batch 2 on 4.20r8, 5.24r4 and 6.037 (`w420-c`, `w524-b`, `w603`). Still not run: the 0–90 width table on Windows 6.037, which is not installed in that VM.
+The other parts of this item were already in the table: the 0–90 self-prop widths on 4.20r8 (`w420-wid`, `wf420-a`) and 5.24r4 (`w524-wid`, `wf524-a`), and batch 2 on 4.20r8, 5.24r4 and 6.037 (`w420-c`, `w524-b`, `w603`). The 0–90 width table on Windows 6.037 followed the same day, below.
+
+### Windows 6.037 under Wine (G191 close-out, 2026-11-25)
+
+The Windows 6.037 client (`G3D0311C`) was added to the same Wine lab and logged in to the same servers. Under the headless display 6.x draws a black screen, so every result comes from the client's own chat report: the same GS2 read-back NPC, injected after the plans' initial waits. The plans and probe lines were otherwise unchanged. The proxy ciphers compressed frames with round-down for every client; 6.x rounds up, but no short frame that tells the two apart occurred, and the proxy logged no decode error. Runs `w6037-a`, `w6037-b` and `w6037-c`. **[lab]**
+
+- **Widths 0–90 (`w6037-a`):** 89 landed and two lost (51 and 76), with the client alive for every case. This is exactly the Linux 6.03r7 result (`cwid-b`): every id with a case reads at its documented width, the ids without a case (33, 50, 51, 53, 75, 76 and 84–90) are skipped as one byte, and 51 and 76 lose the canary because the value sent was not one byte.
+- **Width re-checks (`w6037-b`):** 24, 27–31, 36, 42 and 77 all hold, as on Linux 6.03r7 (`wf603-a`). 77 has a five-byte case on 6.x, unlike 4.20r8 and 5.24r4.
+- **Read-back (`w6037-c`):** prop 3 reads back exactly (1234, 65535, 2097151, 0, 777), and **prop 83 sets the same counter** (5555, then 123456789), as the GS1 read-back showed on Linux 6.03r7 (`cb83-d`). 4.20r8 and 5.24r4 ignore 83.
+
+### Windows 6.037 under Wine: the rest of the plan set (G426, 2026-11-25)
+
+Same client and lab as above, runs `core6037-a`, `b6037-a`, `bt6037-p` and `lg3w6037-a`. The black screen blocked nothing: the canary plans used the GS2 read-back, and the other two plans are read from packets. **[lab]**
+
+- **wine-core:** identical, case for case, to the earlier 32 `w603` rows and to Linux 6.03r7. Against 5.12 the only differences are props 83 and 77, which 6.x reads as five bytes and 5.12 has no case for.
+- **bytes2x:** all seven canaries landed, as on 4.20r8 and 5.12.
+- **baddytypes (player protected, as `bt512-p`):** the client stays up for every type and the player never dies. Types 0–9 fetch the stock sheets. Types 10, 11, 12 and 15 make 6.037 ask once each for a bare name with no extension: `graysoldier`, `bluesoldier`, `redsoldier` and `frog`; types 20 and up ask nothing. So 6.x has a second baddy name table from type 10 [inf], where 5.12 reads one garbage name at type 11.
+- **loadgani3w:** every section matches Linux 6.03r7 (`lg603-b`/`-d`). After `SETBACKTO` with a NUL in the name, hurt does not fall back at all and no `00 ff 80` gani is asked for: on 6.x a NUL ends the name. On 4.03r3 to 5.31r4 and 5.12 the client falls back to a gani named `00 ff 80`. The change lies between 5.31r4 and 6.03r7, and Windows and Linux 6.03r7 agree.
 
 ## Recommended next batches
 

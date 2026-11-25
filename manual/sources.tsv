@@ -969,9 +969,12 @@ protocol/v7-connector-id-tables.md	cited	2.10; E	2.10; E	G332 partial 2026-11-24
 protocol/v6113-capture-decrypt.md	cited	2.10; E	2.10; E	G334 partial 2026-11-24: clear prefix + RC4@287 reconfirmed on three Windows 6.113 capture streams; post-287 decrypt blocked (exact-session key never recorded; G335 not started).
 protocol/gen6-c2s-0xfc-padding.md	cited	2.10; E	2.10; E	G335 partial 2026-11-24: C→S 0xfc envelope settled (RSA to operator pubkey); exact EM padding blocked (operator private key unheld).
 client-internals/mac-ppc-machine-identity-property.md	cited	2.10; E	2.10; E	G129 partial 2026-11-24: Mac PPC IOMACAddress property-read + MD5-hex settled on 4.04r2/4.20r6/v5; login comma-list call graph still open.
-torque/live-512-gs2-3d-probe-2026-11-25.md	cited	E; 8.5	10.3; 10.6	5.12 GS2 3D probe on our own server: events, script-made objects, terrain functions, sky functions, switchToOpenGL; scripting side carried into §8.5
+torque/live-512-gs2-3d-probe-2026-11-25.md	cited	E; 8.5; 10	10.3; 10.6	5.12 GS2 3D probe on our own server: events, script-made objects, terrain functions, sky functions, switchToOpenGL; scripting side carried into §8.5
 torque/terraingenerator-original-vs-servertools-2026-11-25.md	pending	E	10.6	Original TerrainGenerator output compared with servertools gen terrain and gen 3d
 torque/live-3153-and-404r2-sessions-2026-11-25.md	cited	E; 8.5; 10	10.3	3.153 and 4.04r2 against our 3D server: phases, requests, clientCmds, control object; carried into §8.5 and §10
 torque/3d-engine-static-reads-2026-11-25.md	cited	E; 8.5; 10	10.3; 10.6	Static reads of the 5.00r7 3D engine: sky functions, name HUD, protocol, loaders, input; carried into §8.5 and §10
 torque/3d-fuzz-targets-by-build.md	pending	E	10.6	Fuzz target list for the 3D client inputs, ranked by reach
-torque/multi-client-3d-lab-2026-11-25.md	pending	E	10.3	First multi-client 3D lab pairs: 2D+3D and 3D+3D, what crosses between clients
+torque/multi-client-3d-lab-2026-11-25.md	cited	E; 8.5; 10	10.3	First multi-client 3D lab pairs: 2D+3D and 3D+3D, what crosses between clients; carried into §8.5.11 and §10.3.11 as a state of the lab server build
+torque/live-512-lighting-and-sky-2026-11-25.md	pending	E	10.3	5.12 lighting probe and sky grid on Mesa: Sun as on/off brightness, rotation sense, FOV
+torque/live-512-gameobject-fields-2026-11-25.md	pending	E	10.3	5.12 GameObject update fields tested live: scale, rotation, flags, undrawn fields
+torque/3d-fuzz-net-tier1-2026-11-25.md	pending	E	10.6	3D network fuzz tier 1: event-length and ghost-index crashes on 5.12 and 4.04r2
