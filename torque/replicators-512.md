@@ -107,3 +107,26 @@ the one-cell box and the missing ground. **[lab]** With 20 objects per cell the
 covered area grew only a little, since at scale 3 the copies from 5 per cell already nearly
 fill the near cells. With `allowonterrain` off and `allowonstatics` on, nothing was placed on
 the bare terrain. **[lab]**
+
+Further runs on the same terrain, each changing one value against that base **[lab]**:
+
+| Change | Result |
+|---|---|
+| same world sent again | pixel-identical cover |
+| a second 5.12 client at the same spot | identical cover to the first client |
+| `seed` + 1 | a fully different scatter of about the same density |
+| `boxmin.x` = 128 | cover only on the side with x ≥ 128 |
+| `offsetz` 5 | the copies float 5 units above the ground |
+| `shaperotatemax` (0,0,0) | every copy faces the same way, in the same spots |
+| `aligntoterrain` on | the copies tilt to the slope |
+| `hidereplications` on | all cover gone; only the replicator's own shape remains |
+| radius 1 / 8 cells | much less / much more ground covered |
+| `shapefiles` `a.3ds,b.3ds` | both shapes appear, picked per copy, at the same positions |
+| `DynamicGrass` or `DynamicGrassReplicator` with the same values | the ghost is created and nothing is drawn |
+
+So the cover is the same for every client that gets the same values. The two grass classes take
+the same update but do not draw a `.3ds` this way; what they draw is still open. **[lab]**
+
+On 4.20r8 the replicator ghost is created without a crash or error, but with the camera kept
+250 units up (to avoid 4.20r8's terrain crash) no cover was in frame, so whether 4.20r8 grows it
+is still open. **[lab]**
