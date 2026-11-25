@@ -21,7 +21,7 @@ narrows board rows T3D-006, T3D-007, T3D-008, T3D-019 and T3D-041
 
 - **3.153** is a full TGE client: it compiles and executes TorqueScript, and its 3D side is driven
   by the shipped `main3D.cs` scripts (see [`scripting.md`](scripting.md)). **[bin][file]**
-- **4.04r2** has lost the compiler. The console still registers `eval`, `schedule` and the dump
+- **4.04r2** has lost the compiler. The console still registers `schedule` and the dump
   functions, so a part of the console survives, but with no compiler messages and no `exec` it has no
   visible way to turn text into code. The earlier lab run found that it opens no `.cs`, `.dso` or
   `.mis` beside it in a normal 3D session ([manual §10.6](../manual/10-torque.md), formerly E#502 and
