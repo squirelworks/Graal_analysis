@@ -269,7 +269,8 @@ G136 and overall E#210 remain open/partial. Stable board IDs and the historical
 
 2026-11-25 update: two follow-ups from G273's [public list check](../protocol/g3d30123-public-listserver-2026-11-24.md)
 are added as new rows. **G427** traces list reply id 6, seen on both ports and not in earlier
-notes. **G428** repeats the check with a stock 3.04 or 3.153 client (owner OK needed). The
+notes. **G428** repeats the check with a stock 3.04 or 3.153 client (owner OK given for the community
+listserver only, not the official one). The
 board now has 428 IDs.
 
 ## Counts
@@ -277,10 +278,10 @@ board now has 428 IDs.
 | Kind | Items |
 |---|---|
 | static | 264 |
-| lab | 99 |
+| lab | 100 |
 | static+lab | 29 |
 | missing | 13 |
-| owner | 11 |
+| owner | 10 |
 | maybe-never | 7 |
 | umbrella | 5 |
 | **Total** | **428** |
