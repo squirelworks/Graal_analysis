@@ -159,7 +159,9 @@ Graal file request and cached as `levels3d/images/<name>`. **[lab]** It must be 
 `Terrain texture of bad format (must be 256x256x24): <name>` and falls back to `default`, and a
 missing one logs `Missing terrain texture: <name>`. **[bin]** A server can also change the list
 during play with the `setmaterials` BigData text message ([udp-session.md](udp-session.md) §7).
-**[bin]**
+**[bin]** That message is **not** split at newlines: a text of `rock`, newline, `grass` was logged
+as `setting terrain materials to` the whole text and then reported missing as a single name.
+So `heights.info` and `setmaterials` use different separators. **[lab]**
 
 ## 5. `WaterBlock` (read beside the terrain)
 
@@ -208,6 +210,12 @@ rebuilds the grid, relights it with a fixed light (direction 0.5, 0.5, −0.5; a
 colour 0.8) and returns true. No chunk file is written and no stamp changes on that path, so it
 changes the live view only. **[bin]**
 
+Live: a GS2 weapon can create the object (`new Terraformer(...)` gives object type `Terraformer`).
+`setTerrain` returned 0 with no `TerrainBlock` and 1 with one; the chunk files were byte-identical
+before and after, and the stamps on the next connect were unchanged. `loadGreyscale` resolves its
+file name through the client's own file system and asks the server for that file over TCP when it
+is not cached; it returns 0 until the file has arrived. **[lab]**
+
 Research board rows (`torque/3d-capability-board.tsv`): T3D-040 (`TerrainBlock`, chunks, cache),
 T3D-044 (terrain texture rules), T3D-045 (`WaterBlock`).
 
@@ -253,6 +261,8 @@ logs are kept with the owner's lab material. **[lab]**
 | `WaterBlock` scale 512 alone | nothing drawn, as the static read predicts (scale taken only from 1024 up) |
 | `WaterBlock` scale 1024 and 4096 | created |
 | `WaterBlock` opacity 0 and 1; empty and missing surface texture | accepted (one run of opacity 1 and one of the missing texture lost the TCP link during phase 1; the same bytes worked on the next login, so this reads as transient, not layout) |
+| Four `GameObject`s with flags 0x10 and 0x30 (show terrain) at heights 0 and 200, beside terrain and water | all created, no error (visual effect not readable in the lab VM) |
+| Native terrain from the Seihai gserver (`terrain` world line, a 256-chunk generated world) | first connect: 256 chunks sent, 256 cache files written, hills drawn; reconnect: the client's stamps matched all 256, so the server sent none |
 
 No case crashed the client. Corrections this run made to the static read: `heights.info` is
 one name per line; the folder-name escape; the canonical re-encoding before the stamp.
