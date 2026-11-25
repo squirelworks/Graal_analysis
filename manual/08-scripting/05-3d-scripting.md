@@ -76,6 +76,7 @@ What follows from the two sets:
 | In 5.12, players, vehicles, projectiles, particles, datablocks, interiors and audio emitters are gone; a `GameObject` with a shape takes their place | [bin] (torque/gs2-3d-objects-404r2-512.md#512-68-classes-22-of-them-3d) |
 | The other 46 classes in 5.12's registry are 2D GS2 classes (GUI controls, `TStaticVar`, `Color`, `Array`, `Sound`, `Date`, `String`, two random generators) | [bin] (torque/gs2-3d-objects-404r2-512.md#512-68-classes-22-of-them-3d) |
 | 4.20r6 already has the `GameObject` layer in place of the game classes; its GS2 class list has not been read | [bin] (torque/wire-by-build.md#the-networked-class-sets) |
+| The switch falls at 4.11, the first held build with `GameObject` and no datablocks (protocol 21); 5.00r7 has the same GS2 3D object set as 5.12 (→ §10.1.12) | [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-003-411-is-the-switch-point); [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-005-500r7-is-3d-equal-to-512) [bin] (torque/wire-by-build.md#the-networked-class-sets) |
 
 ## 8.5.4 Properties and functions in 5.12
 
