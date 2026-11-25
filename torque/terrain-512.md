@@ -177,12 +177,12 @@ client by shipping these files (or a lab can plant them). The client rewrites a 
 time it receives that chunk. **[bin]**
 
 **Material textures.** Each name in `heights.info` is requested by its bare name with the normal
-Graal file request and cached as `levels3d/images/<name>`. **[lab]** The timing is one visit late: on the first visit
+Graal file request and cached as `levels3d/images/<name>`. **[lab]** Without a server push the timing is one visit late: on the first visit
 the client fetches only `heights.info` (saved under `levels3d/images/`) and requests no texture;
 on the second visit it logs `Missing terrain texture: <name>` for each and then downloads them,
 saving each under exactly the listed name (a bare `grass` is saved with no extension, `grass.png`
 as `grass.png`; the bare names were each downloaded twice). The 4.20 Linux lab found extensionless
-cached textures fail to load on later visits, so list names with their extension. **[lab]** It must be 256 × 256 and 24-bit; anything else logs
+cached textures fail to load on later visits, so list names with their extension. **[lab]** When the server pushes the terrain files (`graal3dpushterrain`), the first visit fetches `heights.info` and every texture before the ghosts arrive and draws the terrain textured at once (real 5.12 under Mesa, T3D-044); the white first visit was the no-push case, not a renderer limit. **[lab]** It must be 256 × 256 and 24-bit; anything else logs
 `Terrain texture of bad format (must be 256x256x24): <name>` and falls back to `default`, and a
 missing one logs `Missing terrain texture: <name>`. **[bin]** A server can also change the list
 during play with the `setmaterials` BigData text message ([udp-session.md](udp-session.md) §7).
@@ -205,7 +205,7 @@ the whole block **[bin]**:
 |---|---|---|
 | 1 | name follows | flag → `pstring` object name |
 | 2 | transform | position 3 × `f32`, then rotation as a quaternion: x, y, z as 3 × `f32` and a flag "w is negative" (w = √(1 − x² − y² − z²)). This is Torque's compact matrix read, not the axis-angle of the `GameObject` update. |
-| 3 | scale | 3 × `f32` (the water's extent in metres). The client only takes it when x and y are both at least 1024. |
+| 3 | scale | 3 × `f32` (the water's extent in metres). The static read suggested the client only takes it from 1024 up; live, a 512 × 256 block covers exactly 512 × 256 (see below). |
 | 4 | textures | 5 × `pstring`: surface, specular mask, environment map over, environment map under, shore |
 | 5 | submerge textures | 2 × `pstring`, loaded as the under-water overlay textures |
 | 6 | liquid type | raw 32, integer (stock TGE: 0 water, 1 ocean, 2 river, 3 stagnant, 4 lava, 5 hot lava, 6 crusty lava, 7 quicksand **[inf]**) |
@@ -220,6 +220,36 @@ The field names come from the class's own property names in the same binary, in 
 stock TGE 1.x writer used; the meaning of each float is stock Torque's **[inf]**. Nothing in the
 update is a file name the client downloads by itself; textures go through the normal resource
 path **[inf]**.
+
+Live on 5.12 (a block at z 20 with z scale 20, wave magnitude 0.3) **[lab]**:
+
+- The water surface is at position z + scale z (40 here), not at position z. `liquidheight`
+  reads that height with about ±0.15 of wave motion; `watercoverage` is 1 below it, a small
+  fraction just above it, and `liquidtype` reads `Water`.
+- Footprint (a 2-D `watercoverage` grid, no terrain): a block at (0, 0, 0) with scale
+  512 × 256 covers exactly x 0…512, y 0…256. The block runs from its position to position +
+  scale (a corner, not the centre), stops at its scale, and a 512 scale is taken. Turned 90°
+  about z it covers x 0…256, y −512…0: it turns about its position. (An earlier reading over
+  terrain that seemed to run past the scale was stale.)
+- Waves (a 5 × 5 grid over a 256 × 256 block at magnitude 1, read one tick after each probe
+  move, 12 passes): every point is a clean sine with the same period, and the whole field fits
+  (r.m.s. error 0.005)
+
+  `liquidheight = surface + 0.25 · m · (sin(ω·t + k·x + φ) + sin(ω·t + k·y + φ))`
+
+  with m the wave magnitude, x and y in world units, k = 0.050 per unit (wavelength 2π/k ≈
+  125.7 units) and ω ≈ 0.983 rad/s (period about 6.39 s). A finer line of 33 points 8 units apart
+  fixed k (r.m.s. error 0.0004, each term 0.250 · m). Two equal waves, one along x and one along
+  y, crests travelling toward −x and −y: on the diagonal x = y a point swings ±0.5 · m, elsewhere
+  less. The waves follow world position, not the block's own corner (the same block moved by
+  (1000, 1000) shifts phase as the formula predicts). **[lab]** (fit)
+  Note for probes: read `liquidheight` one tick after moving the object; read in the same tick
+  it returns the previous point's value.
+- A 32 × 16 × 2 block at (0, 16, 0) covers exactly x 0…32, y 16…32 with its surface at 2, with
+  or without terrain and whatever `ignoreTerrain`; `ignoreTerrain` changed only a thin band where
+  the water meets the ground.
+- `liquidheight` keeps its last value after an object leaves the water.
+- `ignoreTerrain` 0 and 1 draw visibly differently over terrain.
 
 ## 6. For a server
 
@@ -313,7 +343,7 @@ logs are kept with the owner's lab material. **[lab]**
 | `heights.info` naming a 128 × 128 RGB and a 256 × 256 RGBA texture | no `bad format` or `Missing` log, no crash (not settled whether the texture was used) |
 | `WaterBlock` with the §5 layout (with terrain) | ghost created, the surface texture fetched over TCP, a large surface drawn |
 | `WaterBlock` liquid type 0 to 7 (eight blocks) | all created, no error |
-| `WaterBlock` scale 512 alone | nothing drawn, as the static read predicts (scale taken only from 1024 up) |
+| `WaterBlock` scale 512 alone | nothing seen in that view; the later coverage grid shows a 512 scale is taken |
 | `WaterBlock` scale 1024 and 4096 | created |
 | `WaterBlock` opacity 0 and 1; empty and missing surface texture | accepted (one run of opacity 1 and one of the missing texture lost the TCP link during phase 1; the same bytes worked on the next login, so this reads as transient, not layout) |
 | Four `GameObject`s with flags 0x10 and 0x30 (show terrain) at heights 0 and 200, beside terrain and water | all created, no error (visual effect not readable in the lab VM) |
@@ -323,7 +353,7 @@ logs are kept with the owner's lab material. **[lab]**
 | `Terraformer.loadGreyscale` with a 24-bit RGB PNG (256 × 256, 128 × 128) or an 8-bit grey PNG | client crashes (access violation in the 3D engine) |
 | Chunk edge cases (wrong stamp, modes 3/127/255, cut streams, trailing bytes, truncated zlib, duplicate chunk, ±127 deltas, `h0` 65535) | all accepted; results in §2 "Edge cases seen live" |
 | `setmaterials` then reconnect | list saved to the cache `heights.info` (32 CRLF lines) and reloaded |
-| 4.20r8 with the same `TerrainBlock` and chunk bytes | logs `Loading terrain from terrain chunks.`, requests with 256 zero stamps, saves the first chunks byte for byte as 5.12 does (same stamps), then crashes on a null call. Both crashing runs also had `GameObject`s at ground level (z near 0) and a low spawn; the same `TerrainBlock` with no objects and a high spawn ran 110 s without a crash, with or without textures, init 0, repeat 0 or 1. A `WaterBlock` alone is fine. So the crash needs an object near the terrain surface; collision versus shadow not yet separated. |
+| 4.20r8 with the same `TerrainBlock` and chunk bytes | logs `Loading terrain from terrain chunks.`, requests with 256 zero stamps, saves the first chunks byte for byte as 5.12 does (same stamps), then crashes on a null call. Both crashing runs also had `GameObject`s at ground level (z near 0) and a low spawn; the same `TerrainBlock` with no objects and a high spawn ran 110 s without a crash, with or without textures, init 0, repeat 0 or 1. A `WaterBlock` alone is fine. Narrowed further: with only the `TerrainBlock`, the crash comes whenever the camera starts close to the terrain (about 60 units up), and never with the camera 200 units up, with or without objects. So it is tied to the camera being near the terrain. Height sweep (camera height above the local ground): on a hilly block (square size 2) it crashed at 2–80 units about 1 s after login, at 120 after 1.9 s and at 150 after 3.6 s, and did not crash at 180, 200 or 250. On a flat block with no chunks (square size 8) it crashed at 120 and did not at 180 or 210. So the threshold lies between 150 and 180 units in both worlds, and the higher the camera, the later the crash. It is not tied to view or visibility: at 80 units the crash time was unchanged (about 1.1 s) with the sky's visible distance at 50 or 100, and with the camera pitched straight up so that no terrain was in view. So it depends only on the camera's height above the ground, as a distance-based terrain detail or near-ground query would, not on what is drawn **[inf]**. **[lab]** The lab VM's OpenGL is the bare Windows software 1.1 driver, so a missing GL extension that 4.20r8 calls without checking is likely **[inf]**; not yet tried on a full OpenGL driver. |
 | 5.00r7 | not run: its licence points the login at a fixed LAN address the isolated VM cannot answer; its terrain strings match 5.12 (static) |
 | Flat chunk (0, 0) at 3200 beside chunk (1, 0) at 0, `getdropz` every quarter square, square size 8 and 2 | 400 then 0: 8 wire units per world unit; terrain spans −128·sq…+128·sq on both axes; no seam (the last square of a chunk blends linearly into the next chunk's first vertex) |
 | `getdropz` at the far edge | the last square before +128·sq blends toward the opposite edge's first vertex (wraps); at or beyond +128·sq and below −128·sq it returns 0 (repeat 0: nothing tiles) |
@@ -331,6 +361,15 @@ logs are kept with the owner's lab material. **[lab]**
 | 4.04r2 script-made `TerrainBlock`, with and without `terrainFile` | created, but neither the file nor the chunk path runs |
 | Peaks world from the Seihai gserver: five trees, `getdropz` at each tree | every tree's z within 0.06 of the ground: server placement and the client's terrain agree |
 | `heights.info` with bare names vs `.png` names, two visits each | visit 1: only `heights.info` fetched; visit 2: `Missing terrain texture` per name, then each downloaded and saved under the listed name |
+| Malformed `WaterBlock`: update cut after the textures; NaN position; +Inf or 1e9 scale; liquid type 8, 255, 2³¹−1; 200-character texture names; zero quaternion | all accepted, client stays up (long names are requested and answered not found) |
+| Malformed `TerrainBlock`: square size −8; NaN in the ignored floats; 250-character name; two blocks named `Terrain` | accepted, client stays up |
+| `TerrainBlock` square size 2³¹−1 | **client dies** right after `Terrain lit` (4.20r8 too) |
+| The malformed `WaterBlock` and `TerrainBlock` rows above on 4.20r8 (camera high) | same as 5.12: all survived |
+| A `.3ds` cut to half its length | **client dies** while loading it, no dialog |
+| A `.dts` of random bytes / a `.dif` of zeros | logs `attempt to load a version … dts-shape, can currently only load version 24 and before` / nothing; no crash |
+| Texture numbering: one chunk with columns 0–7 id 0 and 8–15 id 2, `heights.info` water, sand, grass | the saved chunk decodes to ids [0, 2] with every row id 0 in columns 0–7 and id 2 in columns 8–15: id N is line N + 1 of `heights.info`, same row order as the heights; on the second visit every listed texture is fetched, used or not |
+| Mode 2 chunk with squares 6–9 × 6–9 as holes, `getdropz` every 0.5 | an exact cut-out: ground reads 0 for exactly those squares, with no slope at the edge |
+| Two `TerrainBlock`s named `Terrain` (square size 8, then 2), then 256 chunks | both send a request (two events); one cache folder; the chunks land on the second block only (ground within ±256, nothing out to ±1024) |
 | Script moves a `GameObject` over terrain; `getdropz` sampled | no clamping (z stays as set); `getdropz` values are multiples of 1/8 |
 
 No chunk or ghost case crashed the client; only the `loadGreyscale` cases above did. Corrections this run made to the static read: `heights.info` is

@@ -65,6 +65,8 @@
 #                       clients in the level see it walk without server help
 #   sees_2d_players     the client draws 2D players that share its level
 #   takes_2d_chat       chat from 2D players in the level reaches the client (onRemotePlayerChats, over TCP)
+#   terrain_textures    with streamed terrain, the client fetches heights.info and the terrain textures it lists;
+#                       false: the terrain draws untextured (white)
 #   drops_unknown_ghost an update for a ghost index that was never created is logged and dropped; false: the
 #                       client crashes on it (fuzz tier 1), so a server must never update before the create
 
@@ -111,6 +113,7 @@ drawn = "world"
 mirrors_2d_position = false
 sees_2d_players = false
 takes_2d_chat = false
+terrain_textures = false
 drops_unknown_ghost = false
 why = "stock TGE 1.x net layer with no Graal changes; no BigData or terrain-chunk classes (wire-by-build). Format bounds, phases and control classes are stock TGE, not read in 3.04. Seihai's gserver refuses it on the game string."
 [build.evidence]
@@ -152,6 +155,7 @@ drawn = "assumed"
 mirrors_2d_position = "assumed"
 sees_2d_players = "assumed"
 takes_2d_chat = "assumed"
+terrain_textures = "bin"
 drops_unknown_ghost = "assumed"
 
 [[build]]
@@ -195,6 +199,7 @@ drawn = "sky_only"
 mirrors_2d_position = false
 sees_2d_players = false
 takes_2d_chat = false
+terrain_textures = true
 drops_unknown_ghost = false
 why = "Graal's net changes already in (class table, 12-bit ids, length prefixes, BigData, TerrainChunkEvent); full TGE game layer and TorqueScript compiler (wire-by-build, script-and-terrain-tools-by-build). Lab on our gserver (torque/live-3153-and-404r2-sessions-2026-11-25.md): protocol 19 with no special handling, all three mission phases, a stock Player as control object; it never asks for .cs, .dso or .ter, so a server cannot push script and only its 12 shipped clientCmd handlers run (unknown ones are dropped; T3D-009); a TerrainBlock makes it ask for heights.info, so it uses the chunk path; it crashes without a ghosted Sky and with an empty TerrainBlock; sky textures are asked for as .gif; nothing was drawn past the loading picture at first (T3D-067, T3D-089); a later run (M3, multi-client-3d-lab) answered its six sky .gif requests with the PNGs and it reached the sky view with no crash, and drew the 5.12 player as a TGE Player. Format bounds and texture naming carried from 4.04r2/5.12."
 [build.evidence]
@@ -236,6 +241,7 @@ drawn = "lab"
 mirrors_2d_position = "assumed"
 sees_2d_players = "assumed"
 takes_2d_chat = "assumed"
+terrain_textures = "lab"
 drops_unknown_ghost = "assumed"
 
 [[build]]
@@ -279,6 +285,7 @@ drawn = "sky_only"
 mirrors_2d_position = false
 sees_2d_players = false
 takes_2d_chat = false
+terrain_textures = true
 drops_unknown_ghost = false
 why = "Graal3DEngine.dll: 117 class registrations, 34 datablocks; no TorqueScript compiler, exec or eval; cut-down Terraformer; keeps both the .ter and the chunk path; resource-miss filter refuses .dso/.cs/.ter (graal3d/torque-engine-4x, script-and-terrain-tools-by-build, 404r2-resource-filter). Lab on our gserver under Wine (it crashes at start on Windows 10; torque/live-3153-and-404r2-sessions-2026-11-25.md, T3D-025): all three phases on protocol 19, a stock TGE Player as control object, Torque moves only, and the script player object stays at the spawn, so the 2D position does not follow the 3D Player; only the Sky gradient drew. Fuzz tier 1 (torque/3d-fuzz-net-tier1-2026-11-25.md): an update to a ghost index never created crashes it, which 5.12 logs and drops."
 [build.evidence]
@@ -320,6 +327,7 @@ drawn = "lab"
 mirrors_2d_position = "lab"
 sees_2d_players = "assumed"
 takes_2d_chat = "assumed"
+terrain_textures = "assumed"
 drops_unknown_ghost = "lab"
 
 [[build]]
@@ -371,6 +379,7 @@ drawn = "world"
 mirrors_2d_position = false
 sees_2d_players = false
 takes_2d_chat = true
+terrain_textures = true
 drops_unknown_ghost = true
 why = "Protocol 21, two-type class table with TerrainBlock, WaterBlock and TerrainChunkEvent, and a game packet the same shape as 5.12's (wire-by-build). Scripts, terrain tools, formats and file rules were not read for 4.20r6 and are 5.12's (T3D-026)."
 [build.evidence]
@@ -412,6 +421,7 @@ drawn = "assumed"
 mirrors_2d_position = "assumed"
 sees_2d_players = "assumed"
 takes_2d_chat = "assumed"
+terrain_textures = "assumed"
 drops_unknown_ghost = "assumed"
 
 [[build]]
@@ -419,9 +429,10 @@ label = "4.20r8"
 platform = "win32"
 base = "4.20r6"
 protocol = 24
-terrain_chunks = false
+terrain_chunks = true
+terrain_textures = false
 drawn = "world"
-why = "Values are 4.20r6's except where read. The Windows 4.2.0.8 Graal3DEngine.dll (torque/4208-g3d.md) shows the GameObject layer with no ShapeBase or Player, no TorqueScript compiler and no .dso, two mission phases, and the terrain chunk send and event. A lab run (Graal_analysis PR #854, terrain-512 lab table) found it links as protocol 24 and plays normally, and that it takes the 5.12 TerrainBlock and TerrainChunkEvent layout and fills the levels3d/heights cache byte for byte like 5.12, but then crashes on a null call. Later runs (k8 to k10, 2026-11-25) narrowed it: with only a TerrainBlock it crashes whenever the camera starts near the terrain (about 60 units up) and never with the camera 200 up, with or without objects, so the fault is in the near-range terrain draw. The lab VM has only Windows' GDI Generic OpenGL 1.1, so an unchecked GL extension call is the likely cause, and it may work on Mesa or a real GPU. A later run under Wine on Mesa llvmpipe (T3D-117, torque/multi-client-3d-lab-2026-11-25.md) played with no crash and drew the ground, cubes and another player, but the gserver sent it no TerrainBlock, so terrain itself is still untested on a real GL driver. terrain_chunks stays false as a serving choice: no streamed terrain is sent, and the only crash seen was under basic-GL VMs, not a known client limit. On the fuzz and shape rows it matched 5.12, including the crash on a huge TerrainBlock squareSize (live-512-shapes). Its class set and file rules were not read (T3D-002), so those stay assumed."
+why = "Values are 4.20r6's except where read. The Windows 4.2.0.8 Graal3DEngine.dll (torque/4208-g3d.md) shows the GameObject layer with no ShapeBase or Player, no TorqueScript compiler and no .dso, two mission phases, and the terrain chunk send and event. A lab run (Graal_analysis PR #854, terrain-512 lab table) found it links as protocol 24 and plays normally, and that it takes the 5.12 TerrainBlock and TerrainChunkEvent layout and fills the levels3d/heights cache byte for byte like 5.12, but then crashes on a null call. Later runs (k8 to k10, 2026-11-25) narrowed it: with a TerrainBlock it crashes whenever the camera starts 150 units or less above the ground and never from 180 up, with or without chunks or objects, sooner the lower the camera, and even with the camera pointed straight up or a short visible distance (torque/terrain-512.md, PR #895), so the trigger is the camera's height above the terrain, not what is drawn. The lab VM has only Windows' GDI Generic OpenGL 1.1, so an unchecked GL extension call is the likely cause, and it may work on Mesa or a real GPU. On Mesa llvmpipe under Wine, served a real TerrainBlock (T3D-117, torque/multi-client-3d-lab-2026-11-25.md), it took all 256 streamed chunks and drew the ground to the horizon with objects and another player on it, with no crash over about four minutes including a walk; the near-terrain crash was the basic GDI OpenGL renderer, not the client. So terrain_chunks is true. It never asked for heights.info or any texture in that visit, so its terrain draws white: terrain_textures is false. On the fuzz and shape rows it matched 5.12, including the crash on a huge TerrainBlock squareSize (live-512-shapes). Its class set and file rules were not read (T3D-002), so those stay assumed."
 [build.evidence]
 all = "assumed"
 game_layer = "bin"
@@ -434,6 +445,7 @@ terrain_chunks = "lab"
 chunk_cache = "lab"
 drawn = "lab"
 drops_unknown_ghost = "lab"
+terrain_textures = "lab"
 
 [[build]]
 label = "5.00r7"
@@ -476,6 +488,7 @@ drawn = "world"
 mirrors_2d_position = false
 sees_2d_players = false
 takes_2d_chat = true
+terrain_textures = true
 drops_unknown_ghost = true
 why = "5.00 3D DLL: protocol check passes only 24, writes Graal3D, GameObject registered, two mission phases, no ShapeBase or datablock phase, TerrainChunkEvent and the levels3d/heights cache (5007-g3d). The engine DLL read (torque/3d-engine-static-reads-2026-11-25.md, T3D-093 to T3D-098) adds: no TorqueScript exec and no SimDataBlockEvent, .3ds/.dts/.dif loaders, and terrain textures that must be 256x256x24. Its five exports (load, run, end, resize, fullscreen) are loaded by name with no version check. Class ids, formats bounds and file rules are 5.12's until T3D-005 closes."
 [build.evidence]
@@ -517,6 +530,7 @@ drawn = "assumed"
 mirrors_2d_position = "assumed"
 sees_2d_players = "assumed"
 takes_2d_chat = "assumed"
+terrain_textures = "assumed"
 drops_unknown_ghost = "assumed"
 
 [[build]]
@@ -560,6 +574,7 @@ drawn = "world"
 mirrors_2d_position = false
 sees_2d_players = false
 takes_2d_chat = true
+terrain_textures = true
 drops_unknown_ghost = true
 why = "The most-read build: wire, game packets and class set (wire-by-build), streamed terrain and its cache (terrain-512, lab 2026-11-25), Camera control and bare-name textures (live session 2026-11-24), no TorqueScript compiler, cut-down Terraformer that GS2 can create (live: setTerrain needs a TerrainBlock, loadGreyscale is only safe with a 32-bit RGBA PNG; PR #854 terrain-512 section 7), 256x256x24 terrain textures with wrong sizes ignored (lab), .dso/.cs/.ter download filter (script-and-terrain-tools-by-build). DTS bounds exist but their values were not read (T3D-029); The DIF version is not read for 5.12 (T3D-030); 5.12 has no MD3 loader (3d-formats-renderer-camera-by-build). The first control object alone takes it to login steps 5 and 6, so mission phases are optional (gs2-3d-objects-404r2-512). Mixed lab H1 (torque/multi-client-3d-lab-2026-11-25.md, T3D-073, T3D-115, T3D-116): next to a 5.24r3 2D client, 5.12 does not see the 2D player, 2D chat reaches it as onRemotePlayerChats over TCP, and its 3D walk never moves its 2D player. Terrain textures named in heights.info drew white and were never requested in one 5.12 run (live-512-gs2-3d-probe, T3D-044), unlike Linux 4.20; the 256x256x24 rule stands. Fuzz tier 1 (torque/3d-fuzz-net-tier1-2026-11-25.md): an update to an uncreated ghost is logged and dropped, but an under-length RemoteCommandEvent ran a garbled command and then crashed it, so the event length wrapper is trusted and a server must write exact lengths. DTS (live-512-shapes): the header takes 17 to 24, but v24 bodies relabelled 17 to 22 hung or crashed and 23 drew nothing, so only 24 is known to draw. A first visit (empty heights cache) fetches only heights.info and draws the terrain white; the textures come on the next visit."
 [build.evidence]
@@ -601,6 +616,7 @@ drawn = "lab"
 mirrors_2d_position = "lab"
 sees_2d_players = "lab"
 takes_2d_chat = "lab"
+terrain_textures = "lab"
 drops_unknown_ghost = "lab"
 
 [[build]]
@@ -615,8 +631,7 @@ all = "assumed"
 label = "4.20 Linux"
 platform = "linux-i386"
 base = "5.12"
-terrain_chunks = false
-why = "Linux 4.20r6 and 4.20r8 both send G3D22126 and link as protocol 24, not the 21 of the Mac build Seihai calls 4.20r6 (lab 2026-11-25, torque/lab-2026-11-25-g3d-worlds.md). On Seihai's mission route it completed both mission phases with a GameObject world, drew .3ds models, drew DTS 24 and DIF 44, refused DTS 16 and 25 and DIF 43 and 45, and froze on DTS 17, so a server should serve DTS 24 even though the version-17 read path exists. It crashed on structurally broken .3ds files. Windows 4.20r8 crashes drawing terrain near the camera under GDI GL 1.1 (PR #854, k8 to k10), so streamed terrain is off here too, assumed. Everything else is 5.12's and assumed."
+why = "Linux 4.20r6 and 4.20r8 both send G3D22126 and link as protocol 24, not the 21 of the Mac build Seihai calls 4.20r6 (lab 2026-11-25, torque/lab-2026-11-25-g3d-worlds.md). On Seihai's mission route it completed both mission phases with a GameObject world, drew .3ds models, drew DTS 24 and DIF 44, refused DTS 16 and 25 and DIF 43 and 45, and froze on DTS 17, so a server should serve DTS 24 even though the version-17 read path exists. It crashed on structurally broken .3ds files. It took streamed terrain and fetched the textures heights.info lists (terrain-512: extensionless cached textures failed to load on later visits), so streamed terrain and terrain textures are lab. Everything else is 5.12's and assumed."
 [build.evidence]
 all = "assumed"
 protocol = "lab"
@@ -627,4 +642,6 @@ three_ds = "lab"
 dts_min = "lab"
 dts_max = "lab"
 dif_version = "lab"
+terrain_chunks = "lab"
+terrain_textures = "lab"
 drawn = "lab"

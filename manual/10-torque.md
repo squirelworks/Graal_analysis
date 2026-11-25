@@ -31,7 +31,7 @@ The Torque era spans several builds and platforms. Each row gives one build with
 | 3.04 Linux | Jan 2004 | one C++ binary (SDL 1.2, FMOD 3.70; [build and linkage](../client-internals/linux-304-executable-build.md)) | full TGE, version number 1100 | TGE classes, no 3D scripts shipped | `Torque Game Engine Demo` / 9 | TorqueScript `.dso` | [bin] (torque/README.md#lineage-at-a-glance) |
 | 3.153 Mac | Feb 2005 | one C++ binary (Carbon, PPC) | full TGE with Graal's net-layer changes | stock TGE world and `main3D.cs` client scripts | `Graal3D` / 19 | TorqueScript `.dso` | [bin][file] (torque/README.md#lineage-at-a-glance) |
 | 4.04r2 Win | Mar 2006 | Delphi launcher, `GraalEngine.dll` (2D) and `Graal3DEngine.dll` (3D plug-in) | 2D engine on Torque base classes; the 3D DLL near-stock TGE | stock TGE with datablocks | `Graal3D` / 19 | GS2 and native | [bin] (torque/README.md#lineage-at-a-glance) |
-| 4.20r6 Mac | Sep 2006 | one C++ binary (PPC) | Torque core and netcode, Graal game layer | `GameObject` model, no datablocks | `Graal3D` / 21 | GS2 and native | [bin] (torque/wire-by-build.md#which-builds-are-torque) |
+| 4.20r6 Mac | Dec 2006 | one C++ binary (PPC) | Torque core and netcode, Graal game layer | `GameObject` model, no datablocks | `Graal3D` / 24 (a lab copy labelled Mac 4.20r6 with protocol 21 is the Mac 4.11 build) | GS2 and native | [bin] (torque/wire-by-build.md#which-builds-are-torque); [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-004-linux-and-mac-against-their-windows-twins) |
 | 4.20r8 Win | Jan 2007 | 2D engine on Torque base classes | — | packet-logger upload has no `Graal3DEngine.dll` (later file-version 4.2.0.8 export: → §10.1.5) | unmeasured | GS2 and native | [bin] (torque/wire-by-build.md#which-builds-are-torque) [bin] (torque/engine-4208.md#how-the-three-fit) |
 | 5.12 Win | Oct 2007 | Delphi launcher and one engine DLL, still named `Graal3DEngine.dll` | Torque core and netcode; the game layer is Graal's own | `GameObject` and `GameShape*`, no datablocks, no `Player`/`ShapeBase` | `Graal3D` / 24 | GS2 and native | [bin] (torque/README.md#lineage-at-a-glance) |
 | 5.24r3 and later | 2010+ | engine linked into `Graal.exe` | no Torque 3D (what Windows 6.00 still names → §10.1.8) | none | n/a | GS2 | [bin] (torque/engine-and-formats.md#which-torque) |
@@ -321,6 +321,13 @@ Header-date differences leave repack-versus-later-build lineage open; date the r
 | It creates no threads and imports no DirectInput: it is single-threaded, ticked by the client, and gets input through the client's action names; it binds the `moveMap2D` move commands itself | [bin] (torque/3d-engine-static-reads-2026-11-25.md#the-engine-dll-as-a-whole-t3d-093-to-t3d-104-bin-420r8-500r7); [bin] (torque/3d-engine-static-reads-2026-11-25.md#input-t3d-057) |
 | The connect reject has separate texts for a protocol too old, a protocol too new and a wrong game; the held builds use protocols 19, 21 and 24 | [bin] (torque/3d-engine-static-reads-2026-11-25.md#protocol-check-t3d-072-t3d-080) |
 | `.3ds`, `.dts` and `.dif` loaders are registered; the DIF and ForceField readers check their version numbers; the terrain loader requires 256 × 256 24-bit textures | [bin] (torque/3d-engine-static-reads-2026-11-25.md#loaders-t3d-098) |
+| By protocol, class set and GS2 3D object set, 5.00r7 is 3D-equal to 5.12: protocol 24 with the same three rejects, the same 28 registered classes (none a datablock; 27 in the first count, which missed `fxSunLight`) and the same 37 GS2 3D object owners; 5.12 links the engine into its image instead of shipping a DLL, and lab copies labelled as a 5.12 3D DLL are the 5.00r7 file | [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-005-500r7-is-3d-equal-to-512) |
+| 4.03r3 equals 4.04r2 (protocol 19, 117 classes, 29 in the datablock family with `fxLightData`); 4.11 has protocol 21, 32 classes and `GameObject`, with the datablock layer, the stock game, vehicle, mission and audio classes and `ScriptObject` dropped; 4.20r8 drops `FileObject`, `SimpleMessageEvent`, `SimpleNetObject` and `twSurfaceReference` and moves to protocol 24, with 28 classes. A first scan missed the `fx` family and gave 108, 30 and 27 | [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-003-411-is-the-switch-point); [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-004-linux-and-mac-against-their-windows-twins) |
+| The switch to `GameObject` is earlier than 4.11: Linux and Mac 4.10r2 (August 2006) already have protocol 21, the 32-class set and no datablocks, so it falls between 4.04r2 (March 2006) and 4.10r2; 4.20r6 (December 2006) already has protocol 24 and the 28-class set | [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-004-linux-and-mac-against-their-windows-twins) |
+| Linux and Mac builds link the 3D engine into the main binary. Linux and Mac 4.0x swap one class against Windows 4.0x (`AIWheeledVehicle` only on Linux and Mac, `MissionArea` only on Windows); every later Linux and Mac build has the class set of its Windows twin, so Linux 4.20r6 and 4.20r8 can stand in for Windows 4.20r8 on the 3D wire. Mac builds are PPC only | [bin] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-004-linux-and-mac-against-their-windows-twins) |
+| A protocol-19 server that ghosts a `MissionArea` to a Linux or Mac 4.0x client would send a class that client lacks | [inf] (torque/3d-engines-5007-512-and-403-411-2026-11-25.md#t3d-004-linux-and-mac-against-their-windows-twins) |
+| Torque particles (`ParticleEmitterNode`, `ParticleEmitterNodeData`, `ParticleEmitterData`, `ParticleData`) are registered in 4.04r2 and absent from the 28-class set of 4.20r6 and later; the 4.20r8, 5.00r7 and 5.12 GS2 dumps have none of them. Particle content belongs to protocol-19 engines; 5.12 has a GS2 particle system instead (→ §8.5.4) | [bin] (torque/3d-particles-512-vs-404r2-2026-11-25.md#class-evidence-bin) |
+| A ghost of a particle class sent to a 5.12-class client would name an unknown class and drop the link; not run, because the lab server has no way to send one | [inf] (torque/3d-particles-512-vs-404r2-2026-11-25.md#not-driven-live-this-session-and-why) |
 
 ## 10.2 Join sequence
 
@@ -598,6 +605,79 @@ Real clients were paired against the project's own gserver while its relay of ot
 | 5.24r3 2D and 5.12 3D, one level | the 2D client's `players` count was 2 but the 3D entry was empty and never drew; the 3D client never saw the 2D player (`players` 0, no ghost); 2D chat reached the 3D client as `onRemotePlayerChats` over TCP; 3D chat and flags never reached the 2D client; neither side got a leave event | [lab][cap] (torque/multi-client-3d-lab-2026-11-25.md#h1-a-2d-client-and-a-3d-client-in-one-level) |
 | two 5.12 3D clients | each got a `G3DPlayer_<other>` object within the same second of the other's join; chat was relayed but positions were not, so each kept the other at the shared spawn; `players` stayed 0 and no per-player events fired; no ghost delete on leave, and the ghost returned under the same index on reconnect | [lab][cap] (torque/multi-client-3d-lab-2026-11-25.md#s1-two-3d-clients-in-one-world) |
 
+### 10.3.12 Malformed server packets (network fuzz, tier 1)
+
+Real 5.12 and 4.04r2 clients were fed one seeded mutation per link from the project's own server: 27 runs on 5.12 and 9 on 4.04r2 under Wine; both baselines load cleanly [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md). The table gives each kind of mutation and what the clients did.
+
+| Mutation | 5.12 | 4.04r2 | Source |
+| --- | --- | --- | --- |
+| `RemoteCommandEvent` one bit shorter than its declared length | one seed ran a garbled remote command and then crashed in the 3D engine; the other seeds survived; the event length wrapper is trusted | survived where run | [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md#crashes-and-bad-behaviour) |
+| update to a ghost index never created | logs and drops the update (all three seeds) | crash (access violation) | [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md#crashes-and-bad-behaviour) |
+| wrong protocol number in the connect accept | link dropped within about 70 ms, black screen, no message | the same | [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md#crashes-and-bad-behaviour) |
+| event classes dropped or renamed in the class table; unknown event class; double ghost delete; a different ghost-index width; control object set to a `Sky` or `Sun` ghost; control object deleted | survived, some logging "Invalid event received (unknown event type)" or "(wrong direction)" | survived where run | [lab][cap] (torque/3d-fuzz-net-tier1-2026-11-25.md#survived-sometimes-with-a-console-line) |
+
+### 10.3.13 When UDP or TCP drops (Linux 4.20r6)
+
+A Linux 4.20r6 client (3D-equal to Windows 4.20r8, → §10.1.12) was run on loopback against the project's own 3D lab server, through a relay that could drop UDP or close TCP; each change was made at 40 s, after the world was up [lab] (torque/3d-link-drop-420r6-2026-11-25.md#lab-lab).
+
+| Rule | Source |
+| --- | --- |
+| Every 4500 ms without a sent ping or a received packet, the client sends a ping; after 8 unanswered pings it times the connection out, so a silent server is dropped about 40.5 s after its last packet | [bin] (torque/3d-link-drop-420r6-2026-11-25.md#static-the-ping-and-timeout-rule-bin) |
+| A received packet resets the ping count | [inf] (torque/3d-link-drop-420r6-2026-11-25.md#static-the-ping-and-timeout-rule-bin) |
+| UDP lost for 10 s with TCP kept: nothing visible or logged, and the link healed silently when UDP returned, with no new connect | [lab] (torque/3d-link-drop-420r6-2026-11-25.md#lab-lab) |
+| UDP lost for good: 8 pings 4.51 s apart, updates stop after 30 unacknowledged, timeout 40.6 s after the last server packet; the client sends a 7-byte disconnect, closes its own TCP to the gserver and returns to the login screen ("The 3D server connection has timed out") | [lab] (torque/3d-link-drop-420r6-2026-11-25.md#lab-lab) |
+| Both TCP legs closed: the server sent a UDP disconnect within 1 ms and the client returned to login ("The Graal3D server has dropped the connection: …"); only the client's TCP leg closed: the client sent a UDP disconnect within about 10 ms and returned to login | [lab] (torque/3d-link-drop-420r6-2026-11-25.md#lab-lab) |
+| No run crashed the client and none made it reconnect on its own; the 3D link never outlives the TCP link | [lab] (torque/3d-link-drop-420r6-2026-11-25.md#for-server-work) |
+
+### 10.3.14 Script events from client to server (Linux 4.20r6)
+
+In builds where the 2D and 3D engines share a binary, the 3D side gives the 2D side a hook that queues a line for the 3D server and a per-frame flush that sends the queued lines [bin] (torque/3d-client-events-420r6-2026-11-25.md#static-bin). What a weapon script sees is in → §8.5.7.
+
+| Rule | Source |
+| --- | --- |
+| Each queued line starts with a one-letter code: `t` trigger (`triggerserver`, weapon or rc form), `o` object, `g` class or gani request, `w` weapon request, `s` flag write | [bin] (torque/3d-client-events-420r6-2026-11-25.md#static-bin) |
+| At the end of each 2D object tick the lines are joined with newlines and sent as one BigData text of kind `events`, with an empty weapon name and option, over the Torque UDP link | [bin] (torque/3d-client-events-420r6-2026-11-25.md#static-bin) |
+| The same code handles server-to-client texts of kinds `set`, `unset`, `events`, `addweapon`, `weaponscript`, `deleteweapon`, `npcscript`, `classscript`, `ganiscript`, `setmaterials` and `rpg` | [bin] (torque/3d-client-events-420r6-2026-11-25.md#static-bin) |
+| Live: `triggerserver("weapon","Ev3D",…)` went out as `t weapon,Ev3D,<params>`, a flag write as `s client.evflag3=<value>`, and after `weaponscript` arrived the client sent `w Ev3D` | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| Live, the 2D TCP link carried only start-up file requests, update checks, a one-byte id 24 about every 0.4 s, id 162 every 30 s (answered by 108) and typed chat as player prop 12; no script marker went over TCP | [lab] (torque/3d-client-events-420r6-2026-11-25.md#lab-lab) |
+| So a 3D server reads script triggers, flag writes and requests from the UDP `events` text, script chat from the player's object update, and typed chat from TCP; script PMs and `setplayerprop` never arrive | [lab] (torque/3d-client-events-420r6-2026-11-25.md#for-server-work) |
+
+### 10.3.15 Local files against the server's copy (Linux 4.20r6)
+
+When the 3D world names a file, a Linux 4.20r6 client checks it over the 2D TCP link, and the server decides which copy is used [lab] (torque/3d-file-preference-420r6-2026-11-25.md#the-check-on-the-wire-lab).
+
+| Rule | Source |
+| --- | --- |
+| If the client has the file it sends `PLI_UPDATEFILE` (34) with a GINT5 modtime (the local file's Unix mtime in seconds) and the name; if not, `PLI_WANTFILE` (23) with the name | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#the-check-on-the-wire-lab) |
+| If the server's copy is newer it sends the file (`PLO_RAWDATA` 100, then `PLO_FILE` 102 carrying the server's modtime); otherwise it answers `PLO_FILEUPTODATE` (45). The client compares nothing itself | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#the-check-on-the-wire-lab) |
+| Between two local copies (data folder and user folder `levels3d/`), the newer one is sent and drawn, whichever folder it is in | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#lab-lab) |
+| A download is saved in the user folder under `levels3d/images/` with the server's modtime, never over a data-folder copy, and keeps winning in later sessions while it is the newest | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#lab-lab) |
+| The client never wrote `FILENAMECACHE.txt` in seven sessions, so a stale cache could not be tested | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#answers) |
+| Zip members are never checked (→ §10.6), so a zip in `levels3d/` overrides the server whatever the modtimes | [lab] (torque/3d-file-preference-420r6-2026-11-25.md#answers) |
+
+### 10.3.16 2D level packets in a 3D session (Linux 4.20r6)
+
+Once the 3D world was up, the lab server sent a Linux 4.20r6 client (3D-equal to Windows 4.20r8) the normal 2D level packets over TCP: `PLO_LEVELNAME` (6), `PLO_BOARDPACKET` (101), `PLO_NPCPROPS` (3), `PLO_LEVELSIGN` (5), `PLO_LEVELLINK` (1), `PLO_LEVELCHEST` (4) and `PLO_BADDYPROPS` (2) [lab] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab).
+
+| Rule | Source |
+| --- | --- |
+| The gserver already sends the start level's name, board and chests at login, so 2D level content reaches a 3D session even when nothing is injected | [lab] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab) |
+| Every packet arrived and was accepted without a disconnect | [lab] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab) |
+| Nothing was drawn: every screenshot matched the plain 3D view | [lab] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab) |
+| The client acted on none of it: no NPC or baddy image request, no further packets but heartbeats | [lab] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab) |
+| The packets are dropped because the 3D view control owns the screen and the 2D level renderer is not shown; no static trace was done | [inf] (torque/3d-2d-level-packets-420r6-2026-11-25.md#results-lab) |
+
+### 10.3.17 A world past its limits (Linux 4.20r6)
+
+A Linux 4.20r6 client (3D-equal to Windows 4.20r8) was fed far positions, odd shapes and many `GameObject`s from the project's own 3D lab server; every run reached "Graal3D has been activated!", stayed connected and logged no error, clamp or "too many" [lab] (torque/3d-world-limits-420r6-2026-11-25.md#results-lab).
+
+| Rule | Source |
+| --- | --- |
+| Finite positions up to ±1e9 on any axis are accepted, ghosted and drawn, with no clamp | [lab] (torque/3d-world-limits-420r6-2026-11-25.md#findings) |
+| The project's gserver refuses to ghost a `GameObject` with an `inf` or `nan` position, so the client's own handling of a non-finite ghost was not exercised | [lab] (torque/3d-world-limits-420r6-2026-11-25.md#findings) |
+| A shape about 5000 units across draws (the camera ends up inside it); a negative-size shape draws; a `.3ds` with a NaN vertex draws as a normal cube | [lab] (torque/3d-world-limits-420r6-2026-11-25.md#findings) |
+| 100 and 1000 `GameObject`s were all created and drawn, with no ghost-count limit and no disconnect over 55 s; frame rate was not measured | [lab] (torque/3d-world-limits-420r6-2026-11-25.md#findings) |
+
 ## 10.4 DSO v33
 
 Graal 3.x keeps menus, options, key binds, message boxes and the 3D mission-loading flow in compiled TorqueScript; from 4.x on no `.dso` files ship [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts).
@@ -761,10 +841,10 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 | # | Dirty bits | Payload after the flag | Source |
 | ---: | --- | --- | --- |
 | 1 | `0x1` | string, the object's name | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
-| 2 | `0x2` or `0x200` | 3 × 32 bits (velocity, inferred) | [bin][inf] (torque/wire-by-build.md#the-512-gameobject-update) |
+| 2 | `0x2` or `0x200` | 3 × F32, the shape's scale about its origin (live 5.12; earlier read as velocity) | [bin][lab] (torque/wire-by-build.md#the-512-gameobject-update) |
 | 3 | `0x8` | string, a setting of the movement object | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
 | 4 | `0x10` | string, also passed to the movement object | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
-| 5 | `0x20` | transform: position, rotation, then 32 bits; the packing is unmeasured | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
+| 5 | `0x20` | transform: position 3 × F32, then rotation as axis 3 × F32 and angle in radians F32 (Torque's axis-angle write); no scale | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
 | 6 | `0x80` | string that creates or replaces the shape object (`shape`, inferred) | [bin][inf] (torque/wire-by-build.md#the-512-gameobject-update) |
 | 7 | `0x40`, with a shape object | the shape object's own data | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
 | 8 | any of `0xF00`, with a movement object | int14 bit length, then the movement object's data | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
@@ -773,6 +853,15 @@ All classes are script-visible through GS2 property and method tables [bin] (tor
 | 11 | any of `0x3FC000` | the attribute list | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
 | 12 | `0x400000` | string, then 4 colour bytes RGBA 0–255 (nickname and `nickcolor`, inferred) | [bin][inf] (torque/wire-by-build.md#the-512-gameobject-update) |
 | 13 | `0x800000` | int16 of booleans; bits `0x01`, `0x04`, `0x08`, `0x10`, `0x20`, `0x40` are used | [bin] (torque/wire-by-build.md#the-512-gameobject-update) |
+
+The rules below give what a live 5.12 did with single `GameObject` fields sent one at a time [lab][cap] (torque/live-512-gameobject-fields-2026-11-25.md).
+
+| Rule | Source |
+| --- | --- |
+| Section 2 scales the shape about its origin: (2, 2, 2) doubles it, (1, 1, 3) makes it three times taller, 0.5 halves it; (0, 0, 0) draws it at normal size, so that value means unset | [lab][cap] (torque/live-512-gameobject-fields-2026-11-25.md#section-2-is-scale-not-velocity) |
+| Rotations about x, y and z all apply | [lab][cap] (torque/live-512-gameobject-fields-2026-11-25.md#rotation-and-visibility-flags) |
+| Of the section-13 flags only `0x0004` hides the object; `0x01`, `0x02`, `0x08`, `0x10`, `0x40`, `0x80` and `0x100` each drew a pixel-identical frame; `0x20` is being rerun | [lab][cap] (torque/live-512-gameobject-fields-2026-11-25.md#rotation-and-visibility-flags) |
+| On a static scenery `GameObject`, skin (with or without `.png`), chat, `attr1` to `attr3` and nickname with colour are accepted but show nothing: no pixels, no file request, no name tag and no chat bubble; a skin is never requested for a `.3ds` shape | [lab][cap] (torque/live-512-gameobject-fields-2026-11-25.md#fields-accepted-but-not-drawn-on-a-static-gameobject); [lab] (torque/live-512-gameobject-fields-2026-11-25.md#sky-bottom-face-and-ft) |
 
 ### 10.5.3 Graal events over Torque
 
@@ -886,6 +975,20 @@ Unlike `TerrainBlock`, only the name is guarded and every update carries the who
 
 Live on 5.12 the surface texture was fetched over TCP and a large surface drawn [lab] (torque/terrain-512.md#lab-results).
 
+### 10.5.6 Lighting, sky and view (5.12, live)
+
+These runs used the real 5.12 on a GLSL-capable driver (Mesa llvmpipe) with a lighting probe and a sky grid [lab][cap] (torque/live-512-lighting-and-sky-2026-11-25.md).
+
+| Rule | Source |
+| --- | --- |
+| On a `.3ds` shape the `Sun`'s direction, colour and ambient have no effect: with a `Sun` each face draws at material × texture, times 1.0 for faces whose world-space normal points −y, −x or up and 0.85 for +x or +y; with no `Sun` every face is exactly one quarter and the background 0. So the `Sun` is an on/off switch for full brightness, and the shading comes from a fixed built-in light | [lab][cap] (torque/live-512-lighting-and-sky-2026-11-25.md#lighting-on-3ds-shapes-t3d-047-t3d-052) |
+| The `Sun` shades nothing on a `.dts`, a `.dif` or streamed terrain either; with no `Sun` the `.dts` is not drawn or black, the `.dif` is entirely black, and terrain is unchanged | [lab][cap] (torque/live-512-lighting-and-sky-2026-11-25.md#lighting-on-3ds-shapes-t3d-047-t3d-052) |
+| A positive rotation about +z turns a shape clockwise seen from above (at +90 degrees the +x face looks toward −y), the same sense as the camera | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#shape-rotation) |
+| Sky texture entries: 2 is ahead (+y), 1 right, 0 behind, 3 left, 4 up; side faces are upright and mirrored left to right; entry 5 (bottom) is not drawn with the default options, and draws as a floor below the horizon with sky flags `1 1 1`; one face spans the full screen width | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#sky-geometry-and-field-of-view-t3d-046-t3d-055); [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#sky-t3d-046-partial); [lab] (torque/live-512-gameobject-fields-2026-11-25.md#sky-bottom-face-and-ft) |
+| The default horizontal field of view is 90 degrees (measured 89.4) | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#sky-geometry-and-field-of-view-t3d-046-t3d-055) |
+| Below the horizon the sky shows the fog colour on Mesa; on a GDI OpenGL 1.1 driver it was black with a fog-coloured band | [lab] (torque/live-512-lighting-and-sky-2026-11-25.md#sky-geometry-and-field-of-view-t3d-046-t3d-055); [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#sky-t3d-046-partial) |
+| The sky's visible-distance field did not clip or fog anything on the client in the runs so far | [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#sky-t3d-046-partial) |
+
 ## 10.6 3D formats
 
 The Torque clients read Torque's 3D formats. Each row gives an extension, its format and the builds that read it [bin] (torque/engine-and-formats.md#3d-resource-formats).
@@ -920,6 +1023,49 @@ The Torque clients read Torque's 3D formats. Each row gives an extension, its fo
 | Settled | Marker `.mis` files in the client folder and under `levels3d` were listed by the client's folder scan but never opened, and no marker reached the console; the mission was built from the network | [lab] (protocol/lab-appe-hostb-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503) |
 | Verdict | Verified for a normal 3D session, and it agrees with the read (no `exec` or `compile` command, no `.mis` literal) | [bin] (client-internals/static-reads-appendix-e-2026-11-20.md#mis-and-dso-in-the-404r2-3d-plug-in-e502-e503) |
 | Left over | A file reader linked in but never called can't be ruled out by a run | [inf] (protocol/lab-appe-hostb-2026-11-20c.md#mis-and-dso-beside-the-404r2-client-e502-e503) |
+
+The rules below give how a live 5.12 handled shape content, one change per run [lab][cap] (torque/live-512-shapes-2026-11-25.md).
+
+| Rule | Source |
+| --- | --- |
+| `.3ds`: a mesh with no material is not drawn; a colour-only material draws its diffuse colour; a material naming a missing texture draws white | [lab][cap] (torque/live-512-shapes-2026-11-25.md#3ds-materials-and-meshes-t3d-032) |
+| `.3ds`: `Col-` collision meshes are drawn; there is no back-face culling (both windings draw, the two-sided flag changes nothing); material transparency is ignored | [lab][cap] (torque/live-512-shapes-2026-11-25.md#3ds-materials-and-meshes-t3d-032) |
+| `.3ds`: 400 objects in one file, and one mesh at the u16 cap (32,761 vertices, 64,800 faces), both drew | [lab][cap] (torque/live-512-shapes-2026-11-25.md#3ds-materials-and-meshes-t3d-032) |
+| `.dts` version word on a v24 body: 16 rejected ("not supported anymore", play continues); 17 and 18 hang on a black view; 19 and 22 crash; 23 loads and draws nothing; 24 draws; 25 rejected ("only version 24 and before"). So the header accepts 17 to 24 and the reader trusts the version word without checking the body; genuine old-version shapes were not tested | [lab][cap] (torque/live-512-shapes-2026-11-25.md#dts-versions-t3d-029) |
+| Stock v24 `.dts` shapes (with sequences) and a v44 `.dif` draw; the client also asks for `lightfalloffmono` | [lab][cap] (torque/live-512-shapes-2026-11-25.md#dts--dif-that-do-draw) |
+| A `.ft` text-shape `GameObject` never drew (flags 0, `0x08`, `0x18`; levels 1, 2, 6; malformed), though the file and its texture downloaded and nothing was logged | [lab][cap] (torque/live-512-shapes-2026-11-25.md#ft-text-shapes-t3d-036) |
+| 4.20r8 matched 5.12 on these fuzz rows, including the crash on a huge `TerrainBlock` square size | [lab] (torque/live-512-shapes-2026-11-25.md#420r8) |
+
+The rules below give how a Linux 4.20r6 client (3D-equal to Windows 4.20r8) names, fetches and applies a `GameObject` shape's textures, with one textured `.3ds` cube and only the material's texture name varied (T3D-090) [lab] (torque/3d-shape-textures-420r6-2026-11-25.md#results-lab).
+
+| Rule | Source |
+| --- | --- |
+| The client strips the texture name to its leaf (`sub/subtex` → `subtex`) and drops `.png`, asks for the bare name once, and does not ask again after a failure (`PLO_FILESENDFAILED`, 30) | [lab] (torque/3d-shape-textures-420r6-2026-11-25.md#naming-rules-lab) |
+| A download is saved under the user folder's `levels3d/images/` exactly as requested, so without an extension; the part of a name before the first `_` becomes a subfolder (`sky_fr` → `images/sky/sky_fr`); shapes keep `.3ds` | [lab] (torque/3d-shape-textures-420r6-2026-11-25.md#naming-rules-lab) |
+| The shape always draws; a missing or unapplied texture leaves it white | [lab] (torque/3d-shape-textures-420r6-2026-11-25.md#does-the-shape-draw-and-does-the-texture-apply) |
+| A texture downloaded during the session is not applied, because the material loader looks for `<name>.png` and the download has no extension; the same material drew textured when `labtex.png` was already on disk. So the texture must be on disk as `<name>.png` before the shape binds: shipped, in a mounted zip, or kept from an earlier session. Whether a later re-bind picks up the download was not seen in 55 s | [lab] (torque/3d-shape-textures-420r6-2026-11-25.md#does-the-shape-draw-and-does-the-texture-apply) |
+
+The rules below give which image files the same Linux 4.20r6 client decodes for shape and sky textures, each pre-placed on disk with its real extension (T3D-077) [lab] (torque/3d-texture-formats-420r6-2026-11-25.md#formats-and-bit-depths-lab).
+
+| Rule | Source |
+| --- | --- |
+| PNG (8-bit indexed, 24-bit, 32-bit), JPEG, GIF, BMP (24-bit) and TGA (24 and 32-bit) all draw with correct colours and orientation | [lab] (torque/3d-texture-formats-420r6-2026-11-25.md#formats-and-bit-depths-lab) |
+| DDS (BC1/DXT1) is not decoded: the shape stays white with no error, though the GL driver offers S3TC | [lab] (torque/3d-texture-formats-420r6-2026-11-25.md#formats-and-bit-depths-lab) |
+| 100 × 100, 32 × 256, 1 × 1 and 2048 × 2048 PNGs all draw; no size ceiling was found | [lab] (torque/3d-texture-formats-420r6-2026-11-25.md#sizes-lab-png-24-base) |
+| The sky box uses the same loader: pre-placed PNG faces drew; six JPEG faces delivered by the server were downloaded but not applied, as with shape textures | [lab] (torque/3d-texture-formats-420r6-2026-11-25.md#sky-textures) |
+| This differs from 5.12, which drew BMP and TGA white (→ §8.5.11) | [lab] (torque/3d-texture-formats-420r6-2026-11-25.md#formats-and-bit-depths-lab); [lab][cap] (torque/live-512-own-server-textures-2026-11-25.md#texture-formats-t3d-032) |
+
+The rules below give how the 3D side mounts archives of content (T3D-012) [bin][lab] (torque/3d-archives-404r2-512-2026-11-25.md).
+
+| Rule | Source |
+| --- | --- |
+| 4.04r2 and 5.12 mount `.zip` and `.gpake` files as archives, automatically, whenever a file with that extension enters the resource registry; 5.12 and Linux 4.20r6 use a linked-in minizip; 5.12 also mounts `.wba` | [bin] (torque/3d-archives-404r2-512-2026-11-25.md#what-each-build-has) |
+| A plain `.gpak` is never mounted: the registry returns before adding it, although the 2D side saves downloaded `.gpak` files to `levels3d/gpaks/` | [bin] (torque/3d-archives-404r2-512-2026-11-25.md#what-each-build-has) |
+| A `.gpake` is read encrypted only if the 2D engine has stored a key for that file name; otherwise it is read as a plain zip. 5.12 also has `.enc` for single encrypted files | [bin] (torque/3d-archives-404r2-512-2026-11-25.md#what-each-build-has) |
+| Archive members are registered by lower-cased bare file name, so a shape is found in whichever archive or folder holds it; archives anywhere under the data or user folder are mounted, apart from the folders the start-up scan skips (`src`, `ignore`, and in 4.04r2 also `pms`, `profiles`, `weblevels`, `scriptfiles`, `updatepackages`) | [bin] (torque/3d-archives-404r2-512-2026-11-25.md#what-each-build-has) |
+| Live on Linux 4.20r6: a `.zip` in `levels3d/` holding a `.dts`, a `.3ds` and a PNG texture was mounted at start-up and both shapes drew with the zip's texture; the same bytes as `.gpak` were ignored; loose copies drew the same but were still requested from the server | [lab] (torque/3d-archives-404r2-512-2026-11-25.md#lab-linux-420r6-zip420-2026-11-25) |
+| Archive members are never requested from the server, so a newer copy on the server would not replace a zip member | [inf] (torque/3d-archives-404r2-512-2026-11-25.md#lab-linux-420r6-zip420-2026-11-25) |
+| A zip delivered mid-session was not reached: the client fetches only shape-type files for a `GameObject`, so mounting without a restart is untested; statically a saved file goes through the same registry entry | [lab][inf] (torque/3d-archives-404r2-512-2026-11-25.md#lab-linux-420r6-zip420-2026-11-25) |
 
 The rules below give where 3D content came from and how terrain textures are mapped [file] (torque/engine-and-formats.md#3d-resource-formats).
 
