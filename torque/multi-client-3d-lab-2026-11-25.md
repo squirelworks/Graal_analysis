@@ -101,9 +101,8 @@ VM clone; server on loopback.
   as the 3D player walks, plus its chat ("hello from 3D"). B's 2D screen
   shows two complete player sprites from the first join shot on, and the 3D
   one moves. (Before the fix the 3D player was invisible on the 2D screen.)
-  **One gap:** the 2D client's own GS2 `players` list still counts only
-  itself — the 3D player shows as a sprite but is absent from the scripted
-  list.
+  The scripted list "gap" was a probe artefact (see follow-up 2 below): the
+  3D player **is** in the 2D player's `players[]` list, same level.
 - **(d) Shadowed heights.info (T3D-044) — PASS.** With a second
   `heights.info` left in another world folder, the server logs an error at
   start-up that names the file clients will receive and says to remove or
@@ -112,6 +111,31 @@ VM clone; server on loopback.
   cache is current). The ground still draws **white** on the GDI GL
   renderer, so whether the terrain draws textured is a renderer question —
   the Mesa draw check is still pending (item 4 of the queue).
+
+#### Follow-up 2 — the 2D `players` list does include the 3D player
+
+5.24r3 (2D) + 5.12 (3D) on #154 @ ca00d9a6, the 2D probe weapon staged
+before start-up. From the 2D client's script every 5 s (t5–t55):
+
+- `player.level.name` = `onlinestartlocal.nw`.
+- `players.size()` = 2: `players[0]` is the 2D player itself (level
+  `onlinestartlocal.nw`, at 30,30.5); `players[1]` is the 3D player (level
+  `onlinestartlocal.nw`, at 30,22). So the 3D player's TCP side is in the
+  **same level** as the 2D player — nothing for the server to move.
+- `allplayers.size()` = 2, dropping to 1 at t60 after the 3D side left.
+
+The earlier "the list counts only itself" was a probe artefact: the 2D
+client's `foreach` over `players` (and over `allplayers`) only visited the
+first element, while **indexed** access showed both. With `players[]` the 3D
+player is listed, in the 2D player's own level.
+
+**Open (possible position-prop gap):** `players[1]` stayed at 30,22 for the
+whole window even though the drawn sprite moved in the earlier run — the 2D
+script's view of the 3D player's x/y did not update. A rerun that keeps the
+server trace and walks the 3D player will compare the trace's "tcp position"
+lines against `players[1].x/y`; if the trace moves and the script does not,
+the gap is in which props the 2D client reads for x/y (gserver thread to
+investigate).
 
 ### Return visit to a 1-object world
 
