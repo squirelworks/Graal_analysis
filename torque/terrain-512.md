@@ -342,7 +342,8 @@ logs are kept with the owner's lab material. **[lab]**
 | `heights.info` with bare names vs `.png` names, two visits each | visit 1: only `heights.info` fetched; visit 2: `Missing terrain texture` per name, then each downloaded and saved under the listed name |
 | Malformed `WaterBlock`: update cut after the textures; NaN position; +Inf or 1e9 scale; liquid type 8, 255, 2³¹−1; 200-character texture names; zero quaternion | all accepted, client stays up (long names are requested and answered not found) |
 | Malformed `TerrainBlock`: square size −8; NaN in the ignored floats; 250-character name; two blocks named `Terrain` | accepted, client stays up |
-| `TerrainBlock` square size 2³¹−1 | **client dies** right after `Terrain lit` |
+| `TerrainBlock` square size 2³¹−1 | **client dies** right after `Terrain lit` (4.20r8 too) |
+| The malformed `WaterBlock` and `TerrainBlock` rows above on 4.20r8 (camera high) | same as 5.12: all survived |
 | A `.3ds` cut to half its length | **client dies** while loading it, no dialog |
 | A `.dts` of random bytes / a `.dif` of zeros | logs `attempt to load a version … dts-shape, can currently only load version 24 and before` / nothing; no crash |
 | Script moves a `GameObject` over terrain; `getdropz` sampled | no clamping (z stays as set); `getdropz` values are multiples of 1/8 |

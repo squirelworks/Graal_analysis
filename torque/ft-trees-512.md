@@ -122,7 +122,7 @@ texture 0 bark.png
 ```
 
 Live so far **[lab]**: a `.ft` object downloads its file and textures but draws nothing and logs
-nothing, with object flags 0, 0x08 or 0x18. Malformed files (no `gramma`, growth past 512,
+nothing, with object flags 0, 0x08 or 0x18, and with `defaultLevels` 1, 2 or 6 in the file. Malformed files (no `gramma`, growth past 512,
 an unknown term type, texture slot 8, an empty file) also download, log nothing and never crash.
 
 Open: a live run (render, `seed` and `levels` effects, texture rows) is queued for the lab Windows VM.
