@@ -39,7 +39,8 @@ the issue it closes. Part 2 lists every other lab row on the [gap board](gap-boa
   across `widths` and nine nonzero `widths-fix` follow-ups measured 96 landed and four lost.
   On 2026-11-25 [bytes2x, baddytypes and loadgani3w](../protocol/probe-wine512-core-2026-11-21.md#remaining-plans-on-512-g424-2026-11-25)
   ran on 5.12 as well, closing G424; the `loadgani3w` run supersedes the old 5.12 NUL-name row.
-  G191 and the other builds below stay open.
+  Windows 6.037 under Wine then ran widths, widths-fix and the read-back, closing G191 (2026-11-25);
+  the rest of the 6.037 plan set followed, closing G426; the 2.02 family (G425) stays open.
 - **Goal:** close the probe holes found while building the board. At the original 2026-11-20
   triage, 5.12 had only the 8-row 195 gani set; the partial results above add core and selected own-prop cases.
   6.037 had 32 rows. 2.02, 2.02 rev 1 and 2.02 rev 2 had none. Board rows G424, G425,
@@ -284,7 +285,7 @@ the same rows as a task list. Read the source line before you start.
 | G177 | static+lab | Reconcile the reported 255 WAVs with both subtotals of 254, and establish exact-build playback separately (App. E#325). | `docs/NEXT.md` line 181 | free |
 | G178 | lab | Establish original 2.3 identity and exact-build behavior separately; a repack label or matching community executable cannot settle the missing input. | `docs/NEXT.md` line 186 | free |
 | G186 | lab | Client test harness (#398): run 4.20r8, 5.00r7, 5.12, 6.03r7 and 6.113 on the Windows lab desktop; 1.x to 2.31 are in live-runs/client-harness-2026-11-13; 5.00r7 partial (walk 4/4, sword 3/3; place-dependent actions not reached) in the 2026-11-14 run and manual §4.11.12.1. | `docs/NEXT.md` line 222 | free |
-| G191 | static+lab | The same probe on 4.20r8, 5.24r4 and 6.037 under Wine, the 0–90 self-prop width table, and a GS2 read-back of player.rupees (next batches). | `docs/NEXT.md` line 239 | free |
+| G191 | static+lab | The same probe on 4.20r8, 5.24r4 and 6.037 under Wine, the 0–90 self-prop width table, and a GS2 read-back of player.rupees (next batches). | `docs/NEXT.md` line 239 | done (lab, 2026-11-25) |
 | G193 | static+lab | Read the v5 end consumers per event type, the key lookup table and the two post-window start-up helpers; then observe input delivery in a guest. | `docs/NEXT.md` line 243 | free |
 | G200 | lab | Feed valid zlib members to an unchanged receiver near each build's capacity boundary, after a raw-frame positive control. | `docs/NEXT.md` line 304 | free |
 | G202 | static+lab | Observe the bridge initializer/callback and establish its ABI; static registration is not a live 3D session. | `docs/NEXT.md` line 308 | free |
@@ -327,7 +328,7 @@ the same rows as a task list. Read the source line before you start.
 | G422 | static+lab | stopping positions on a live 2.22 client | `client-internals/decomp-findings-2026-10-25-m/open-questions.tsv` row 8 | free |
 | G423 | lab | wire rounding of a nudged position | `client-internals/decomp-findings-2026-10-25-m/open-questions.tsv` row 9 | free |
 | G424 | lab | Windows 5.12 has only the 8-row 195 gani set; the 4.x/5.x plan set (wine-core, widths, widths-fix, bytes2x, baddytypes, loadgani3w) was never run on it | `protocol/probe-results.tsv` (new, 2026-11-20 triage) | done (lab, 2026-11-25) |
-| G426 | lab | Windows 6.037 has 32 rows; the full 4.x/5.x plan set has not been run on it | `protocol/probe-results.tsv` (new, 2026-11-20 triage) | free |
+| G426 | lab | Windows 6.037 has 32 rows; the full 4.x/5.x plan set has not been run on it | `protocol/probe-results.tsv` (new, 2026-11-20 triage) | done (lab, 2026-11-25) |
 
 ### Win10 VM on lab host B (#743, 1 rows)
 
