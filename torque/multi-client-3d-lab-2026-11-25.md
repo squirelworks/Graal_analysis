@@ -130,6 +130,21 @@ MissionStartPhase1Ack fix holds.
   only that 4.20r8 starts and draws on Mesa, not that it draws *streamed
   terrain*. A Mesa run that does send 4.20r8 a TerrainBlock is still needed
   to answer T3D-117.
+- **ANSWERED — 4.20r8 draws streamed terrain on Mesa, untextured.** Rerun on
+  gserver #154 @ ca00d9a6 with `graal3dterrainall = true`, world `g2t` (a
+  real TerrainBlock from `world/t3d_png`, 256 chunks), a 5.12 already in the
+  world; 4.20r8 under Wine on Mesa llvmpipe (GL vendor Mesa, renderer
+  llvmpipe). The server names 4.20r8 "GameObject layer, terrain streamed
+  (graal3dterrainall)" and creates the TerrainBlock ghost on it; the client
+  asks with no stamps and receives all 256 chunks ("Loading terrain from
+  terrain chunks", "Terrain lit", 255 chunk-received lines). It draws the sky
+  then a **white** ground plane to the horizon, with the world cube and the
+  5.12 player standing on it. The terrain is white because **4.20r8 never
+  asks for `heights.info` or any texture — no downloads at all**, unlike
+  5.12. No crash across ~4 minutes including a walk. So the near-terrain
+  crash seen before was the GDI GL renderer (spawn z 1 on Mesa does not
+  crash); on a real GL driver 4.20r8 accepts streamed terrain and draws it
+  untextured.
 - 5.12 draws the streamed terrain white on this run. The terrain thread then
   found the cause: a first visit (empty cache) fetches only `heights.info`
   and draws white; 5.12 fetches the textures only on the next visit. Clearing
