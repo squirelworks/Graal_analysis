@@ -129,7 +129,7 @@ Static read of the 4.20r8 engine, with the 6.03r7 third-party unpack for its fun
 
 If such a script were force-loaded, `getLoginAccountName()` would return 0, which compares equal to an empty name, so a typical v6 screen would take its no-account branch, have no password box and show half-working lists: a partly broken screen that logs errors, not a clean hide. **[inf]**
 
-Still open: how 4.20r8 receives a fresh compiled script after 158, what the `#c#` weapon property does, and what `new` does with an unknown control class.
+Follow-ups (2026-11-25): a fresh compiled script reaches 4.20r8 in 132 after its 158 request ([classic delivery](script-packet-guards.md#classic-weapon-delivery-on-420r8-step-by-step-2026-11-25)), and `#c#` is not script-related: it is the image value (prop 0) meaning "draw as a character" with the default look. Still open: what `new` does with an unknown control class.
 
 ## Server / script checklist
 
