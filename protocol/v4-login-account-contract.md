@@ -33,7 +33,7 @@ Others Work C4 / G3 claims below are **not** promoted to settled behaviour. Conf
 - [x] ~~Built-in account dialog layout and which fields feed the first Login frame (account vs nickname vs password).~~ [Read 2026-11-25](#built-in-account-dialog-and-the-first-login-frame-g322-2026-11-25): engine-side GS2 start screen; account + password in the frame, nickname sent later as prop 0. **[bin]**
 - [x] ~~Whether `getloginaccountname()` and a password GUI control exist on 4.20r8.~~ [Read 2026-11-25](#login-account-script-api-by-build-g323-2026-11-25): no `getloginaccountname()` on 4.20r8; a `password` flag on `GuiTextEditCtrl` exists in every build. **[bin]**
 - [ ] Behaviour of a v6 `-LoginScreen` / `-Serverlist` weapon when pushed to a 4.x Login session (hidden vs bail on empty account-name).
-- [ ] C21 event order: login-signature before weapons; PLO 190 relative to weapon delivery — for login-weapon authors.
+- [x] ~~C21 event order: login-signature before weapons; PLO 190 relative to weapon delivery — for login-weapon authors.~~ [Read 2026-11-25](#login-event-order-for-login-weapon-authors-g325-2026-11-25): 25 gates nothing; weapons must be loaded before 190 to see `onServerListerConnect`; ghost mode drops weapon packets. **[bin]**
 - [ ] Listserver `VERIACC2` path when the world verifies accounts (our 4.04 lab used localhost / proxy accept without that check).
 
 Public Login capture remains on the #2 plan-hold (Chiaki). Loopback stock-UI work does **not** wait for that plan.
@@ -89,6 +89,33 @@ No edit field sets a maximum length. Account, password and nickname are each cut
 **5.00r7 for contrast.** There is no built-in start dialog. The client logs in first with no user input: account = the `-guestaccount` value if given, else `guest`, with a built-in password the client decodes at run time (not decoded here); or, when a browser-plugin cookie is set, account `cookie` with the cookie as password. The Login server's script then asks for the real account, using the new getters (nickname, account history, `getLoginAccountName()`). Login details are held scrambled in memory rather than in plain globals, and `cookie` joins the never-saved names. The Login frame has the same shape as 4.20r8, and the nickname is still separate.
 
 So the first Login frame on 4.20r8 carries whatever the player typed (or picked from history) as the account, never the nickname; on 5.00r7 it carries the guest (or cookie) identity, and the real account arrives only after the Login script runs.
+
+## Login event order for login-weapon authors (G325, 2026-11-25)
+
+Static read of the 4.20r8 engine, the 5.12 engine memory image and the 6.03r7 third-party unpack; nothing run. **[bin]**
+
+**`PLO_SIGNATURE` (25) gates nothing.** In all three builds it stores the signature, calls the launcher's login hook and fires `onServerLogin`. The stored value is used only to label and check cached web levels; a level that arrives before 25 is still accepted. The other state the login handlers touch is a progress counter that handlers only raise; no handler tests it to drop or delay a packet. Packets are queued by the network thread in arrival order, independent of 25.
+
+**The one real drop is ghost mode.** While `PLO_GHOSTMODE` (170) is on, weapon adds (33) and the weapon-script packets 193, 132 and 196 are discarded, not queued.
+
+**`PLO_SERVERLISTCONNECTED` (190)** reads no body. It calls the launcher hook (5.12 and 6.03r7 also hide the "connecting to the login server" box) and fires `onServerListerConnect` once, to the scripts that exist at that moment. Nothing queues or replays it, so **a weapon that must react to `onServerListerConnect` has to be loaded before 190 arrives.** `onServerLogin` from 25 behaves the same way.
+
+**When a weapon's script first runs** (medium confidence):
+
+- 4.20r8: 33 creates the weapon at once; a weapon carrying a script gets `onPlayerEnters` while 33 is still being handled. `onCreated` is posted to the weapon's own event list on a path not tied to a specific packet here. 4.20r8 never handles 140 or 197: its weapon scripts come inside 33 or from its local script cache (193, answered by a `PLI_UPDATESCRIPT` (158) request).
+- 5.12 and 6.03r7 load the compiled script from 140 (and 197). 6.03r7 no longer handles 193.
+
+**Ordering rule for a Login server that should work on all three:**
+
+| Step | Send | Status |
+|---|---|---|
+| 1 | 25 | convention; the client does not require it first |
+| 2 | ghost mode (170) off while weapons are sent | required |
+| 3 | each weapon complete: 33 with its script (33/193 for 4.20r8; 140/197 for 5.12 and 6.03r7) | required before step 4 for any weapon that uses `onServerListerConnect` |
+| 4 | 190 | after the weapons, so the event reaches them |
+| 5 | the level | before or after 190 |
+
+The GServer-v2 login path sends 190 before the weapon list (its source comment says so). On these clients, login weapons sent that way would not see `onServerListerConnect`. **[src][inf]** That server-side point is from the read of the fork's login path, not a lab run.
 
 ## Server / script checklist
 
