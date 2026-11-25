@@ -3,7 +3,7 @@
 Static read of the two Graal3DEngine.dll builds we hold unpacked. It records
 which loaders, settings and classes are present in each build, by their names
 and messages. Presence is not proof that a feature works in a session; the
-open boxes say what still needs a lab. Board rows: T3D-013, T3D-031, T3D-034,
+open boxes say what still needs a lab. Board rows: T3D-013, T3D-031, T3D-039, T3D-034,
 T3D-035, T3D-051, T3D-055, T3D-062.
 
 ## Shape and model formats (T3D-031, T3D-034, T3D-035)
@@ -84,6 +84,25 @@ Both builds carry Torque's OpenGL renderer and its Direct3D wrapper
 - 5.12 keeps only eight `$pref::Video::` names: `resolution`, `fullScreenMode`, `windowMode`, `detailFactor`, `fogDistance`, `visibleDistance`, `screenShotFormat` and `defaultguistyle`. There are no `$pref::OpenGL::` names and no allowD3D or allowOpenGL switch.
 
 Open: whether 5.12 can still be put on the D3D wrapper by any means. This needs a lab.
+
+### GameShape shaders in 5.12 (T3D-039)
+
+5.12's `GameShape` has two script properties, `vertexshader` and
+`pixelshader`. 4.04r2 has neither, and no GL shader calls at all.
+
+- The value is GLSL source text, not a file name. On assignment the client
+  hands the text straight to the driver as a vertex or fragment shader object
+  (the ARB shader-object calls), compiles it, links the two into a program
+  and checks the compile status.
+- It writes "Compilation of ...: failed" or "...: successful", then
+  "Compilation log:" and the driver's info log, to the `graphics` log
+  category. That is the shader compile log seen in lab folders.
+- Each draw sets three uniforms: `camPos` (the camera position), `tex` and
+  `tex2` (two texture units).
+- Nothing happens when the driver has no shader support.
+
+Open: which shape data the shader sees beyond those uniforms. This needs a probe
+with a small shader.
 
 ## Camera classes (T3D-055)
 
