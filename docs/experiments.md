@@ -344,7 +344,7 @@ the same rows as a task list. Read the source line before you start.
 | id | kind | gap | source | claimed |
 |---|---|---|---|---|
 | G023 | lab | 3.04 sheet type 5 and server tile definitions (best guess: type 5 is a walk rule (read); servers sent no tile definitions) | `manual/app-e-open-questions.md` E#507 | Lab host B Appendix E batch thread |
-| G066 | static+lab | listscriptfunctions. The 4.03 and 6.036 notes say the client prints its script-function documentation with this switch; our launcher reads list the switch (torque/4208-launcher.md, torque/5007-launcher.md). Run once in a sandbox to get each build's GS2 function list. The wiki's Creation/Dev/Script/C | `client-internals/graal-wiki-crosscheck-2026-11-11.md` line 63 | free |
+| G066 | static+lab | listscriptfunctions. The 4.03 and 6.036 notes say the client prints its script-function documentation with this switch; our launcher reads list the switch (torque/4208-launcher.md, torque/5007-launcher.md). Run once in a sandbox to get each build's GS2 function list. The wiki's Creation/Dev/Script/C | `client-internals/graal-wiki-crosscheck-2026-11-11.md` line 63 | done (lab, 2026-11-25) |
 | G094 | lab | A lab login of both clients on a loopback GServer. | `client-internals/gserv-125-127-builds.md` line 132 | free |
 | G096 | lab | Why 1.39 closes on F6 when the server is the loopback address. | `client-internals/gui-windows-fkeys.md` line 185 | free |
 | G159 | static+lab | A readable window for the width canary (Wine virtual desktop): rc2004 and rc3 both render black/unreadable, so CAN01–06 is unknown, not failed. | `docs/NEXT.md` line 76 | free |
