@@ -158,6 +158,25 @@ sounds and emitters, a `ProjectileData`'s speed, life and bounce), and can steer
 `AIPlayer` with the stock AI movement calls (`setMoveDestination`, `setAimObject`). The rest of each
 datablock keeps its native defaults. **[bin][inf]**
 
+## Global 3D functions (5.12)
+
+The 5.12 engine registers 262 GS2 global functions. The ones that act on the 3D side are: **[bin]**
+
+| Group | Functions |
+|---|---|
+| Entering 3D | `switchToOpenGL` (calls the launcher's start-3D callback with an empty server name and port 0, so a script can start the 3D engine with no 3D server listed) |
+| Lighting, sky and fog | `lightScene`, `syncTimeOfDay`, `setSunColors`, `setSkyBandColors`, `setSkyBandSizes`, `setFogColors`, `updateVisibleDistance`, `setInteriorRenderMode` |
+| Terrain | `getz`, `getdropz`, `update3DTerrain`, `updateterrain`, `getTerrainTexture`, `getTerrainTextureIndex`, `setTerrainRenderMode`, `addMaterialMapping` |
+| Picking and screen | `get3DScreenPosition`, `get3DObjectByRay`, `worldx`, `worldy`, `screenx`, `screeny` |
+| Sound | `play3D` |
+| Player and objects | `attachplayertoobj`, `detachplayer` |
+| Vector and matrix maths | `getanglesfromvector`, `getvectorfromangles`, `vectoradd`, `vectorsub`, `vectorscale`, `vectornormalize`, `vectordot`, `vectorcross`, `vectordist`, `vectorlen`, `vectororthobasis`, `rotationadd`, `rotationsub`, `rotationaddeuler`, `rotationtoeuler`, `rotationfromeuler`, `matrixcreate`, `matrixcreatefromeuler`, `matrixmultiply`, `matrixmulvector`, `matrixmulpoint`, `getBoxCenter`, `boxscale`, `boxcontainsvector`, `boxcontains`, `boxoverlaps`, `boxintersect`, `degtorad`, `radtodeg` |
+
+So on 5.12 the sky colours, fog, sun colours, view distance and scene lighting are all under script
+control, separately from what the server ghosts. Whether a script call overrides or is overridden by
+the ghosted `Sky` and `Sun` is open (T3D-063). `switchToOpenGL` raises T3D-064: can a client enter 3D
+mode and build a world locally, with no 3D server at all? **[bin][inf]**
+
 ## `getz` in 3D mode (5.12)
 
 The GS2 function `getz(x, y)` picks its source by mode. In 3D mode it asks the 3D world: a ray straight

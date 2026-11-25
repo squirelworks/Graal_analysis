@@ -858,7 +858,7 @@ torque/v3-python-engines/tge-rewrite/used.md	excluded		1	weighed 2026-11-19: Pyt
 torque/v4-404r2-exe.md	cited	10; 1	10; 1	the historical exe export remains a packer stub; §1 distinguishes the later recovery inputs, not a gameplay result
 torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1.5 names both
 torque/wire-by-build.md	cited	10	10	
-torque/3d-capability-board.md	pending	E	10; E	2026-11-25 Torque-era 3D capability board: 62 claimable questions; to fold into Part 10 open points and App. E
+torque/3d-capability-board.md	pending	E	10; E	2026-11-25 Torque-era 3D capability board: 64 claimable questions; to fold into Part 10 open points and App. E
 torque/3d-capability-board.tsv	pending	E	10; E	data table for the 3D capability board
 torque/gs2-3d-objects-404r2-512.md	pending	E	10.5	script-creatable 3D classes in 4.04r2 and 5.12, 5.12 property names, getz in 3D mode, 3D event names; to fold into the object model
 torque/live-512-third-party-session-2026-11-24.md	pending	E	10.3	real 5.12 on a third-party 3D server: no mission phases, Camera control object, client strips .png; to fold into the session section
