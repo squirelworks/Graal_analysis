@@ -492,3 +492,19 @@ base = "5.12"
 why = "The Mac 5.12 3D side was not read (T3D-004); every value is the Windows 5.12's and every field is assumed."
 [build.evidence]
 all = "assumed"
+
+[[build]]
+label = "4.20 Linux"
+platform = "linux-i386"
+base = "5.12"
+why = "Linux 4.20r6 and 4.20r8 both send G3D22126 and link as protocol 24, not the 21 of the Mac build Seihai calls 4.20r6 (lab 2026-11-25, torque/lab-2026-11-25-g3d-worlds.md). On Seihai's mission route it completed both mission phases with a GameObject world, drew .3ds models, drew DTS 24 and DIF 44, refused DTS 16 and 25 and DIF 43 and 45, and froze on DTS 17, so a server should serve DTS 24 even though the version-17 read path exists. It crashed on structurally broken .3ds files. Everything else is 5.12's and assumed."
+[build.evidence]
+all = "assumed"
+protocol = "lab"
+game = "lab"
+game_layer = "lab"
+mission_phases = "lab"
+three_ds = "lab"
+dts_min = "lab"
+dts_max = "lab"
+dif_version = "lab"

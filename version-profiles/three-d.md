@@ -13,22 +13,28 @@ Seihai's profile has no `three_d` for those builds.
 
 ## The builds at a glance
 
-| | 3.04 | 3.153 | 4.04r2 | 4.20r6 | 4.20r8 | 5.00r7 | 5.12 |
-|---|---|---|---|---|---|---|---|
-| Torque protocol | 9 | 19 | 19 | 21 | 21 *assumed* | 24 | 24 |
-| Game layer | TGE | TGE | TGE | GameObject | GameObject | GameObject | GameObject |
-| Class table | none | 3 types | 3 types | 2 types | 2 types *assumed* | 2 types | 2 types |
-| Client sends moves | yes *assumed* | yes | yes | no, reports position | no *assumed* | no *assumed* | no, reports position |
-| Mission phases | 3 *assumed* | 3 *assumed* | 3 | 2 *assumed* | 2 | 2 | 2, and optional (cap) |
-| Local `.ter` terrain | yes *assumed* | yes | yes | no *assumed* | no *assumed* | no *assumed* | no |
-| Streamed terrain chunks | no | yes | yes | yes | yes | yes | yes (lab) |
-| TorqueScript | compiles | compiles | none | none *assumed* | none | none *assumed* | none |
-| Runs script a server sends | no *assumed* | no | no | no *assumed* | no | no *assumed* | no |
-| Terraformer | full | full | greyscale only | greyscale *assumed* | greyscale *assumed* | greyscale *assumed* | greyscale only |
-| Texture names | as named *assumed* | as named *assumed* | as named *assumed* | strip `.png` *assumed* | strip `.png` *assumed* | strip `.png` *assumed* | strip `.png` (cap) |
-| Download refuses | *not read* | *not read* | `.dso .cs .ter` | *assumed as 5.12* | *assumed as 5.12* | *assumed as 5.12* | `.dso .cs .ter` |
+| | 3.04 | 3.153 | 4.04r2 | 4.20r6 | 4.20r8 | 5.00r7 | 5.12 | 4.20 Linux |
+|---|---|---|---|---|---|---|---|---|
+| Torque protocol | 9 | 19 | 19 | 21 | 21 *assumed* | 24 | 24 | 24 (lab) |
+| Game layer | TGE | TGE | TGE | GameObject | GameObject | GameObject | GameObject | GameObject (lab) |
+| Class table | none | 3 types | 3 types | 2 types | 2 types *assumed* | 2 types | 2 types | 2 types *assumed* |
+| Client sends moves | yes *assumed* | yes | yes | no, reports position | no *assumed* | no *assumed* | no, reports position | no *assumed* |
+| Mission phases | 3 *assumed* | 3 *assumed* | 3 | 2 *assumed* | 2 | 2 | 2, and optional (cap) | 2 (lab) |
+| Local `.ter` terrain | yes *assumed* | yes | yes | no *assumed* | no *assumed* | no *assumed* | no | no *assumed* |
+| Streamed terrain chunks | no | yes | yes | yes | yes | yes | yes (lab) | yes *assumed* |
+| TorqueScript | compiles | compiles | none | none *assumed* | none | none *assumed* | none | none *assumed* |
+| Runs script a server sends | no *assumed* | no | no | no *assumed* | no | no *assumed* | no | no *assumed* |
+| Terraformer | full | full | greyscale only | greyscale *assumed* | greyscale *assumed* | greyscale *assumed* | greyscale only | greyscale *assumed* |
+| Texture names | as named *assumed* | as named *assumed* | as named *assumed* | strip `.png` *assumed* | strip `.png` *assumed* | strip `.png` *assumed* | strip `.png` (cap) | strip `.png` *assumed* |
+| Download refuses | *not read* | *not read* | `.dso .cs .ter` | *assumed as 5.12* | *assumed as 5.12* | *assumed as 5.12* | `.dso .cs .ter` | *assumed as 5.12* |
 
 The Mac 4.04r2 and Mac 5.12 rows take their Windows twin's values, all assumed (T3D-004).
+
+"4.20 Linux" is the Linux 4.20r6 and 4.20r8 builds (`G3D22126`). They link as protocol 24, not
+21, so they take 5.12's row except where the 2026-11-25 lab
+([lab-2026-11-25-g3d-worlds.md](../torque/lab-2026-11-25-g3d-worlds.md)) read them. Seihai's
+"4.20r6" row is the Mac build the Tiger lab ran (`G3D27076`), which
+[login-tokens-3x-7x.md](../protocol/login-tokens-3x-7x.md) dates to the 4.10r2 era.
 
 ## What each field controls in Seihai
 
@@ -54,7 +60,10 @@ The Mac 4.04r2 and Mac 5.12 rows take their Windows twin's values, all assumed (
   Both 4.04r2 and 5.12 take the DTS version from the low byte of the version word and accept up to
   24 (4.04r2 from 19, 5.12 from 17), and both require DIF InteriorResource version 44 with Interior
   version 0 (T3D-029, static). Whether every version in range draws is still for the renderer lab.
-  4.04r2 has an MD3 loader and 5.12 has none.
+  On Linux 4.20 a DTS 17 shape froze the client although its loader takes it, so a server should
+  serve DTS 24. That build also crashed on a `.3ds` with no materials, a truncated `.3ds`, or a
+  chunk length past the end of the file, so a server should check `.3ds` files before it names
+  them. 4.04r2 has an MD3 loader and 5.12 has none.
 - **Files** (`texture_names`, `download_refused`, `bigdata`, `bigdata_chunk_max`,
   `udp_port_offset`): 5.12 strips `.png` from material texture names and requests and stores the
   bare name, so a server must serve the image under its bare name too. The resource-miss path never
