@@ -340,14 +340,19 @@ udp_port_offset = "assumed"
 label = "4.20r8"
 platform = "win32"
 base = "4.20r6"
-why = "Values are 4.20r6's. The Windows 4.2.0.8 Graal3DEngine.dll (torque/4208-g3d.md) shows the GameObject layer with no ShapeBase or Player, no TorqueScript compiler and no .dso, two mission phases, and the terrain chunk send and event. Its protocol number, class set and file rules were not read (T3D-002), so those stay assumed."
+protocol = 24
+terrain_chunks = false
+why = "Values are 4.20r6's except where read. The Windows 4.2.0.8 Graal3DEngine.dll (torque/4208-g3d.md) shows the GameObject layer with no ShapeBase or Player, no TorqueScript compiler and no .dso, two mission phases, and the terrain chunk send and event. A lab run (Graal_analysis PR #854, terrain-512 lab table) found it links as protocol 24 and plays normally, and that it takes the 5.12 TerrainBlock and TerrainChunkEvent layout and fills the levels3d/heights cache byte for byte like 5.12, but then crashes on a null call soon after the TerrainBlock is added, even with no chunks sent. So a server must not offer it streamed terrain: terrain_chunks is false. Its class set and file rules were not read (T3D-002), so those stay assumed."
 [build.evidence]
 all = "assumed"
 game_layer = "bin"
 mission_phases = "bin"
 torque_script = "bin"
 server_scripts = "bin"
-terrain_chunks = "bin"
+protocol = "lab"
+game = "lab"
+terrain_chunks = "lab"
+chunk_cache = "lab"
 
 [[build]]
 label = "5.00r7"
@@ -497,7 +502,8 @@ all = "assumed"
 label = "4.20 Linux"
 platform = "linux-i386"
 base = "5.12"
-why = "Linux 4.20r6 and 4.20r8 both send G3D22126 and link as protocol 24, not the 21 of the Mac build Seihai calls 4.20r6 (lab 2026-11-25, torque/lab-2026-11-25-g3d-worlds.md). On Seihai's mission route it completed both mission phases with a GameObject world, drew .3ds models, drew DTS 24 and DIF 44, refused DTS 16 and 25 and DIF 43 and 45, and froze on DTS 17, so a server should serve DTS 24 even though the version-17 read path exists. It crashed on structurally broken .3ds files. Everything else is 5.12's and assumed."
+terrain_chunks = false
+why = "Linux 4.20r6 and 4.20r8 both send G3D22126 and link as protocol 24, not the 21 of the Mac build Seihai calls 4.20r6 (lab 2026-11-25, torque/lab-2026-11-25-g3d-worlds.md). On Seihai's mission route it completed both mission phases with a GameObject world, drew .3ds models, drew DTS 24 and DIF 44, refused DTS 16 and 25 and DIF 43 and 45, and froze on DTS 17, so a server should serve DTS 24 even though the version-17 read path exists. It crashed on structurally broken .3ds files. Windows 4.20r8 crashes once a TerrainBlock is added (PR #854), so streamed terrain is off here too, assumed. Everything else is 5.12's and assumed."
 [build.evidence]
 all = "assumed"
 protocol = "lab"

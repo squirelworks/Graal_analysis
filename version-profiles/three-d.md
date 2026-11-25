@@ -15,13 +15,13 @@ Seihai's profile has no `three_d` for those builds.
 
 | | 3.04 | 3.153 | 4.04r2 | 4.20r6 | 4.20r8 | 5.00r7 | 5.12 | 4.20 Linux |
 |---|---|---|---|---|---|---|---|---|
-| Torque protocol | 9 | 19 | 19 | 21 | 21 *assumed* | 24 | 24 | 24 (lab) |
+| Torque protocol | 9 | 19 | 19 | 21 | 24 (lab) | 24 | 24 | 24 (lab) |
 | Game layer | TGE | TGE | TGE | GameObject | GameObject | GameObject | GameObject | GameObject (lab) |
 | Class table | none | 3 types | 3 types | 2 types | 2 types *assumed* | 2 types | 2 types | 2 types *assumed* |
 | Client sends moves | yes *assumed* | yes | yes | no, reports position | no *assumed* | no *assumed* | no, reports position | no *assumed* |
 | Mission phases | 3 *assumed* | 3 *assumed* | 3 | 2 *assumed* | 2 | 2 | 2, and optional (cap) | 2 (lab) |
 | Local `.ter` terrain | yes *assumed* | yes | yes | no *assumed* | no *assumed* | no *assumed* | no | no *assumed* |
-| Streamed terrain chunks | no | yes | yes | yes | yes | yes | yes (lab) | yes *assumed* |
+| Streamed terrain chunks | no | yes | yes | yes | no: crashes after the TerrainBlock (lab) | yes | yes (lab) | no *assumed as 4.20r8* |
 | TorqueScript | compiles | compiles | none | none *assumed* | none | none *assumed* | none | none *assumed* |
 | Runs script a server sends | no *assumed* | no | no | no *assumed* | no | no *assumed* | no | no *assumed* |
 | Terraformer | full | full | greyscale only | greyscale *assumed* | greyscale *assumed* | greyscale *assumed* | greyscale only | greyscale *assumed* |
