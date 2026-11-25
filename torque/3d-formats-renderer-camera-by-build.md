@@ -23,7 +23,7 @@ Version bounds (T3D-029):
 
 | Check | 4.04r2 | 5.12 |
 |---|---|---|
-| DTS shape version accepted (low byte of the version word) | 19 to 24 | 17 to 24 |
+| DTS shape version accepted (low byte of the version word) | up to 24, no floor; below 19 goes to the old-format reader | 17 to 24; below 17 rejected ("not supported anymore"); 17 and 18 go to the old-format reader |
 | DIF `InteriorResource` file version | exactly 44 | exactly 44 |
 | DIF `Interior` version | exactly 0 | exactly 0 |
 
