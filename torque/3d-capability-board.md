@@ -74,3 +74,12 @@ crash, protocol 21 against 24, which object classes each build draws, control-ob
 ghost visibility between players, 3D sound and particles, the rest of the sky, `.dif` interiors and
 collision, the 3D script functions on 4.04r2 and 5.00r7, what 3.153 accepts, shape packaging and
 caching, out-of-range worlds, and mission lighting.
+
+## The 3D DLL itself (T3D-093 to T3D-104, 2026-11-25)
+
+Questions that cover the 3D engine DLL as a whole, build by build: its exports and imports and
+how the client loads it; the interface between the 2D client and the 3D side in 5.12; which Torque
+version it is built from; the full console registry; the NetEvent and ghost class tables with
+their fields; the resource loaders and their checks; error paths and logs; the files it reads and
+writes; its threads and frame loop; input; dead code against Graal additions; and the 4.20r8 and
+5.00r7 differences from 5.12.
