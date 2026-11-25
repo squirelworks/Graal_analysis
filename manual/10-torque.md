@@ -589,6 +589,15 @@ Both older builds were run against the project's own gserver in 3D mode. The tab
 | terrain | a `TerrainBlock` makes it request chunks and `heights.info`; with no terrain on the server it then crashes | n/a | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153) |
 | what drew | nothing 3D; the screen stayed on the loading picture | only the sky gradient | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153); [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#404r2) |
 
+### 10.3.11 Several clients in one world: first lab pairs
+
+Real clients were paired against the project's own gserver while its relay of other players was still changing. The table records what the clients did on that build; it is a state on 2026-11-25, not a settled rule [lab] (torque/multi-client-3d-lab-2026-11-25.md).
+
+| Pair | What the clients did | Source |
+| --- | --- | --- |
+| 5.24r3 2D and 5.12 3D, one level | the 2D client's `players` count was 2 but the 3D entry was empty and never drew; the 3D client never saw the 2D player (`players` 0, no ghost); 2D chat reached the 3D client as `onRemotePlayerChats` over TCP; 3D chat and flags never reached the 2D client; neither side got a leave event | [lab][cap] (torque/multi-client-3d-lab-2026-11-25.md#h1-a-2d-client-and-a-3d-client-in-one-level) |
+| two 5.12 3D clients | each got a `G3DPlayer_<other>` object within the same second of the other's join; chat was relayed but positions were not, so each kept the other at the shared spawn; `players` stayed 0 and no per-player events fired; no ghost delete on leave, and the ghost returned under the same index on reconnect | [lab][cap] (torque/multi-client-3d-lab-2026-11-25.md#s1-two-3d-clients-in-one-world) |
+
 ## 10.4 DSO v33
 
 Graal 3.x keeps menus, options, key binds, message boxes and the 3D mission-loading flow in compiled TorqueScript; from 4.x on no `.dso` files ship [file] (torque/scripting.md#torquescript-in-graal-3x-the-dso-format-and-the-shipped-scripts).
@@ -850,6 +859,7 @@ The rules below give how heights, materials and stamps are decoded and computed 
 | Cached chunks go through the same decoder as received ones, so a server or a lab can pre-seed a client by shipping these files | [bin][lab] (torque/terrain-512.md#4-the-cache-folder); [lab] (torque/terrain-512.md#lab-results) |
 | Terrain textures are requested by name and cached as `levels3d/images/<name>`; they must be 256 × 256 at 24 bits, else "Terrain texture of bad format (must be 256x256x24)" and `default`; a missing one logs "Missing terrain texture" | [bin][lab] (torque/terrain-512.md#4-the-cache-folder) |
 | Texture fetching is one visit late: the first visit fetches only `heights.info`; the second logs "Missing terrain texture" per name, then downloads each and saves it under exactly the listed name; list names with their extension, since extensionless cached textures failed to load on later visits in another lab | [lab] (torque/terrain-512.md#4-the-cache-folder) |
+| A later 5.12 run drew the terrain white with names given bare and with `.png`, and never requested the textures; why it differs from the one-visit-late run is open | [lab] (torque/live-512-gs2-3d-probe-2026-11-25.md#terrain-textures-t3d-044-follow-up) |
 | 3.153 streams too: a ghosted `TerrainBlock` makes it send `TerrainRequestUpdatesEvent` and ask for `heights.info` | [lab] (torque/live-3153-and-404r2-sessions-2026-11-25.md#3153) |
 | The BigData `setmaterials` message sets the list with comma-separated names (it is not split at newlines) and the client persists it as a 32-line CRLF `heights.info` in the cache folder | [lab] (torque/terrain-512.md#4-the-cache-folder) |
 | 4.04r2 and 3.153 keep stock Torque's `.ter` path: a block whose `terrainFile` names a `.ter` that loads logs "Loaded terrain from terrain file." and asks for no chunks; the network update never sets `terrainFile`, so a ghosted block always streams; 5.12 only streams | [bin][inf] (torque/terrain-512.md#8-older-builds-the-ter-file-path) |
