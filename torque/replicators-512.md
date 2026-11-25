@@ -127,9 +127,16 @@ Further runs on the same terrain, each changing one value against that base **[l
 So the cover is the same for every client that gets the same values. The two grass classes take
 the same update but do not draw a `.3ds` this way; what they draw is still open. **[lab]** Statically, the grass
 classes replace the cell-filling and the grid-count setters (their counts are clamped to 0–100
-per cell instead of 0–20) and build their own geometry instead of placing shapes, so they likely
-expect textures rather than shape files **[inf]**.
+per cell instead of 0–20) and build their own geometry instead of placing shapes, so they expect textures rather than shape files.
+
+With a texture name (`lp_white.png`) in `shapefiles` and the same update, both grass classes
+**draw**: many small flat pieces lying on the ground, over the same area the shapes covered,
+denser at 50 per cell than at 5. Under the GDI renderer they showed untextured. A 64×64 RGBA
+texture that is almost all transparent drew nothing visible. Both textures were already cached,
+so whether grass fetches a missing texture is still open. **[lab]**
 
 On 4.20r8 the replicator ghost is created without a crash or error, but with the camera kept
-250 units up (to avoid 4.20r8's terrain crash) no cover was in frame, so whether 4.20r8 grows it
-is still open. **[lab]**
+250 units up (to avoid 4.20r8's terrain crash) no cover was in frame. With the camera pitched down over the
+ground around the player (radius 8, scale 10) still nothing grew, against the same view without
+the replicator. So 4.20r8 takes the ghost but grows no cover under GDI; a full OpenGL renderer
+may differ. **[lab]**
