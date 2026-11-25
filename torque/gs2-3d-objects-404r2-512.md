@@ -193,6 +193,34 @@ Among the GS2 event names the 5.12 engine dispatches, these belong to the 3D sid
 `onMount`, `onUnmount` and `onMouseYawPitch`; `onRPGMessage` and `onRCChat` come from the BigData
 text channel. Which object receives each, and with what parameters, was not read (T3D-021). **[bin]**
 
+## Mission phases and `onGraal3DLoginStep` (4.04r2, 5.12)
+
+Neither build has TorqueScript, so the mission-phase handlers are native.
+The server sends each phase as a `RemoteCommandEvent`. At each step the
+client logs a line and fires `onGraal3DLoginStep` with an integer.
+
+| Step | 4.04r2 trigger | 5.12 trigger |
+|---|---|---|
+| 1 | `MissionStartPhase1`: "Phase 1: Download Datablocks" | not used |
+| 2 | `MissionStartPhase2`: "Phase 2: Download Ghost Objects" | `MissionStartPhase1`: "Phase 1: Download Ghost Objects" |
+| 3 | `MissionStartPhase3`: "Phase 3: Mission Lighting", lighting starts | `MissionStartPhase2`: "Phase 2: Mission Lighting", lighting starts |
+| 4 | lighting done; the client sends `MissionStartPhase3Ack` | lighting done; the client sends `MissionStartPhase2Ack` |
+| 5 | first control object arrives ("Initial Control Object") | the same |
+| 6 | (none) | right after step 5: the client adds `GraalControl3D` to the GUI, so the 3D view appears |
+
+- Each phase command is answered with the matching `...Ack` and one number
+  printed with `%d`.
+- 5.12 dropped the datablock phase and renumbered the other two. It kept the
+  step numbers, so a 5.12 script never sees step 1.
+- The step value starts at -1.
+
+A server that sends no phase commands skips steps 2 to 4, and the client
+goes straight to 5 and 6 when the first control object arrives. That is the
+path seen on the third-party 5.12 server
+([live-512-third-party-session-2026-11-24.md](live-512-third-party-session-2026-11-24.md)).
+Lighting only runs when the server sends the lighting phase. **[bin]**
+(T3D-021, T3D-022, T3D-052)
+
 ## Open
 
 - [ ] T3D-016: create a `GameObject`, `Sky` and `Sun` from a client weapon with no server ghost,
