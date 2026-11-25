@@ -231,12 +231,11 @@ Live on 5.12 (a block at z 20 with z scale 20, wave magnitude 0.3) **[lab]**:
   scale (a corner, not the centre), stops at its scale, and a 512 scale is taken. Turned 90°
   about z it covers x 0…256, y −512…0: it turns about its position. (An earlier reading over
   terrain that seemed to run past the scale was stale.)
-- Waves: at wave magnitude 0 `liquidheight` is flat. The waves are a field travelling across the
-  surface, not one bob: on a 32 × 16 block at magnitude 1, five points read different heights at
-  the same instant, the far corner peaking about 0.6 s before the near one (travel toward −x, −y),
-  each swinging about ±0.5 with a cycle near 4.4 s. One point in a 512 × 256 block swung only
-  about ±0.16 × magnitude with an 8.75 s cycle, so height and period depend on where you sample.
-  The wave function is not fitted yet.
+- Waves: at wave magnitude 0 `liquidheight` is flat. At magnitude 1 on a 256 × 256 block one
+  point swung exactly ±0.5 (±0.5 × magnitude) with a 6.0 s period. Earlier readings that gave
+  other periods, and that suggested different points move out of step, read `liquidheight` in
+  the same tick as moving the probe, which returns the previous value; they are being redone.
+  Note for probes: read `liquidheight` one tick after moving the object.
 - A 32 × 16 × 2 block at (0, 16, 0) covers exactly x 0…32, y 16…32 with its surface at 2, with
   or without terrain and whatever `ignoreTerrain`; `ignoreTerrain` changed only a thin band where
   the water meets the ground.
@@ -360,6 +359,8 @@ logs are kept with the owner's lab material. **[lab]**
 | A `.3ds` cut to half its length | **client dies** while loading it, no dialog |
 | A `.dts` of random bytes / a `.dif` of zeros | logs `attempt to load a version … dts-shape, can currently only load version 24 and before` / nothing; no crash |
 | Texture numbering: one chunk with columns 0–7 id 0 and 8–15 id 2, `heights.info` water, sand, grass | the saved chunk decodes to ids [0, 2] with every row id 0 in columns 0–7 and id 2 in columns 8–15: id N is line N + 1 of `heights.info`, same row order as the heights; on the second visit every listed texture is fetched, used or not |
+| Mode 2 chunk with squares 6–9 × 6–9 as holes, `getdropz` every 0.5 | an exact cut-out: ground reads 0 for exactly those squares, with no slope at the edge |
+| Two `TerrainBlock`s named `Terrain` (square size 8, then 2), then 256 chunks | both send a request (two events); one cache folder; the chunks land on the second block only (ground within ±256, nothing out to ±1024) |
 | Script moves a `GameObject` over terrain; `getdropz` sampled | no clamping (z stays as set); `getdropz` values are multiples of 1/8 |
 
 No chunk or ghost case crashed the client; only the `loadGreyscale` cases above did. Corrections this run made to the static read: `heights.info` is
