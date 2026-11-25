@@ -44,7 +44,9 @@ update carries its own `int14` bit length (§8), so a wrong guess costs nothing.
 
 1. becomes the client's current terrain if it has none yet (a later block named `Terrain` replaces it);
 2. places the terrain's corner at (−128 × square size, −128 × square size, 0), so the 256 × 256
-   grid is centred on the origin;
+   grid is centred on the origin. Chunk (cx, cy), square (sx, sy) starts at
+   x = −128·sq + (cx·16 + sx)·sq, y = −128·sq + (cy·16 + sy)·sq, so chunk (0, 0) is the −x, −y
+   corner and chunk rows grow toward +y. **[lab]** (`getdropz` sampled at square sizes 8 and 2);
 3. logs `Loading terrain from terrain chunks.`;
 4. loads the material list from `heights.info` in the cache folder (§4). If that file is not in
    the cache it asks for `heights.info` with the normal Graal file request over TCP; an empty answer
@@ -93,7 +95,7 @@ logarithm (N = 2 → 1 bit, 3 or 4 → 2, 5 to 8 → 3). With N of 0 or 1 every 
 id. **[bin]**
 
 **Heights.** The client keeps a 16-bit height per square and stores each decoded value shifted
-up 2 bits. In stock TGE 1.x a stored height of 32 is 1 m, so one wire unit is 1/8 m **[inf]**.
+up 2 bits. One world unit is 8 wire units: a flat chunk sent at 3200 reports `getdropz` 400, at square size 8 and at 2 alike **[lab]** (stock TGE 1.x also keeps 32 stored units per metre).
 Decoding, with all arithmetic 16-bit for heights and 8-bit signed for deltas, and "/2" truncating
 toward zero **[bin]**:
 
@@ -246,11 +248,13 @@ is not cached; it returns 0 until the file has arrived. **[lab]**
 pixel into a 0–1 value with luminance weights (0.299 R, 0.587 G, 0.114 B, over 256). It walks the
 register's 256 × 256 squares and reads the image bottom row first, so together with `setTerrain`'s
 own flip, image row r lands on terrain row r. It does not check the image's depth or size.
-**[bin]** In the lab only a 32-bit RGBA PNG is safe: a 256 × 256 RGBA image returns 1 and the
-client keeps running. A 24-bit RGB PNG (256 × 256 and 128 × 128) and an 8-bit greyscale PNG
-(colour type 0) both crash the client inside the 3D engine with an access violation at the same
-place, with or without a `TerrainBlock`. So the reader expects 4 bytes per pixel in practice;
-use RGBA images. **[lab]**
+**[bin]** In the lab, with a `TerrainBlock` present, 32-bit RGBA PNGs of 64 × 64 and 128 × 128
+load (`loadGreyscale` and `setTerrain` both return 1). A 256 × 256 RGBA image returned 1 in one
+run but crashed on the second `loadGreyscale` call in another; 512 × 512 and 256 × 128 RGBA
+crashed the same way. A 24-bit RGB PNG (256 × 256 and 128 × 128) and an 8-bit greyscale PNG
+(colour type 0) crash at once, with or without a `TerrainBlock`; another lab saw RGBA crash in a
+world with no `TerrainBlock`. So the safe use is a small (≤ 128) RGBA image with a
+`TerrainBlock` already ghosted; nothing at 256 or above is reliable. **[lab]**
 
 The client does not clamp a script-moved `GameObject` to the terrain: its z stays at the value
 set (60 in the lab) while `getdropz(x, y, 500)` reports the ground below. Every `getdropz` value
@@ -274,6 +278,11 @@ The network update never sets `terrainFile`: only the property setter does. So a
 creates a `TerrainBlock` locally and sets `terrainFile` before adding it **[bin][inf]**. In 5.12
 the property name survives, but adding a block no longer branches on it: 5.12 only streams.
 **[bin]** Board row T3D-041.
+
+Live on 4.04r2, a script's `new TerrainBlock(...)` returns a `TerrainBlock` and `terrainFile`
+reads back as set, but the client logs neither the file line nor the chunk line, with or without
+`terrainFile`: a script-made block never loads terrain, only a ghosted one does (chunk path). So
+the `.ter` branch was not reached live. **[lab]**
 
 ## Lab results
 
@@ -311,6 +320,10 @@ logs are kept with the owner's lab material. **[lab]**
 | `setmaterials` then reconnect | list saved to the cache `heights.info` (32 CRLF lines) and reloaded |
 | 4.20r8 with the same `TerrainBlock` and chunk bytes | logs `Loading terrain from terrain chunks.`, requests with 256 zero stamps, saves the first chunks byte for byte as 5.12 does (same stamps), then crashes on a null call; the same crash with the `TerrainBlock` alone and no chunks. Without a `TerrainBlock` it plays normally. Cause not yet found. |
 | 5.00r7 | not run: its licence points the login at a fixed LAN address the isolated VM cannot answer; its terrain strings match 5.12 (static) |
+| Flat chunk (0, 0) at 3200 beside chunk (1, 0) at 0, `getdropz` every quarter square, square size 8 and 2 | 400 then 0: 8 wire units per world unit; terrain spans −128·sq…+128·sq on both axes; no seam (the last square of a chunk blends linearly into the next chunk's first vertex) |
+| `getdropz` at the far edge | the last square before +128·sq blends toward the opposite edge's first vertex (wraps); at or beyond +128·sq and below −128·sq it returns 0 (repeat 0: nothing tiles) |
+| `loadGreyscale` RGBA 64, 128 / 256 / 512, 256 × 128 (with terrain) | 1 / 1 in one run, crash in another / crash / crash |
+| 4.04r2 script-made `TerrainBlock`, with and without `terrainFile` | created, but neither the file nor the chunk path runs |
 | Script moves a `GameObject` over terrain; `getdropz` sampled | no clamping (z stays as set); `getdropz` values are multiples of 1/8 |
 
 No chunk or ghost case crashed the client; only the `loadGreyscale` cases above did. Corrections this run made to the static read: `heights.info` is
