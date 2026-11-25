@@ -19,7 +19,7 @@ Seihai's profile has no `three_d` for those builds.
 | Game layer | TGE | TGE | TGE | GameObject | GameObject | GameObject | GameObject | GameObject (lab) |
 | Class table | none | 3 types | 3 types | 2 types | 2 types *assumed* | 2 types | 2 types | 2 types *assumed* |
 | Client sends moves | yes *assumed* | yes | yes | no, reports position | no *assumed* | no *assumed* | no, reports position | no *assumed* |
-| Mission phases | 3 *assumed* | 3 *assumed* | 3 | 2 *assumed* | 2 | 2 | 2, and optional (cap) | 2 (lab) |
+| Mission phases | 3 *assumed* | 3 (lab) | 3 (lab) | 2 *assumed* | 2 | 2 | 2, and optional (cap) | 2 (lab) |
 | Local `.ter` terrain | yes *assumed* | yes | yes | no *assumed* | no *assumed* | no *assumed* | no | no *assumed* |
 | Streamed terrain chunks | no | yes | yes | yes | no: crashes after the TerrainBlock (lab) | yes | yes (lab) | no *assumed as 4.20r8* |
 | TorqueScript | compiles | compiles | none | none *assumed* | none | none *assumed* | none | none *assumed* |
@@ -27,7 +27,13 @@ Seihai's profile has no `three_d` for those builds.
 | Terraformer | full | full | greyscale only | greyscale *assumed* | greyscale *assumed* | greyscale *assumed* | greyscale only | greyscale *assumed* |
 | Greyscale import | any *assumed* | any *assumed* | 32-bit RGBA only *assumed* | 32-bit RGBA only *assumed* | 32-bit RGBA only *assumed* | 32-bit RGBA only *assumed* | 32-bit RGBA only (lab) | 32-bit RGBA only *assumed* |
 | Texture names | as named *assumed* | as named *assumed* | as named *assumed* | strip `.png` *assumed* | strip `.png` *assumed* | strip `.png` *assumed* | strip `.png` (cap) | strip `.png` *assumed* |
-| Download refuses | *not read* | *not read* | `.dso .cs .ter` | *assumed as 5.12* | *assumed as 5.12* | *assumed as 5.12* | `.dso .cs .ter` | *assumed as 5.12* |
+| Download refuses | *not read* | `.dso .cs .ter` (lab: never asked) | `.dso .cs .ter` | *assumed as 5.12* | *assumed as 5.12* | *assumed as 5.12* | `.dso .cs .ter` | *assumed as 5.12* |
+| Needs a ghosted Sky | no *assumed* | yes, crashes without (lab) | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no *assumed* |
+| Sky textures as `.gif` | no *assumed* | yes (lab) | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no *assumed* |
+| Drawn on our gserver | world *assumed* | nothing past loading (lab) | Sky only (lab) | world *assumed* | world (lab) | world *assumed* | world (lab) | world (lab) |
+| 3D walk moves the 2D player | no *assumed* | no *assumed* | no (lab) | no *assumed* | no *assumed* | no *assumed* | no (lab) | no *assumed* |
+| Draws 2D players | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no *assumed* | no (lab) | no *assumed* |
+| Gets 2D chat | no *assumed* | no *assumed* | no *assumed* | yes *assumed* | yes *assumed* | yes *assumed* | yes (lab) | yes *assumed* |
 
 The Mac 4.04r2 and Mac 5.12 rows take their Windows twin's values, all assumed (T3D-004).
 
@@ -77,6 +83,22 @@ The Mac 4.04r2 and Mac 5.12 rows take their Windows twin's values, all assumed (
   `udp_port_offset`): 5.12 strips `.png` from material texture names and requests and stores the
   bare name, so a server must serve the image under its bare name too. The resource-miss path never
   asks for `.dso`, `.cs` or `.ter`. BigData text chunks carry at most 191 bytes.
+- **Session needs** (`requires_sky`, `sky_gif`, `drawn`): 3.153 crashes unless a Sky is ghosted,
+  and also crashes on a TerrainBlock with no terrain behind it. It asks for sky textures as `.gif`
+  and other textures by bare name, and only ever runs its 12 shipped `clientCmd` handlers (unknown
+  ones are dropped), so a server can steer it only through those
+  ([live-3153-and-404r2-sessions-2026-11-25.md](../torque/live-3153-and-404r2-sessions-2026-11-25.md),
+  T3D-009, T3D-089). `drawn` is the most each build has been seen to draw on our gserver: 3.153
+  stayed on its loading picture and 4.04r2 (under Wine) drew only the Sky gradient. It is a lab
+  state, not a limit of the client, and moves up as the gserver learns what each build needs.
+- **2D and 3D in one level** (`mirrors_2d_position`, `sees_2d_players`, `takes_2d_chat`): in lab
+  pair H1 a 5.24r3 2D client and a 5.12 3D client shared a level. The 2D client counted the 3D
+  player but never drew it, because the 3D walk does not move the 3D client's 2D player (4.04r2
+  showed the same: its script player stayed at the spawn). The 3D client did not see the 2D player
+  at all. 2D chat reached the 3D client as `onRemotePlayerChats` over TCP; 3D chat and flags did not
+  reach the 2D client ([multi-client-3d-lab-2026-11-25.md](../torque/multi-client-3d-lab-2026-11-25.md),
+  T3D-073, T3D-115, T3D-116). So a gserver that wants mixed levels must carry positions and players
+  across itself.
 
 ## Updating
 
