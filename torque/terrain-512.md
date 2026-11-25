@@ -353,7 +353,7 @@ logs are kept with the owner's lab material. **[lab]**
 | The malformed `WaterBlock` and `TerrainBlock` rows above on 4.20r8 (camera high) | same as 5.12: all survived |
 | A `.3ds` cut to half its length | **client dies** while loading it, no dialog |
 | A `.dts` of random bytes / a `.dif` of zeros | logs `attempt to load a version … dts-shape, can currently only load version 24 and before` / nothing; no crash |
-| Texture numbering: one chunk with columns 0–7 id 0 and 8–15 id 2, `heights.info` water, sand, grass | the saved chunk decodes to ids [0, 2] with each row `00000000 22222222`: id N is line N + 1 of `heights.info`, same row order as the heights; on the second visit every listed texture is fetched, used or not |
+| Texture numbering: one chunk with columns 0–7 id 0 and 8–15 id 2, `heights.info` water, sand, grass | the saved chunk decodes to ids [0, 2] with every row id 0 in columns 0–7 and id 2 in columns 8–15: id N is line N + 1 of `heights.info`, same row order as the heights; on the second visit every listed texture is fetched, used or not |
 | Script moves a `GameObject` over terrain; `getdropz` sampled | no clamping (z stays as set); `getdropz` values are multiples of 1/8 |
 
 No chunk or ghost case crashed the client; only the `loadGreyscale` cases above did. Corrections this run made to the static read: `heights.info` is
