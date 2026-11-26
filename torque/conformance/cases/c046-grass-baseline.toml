@@ -1,0 +1,68 @@
+id = "C046"
+slug = "grass-baseline"
+title = "The grass cases' world without a grass line: the baseline screenshot that C035 to C037 are compared with"
+rows = ["T3D-048"]
+priority = 1
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+terrain conf_ter 8
+playershape conf_nomat.3ds
+spawn 20 20 1
+"""
+files = ["conf_nomat.3ds", "conf_sky*", "conf_ground.png", "conf_grass.png", "heights.info"]
+terrain = ["conf_ter"]
+
+[server]
+options = ["graal3d_pushterrain = true"]
+
+[run]
+seconds = 60
+sessions = 2
+keep_cache = true
+
+[[check]]
+id = "terrain_drawn"
+kind = "pixel"
+colour = [200, 160, 90]
+tol = 70
+min_fraction = 0.05
+note = "the tan ground texture under the avatar on the second visit (the pushed terrain texture is cached by then)"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+terrain_drawn = false
+alive = "?"
+source = "[srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
+
+[expect."4.04r2"]
+terrain_drawn = false
+alive = "?"
+source = "[srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
+
+[expect."4.20r8"]
+terrain_drawn = "?"
+alive = "?"
+source = "[lab] torque/terrain-512.md: 4.20r8 takes the TerrainBlock but crashes near it under GDI (T3D-117)"
+
+[expect."5.12"]
+terrain_drawn = "?"
+alive = true
+source = "[lab] seihai-gserver docs/GRAAL3D.md: with graal3d_pushterrain the terrain is textured from the second visit; whether the tan fills 5% of this view is unread"
+
+[expect."6.037"]
+terrain_drawn = false
+alive = true
+source = "T3D-121 (2D-only Quattro build, no 3D link)"
+
+[expect."6.037F"]
+terrain_drawn = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

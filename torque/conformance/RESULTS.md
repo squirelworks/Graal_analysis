@@ -55,3 +55,4 @@ blank (not run yet). Observed `?` values are listed under each run in
 | [C043](cases/c043-editors-512.toml) | WorldEditor/TerrainEditor/EditManager made by a 5.12 weapon: WorldEditor works on own objects, TerrainEditor cannot attach, nothing saved | n/a | n/a | n/a | PASS (2026-11-27) | n/a | n/a |
 | [C044](cases/c044-no-exec-512.toml) | 5.12 has no way to run TorqueScript from GS2: no exec/eval/loadMission, no marker runs | n/a | n/a | n/a | PASS (2026-11-27) | n/a | n/a |
 | [C045](cases/c045-v2-huge-png.toml) | seihai-gserver-v2: a .3ds whose texture claims 100000 x 100000 is refused at start-up; the client draws the rest and keeps running |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
+| [C046](cases/c046-grass-baseline.toml) | The grass cases' world without a grass line: the baseline screenshot that C035 to C037 are compared with |  |  |  |  |  |  |
