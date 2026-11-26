@@ -1031,3 +1031,5 @@ torque/3d-frankenstein-6037-vs-retail-6037-2026-11-26.md	pending		10.3	our Frank
 torque/3d-local-mis-vs-wire-420r6-2026-11-26.md	pending		10.3	5.12-class client never loads a local .mis; mission comes only over the wire (T3D-010), lab; to carry into §10
 torque/3d-session-file-footprint-420r6-2026-11-26.md	pending		10.3	5.12-class 3D session file footprint: the .graal/ cache tree, no script screenshot, no heights/lightmap cache (T3D-053/T3D-100), lab; to carry into §10
 torque/3d-lighting-phase-timing-404r2-420r6-2026-11-26.md	pending		10.3	mission-lighting phase is a fixed handshake, not a per-object bake; no scaling with lit-object count on 4.04r2/4.20r6 (T3D-052), lab; to carry into §10
+torque/3d-content-format-requests-420r6-2026-11-26.md	pending		10.3	5.12-class per-extension request map: .3ds/.dts/.dif shapes with ext, textures bare-named, .wav/.ttf with ext, rest never fetched (T3D-011), lab; to carry into §10
+torque/3d-legacy-anim-formats-420r6-2026-11-26.md	pending		10.3	.ifl/.dml ignored, standalone .dsq unreachable, .gft-as-shape not loaded; 3D text via showtext+.ttf on 5.12-class (T3D-034/035/036), lab; to carry into §10
