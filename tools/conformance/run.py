@@ -673,6 +673,20 @@ class Lab:
             self.gsbin = f"{R}/gserver"
         else:
             self.gsbin = sv["gserver_vm"]
+        # seihai-gserver-v2 ([server] kind = "v2" cases): its gs2emu binary and
+        # a server folder (config/, accounts/, world/, ...) to start from.
+        self.gsbin_v2 = ""
+        if sv.get("base_world_v2"):
+            self.server.ssh(f"rm -rf {R}/base_v2")
+            self.server.scp_to([Path(sv["base_world_v2"])], f"{R}/")
+            name = Path(sv["base_world_v2"]).name
+            if name != "base_v2":
+                self.server.ssh(f"mv {R}/{shlex.quote(name)} {R}/base_v2")
+            if sv.get("gserver_v2_host"):
+                self.server.scp_to([Path(sv["gserver_v2_host"])], f"{R}/gs2emu")
+                self.gsbin_v2 = f"{R}/gs2emu"
+            else:
+                self.gsbin_v2 = sv.get("gserver_v2_vm", "")
         n = self.net
         if self.vbox:
             # No root in the server VM: the guest's own network manager takes
@@ -714,7 +728,13 @@ class Lab:
         n = self.net
         port = self.conf.get("gserver_port", 14802)
         warp = f"{case.lobby_name},{n['server_ip']},{port}"
-        out = self.server.ssh(f"sh {R}/guest/case.sh up {R} {R}/case {self.gsbin} {port} "
+        op, gsbin = "up", self.gsbin
+        if case.server_kind == "v2":
+            if not self.gsbin_v2:
+                raise RuntimeError(f"{case.id} runs on seihai-gserver-v2: set server_vm.base_world_v2 and "
+                                   "gserver_v2_vm (or gserver_v2_host) in the lab config")
+            op, gsbin = "v2up", self.gsbin_v2
+        out = self.server.ssh(f"sh {R}/guest/case.sh {op} {R} {R}/case {gsbin} {port} "
                               f"{self.conf.get('lobby_port', 14900)} {shlex.quote(warp)} {n['server_ip']}")
         if "up" not in out:
             raise RuntimeError("gserver did not start")
@@ -1123,7 +1143,8 @@ def main(argv: list[str]) -> int:
             (rundir / "verdict.json").write_text(json.dumps(v, indent=1) + "\n")
             log(f"{b} {case.id}: {v['verdict']} {' '.join(v.get('mismatches', []))}")
             if a.record:
-                cf.append_result(tsv, v, stamp, server_label, bc.get("label", b))
+                label = conf.get("server_label_v2", "seihai-gserver-v2") if case.server_kind == "v2" else server_label
+                cf.append_result(tsv, v, stamp, label, bc.get("label", b))
             # A run that never reached a console log, or failed, may have left
             # the guest in a bad state: start the next run on a fresh overlay.
             # A VirtualBox guest is re-cloned and re-prepared (minutes), so

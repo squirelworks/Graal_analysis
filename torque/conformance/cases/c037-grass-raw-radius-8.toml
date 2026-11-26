@@ -1,0 +1,93 @@
+id = "C037"
+slug = "grass-raw-radius-8"
+title = "The same direct grass object at radius 8 draws grass (the control for C036's raw encoding)"
+rows = ["T3D-048"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+terrain conf_ter 8
+rawobject DynamicGrass f1 f0 str:ConfGrassRaw f0 f0 f0 f1 f32:20 f32:20 f32:0 f32:0 f32:0 f32:1 f32:0 f0 f0 f0 f0 f0 f0 f0 f0 f1 f32:20 f32:20 f32:0 f32:0 f32:0 f32:0 f0 u32:1 f0 str:conf_grass.png u8:8 u8:40 u8:60 f1 i15:1024 f1 i15:1024 f1 i15:32767 f0 i15:1024 f0 i15:1024 f0 i15:32767 f32:3 f32:3 f32:3 f32:3 f32:3 f32:3 f32:0 f32:0 f32:0 f32:0 f32:0 f32:360 f32:0 f1 f0 f0 f0 f0 f0 i7:90 f0 f32:1 f32:1 f32:1 f0 f0 i7:0 f0
+playershape conf_nomat.3ds
+spawn 20 20 1
+"""
+files = ["conf_nomat.3ds", "conf_sky*", "conf_ground.png", "conf_grass.png", "heights.info=heights_grass.info"]
+terrain = ["conf_ter"]
+
+[server]
+options = ["graal3d_pushterrain = true"]
+
+[run]
+seconds = 60
+sessions = 2
+keep_cache = true
+
+[[check]]
+id = "raw_ghosted"
+kind = "server"
+pattern = "\\(DynamicGrass raw DynamicGrass\\) created on the client"
+note = "the client acked the raw DynamicGrass ghost's create"
+
+[[check]]
+id = "floor_noted"
+kind = "server"
+pattern = "goes out as 8"
+note = "a raw object gets no radius floor and no start-up note"
+
+[[check]]
+id = "grass_drawn"
+kind = "pixel"
+colour = [255, 255, 255]
+tol = 50
+min_fraction = 0.01
+note = "white grass quads on the tan terrain around the avatar, on the second visit (the pushed grass texture is cached by then)"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+raw_ghosted = false
+floor_noted = false
+grass_drawn = false
+alive = "?"
+source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 8, sent as a rawobject, which the server does not floor; a raw object goes only to builds whose class table has DynamicGrass, and protocol 19's has none"
+
+[expect."4.04r2"]
+raw_ghosted = false
+floor_noted = false
+grass_drawn = false
+alive = "?"
+source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 8, sent as a rawobject, which the server does not floor; a raw object goes only to builds whose class table has DynamicGrass, and protocol 19's has none"
+
+[expect."4.20r8"]
+raw_ghosted = "?"
+floor_noted = false
+grass_drawn = false
+alive = "?"
+source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 8, sent as a rawobject, which the server does not floor; [lab] torque/replicators-512.md: 4.20r8 takes a replicator ghost but grows no cover (GDI and Mesa)"
+
+[expect."5.12"]
+raw_ghosted = true
+floor_noted = false
+grass_drawn = true
+alive = true
+source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 8, sent as a rawobject, which the server does not floor; [lab] seihai-gserver #218: the same grass line at radius 8 drew a patch; if this case draws nothing, C036 says nothing about the radius"
+
+[expect."6.037"]
+raw_ghosted = false
+floor_noted = false
+grass_drawn = false
+alive = true
+source = "T3D-121 (2D-only Quattro build, no 3D link)"
+
+[expect."6.037F"]
+raw_ghosted = "?"
+floor_noted = false
+grass_drawn = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

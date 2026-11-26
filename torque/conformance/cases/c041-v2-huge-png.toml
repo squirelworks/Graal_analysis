@@ -1,0 +1,91 @@
+id = "C041"
+slug = "v2-huge-png"
+title = "seihai-gserver-v2: a .3ds whose texture claims 100000 x 100000 is refused at start-up; the client draws the rest and keeps running"
+rows = ["T3D-119", "T3D-038"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+playershape conf_nomat.3ds
+spawn 0 0 1
+object ConfCube conf_red.3ds 0 4 1
+object ConfHuge conf_huge.3ds 3 4 1
+"""
+files = ["conf_red.3ds", "conf_huge.3ds", "conf_huge.png", "conf_nomat.3ds", "conf_sky*"]
+
+[server]
+kind = "v2"
+options = ["graal3dshapecheck = skip"]
+
+[run]
+seconds = 60
+
+[[check]]
+id = "png_refused"
+kind = "server"
+pattern = "a PNG of 100000x100000"
+note = "the start-up check refuses the texture (at most 8192 a side)"
+
+[[check]]
+id = "v2_link"
+kind = "server"
+pattern = "Graal3D: \\S+ linked from"
+note = "seihai-gserver-v2 logs each 3D link"
+
+[[check]]
+id = "red_drawn"
+kind = "pixel"
+colour = [220, 0, 0]
+tol = 70
+min_fraction = 0.002
+note = "the session still draws the cube after the injection (the last screenshot is taken after it)"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+png_refused = true
+v2_link = true
+red_drawn = false
+alive = "?"
+source = "[lab] seihai-gserver-v2 bin/docs/graal3d.md, Hostile and broken clients: the 2026-11-26 run with two real 5.12 clients linked (a .3ds naming a PNG claiming 100000x100000: refused at start-up, the client draws that shape white and keeps running); [srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.04r2"]
+png_refused = true
+v2_link = true
+red_drawn = false
+alive = "?"
+source = "[lab] seihai-gserver-v2 bin/docs/graal3d.md, Hostile and broken clients: the 2026-11-26 run with two real 5.12 clients linked; [srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.20r8"]
+png_refused = true
+v2_link = true
+red_drawn = "?"
+alive = "?"
+source = "[lab] seihai-gserver-v2 bin/docs/graal3d.md, Hostile and broken clients: the 2026-11-26 run with two real 5.12 clients linked; unread for 4.20r8 on v2"
+
+[expect."5.12"]
+png_refused = true
+v2_link = true
+red_drawn = true
+alive = true
+source = "[lab] seihai-gserver-v2 bin/docs/graal3d.md, Hostile and broken clients: the 2026-11-26 run with two real 5.12 clients linked: refused at start-up; 5.12 drew the shape white and kept running"
+
+[expect."6.037"]
+png_refused = true
+v2_link = false
+red_drawn = false
+alive = true
+source = "[lab] seihai-gserver-v2 bin/docs/graal3d.md, Hostile and broken clients: the 2026-11-26 run with two real 5.12 clients linked (server side); T3D-121 (2D-only Quattro build, no 3D link)"
+
+[expect."6.037F"]
+png_refused = true
+v2_link = "?"
+red_drawn = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"
