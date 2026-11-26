@@ -1,0 +1,14 @@
+// Conformance probe (T3D-014, T3D-016): can a client script create the 3D
+// GS2 classes? (A client-made GameObject is not drawn: T3D-016.)
+//#CLIENTSIDE
+function onCreated() {
+  temp.go = new GameObject("conf_go");
+  if (temp.go == NULL) cf("new_gameobject", "0");
+  else cf("new_gameobject", "1");
+  temp.sv = new TStaticVar();
+  if (temp.sv == NULL) cf("new_staticvar", "0");
+  else cf("new_staticvar", "1");
+}
+function cf(k, v) {
+  triggerserver("gui", "ConfProbe", "cf", k, v);
+}

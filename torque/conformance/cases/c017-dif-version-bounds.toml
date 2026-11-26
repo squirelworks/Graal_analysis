@@ -1,0 +1,71 @@
+id = "C017"
+slug = "dif-version-bounds"
+title = "A .dif with version 43 or 45 is refused; version 44 loads"
+rows = ["T3D-030", "T3D-038"]
+priority = 2
+needs = ["mbg"]
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfDif44 conf_v44.dif 0 12 0
+object ConfDif43 conf_v43.dif -20 12 0
+object ConfDif45 conf_v45.dif 20 12 0
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_nomat.3ds", "conf_sky*"]
+derive = [
+  { pack = "mbg", pick = "*.dif", out = "conf_v44.dif", version = 44 },
+  { pack = "mbg", pick = "*.dif", out = "conf_v43.dif", version = 43 },
+  { pack = "mbg", pick = "*.dif", out = "conf_v45.dif", version = 45 },
+]
+
+[run]
+seconds = 60
+
+[[check]]
+id = "asks_v44"
+kind = "server"
+pattern = "file conf_v44\\.dif: "
+
+[[check]]
+id = "refuses_other"
+kind = "console"
+pattern = "incompatible file version found"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+asks_v44 = false
+refuses_other = false
+alive = true
+source = "[srv] T3D-106: protocol 19 gets no GameObjects, so the shapes are never named to it"
+
+[expect."4.04r2"]
+asks_v44 = false
+refuses_other = false
+alive = true
+source = "[srv] T3D-106: protocol 19 gets no GameObjects, so the shapes are never named to it"
+
+[expect."4.20r8"]
+asks_v44 = true
+refuses_other = "?"
+alive = "?"
+source = "unread for 4.20r8"
+
+[expect."5.12"]
+asks_v44 = true
+refuses_other = true
+alive = true
+source = "[lab] T3D-030 (torque/3d-scoping-interiors-limits-512-2026-11-26.md: v44 draws, v43/v45 rejected, no crash)"
+
+[expect."4.20r6L"]
+asks_v44 = true
+refuses_other = true
+alive = true
+source = "[lab] torque/lab-2026-11-25-g3d-worlds.md ('InteriorResource::read: incompatible file version found', the client stays up)"

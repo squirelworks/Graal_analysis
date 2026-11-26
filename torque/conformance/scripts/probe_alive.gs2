@@ -1,0 +1,17 @@
+// Conformance probe: does a weapon3d script run in 3D mode at all?
+// Reports over triggerserver(..., "cf", key, value); the gserver logs it as
+// "trigger ignored (gui,ConfProbe,cf,<key>,<value>)". Values never hold commas.
+//#CLIENTSIDE
+function onCreated() {
+  this.n = 0;
+  cf("ready", "1");
+  setTimer(1);
+}
+function onTimeout() {
+  this.n++;
+  if (this.n == 5) cf("tick", this.n);
+  if (this.n < 6) setTimer(1);
+}
+function cf(k, v) {
+  triggerserver("gui", "ConfProbe", "cf", k, v);
+}

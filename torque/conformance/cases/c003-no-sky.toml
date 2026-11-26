@@ -1,0 +1,74 @@
+id = "C003"
+slug = "no-sky"
+title = "A world with no Sky: who survives, and what the background is"
+rows = ["T3D-046", "T3D-026"]
+priority = 1
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_nomat.3ds"]
+
+[run]
+seconds = 60
+
+[[check]]
+id = "udp_link"
+kind = "trace"
+pattern = "linked from"
+
+[[check]]
+id = "control"
+kind = "server"
+pattern = "control object delivered"
+note = "the client acked the packet that named its control object (login step 5)"
+
+[[check]]
+id = "dark_red"
+kind = "pixel"
+colour = [128, 0, 0]
+tol = 24
+min_fraction = 0.15
+note = "the background colour with no Sky (Linux 4.20r6 lab)"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+udp_link = true
+control = true
+dark_red = false
+alive = true
+source = "[srv] seihai-gserver docs/GRAAL3D.md: protocol 19 always gets a Sky, so a world with none still gives 3.153 one (3.153 crashes without a Sky: torque/live-3153-and-404r2-sessions-2026-11-25.md)"
+
+[expect."4.04r2"]
+udp_link = true
+control = true
+dark_red = false
+alive = true
+source = "[srv] protocol 19 always gets a Sky (seihai-gserver docs/GRAAL3D.md)"
+
+[expect."4.20r8"]
+udp_link = true
+control = true
+dark_red = "?"
+alive = "?"
+source = "unread for 4.20r8; the 5.12-class Linux 4.20r6 clears to dark red (torque/lab-2026-11-25-g3d-worlds.md)"
+
+[expect."5.12"]
+udp_link = true
+control = true
+dark_red = "?"
+alive = true
+source = "[lab] torque/lab-2026-11-25-g3d-worlds.md (Linux 4.20r6, same engine: flat dark red, no crash); not yet seen on 5.12 itself"
+
+[expect."4.20r6L"]
+udp_link = true
+control = true
+dark_red = true
+alive = true
+source = "[lab] torque/lab-2026-11-25-g3d-worlds.md: no Sky object, the background clears to flat dark red (128, 0, 0)"
