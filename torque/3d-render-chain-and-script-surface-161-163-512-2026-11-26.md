@@ -78,10 +78,12 @@ Member lists recorded (for a replica script host to reproduce):
   `eulerrotation` `"0,0,0"`.
 
 **Sign of the camera pitch:** on 5.12 a **negative** angle about **+x** in the camera
-line tilts the view **UP** (an earlier lab's `+1.5708` looked straight down). So
-`GRAAL3D.md`'s example `camera 0 -8 3 1 0 0 -0.3` reads like a *downward* tilt but
-actually tilts up — that doc example should be corrected (tracked for the server
-repo that owns GRAAL3D.md).
+line tilts the view **UP** (an earlier lab's `+1.5708` looked straight down). This
+matches seihai-gserver's `docs/GRAAL3D.md`, which already states a positive angle
+about +x tilts the view down (so a negative one tilts up); the `camera 0 -8 3 1 0 0
+-0.3` string appears there only in a parser test that checks the values are read, not
+the look direction. So the live probe confirms the documented sign — no doc change
+needed.
 
 The ConfTexCube's 45° z-turn drew as sent, but **no script value could be read for
 it** — world objects are unreachable (T3D-163).
@@ -128,5 +130,5 @@ does **not** sync — draw labels yourself and don't rely on 3D `player.nick` wr
 
 | row | verdict |
 | --- | --- |
-| T3D-161 | pose formats: transform `x,y,z,ax,ay,az,deg`, rotation `ax,ay,az,deg`, euler `x,y,z`; camera = spawn + world camera offset; `camera … 1 0 0 -0.3` → rotation `-1,0,0,+17.19` with forward `(0,0.955,0.296)` = view tilts UP for a negative angle about +x; own forward +y; worldbox = playershape box at spawn; world-object poses not script-readable; GRAAL3D.md tilt example should be corrected |
+| T3D-161 | pose formats: transform `x,y,z,ax,ay,az,deg`, rotation `ax,ay,az,deg`, euler `x,y,z`; camera = spawn + world camera offset; `camera … 1 0 0 -0.3` → rotation `-1,0,0,+17.19` with forward `(0,0.955,0.296)` = view tilts UP for a negative angle about +x (confirms the sign documented in seihai-gserver docs/GRAAL3D.md); own forward +y; worldbox = playershape box at spawn; world-object poses not script-readable |
 | T3D-163 | a weapon3d reaches only `player` (GameObject named ServerConnection, getcount 0) and `player.camera` (Camera G3DCamera_<acct>); players/allplayers/npcs empty, weapons 3; MissionGroup/ServerConnection exist but aren't walkable; RootGroup null; no findobject — no handle on world objects or other players; member lists recorded (player 55, camera 52) |
