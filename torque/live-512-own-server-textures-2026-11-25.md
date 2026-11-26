@@ -66,14 +66,33 @@ Series 1 on the real 5.12 client, one change per run. **[lab][cap]**
   distance-clip GameObjects, and the Sky's visible-distance field changes
   nothing visible. This is not a driver limit (confirmed on Mesa, not just
   GDI).
-- **Flags.** The first flag turns sky textures on; with it off, a solid
-  colour fills the sky. The second and third flags showed nothing when
-  looking up. Whether either turns on the bottom face is still being run.
-- **Scale.** The client's faces look about twice as magnified as a plain
-  cube box. Not explained yet.
-
-Still open: cloud layers, what limits the view distance, flags 2 and 3, and
-the magnification.
+- **Flags (resolved).** The sky line's three flag bits (`skyoptions b1 b2
+  b3`), run across all 8 combinations with the camera pitched down into the
+  box:
+  - **b1 = use-sky-textures** (known): on → faces textured; off → faces are
+    the solid `skysolidcolor`.
+  - **b2 = render-bottom-texture.** b2 alone draws the skybox **bottom**
+    face: whenever b2=1 the bottom is drawn (textured if b1=1, else solid
+    grey); whenever b2=0 the bottom is absent (sides only). The earlier "1 1
+    1 draws the bottom" was just a case of b2=1 — `0 1 0` draws it too.
+  - **b3 = no-render-bans.** **No visible effect** in any test: every b3=0
+    vs b3=1 pair (111/110, 011/010, 101/100, 001/000) rendered identically.
+    Likely a banding/dither toggle that doesn't show at these settings.
+- **"Scale" is the world visible-distance, not a skybox scale (resolved).**
+  The value on the sky line was tried at 50 / 500 / 50000 and the skybox
+  renders **identically** at every value — it does not resize the box, tile
+  the texture, or move the horizon. The skybox is at infinity; this field is
+  the world fog / visible distance (how far terrain and objects fade), the
+  same field discussed under "Visible distance and fog" above. (The earlier
+  "about twice magnified" impression was the fixed box projection, not a
+  scale control.)
+- **Clouds — not supported (resolved).** Adding a 7th texture entry
+  (`cloud1`) to the sky line makes the client **download** it ("File
+  download: cloud1 (size 31040) done") but **no cloud layer draws** — looking
+  up shows only the top face and nothing moves. The gserver leaves the Sky's
+  storm/cloud/wind sections clear (no cloud count/height/speed sent) and
+  there is no world-file field for cloud layers, so the extra texture is
+  fetched but unused. Clouds are not a supported feature on this path.
 
 ## Client fault
 

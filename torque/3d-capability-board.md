@@ -36,6 +36,9 @@ to the client from our own server only.
 
 ## Results so far
 
+- [Closing plan for the partly answered rows](3d-partial-rows-closing-plan-2026-11-26.md): the
+  remaining gap, closing method and batch for each of the 39 partly answered rows (2026-11-26).
+
 - [Script and terrain tools by build](script-and-terrain-tools-by-build.md): 3.153 still carries the
   TorqueScript compiler and Torque's full terrain generator; 4.04r2 and 5.12 drop the compiler and
   keep only a four-function `Terraformer` and the stock `TerrainEditor`, both registered as script
@@ -66,6 +69,19 @@ to the client from our own server only.
   and switchToOpenGL alone draws nothing (T3D-016, T3D-021, T3D-050, T3D-063, T3D-064).
 - [The original TerrainGenerator compared with servertools](terraingenerator-original-vs-servertools-2026-11-25.md)
   (T3D-043).
+- [The 3D engine DLL whole: client interface, net-event table, error paths, input](3d-engine-dll-interface-and-events-2026-11-26.md):
+  the four export entry points and the host-callback table the exe hands in (with the exact `graal_set*`
+  add/drop list per build); the 28-class / 9-networked-event table with per-event wire fields and
+  server-assigned ids (`RequestReload` and `TerrainRequestUpdates` the only client→server events); the
+  one `console.log` sink and which paths are fatal; input mapped to the client's `graalkeypressed` and
+  mouse-look (the move packet is written by `GraalEngine.dll`, not the 3D DLL); and Windows 4.20r8 is
+  byte-identical to 5.00r7/5.12 for the 3D wire (T3D-094, T3D-097, T3D-099, T3D-102, T3D-104, T3D-002).
+- [The 5.12 GS2 3D scripting surface, typed](gs2-3d-typed-surface-512-2026-11-26.md):
+  every 5.12 GS2 3D class, property and function with its argument and return types, read from the
+  `TGraalVar` registration tables — 35 classes, 418 members (`GameObject` = 23 typed properties + 26 typed
+  methods), the type codes, the 4.04r2 comparison (the stock camera/vehicle/control API is 4.04r2-only) and
+  the global functions (`castRay`/`get3Dobjects`/`getz`/sky setters) with arity; the exact call shapes for a
+  5.12 lab probe (T3D-096, and new rows T3D-121/T3D-122).
 
 ## Second batch (T3D-077 to T3D-092, 2026-11-25)
 
