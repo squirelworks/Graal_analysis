@@ -51,3 +51,9 @@ source = "[lab] T3D-108 (torque/3d-recovery-420r6-2026-11-25.md, 5.12-class Linu
 control = true
 alive = true
 source = "[lab] T3D-108"
+
+[expect."6.037F"]
+control = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

@@ -81,3 +81,11 @@ refuses_16 = true
 refuses_25 = true
 alive = true
 source = "[lab] torque/lab-2026-11-25-g3d-worlds.md (Linux 4.20: the same two console errors, the client stays up)"
+
+[expect."6.037F"]
+asks_v24 = "?"
+refuses_16 = "?"
+refuses_25 = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

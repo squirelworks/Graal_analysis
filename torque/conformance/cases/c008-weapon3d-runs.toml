@@ -66,3 +66,10 @@ compiled = false
 ready = false
 tick = false
 source = "[bin] T3D-121: no 3D link, so no weapon3d"
+
+[expect."6.037F"]
+compiled = false
+ready = "?"
+tick = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

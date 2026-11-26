@@ -72,3 +72,11 @@ control = true
 dark_red = true
 alive = true
 source = "[lab] torque/lab-2026-11-25-g3d-worlds.md: no Sky object, the background clears to flat dark red (128, 0, 0)"
+
+[expect."6.037F"]
+udp_link = "?"
+control = "?"
+dark_red = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

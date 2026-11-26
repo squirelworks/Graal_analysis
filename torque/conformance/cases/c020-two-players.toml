@@ -66,3 +66,12 @@ c2_sees_two = true
 c1_alive = true
 c2_alive = true
 source = "[lab] T3D-065 (other 5.12 players are G3DPlayer_<account>, cubes draw and move), T3D-075 (every player ghosted to every client, no scoping)"
+
+[expect."6.037F"]
+second_links = "?"
+c1_sees_two = "?"
+c2_sees_two = "?"
+c1_alive = "?"
+c2_alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

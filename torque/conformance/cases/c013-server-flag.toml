@@ -53,3 +53,9 @@ source = "unread for 4.20r8"
 compiled = false
 srvflag = false
 source = "[lab] seihai-gserver docs/GRAAL3D.md lab 2026-11-26 (server.labflag sent as events s and as set; the 3D script read it empty). If this turns PASS to FAIL, the gap has closed: update T3D-017 and the gserver doc"
+
+[expect."6.037F"]
+compiled = false
+srvflag = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

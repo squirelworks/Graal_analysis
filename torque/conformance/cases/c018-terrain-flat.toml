@@ -80,3 +80,12 @@ ground_textured = true
 ground_white = false
 alive = true
 source = "[lab] T3D-040, T3D-044 (torque/terrain-512.md; with graal3d_pushterrain the first visit is textured: seihai-gserver docs/GRAAL3D.md lab 2026-11-26)"
+
+[expect."6.037F"]
+terrain_request = "?"
+asks_info = "?"
+ground_textured = "?"
+ground_white = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

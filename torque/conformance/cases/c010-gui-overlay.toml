@@ -77,3 +77,11 @@ shown = true
 asks_image = true
 magenta = true
 source = "[lab] T3D-058"
+
+[expect."6.037F"]
+compiled = false
+shown = "?"
+asks_image = "?"
+magenta = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"
