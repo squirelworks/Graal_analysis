@@ -1,0 +1,55 @@
+id = "C044"
+slug = "no-exec-512"
+title = "5.12 has no way to run TorqueScript from GS2: no exec/eval/loadMission, no marker runs"
+rows = ["T3D-006", "T3D-007"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfCube conf_red.3ds 0 4 1
+playershape conf_red.3ds
+spawn 0 0 1
+"""
+files = ["conf_red.3ds", "conf_sky*"]
+scripts = ["probe_exec006.gs2"]
+note = "The lab also served .mis/.dso as object shapes (never requested; C007 covers served .cs/.ter) and placed markers beside the client and under levels3d (not something the runner does yet)"
+
+[run]
+seconds = 45
+
+[[check]]
+id = "compiled"
+kind = "server"
+pattern = "weapon3d ConfProbe: not compiled"
+
+[[check]]
+id = "no_exec"
+kind = "console"
+pattern = "Function exec not found"
+
+[[check]]
+id = "no_eval"
+kind = "console"
+pattern = "Function eval not found"
+
+[[check]]
+id = "ran_marker"
+kind = "console"
+pattern = "CONFORMANCE-MARKER-CS"
+
+[[check]]
+id = "done"
+kind = "probe"
+key = "done"
+value = "1"
+
+[expect."5.12"]
+compiled = false
+no_exec = true
+no_eval = true
+ran_marker = false
+done = true
+source = "[lab] batch W 2026-11-26 runs 006-local, 006-served (T3D-006). torque/3d-batch-w-rows-part2-2026-11-26.md"

@@ -431,7 +431,7 @@ def test_probe_reports_are_read_from_ignored_or_routed_trigger_lines():
 
 def test_v2_cases_get_v2_option_names(cases, tmp_path):
     v2 = [c for c in cases if c.server_kind == "v2"]
-    assert {c.id for c in v2} >= {"C038", "C039", "C040", "C041"}
+    assert {c.id for c in v2} >= {"C038", "C039", "C040", "C045"}
     for c in v2:
         add = (cf.build_world(c, tmp_path / "out") / "config" / "server.add").read_text()
         assert "graal3dtrace = g3d.tsv" in add and "graal3d_trace" not in add

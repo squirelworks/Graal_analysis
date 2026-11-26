@@ -200,7 +200,7 @@ from `gen_content.grass_rawobject`, checked bit for bit against the server's
 own replicator encoder. seihai-gserver-v2's 3D defences (`[server] kind =
 "v2"`): junk on the 3D ports (C038, T3D-142/144), a flood cut by the
 per-address budget (C039, T3D-143), five visits in a row (C040, T3D-145) and
-a texture claiming 100000 x 100000 refused at start-up (C041, T3D-119).
+a texture claiming 100000 x 100000 refused at start-up (C045, T3D-119).
 Impossible positions (NaN or huge coordinates, T3D-146) need a client that
 sends them and are not covered yet. C030 records the
 defaults and value formats of the core GameObject and SceneObject members

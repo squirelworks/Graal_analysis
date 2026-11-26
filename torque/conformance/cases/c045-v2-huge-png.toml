@@ -1,4 +1,4 @@
-id = "C041"
+id = "C045"
 slug = "v2-huge-png"
 title = "seihai-gserver-v2: a .3ds whose texture claims 100000 x 100000 is refused at start-up; the client draws the rest and keeps running"
 rows = ["T3D-119", "T3D-038"]

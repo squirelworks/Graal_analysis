@@ -1,0 +1,76 @@
+// Conformance probe (T3D-125): the typed GS2 3D functions on a live 5.12, each
+// with its declared argument types and with wrong-typed arguments. Each call's
+// return goes back as cf(<call>, <value>); "null" is no object, "obj:<name>"
+// an object. Positions are read before and after the calls that move things.
+//#CLIENTSIDE
+function onCreated() {
+  setTimer(4);
+}
+function onTimeout() {
+  this.n++;
+  if (this.n == 1) step1();
+  else if (this.n == 2) step2();
+  else if (this.n == 3) step3();
+  if (this.n < 3) setTimer(3);
+}
+function step1() {
+  temp.me = player;
+  cf("me", ov(temp.me));
+  cf("pos0", temp.me.position);
+  // getdropz(string) -> float
+  cf("getdropz_str", temp.me.getdropz(temp.me.position));
+  cf("getdropz_str_hi", temp.me.getdropz("0 0 50"));
+  cf("getdropz_cube", temp.me.getdropz("0 4 10"));
+  cf("getdropz_int", temp.me.getdropz(5));
+  cf("getdropz_word", temp.me.getdropz("abc"));
+  cf("getdropz_none", temp.me.getdropz());
+  // findimg(int) -> object
+  cf("findimg_int", ov(temp.me.findimg(1)));
+  cf("findimg_int200", ov(temp.me.findimg(200)));
+  cf("findimg_str", ov(temp.me.findimg("x")));
+  // checkCollisionByBox(string,string,string) -> object
+  cf("ccbox_str", ov(temp.me.checkCollisionByBox("-0.5 -0.5 0", "0.5 0.5 2", "0 4 1")));
+  cf("ccbox_str_far", ov(temp.me.checkCollisionByBox("-0.5 -0.5 0", "0.5 0.5 2", "0 0 500")));
+  cf("ccbox_num", ov(temp.me.checkCollisionByBox(1, 2, 3)));
+  cf("ccbox_none", ov(temp.me.checkCollisionByBox()));
+  // checkCollision(string,string) -> object, for comparison
+  cf("ccol_str", ov(temp.me.checkCollision("0 0 1", "0 8 1")));
+}
+function step2() {
+  temp.me = player;
+  // mountObject(object,int) -> bool, with a client-made GameObject
+  this.go = new GameObject("t125_go");
+  cf("newgo", ov(this.go));
+  cf("mount_ok", temp.me.mountObject(this.go, 0));
+  cf("mounted_count", temp.me.getMountedObjectCount());
+  cf("mounted0", ov(temp.me.getMountedObject(0)));
+  cf("go_ismounted", this.go.isMounted());
+  cf("unmount_ok", temp.me.unmountObject(this.go));
+  cf("mounted_count2", temp.me.getMountedObjectCount());
+  cf("mount_strobj", temp.me.mountObject("t125_go", 0));
+  cf("mount_strnode", temp.me.mountObject(this.go, "x"));
+  cf("mount_null", temp.me.mountObject(NULL, 0));
+  cf("mount_self", temp.me.mountObject(temp.me, 0));
+  cf("mounted_count3", temp.me.getMountedObjectCount());
+  // move3d(string,num,int) -> void
+  this.p1 = temp.me.position;
+  cf("pos1", this.p1);
+  temp.me.move3d("0 2 1", 1, 0);
+  cf("move3d_called", "1");
+}
+function step3() {
+  temp.me = player;
+  cf("pos2", temp.me.position);
+  cf("objtype", temp.me.objecttype());
+  temp.me.move3d(1, "a", "b");
+  cf("move3d_wrong_called", "1");
+  cf("movetype", temp.me.movetype);
+  cf("done", "1");
+}
+function ov(o) {
+  if (o == NULL) return "null";
+  return "obj:" @ o.name;
+}
+function cf(k, v) {
+  triggerserver("gui", "ConfProbe", "cf", k, v);
+}
