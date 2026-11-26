@@ -1,0 +1,83 @@
+id = "C033"
+slug = "cover-outside-box-r3"
+title = "Avatar outside the cover box, radius 3: a clump grows where the radius reaches back into the box"
+rows = ["T3D-048"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+terrain conf_ter 8
+replicator DynamicShapeReplicator 300 300 0 3 3 3 conf_red.3ds 1 -100 -100 100 100 scale=2
+playershape conf_nomat.3ds
+spawn 128 -128 1
+"""
+files = ["conf_nomat.3ds", "conf_red.3ds", "conf_sky*", "heights.info", "conf_ground.png"]
+terrain = ["conf_ter"]
+
+[server]
+options = ["graal3d_pushterrain = true"]
+
+[run]
+seconds = 75
+
+[[check]]
+id = "taken"
+kind = "server"
+pattern = "not understood"
+note = "Needs seihai-gserver #214 or later (replicator lines); an older server reports the line as not understood."
+
+[[check]]
+id = "asks_shape"
+kind = "server"
+pattern = "file conf_red\\.3ds: "
+note = "the client fetched the cover shape"
+
+[[check]]
+id = "cover_drawn"
+kind = "pixel"
+colour = [220, 0, 0]
+tol = 70
+min_fraction = 0.003
+note = "red cover copies on the ground around the avatar (the replicator itself is 300 units away)"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+taken = false
+asks_shape = false
+cover_drawn = false
+alive = "?"
+source = "[srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
+
+[expect."4.04r2"]
+taken = false
+asks_shape = false
+cover_drawn = false
+alive = "?"
+source = "[srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
+
+[expect."4.20r8"]
+taken = false
+asks_shape = "?"
+cover_drawn = "?"
+alive = "?"
+source = "unread for 4.20r8 (whose row may not take ground cover)"
+
+[expect."5.12"]
+taken = false
+asks_shape = true
+cover_drawn = true
+alive = true
+source = "[lab] torque/replicators-512.md: avatar at (128, -128), box of 100 each way: radius 2 grew one clump, radius 3 a patch near (88, -93); the exact rule is open"
+
+[expect."6.037"]
+taken = false
+asks_shape = false
+cover_drawn = false
+alive = true
+source = "T3D-121 (2D-only Quattro build, no 3D link)"
