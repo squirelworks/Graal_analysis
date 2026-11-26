@@ -463,12 +463,14 @@ npc-library/gs1-object-members-205r2.md	cited	8.2	8.2; E	Bindings, getters, runt
 npc-library/gs1-per-build-2026-11-13.md	cited	8.2; C	8.2; C	
 npc-library/gs1-reference-205.md	cited	8; 8.1; 8.2; 8.4; E	8	
 npc-library/gs1-signatures-205-followup.md	cited	8.2; E	8.2; E	Input identity and validation metadata retained in source note; stored letters and semantic limits carried in 8.2 and E#201.
+npc-library/gs2-official-emit-spec-2026-11-26.md	pending		8.3	behavioural spec of the official server-side GS2 compiler's output (variable cache, function-table order, narrow jumps), checked against 151 official captures; Seihai's compiler is written from it. To fold into 8.3 beside the strict-mode probes
 npc-library/gs2-strict-probes-2026-11-13.md	cited	8.3	8.3	
 npc-library/gs2-weapon-corpus-2026-11-14.md	cited	8; 8.3; E	8.3; E	
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	Historical corpus aggregates separated from current form support and selected own-VM object/numeric/member assertions in App. E#207; broader host/native acceptance remains open
 npc-library/linux-304-gs1-runtime.md	cited	8.1; E	8.1; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 npc-library/npcprop-class-v4-158-status.md	cited	2.5; 8	2.5; E	NPCPROP_CLASS vs PLI 158 on v4: GServer habit vs client isolate; research #55
 npc-library/preagonal-gs2.md	cited	8; 8.3	8.3	third-party MPL-2.0 GS2 compiler and VM (2026-11-07). §8.3 records only that it is a lead and that App. E#207 stays open. Opcode, scope, and timer detail stays in the note because it is not a reading of the clients
+npc-library/preagonal-gs2-dev-compare-2026-11-26.md	pending		8.3	Preagonal GS2Compiler dev (MPL-2.0) against gs2-parser and Seihai on 151 official captures; licence and provenance of each compiler. To fold into 8.3 beside preagonal-gs2.md
 npc-library/reference/forcesay.txt	excluded		8	a sample script; the manual does not reproduce script text
 npc-library/reference/npcControl-NPC.txt	excluded		8	one sample GRNPC001 server NPC file with default values; no format note backs it
 npc-library/scripts/README.md	excluded			original example scripts written for the repo, not evidence about Graal
