@@ -47,7 +47,7 @@ blank (not run yet). Observed `?` values are listed under each run in
 | [C035](cases/c035-grass-radius-floor.toml) | A radius-4 grass line on the server still draws grass: the server sends grass at radius 8 or more |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
 | [C036](cases/c036-grass-raw-radius-4.toml) | A grass object sent directly at radius 4, past the server's floor, draws no grass |  |  |  | FAIL: grass_drawn (2026-11-27) |  | PASS (2026-11-27) |
 | [C037](cases/c037-grass-raw-radius-8.toml) | The same direct grass object at radius 8 draws grass (the control for C036's raw encoding) |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
-| [C038](cases/c038-v2-udp-junk.toml) | seihai-gserver-v2: junk datagrams and connections on the 3D ports mid-session leave the server and the linked client running |  |  |  | FAIL: server_alive,red_drawn (2026-11-27) |  | PASS (2026-11-27) |
+| [C038](cases/c038-v2-udp-junk.toml) | seihai-gserver-v2: junk datagrams and connections on the 3D ports mid-session leave the server and the linked client running |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
 | [C039](cases/c039-v2-udp-flood.toml) | seihai-gserver-v2: a 2000-a-second flood at the 3D port is cut by the per-address budget, warned once, and the linked client keeps its link |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
 | [C040](cases/c040-v2-reconnect-churn.toml) | seihai-gserver-v2: five visits in a row on one server run each get a 3D link and the last still draws |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
 | [C041](cases/c041-terrain-near-gdi.toml) | 4.20r8 on GDI Generic GL: an empty TerrainBlock drawn from far is fine, from near it is a null call | n/a | n/a |  | PASS (2026-11-27) | n/a | n/a |
