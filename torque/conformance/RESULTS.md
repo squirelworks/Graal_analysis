@@ -37,3 +37,5 @@ blank (not run yet). Observed `?` values are listed under each run in
 | [C025](cases/c025-junk-on-3d-ports.toml) | Junk datagrams on the 3D UDP port and junk TCP connections mid-session: server and client survive |  |  |  |  |  |
 | [C026](cases/c026-typed-members.toml) | A slice of the typed GS2 3D member table called on a client-made GameObject: what each returns |  |  |  |  |  |
 | [C027](cases/c027-udp-flood.toml) | A 10-second flood of 2000 junk datagrams a second at the 3D port mid-session: server and client survive |  |  |  |  |  |
+| [C028](cases/c028-cache-refetch.toml) | A shape changed on the server between two visits, the client's cache kept: refetched (pink) or stale (red)? |  |  |  |  |  |
+| [C029](cases/c029-reconnect-churn.toml) | Five short visits in a row on one server run: each links, and the fifth still draws |  |  |  |  |  |
