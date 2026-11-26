@@ -196,7 +196,9 @@ cover box at radius 3 and 1 (C033, C034). Grass (T3D-048, needs
 seihai-gserver #218): a radius-4 grass line still draws, since the server
 sends grass at radius 8 or more (C035), while the same grass object sent
 directly as a `rawobject` at radius 4 draws none (C036) and at radius 8 draws
-(C037, the control that shows the raw encoding is right). The raw line comes
+(C037, the control that shows the raw encoding is right). Grass is detected by
+comparing the lower half of the screen with C046, the same world without the
+grass line, because no grass colour could be told from the terrain. The raw line comes
 from `gen_content.grass_rawobject`, checked bit for bit against the server's
 own replicator encoder. seihai-gserver-v2's 3D defences (`[server] kind =
 "v2"`): junk on the 3D ports (C038, T3D-142/144), a flood cut by the
