@@ -1,4 +1,4 @@
-id = "C033"
+id = "C043"
 slug = "editors-512"
 title = "WorldEditor/TerrainEditor/EditManager made by a 5.12 weapon: WorldEditor works on own objects, TerrainEditor cannot attach, nothing saved"
 rows = ["T3D-126", "T3D-020"]

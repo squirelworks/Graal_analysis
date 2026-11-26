@@ -308,9 +308,19 @@ def _read(rundir: Path, name: str) -> str | None:
 
 
 def probe_values(server_log: str, key: str) -> list[str]:
-    pat = re.compile(r"trigger ignored \(\"?gui\"?,\s*\"?" + PROBE_WEAPON + r"\"?,\s*\"?cf\"?,\s*\"?"
-                     + re.escape(key) + r"\"?,\s*\"?([^,)\"]*)")
-    return pat.findall(server_log)
+    """Every value reported for `key`. "trigger ignored (...)" before
+    seihai-gserver #214, which routes triggerserver("gui", ...) to the server
+    weapon and logs it as "trigger sent (...)"; any "trigger <word> (...)"
+    line is read. A value with spaces (a vector, a transform) reaches the
+    server as several trigger parameters, so everything after the key is the
+    value, its parameters joined again with spaces."""
+    pat = re.compile(r"trigger \w+ \(\"?gui\"?,\s*\"?" + PROBE_WEAPON + r"\"?,\s*\"?cf\"?,\s*\"?"
+                     + re.escape(key) + r"\"?(?:,([^)\n]*))?\)")
+    out = []
+    for rest in pat.findall(server_log):
+        parts = [p.strip().strip('"') for p in rest.split(",")] if rest else [""]
+        out.append(" ".join(parts))
+    return out
 
 
 def colour_blobs(path: Path, rgb: tuple, tol: int, min_pixels: int) -> list[int]:
@@ -402,6 +412,10 @@ def judge(case: Case, build: str, rundir: Path, exe: str = "") -> dict:
         want = exp.get(c.id, OBSERVE)
         got, detail = observe(c, rundir, exe)
         out["checks"][c.id] = {"expected": want, "observed": got, "detail": detail}
+        if c.kind == "probe":
+            vals = probe_values(_read(rundir, "gserver.log") or "", c.key)
+            if vals:
+                out["checks"][c.id]["value"] = vals[-1]
         if got is None:
             if want != OBSERVE:
                 missing.append(c.id)
@@ -502,7 +516,12 @@ def results_table(tsv: Path, cases: list[Case]) -> str:
 
 def append_result(tsv: Path, verdict: dict, date: str, server: str, client: str) -> None:
     new = not tsv.exists()
-    observed = ";".join(f"{k}={_fmt(v['observed'])}" for k, v in verdict["checks"].items()
+    def one(k, v):
+        text = f"{k}={_fmt(v['observed'])}"
+        if "value" in v:   # a probe's reported value, kept for the board
+            text += "(" + re.sub(r"[\t\n;()]", " ", v["value"])[:60] + ")"
+        return text
+    observed = ";".join(one(k, v) for k, v in verdict["checks"].items()
                         if v["expected"] == OBSERVE and v["observed"] is not None)
     with tsv.open("a", encoding="utf-8", newline="") as f:
         w = csv.writer(f, delimiter="\t", lineterminator="\n")

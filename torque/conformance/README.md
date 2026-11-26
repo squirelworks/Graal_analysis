@@ -72,7 +72,7 @@ Check kinds, each reading one artefact of the run:
 |---|---|---|
 | `trace` | the gserver's `graal3d_trace` file | `pattern` (a regex) matches |
 | `server` | the gserver log (`--verbose`: logins, file requests, control object) | `pattern` matches |
-| `probe` | the gserver log: a probe's `triggerserver("gui", "ConfProbe", "cf", key, value)` arrives as `trigger ignored (...)` | some report of `key` matches `value` |
+| `probe` | the gserver log: a probe's `triggerserver("gui", "ConfProbe", "cf", key, value)` arrives as `trigger ignored (...)`, or on seihai-gserver #214 and later, which routes it to the server weapon, as `trigger sent (...)` (any `trigger <word> (...)` line with the arguments is read) | some report of `key` matches `value` |
 | `console` | the client's console log(s) | `pattern` matches |
 | `files` | a listing of the client folder after the run | `pattern` matches |
 | `inject` | the output of the case's `inject-junk` or `inject-flood` mid action (`guest/junk.py` in the server VM) | `pattern` matches |
@@ -177,7 +177,10 @@ T3D-153/147), junk datagrams and connections on the 3D ports mid-session
 (C025, T3D-144/142), a 10-second junk flood at the 3D port (C027, T3D-143) and a slice of the typed GS2 member table on a live
 object (C026, T3D-150/125). Multi-session cases: a shape changed on the
 server between two visits with the cache kept (C028, T3D-155), and five
-visits in a row on one server run (C029, T3D-145). C030 records the
+visits in a row on one server run (C029, T3D-145). Ground cover (T3D-048,
+needs seihai-gserver #214 or later): the origin-cell dead spot (C031), cover
+around an avatar away from the replicator (C032), and an avatar outside the
+cover box at radius 3 and 1 (C033, C034). C030 records the
 defaults and value formats of the core GameObject and SceneObject members
 (position, scale, transform, rotation, vectors, boxes, velocity, the
 player's own object), which graal-client-repro needs to build its GS2 3D

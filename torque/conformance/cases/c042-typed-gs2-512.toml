@@ -1,4 +1,4 @@
-id = "C032"
+id = "C042"
 slug = "typed-gs2-512"
 title = "The typed GS2 3D calls on 5.12: arity checked, types coerced; self-mount + move3d kills the client"
 rows = ["T3D-125", "T3D-096"]

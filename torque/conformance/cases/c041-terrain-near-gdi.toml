@@ -1,4 +1,4 @@
-id = "C031"
+id = "C041"
 slug = "terrain-near-gdi"
 title = "4.20r8 on GDI Generic GL: an empty TerrainBlock drawn from far is fine, from near it is a null call"
 rows = ["T3D-079"]
