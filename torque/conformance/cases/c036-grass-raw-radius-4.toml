@@ -14,7 +14,7 @@ rawobject DynamicGrass f1 f0 str:ConfGrassRaw f0 f0 f0 f1 f32:20 f32:20 f32:0 f3
 playershape conf_nomat.3ds
 spawn 20 20 1
 """
-files = ["conf_nomat.3ds", "conf_sky*", "conf_ground.png", "conf_grass.png", "heights.info=heights_grass.info"]
+files = ["conf_nomat.3ds", "conf_sky*", "conf_ground.png", "conf_grass.png", "heights.info"]
 terrain = ["conf_ter"]
 
 [server]
@@ -40,10 +40,10 @@ note = "a raw object gets no radius floor and no start-up note"
 [[check]]
 id = "grass_drawn"
 kind = "pixel"
-colour = [255, 255, 255]
-tol = 50
+colour = [255, 0, 255]
+tol = 70
 min_fraction = 0.01
-note = "white grass quads on the tan terrain around the avatar, on the second visit (the pushed grass texture is cached by then)"
+note = "magenta grass quads on the tan terrain around the avatar, on the second visit (the pushed grass texture is cached by then); untextured grass would draw white and does not count"
 
 [[check]]
 id = "alive"
@@ -73,9 +73,10 @@ source = "[srv] gen_content.grass_rawobject: the replicator line's update bit fo
 [expect."5.12"]
 raw_ghosted = true
 floor_noted = false
-grass_drawn = false
+grass_drawn = "?"
 alive = true
 source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 4, sent as a rawobject, which the server does not floor; [lab] seihai-gserver #218: a 5.12 builds no grass quads at a radius under 8 cells (radius 4 drew nothing)"
+note = "grass_drawn is observed only: in the 2026-11-26 lab runs every frame was dominated by one colour (white, then the magenta grass texture over the whole ground once it was listed in heights.info), so the pixel check cannot yet tell grass from terrain"
 
 [expect."6.037"]
 raw_ghosted = false

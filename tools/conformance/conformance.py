@@ -253,6 +253,11 @@ def build_world(case: Case, out: Path, packs: dict[str, Path] | None = None) -> 
         for rel, data in gen_content.flat_terrain(folder).items():
             (root / rel).parent.mkdir(parents=True, exist_ok=True)
             (root / rel).write_bytes(data)
+        # seihai-gserver (#222 on) wants the terrain folder's own heights.info
+        # to be the one the clients get by its bare name, or it logs an error.
+        served = root / "files" / "heights.info"
+        if served.exists():
+            (root / folder / "heights.info").write_bytes(served.read_bytes())
     for dv in case.derive:
         pack = (packs or {}).get(dv["pack"])
         if pack is None:
