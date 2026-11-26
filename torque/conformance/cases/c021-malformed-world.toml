@@ -1,0 +1,124 @@
+id = "C021"
+slug = "malformed-world"
+title = "Broken graal3dworld lines are skipped and the rest of the world still links and draws"
+rows = ["T3D-154"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+playershape conf_nomat.3ds
+spawn 0 0 1
+object ConfCube conf_red.3ds 0 4 1
+object Short conf_red.3ds 0 4
+object NotANumber conf_red.3ds nan 4 1
+object Infinite conf_red.3ds 0 inf 1
+frobnicate 1 2 3
+sun 1 2 3
+replicator NoSuchReplicator 0 0 0 4 50 100 conf_tex.png
+"""
+files = ["conf_red.3ds", "conf_nomat.3ds", "conf_tex.png", "conf_sky*"]
+
+[run]
+seconds = 60
+
+[[check]]
+id = "skips_short"
+kind = "server"
+pattern = "line 7: object Short .*not understood"
+note = "a wrong word count is reported and dropped (seihai-gserver scene.rs)"
+
+[[check]]
+id = "skips_nan"
+kind = "server"
+pattern = "line 8: object NotANumber .*not understood"
+note = "a NaN coordinate is refused (only finite numbers are taken)"
+
+[[check]]
+id = "skips_inf"
+kind = "server"
+pattern = "line 9: object Infinite .*not understood"
+
+[[check]]
+id = "skips_unknown"
+kind = "server"
+pattern = "line 10: frobnicate .*not understood"
+
+[[check]]
+id = "skips_replicator"
+kind = "server"
+pattern = "line 12: .*not understood"
+
+[[check]]
+id = "udp_link"
+kind = "trace"
+pattern = "linked from"
+
+[[check]]
+id = "red_drawn"
+kind = "pixel"
+colour = [220, 0, 0]
+tol = 70
+min_fraction = 0.002
+note = "the good cube is still drawn"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+skips_short = true
+skips_nan = true
+skips_inf = true
+skips_unknown = true
+skips_replicator = true
+udp_link = true
+red_drawn = false
+alive = true
+source = "[srv] seihai-gserver src/graal3d/scene.rs (Scene::parse skips and reports each line it does not take, so the client only gets the good lines); [srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.04r2"]
+skips_short = true
+skips_nan = true
+skips_inf = true
+skips_unknown = true
+skips_replicator = true
+udp_link = true
+red_drawn = false
+alive = true
+source = "[srv] seihai-gserver src/graal3d/scene.rs (Scene::parse skips and reports each line it does not take, so the client only gets the good lines); [srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.20r8"]
+skips_short = true
+skips_nan = true
+skips_inf = true
+skips_unknown = true
+skips_replicator = true
+udp_link = true
+red_drawn = true
+alive = true
+source = "[srv] seihai-gserver src/graal3d/scene.rs (Scene::parse skips and reports each line it does not take, so the client only gets the good lines); C005 for the cube"
+
+[expect."5.12"]
+skips_short = true
+skips_nan = true
+skips_inf = true
+skips_unknown = true
+skips_replicator = true
+udp_link = true
+red_drawn = true
+alive = true
+source = "[srv] seihai-gserver src/graal3d/scene.rs (Scene::parse skips and reports each line it does not take, so the client only gets the good lines); C005 for the cube"
+
+[expect."6.037"]
+skips_short = true
+skips_nan = true
+skips_inf = true
+skips_unknown = true
+skips_replicator = true
+udp_link = false
+red_drawn = false
+alive = true
+source = "[srv] seihai-gserver src/graal3d/scene.rs (Scene::parse skips and reports each line it does not take, so the client only gets the good lines); T3D-121 (2D-only Quattro build, no 3D link)"

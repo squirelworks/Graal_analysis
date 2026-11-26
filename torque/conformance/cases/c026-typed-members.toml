@@ -1,0 +1,156 @@
+id = "C026"
+slug = "typed-members"
+title = "A slice of the typed GS2 3D member table called on a client-made GameObject: what each returns"
+rows = ["T3D-150", "T3D-125", "T3D-096"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_nomat.3ds", "conf_sky*"]
+scripts = ["probe_typed.gs2"]
+
+[run]
+seconds = 45
+
+[[check]]
+id = "compiled"
+kind = "server"
+pattern = "weapon3d ConfProbe: not compiled"
+note = "seihai-core could not compile the probe (expected false everywhere)"
+
+[[check]]
+id = "made"
+kind = "probe"
+key = "made"
+value = "1"
+
+[[check]]
+id = "done"
+kind = "probe"
+key = "done"
+value = "1"
+note = "the probe ran to its end without a script error"
+
+[[check]]
+id = "setget_position"
+kind = "probe"
+key = "getposition"
+value = "2 3 4.*"
+
+[[check]]
+id = "position_prop"
+kind = "probe"
+key = "position"
+value = "2 3 4.*"
+
+[[check]]
+id = "scale"
+kind = "probe"
+key = "getscale"
+value = "2 2 2.*"
+
+[[check]]
+id = "x_prop"
+kind = "probe"
+key = "x"
+value = "2(\\.0*)?"
+
+[[check]]
+id = "transform"
+kind = "probe"
+key = "transform"
+value = "2 3 4 .+"
+
+[[check]]
+id = "alpha"
+kind = "probe"
+key = "alpha"
+value = "0?\\.5.*"
+
+[[check]]
+id = "nickname"
+kind = "probe"
+key = "nickname"
+value = "conf"
+
+[[check]]
+id = "ismounted"
+kind = "probe"
+key = "ismounted"
+value = "0|false|"
+
+[expect."3.153"]
+compiled = false
+made = "?"
+done = "?"
+setget_position = "?"
+position_prop = "?"
+scale = "?"
+x_prop = "?"
+transform = "?"
+alpha = "?"
+nickname = "?"
+ismounted = "?"
+source = "unread: whether a protocol 19 build runs a GS2 weapon3d at all"
+
+[expect."4.04r2"]
+compiled = false
+made = "?"
+done = "?"
+setget_position = "?"
+position_prop = "?"
+scale = "?"
+x_prop = "?"
+transform = "?"
+alpha = "?"
+nickname = "?"
+ismounted = "?"
+source = "unread; the typed table is read for 5.12 only (T3D-096 counts 4.04r2)"
+
+[expect."4.20r8"]
+compiled = false
+made = "?"
+done = "?"
+setget_position = "?"
+position_prop = "?"
+scale = "?"
+x_prop = "?"
+transform = "?"
+alpha = "?"
+nickname = "?"
+ismounted = "?"
+source = "unread for 4.20r8"
+
+[expect."5.12"]
+compiled = false
+made = "?"
+done = "?"
+setget_position = "?"
+position_prop = "?"
+scale = "?"
+x_prop = "?"
+transform = "?"
+alpha = "?"
+nickname = "?"
+ismounted = "?"
+source = "[bin] T3D-096 types every member called here; open: T3D-150 / T3D-125 (whether they work live); C014 for new GameObject"
+
+[expect."6.037"]
+compiled = false
+made = false
+done = false
+setget_position = false
+position_prop = false
+scale = false
+x_prop = false
+transform = false
+alpha = false
+nickname = false
+ismounted = false
+source = "T3D-121 (no 3D link, so no weapon3d)"

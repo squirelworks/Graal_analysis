@@ -1,0 +1,99 @@
+id = "C027"
+slug = "udp-flood"
+title = "A 10-second flood of 2000 junk datagrams a second at the 3D port mid-session: server and client survive"
+rows = ["T3D-143", "T3D-142"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+playershape conf_nomat.3ds
+spawn 0 0 1
+object ConfCube conf_red.3ds 0 4 1
+"""
+files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*"]
+
+[run]
+seconds = 80
+mid_action = "inject-flood"
+
+[[check]]
+id = "injected"
+kind = "inject"
+pattern = "^udp sent [1-9][0-9]{3,}"
+note = "guest/junk.py ran in the server VM"
+
+[[check]]
+id = "server_alive"
+kind = "inject"
+pattern = "^gserver alive"
+note = "the gserver process outlives the junk"
+
+[[check]]
+id = "panic"
+kind = "server"
+pattern = "panicked"
+
+[[check]]
+id = "udp_link"
+kind = "trace"
+pattern = "linked from"
+
+[[check]]
+id = "red_drawn"
+kind = "pixel"
+colour = [220, 0, 0]
+tol = 70
+min_fraction = 0.002
+note = "the session still draws after the junk (the last screenshot is taken after it)"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+injected = true
+server_alive = "?"
+panic = false
+udp_link = true
+red_drawn = false
+alive = true
+source = "[srv] seihai-gserver src/graal3d/service.rs (Service::datagram drops unreadable datagrams from an address with no session; it has no per-address budget, which seihai-gserver-v2 #177 adds); whether the flood starves the client's link is open (T3D-143); [srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.04r2"]
+injected = true
+server_alive = "?"
+panic = false
+udp_link = true
+red_drawn = false
+alive = true
+source = "[srv] seihai-gserver src/graal3d/service.rs (Service::datagram drops unreadable datagrams from an address with no session; it has no per-address budget, which seihai-gserver-v2 #177 adds); whether the flood starves the client's link is open (T3D-143); [srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.20r8"]
+injected = true
+server_alive = true
+panic = false
+udp_link = true
+red_drawn = "?"
+alive = "?"
+source = "[srv] seihai-gserver src/graal3d/service.rs (Service::datagram drops unreadable datagrams from an address with no session; it has no per-address budget, which seihai-gserver-v2 #177 adds); whether the flood starves the client's link is open (T3D-143); the junk comes from the server VM's own address, not the client's, so the client's link should not see it"
+
+[expect."5.12"]
+injected = true
+server_alive = true
+panic = false
+udp_link = true
+red_drawn = "?"
+alive = "?"
+source = "[srv] seihai-gserver src/graal3d/service.rs (Service::datagram drops unreadable datagrams from an address with no session; it has no per-address budget, which seihai-gserver-v2 #177 adds); whether the flood starves the client's link is open (T3D-143); the junk comes from the server VM's own address, not the client's, so the client's link should not see it"
+
+[expect."6.037"]
+injected = true
+server_alive = true
+panic = false
+udp_link = false
+red_drawn = false
+alive = true
+source = "[srv] seihai-gserver src/graal3d/service.rs (Service::datagram drops unreadable datagrams from an address with no session; it has no per-address budget, which seihai-gserver-v2 #177 adds); whether the flood starves the client's link is open (T3D-143); T3D-121 (no 3D link)"

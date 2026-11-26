@@ -346,6 +346,17 @@ class Lab:
     def case_down(self):
         self.server.ssh(f"sh {self.root}/guest/case.sh down {self.root}", check=False)
 
+    def mid_action(self, case: cf.Case, rundir: Path):
+        """The case's action half way through a run."""
+        if case.mid_action == "stop-server":
+            self.stop_gserver()
+        elif case.mid_action in ("inject-junk", "inject-flood"):
+            port = self.conf.get("gserver_port", 14802)
+            mode = " flood" if case.mid_action == "inject-flood" else ""
+            out = self.server.ssh(f"python3 -I -u {self.root}/guest/junk.py {self.net['server_ip']} {port} "
+                                  f"{self.root}/gserver.pid{mode}", check=False)
+            (rundir / "inject.log").write_text(out)
+
     def stop_gserver(self):
         self.server.ssh(f"kill $(cat {self.root}/gserver.pid)", check=False)
 
@@ -400,8 +411,8 @@ def run_windows(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path,
         time.sleep(every)
         i += 1
         q.screendump(rundir / f"t{int(time.time() - t0):03d}.ppm")
-        if primary and case.mid_action == "stop-server" and not mid and time.time() - t0 > case.seconds / 2:
-            lab.stop_gserver()
+        if primary and case.mid_action and not mid and time.time() - t0 > case.seconds / 2:
+            lab.mid_action(case, rundir)
             mid = True
     q.screendump(rundir / "shot.ppm")
     steps(q, WIN_COLLECT_OPEN, subst)
@@ -428,8 +439,8 @@ def run_ssh_client(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path):
     mid = False
     while time.time() - t0 < case.seconds:
         time.sleep(float(lab.conf.get("shot_every", 10)))
-        if case.mid_action == "stop-server" and not mid and time.time() - t0 > case.seconds / 2:
-            lab.stop_gserver()
+        if case.mid_action and not mid and time.time() - t0 > case.seconds / 2:
+            lab.mid_action(case, rundir)
             mid = True
 
     def shot(out: Path):

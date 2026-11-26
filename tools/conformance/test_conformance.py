@@ -92,6 +92,8 @@ def test_build_world_writes_the_overlay(cases, tmp_path):
             w = line.split()
             if w and w[0] in ("object", "playershape"):
                 shape = w[2] if w[0] == "object" else w[1]
+                if shape.startswith("conf_missing"):
+                    continue   # left out on purpose (C022)
                 assert shape in served, f"{c.id}: {shape}"
             if w and w[0] == "terrain":
                 assert len(list((root / w[1]).glob("heights*-*.dat"))) == 256, c.id
@@ -320,3 +322,17 @@ def test_no_addresses_or_home_paths_in_the_suite():
             text = p.read_text(encoding="utf-8")
             assert not dotted.search(text), p
             assert not re.search(r"/home/(?!user\b|runner\b|<)[a-z]", text), p
+
+
+def test_grid_lines_centre_the_field():
+    lines = cf.grid_lines([{"name": "D", "shape": "conf_red.3ds", "nx": 2, "ny": 2, "step": 4, "z": 1}]).split("\n")
+    assert lines[:4] == ["object D0 conf_red.3ds -2 -2 1", "object D1 conf_red.3ds 2 -2 1",
+                         "object D2 conf_red.3ds -2 2 1", "object D3 conf_red.3ds 2 2 1"]
+
+
+def test_inject_checks_read_the_inject_log(tmp_path):
+    (tmp_path / "inject.log").write_text("udp sent 706\ntcp sent 5\ngserver alive\n")
+    chk = cf.Check(id="a", kind="inject", pattern="^gserver alive")
+    assert cf.observe(chk, tmp_path)[0] is True
+    (tmp_path / "inject.log").write_text("udp sent 706\ngserver gone\n")
+    assert cf.observe(chk, tmp_path)[0] is False
