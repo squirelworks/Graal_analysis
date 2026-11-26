@@ -55,3 +55,9 @@ source = "[lab] T3D-024 (torque/3d-server-time-timevar3-420r6-2026-11-26.md, run
 compiled = false
 tv3_advances = true
 source = "[lab] T3D-024"
+
+[expect."6.037F"]
+compiled = false
+tv3_advances = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

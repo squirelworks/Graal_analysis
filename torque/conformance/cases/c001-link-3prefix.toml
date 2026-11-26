@@ -103,3 +103,14 @@ control = false
 activated = false
 alive = "?"
 source = "[bin] T3D-121, T3D-132: the 6.03r7 client is the Quattro 2D engine with no Torque UDP side, so it never links; whether the packed retail build logs in to our gen-5 server at all is open"
+
+[expect."6.037F"]
+tcp_login = "?"
+udp_link = "?"
+protocol19 = "?"
+protocol24 = "?"
+control = "?"
+activated = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

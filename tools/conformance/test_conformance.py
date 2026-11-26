@@ -16,7 +16,7 @@ import conformance as cf  # noqa: E402
 import gen_content  # noqa: E402
 import run  # noqa: E402
 
-KNOWN_EXTRA_BUILDS = {"4.20r6L"}
+KNOWN_EXTRA_BUILDS = {"4.20r6L", "6.037F"}
 
 
 @pytest.fixture(scope="module")

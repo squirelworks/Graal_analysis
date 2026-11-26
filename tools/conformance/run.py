@@ -414,6 +414,10 @@ class VboxVm(Vm):
         vb("clonevm", c["vbox_base"], "--snapshot", c["vbox_snapshot"], "--options", "link",
            "--name", self.clone, "--basefolder", vb.conf["basefolder"], "--register")
         info = vb.out("showvminfo", self.clone, "--machinereadable")
+        if 'VMState="saved"' in info:
+            # a snapshot taken while running: the clone boots cold, so its
+            # NICs and memory can be set
+            vb("discardstate", self.clone)
         for line in info.splitlines():       # the base's own port forwards are not ours
             if line.startswith("Forwarding("):
                 for nic in ("natpf1", "natpf2"):
@@ -560,6 +564,19 @@ finally {{ $s.UnlockMachine() }}"""
             "  Start-Sleep 2",
             "}",
             "ipconfig /flushdns | Out-Null",
+        ]
+        if c.get("dhcp_reset"):
+            # A guest image left with a static address from another lab
+            # network takes the lab link's DHCP lease instead.
+            prep += [
+                "Get-NetAdapter -Physical | % { $i = $_.InterfaceAlias; "
+                "Get-NetIPAddress -InterfaceAlias $i -AddressFamily IPv4 -EA 0 | Remove-NetIPAddress -Confirm:$false -EA 0; "
+                "Remove-NetRoute -InterfaceAlias $i -Confirm:$false -EA 0; "
+                "Set-NetIPInterface -InterfaceAlias $i -Dhcp Enabled; "
+                "Set-DnsClientServerAddress -InterfaceAlias $i -ResetServerAddresses }",
+                "ipconfig /renew | Out-Null",
+            ]
+        prep += [
             # A guest that blocks outbound traffic by default may reach
             # the server VM, and only it.
             f"New-NetFirewallRule -DisplayName conf-lab-server -Direction Outbound -RemoteAddress {server} "
@@ -822,7 +839,7 @@ def run_windows_vbox(lab: Lab, vm: VboxVm, build: dict, case: cf.Case, rundir: P
     gone = ",".join(f"'{d}\\{x}'" for x in consoles + (build.get("clean", []) if clean_cache else []))
     vm.gx(f"Remove-Item {gone} -Recurse -Force -EA 0")
     subst = {"dir": d, "exe": exe, "args": build.get("args", ""), "server": lab.net["server_ip"]}
-    pid = vbox_launch(vm, d, exe)
+    pid, proc = vbox_client(vm, build, vbox_launch(vm, d, exe))
     vbox_steps(vm, build.get("vbox_postlaunch", []), subst)
     t0 = time.time()
     mid = False
@@ -834,8 +851,8 @@ def run_windows_vbox(lab: Lab, vm: VboxVm, build: dict, case: cf.Case, rundir: P
             lab.mid_action(case, rundir)
             mid = True
     vm.screendump(rundir / "shot.ppm")
-    vbox_tasks(vm, pid, exe, rundir)
-    vm.agent(f"killname {exe.rsplit('.', 1)[0]}")
+    vbox_tasks(vm, pid, proc, rundir)
+    vm.agent(f"killname {proc.rsplit('.', 1)[0]}")
     time.sleep(2)
     vbox_logs(vm, build, d, rundir)
 
@@ -858,6 +875,22 @@ def vbox_launch(vm: VboxVm, d: str, exe: str) -> int:
         time.sleep(1)
     log(f"{vm.name}: no pid for {d}\\{exe} in the agent log")
     return 0
+
+
+def vbox_client(vm: VboxVm, build: dict, pid: int) -> tuple[int, str]:
+    """(pid, name) of the client process. A build launched through a wrapper
+    script names the real client in `process`: its pid is the wrapper's
+    child of that name."""
+    proc = build.get("process")
+    if not proc:
+        return pid, build["exe"]
+    for _ in range(20):
+        out = vm.gx(f"Get-CimInstance Win32_Process -Filter \"ParentProcessId={pid} AND Name='{proc}'\" | % ProcessId")
+        if out.strip().isdigit():
+            return int(out.strip()), proc
+        time.sleep(1)
+    log(f"{vm.name}: no {proc} under pid {pid}")
+    return 0, proc
 
 
 def vbox_tasks(vm: VboxVm, pid: int, exe: str, rundir: Path):
@@ -909,11 +942,11 @@ def vbox_pair_one_guest(lab: Lab, vm: VboxVm, build: dict, case: cf.Case, rundir
                     for x in build.get("console", ["console.log"]) + build.get("clean", []))
     vm.gx(f"Remove-Item {gone} -Recurse -Force -EA 0")
     post = build.get("vbox_postlaunch", [])
-    pid1 = vbox_launch(vm, d1, exe)
+    pid1, proc = vbox_client(vm, build, vbox_launch(vm, d1, exe))
     vbox_steps(vm, post, {"dir": d1, "exe": exe})
     time.sleep(float(build.get("pair_delay", 25)))
     vbox_desktop_cmd(vm, build.get("pair_before", []))
-    pid2 = vbox_launch(vm, d2, exe)
+    pid2, _ = vbox_client(vm, build, vbox_launch(vm, d2, exe))
     vbox_steps(vm, post, {"dir": d2, "exe": exe})
     vbox_desktop_cmd(vm, build.get("pair_after", []))
     t0 = time.time()
@@ -923,9 +956,9 @@ def vbox_pair_one_guest(lab: Lab, vm: VboxVm, build: dict, case: cf.Case, rundir
         vm.screendump(rundir / f"t{int(time.time() - t0):03d}.png")
     vm.screendump(rundir / "shot.ppm")
     (c2 / "shot.ppm").write_bytes((rundir / "shot.ppm").read_bytes())
-    vbox_tasks(vm, pid1, exe, rundir)
-    vbox_tasks(vm, pid2, exe, c2)
-    vm.agent(f"killname {exe.rsplit('.', 1)[0]}")
+    vbox_tasks(vm, pid1, proc, rundir)
+    vbox_tasks(vm, pid2, proc, c2)
+    vm.agent(f"killname {proc.rsplit('.', 1)[0]}")
     time.sleep(2)
     vbox_logs(vm, build, d1, rundir)
     vbox_logs(vm, build, d2, c2)
@@ -1081,7 +1114,7 @@ def main(argv: list[str]) -> int:
                 time.sleep(2)
                 lab.case_down()
                 lab.pull(rundir)
-            v = cf.judge(case, b, rundir, bc.get("exe", ""))
+            v = cf.judge(case, b, rundir, bc.get("process", bc.get("exe", "")))
             (rundir / "verdict.json").write_text(json.dumps(v, indent=1) + "\n")
             log(f"{b} {case.id}: {v['verdict']} {' '.join(v.get('mismatches', []))}")
             if a.record:

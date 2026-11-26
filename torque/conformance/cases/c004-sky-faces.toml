@@ -67,3 +67,11 @@ asks_gif = false
 face_front = true
 alive = true
 source = "[lab] T3D-046 (face order, b1 = textured) and T3D-033 (extension dropped, bare request): torque/live-512-own-server-textures-2026-11-25.md"
+
+[expect."6.037F"]
+asks_bare = "?"
+asks_gif = "?"
+face_front = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

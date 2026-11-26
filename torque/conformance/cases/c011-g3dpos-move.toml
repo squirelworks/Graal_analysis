@@ -60,3 +60,10 @@ compiled = false
 asked = true
 moved = true
 source = "[lab] seihai-gserver docs/GRAAL3D.md lab 2026-11-26 (a compiled weapon3d g3dpos trigger moves the player; the 2D client sees it move); T3D-054"
+
+[expect."6.037F"]
+compiled = false
+asked = "?"
+moved = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

@@ -179,10 +179,14 @@ guest_password_file = '<lab-home>\private\<guest password file>'
 #               elevated = ['<guest set-up command run as administrator>']
 #               wait_year = <the year the guest clock must show, if held>
 #               guest_setup = ['<PowerShell line run by guest control after boot>']
+#               dhcp_reset = true  (the guest image has a static address from another network)
 #   builds:     pair_dir = '<a second copy of the build in the same guest>'
 #               (a two-client case with both clients in one guest, for a
 #               host without the memory for a second client VM; one
 #               screenshot then serves both clients' screenshot checks)
+#               process = '<client exe name>' (when `exe` is a wrapper script:
+#               the client is the wrapper's child of that name; alive checks,
+#               the kill and the judge use it)
 #               pair_before = ['<cmd line run as the desktop user before client 2>']
 #               pair_after = ['<cmd line run after client 2 has started>']
 #               (e.g. reg add lines giving client 2 its own account where

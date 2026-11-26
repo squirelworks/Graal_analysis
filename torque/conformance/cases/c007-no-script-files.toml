@@ -64,3 +64,11 @@ asks_ter = false
 ran_marker = false
 alive = true
 source = "[lab] T3D-011: .ter is never requested as a shape; [static] T3D-007: no compiler; .cs is not a shape the loaders know"
+
+[expect."6.037F"]
+asks_cs = "?"
+asks_ter = "?"
+ran_marker = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"
