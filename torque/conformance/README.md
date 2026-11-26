@@ -177,7 +177,11 @@ T3D-153/147), junk datagrams and connections on the 3D ports mid-session
 (C025, T3D-144/142), a 10-second junk flood at the 3D port (C027, T3D-143) and a slice of the typed GS2 member table on a live
 object (C026, T3D-150/125). Multi-session cases: a shape changed on the
 server between two visits with the cache kept (C028, T3D-155), and five
-visits in a row on one server run (C029, T3D-145). Their client-side answers are `?` until a lab
+visits in a row on one server run (C029, T3D-145). C030 records the
+defaults and value formats of the core GameObject and SceneObject members
+(position, scale, transform, rotation, vectors, boxes, velocity, the
+player's own object), which graal-client-repro needs to build its GS2 3D
+objects. Their client-side answers are `?` until a lab
 run records them. See [`EXPECTED.md`](EXPECTED.md).
 
 Next: terrain extent ramps (T3D-148), a seihai-gserver-v2 server option for

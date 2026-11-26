@@ -148,7 +148,9 @@ slots.
 - **GS2:** `@x` is text.
 - `a @= b` is: the place, `OP_COPY_LAST_OP`, `OP_CONV_TO_STRING`, `b` as text, `OP_JOIN`,
   `OP_ASSIGN`.
-- **GS2:** `obj.(@x)` converts `x`.
+- **GS2:** `obj.(@x)` converts `x`. When the name in brackets starts with text but goes on
+  (`obj.(@n - 1)`), the whole expression is converted to text instead.
+- **GS2:** the value of `x++` (the old value) is converted again where it is used.
 
 ## Other shapes
 
@@ -211,14 +213,29 @@ slots.
 - A statement that is only a name or `a.b` emits nothing. `destroy`, `hide`, `show` and
   `enableweapons` on their own are calls.
 
-Not reproduced, from the captures:
+## Lambda names
 
-- Lambda names (`function_<n>_1`). The same source captured twice got two numbers, so the
-  server numbers them itself; no compiler can match them.
-- One `for` test with `&&` (`temp.i > -1 && !temp.sel`) compiled as a value chain plus
-  `OP_INLINE_CONDITIONAL`. Preagonal matches it only with a pattern written for that one
-  expression, so the general rule is not known.
-- `a=1` inside a condition, which the official compiler reads with an unusual precedence.
+A lambda is named `function_<id>_<n>`. Every lambda in one compile has the same `id`, and
+`n` counts up from 1 in source order **[cap]**. The `id` is not taken from the source: the
+same source captured twice got 1038 and then 1044, and the other captures got 1164, 1183
+and 1184. It rises from one compile to the next, so it is a running count of the
+server's compiles **[cap]**. No compiler can predict it from the script alone. Seihai
+takes it as an input (`compile::Options::lambda_id`); a server passes its own count.
+
+## `=` in tests (GS2, legacy)
+
+- **`for` tests:** a test with `&&` or `||` is pushed as a value chain, then
+  `OP_INLINE_CONDITIONAL`, then `OP_IF` (both captured cases, for example
+  `temp.i > -1 && !temp.sel`). A test that is `x = v` stores, then `OP_CONV_TO_FLOAT`,
+  then `OP_IF`.
+- **`if` and `while` tests:** `=` compares, like `==`, also inside brackets:
+  `(a = 1) == 2`. A second `=` to the right of it stores, and binds loosely: `a = 1 && b = 2`
+  is `a == ((1 && b) = 2)`.
+- **Storing into a value that is not a place** (a result, not a name, member or element):
+  push the value, `OP_COPY_LAST_OP`, push what is stored, `OP_ASSIGN`.
+- **Conditionals:** the branch after `?` may store (`c ? b = 2 : …`). An `=` after the
+  branch after `:` stores into the whole conditional: `c ? b = 2 : d = 3` is
+  `(c ? b = 2 : d) = 3`.
 
 ## GS1 input
 
@@ -232,18 +249,21 @@ there is a capture to check against.
 Seihai's compiler on the 151 official captures **[cap][test]**. The first column is before
 this work, then after the cache and layout rules (seihai-core #163), the rules on logic
 chains, constants and conversions (#164), and the old names, left-out values, cache uses
-and labeled loops (#165).
+and labeled loops (#165), and the lambda number and the `=` rules above (#166, with
+each capture's lambda number given to the compiler).
 
-| | Before | #163 | #164 | #165 |
-| --- | ---: | ---: | ---: | ---: |
-| Byte-for-byte equal (legacy mode) | 0 | 54 | 113 | 144 |
-| Different | 137 | 90 | 31 | 6 |
-| Rejected by the compiler | 7 | 7 | 7 | 1 |
-| Byte-for-byte equal (strict mode) | 0 | 53 | 112 | 138 |
+| | Before | #163 | #164 | #165 | #166 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Byte-for-byte equal (legacy mode) | 0 | 54 | 113 | 144 | 151 |
+| Different | 137 | 90 | 31 | 6 | 0 |
+| Rejected by the compiler | 7 | 7 | 7 | 1 | 0 |
+| Byte-for-byte equal (strict mode) | 0 | 53 | 112 | 138 | 144 |
 
 The "Different" column for #163 counts 16 bodies with the same instructions as the
 official one, which differ only in operand widths, string order or a final `OP_RET`. Of
-the 6 different after #165, 5 differ only in a lambda's name.
+the 6 different after #165, 5 differ only in a lambda's name. Without the lambda number,
+#166 matches 146 in legacy mode; the other 5 differ only in that number. Strict mode
+rejects the 7 captures that rely on the legacy `=` readings.
 
 The variable-cache rules give the same slot list as the official body in all 1233
 functions of the 150 captures Seihai compiles (1113 of 1136 before #165). 85 of those
