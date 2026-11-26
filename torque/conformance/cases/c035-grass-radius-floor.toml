@@ -1,0 +1,93 @@
+id = "C035"
+slug = "grass-radius-floor"
+title = "A radius-4 grass line on the server still draws grass: the server sends grass at radius 8 or more"
+rows = ["T3D-048"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+terrain conf_ter 8
+replicator DynamicGrass 20 20 0 4 40 60 conf_grass.png 1 -1024 -1024 1024 1024
+playershape conf_nomat.3ds
+spawn 20 20 1
+"""
+files = ["conf_nomat.3ds", "conf_sky*", "conf_ground.png", "conf_grass.png", "heights.info=heights_grass.info"]
+terrain = ["conf_ter"]
+
+[server]
+options = ["graal3d_pushterrain = true"]
+
+[run]
+seconds = 60
+sessions = 2
+keep_cache = true
+
+[[check]]
+id = "taken"
+kind = "server"
+pattern = "not understood"
+note = "Needs seihai-gserver #218 or later (grass radius floor); an older server sends radius 4 as is."
+
+[[check]]
+id = "floor_noted"
+kind = "server"
+pattern = "radius 4 goes out as 8"
+note = "the start-up check says the grass line goes out at radius 8"
+
+[[check]]
+id = "grass_drawn"
+kind = "pixel"
+colour = [255, 255, 255]
+tol = 50
+min_fraction = 0.01
+note = "white grass quads on the tan terrain around the avatar, on the second visit (the pushed grass texture is cached by then)"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+taken = false
+floor_noted = true
+grass_drawn = false
+alive = "?"
+source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); [srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
+
+[expect."4.04r2"]
+taken = false
+floor_noted = true
+grass_drawn = false
+alive = "?"
+source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); [srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
+
+[expect."4.20r8"]
+taken = false
+floor_noted = true
+grass_drawn = false
+alive = "?"
+source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); [lab] torque/replicators-512.md: 4.20r8 takes a replicator ghost but grows no cover (GDI and Mesa)"
+
+[expect."5.12"]
+taken = false
+floor_noted = true
+grass_drawn = true
+alive = true
+source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); [lab] seihai-gserver #218: every grass line at radius 4 drew nothing and the same line at 8 drew a patch (Wine on Mesa)"
+
+[expect."6.037"]
+taken = false
+floor_noted = true
+grass_drawn = false
+alive = true
+source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); T3D-121 (2D-only Quattro build, no 3D link)"
+
+[expect."6.037F"]
+taken = false
+floor_noted = true
+grass_drawn = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

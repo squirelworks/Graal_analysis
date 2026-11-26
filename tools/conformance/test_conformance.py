@@ -84,7 +84,8 @@ def test_build_world_writes_the_overlay(cases, tmp_path):
             assert f"weapon3d {cf.PROBE_WEAPON} conf/{s}" in world
             assert (root / "conf" / s).exists()
         add = (root / "config" / "server.add").read_text()
-        assert "graal3d = true" in add and "graal3d_trace = g3d.tsv" in add
+        trace = "graal3dtrace = g3d.tsv" if c.server_kind == "v2" else "graal3d_trace = g3d.tsv"
+        assert "graal3d = true" in add and trace in add
         assert f"name = {c.lobby_name}" in add
         # every shape and sky texture the world names is served
         served = {p.name for p in (root / "files").iterdir()}
@@ -426,3 +427,54 @@ def test_probe_reports_are_read_from_ignored_or_routed_trigger_lines():
            "Graal3D: player 3: trigger sent (gui,ConfProbe,cf,done,1)\n")
     assert cf.probe_values(log, "made") == ["1"]
     assert cf.probe_values(log, "done") == ["1"]
+
+
+def test_v2_cases_get_v2_option_names(cases, tmp_path):
+    v2 = [c for c in cases if c.server_kind == "v2"]
+    assert {c.id for c in v2} >= {"C038", "C039", "C040", "C045"}
+    for c in v2:
+        add = (cf.build_world(c, tmp_path / "out") / "config" / "server.add").read_text()
+        assert "graal3dtrace = g3d.tsv" in add and "graal3d_trace" not in add
+    add = (cf.build_world(case(cases, "C001"), tmp_path / "out") / "config" / "server.add").read_text()
+    assert "graal3d_trace = g3d.tsv" in add
+
+
+def test_server_kind_is_checked(tmp_path):
+    src = case_path("C038").read_text(encoding="utf-8")
+    bad = tmp_path / "bad.toml"
+    bad.write_text(src.replace('kind = "v2"', 'kind = "v3"'), encoding="utf-8")
+    with pytest.raises(cf.CaseError, match="server.kind"):
+        cf.load_case(bad)
+    bad.write_text(src.replace('files = [', 'terrain = ["conf_ter"]\nfiles = ['), encoding="utf-8")
+    with pytest.raises(cf.CaseError, match="no terrain"):
+        cf.load_case(bad)
+
+
+def test_served_name_takes_another_generated_file(cases, tmp_path):
+    root = cf.build_world(case(cases, "C035"), tmp_path / "out")
+    assert (root / "files" / "heights.info").read_bytes() == b"conf_ground.png\nconf_grass.png\n"
+    assert not (root / "files" / "heights_grass.info").exists()
+
+
+def test_raw_grass_cases_carry_the_generated_line(cases):
+    for cid, r in (("C036", 4), ("C037", 8)):
+        line = gen_content.grass_rawobject("ConfGrassRaw", 20, 20, 0, r, 40, 60, "conf_grass.png")
+        assert line in case(cases, cid).world
+        assert f" u8:{r} u8:40 u8:60 " in line
+    # Every field is one rawobject accepts, and the update is 6 + 6 sign/int15
+    # pairs after the counts (the box), as seihai-gserver's Replicator::write.
+    for tok in line.split()[2:]:
+        assert re.fullmatch(r"f[01]|i\d+:-?\d+|u(8|16|32):\d+|f32:-?[\d.]+|str:\S+", tok), tok
+    assert line.count("i15:") == 6
+
+
+def test_huge_png_claims_its_size_with_a_valid_crc():
+    import zlib
+    d = gen_content.huge_png()
+    assert struct.unpack(">II", d[16:24]) == (100000, 100000)
+    assert struct.unpack(">I", d[29:33])[0] == zlib.crc32(d[12:29])
+    assert "conf_huge.png" in gen_content.files()["conf_huge.3ds"].decode("latin-1")
+
+
+def case_path(cid):
+    return next(p for p in cf.CASES.glob("*.toml") if tomllib.loads(p.read_text(encoding="utf-8"))["id"] == cid)

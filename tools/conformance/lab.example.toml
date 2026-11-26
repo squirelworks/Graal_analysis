@@ -7,6 +7,7 @@
 # go. Everything under it stays on the lab host.
 work = "<lab-home>/conformance/work"
 server_label = "seihai-gserver <commit>"   # goes into results.tsv
+server_label_v2 = "seihai-gserver-v2 <commit>"   # for [server] kind = "v2" cases
 gserver_port = 14802                       # the 3D UDP side is this + 1
 lobby_port = 14900                         # the port the client builds log in to first
 shot_every = 10                            # seconds between screenshots
@@ -60,6 +61,15 @@ base_world = "<lab-home>/labs/<t3d-lab>/worlds/base"
 # the VM), either copied in from the host or already in the VM:
 gserver_host = "<lab-home>/work/<build>/seihai-gserver"
 # gserver_vm = "seihai-gserver/target/release/seihai-gserver"   # relative to the VM user's home
+# Optional, for [server] kind = "v2" cases (seihai-gserver-v2's own 3D
+# defences): a v2 server folder to start from (a copy of bin/servers/default
+# with the lab accounts, foldersconfig "file 3d/*" and hq settings), and the
+# gs2emu binary built for the server VM, copied in or already there. The
+# runner merges each case's options into config/serveroptions.txt, puts its
+# files in world/3d/ and starts gs2emu in the folder.
+# base_world_v2 = "<lab-home>/labs/<t3d-lab>/worlds/v2"
+# gserver_v2_host = "<lab-home>/work/<v2-build>/gs2emu"
+# gserver_v2_vm = "seihai-gserver-v2/build/bin/gs2emu"
 
 # Client VMs. A Windows VM has only the lab link and is driven over QMP. Keep
 # the image's own NIC model and MAC so the guest keeps its network adapter.

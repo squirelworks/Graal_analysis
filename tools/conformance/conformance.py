@@ -51,6 +51,9 @@ import gen_content  # noqa: E402
 CORE_BUILDS = ["3.153", "4.04r2", "4.20r8", "5.12", "6.037"]
 CHECK_KINDS = {"trace", "server", "console", "files", "alive", "probe", "pixel", "blobs", "inject"}
 MID_ACTIONS = ("", "stop-server", "inject-junk", "inject-flood")
+# [server] kind: which server runs the case. seihai: seihai-gserver (the default);
+# v2: seihai-gserver-v2, for its own 3D defences (lab.toml gserver_v2_*).
+SERVER_KINDS = ("seihai", "v2")
 # Expected value of a check: true, false, or "?" (observe and record only).
 OBSERVE = "?"
 PROBE_WEAPON = "ConfProbe"
@@ -95,6 +98,7 @@ class Case:
     sessions: int
     keep_cache: bool
     between: list
+    server_kind: str
     checks: list[Check]
     expect: dict[str, dict]          # build -> {check id: True/False/"?", "source": str, "note": str}
     path: Path = field(default=Path())
@@ -158,13 +162,18 @@ def load_case(path: Path) -> Case:
             terrain=list(w.get("terrain", [])), derive=list(w.get("derive", [])),
             clients=int(r.get("clients", 1)), grid=list(w.get("grid", [])),
             sessions=int(r.get("sessions", 1)), keep_cache=bool(r.get("keep_cache", False)),
-            between=list(r.get("between", [])),
+            between=list(r.get("between", [])), server_kind=s.get("kind", "seihai"),
             checks=checks, expect=expect, path=path)
     except KeyError as e:
         raise CaseError(f"{path.name}: missing {e}") from None
     for dv in case.derive:
         if set(dv) != {"pack", "pick", "out", "version"} or dv["pack"] not in case.needs:
             raise CaseError(f"{path.name}: derive: pack (one of needs), pick, out, version")
+    if case.server_kind not in SERVER_KINDS:
+        raise CaseError(f"{path.name}: server.kind: one of {', '.join(SERVER_KINDS)}")
+    if case.server_kind == "v2" and (case.terrain or case.scripts):
+        raise CaseError(f"{path.name}: server.kind v2: no terrain or scripts yet (the runner lays out only "
+                        "the world file, options, flags and files for seihai-gserver-v2)")
     if case.clients not in (1, 2):
         raise CaseError(f"{path.name}: run.clients: 1 or 2")
     for c in case.checks:
@@ -223,17 +232,23 @@ def build_world(case: Case, out: Path, packs: dict[str, Path] | None = None) -> 
     for s in case.scripts:
         world += f"weapon3d {PROBE_WEAPON} conf/{s}\n"
     (root / "config" / "graal3dworld.txt").write_text(world, encoding="utf-8")
-    opts = ["graal3d = true", "graal3d_trace = g3d.tsv", f"name = {case.lobby_name}"]
+    if case.server_kind == "v2":
+        # seihai-gserver-v2 spells its options without the underscore.
+        opts = ["graal3d = true", "graal3dtrace = g3d.tsv", f"name = {case.lobby_name}"]
+    else:
+        opts = ["graal3d = true", "graal3d_trace = g3d.tsv", f"name = {case.lobby_name}"]
     (root / "config" / "server.add").write_text("\n".join(opts + case.server_options) + "\n", encoding="utf-8")
     if case.server_flags:
         (root / "config" / "serverflags.txt").write_text("\n".join(case.server_flags) + "\n", encoding="utf-8")
     content = gen_content.files()
     for name in case.files:
+        # "served=generated": serve a generated file under another name.
+        served, _, name = name.rpartition("=")
         matches = [n for n in content if re.fullmatch(name.replace(".", r"\.").replace("*", ".*"), n)]
-        if not matches:
+        if not matches or (served and len(matches) != 1):
             raise CaseError(f"{case.id}: no generated file matches {name}")
         for n in matches:
-            (root / "files" / n).write_bytes(content[n])
+            (root / "files" / (served or n)).write_bytes(content[n])
     for folder in case.terrain:
         for rel, data in gen_content.flat_terrain(folder).items():
             (root / rel).parent.mkdir(parents=True, exist_ok=True)
@@ -251,7 +266,7 @@ def build_world(case: Case, out: Path, packs: dict[str, Path] | None = None) -> 
         (root / "conf").mkdir(exist_ok=True)
         for s in case.scripts:
             (root / "conf" / s).write_bytes((SCRIPTS / s).read_bytes())
-    meta = {"id": case.id, "slug": case.slug, "title": case.title, "rows": case.rows,
+    meta = {"server_kind": case.server_kind, "id": case.id, "slug": case.slug, "title": case.title, "rows": case.rows,
             "seconds": case.seconds, "mid_action": case.mid_action, "needs": case.needs,
             "lobby_name": case.lobby_name, "clients": case.clients, "sessions": case.sessions}
     (root / "CASE.json").write_text(json.dumps(meta, indent=1) + "\n", encoding="utf-8")
