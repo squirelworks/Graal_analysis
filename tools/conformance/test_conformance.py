@@ -356,6 +356,6 @@ def test_multi_session_cases_swap_served_files(cases):
 
 def test_probe_reports_are_read_from_ignored_or_routed_trigger_lines():
     log = ("Graal3D: player 3: trigger ignored (gui,ConfProbe,cf,made,1)\n"
-           "Graal3D: player 3: trigger routed (gui,ConfProbe,cf,done,1)\n")
+           "Graal3D: player 3: trigger sent (gui,ConfProbe,cf,done,1)\n")
     assert cf.probe_values(log, "made") == ["1"]
     assert cf.probe_values(log, "done") == ["1"]
