@@ -115,7 +115,7 @@ field held. It is not a terrain gap (terrain draws at both spots) and does not m
 grid: a control at (−124, 132) is as dead as (4, 4), and only the player's spawn position
 (128, −128) has ever grown cover, on both the Peaks and the flat terrain. This matches the binary: each tick the grid is centred on the game connection's **control
 object** (the player avatar), read from its transform, not on the camera or the replicator, so
-cover grows where the avatar actually is, which in these tests was always the spawn (128, −128).
+cover grows where the avatar actually is, which in these tests was always the spawn (128, −128). A later run moved the spawn: with the avatar at (104, 4) and the replicator left at (4, 4), a full patch grew around the avatar and only the marker showed at (4, 4). But with the avatar spawned at (4, 4) itself, the same line still grew nothing there. So cover follows the avatar, and some spots, such as (4, 4) and (−124, 132), stay bare even with the avatar on them; why those spots are dead is still open. **[lab]**
 **[bin][lab]** So a box of (−1,−1) to (1,1)
 allows only the one cell whose corner is at the world origin; a server wanting cover over an area
 must send that area as the box, in world units. **[bin]**
@@ -129,7 +129,21 @@ Yet relaxing any single one of those three fields against a baseline that does g
 5 per cell, scale 3 at 128, −128) still grows — radius 1 alone, one-per-cell alone, scale 1 alone,
 and a wide box all still produce a carpet; only the three low values **together** yield nothing. So
 a renderer must not predict cubes for the all-minimum combination: the real client draws none,
-while the spawn position and any single relaxed field do draw. **[lab]**
+while the spawn position and any single relaxed field do draw. **[lab]** A follow-up bisection (pixels of cover from overhead, the marker excluded) **[lab]**:
+
+| Line | Cover |
+|---|---|
+| radius 1 + 1 per cell, scale 3 | grows (about 85k px, four clumps) |
+| radius 1 + scale 1, 5 per cell | grows (about 48k px) |
+| 1 per cell + scale 1, radius 4 | grows (about 81k px, many small cubes) |
+| minimum + 2 per cell | nothing |
+| minimum + scale 2 | nothing |
+| minimum + radius 2 | a couple of cubes (about 660 px) |
+
+So relaxing any two of the three restores growth, while a single step up from the minimum
+mostly does not; radius has the strongest effect. The rule behind this is still open: it may be
+a minimum number of copies near the avatar, or a few cells that each fail on their own, rather than a
+real threshold in the client **[inf]**.
 
 ## Live
 
