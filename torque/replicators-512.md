@@ -109,7 +109,10 @@ Placing each copy in a cell **[bin]**:
    `shapescalemax`. A min above its max is swapped first. The copy sits at the ground hit
    plus `offsetz`.
  Each object
-is then placed by casting rays onto the allowed surfaces. **[bin]** So a box of (−1,−1) to (1,1)
+is then placed by casting rays onto the allowed surfaces. **[bin]** Cover only fills around the control object's own spot: on one flat streamed terrain the same line
+grew a full carpet at the control object's (128, −128) but nothing at (4, 4), with every other
+field held, so the dead spot was the location, not any field. The mechanism for why one spot grows
+and another does not is not yet known. **[lab]** So a box of (−1,−1) to (1,1)
 allows only the one cell whose corner is at the world origin; a server wanting cover over an area
 must send that area as the box, in world units. **[bin]**
 
@@ -160,9 +163,13 @@ With a texture name (`lp_white.png`) in `shapefiles` and the same update, both g
 **draw**: many small flat pieces lying on the ground, over the same area the shapes covered,
 denser at 50 per cell than at 5. Under the GDI renderer they showed untextured. A 64×64 RGBA
 texture that is almost all transparent drew nothing visible. Both textures were already cached,
-and grass never asked the server for its texture. Under a full OpenGL renderer (Mesa llvmpipe)
+and grass never asked the server for its texture. When the server pushes the grass textures
+(`graal3dpushgrass`, on by default), the texture arrives over TCP right after the 3D link,
+quietly (no server log line); without it only `heights.info` is sent. Either way grass does not
+draw in the very first frame (that frame is untextured), only on a later visit once the texture
+is cached. **[lab]** Under a full OpenGL renderer (Mesa llvmpipe)
 the same runs draw a lit white patch with `lp_white.png`, and the nearly transparent texture
-draws as soft round glowing spots (whether upright or flat is not yet seen), so the empty GDI result was the renderer. **[lab]**
+draws as soft round glowing spots (short upright billboards that turn to face the camera, standing on the ground), so the empty GDI result was the renderer. **[lab]**
 
 On 4.20r8 the replicator ghost is created without a crash or error, but with the camera kept
 250 units up (to avoid 4.20r8's terrain crash) no cover was in frame. With the camera pitched down over the
