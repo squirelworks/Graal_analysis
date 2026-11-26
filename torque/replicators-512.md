@@ -101,8 +101,13 @@ Placing each copy in a cell **[bin]**:
 5. **Surface type.** When `surfacetype` is 0–31, the copy is also tested against the terrain
    material at that spot, with `surfaceexclusionmode` choosing whether that material is
    required or excluded **[inf]**.
-6. Then the copy is created, drawing its scale and rotation between the min and max vectors.
-   The order of those draws is not read yet.
+6. Then the copy is created (`DynamicShapeReplicator`), drawing in this order from the same
+   stream: a number whose remainder by the shape count picks the shape from `shapefiles`; for a
+   shape that is animated, one more number (`r mod 64 + 1`), used for its animation **[inf]**;
+   the rotation's z, y and x angles, each uniform between `shaperotatemin` and `shaperotatemax`
+   (degrees); then the scale's z, y and x, each uniform between `shapescalemin` and
+   `shapescalemax`. A min above its max is swapped first. The copy sits at the ground hit
+   plus `offsetz`.
  Each object
 is then placed by casting rays onto the allowed surfaces. **[bin]** So a box of (−1,−1) to (1,1)
 allows only the one cell whose corner is at the world origin; a server wanting cover over an area
@@ -155,10 +160,11 @@ With a texture name (`lp_white.png`) in `shapefiles` and the same update, both g
 **draw**: many small flat pieces lying on the ground, over the same area the shapes covered,
 denser at 50 per cell than at 5. Under the GDI renderer they showed untextured. A 64×64 RGBA
 texture that is almost all transparent drew nothing visible. Both textures were already cached,
-so whether grass fetches a missing texture is still open. **[lab]**
+and grass never asked the server for its texture. Under a full OpenGL renderer (Mesa llvmpipe)
+the same runs draw a lit white patch with `lp_white.png`, and the nearly transparent texture
+draws as soft round glowing spots (whether upright or flat is not yet seen), so the empty GDI result was the renderer. **[lab]**
 
 On 4.20r8 the replicator ghost is created without a crash or error, but with the camera kept
 250 units up (to avoid 4.20r8's terrain crash) no cover was in frame. With the camera pitched down over the
 ground around the player (radius 8, scale 10) still nothing grew, against the same view without
-the replicator. So 4.20r8 takes the ghost but grows no cover under GDI; a full OpenGL renderer
-may differ. **[lab]**
+the replicator. So 4.20r8 takes the ghost but grows no cover, under GDI and under Mesa alike. **[lab]**

@@ -23,6 +23,7 @@ Seihai's profile has no `three_d` for those builds.
 | Local `.ter` terrain | yes *assumed* | yes | yes | no *assumed* | no *assumed* | no *assumed* | no | no *assumed* |
 | Streamed terrain chunks | no | yes | yes | yes | yes on Mesa (lab); crashes with the camera 150 units or less above the ground only under basic GDI GL | yes | yes (lab) | yes (lab) |
 | Fetches terrain textures | no | yes, asks for `heights.info` (lab) | yes *assumed* | yes *assumed* | no: terrain draws white (lab) | yes *assumed* | yes, one visit late (lab) | yes (lab) |
+| Grows ground cover (replicators) | no *assumed* | no *assumed* | no *assumed* | yes *assumed* | no: takes the ghost, draws nothing (lab) | yes *assumed* | yes (lab) | yes *assumed* |
 | TorqueScript | compiles | compiles | none | none *assumed* | none | none *assumed* | none | none *assumed* |
 | Runs script a server sends | no *assumed* | no | no | no *assumed* | no | no *assumed* | no | no *assumed* |
 | Terraformer | full | full | greyscale only | greyscale *assumed* | greyscale *assumed* | greyscale *assumed* | greyscale only | greyscale *assumed* |
@@ -126,9 +127,12 @@ but only 24 is known to draw: v24 bodies relabelled 17 to 22 hung or crashed and
 Two 4.20r8 differences from 5.12 are recorded here rather than as fields, because nothing on the
 server or in Ato depends on them ([live-512-shapes-2026-11-25.md](../torque/live-512-shapes-2026-11-25.md)):
 
-- Under the VM's basic Windows OpenGL (GDI Generic), 4.20r8 draws no textures at all (a textured
-  `.3ds` stays white, the sky is a grey gradient), where 5.12 draws both. This is a driver limit, so
-  4.20r8's texture behaviour has to be read on Mesa or a real GPU.
+- Under the VM's basic Windows OpenGL (GDI Generic), 4.20r8 draws no textures at all (the sky is a
+  grey gradient), where 5.12 draws them. Under Mesa llvmpipe it still draws a textured `.3ds`
+  white: it downloads each texture (saved without an extension) but never applies it, also with
+  the texture planted as `.png` or without an extension (PR #951). No field gates this, because
+  the server sends `.3ds` shapes to every build that reads them; a world for 4.20r8 should use
+  untextured or DTS shapes.
 - 4.20r8 caches downloads in subfolders named by the file's prefix (`images/lp/lp_white`,
   `sky/sky_...`); 5.12 keeps them flat in `levels3d/images` with only `sky/` as a subfolder. The
   server serves the same names either way.
