@@ -53,10 +53,13 @@ slots.
 
 - **What counts as a reference:** a plain name (`x`, `player`, `client`, `level`); `this.x`,
   `thiso.x` and `temp.x`; the name of a script or host call; `this.f(...)` and
-  `thiso.f(...)` as `this.f`. `this`, `thiso`, `temp`, `playero`, `pi`, `true`, `false`,
-  `null` and `NULL` on their own are not.
+  `thiso.f(...)` as `this.f`; the variable of a `for (x : …)` loop, as a use inside the
+  loop; the list of `x in this.list`; and a bare `this` that owns a run-time member
+  (`this.(name)`, `this.(name)(…)`). `this`, `thiso`, `temp`, `playero`, `pi`, `true`,
+  `false`, `null` and `NULL` on their own are not otherwise.
 - **What is not searched:** `with` bodies, `new … { }` blocks, `@` texts, the arguments of
-  opcode built-ins (all but `pow`, whose arguments do count), and the inline methods
+  opcode built-ins (all but `pow`, whose arguments do count) and of `float(…)` and
+  `_(…)`, statements left out as unused values (below), and the inline methods
   `size type indices link index length substring pos charat starts ends trim tokenize
   positions subarray clear add delete insert remove replace lower upper`.
 - **Which names get a slot:** a name referenced five times or more in the function, or at
@@ -70,14 +73,17 @@ slots.
   then `OP_INDEX_DEC`.
 - **Uses:** every later push of that name is 46 with the slot number.
 - A bare name first seen as `temp.x` uses the `temp.x` slot. `for (temp.x : …)` makes the
-  bare name `x` mean `temp.x` from there on.
+  bare name `x` mean `temp.x` from there on, slot included, even where `x` had a slot of
+  its own before the loop.
 - The cache is not used inside `with` bodies, `new` blocks, opcode built-in arguments,
   inline method operands, or a dynamic member name.
 
 ## Instructions
 
 - `OP_CMD_CALL` comes after `OP_JMP` only when the body contains a call. `format`, the
-  inline methods and `new T` without call arguments are not calls.
+  inline methods, `float(…)`, `_(…)` and `new T` without call arguments are not calls. A
+  `function () { … }` value whose body calls something counts as a call of the function
+  it stands in.
 - A member owner gets `OP_CONV_TO_OBJECT`, unless it is a root pushed by its own opcode
   (`this`, `thiso`, `player`, `playero`, `level`, `temp`) and not loaded from a slot. An
   indexed read always gets `OP_CONV_TO_OBJECT` before a further index or member.
@@ -95,7 +101,9 @@ slots.
 - `params` is `OP_PARAMS` (190); `NULL` is `OP_TYPE_NULL`.
 - `for (… : …)` drops three values at its end.
 - A function ends with `return 0` (`OP_TYPE_NUMBER 0`, `OP_RET`) unless its last statement
-  is a `return`.
+  is a `return`. An `if`/`else` whose branches all return still gets one.
+- Every copy of a function on an object (`obj.f` written twice) is kept, each with its own
+  table entry.
 
 ## Logic chains
 
@@ -170,15 +178,47 @@ slots.
   - A plain `onServerListerConnect` also gets a `universe.onServerListerConnect` entry at
     the same start, placed among the entries on an object in source order.
 
-Seen in the captures and not yet written into Seihai:
+## Old names and short forms (GS2)
 
-- old GS1 names used in GS2 (`playerx` to `player.x`, `playerreading`, `imgwidth`);
-- folding enum members and key constants (`A.B`, `VK_LEFT`) to their value;
-- some `OP_CMD_CALL` placements;
-- a few cache slot orders;
-- a cached bare `this`;
-- `float` casts;
-- lambda names (`function_<n>_1`).
+- `playerx`, `playery`, `playerreading` (and **[read]** `playerz`, `playerdir`) are
+  `player.x` and so on.
+- `imgwidth(…)` and `imgheight(…)` take the text between their brackets as it is written
+  (leading blanks dropped, quotes kept) and call `getimgwidth` / `getimgheight` with it.
+- `sarraylen(a)` pushes the text `a`, then `OP_OBJ_FROM_STR`, `OP_CONV_TO_OBJECT`,
+  `OP_OBJ_SIZE`.
+- `Enum.MEMBER` is the member's value. `VK_LEFT` is 37 (**[read]** `VK_UP` 38, `VK_RIGHT`
+  39, `VK_DOWN` 40, `VK_DELETE` 46).
+- `s.lower()` and `s.upper()` are calls of `lowercase` and `uppercase` on `s` as text.
+- `float(x)` is `x` with `OP_CONV_TO_FLOAT` (unless it is a number already), and its
+  result is converted again where a number is needed. `_(x)` converts `x` to text before
+  `OP_TRANSLATE`.
+- `obj.link()` is `OP_CONV_TO_OBJECT`, `OP_OBJ_LINK`. `a.indices(v)` pushes `a` as an
+  object, then `v`.
+- `x in |a, b|` converts both bounds to numbers; `x` is left as it is. `!(x in list)` is
+  not converted before `OP_NOT`. A `?:` whose two branches are text is still converted.
+- `new T() { … }` with no name pushes `OP_TYPE_VAR unknown_object` where the name goes,
+  with no `OP_INLINE_NEW`.
+- `xor` is `OP_BWX`, `~` is `OP_BWI`; `^=`, `<<=` and `>>=` work like `+=`. `f(x += 1)`
+  passes the new value; on an element it stores, then reads the element again.
+- Labeled loops: `outer: for …` and `outer: while …`, with `break outer;` (to the end of
+  that loop) and `continue outer;` (to its step).
+
+## Values that are left out (GS2)
+
+- A statement that is only a built-in giving a value (`sin(…)`, `int(…)`, `float(…)`,
+  `s.trim()`, `s.size()` and the like, not `waitfor`, `sleep` or `setarray`) emits
+  nothing, arguments included, so a call inside it does not add `OP_CMD_CALL`.
+- A statement that is only a name or `a.b` emits nothing. `destroy`, `hide`, `show` and
+  `enableweapons` on their own are calls.
+
+Not reproduced, from the captures:
+
+- Lambda names (`function_<n>_1`). The same source captured twice got two numbers, so the
+  server numbers them itself; no compiler can match them.
+- One `for` test with `&&` (`temp.i > -1 && !temp.sel`) compiled as a value chain plus
+  `OP_INLINE_CONDITIONAL`. Preagonal matches it only with a pattern written for that one
+  expression, so the general rule is not known.
+- `a=1` inside a condition, which the official compiler reads with an unusual precedence.
 
 ## GS1 input
 
@@ -190,19 +230,21 @@ there is a capture to check against.
 ## Checked against the captures
 
 Seihai's compiler on the 151 official captures **[cap][test]**. The first column is before
-this work, the second is after the cache and layout rules (seihai-core #163), and the third
-adds the rules on logic chains, constants and conversions (seihai-core #164).
+this work, then after the cache and layout rules (seihai-core #163), the rules on logic
+chains, constants and conversions (#164), and the old names, left-out values, cache uses
+and labeled loops (#165).
 
-| | Before | #163 | #164 |
-| --- | ---: | ---: | ---: |
-| Byte-for-byte equal (legacy mode) | 0 | 54 | 113 |
-| Different | 137 | 90 | 31 |
-| Rejected by the compiler | 7 | 7 | 7 |
-| Byte-for-byte equal (strict mode) | 0 | 53 | 112 |
+| | Before | #163 | #164 | #165 |
+| --- | ---: | ---: | ---: | ---: |
+| Byte-for-byte equal (legacy mode) | 0 | 54 | 113 | 144 |
+| Different | 137 | 90 | 31 | 6 |
+| Rejected by the compiler | 7 | 7 | 7 | 1 |
+| Byte-for-byte equal (strict mode) | 0 | 53 | 112 | 138 |
 
 The "Different" column for #163 counts 16 bodies with the same instructions as the
-official one, which differ only in operand widths, string order or a final `OP_RET`.
+official one, which differ only in operand widths, string order or a final `OP_RET`. Of
+the 6 different after #165, 5 differ only in a lambda's name.
 
-The variable-cache rules give the same slot list as the official body in 1113 of 1136
-functions in the 144 readable captures. 82 of those captures use the cache. Seihai's reader
-now reads all 151 (it refused 8 before, all on `OP_IN_RANGE`'s operand).
+The variable-cache rules give the same slot list as the official body in all 1233
+functions of the 150 captures Seihai compiles (1113 of 1136 before #165). 85 of those
+captures use the cache. Seihai's reader reads all 151.
