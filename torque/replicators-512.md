@@ -109,41 +109,41 @@ Placing each copy in a cell **[bin]**:
    `shapescalemax`. A min above its max is swapped first. The copy sits at the ground hit
    plus `offsetz`.
  Each object
-is then placed by casting rays onto the allowed surfaces. **[bin]** Cover only fills around the control object's own spot: on one flat streamed terrain the same line
-grew a full carpet at the control object's (128, −128) but nothing at (4, 4), with every other
-field held. It is not a terrain gap (terrain draws at both spots) and does not mirror across the
-grid: a control at (−124, 132) is as dead as (4, 4), and only the player's spawn position
-(128, −128) has ever grown cover, on both the Peaks and the flat terrain. This matches the binary: each tick the grid is centred on the game connection's **control
-object** (the player avatar), read from its transform, not on the camera or the replicator, so
-cover grows where the avatar actually is, which in these tests was always the spawn (128, −128). A later run moved the spawn: with the avatar at (104, 4) and the replicator left at (4, 4), a full patch grew around the avatar and only the marker showed at (4, 4). But with the avatar spawned at (4, 4) itself, the same line still grew nothing there. So cover follows the avatar, and some spots, such as (4, 4) and (−124, 132), stay bare even with the avatar on them; why those spots are dead is still open. **[lab]**
-**[bin][lab]** So a box of (−1,−1) to (1,1)
+is then placed by casting rays onto the allowed surfaces. **[bin]** Each tick the grid is centred on the game connection's **control object** (the player avatar),
+read from its transform, not on the camera or the replicator. **[bin]** Live, on flat streamed terrain with a wide box, cover grows around the avatar wherever it spawns:
+at (128, −128), at (104, 4) and at (−124, 132), whether the replicator object is next to the avatar, far away at (−300, −300), or hidden 500 units up. **[lab]**
+Two things stopped it in earlier runs:
+
+- **The avatar at (4, 4).** With the avatar spawned at (4, 4), nothing grows, wherever the replicator is. The likely cause is that (4, 4) snaps to grid cell (0, 0), the same cell the grid starts on, so the client never sees the avatar change cell and never fills the grid **[inf]**. Untested so far: other spots inside cell (0, 0), and walking into or out of it.
+- **The replicator object on the spot.** (−124, 132) stayed bare while the replicator object sat on it, and grew a full patch once the replicator moved to (104, 4). Why the replicator's own spot blocks cover is still open. **[lab]**
+
+A box of (−1,−1) to (1,1)
 allows only the one cell whose corner is at the world origin; a server wanting cover over an area
 must send that area as the box, in world units. **[bin]**
 
-Growth also has a lower bound on the parameters, separate from position. A minimal
-`DynamicShapeReplicator` — radius 1 cell, one object per cell, shape scale 1 — grows **no** visible
-cover anywhere: nothing at the avatar spawn (128, −128) and nothing at (4, 4), with the box at
-z ±10 and again at z ±100, leaving only the replicator's own marker shape. It is not a
-too-small-to-see artifact: forcing that same minimal line to scale 8 still grows only the marker.
-Yet relaxing any single one of those three fields against a baseline that does grow (radius 4,
-5 per cell, scale 3 at 128, −128) still grows — radius 1 alone, one-per-cell alone, scale 1 alone,
-and a wide box all still produce a carpet; only the three low values **together** yield nothing. So
-a renderer must not predict cubes for the all-minimum combination: the real client draws none,
-while the spawn position and any single relaxed field do draw. **[lab]** A follow-up bisection (pixels of cover from overhead, the marker excluded) **[lab]**:
+Cover grows only in cells that are both within `radius` cells of the avatar and inside the
+**world-coordinate** box (corner x and y). An earlier reading of a "lower bound on the parameters"
+came from this. With the avatar at (128, −128) and a box of ±100, the avatar is outside the box,
+so only cells that `radius` reaches back into the box can grow. From the minimal line (radius 1,
+one object per cell, scale 1) at that spot **[lab]**:
 
-| Line | Cover |
+| Change from the minimum | Cover (overhead pixels, marker excluded) |
 |---|---|
-| radius 1 + 1 per cell, scale 3 | grows (about 85k px, four clumps) |
-| radius 1 + scale 1, 5 per cell | grows (about 48k px) |
-| 1 per cell + scale 1, radius 4 | grows (about 81k px, many small cubes) |
-| minimum + 2 per cell | nothing |
-| minimum + scale 2 | nothing |
-| minimum + radius 2 | a couple of cubes (about 660 px) |
+| none | none |
+| radius 2 / 3 / 4 | about 660 / 3,500 / 4,700 |
+| per cell 2, 3 or 5 | none |
+| scale 2, 3 or 5 | none |
 
-So relaxing any two of the three restores growth, while a single step up from the minimum
-mostly does not; radius has the strongest effect. The rule behind this is still open: it may be
-a minimum number of copies near the avatar, or a few cells that each fail on their own, rather than a
-real threshold in the client **[inf]**.
+Only radius adds cover, gradually, as it reaches further into the box. Count and scale change
+density and size inside cells that are already reachable, but they don't extend the reach. But
+the reach doesn't match a plain "cells within `radius` of the avatar's cell" rule. At radius 3
+the cubes sat near world (88, −93), inside the box but about 53 units from the avatar, beyond a
+three-cell reach of 24 units. Radius 2 already grew one clump, and radius 1 grew none. How the
+grid centre and the box interact is still open; one untested guess is that the centre is clamped
+into the box first. **[lab][inf]** With the avatar inside the box the plain rule holds: in a run with a ±1024 box and the avatar at (128, −128), every cube at radius 1 and 2 sat within 0.4 units of the predicted cell positions, with none outside the predicted cells. So the open case is only an avatar outside the box. **[lab]** The earlier pair
+results (radius 1 with 1 per cell and scale 3, and so on) used the wider ±256 box with the
+avatar inside it, so they grew as expected. A clean count/scale check with the avatar inside the
+box is still to be run.
 
 ## Live
 
