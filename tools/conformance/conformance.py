@@ -49,7 +49,8 @@ import gen_content  # noqa: E402
 # The five builds the suite is written for, in table order. A case may name
 # others (e.g. "4.20r6L", the Linux 4.20 G3D22126); they get their own column.
 CORE_BUILDS = ["3.153", "4.04r2", "4.20r8", "5.12", "6.037"]
-CHECK_KINDS = {"trace", "server", "console", "files", "alive", "probe", "pixel", "blobs"}
+CHECK_KINDS = {"trace", "server", "console", "files", "alive", "probe", "pixel", "blobs", "inject"}
+MID_ACTIONS = ("", "stop-server", "inject-junk", "inject-flood")
 # Expected value of a check: true, false, or "?" (observe and record only).
 OBSERVE = "?"
 PROBE_WEAPON = "ConfProbe"
@@ -90,6 +91,10 @@ class Case:
     terrain: list[str]
     derive: list[dict]
     clients: int
+    grid: list
+    sessions: int
+    keep_cache: bool
+    between: list
     checks: list[Check]
     expect: dict[str, dict]          # build -> {check id: True/False/"?", "source": str, "note": str}
     path: Path = field(default=Path())
@@ -151,7 +156,9 @@ def load_case(path: Path) -> Case:
             lobby_name=s.get("lobby_name", "3 Conformance"), seconds=int(r.get("seconds", 60)),
             mid_action=r.get("mid_action", ""), needs=list(d.get("needs", [])),
             terrain=list(w.get("terrain", [])), derive=list(w.get("derive", [])),
-            clients=int(r.get("clients", 1)),
+            clients=int(r.get("clients", 1)), grid=list(w.get("grid", [])),
+            sessions=int(r.get("sessions", 1)), keep_cache=bool(r.get("keep_cache", False)),
+            between=list(r.get("between", [])),
             checks=checks, expect=expect, path=path)
     except KeyError as e:
         raise CaseError(f"{path.name}: missing {e}") from None
@@ -163,8 +170,16 @@ def load_case(path: Path) -> Case:
     for c in case.checks:
         if c.client > case.clients:
             raise CaseError(f"{path.name}: check {c.id}: client {c.client} of {case.clients}")
-    if case.mid_action not in ("", "stop-server"):
-        raise CaseError(f"{path.name}: run.mid_action: '' or stop-server")
+    if case.mid_action not in MID_ACTIONS:
+        raise CaseError(f"{path.name}: run.mid_action: one of {', '.join(map(repr, MID_ACTIONS))}")
+    if not 1 <= case.sessions <= 8 or (case.sessions > 1 and case.clients != 1):
+        raise CaseError(f"{path.name}: run.sessions: 1 to 8, single-client cases only")
+    for b in case.between:
+        if set(b) != {"swap", "with"}:
+            raise CaseError(f"{path.name}: run.between: swap, with (served file names)")
+    for g in case.grid:
+        if set(g) - {"name", "shape", "nx", "ny", "step", "z"} or not {"name", "shape", "nx", "ny"} <= set(g):
+            raise CaseError(f"{path.name}: world.grid: name, shape, nx, ny (step, z)")
     return case
 
 
@@ -182,6 +197,20 @@ def load_cases(only: set[str] | None = None) -> list[Case]:
 
 # ------------------------------------------------------------------ worlds
 
+def grid_lines(grids: list) -> str:
+    """`[[world.grid]]`: nx by ny object lines named <name><i>, `step` apart
+    and centred on the origin at height `z` (object density cases)."""
+    out = []
+    for g in grids:
+        nx, ny, step, z = int(g["nx"]), int(g["ny"]), float(g.get("step", 3)), float(g.get("z", 1))
+        for j in range(ny):
+            for i in range(nx):
+                x = (i - (nx - 1) / 2) * step
+                y = (j - (ny - 1) / 2) * step
+                out.append(f"object {g['name']}{j * nx + i} {g['shape']} {x:g} {y:g} {z:g}")
+    return "".join(line + "\n" for line in out)
+
+
 def build_world(case: Case, out: Path, packs: dict[str, Path] | None = None) -> Path:
     """Write the case's world overlay under out/<id>/: config/graal3dworld.txt,
     config/server.add (lines appended to the base world's server.txt),
@@ -190,7 +219,7 @@ def build_world(case: Case, out: Path, packs: dict[str, Path] | None = None) -> 
     root = out / case.id
     (root / "config").mkdir(parents=True, exist_ok=True)
     (root / "files").mkdir(exist_ok=True)
-    world = case.world.strip() + "\n"
+    world = case.world.strip() + "\n" + grid_lines(case.grid)
     for s in case.scripts:
         world += f"weapon3d {PROBE_WEAPON} conf/{s}\n"
     (root / "config" / "graal3dworld.txt").write_text(world, encoding="utf-8")
@@ -224,7 +253,7 @@ def build_world(case: Case, out: Path, packs: dict[str, Path] | None = None) -> 
             (root / "conf" / s).write_bytes((SCRIPTS / s).read_bytes())
     meta = {"id": case.id, "slug": case.slug, "title": case.title, "rows": case.rows,
             "seconds": case.seconds, "mid_action": case.mid_action, "needs": case.needs,
-            "lobby_name": case.lobby_name, "clients": case.clients}
+            "lobby_name": case.lobby_name, "clients": case.clients, "sessions": case.sessions}
     (root / "CASE.json").write_text(json.dumps(meta, indent=1) + "\n", encoding="utf-8")
     return root
 
@@ -341,7 +370,7 @@ def observe(check: Check, rundir: Path, exe: str = "") -> tuple[bool | None, str
         ok = re.search(re.escape(name), tasks, re.I) is not None
         return ok, f"{name} {'running' if ok else 'not running'} at the end"
     src = {"trace": "g3d.tsv", "server": "gserver.log", "probe": "gserver.log",
-           "console": "console.txt", "files": "files.txt"}[check.kind]
+           "console": "console.txt", "files": "files.txt", "inject": "inject.log"}[check.kind]
     text = _read(rundir, src)
     if text is None:
         # No trace file at all means the server never traced a link.
@@ -355,7 +384,10 @@ def observe(check: Check, rundir: Path, exe: str = "") -> tuple[bool | None, str
             return False, f"probe {check.key}: no report"
         ok = any(re.fullmatch(check.value, v) for v in vals)
         return ok, f"probe {check.key} = {','.join(vals[:4])}"
-    m = re.search(check.pattern, text, re.M)
+    found = list(re.finditer(check.pattern, text, re.M))
+    if check.count > 1:
+        return len(found) >= check.count, f"{len(found)} matches of {check.pattern!r} (want {check.count})"
+    m = found[0] if found else None
     return m is not None, (f"matched: {m.group(0)[:80]!r}" if m else f"no match for {check.pattern!r}")
 
 

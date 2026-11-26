@@ -48,9 +48,14 @@ playershape in 3D. **[lab]**
 Two scripting notes: `findobject("G2DPlayer_<acct>")` returns 0, but the **direct
 name reference** (`G2DPlayer_<acct>.nickname`) resolves — the object is reachable
 by name, not via `findobject`. And with the 5.12 3D player in the level, the
-2.22's **level-NPC timeouts did not run** (standalone they did): old Graal runs
-level timeouts only on the **level leader**, which here is the 3D player — a
-gotcha for mixed-level GS1 NPCs. **[lab]**
+2.22's **level-NPC timeouts did not run** on #209 (standalone they did): old Graal
+runs level timeouts only on the **level leader**, which here was the 3D player.
+This turned out to be a **server gap, fixed in seihai-gserver #211** (a 2D player
+now gets `PLO_ISLEADER` when the leader links 3D, when it enters a level a 3D
+player leads, and on any hand-off); re-verified on #211 the 2.22's timeouts run
+with a 5.12 in the level in both join orders (see
+[the multi-client coexistence note](3d-multiclient-coexistence-066-072-211-512-2026-11-26.md)).
+**[lab]**
 
 ## T3D-054 — movetype, as the 2D observer sees it
 

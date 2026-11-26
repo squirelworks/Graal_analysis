@@ -1,0 +1,90 @@
+id = "C029"
+slug = "reconnect-churn"
+title = "Five short visits in a row on one server run: each links, and the fifth still draws"
+rows = ["T3D-145", "T3D-129"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfCube conf_red.3ds 0 4 1
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*"]
+
+[run]
+seconds = 30
+sessions = 5
+
+[[check]]
+id = "five_links"
+kind = "trace"
+pattern = "linked from"
+count = 5
+note = "the server traced a 3D link for each visit"
+
+[[check]]
+id = "five_logins"
+kind = "server"
+pattern = "logged in as player"
+count = 5
+
+[[check]]
+id = "panic"
+kind = "server"
+pattern = "panicked"
+
+[[check]]
+id = "red_drawn"
+kind = "pixel"
+colour = [220, 0, 0]
+tol = 70
+min_fraction = 0.002
+note = "the last visit still draws the world"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+five_links = "?"
+five_logins = true
+panic = false
+red_drawn = false
+alive = true
+source = "[srv] seihai-gserver closes a session's 3D state when its link drops (T3D-129: one drop and rejoin); five in a row is open (T3D-145); [srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.04r2"]
+five_links = "?"
+five_logins = true
+panic = false
+red_drawn = false
+alive = true
+source = "[srv] seihai-gserver closes a session's 3D state when its link drops (T3D-129: one drop and rejoin); five in a row is open (T3D-145); [srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.20r8"]
+five_links = "?"
+five_logins = true
+panic = false
+red_drawn = "?"
+alive = true
+source = "[srv] seihai-gserver closes a session's 3D state when its link drops (T3D-129: one drop and rejoin); five in a row is open (T3D-145)"
+
+[expect."5.12"]
+five_links = "?"
+five_logins = true
+panic = false
+red_drawn = "?"
+alive = true
+source = "[srv] seihai-gserver closes a session's 3D state when its link drops (T3D-129: one drop and rejoin); five in a row is open (T3D-145)"
+
+[expect."6.037"]
+five_links = false
+five_logins = "?"
+panic = false
+red_drawn = false
+alive = true
+source = "T3D-121 (2D-only Quattro build, no 3D link)"

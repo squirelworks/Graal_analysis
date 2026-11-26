@@ -1,0 +1,76 @@
+id = "C023"
+slug = "density-256"
+title = "256 red cubes in one world: does the client fetch, ghost and draw them all and keep its link?"
+rows = ["T3D-153", "T3D-147"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*"]
+grid = [{ name = "Dense", shape = "conf_red.3ds", nx = 16, ny = 16, step = 2.5, z = 1 }]
+
+[run]
+seconds = 90
+
+[[check]]
+id = "udp_link"
+kind = "trace"
+pattern = "linked from"
+
+[[check]]
+id = "asks_shape"
+kind = "server"
+pattern = "file conf_red\\.3ds: "
+
+[[check]]
+id = "red_drawn"
+kind = "pixel"
+colour = [220, 0, 0]
+tol = 70
+min_fraction = 0.02
+note = "a field of cubes fills much more of the screen than C005's one"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+udp_link = true
+asks_shape = false
+red_drawn = false
+alive = true
+source = "[srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.04r2"]
+udp_link = true
+asks_shape = false
+red_drawn = false
+alive = true
+source = "[srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.20r8"]
+udp_link = true
+asks_shape = true
+red_drawn = "?"
+alive = "?"
+source = "open: T3D-153 / T3D-147 (the object ceiling) are unanswered; recorded, not judged; C005 for the fetch"
+
+[expect."5.12"]
+udp_link = true
+asks_shape = true
+red_drawn = "?"
+alive = "?"
+source = "open: T3D-153 / T3D-147 (the object ceiling) are unanswered; recorded, not judged; C005 for the fetch"
+
+[expect."6.037"]
+udp_link = false
+asks_shape = false
+red_drawn = false
+alive = true
+source = "T3D-121 (2D-only Quattro build, no 3D link)"

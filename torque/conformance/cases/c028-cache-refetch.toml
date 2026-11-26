@@ -1,0 +1,84 @@
+id = "C028"
+slug = "cache-refetch"
+title = "A shape changed on the server between two visits, the client's cache kept: refetched (pink) or stale (red)?"
+rows = ["T3D-155"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfCube conf_red.3ds 0 4 1
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_red.3ds", "conf_red_v2.3ds", "conf_nomat.3ds", "conf_sky*"]
+
+[run]
+seconds = 50
+sessions = 2
+keep_cache = true
+between = [{ swap = "conf_red.3ds", with = "conf_red_v2.3ds" }]
+
+[[check]]
+id = "asked_twice"
+kind = "server"
+pattern = "file conf_red\\.3ds: "
+count = 2
+note = "the second visit asks for the shape again (counts every request over both visits)"
+
+[[check]]
+id = "pink_drawn"
+kind = "pixel"
+colour = [255, 150, 200]
+tol = 70
+min_fraction = 0.002
+note = "the second visit draws the new (pink) cube"
+
+[[check]]
+id = "red_drawn"
+kind = "pixel"
+colour = [220, 0, 0]
+tol = 70
+min_fraction = 0.002
+note = "the second visit still draws the cached red cube"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+asked_twice = false
+pink_drawn = false
+red_drawn = false
+alive = true
+source = "[srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.04r2"]
+asked_twice = false
+pink_drawn = false
+red_drawn = false
+alive = true
+source = "[srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.20r8"]
+asked_twice = "?"
+pink_drawn = "?"
+red_drawn = "?"
+alive = true
+source = "open: T3D-155 (what keys the 3D cache: name, version or modification time) is unanswered; recorded, not judged; C005 for the fetch and draw"
+
+[expect."5.12"]
+asked_twice = "?"
+pink_drawn = "?"
+red_drawn = "?"
+alive = true
+source = "open: T3D-155 (what keys the 3D cache: name, version or modification time) is unanswered; recorded, not judged; C005 for the fetch and draw"
+
+[expect."6.037"]
+asked_twice = false
+pink_drawn = false
+red_drawn = false
+alive = true
+source = "T3D-121 (2D-only Quattro build, no 3D link)"

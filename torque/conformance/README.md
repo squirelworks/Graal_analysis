@@ -41,6 +41,7 @@ object ConfCube conf_red.3ds 0 0 1
 """
 files = ["conf_red.3ds", "conf_sky*"]      # generated content to serve (gen_content.py)
 scripts = []                               # probes, sent as weapon3d ConfProbe
+grid = []                                  # [{name, shape, nx, ny, step, z}]: nx x ny object lines
 
 [server]                                   # optional
 options = []                               # extra server.txt lines
@@ -48,8 +49,11 @@ flags = []                                 # config/serverflags.txt lines
 lobby_name = "3 Conformance"               # the name the lobby warps to
 
 [run]
-seconds = 60
-mid_action = ""                            # or "stop-server" half way
+seconds = 60                               # per session
+sessions = 1                               # >1: relaunch the client on the same server run
+keep_cache = false                         # true: keep the client's download cache between sessions
+between = []                               # [{swap, with}]: served files swapped before each later session
+mid_action = ""                            # or "stop-server" / "inject-junk" / "inject-flood" half way
 
 [[check]]
 id = "red_drawn"
@@ -71,9 +75,15 @@ Check kinds, each reading one artefact of the run:
 | `probe` | the gserver log: a probe's `triggerserver("gui", "ConfProbe", "cf", key, value)` arrives as `trigger ignored (...)` | some report of `key` matches `value` |
 | `console` | the client's console log(s) | `pattern` matches |
 | `files` | a listing of the client folder after the run | `pattern` matches |
+| `inject` | the output of the case's `inject-junk` or `inject-flood` mid action (`guest/junk.py` in the server VM) | `pattern` matches |
 | `alive` | the guest's process list just before the client is closed | the client's exe is still running (no crash) |
 | `pixel` | the last screenshot | at least `min_fraction` of the screen is within `tol` of `colour` |
 | `blobs` | the last screenshot | at least `count` separate regions of `colour`, each of `min_pixels` or more (e.g. two players' cubes) |
+
+A text check (`trace`, `server`, `console`, `files`, `inject`) with `count = N`
+is true when the pattern matches at least N times. In a multi-session case the
+last session's client artefacts are judged (earlier ones stay in `s1`, `s2`,
+...), and the server log and trace span every session.
 
 A check with `client = 2` reads the second client's artefacts in a two-client
 case (`[run] clients = 2`); the server log and trace are shared.
@@ -160,10 +170,18 @@ the UDP link (C001, C002), Sky (C003, C004), shapes and textures (C005, C006),
 what is never fetched (C007), and the GS2 surface in 3D through probes
 (C008 to C014), plus a server drop (C015). Second batch: the `.dts` and `.dif`
 version bounds from a content pack (C016, C017), a flat streamed terrain
-(C018) and water (C019), and the first two-client case (C020). See
-[`EXPECTED.md`](EXPECTED.md).
+(C018) and water (C019), and the first two-client case (C020). Third batch,
+from the T3D-142 to T3D-156 round: broken world lines (C021) and
+out-of-range objects (C022, T3D-154/146), 256 and 1024 objects (C023, C024,
+T3D-153/147), junk datagrams and connections on the 3D ports mid-session
+(C025, T3D-144/142), a 10-second junk flood at the 3D port (C027, T3D-143) and a slice of the typed GS2 member table on a live
+object (C026, T3D-150/125). Multi-session cases: a shape changed on the
+server between two visits with the cache kept (C028, T3D-155), and five
+visits in a row on one server run (C029, T3D-145). Their client-side answers are `?` until a lab
+run records them. See [`EXPECTED.md`](EXPECTED.md).
 
-Next: malformed shapes from the graal-client-repro fuzz sets (T3D-038), the
+Next: terrain extent ramps (T3D-148), a seihai-gserver-v2 server option for
+its 3D defences, malformed shapes from the graal-client-repro fuzz sets (T3D-038), the
 camera and movetype (T3D-023, T3D-055), mixed-build pairs and a 2D client
 beside a 3D one (T3D-071 to T3D-073), and a runner backend for the Windows
 lab host's VMs.
