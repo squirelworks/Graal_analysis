@@ -111,8 +111,11 @@ Placing each copy in a cell **[bin]**:
  Each object
 is then placed by casting rays onto the allowed surfaces. **[bin]** Cover only fills around the control object's own spot: on one flat streamed terrain the same line
 grew a full carpet at the control object's (128, −128) but nothing at (4, 4), with every other
-field held, so the dead spot was the location, not any field. The mechanism for why one spot grows
-and another does not is not yet known. **[lab]** So a box of (−1,−1) to (1,1)
+field held. It is not a terrain gap (terrain draws at both spots) and does not mirror across the
+grid: a control at (−124, 132) is as dead as (4, 4), and only the player's spawn position
+(128, −128) has ever grown cover, on both the Peaks and the flat terrain. The leading guess is
+that the grid centres on the networked control object (the player avatar at its spawn), not on
+the camera or the replicator, so cover grows where the avatar actually is **[inf]**. **[lab]** So a box of (−1,−1) to (1,1)
 allows only the one cell whose corner is at the world origin; a server wanting cover over an area
 must send that area as the box, in world units. **[bin]**
 
@@ -167,9 +170,11 @@ and grass never asked the server for its texture. When the server pushes the gra
 (`graal3dpushgrass`, on by default), the texture arrives over TCP right after the 3D link,
 quietly (no server log line); without it only `heights.info` is sent. Either way grass does not
 draw in the very first frame (that frame is untextured), only on a later visit once the texture
-is cached. **[lab]** Under a full OpenGL renderer (Mesa llvmpipe)
+is cached. Holding the grass ghosts back by up to 10 s after the rest of the world
+(`graal3dgrassdelay`) does not change this, which points at the client building its grass once at
+mission load **[inf]**. **[lab]** Under a full OpenGL renderer (Mesa llvmpipe)
 the same runs draw a lit white patch with `lp_white.png`, and the nearly transparent texture
-draws as soft round glowing spots (short upright billboards that turn to face the camera, standing on the ground), so the empty GDI result was the renderer. **[lab]**
+draws as soft round glowing spots, so the empty GDI result was the renderer. A ground-level close-up shows the grass pieces are flat-to-tilted quads lying on the ground at per-piece random yaw and tilt (their top faces foreshorten), not upright or camera-facing cards; each is on the order of a metre across at scale 1, and raising the scale enlarges the quad in both width and height. **[lab]**
 
 On 4.20r8 the replicator ghost is created without a crash or error, but with the camera kept
 250 units up (to avoid 4.20r8's terrain crash) no cover was in frame. With the camera pitched down over the
