@@ -42,6 +42,11 @@ animates toward it and list snaps to it. (`interpolate`, seen earlier, glides
 smoothly in step with the move — the same family as rigid.)
 
 The other-screen view of the glide-vs-jump (how a second client sees the
-moving player) was not captured here — the Wine 2D client was too flaky to
-observe reliably; it needs a stable second client. The trace distinction
-above stands on its own.
+moving player) is now captured with a stable 2D client (a real 2.22 under
+Wine/Xvfb watching the 3D player's `g3dpos` moves): on the **2D** screen both
+`rigid` and `list` appear as **jumps** — the sprite snaps to the target with no
+in-between frames, indistinguishable between the two. So the rigid glide is a
+property of the *moving* client's own render, not of what the position stream
+carries to an observer: a 2D observer sees the same snap either way. (Captured
+in [the 2D↔3D cross-view note](3d-2d3d-crossview-flags-movetype-512-2026-11-26.md),
+T3D-054/069/133.) The `interpolate` other-screen view was not re-run.
