@@ -162,6 +162,28 @@ the avatar 8 units out moved it one cell, and radius 2 then grew nothing. Nothin
 avatar. Why the client grows this one far cell, rather than the in-range cells, is still open
 **[inf]**.
 
+A later run read the clumps cube by cube against marker cubes at the origin and the ±100 box
+corners (about ±1 unit), and showed them to be small blocks of cells, not single cells
+**[lab]**:
+
+| Avatar | Box | Radius | Cover |
+|---|---|---|---|
+| (128, −128) | ±100 | 3 | 14 cubes in x 76..98, y −98..−76: cells with corners 80, 88, 96 on each axis (3 × 3) |
+| (−128, 128) | ±100 | 3 | 13 cubes in x −99..−78, y 77..96 |
+| (−128, −128) | ±100 | 3 | 12 cubes in x −97..−81, y −98..−76 |
+| (128, 128) | ±100 | 3 | **none**, in three runs |
+| (128, −128) | (−200, −120) to (200, 200) | 4 | one patch, cells x 64..192 (17 columns), y −120..−64 (8 rows) |
+| (128, −128) | (−200, −200) to (120, 200) | 4 | one patch, cells x 64..112 (7 columns), y −192..−128 (9 rows) |
+
+Five of the six fit one reading: cells within **2 × radius** cells of the avatar's cell, cut by
+the box. At radius 3 that reaches 48 units, so x 80..176 from an avatar at 128, which the box
+cuts to 80..96. At radius 4 it reaches 64 units, giving x 64..192. The clump direction mirrors
+with the avatar in three of four quadrants. Two results don't fit and are open. The (128, 128)
+quadrant grew nothing. The second partial box lacks the rows y −120..−64 that grew in the first.
+The 2 × radius reach also conflicts with the inside-box run above, which matched a reach of
+radius cells. Even at one object per cell, cells held 1 to 4 cubes at different spots (14 cubes
+in 9 cells), which looks like some cells being grown more than once **[inf]**.
+
 ## Live
 
 The real 5.12 client (GDI renderer) accepted this layout for all three classes: each ghost was
