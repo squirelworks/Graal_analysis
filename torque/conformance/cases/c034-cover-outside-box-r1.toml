@@ -73,7 +73,7 @@ taken = false
 asks_shape = true
 cover_drawn = false
 alive = true
-source = "[lab] torque/replicators-512.md: avatar at (128, -128), box of 100 each way: radius 1 grew none"
+source = "[lab] torque/replicators-512.md: avatar at (128, -128), box of 100 each way: radius 1 grew none; the rule avatar - 8(r+2) puts the corner at 104, outside the box"
 
 [expect."6.037"]
 taken = false

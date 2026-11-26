@@ -73,7 +73,7 @@ taken = false
 asks_shape = true
 cover_drawn = true
 alive = true
-source = "[lab] torque/replicators-512.md: avatar at (128, -128), box of 100 each way: radius 2 grew one clump, radius 3 a patch near (88, -93); the exact rule is open"
+source = "[lab] torque/replicators-512.md: avatar at (128, -128), box of 100 each way: the clump sits at avatar - 8(r+2) per axis and grows only inside the box; r=3 gives corner 88, inside"
 
 [expect."6.037"]
 taken = false
