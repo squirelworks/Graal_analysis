@@ -993,6 +993,7 @@ torque/3d-prefix-dll-3153-exec-2026-11-26.md	pending	E	10.6	"3 " prefix and miss
 torque/3d-batch-w-rows-2026-11-26.md	pending	E	10.6	4.20r8 near-terrain crash on GDI GL, 5.12 typed GS2 calls, 5.12 editor classes (T3D-079/125/126), lab
 torque/3d-batch-w-rows-part2-2026-11-26.md	pending	E	10.6	5.12 TorqueScript markers (T3D-006 5.12 half), 5.12 + 4.20r8 in one world (T3D-071 Windows half), lab
 torque/3d-batch-w-rows-part3-2026-11-26.md	pending	E	10.6	client./clientr. vs server. flags from PLO_FLAGSET on 5.24r4 (T3D-133), lab
+torque/3d-batch-w-tiger-rows-2026-11-26.md	pending	E	10.6	Mac 3.153 and 4.20r6 on seihai-gserver over a VM-only link (T3D-089, 067, 072), lab
 torque/3d-multi-client-scoping-512-2026-11-25.md	pending	E	10.6	5.12 multi-client scoping is flat: no ghost cap at 3, no distance scoping; the server relays every far player's position, far players only leave the camera frame
 torque/3d-look-props-512-2026-11-26.md	pending	E	10.6	5.12 cross-view of look props is asymmetric: a 3D player shows on 2D as a full 2D sprite+name tag; a 2D player shows on 3D as the 3D model, not the 2D look; 3D-side changes don't propagate (partial)
 torque/3d-movetype-rigid-list-512-2026-11-26.md	pending	E	10.6	5.12 movetype: a server g3dpos move lands per the world movetype — rigid glides (move-list events, transform unchanged), list jumps (transform carries the position)
