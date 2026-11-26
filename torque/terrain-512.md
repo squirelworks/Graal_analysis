@@ -382,25 +382,58 @@ Measured on the real 5.12 client under a full OpenGL renderer (Mesa llvmpipe), a
 gserver with chunks built for each case, from overhead shots at square size 8 unless noted
 **[lab]**:
 
-- **Material edges are soft.** A hard switch from a red to a blue material between two columns
-  fades linearly over one square: the 10–90 % change takes about 0.76 squares, on both edges of
-  the strip. The 50 % line sits half a square before the boundary. So each square's material
-  seems to sit on its low corner and blend toward the next corner **[inf]**.
-- **Blend alpha weights by alpha/16.** Squares with the blend flag, the secondary on the other
-  material and alpha 8 draw as an even 50/50 mix (107, 0, 107 against pure 214), perfectly
-  uniform across the patch.
+- **Material edges are soft, and the alpha map is per-corner and bilinear.** A hard switch from
+  one material to another between two columns fades linearly over exactly one square (10–90 %
+  change 0.78 squares). The 50 % point sits at the **centre of the last square of the first
+  material**, half a square before the material change. A one-square-wide stripe of material B in
+  a field of A draws as a one-square-wide **tent peaking at that square's low-x/low-y corner**, so
+  a chunk square at grid index (i, j) places its decoded material on the **vertex (i, j)** (its
+  low corner), and the surface blends the four corner vertices of each square **bilinearly**: a
+  one-square checkerboard reads exactly 0.50 at every square centre (a triangle split would give
+  0 or 1), and a diagonal boundary matches the bilinear prediction to within 0.07. **[lab]**
+- **The blend weight steps by 1/15.** A blend square's alpha `a` is the weight on the **primary**
+  material: a sweep of `a` = 1…15 draws an evenly stepped mix, each step adding about 1/15 (the
+  full span `a` = 1→15 is 0.936), so `a` = 8 is the even 50/50 mix batch K saw and `a` = 15 draws
+  ≈ 0.96 primary. (This refines batch K's single-point "alpha/16": on the wire the stored primary
+  alpha is `a × 16`, but the drawn weight the renderer applies is ≈ `a`/15, with a small constant
+  offset of about −0.04 that is left bounded-open.) **[lab]**
 - **One texture repeat covers 8 squares** at both square size 8 (measured 63.4 units) and square
   size 2 (15.7 units). The texture tiles with the squares, not with world units.
 - **The texture is flipped on the ground.** Its columns run toward +x but its rows run toward
   +y, so an arrow drawn pointing up in the image points to world −y. Seen from above, the image
   is mirrored top-to-bottom.
-- **Slope shading is switched on by a `Sun` and fixed in direction.** With a `Sun` object,
-  faces looking −x and −y are bright (red 247), faces looking +x and +y are dark (156), and flat
-  ground is 214. A sun travelling +x and one travelling +y give pixel-identical shots, so the
-  light does not follow the sun; it always comes from the −x/−y diagonal, roughly 25° up
-  (estimate). With no `Sun` object there is no shading at all, and everything draws at one colour (247).
+- **Slope shading comes from a fixed light the `Sun` only switches on.** With a `Sun` object the
+  ground is shaded by one fixed directional light; a sun travelling +x and one travelling +y give
+  pixel-identical shots, and the client ignores the world's own `sun 0 0 -1` direction for the
+  drawn shading. With no `Sun` object there is no shading at all and everything draws at one
+  colour. The brightness of a face with unit normal **n** fits
+  **B = min(cap, A + D · max(0, n · L))** with ambient **A ≈ 0.615**, diffuse **D ≈ 0.96**, a
+  highlight cap **≈ 0.99** of the texel, and the light direction (toward the light)
+  **L ≈ (−0.683, −0.683, 0.259)** — azimuth **225°** (firm, the −x/−y diagonal) and elevation
+  **≈ 15°** (13–18°), markedly lower than batch K's 25° estimate. Back faces **clamp** at the
+  ambient floor (they do not wrap), brightness lands in steps of about 8.3 levels, and the fit's
+  RMS residual is 6.1 (about one step). Batch K's dark 156 is this floor; its flat 214 and bright
+  247 are each within one step of the fit (247 is the cap, not `n · L` = 1). (Measured with smooth
+  grey cones at square size 4; chunk ramps at size 8 threw cliffs and self-shadow.) **[lab]**
 - A newly fetched texture list is applied only on the client's next load, so a first visit
   that also fetches `heights.info` draws white (see the next section).
+
+**Reconstruction rule (what a replica draws).** For each chunk square (i, j) with decoded primary
+id P, secondary id S and blend alpha `a`, put weight **w = a/15** on P at vertex (i, j) (its
+low-x/low-y corner) and 1 − w on S (w = 1 when the square has no secondary); a vertex on a chunk
+edge takes the neighbouring chunk's square. Across each square interpolate the four corner
+vertices' material weights bilinearly to get the surface texture, tile each material's texture
+once per 8 squares (flipped so image rows run toward +y), then multiply by the fixed-light term
+above (`A + D · max(0, n · L)`, clamped at the ambient floor and the highlight cap) whenever the
+world has a `Sun`. Two small points stay bounded-open: the −0.04 constant on the blend weight (the
+1/15 step itself is firm), and whether `L` can be moved from the world file (only `sun 0 0 -1` was
+tried, and it had no effect on the drawn shading).
+
+**A server-emit ordering caveat (relayed to the gserver work).** On the Rust gserver main the
+`TerrainBlock` ghost arrives **after** `MissionStartPhase2`, so the 5.12 computes the mission's
+lighting before the terrain exists and the terrain draws **unshaded** — the fixed-light shading
+above only appears once a lab build holds Phase 2 until the initial ghosts exist. The fix is to
+emit the `TerrainBlock` ghost before Phase 2. **[lab]**
 
 ### First-visit terrain texture depends on when the server sends the textures
 
