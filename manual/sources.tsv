@@ -1068,3 +1068,4 @@ torque/conformance/cases/c017-dif-version-bounds.toml	excluded			conformance cas
 torque/conformance/cases/c018-terrain-flat.toml	excluded			conformance case (a test world and its expectations), not a finding
 torque/conformance/cases/c019-water.toml	excluded			conformance case (a test world and its expectations), not a finding
 torque/conformance/cases/c020-two-players.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/3d-level-warp-per-player-replicator-208-512-2026-11-26.md	pending		8	seihai-gserver #208/#209 lab: level warp works on #209 both routes (no relink, BIG creates both ways), per-player objects scope per client, DynamicShapeReplicator first-visit scatter via #209 resend, grass classes want a texture not a shape (T3D-135/136/048), lab; to carry into section 8
