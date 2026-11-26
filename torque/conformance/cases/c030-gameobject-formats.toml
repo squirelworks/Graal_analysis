@@ -1,0 +1,643 @@
+id = "C030"
+slug = "gameobject-formats"
+title = "Defaults and value formats of the core GameObject and SceneObject members, on a client-made object and the player's own"
+rows = ["T3D-096", "T3D-150", "T3D-125", "T3D-136"]
+priority = 1
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*"]
+scripts = ["probe_gameobject.gs2"]
+
+[run]
+seconds = 50
+
+# A recording case: most checks take any reported value, so the verdict says
+# only whether the member answered. The values themselves are in results.tsv
+# ("observed") and are what graal-client-repro copies. "made" and "done" judge.
+
+[[check]]
+id = "compiled"
+kind = "server"
+pattern = "weapon3d ConfProbe: not compiled"
+note = "seihai-core could not compile the probe (expected false everywhere)"
+
+[[check]]
+id = "made"
+kind = "probe"
+key = "made"
+value = "1"
+
+[[check]]
+id = "d_position"
+kind = "probe"
+key = "d_position"
+value = ".*"
+
+[[check]]
+id = "d_scale"
+kind = "probe"
+key = "d_scale"
+value = ".*"
+
+[[check]]
+id = "d_transform"
+kind = "probe"
+key = "d_transform"
+value = ".*"
+
+[[check]]
+id = "d_rotation"
+kind = "probe"
+key = "d_rotation"
+value = ".*"
+
+[[check]]
+id = "d_euler"
+kind = "probe"
+key = "d_euler"
+value = ".*"
+
+[[check]]
+id = "d_velocity"
+kind = "probe"
+key = "d_velocity"
+value = ".*"
+
+[[check]]
+id = "d_alpha"
+kind = "probe"
+key = "d_alpha"
+value = ".*"
+
+[[check]]
+id = "d_shape"
+kind = "probe"
+key = "d_shape"
+value = ".*"
+
+[[check]]
+id = "d_solid"
+kind = "probe"
+key = "d_solid"
+value = ".*"
+
+[[check]]
+id = "d_collision"
+kind = "probe"
+key = "d_collision"
+value = ".*"
+
+[[check]]
+id = "d_forward"
+kind = "probe"
+key = "d_forward"
+value = ".*"
+
+[[check]]
+id = "d_up"
+kind = "probe"
+key = "d_up"
+value = ".*"
+
+[[check]]
+id = "d_right"
+kind = "probe"
+key = "d_right"
+value = ".*"
+
+[[check]]
+id = "d_objectbox"
+kind = "probe"
+key = "d_objectbox"
+value = ".*"
+
+[[check]]
+id = "d_drawn"
+kind = "probe"
+key = "d_drawn"
+value = ".*"
+
+[[check]]
+id = "p_get"
+kind = "probe"
+key = "p_get"
+value = ".*"
+
+[[check]]
+id = "p_prop"
+kind = "probe"
+key = "p_prop"
+value = ".*"
+
+[[check]]
+id = "p_xyz"
+kind = "probe"
+key = "p_xyz"
+value = ".*"
+
+[[check]]
+id = "p_afterx"
+kind = "probe"
+key = "p_afterx"
+value = ".*"
+
+[[check]]
+id = "p_assigned"
+kind = "probe"
+key = "p_assigned"
+value = ".*"
+
+[[check]]
+id = "s_get"
+kind = "probe"
+key = "s_get"
+value = ".*"
+
+[[check]]
+id = "s_prop"
+kind = "probe"
+key = "s_prop"
+value = ".*"
+
+[[check]]
+id = "s_worldbox"
+kind = "probe"
+key = "s_worldbox"
+value = ".*"
+
+[[check]]
+id = "s_center"
+kind = "probe"
+key = "s_center"
+value = ".*"
+
+[[check]]
+id = "t_get"
+kind = "probe"
+key = "t_get"
+value = ".*"
+
+[[check]]
+id = "t_rotation"
+kind = "probe"
+key = "t_rotation"
+value = ".*"
+
+[[check]]
+id = "t_euler"
+kind = "probe"
+key = "t_euler"
+value = ".*"
+
+[[check]]
+id = "t_forward"
+kind = "probe"
+key = "t_forward"
+value = ".*"
+
+[[check]]
+id = "t_right"
+kind = "probe"
+key = "t_right"
+value = ".*"
+
+[[check]]
+id = "t_up"
+kind = "probe"
+key = "t_up"
+value = ".*"
+
+[[check]]
+id = "t_position"
+kind = "probe"
+key = "t_position"
+value = ".*"
+
+[[check]]
+id = "e_transform"
+kind = "probe"
+key = "e_transform"
+value = ".*"
+
+[[check]]
+id = "e_forward"
+kind = "probe"
+key = "e_forward"
+value = ".*"
+
+[[check]]
+id = "dir_forward"
+kind = "probe"
+key = "dir_forward"
+value = ".*"
+
+[[check]]
+id = "dir_euler"
+kind = "probe"
+key = "dir_euler"
+value = ".*"
+
+[[check]]
+id = "sh_shape"
+kind = "probe"
+key = "sh_shape"
+value = ".*"
+
+[[check]]
+id = "sh_objectbox"
+kind = "probe"
+key = "sh_objectbox"
+value = ".*"
+
+[[check]]
+id = "sh_drawn"
+kind = "probe"
+key = "sh_drawn"
+value = ".*"
+
+[[check]]
+id = "n_nickname"
+kind = "probe"
+key = "n_nickname"
+value = ".*"
+
+[[check]]
+id = "n_alpha"
+kind = "probe"
+key = "n_alpha"
+value = ".*"
+
+[[check]]
+id = "f_byname"
+kind = "probe"
+key = "f_byname"
+value = ".*"
+
+[[check]]
+id = "v_velocity"
+kind = "probe"
+key = "v_velocity"
+value = ".*"
+
+[[check]]
+id = "v_after1s"
+kind = "probe"
+key = "v_after1s"
+value = ".*"
+
+[[check]]
+id = "o_found"
+kind = "probe"
+key = "o_found"
+value = "1"
+
+[[check]]
+id = "o_position"
+kind = "probe"
+key = "o_position"
+value = ".*"
+
+[[check]]
+id = "o_transform"
+kind = "probe"
+key = "o_transform"
+value = ".*"
+
+[[check]]
+id = "o_scale"
+kind = "probe"
+key = "o_scale"
+value = ".*"
+
+[[check]]
+id = "o_shape"
+kind = "probe"
+key = "o_shape"
+value = ".*"
+
+[[check]]
+id = "o_nickname"
+kind = "probe"
+key = "o_nickname"
+value = ".*"
+
+[[check]]
+id = "o_box"
+kind = "probe"
+key = "o_box"
+value = ".*"
+
+[[check]]
+id = "o_dropz"
+kind = "probe"
+key = "o_dropz"
+value = ".*"
+
+[[check]]
+id = "x_gone"
+kind = "probe"
+key = "x_gone"
+value = ".*"
+
+[[check]]
+id = "done"
+kind = "probe"
+key = "done"
+value = "1"
+
+[expect."3.153"]
+compiled = false
+made = "?"
+d_position = "?"
+d_scale = "?"
+d_transform = "?"
+d_rotation = "?"
+d_euler = "?"
+d_velocity = "?"
+d_alpha = "?"
+d_shape = "?"
+d_solid = "?"
+d_collision = "?"
+d_forward = "?"
+d_up = "?"
+d_right = "?"
+d_objectbox = "?"
+d_drawn = "?"
+p_get = "?"
+p_prop = "?"
+p_xyz = "?"
+p_afterx = "?"
+p_assigned = "?"
+s_get = "?"
+s_prop = "?"
+s_worldbox = "?"
+s_center = "?"
+t_get = "?"
+t_rotation = "?"
+t_euler = "?"
+t_forward = "?"
+t_right = "?"
+t_up = "?"
+t_position = "?"
+e_transform = "?"
+e_forward = "?"
+dir_forward = "?"
+dir_euler = "?"
+sh_shape = "?"
+sh_objectbox = "?"
+sh_drawn = "?"
+n_nickname = "?"
+n_alpha = "?"
+f_byname = "?"
+v_velocity = "?"
+v_after1s = "?"
+o_found = "?"
+o_position = "?"
+o_transform = "?"
+o_scale = "?"
+o_shape = "?"
+o_nickname = "?"
+o_box = "?"
+o_dropz = "?"
+x_gone = "?"
+done = "?"
+source = "unread: whether a protocol 19 build runs a GS2 weapon3d at all"
+
+[expect."4.04r2"]
+compiled = false
+made = "?"
+d_position = "?"
+d_scale = "?"
+d_transform = "?"
+d_rotation = "?"
+d_euler = "?"
+d_velocity = "?"
+d_alpha = "?"
+d_shape = "?"
+d_solid = "?"
+d_collision = "?"
+d_forward = "?"
+d_up = "?"
+d_right = "?"
+d_objectbox = "?"
+d_drawn = "?"
+p_get = "?"
+p_prop = "?"
+p_xyz = "?"
+p_afterx = "?"
+p_assigned = "?"
+s_get = "?"
+s_prop = "?"
+s_worldbox = "?"
+s_center = "?"
+t_get = "?"
+t_rotation = "?"
+t_euler = "?"
+t_forward = "?"
+t_right = "?"
+t_up = "?"
+t_position = "?"
+e_transform = "?"
+e_forward = "?"
+dir_forward = "?"
+dir_euler = "?"
+sh_shape = "?"
+sh_objectbox = "?"
+sh_drawn = "?"
+n_nickname = "?"
+n_alpha = "?"
+f_byname = "?"
+v_velocity = "?"
+v_after1s = "?"
+o_found = "?"
+o_position = "?"
+o_transform = "?"
+o_scale = "?"
+o_shape = "?"
+o_nickname = "?"
+o_box = "?"
+o_dropz = "?"
+x_gone = "?"
+done = "?"
+source = "unread; the typed table is read for 5.12 only (T3D-096)"
+
+[expect."4.20r8"]
+compiled = false
+made = "?"
+d_position = "?"
+d_scale = "?"
+d_transform = "?"
+d_rotation = "?"
+d_euler = "?"
+d_velocity = "?"
+d_alpha = "?"
+d_shape = "?"
+d_solid = "?"
+d_collision = "?"
+d_forward = "?"
+d_up = "?"
+d_right = "?"
+d_objectbox = "?"
+d_drawn = "?"
+p_get = "?"
+p_prop = "?"
+p_xyz = "?"
+p_afterx = "?"
+p_assigned = "?"
+s_get = "?"
+s_prop = "?"
+s_worldbox = "?"
+s_center = "?"
+t_get = "?"
+t_rotation = "?"
+t_euler = "?"
+t_forward = "?"
+t_right = "?"
+t_up = "?"
+t_position = "?"
+e_transform = "?"
+e_forward = "?"
+dir_forward = "?"
+dir_euler = "?"
+sh_shape = "?"
+sh_objectbox = "?"
+sh_drawn = "?"
+n_nickname = "?"
+n_alpha = "?"
+f_byname = "?"
+v_velocity = "?"
+v_after1s = "?"
+o_found = "?"
+o_position = "?"
+o_transform = "?"
+o_scale = "?"
+o_shape = "?"
+o_nickname = "?"
+o_box = "?"
+o_dropz = "?"
+x_gone = "?"
+done = "?"
+source = "unread for 4.20r8"
+
+[expect."5.12"]
+compiled = false
+made = "?"
+d_position = "?"
+d_scale = "?"
+d_transform = "?"
+d_rotation = "?"
+d_euler = "?"
+d_velocity = "?"
+d_alpha = "?"
+d_shape = "?"
+d_solid = "?"
+d_collision = "?"
+d_forward = "?"
+d_up = "?"
+d_right = "?"
+d_objectbox = "?"
+d_drawn = "?"
+p_get = "?"
+p_prop = "?"
+p_xyz = "?"
+p_afterx = "?"
+p_assigned = "?"
+s_get = "?"
+s_prop = "?"
+s_worldbox = "?"
+s_center = "?"
+t_get = "?"
+t_rotation = "?"
+t_euler = "?"
+t_forward = "?"
+t_right = "?"
+t_up = "?"
+t_position = "?"
+e_transform = "?"
+e_forward = "?"
+dir_forward = "?"
+dir_euler = "?"
+sh_shape = "?"
+sh_objectbox = "?"
+sh_drawn = "?"
+n_nickname = "?"
+n_alpha = "?"
+f_byname = "?"
+v_velocity = "?"
+v_after1s = "?"
+o_found = "?"
+o_position = "?"
+o_transform = "?"
+o_scale = "?"
+o_shape = "?"
+o_nickname = "?"
+o_box = "?"
+o_dropz = "?"
+x_gone = "?"
+done = "?"
+source = "[bin] T3D-096 types every member called here; their values and formats are what this case records"
+
+[expect."6.037"]
+compiled = false
+made = false
+d_position = false
+d_scale = false
+d_transform = false
+d_rotation = false
+d_euler = false
+d_velocity = false
+d_alpha = false
+d_shape = false
+d_solid = false
+d_collision = false
+d_forward = false
+d_up = false
+d_right = false
+d_objectbox = false
+d_drawn = false
+p_get = false
+p_prop = false
+p_xyz = false
+p_afterx = false
+p_assigned = false
+s_get = false
+s_prop = false
+s_worldbox = false
+s_center = false
+t_get = false
+t_rotation = false
+t_euler = false
+t_forward = false
+t_right = false
+t_up = false
+t_position = false
+e_transform = false
+e_forward = false
+dir_forward = false
+dir_euler = false
+sh_shape = false
+sh_objectbox = false
+sh_drawn = false
+n_nickname = false
+n_alpha = false
+f_byname = false
+v_velocity = false
+v_after1s = false
+o_found = false
+o_position = false
+o_transform = false
+o_scale = false
+o_shape = false
+o_nickname = false
+o_box = false
+o_dropz = false
+x_gone = false
+done = false
+source = "T3D-121 (no 3D link, so no weapon3d)"

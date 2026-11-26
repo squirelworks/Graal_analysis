@@ -39,3 +39,4 @@ blank (not run yet). Observed `?` values are listed under each run in
 | [C027](cases/c027-udp-flood.toml) | A 10-second flood of 2000 junk datagrams a second at the 3D port mid-session: server and client survive |  |  |  | PASS (2026-11-26) |  |
 | [C028](cases/c028-cache-refetch.toml) | A shape changed on the server between two visits, the client's cache kept: refetched (pink) or stale (red)? |  |  |  | PASS (2026-11-26) |  |
 | [C029](cases/c029-reconnect-churn.toml) | Five short visits in a row on one server run: each links, and the fifth still draws |  |  |  | PASS (2026-11-26) |  |
+| [C030](cases/c030-gameobject-formats.toml) | Defaults and value formats of the core GameObject and SceneObject members, on a client-made object and the player's own |  |  |  |  |  |
