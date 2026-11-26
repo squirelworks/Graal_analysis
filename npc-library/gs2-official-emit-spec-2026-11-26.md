@@ -97,10 +97,88 @@ slots.
 - A function ends with `return 0` (`OP_TYPE_NUMBER 0`, `OP_RET`) unless its last statement
   is a `return`.
 
-Seen in the captures and not yet written into Seihai: folding numeric constants
-(`1 + 2` to one number), joining string literals, folding enum members `A.B` to their
-value, `OP_AND` for some `&&` chains where an `OP_IF` chain is expected, a cached bare
-`this` in some functions, and some `OP_CONV_TO_FLOAT` choices.
+## Logic chains
+
+- A run of one operator (`a && b && c`, `a || b || c`) jumps to the end of the run. In
+  `a && b || c` the `OP_AND` jumps to the `OP_OR`.
+- As the test of an `if`, `while` or `for`, a top-level `&&` is one `OP_IF` per part.
+- An `||` pushes all its parts but the last as values, each followed by `OP_OR`. Each
+  `OP_OR` jumps to the final `OP_IF` of the last part.
+- `!(chain)` is the chain, then `OP_NOT`, then `OP_IF`. As a value it has no
+  `OP_INLINE_CONDITIONAL`.
+- A ternary whose test is a chain is the chain, then `OP_IF`.
+- An `if` whose bodies are both empty keeps only its test, as a dropped value (the chain or
+  value, then `OP_INDEX_DEC`). A constant test emits nothing.
+
+## Constants
+
+- `+ - * / % ^ << >> & |` between non-negative number literals and `pi` fold to one
+  number. `-(a op b)` folds; `2 + -1` does not.
+- `@` between two text literals joins them. For `SPC`, `NL` and `TAB`, only the left
+  literal and the separator join.
+- **GS2:** `!true`, `!false`, `false && …` and `true || …` fold to `OP_TYPE_TRUE` or
+  `OP_TYPE_FALSE`. A folded constant is not a call for `OP_CMD_CALL`.
+- **Number text:**
+  - A number within 0.0001 of an integer in the 32-bit signed range is written as that
+    integer.
+  - Larger numbers are written as the text `2147483647`, with its sign.
+  - Any other number is written as its integer part and nine decimals, cut off rather
+    than rounded. A fraction ending in `999` carries up, and trailing zeros are dropped.
+  - The source spelling is not kept: `3.0` and `3` give the same bytes.
+
+## Conversions
+
+- Calls (`int`, `arraylen` and `strlen` included) count as untyped values, so a numeric use
+  converts them with `OP_CONV_TO_FLOAT`.
+- These need no conversion: comparisons, `==` and `!=`, `!`, `&&` and `||`, `++x`, `pi`,
+  `true` and `false`.
+- `!x` converts `x` unless it is a comparison, a range test or another `!`.
+- **GS2:** the arguments of `substring` and `charat` are numbers. The arguments of `pos`,
+  `starts`, `ends` and `positions` are text.
+- **GS2:** the list methods `delete` and `subarray` take numbers. `insert` and `replace`
+  take a number as the index. `subarray(i)` pushes -1 as the length.
+- **GS2:** `@x` is text.
+- `a @= b` is: the place, `OP_COPY_LAST_OP`, `OP_CONV_TO_STRING`, `b` as text, `OP_JOIN`,
+  `OP_ASSIGN`.
+- **GS2:** `obj.(@x)` converts `x`.
+
+## Other shapes
+
+- **GS2:** bare `this`, `thiso`, `playero` and `temp` used as values are
+  `OP_TYPE_VAR "name"`. As owners they keep their own opcodes. `player` and `level` keep
+  their opcodes in both cases.
+- **`new`:**
+  - `new T()` pushes the text `unknown_object`, then the type.
+  - `new T(x)` pushes `x`, then `OP_INLINE_NEW`, then the type.
+  - With two or more arguments it pushes `unknown_object`.
+- **GS2:** `pow(a, b)` is a script call by name and counts as a call. `OP_POW` is used
+  only for `^`.
+- **GS2:** `_(…)` is not a call.
+- **Segment 1** is a bit mask of the script events whose names appear as plain names in
+  top-level code (matched in any case; not when followed by a member or a call). The bits,
+  from 0:
+  - `playerenters`, `playertouchsme`, `playertouchsother`, `playerchats`, `playerhurt`,
+    `playerdies`, `playerlaysitem`, `playerendsreading`;
+  - `compusdied`, `emoticon`, `mousedown`, `mouseup`, `mousewheel`, `exploded`,
+    `wasshot`, `waspelt`;
+  - `keypressed`, `actionprojectile2`, three unused bits, `playerleaves`, `washit`;
+  - two unused bits, `shapetrigger`, `playanimation`.
+
+  The bit order is from our client notes.
+- **Function table:**
+  - Functions on `universe` drop `public.`.
+  - A plain `onServerListerConnect` also gets a `universe.onServerListerConnect` entry at
+    the same start, placed among the entries on an object in source order.
+
+Seen in the captures and not yet written into Seihai:
+
+- old GS1 names used in GS2 (`playerx` to `player.x`, `playerreading`, `imgwidth`);
+- folding enum members and key constants (`A.B`, `VK_LEFT`) to their value;
+- some `OP_CMD_CALL` placements;
+- a few cache slot orders;
+- a cached bare `this`;
+- `float` casts;
+- lambda names (`function_<n>_1`).
 
 ## GS1 input
 
@@ -111,15 +189,19 @@ there is a capture to check against.
 
 ## Checked against the captures
 
-Seihai's compiler after the change, on the 151 official captures **[cap][test]**:
+Seihai's compiler on the 151 official captures **[cap][test]**. The first column is before
+this work, the second is after the cache and layout rules (seihai-core #163), and the third
+adds the rules on logic chains, constants and conversions (seihai-core #164).
 
-| | Before | After |
-| --- | ---: | ---: |
-| Byte-for-byte equal (legacy mode) | 0 | 54 |
-| Same instructions; only operand widths, string order or a final `OP_RET` differ | 21 | 16 |
-| Different | 116 | 74 |
-| Rejected by the compiler | 7 | 7 |
-| Byte-for-byte equal (strict mode) | 0 | 53 |
+| | Before | #163 | #164 |
+| --- | ---: | ---: | ---: |
+| Byte-for-byte equal (legacy mode) | 0 | 54 | 113 |
+| Different | 137 | 90 | 31 |
+| Rejected by the compiler | 7 | 7 | 7 |
+| Byte-for-byte equal (strict mode) | 0 | 53 | 112 |
+
+The "Different" column for #163 counts 16 bodies with the same instructions as the
+official one, which differ only in operand widths, string order or a final `OP_RET`.
 
 The variable-cache rules give the same slot list as the official body in 1113 of 1136
 functions in the 144 readable captures. 82 of those captures use the cache. Seihai's reader
