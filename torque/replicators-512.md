@@ -140,7 +140,7 @@ the reach doesn't match a plain "cells within `radius` of the avatar's cell" rul
 the cubes sat near world (88, −93), inside the box but about 53 units from the avatar, beyond a
 three-cell reach of 24 units. Radius 2 already grew one clump, and radius 1 grew none. How the
 grid centre and the box interact is still open; one untested guess is that the centre is clamped
-into the box first. **[lab][inf]** The earlier pair
+into the box first. **[lab][inf]** With the avatar inside the box the plain rule holds: in a run with a ±1024 box and the avatar at (128, −128), every cube at radius 1 and 2 sat within 0.4 units of the predicted cell positions, with none outside the predicted cells. So the open case is only an avatar outside the box. **[lab]** The earlier pair
 results (radius 1 with 1 per cell and scale 3, and so on) used the wider ±256 box with the
 avatar inside it, so they grew as expected. A clean count/scale check with the avatar inside the
 box is still to be run.
