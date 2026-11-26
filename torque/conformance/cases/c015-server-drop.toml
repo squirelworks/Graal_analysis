@@ -1,0 +1,53 @@
+id = "C015"
+slug = "server-drop"
+title = "The server stops mid-session: the client drops to login and does not crash"
+rows = ["T3D-108", "T3D-027"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_nomat.3ds", "conf_sky*"]
+
+[run]
+seconds = 75
+mid_action = "stop-server"
+
+[[check]]
+id = "control"
+kind = "server"
+pattern = "control object delivered"
+note = "the client acked the packet that named its control object (login step 5)"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+control = true
+alive = "?"
+source = "unread"
+
+[expect."4.04r2"]
+control = true
+alive = "?"
+source = "unread"
+
+[expect."4.20r8"]
+control = true
+alive = "?"
+source = "unread for 4.20r8"
+
+[expect."5.12"]
+control = true
+alive = true
+source = "[lab] T3D-108 (torque/3d-recovery-420r6-2026-11-25.md, 5.12-class Linux 4.20r6: server restart, instant drop to login, no crash); T3D-027"
+
+[expect."4.20r6L"]
+control = true
+alive = true
+source = "[lab] T3D-108"

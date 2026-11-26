@@ -1,0 +1,66 @@
+id = "C005"
+slug = "cube-red"
+title = "A .3ds cube with one red material at the spawn is fetched and drawn"
+rows = ["T3D-032", "T3D-106", "T3D-011"]
+priority = 1
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfCube conf_red.3ds 0 0 1
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*"]
+
+[run]
+seconds = 60
+
+[[check]]
+id = "asks_shape"
+kind = "server"
+pattern = "file conf_red\\.3ds: "
+note = "shapes are asked for with their extension (T3D-011)"
+
+[[check]]
+id = "red_drawn"
+kind = "pixel"
+colour = [220, 0, 0]
+tol = 70
+min_fraction = 0.002
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+asks_shape = false
+red_drawn = false
+alive = true
+source = "[srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.04r2"]
+asks_shape = false
+red_drawn = false
+alive = true
+source = "[srv] T3D-106: protocol 19 gets no GameObjects"
+
+[expect."4.20r8"]
+asks_shape = true
+red_drawn = true
+alive = true
+source = "[lab] seihai-gserver docs/GRAAL3D.md lab 2026-11-26 (4.20r8 under Wine: objects drawn)"
+
+[expect."5.12"]
+asks_shape = true
+red_drawn = true
+alive = true
+source = "[lab] T3D-032 (torque/live-512-shapes-2026-11-25.md: colour-only material draws diffuse); seihai-gserver docs/GRAAL3D.md lab 2026-11-20 (red cube centred)"
+
+[expect."4.20r6L"]
+asks_shape = true
+red_drawn = true
+alive = true
+source = "[lab] seihai-gserver docs/GRAAL3D.md lab 2026-11-20 (Linux 4.20r6: red cube centred)"

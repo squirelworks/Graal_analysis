@@ -36,6 +36,9 @@ to the client from our own server only.
 
 ## Results so far
 
+- [Conformance suite](conformance/README.md): each answer as a repeatable lab case (a world, a GS2
+  probe, the expected result per build), with a VM runner and a derived results table (2026-11-26).
+
 - [Closing plan for the partly answered rows](3d-partial-rows-closing-plan-2026-11-26.md): the
   remaining gap, closing method and batch for each of the 39 partly answered rows (2026-11-26).
 

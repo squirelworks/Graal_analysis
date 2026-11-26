@@ -1,0 +1,66 @@
+id = "C006"
+slug = "texture-bare"
+title = "A textured .3ds: the material texture is asked for by bare name and drawn"
+rows = ["T3D-033", "T3D-090", "T3D-032"]
+priority = 1
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfCube conf_tex.3ds 0 0 1
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_tex.3ds", "conf_tex.png", "conf_nomat.3ds", "conf_sky*"]
+
+[run]
+seconds = 60
+
+[[check]]
+id = "asks_bare"
+kind = "server"
+pattern = "file conf_tex: "
+
+[[check]]
+id = "asks_png"
+kind = "server"
+pattern = "file conf_tex\\.png: "
+
+[[check]]
+id = "green_drawn"
+kind = "pixel"
+colour = [0, 200, 0]
+tol = 70
+min_fraction = 0.002
+
+[expect."3.153"]
+asks_bare = false
+asks_png = false
+green_drawn = false
+source = "[srv] T3D-106: protocol 19 gets no GameObjects"
+
+[expect."4.04r2"]
+asks_bare = false
+asks_png = false
+green_drawn = false
+source = "[srv] T3D-106: protocol 19 gets no GameObjects"
+
+[expect."4.20r8"]
+asks_bare = "?"
+asks_png = "?"
+green_drawn = "?"
+source = "unread for 4.20r8 (it fetched no terrain textures at all, T3D-117)"
+
+[expect."5.12"]
+asks_bare = true
+asks_png = false
+green_drawn = true
+source = "[lab] T3D-033, T3D-090: material textures asked for bare, extension stripped (torque/live-512-own-server-textures-2026-11-25.md, torque/3d-content-format-requests-420r6-2026-11-26.md)"
+
+[expect."4.20r6L"]
+asks_bare = true
+asks_png = false
+green_drawn = "?"
+source = "[lab] T3D-011 (Linux 4.20r6: plain.png asked as plain); .3ds textures drew white on that VM's software GL (torque/lab-2026-11-25-g3d-worlds.md)"

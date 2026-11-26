@@ -1,0 +1,68 @@
+id = "C020"
+slug = "two-players"
+title = "Two clients of one build in one world: each links, and each sees the other's object"
+rows = ["T3D-065", "T3D-070", "T3D-075"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+playershape conf_red.3ds
+spawn 0 0 1
+camera 0 -8 3
+"""
+files = ["conf_red.3ds", "conf_sky*"]
+
+[run]
+seconds = 70
+clients = 2
+
+[[check]]
+id = "second_links"
+kind = "trace"
+pattern = "linked from .*; 1 other 3D players"
+
+[[check]]
+id = "c1_sees_two"
+kind = "blobs"
+colour = [220, 0, 0]
+tol = 70
+min_pixels = 30
+count = 2
+note = "client 1 draws its own cube and the second player's"
+
+[[check]]
+id = "c2_sees_two"
+kind = "blobs"
+client = 2
+colour = [220, 0, 0]
+tol = 70
+min_pixels = 30
+count = 2
+
+[[check]]
+id = "c1_alive"
+kind = "alive"
+
+[[check]]
+id = "c2_alive"
+kind = "alive"
+client = 2
+
+[expect."4.20r8"]
+second_links = true
+c1_sees_two = "?"
+c2_sees_two = "?"
+c1_alive = "?"
+c2_alive = "?"
+source = "unread: no 4.20r8 pair has been run"
+
+[expect."5.12"]
+second_links = true
+c1_sees_two = true
+c2_sees_two = true
+c1_alive = true
+c2_alive = true
+source = "[lab] T3D-065 (other 5.12 players are G3DPlayer_<account>, cubes draw and move), T3D-075 (every player ghosted to every client, no scoping)"

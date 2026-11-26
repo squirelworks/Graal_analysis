@@ -1,0 +1,79 @@
+id = "C010"
+slug = "gui-overlay"
+title = "A GS2 showimg draws over the 3D view"
+rows = ["T3D-058"]
+priority = 1
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfCube conf_red.3ds 0 4 1
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*", "conf_overlay.png"]
+scripts = ["probe_overlay.gs2"]
+
+[run]
+seconds = 50
+
+[[check]]
+id = "compiled"
+kind = "server"
+pattern = "weapon3d ConfProbe: not compiled"
+note = "seihai-core could not compile the probe (expected false everywhere: a server-side check)"
+
+[[check]]
+id = "shown"
+kind = "probe"
+key = "shown"
+value = "1"
+
+[[check]]
+id = "asks_image"
+kind = "server"
+pattern = "file conf_overlay\\.png: "
+
+[[check]]
+id = "magenta"
+kind = "pixel"
+colour = [255, 0, 255]
+tol = 40
+min_fraction = 0.01
+
+[expect."3.153"]
+compiled = false
+shown = "?"
+asks_image = "?"
+magenta = "?"
+source = "unread: whether a protocol 19 build runs a GS2 weapon3d at all (3.153 predates GS2 on the 2D side)"
+
+[expect."4.04r2"]
+compiled = false
+shown = "?"
+asks_image = "?"
+magenta = "?"
+source = "unread; a probe weapon saw onGraal3DLoginStep on 4.04r2 (torque/live-3153-and-404r2-sessions-2026-11-25.md), so scripts do run there"
+
+[expect."4.20r8"]
+compiled = false
+shown = "?"
+asks_image = "?"
+magenta = "?"
+source = "[bin] T3D-058: the GUI family is identical on 4.04r2/4.20r8/5.00r7/5.12; not run on 4.20r8"
+
+[expect."5.12"]
+compiled = false
+shown = true
+asks_image = true
+magenta = true
+source = "[lab] T3D-058 (torque/3d-gui-overlay-420r6-2026-11-25.md: a weapon3d showimg and showtext drew over the 3D scene, Linux 4.20r6) and [bin] identical GUI family on 5.12"
+
+[expect."4.20r6L"]
+compiled = false
+shown = true
+asks_image = true
+magenta = true
+source = "[lab] T3D-058"

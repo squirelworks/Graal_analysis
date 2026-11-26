@@ -1,0 +1,68 @@
+id = "C008"
+slug = "weapon3d-runs"
+title = "A weapon3d GS2 script compiled by seihai-core runs in 3D mode and reports back"
+rows = ["T3D-018", "T3D-021"]
+priority = 1
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfCube conf_red.3ds 0 4 1
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*"]
+scripts = ["probe_alive.gs2"]
+
+[run]
+seconds = 50
+
+[[check]]
+id = "compiled"
+kind = "server"
+pattern = "weapon3d ConfProbe: not compiled"
+note = "seihai-core could not compile the probe (expected false everywhere: a server-side check)"
+
+[[check]]
+id = "ready"
+kind = "probe"
+key = "ready"
+value = "1"
+
+[[check]]
+id = "tick"
+kind = "probe"
+key = "tick"
+value = "5"
+
+[expect."3.153"]
+compiled = false
+ready = "?"
+tick = "?"
+source = "unread: whether a protocol 19 build runs a GS2 weapon3d at all (3.153 predates GS2 on the 2D side)"
+
+[expect."4.04r2"]
+compiled = false
+ready = "?"
+tick = "?"
+source = "unread; a probe weapon saw onGraal3DLoginStep on 4.04r2 (torque/live-3153-and-404r2-sessions-2026-11-25.md), so scripts do run there"
+
+[expect."4.20r8"]
+compiled = false
+ready = "?"
+tick = "?"
+source = "unread for 4.20r8; same GS2 3D surface as 5.12 (T3D-058 bin dumps)"
+
+[expect."5.12"]
+compiled = false
+ready = true
+tick = true
+source = "[lab] seihai-gserver docs/GRAAL3D.md lab 2026-11-26 (a compiled weapon3d ran and its triggerserver reached the server); T3D-018"
+
+[expect."6.037"]
+compiled = false
+ready = false
+tick = false
+source = "[bin] T3D-121: no 3D link, so no weapon3d"

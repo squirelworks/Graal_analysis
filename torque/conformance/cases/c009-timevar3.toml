@@ -1,0 +1,57 @@
+id = "C009"
+slug = "timevar3"
+title = "timevar3, the synced Graal3D clock, advances on the client"
+rows = ["T3D-024"]
+priority = 1
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfCube conf_red.3ds 0 4 1
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*"]
+scripts = ["probe_timevar3.gs2"]
+
+[run]
+seconds = 50
+
+[[check]]
+id = "compiled"
+kind = "server"
+pattern = "weapon3d ConfProbe: not compiled"
+note = "seihai-core could not compile the probe (expected false everywhere: a server-side check)"
+
+[[check]]
+id = "tv3_advances"
+kind = "probe"
+key = "tv3_advances"
+value = "1"
+
+[expect."3.153"]
+compiled = false
+tv3_advances = "?"
+source = "unread: whether a protocol 19 build runs a GS2 weapon3d at all (3.153 predates GS2 on the 2D side)"
+
+[expect."4.04r2"]
+compiled = false
+tv3_advances = "?"
+source = "unread; a probe weapon saw onGraal3DLoginStep on 4.04r2 (torque/live-3153-and-404r2-sessions-2026-11-25.md), so scripts do run there"
+
+[expect."4.20r8"]
+compiled = false
+tv3_advances = "?"
+source = "unread for 4.20r8"
+
+[expect."5.12"]
+compiled = false
+tv3_advances = true
+source = "[lab] T3D-024 (torque/3d-server-time-timevar3-420r6-2026-11-26.md, run on the 5.12-class Linux 4.20r6): timevar3 advances about 1 a second"
+
+[expect."4.20r6L"]
+compiled = false
+tv3_advances = true
+source = "[lab] T3D-024"

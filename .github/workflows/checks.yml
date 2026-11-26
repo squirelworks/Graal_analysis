@@ -78,6 +78,9 @@ jobs:
       - name: pytest probe runner status (inert stubs)
         run: python -m pytest tools/probe -q
 
+      - name: pytest 3D conformance suite
+        run: python -m pytest tools/conformance -q
+
       - name: pytest file-format decoders
         run: python -m pytest tools/file-formats -q
 

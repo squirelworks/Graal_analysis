@@ -1,0 +1,69 @@
+id = "C004"
+slug = "sky-faces"
+title = "A six-colour sky box: face order, and how each build asks for sky textures"
+rows = ["T3D-046", "T3D-033", "T3D-090"]
+priority = 1
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_nomat.3ds", "conf_sky*"]
+
+[run]
+seconds = 60
+
+[[check]]
+id = "asks_bare"
+kind = "server"
+pattern = "file conf_sky2: "
+note = "a sky texture asked for with no extension"
+
+[[check]]
+id = "asks_gif"
+kind = "server"
+pattern = "file conf_sky2\\.gif: "
+
+[[check]]
+id = "face_front"
+kind = "pixel"
+colour = [255, 255, 0]
+tol = 40
+min_fraction = 0.05
+note = "face 2 (+y, yellow) fills the default camera's view (face order 0 -y, 1 +x, 2 +y, 3 -x, 4 up)"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+asks_bare = false
+asks_gif = true
+face_front = "?"
+alive = true
+source = "[lab] torque/live-3153-and-404r2-sessions-2026-11-25.md (sky textures asked as .gif, never .png); seihai-gserver-v2 bin/docs/graal3d.md lab M3 (sky view reached once the .gif requests are answered)"
+
+[expect."4.04r2"]
+asks_bare = "?"
+asks_gif = "?"
+face_front = "?"
+alive = true
+source = "[lab] 4.04r2 under Wine drew only the Sky gradient (seihai-gserver-v2 bin/docs/graal3d.md); its texture requests are unread"
+
+[expect."4.20r8"]
+asks_bare = "?"
+asks_gif = false
+face_front = "?"
+alive = true
+source = "[lab] seihai-gserver docs/GRAAL3D.md lab 2026-11-26 (4.20r8 under Wine: sky drawn); request naming unread"
+
+[expect."5.12"]
+asks_bare = true
+asks_gif = false
+face_front = true
+alive = true
+source = "[lab] T3D-046 (face order, b1 = textured) and T3D-033 (extension dropped, bare request): torque/live-512-own-server-textures-2026-11-25.md"
