@@ -1,0 +1,13 @@
+// Conformance probe (T3D-058): a GS2 showimg draws over the 3D view.
+// conf_overlay.png is 64x64 solid magenta; zoomed 4x it covers 256x256.
+//#CLIENTSIDE
+function onCreated() {
+  showimg(200, "conf_overlay.png", 40, 40);
+  changeimgzoom(200, 4);
+  changeimgvis(200, 4);
+  showtext(201, 40, 320, "Arial", "b", "conformance overlay");
+  cf("shown", "1");
+}
+function cf(k, v) {
+  triggerserver("gui", "ConfProbe", "cf", k, v);
+}

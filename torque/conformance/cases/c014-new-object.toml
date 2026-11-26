@@ -1,0 +1,62 @@
+id = "C014"
+slug = "new-object"
+title = "A client script can create a GameObject and a TStaticVar in 3D mode"
+rows = ["T3D-014", "T3D-016"]
+priority = 1
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfCube conf_red.3ds 0 4 1
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*"]
+scripts = ["probe_newobject.gs2"]
+
+[run]
+seconds = 40
+
+[[check]]
+id = "compiled"
+kind = "server"
+pattern = "weapon3d ConfProbe: not compiled"
+note = "seihai-core could not compile the probe (expected false everywhere: a server-side check)"
+
+[[check]]
+id = "new_gameobject"
+kind = "probe"
+key = "new_gameobject"
+value = "1"
+
+[[check]]
+id = "new_staticvar"
+kind = "probe"
+key = "new_staticvar"
+value = "1"
+
+[expect."3.153"]
+compiled = false
+new_gameobject = "?"
+new_staticvar = "?"
+source = "unread: whether a protocol 19 build runs a GS2 weapon3d at all (3.153 predates GS2 on the 2D side)"
+
+[expect."4.04r2"]
+compiled = false
+new_gameobject = "?"
+new_staticvar = "?"
+source = "unread; a probe weapon saw onGraal3DLoginStep on 4.04r2 (torque/live-3153-and-404r2-sessions-2026-11-25.md), so scripts do run there"
+
+[expect."4.20r8"]
+compiled = false
+new_gameobject = "?"
+new_staticvar = "?"
+source = "unread for 4.20r8"
+
+[expect."5.12"]
+compiled = false
+new_gameobject = "?"
+new_staticvar = true
+source = "[static] T3D-014 (GameObject is a script-creatable 5.12 class, torque/gs2-3d-objects-404r2-512.md); T3D-016 (a client-made GameObject is never drawn); TStaticVar is the base GS2 object"

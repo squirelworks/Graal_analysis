@@ -1,0 +1,13 @@
+// Conformance probe (T3D-054, T3D-068): a script asks the gserver to move the
+// player's own object; the client should then report the new position.
+//#CLIENTSIDE
+function onCreated() {
+  setTimer(4);
+}
+function onTimeout() {
+  triggerserver("gui", "ConfProbe", "g3dpos", 3, 0, 1);
+  cf("asked", "1");
+}
+function cf(k, v) {
+  triggerserver("gui", "ConfProbe", "cf", k, v);
+}

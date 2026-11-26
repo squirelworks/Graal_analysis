@@ -1,0 +1,17 @@
+// Conformance probe (T3D-136, T3D-074): can a client script reach its own 3D
+// object and a world object by name?
+//#CLIENTSIDE
+function onCreated() {
+  setTimer(3);
+}
+function onTimeout() {
+  temp.own = findobject("G3DPlayer_" @ player.account);
+  if (temp.own == NULL) cf("own_found", "0");
+  else cf("own_found", "1");
+  temp.cube = findobject("ConfCube");
+  if (temp.cube == NULL) cf("world_found", "0");
+  else cf("world_found", "1");
+}
+function cf(k, v) {
+  triggerserver("gui", "ConfProbe", "cf", k, v);
+}

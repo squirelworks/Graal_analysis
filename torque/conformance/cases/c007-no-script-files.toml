@@ -1,0 +1,66 @@
+id = "C007"
+slug = "no-script-files"
+title = "Shapes named .cs and .ter are never fetched (no build takes server TorqueScript or .ter)"
+rows = ["T3D-009", "T3D-011", "T3D-006", "T3D-041"]
+priority = 1
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+object ConfCs conf_marker.cs 2 2 1
+object ConfTer conf_marker.ter -2 2 1
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_marker.cs", "conf_marker.ter", "conf_nomat.3ds", "conf_sky*"]
+
+[run]
+seconds = 50
+
+[[check]]
+id = "asks_cs"
+kind = "server"
+pattern = "file conf_marker\\.cs"
+
+[[check]]
+id = "asks_ter"
+kind = "server"
+pattern = "file conf_marker\\.ter"
+
+[[check]]
+id = "ran_marker"
+kind = "console"
+pattern = "CONFORMANCE-MARKER-CS"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+asks_cs = false
+asks_ter = false
+ran_marker = false
+alive = true
+source = "[lab] T3D-009: 3.153 never fetches .cs/.dso/.ter (torque/live-3153-and-404r2-sessions-2026-11-25.md); protocol 19 also gets no GameObjects"
+
+[expect."4.04r2"]
+asks_cs = false
+asks_ter = false
+ran_marker = false
+alive = true
+source = "[lab] seihai-gserver-v2 bin/docs/graal3d.md: 4.04r2 never downloads .dso, .cs, .ter"
+
+[expect."4.20r8"]
+asks_cs = false
+asks_ter = false
+ran_marker = false
+alive = true
+source = "[static] T3D-007 (no TorqueScript compiler from 4.20 on, same engine as 5.00r7/5.12, T3D-002)"
+
+[expect."5.12"]
+asks_cs = false
+asks_ter = false
+ran_marker = false
+alive = true
+source = "[lab] T3D-011: .ter is never requested as a shape; [static] T3D-007: no compiler; .cs is not a shape the loaders know"

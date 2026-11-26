@@ -1,0 +1,55 @@
+id = "C013"
+slug = "server-flag"
+title = "A server. flag reaches a 3D client script (a known gap: a pass means it closed)"
+rows = ["T3D-017"]
+priority = 1
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfCube conf_red.3ds 0 4 1
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*"]
+scripts = ["probe_serverflag.gs2"]
+[server]
+flags = ["server.confflag=on"]
+
+[run]
+seconds = 45
+
+[[check]]
+id = "compiled"
+kind = "server"
+pattern = "weapon3d ConfProbe: not compiled"
+note = "seihai-core could not compile the probe (expected false everywhere: a server-side check)"
+
+[[check]]
+id = "srvflag"
+kind = "probe"
+key = "srvflag"
+value = "on"
+note = "seihai-gserver docs/GRAAL3D.md Not done yet: a 5.12 read server.x empty"
+
+[expect."3.153"]
+compiled = false
+srvflag = "?"
+source = "unread: whether a protocol 19 build runs a GS2 weapon3d at all (3.153 predates GS2 on the 2D side)"
+
+[expect."4.04r2"]
+compiled = false
+srvflag = "?"
+source = "unread; a probe weapon saw onGraal3DLoginStep on 4.04r2 (torque/live-3153-and-404r2-sessions-2026-11-25.md), so scripts do run there"
+
+[expect."4.20r8"]
+compiled = false
+srvflag = "?"
+source = "unread for 4.20r8"
+
+[expect."5.12"]
+compiled = false
+srvflag = false
+source = "[lab] seihai-gserver docs/GRAAL3D.md lab 2026-11-26 (server.labflag sent as events s and as set; the 3D script read it empty). If this turns PASS to FAIL, the gap has closed: update T3D-017 and the gserver doc"

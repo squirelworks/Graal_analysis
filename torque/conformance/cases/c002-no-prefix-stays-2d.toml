@@ -1,0 +1,65 @@
+id = "C002"
+slug = "no-prefix-stays-2d"
+title = "The same server without the \"3 \" tag: the client stays 2D and opens no UDP link"
+rows = ["T3D-059"]
+priority = 1
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_nomat.3ds", "conf_sky*"]
+
+[server]
+lobby_name = "Conformance"
+
+[run]
+seconds = 60
+
+[[check]]
+id = "tcp_login"
+kind = "server"
+pattern = "logged in as player"
+
+[[check]]
+id = "udp_link"
+kind = "trace"
+pattern = "linked from"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+tcp_login = "?"
+udp_link = "?"
+alive = "?"
+source = "unread: T3D-059 covers 4.20r8 and 5.00r7 only"
+
+[expect."4.04r2"]
+tcp_login = "?"
+udp_link = "?"
+alive = "?"
+source = "unread: T3D-059 covers 4.20r8 and 5.00r7 only"
+
+[expect."4.20r8"]
+tcp_login = true
+udp_link = false
+alive = true
+source = "[lab] T3D-059 (torque/3d-prefix-dll-3153-exec-2026-11-26.md): the \"3 \" prefix alone decides 2D vs 3D"
+
+[expect."5.12"]
+tcp_login = true
+udp_link = false
+alive = true
+source = "[lab] T3D-059 (5.00r7 on Win10, same engine as 5.12 for protocol 24, T3D-005)"
+
+[expect."6.037"]
+tcp_login = "?"
+udp_link = false
+alive = "?"
+source = "[bin] T3D-121: no Torque UDP side"

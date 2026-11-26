@@ -1,0 +1,13 @@
+// Conformance probe (GRAAL3D.md "Not done yet"): does a server. flag reach a
+// 3D client script? The world sets server.confflag=on.
+//#CLIENTSIDE
+function onCreated() {
+  setTimer(4);
+}
+function onTimeout() {
+  if (server.confflag == "") cf("srvflag", "empty");
+  else cf("srvflag", server.confflag);
+}
+function cf(k, v) {
+  triggerserver("gui", "ConfProbe", "cf", k, v);
+}
