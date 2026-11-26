@@ -1,0 +1,67 @@
+id = "C033"
+slug = "editors-512"
+title = "WorldEditor/TerrainEditor/EditManager made by a 5.12 weapon: WorldEditor works on own objects, TerrainEditor cannot attach, nothing saved"
+rows = ["T3D-126", "T3D-020"]
+priority = 3
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfCube conf_red.3ds 0 4 1
+playershape conf_red.3ds
+spawn 0 0 1
+terrain conf_ter 8
+"""
+files = ["conf_red.3ds", "conf_sky*", "heights.info", "conf_ground.png"]
+terrain = ["conf_ter"]
+scripts = ["probe_editors.gs2"]
+
+[server]
+options = ["graal3d_pushterrain = true"]
+
+[run]
+seconds = 60
+
+[[check]]
+id = "compiled"
+kind = "server"
+pattern = "weapon3d ConfProbe: not compiled"
+
+[[check]]
+id = "we_made"
+kind = "probe"
+key = "we"
+value = "obj:t126_we"
+
+[[check]]
+id = "te_actions"
+kind = "probe"
+key = "te_numactions"
+value = "17"
+
+[[check]]
+id = "we_deletes"
+kind = "probe"
+key = "go_after"
+value = "null"
+
+[[check]]
+id = "te_attach_fails"
+kind = "console"
+pattern = "TerrainEditor::attach: failed to attach"
+
+[[check]]
+id = "saved"
+kind = "files"
+pattern = "\\.(mis|ter)$"
+
+[expect."5.12"]
+compiled = false
+we_made = true
+te_actions = true
+we_deletes = true
+te_attach_fails = true
+saved = false
+source = "[lab] batch W 2026-11-26 (file watcher on the system drive for the run). torque/3d-batch-w-rows-2026-11-26.md"

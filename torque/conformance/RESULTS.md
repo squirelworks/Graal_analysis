@@ -40,3 +40,7 @@ blank (not run yet). Observed `?` values are listed under each run in
 | [C028](cases/c028-cache-refetch.toml) | A shape changed on the server between two visits, the client's cache kept: refetched (pink) or stale (red)? |  |  |  |  |  |
 | [C029](cases/c029-reconnect-churn.toml) | Five short visits in a row on one server run: each links, and the fifth still draws |  |  |  |  |  |
 | [C030](cases/c030-gameobject-formats.toml) | Defaults and value formats of the core GameObject and SceneObject members, on a client-made object and the player's own |  |  |  |  |  |
+| [C031](cases/c031-terrain-near-gdi.toml) | 4.20r8 on GDI Generic GL: an empty TerrainBlock drawn from far is fine, from near it is a null call | n/a | n/a |  |  | n/a |
+| [C032](cases/c032-typed-gs2-512.toml) | The typed GS2 3D calls on 5.12: arity checked, types coerced; self-mount + move3d kills the client | n/a | n/a | n/a |  | n/a |
+| [C033](cases/c033-editors-512.toml) | WorldEditor/TerrainEditor/EditManager made by a 5.12 weapon: WorldEditor works on own objects, TerrainEditor cannot attach, nothing saved | n/a | n/a | n/a |  | n/a |
+| [C034](cases/c034-no-exec-512.toml) | 5.12 has no way to run TorqueScript from GS2: no exec/eval/loadMission, no marker runs | n/a | n/a | n/a |  | n/a |
