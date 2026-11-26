@@ -1014,3 +1014,5 @@ torque/3d-engine-dll-interface-and-events-2026-11-26.md	pending		10.3	DLL-wide s
 torque/gs2-3d-typed-surface-512-2026-11-26.md	pending		10.3	The 5.12 GS2 3D scripting surface typed from the TGraalVar registry: 35 classes / 418 members with argument and return types, the 4.04r2 comparison and the global 3D functions (T3D-096), bin; to carry into Â§10.3
 torque/3d-texture-size-limit-420r6-2026-11-26.md	pending		10.3	5.12-class client draws textures to 8192px, crashes silently past ~10240; ceiling is 32-bit client memory not GL (T3D-118), lab; to carry into §10
 torque/3d-file-loader-errors-420r6-2026-11-26.md	pending		10.3	5.12-class file-loader errors: malformed font crashes at startup; texture/sound robust (T3D-119), lab; to carry into §10
+torque/3d-font-handling-420r6-2026-11-26.md	pending		10.3	showtext fonts: lowercase(family)+style+.ttf, TrueType only, missing->default, must be pre-placed to apply (T3D-120), lab; to carry into §10
+torque/3d-v6-quattro-vs-512-2026-11-26.md	pending		10.3	6.00 engine is the Quattro 2D lineage, not a 5.12-class 3D client; no GameObject/Torque layer/proto-24 (T3D-121), bin; to carry into §10
