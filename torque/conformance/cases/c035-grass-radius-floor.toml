@@ -39,11 +39,12 @@ note = "the start-up check says the grass line goes out at radius 8"
 
 [[check]]
 id = "grass_drawn"
-kind = "pixel"
-colour = [255, 0, 255]
-tol = 70
-min_fraction = 0.01
-note = "magenta grass quads on the tan terrain around the avatar, on the second visit (the pushed grass texture is cached by then); untextured grass would draw white and does not count"
+kind = "diff"
+against = "C046"
+region = [0.0, 0.5, 1.0, 1.0]
+tol = 40
+min_fraction = 0.02
+note = "the lower half of the final screenshot differs from C046's (the same world, spawn and camera without the grass line) on at least 2% of its pixels; colour-blind, so untextured or textured grass both count"
 
 [[check]]
 id = "alive"
@@ -73,10 +74,9 @@ source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radi
 [expect."5.12"]
 taken = false
 floor_noted = true
-grass_drawn = "?"
+grass_drawn = true
 alive = true
 source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); [lab] seihai-gserver #218: every grass line at radius 4 drew nothing and the same line at 8 drew a patch (Wine on Mesa)"
-note = "grass_drawn is observed only: in the 2026-11-26 lab runs every frame was dominated by one colour (white, then the magenta grass texture over the whole ground once it was listed in heights.info), so the pixel check cannot yet tell grass from terrain"
 
 [expect."6.037"]
 taken = false

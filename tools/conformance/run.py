@@ -1064,7 +1064,9 @@ def plan(conf: dict, cases: list[cf.Case], builds: list[str]) -> list[tuple[str,
         if b not in conf["builds"]:
             continue
         have = set(conf["builds"][b].get("packs", [])) | set(conf.get("packs", {}))
-        for c in sorted(cases, key=lambda c: (c.priority, c.id)):
+        # Baselines of diff checks run first, so their screenshots exist.
+        bases = {ch.against for c in cases for ch in c.checks if ch.kind == "diff"}
+        for c in sorted(cases, key=lambda c: (c.id not in bases, c.priority, c.id)):
             if c.clients == 2 and not (conf["builds"][b].get("pair_vm") or conf["builds"][b].get("pair_dir")):
                 continue   # a two-client case needs a second client VM for this build
             if b in c.expect and set(c.needs) <= have:
@@ -1087,6 +1089,9 @@ def main(argv: list[str]) -> int:
     work = Path(conf["work"]).expanduser()
     only = set(a.case.split(",")) - {""} or None
     cases = cf.load_cases(only)
+    # A diff check's baseline case runs too, even when --case leaves it out.
+    want = {ch.against for c in cases for ch in c.checks if ch.kind == "diff"} - {c.id for c in cases}
+    cases += cf.load_cases(want) if want else []
     builds = [b for b in a.build.split(",") if b] or list(conf["builds"])
     todo = plan(conf, cases, builds)
     if a.dry_run:

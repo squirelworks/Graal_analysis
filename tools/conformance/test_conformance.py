@@ -482,3 +482,38 @@ def test_huge_png_claims_its_size_with_a_valid_crc():
 
 def case_path(cid):
     return next(p for p in cf.CASES.glob("*.toml") if tomllib.loads(p.read_text(encoding="utf-8"))["id"] == cid)
+
+
+def _ppm(path, w, h, fill, patch=None):
+    pix = bytearray(bytes(fill) * (w * h))
+    if patch:
+        (x0, y0, x1, y1), rgb = patch
+        for y in range(y0, y1):
+            for x in range(x0, x1):
+                pix[(y * w + x) * 3:(y * w + x) * 3 + 3] = bytes(rgb)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(b"P6\n%d %d\n255\n" % (w, h) + bytes(pix))
+
+
+def test_diff_checks_compare_with_the_baseline_run(cases, tmp_path):
+    c = case(cases, "C035")
+    chk = next(x for x in c.checks if x.id == "grass_drawn")
+    assert chk.kind == "diff" and chk.against == "C046"
+    out = tmp_path / "out" / "5.12"
+    _ppm(out / "C046" / "shot.ppm", 40, 40, (200, 160, 90))
+    _ppm(out / "C035" / "shot.ppm", 40, 40, (200, 160, 90), ((0, 30, 40, 40), (255, 0, 255)))
+    got, detail = cf.observe(chk, out / "C035")
+    assert got is True, detail
+    _ppm(out / "C035" / "shot.ppm", 40, 40, (200, 160, 90), ((0, 0, 40, 10), (255, 0, 255)))   # top half only
+    assert cf.observe(chk, out / "C035")[0] is False
+    (out / "C046" / "shot.ppm").unlink()
+    assert cf.observe(chk, out / "C035")[0] is None
+
+
+def test_plan_runs_diff_baselines_first(cases):
+    conf = tomllib.loads((HERE / "lab.example.toml").read_text(encoding="utf-8"))
+    b = next(iter(conf["builds"]))
+    import dataclasses
+    picked = [dataclasses.replace(case(cases, i), expect={b: {"source": "test"}}) for i in ("C035", "C036", "C046")]
+    order = [c.id for _, c in run.plan(conf, picked, [b])]
+    assert order[0] == "C046"
