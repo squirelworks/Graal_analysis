@@ -66,6 +66,13 @@ to the client from our own server only.
   and switchToOpenGL alone draws nothing (T3D-016, T3D-021, T3D-050, T3D-063, T3D-064).
 - [The original TerrainGenerator compared with servertools](terraingenerator-original-vs-servertools-2026-11-25.md)
   (T3D-043).
+- [The 3D engine DLL whole: client interface, net-event table, error paths, input](3d-engine-dll-interface-and-events-2026-11-26.md):
+  the four export entry points and the host-callback table the exe hands in (with the exact `graal_set*`
+  add/drop list per build); the 28-class / 9-networked-event table with per-event wire fields and
+  server-assigned ids (`RequestReload` and `TerrainRequestUpdates` the only client→server events); the
+  one `console.log` sink and which paths are fatal; input mapped to the client's `graalkeypressed` and
+  mouse-look (the move packet is written by `GraalEngine.dll`, not the 3D DLL); and Windows 4.20r8 is
+  byte-identical to 5.00r7/5.12 for the 3D wire (T3D-094, T3D-097, T3D-099, T3D-102, T3D-104, T3D-002).
 
 ## Second batch (T3D-077 to T3D-092, 2026-11-25)
 
