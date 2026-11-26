@@ -91,3 +91,24 @@ one world at once. That, and why 4.20r6 sends no moves, are still open.
   19. Then retry for a first frame.
 - 4.20r6: why no moves are sent, and one world that holds 19, 21 and 24 together.
 - Re-run on gserver main, since this run used `5daf3b9`.
+
+## Follow-up: the same checks on a newer gserver
+
+Server: seihai-gserver `833faba`, the Linux build the conformance runs on 2026-11-26/27 use (see
+`torque/conformance/results.tsv`). It is newer than `5daf3b9`, but this note does not check whether
+it contains main at `8800c2b`. Everything else was the same: listserver, VMs, link, clients and
+world (Player control).
+
+| Check | `5daf3b9` | `833faba` |
+|---|---|---|
+| 3.153 gets past the loading bitmap | no; a white/blue gradient across the top | **still no**, but the top now shows the sky texture, so 3D drawing has started above the stuck bitmap |
+| 3.153 logs `zero-scale not allowed` | yes | **yes** |
+| `.3ds` objects ghosted to protocol 19 | no (Sky and Player only) | **still no** |
+| Sky `.gif` files sent twice | yes | **fixed**: each is sent once, with no bare-name sends |
+| 4.20r6 (protocol 21) moves received | 0 | **still 0**; only 5- and 21-byte UDP payloads, even with the arrow keys held |
+
+Neither client crashed on either build. 3.153 sent moves on both.
+
+**So the newer server fixes the doubled sky sends, and 3.153 now draws its sky.** Still open:
+3.153 past the loading screen (the zero-scale object and the missing `.3ds` ghosts are the leads)
+and 4.20r6 sending no moves.
