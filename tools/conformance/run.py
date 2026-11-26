@@ -345,7 +345,7 @@ class Lab:
 # ------------------------------------------------------------------ clients
 
 WIN_LAUNCH = [["click", 960, 300], ["sleep", 0.8], ["key", "meta_l-r"], ["sleep", 1.5],
-              ["type", "cmd /c cd /d {dir} & del {consoles} 2>nul & start {exe} {args}"], ["enter"]]
+              ["type", "cmd /c cd /d {dir} & del {consoles} 2>nul{clean} & start {exe} {args}"], ["enter"]]
 WIN_COLLECT_OPEN = [["click", 960, 300], ["sleep", 0.8], ["key", "meta_l-r"], ["sleep", 1.5],
                     ["type", "cmd"], ["enter"], ["sleep", 2.5]]
 
@@ -360,8 +360,12 @@ def run_windows(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path):
     q = vm.qmp
     n = lab.net
     consoles = " ".join(build.get("console", ["console.log"]))
+    # The client's own download cache (5.12: levels3d and FILENAMECACHE.txt)
+    # is removed before each launch, or a file fetched in one case is not
+    # asked for again in the next and the `server` file checks miss it.
+    clean = "".join(f" & rmdir /s /q {x} 2>nul & del /f /q {x} 2>nul" for x in build.get("clean", []))
     subst = {"dir": build["dir"], "exe": build["exe"], "args": build.get("args", ""), "consoles": consoles,
-             "server": n["server_ip"]}
+             "server": n["server_ip"], "clean": clean}
     steps(q, build.get("launch", WIN_LAUNCH), subst)
     steps(q, build.get("postlaunch", []), subst)
     t0 = time.time()
