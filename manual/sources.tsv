@@ -26,6 +26,7 @@ ash/OPCODE-MAP.md	excluded		2.4; 2.5; A	a combined id table built from protocol/
 book/0.0.2/README.md	excluded			generated 0.0.2 release files; draft input, not a source
 book/0.0.2/RELEASE-0.0.2.md	excluded			generated 0.0.2 release files; draft input, not a source
 client-internals/141r1-nw-gmap-status.md	cited	1	1; C; E	carried into §1.5 and App. E#617; an App. C row follows a live load
+client-internals/214-216-feature-evidence.md	cited	1	1	Documentary feature and token limits carried in section 1.3; full attribution table stays in the note.
 client-internals/404r2-carry-state.md	cited	4.5; E	4.5; E	static interaction relationships carried; private retrieval and research process are outside manual scope
 client-internals/6037-guest-login-loop.md	cited	2.3	2.3; E	6.037 guest-first Login loop status; C7–C9 form/script gotchas unconfirmed; §2.3 / E
 client-internals/android-classic.md	cited	1; 4.11; E	1; 4.11	Packages, host, frame gate, collision, board, render, chat and resources carried in 1.7 and 4.11.11; proposed tests stay in the source note
@@ -186,7 +187,6 @@ client-internals/foot-test.md	excluded		4	superseded single-point wall test meas
 client-internals/gameboy-demo.md	cited	1; 4.11	4	
 client-internals/graal-2.3-unpacked-package.md	cited	1	1	Client and companion-component identity comparisons carried in 1.8.3; no official-release, whole-executable integrity or original 2.3 runtime claim follows from the repack label.
 client-internals/graal-wiki-crosscheck-2026-11-11.md	cited	3.3	3.3	
-client-internals/script-function-lists-focus-2026-11-25.md	pending		3.3	lab: -listscriptfunctions output of the four focus clients (format, counts, build differences); to be folded into the GS2 chapter
 client-internals/graal2002-and-140-builds.md	cited	1; 2.3; 2.4; 2.5; 2.6; 4.11; 6; 8.2; C; E	1; 2.3; 2.4; 2.5	Static identity, tokens, command dating and receive routes carried; repeated comparison baselines remain in their existing catalogue rows; Graal3D details stay in the dedicated beta note/Part IX; exact-input runtime and matrix follow-ups retained in E#15. Form names for the seven 2.1.0.x images are in §4.11. Exact ver10 list-loader/selected-row boundaries carried in §6.1.4; indirect/unreviewed routes remain open. Public 2.1.0.0 widths for 170–174 and v22 widths for 175–177 are in §2.5.2.2. The ver10 controlnpc install, the public GRMAP001 keys and the v22 loadgmaps preload are in §1. Native exact-ver10 entry/wire identity and qualified first-frame/reply observations carried in §6.1.4; first player-properties emission remains open. Public 171/172 destination state and text-resource commit/preserve guards carried in §2.5.2.2; runtime display and coordinate rounding remain open.
 client-internals/graal2002-level-open.md	cited	3.1; 3.3; 11	3.1; 3.3; 11	§3.1.0 carries the public open gate, the local-enter constant 40, ver7's missing baddy and chest records, and v22's empty GLEVNW01 stream. §3.3.7 carries the public gani direction count. §11.6.3 carries the public caller of the unsupported-file dialog. The marker character, the ver8–ver13 bodies, the name-match helper (the level and two floating-point values of 31; its effect unread) and the v22 weapon-name helper stay in the note.
 client-internals/graal2002-save-folders-2026-11-20.md	cited	2.7; E	2.7	The save-folder rule by build, the folder writers, the level-cache read order and the index skip list are carried in §2.7.6, settling E#10. The caller's saveimages gate in these images was not re-read.
@@ -196,11 +196,14 @@ client-internals/gs2-6113.md	cited	8.4	8.4
 client-internals/gs2-builtins-601-registry.md	cited	8.4; E	8.4; E	Registration-table read of Linux 6.01r1: global and per-class GS2 built-ins with type letters
 client-internals/gs2-builtins-6113.md	cited	8.4	8.4	§8.4.5 carries the math names and the two build diffs; the Preagonal name-by-name list stays in the note
 client-internals/gs2-engine-event-names.md	cited	8.3; E	8.3; E	engine event names by build in §8.3.4; E#207
+client-internals/gs2-event-handler-case-2026-11-22.md	cited	8.3	8.3	Selected event-specific name matching and Linux ASCII insertion/query consistency; Windows helper-state and the complete native spelling/runtime matrix remain open
+client-internals/gs2-joined-function-lookup-2026-11-22.md	cited	8.3	8.3	Three selected ordinary-call paths reach joined functions; older integer entries and later receiver/function-object lookup, eligibility and alias-preparation limits remain distinct
 client-internals/gs2-value-semantics-stock-2026-11-16.md	cited	8.4	8.4; E	stock vs third-party value-semantics: 10k loop default; waitfor real; starts/ends case open
 client-internals/gs2-vm-by-version.md	cited	8.4; C; E	8.4; C; E	
 client-internals/gs2-vm-from-engines.md	cited	8; 8.3; 8.4; E	8.3	§8.3.3 carries objects, lookup, events, clock and segments; §8.4 carries selected backup call/context/callback findings and separate official call/formal/normal-closure limits. Detailed signatures, fusion numbers and per-version cases stay in the note
 client-internals/gs2-vm-loader-diff.md	cited	8.4; C; E	8.4; C; E	loader, slots, opcodes, maths, event names and clock by build; settled, partial or open
 client-internals/gs2-vm-quirks-by-version.md	cited	8.4; 4.1; C	8.4; 4.1; C; E	compact quirks table; 6.03r7 timer ceil lab; event-casing risk; compile vs runtime
+client-internals/gs2-wait-results-2026-11-22.md	cited	8.3; E	8.3; E	Separately identified static wait-result chains; preparation and deadline mutation are separated from conditional restoration, distinct return/resource policies and the still-open native timeout experiment
 client-internals/gserv-125-127-builds.md	cited	1	1; 2.3; 2.4; 8	Graal 1.25 and 1.27 (InstallShield 3 packages): GSERV tokens cited in §1; GS1 dating and receive-dispatch rows still to be folded into the login and scripting sections
 client-internals/gui-windows-fkeys.md	cited	4.6; 4.10	4.6	
 client-internals/handoff-argon-grok-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
@@ -244,6 +247,7 @@ client-internals/mac-611r1-gs2-runner.md	cited	8.4; E	8.4; E	Read handlers, loop
 client-internals/mac-611r1-send-slots.md	cited	1; 2.4	1; 2	Mac identity/dependencies in §1.8.7 and partial mapping/entry tests with remaining gates in §2.4.13. Full linked-framework list and instruction-level scan mechanics remain in the source.
 client-internals/mac-ppc-404-512/SUMMARY.md	cited	2.2; 2.5	2.2; 2.5	Mac PPC 4.04r2/4.20r6/5.12 gen-5 step rule (§2.2.3) and PLO sets (§2.5)
 client-internals/mac-ppc-404-512/tools/mac-plo-sets.txt	excluded			helper data for the PPC scan scripts in the same folder
+client-internals/mac-ppc-machine-identity-property.md	cited	2.10; E	2.10; E	G129 partial 2026-11-24: Mac PPC IOMACAddress property-read + MD5-hex settled on 4.04r2/4.20r6/v5; login comma-list call graph still open.
 client-internals/mac-ppc-runtime-surface-2026-11-09.md	cited	1; 10	1; 10	graphics setup, transport, machine identity, event names, resource routing, packaged resources and the Mac 4.04r2 mission stages carried; terrain paths, texture restoration and change-dispatch details stay in the source note
 client-internals/mac-ppc-startup-input-2026-11-09.md	cited	1; 4.1	1; 4.1	Start-up timer, engine lifecycle, input translation and event registration carried in 4.1.2 and 1.8.5; identities and unread consumers stay in the source note
 client-internals/macos-v5-animation-group-lifecycle.md	cited	3.3		static group construction and cleanup carried; runtime playback remains open
@@ -268,6 +272,7 @@ client-internals/reference-reimplementations/levelscripteditor.md	cited	8.3	4	Pa
 client-internals/relay-room-bridge.md	cited	2.3; 4.11	4	
 client-internals/rendering-observations.md	cited	4.1	4	
 client-internals/saved-passwords.md	cited	3.7	4	Part 4 not needed: a format or protocol note whose facts are all carried in the sections listed; nothing in it is client behaviour beyond them (coverage audit 2026-11-04)
+client-internals/script-function-lists-focus-2026-11-25.md	pending		3.3	lab: -listscriptfunctions output of the four focus clients (format, counts, build differences); to be folded into the GS2 chapter
 client-internals/serveroptions-198.md	cited	2.5	2.5	
 client-internals/showimg-particles-and-gs2-format.md	cited	8.3; E	8.3; E	Selected static mechanism and named-build lab reconciliation carried in 8.3 and E#210; particle kinds remain open.
 client-internals/sign-panel.md	cited	4.6; 4.9	4	
@@ -283,14 +288,15 @@ client-internals/static-reads-appendix-e-2026-11-20-d.md	cited	4.3; 8.2; 10; E	4
 client-internals/static-reads-appendix-e-2026-11-20-f.md	cited	2.4; 2.8; 4.2; 4.5; E	2.4; 2.8; 4.2; 4.5; E	Decompiler reads for App. E: 2.22 neighbour-table skip flags and 171 loader, roster from PLO 8 and PM receipt, throw send, flight, hits, landing and drops
 client-internals/static-reads-appendix-e-2026-11-20-g.md	cited	4.2; 4.5; E	4.2; 4.5; E	Decompiler reads for App. E: 2.22 gani frame index and tick count (push trace), 1.39 item box unit and sizes from arrays.dat
 client-internals/static-reads-appendix-e-2026-11-20-h.md	cited	8.4; E	8.4; E	Decompiler read for App. E: 3.153 Mac reads and writes the four-segment GS2 container
+client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	cited	2.4; 4.2; 8.2; 10; E	2.4; 4.2; 8.2; 10; E	Static reads and labs for App. E: bare #5/#6 scratch string (E#203), 3.04 global sheet type and type 5 (E#507), 2.22 prop 15/16 rounding (E#304), Graal 2002 send sets (E#15), 6.03r7 format floor and case-sensitive lookups (E#210)
 client-internals/static-reads-appendix-e-2026-11-20-i.md	cited	8.4; E	8.4; E	Registration-table read for App. E: the 17 global built-ins that make 6.x fuse fold 241
 client-internals/static-reads-appendix-e-2026-11-20-j.md	cited	8.3; 8.4; E	8.3; 8.4; E	Decompiler read for App. E#209: 6.x maxlooplimit name, 6.03r7 event-name case and clientside trigger path
 client-internals/static-reads-appendix-e-2026-11-20-k.md	cited	3.5; E	3.5; E	Decompiler read for App. E#103: 2.22 verifier lineage (four guards plus label renames), start-up reach, verify steps and the decoded key size
 client-internals/static-reads-appendix-e-2026-11-20-l.md	cited	3.5; 3.10; E	3.5; 3.10; E	File reads for App. E: the WAV census by content hash (E#325 count) and the untraceable type-0 mask count (E#101)
 client-internals/static-reads-appendix-e-2026-11-20-m.md	cited	E	E	Disassembly read of the Android Classic 1.8 engine: classic-mode send/receive detail and the system-ID routine; the iPhone Classic+ 1.13 identity trailer read in the app (E#16)
 client-internals/static-reads-appendix-e-2026-11-20-n.md	cited	E	E	Function-by-function match of the Android Classic 2.2 and Era 2.0 engines to Classic 1.8: opcode set, event-name case and the loop limit (E#209)
-client-internals/static-reads-appendix-e-2026-11-24-g082.md	cited	8.4; E	8.4; E	Static read for G082 / App. E maths: unpacked 6.1.1.3 and Mac 6.11r1 power helpers keep double-precision positive square root (6.03r7 single-precision does not transfer)
 client-internals/static-reads-appendix-e-2026-11-20.md	cited	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E; 3.1	1; 2.4; 3.3; 4.1; 4.6; 4.10; 8.3; 10; E	Disassembler reads for App. E: DelphiX idle timer drives 2.22, pre-release Delphi 3 traits in early builds, 1.21/1.32 send ids, decoded 2.31 window blacklist, GS2-only names in 4.20-5.30, no exec/compile in the 4.04r2 plug-in, no Z3-V1.02 magic in any client
+client-internals/static-reads-appendix-e-2026-11-24-g082.md	cited	8.4; E	8.4; E	Static read for G082 / App. E maths: unpacked 6.1.1.3 and Mac 6.11r1 power helpers keep double-precision positive square root (6.03r7 single-precision does not transfer)
 client-internals/status-bit-0x20.md	cited	4.3	4.6	§4.6 not needed: the bit belongs to the `hidesword` and `hideplayer` counters, carried in §4.3 with those commands (coverage audit 2026-11-04)
 client-internals/status-display.md	cited	4.6	4.6	
 client-internals/stock-420r8-profile-recheck-2026-11-16.md	cited	1; 2.3; 2.5	1; 2.3	Stock 4.20r8 engine identity vs Packet Logger, receive/prop/GS1 scanner confirmation and the cleared archive caveat for the 4.20r8 profile rows; carried UI/life rows stay carried in the source.
@@ -382,6 +388,8 @@ docs/releases/v0.0.4.md	excluded			release notes for the book's GitHub release, 
 docs/releases/v0.0.5.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.6.md	excluded			release notes for the book's GitHub release, not Graal
 docs/releases/v0.0.7.md	excluded			release notes for the book's GitHub release, not Graal
+docs/releases/v0.0.8.md	excluded			release notes for the book's GitHub release, not Graal
+docs/releases/v0.0.9.md	excluded			release notes for the book's GitHub release, not Graal
 docs/research-data-publication-plan.md	excluded			Editorial planning and proposed experiments; introduces no new client-behavior result or manual question closure.
 docs/research-plan.md	excluded			ordering of the open research issues; introduces no client-behaviour result
 formats/arrays-and-signatures.md	cited	3.5	3.5	
@@ -398,11 +406,14 @@ formats/gr-v105-500r7-cache-lab.md	cited	1; 3.1; 3.8	1; 3.1; 3.8	5.00r7 web-leve
 formats/gr-v105-500r7.md	cited	1; 3.1	1; 3.1	5.00r7 intro of GR-V1.05 (absent 4.20r8), GCHAR layers + N×13-bit boards, writer layers>1 with count clamp 223
 formats/gr-v105-empty-tiles-2026-11-16.md	cited	3.1	3.1; E	GR-V1.05 upper-layer empty: RAM all-ones/-1, disk 4095; no JE-skip found; sample hunt limits
 formats/gr-v105-fuzz-2026-11-19.md	cited	2.5; 3.1; 5	2.5; 3.1; 5	
+formats/gr-v105-native603-2026-11-21.md	cited	3.1; 5	3.1; 5	Positive generated-layer delivery and drawing; deployment provenance and remaining checks are qualified in the note.
+formats/gr-v105-served-canary-links-2026-11-21.md	cited	3.1; 5	3.1; 5	Independent HUD/parser canary and one-direction physical return; deployment and scorer execution limits preserved.
 formats/graalsav.md	cited	3.7	3.7	
 formats/grescr-key-words-2026-11-16.md	cited	3.8	3.8	
 formats/grmap001.txt	cited	3.2	3.2	
 formats/grv1-decoder/README.md	cited	3.1	3.1	
 formats/gwebl001-cache.md	cited	3.8	3.8	
+formats/height-transport-scope-2026-11-21.md	cited	3.1; 5	3.1; 5	Reference-fork source gates and serialization are separate from prior original 2.x receiver evidence and unmeasured modern transport.
 formats/ios-gani-param1-placements.md	cited	3.3	3.3	Direct-placement context, named-consumer preservation/fallback and exact execution limits carried in3.3.8; native resolution remains open.
 formats/level-binary-client.md	cited	3.1; 3.6	3.1	
 formats/level-binary.md	cited	1; 3.1	3.1	
@@ -469,8 +480,8 @@ npc-library/gs2-weapon-corpus-2026-11-14.md	cited	8; 8.3; E	8.3; E
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	Historical corpus aggregates separated from current form support and selected own-VM object/numeric/member assertions in App. E#207; broader host/native acceptance remains open
 npc-library/linux-304-gs1-runtime.md	cited	8.1; E	8.1; E	exact identities and provenance remain in source note; bounded behavioral findings carried
 npc-library/npcprop-class-v4-158-status.md	cited	2.5; 8	2.5; E	NPCPROP_CLASS vs PLI 158 on v4: GServer habit vs client isolate; research #55
-npc-library/preagonal-gs2.md	cited	8; 8.3	8.3	third-party MPL-2.0 GS2 compiler and VM (2026-11-07). §8.3 records only that it is a lead and that App. E#207 stays open. Opcode, scope, and timer detail stays in the note because it is not a reading of the clients
 npc-library/preagonal-gs2-dev-compare-2026-11-26.md	pending		8.3	Preagonal GS2Compiler dev (MPL-2.0) against gs2-parser and Seihai on 151 official captures; licence and provenance of each compiler. To fold into 8.3 beside preagonal-gs2.md
+npc-library/preagonal-gs2.md	cited	8; 8.3	8.3	third-party MPL-2.0 GS2 compiler and VM (2026-11-07). §8.3 records only that it is a lead and that App. E#207 stays open. Opcode, scope, and timer detail stays in the note because it is not a reading of the clients
 npc-library/reference/forcesay.txt	excluded		8	a sample script; the manual does not reproduce script text
 npc-library/reference/npcControl-NPC.txt	excluded		8	one sample GRNPC001 server NPC file with default values; no format note backs it
 npc-library/scripts/README.md	excluded			original example scripts written for the repo, not evidence about Graal
@@ -493,6 +504,7 @@ protocol/batch2-rc-linux-2005-2006.md	cited	7	7
 protocol/carry-shoot-hit-status.md	cited	E	2.4; E	Carry/throw HITOBJECTS SHOOT status; gap #26
 protocol/chat-pm-rc.md	cited	2.4; 2.5; 2.8; 7	2.8; 7	
 protocol/class-bytecode-v4.md	cited	2.4	2.4	v4 `PLI_UPDATECLASS` → raw PLO 133 (CRC field, cold-join 0, contrast with weapons 193/158/132 and with 197); carried in §2.4.7
+protocol/client-id-inference-scope.md	cited	2.4	2.4	Evidence limits and separate token association carried in section 2.4.
 protocol/client-string-fingerprints-3x-6x.md	cited	1	1; 2.3; E	carried into §1.9.4 and App. E#619; the login rows of §2.3 do not change
 protocol/client-versions.md	cited	2; 2.1; 2.2; 2.3; 2.5; 1	1; 2.2	
 protocol/codec-and-framing.md	cited	2; 0; 1; 2.1; 2.2; 2.3; 2.5; E; A	2.1; 2.2	
@@ -503,11 +515,18 @@ protocol/crosscheck-captures-vs-research.md	excluded		2	cross-check against othe
 protocol/early-clients-probe-2026-11-19.md	excluded		2.6; B	early-client probe run (1998 relay betas to 1.39 under Wine behind the probe proxy): ids, props, widths and parser recovery by build; rows in probe-results.tsv, open items in unknowns-ledger.md
 protocol/enterlevel-focus-builds.md	cited	2.4	2.4; C	PLI_ENTERLEVEL on 5.x/6.037: 6.03r7 sends 46; 5.00r7/5.12 unread; research-list #18 status
 protocol/file-205r2-prefix-lf.md	cited	2.1; 2.5; 2.7	2.1; 2.5; 2.7	Receiver boundary and lab qualifications carried in 2.7.9; evidence identities and fixture bookkeeping stay in source note.
+protocol/file-profile-evidence-2026-11-21.md	cited	2.7	2.7	Recorded 1.41r1 direct cases are distinct from raw/file handling; local shared defaults, server gates and directional captures retain their evidence limits.
 protocol/file-transfer.md	cited	2; 2.7	2.7	
 protocol/filesendfailed-512-status.md	cited	2.5	2.5; 2.7	5.12 FILESENDFAILED (30) uniqueness status; gap #37
 protocol/format-notes-from-salvage.md	cited	E	2	Part 2 not needed: an early format summary superseded by the notes Part 3 cites; cited in App. E where it disagrees with them (coverage audit 2026-11-04)
 protocol/fuzz-4x-5x-win-2026-11-19.md	cited	2.5; 2.6; 2.1; 2.2	2.5; 2.6; 2.1; 2.2	
+protocol/g002-public-login-603r7-2026-11-24.md	cited	E	2; E	official Login:14900 G3D0311C guest reject (25+16); E#3/G002 partial
+protocol/g019-classic-login-14922-2026-11-24.md	cited	E	6; E	public 14922 classic shape-B list reply; E#403/G019 partial
+protocol/g020-classic-login-14923-2026-11-24.md	cited	E	6; E	public 14923 classic shape-B dual list + status; E#404/G020 partial
+protocol/g3d30123-public-listserver-2026-11-24.md	cited	6; E	6	3.x G3D30123 public list-only login; ports 14922/14923 confirmed
+protocol/g428-stock-304-public-list-2026-11-25.md	cited	6; E	6	stock 3.04 Linux public list login; 14922 works, 14923 disconnects on plain-zlib legacy frame; list id 6 = 000
 protocol/gen5-cipher-step-5x.md	cited	2.2	2.2; E	5.12 gen-5 short-compressed step round-down settled; 5.00r7 unread; consolidates E#2 + v5v6-lab-play + Seihai stress
+protocol/gen6-c2s-0xfc-padding.md	cited	2.10; E	2.10; E	G335 partial 2026-11-24: C→S 0xfc envelope settled (RSA to operator pubkey); exact EM padding blocked (operator private key unheld).
 protocol/gen6-s2c-pkcs-padding-2026-11-16.md	cited	E	E	gen-6 S→C 0xfc PKCS#1 v1.5 type-2 closed; C2S operator-key open; no keys published
 protocol/gmap-adjacent-level-target.md	cited	2.5	2.5	
 protocol/gmap-file-on-warp.md	cited	2.5	2.5	pre-3.0 clients need `.gmap` on disk before each PLAYERWARP2; once-per-session push fails when saveimages is off; §2.5.3
@@ -564,16 +583,11 @@ protocol/linux-local-login-matrix.md	cited	2.3	2.3	exact identities and provenan
 protocol/listserver-141r1-silent-list.md	cited	E	1; C; E	1.41r1 silent list: client sends nothing; id1 extra row id2 ignored; silent_list_after_ms is lab/seihai accommodation; E#401 Claim C
 protocol/listserver-login-type-matrix-2026-10-25.md	cited	6; E	6	
 protocol/listserver-login-type-matrix-2026-10-25.tsv	cited	6	6	
-protocol/g3d30123-public-listserver-2026-11-24.md	cited	6; E	6	3.x G3D30123 public list-only login; ports 14922/14923 confirmed
-protocol/g428-stock-304-public-list-2026-11-25.md	cited	6; E	6	stock 3.04 Linux public list login; 14922 works, 14923 disconnects on plain-zlib legacy frame; list id 6 = 000
 protocol/listserver.md	cited	6; E	6	
 protocol/login-and-walk.md	cited	2.3; 2.4; 7; 2.1	2.3	
 protocol/login-frames-by-version-2026-10-25.md	cited	2.1; 6; E	2.3	§2.3 not needed: the login frames by version are carried in §2.3 from the per-generation notes; this note is cited for framing, the listserver and App. E (coverage audit 2026-11-04)
 protocol/login-recovery-start.md	excluded	2.1	2.3	superseded 2026-10-14 planning note for a reimplementation's provisional encoding
 protocol/login-session-known.md	cited	2.2; 2.3; E	2.3	
-protocol/g002-public-login-603r7-2026-11-24.md	cited	E	2; E	official Login:14900 G3D0311C guest reject (25+16); E#3/G002 partial
-protocol/g019-classic-login-14922-2026-11-24.md	cited	E	6; E	public 14922 classic shape-B list reply; E#403/G019 partial
-protocol/g020-classic-login-14923-2026-11-24.md	cited	E	6; E	public 14923 classic shape-B dual list + status; E#404/G020 partial
 protocol/login-session-observed.md	cited	2.3	2.3	
 protocol/login-tokens-3x-7x.md	cited	1; 2.3; 10	2.3; 10	
 protocol/macos-ppc-receive-decompression.md	cited	2.1	2.1	per-build output acceptance, zlib versions and the v5 retry cutoff carried; the zlib-style header check and library hits stay in the source note
@@ -596,6 +610,8 @@ protocol/payload-and-trigger-205r2.md	cited	2.5	2.5
 protocol/pcap-2026-10-04.md	excluded		2	first survey of the 2026-10-04 captures; its decoded results are in protocol/login-and-walk.md and protocol/codec-and-framing.md, which the manual cites
 protocol/pcid.md	cited	2.3; 6; E	2.3; 6	
 protocol/player-props-5x-status.md	cited	2.6	2.6; E	Case sets, selected backup cursor census, coordinate/storage, logical177 default dispatch and bounded order/power-storage findings; sender/gameplay/build coverage, units/runtime, genuine 5.12 and P4–P6 remain open; research #6
+protocol/player-props-selected-backup-cursors-2026-11-22.md	cited	2.6	2.6	Complete selected own/shared nominal cursor census; different default, short-input, conditional-extent and prefix-copy behavior; not genuine 5.12, semantic completeness or runtime safety
+protocol/player-props-selected-backup-cursors-2026-11-22.tsv	cited	2.6	2.6	Numeric companion; section 2.6 carries the cursor conventions and distinctions while the full per-ID table remains external
 protocol/player-props.md	cited	2; 2.5; 2.6; 2.8; B	2.6; B	
 protocol/player-x-half-tile.md	cited	2.6	2.6	
 protocol/plo-109-httpdownload.md	cited	2.5; A	2.5; A	PLO 109 HTTPDOWNLOAD: i5 + local name + URL; 5.24r4–6.03r7; first-string scheme-check open; §2.5 / App. A
@@ -610,6 +626,8 @@ protocol/probe-mac-6015-2026-11-19.md	excluded	E	2.6; B	6.015 macOS client probe
 protocol/probe-native-linux-4x-2026-11-19.md	excluded		2.6; B	native Linux 3.x/4.x probe run (run4x.sh): 4.x prop widths and unknown-PLO handling match win-4.20r8; folds into the prop-width-by-build rows (2.6.6) and App. B that probe-targets-2026-11-18.md already carries
 protocol/probe-results.tsv	excluded		2.6	table form of probe-targets-2026-11-18.md in the same folder
 protocol/probe-targets-2026-11-18.md	cited	2; 2.1; 2.3; 2.4; 2.5; 2.6; 5; B; E	2.6; 2.5; 5; B; E	probe-proxy lab results: §2.1.2 (NUL byte, silent ids), §2.3.3 (gen 3 live), §2.4.1 (server PLI sweep), §2.5.4 (drawing an injected player), §2.5.6.1 (195 header overrides), §2.5.10, §2.6.6 (prop widths by build, other-player, NPC, baddy types), §5.3.3 (GServer-v2 PLI sweep); App. B rows 77-83; App. E open points
+protocol/probe-wine512-core-2026-11-21.md	cited	2.6	2.6	Controlled Windows 5.12 core slice and canary limits carried in section 2.6.6.
+protocol/probe-wine512-widths-2026-11-21.md	cited	2.6	2.6	Selected-payload alignment, non-exact case 76 and nonzero 77 follow-up limits carried in section 2.6.6.
 protocol/public-listserver-2026-10-25.md	cited	6; E	6	
 protocol/public-listserver-2026-10-25.tsv	cited	6	6	
 protocol/rc-capture-2026-11-04.md	cited	6; 7; E		
@@ -618,6 +636,7 @@ protocol/rc-list-online.md	cited	7; E	7
 protocol/rc-props-flags-status.md	cited	7	7; E	RC props tail / SET2 last byte / PLO 124 status; gap #42; E#420/E#421
 protocol/rc-text-escaping-status.md	cited	E	7; E	RC text escaping status: empty fields settled; backslash via server profiles; gap #41 / seihai-rc#56
 protocol/rc2-sessions-stock-2026-11-16.md	cited	7	7; E	RC2/RC3 stock: IRC after 25; no 194→prop35+location; GUI≠140; GSERV024/025 ladder
+protocol/rc2005-linux-send-framing-2026-11-21.md	cited	7	7	Static enqueue and framing branches; indirect routing, outgoing-id census and runtime acceptance remain open.
 protocol/relay-1998.md	cited	2; 2.1; 2.2; 2.3	2.3; 4	Canonical earliest-network capability/evidence map carried in 2.3.1.5; source-only board behavior also carried in 4.11 via the precursor note. Consumer PR status is dated implementation context, not original behavior.
 protocol/script-fuzz-2026-11-19.md	cited	8.3; E; 8.2; 8.4; 8.1	8.2; 8.3; 8.4; E; 8.1	
 protocol/script-packet-guards.md	cited	2.5	2.5	hard guards: never 132/133/193 to builds that dropped them (5.24+/v6); never 197/140 to pure 4.x; gate on profile plo; §2.5
@@ -645,6 +664,7 @@ protocol/v6-repro-facts.md	cited	2.10	2.10
 protocol/v6037-hello-diff.md	cited	2.3	2.3	
 protocol/v611-id-tables.md	cited	2.10	2.10	the 6.111 connector script's live outgoing and incoming id tables joined to gs2lib names (#397); §2.10 cites it
 protocol/v611-outgoing-cipher.md	cited	2.10	2.10	where the 6.11 outgoing cipher starts (offset 287) and that it is per-session RC4; §2.10.5 cites it
+protocol/v6113-capture-decrypt.md	cited	2.10; E	2.10; E	G334 partial 2026-11-24: clear prefix + RC4@287 reconfirmed on three Windows 6.113 capture streams; post-287 decrypt blocked (exact-session key never recorded; G335 not started).
 protocol/v6113-chat.md	cited	2.8	2.8	
 protocol/v6113-files.md	cited	2.7	2.7	
 protocol/v6113-handlers.md	cited	2.5	2.5	§2.5.11 carries the pair installer, the empty slot and the lack of a compiled case for wire id 104; the per-index names stay in the note
@@ -662,7 +682,11 @@ protocol/v6113-udp-code.md	cited	2.9	2.9
 protocol/v6113-udp.md	cited	1; 2.9; 6; 10	1; 2.9; 6; 10	§1.8.7 carries both captures: the shorter one has TCP 14900 and no UDP on 14900, 14901 or 14899, and the longer one has the Graal hello on 14900 and 14882. §2.9, §6.1.3 and §10.2 carry the longer capture's port comparison. Both port tables stay in the note
 protocol/v6113-wire.md	cited	1; 10	1; 10	§1.8.7 and §10.1.9 carry that 6.113 has no token and no wire of its own; the contradiction table stays in the note
 protocol/v6x-clients.md	cited	2; 2.1; 2.2; 2.3; 2.4; 2.5; 2.10; 1; 2.7	1; 2.10	
+protocol/v7-connector-id-tables.md	cited	2.10; E	2.10; E	G332 partial 2026-11-24: remapper model + PLI slot names match 6.11; production 7.x pair lists uncompared (decrypt blocked — G156 + G028 residuals).
 protocol/v7-connector-live-20261111.md	cited	1; 2.10; E	1; 2.10	v7 connector request order, reply container and online-play reach in §2.10.7; identity in §1.8.10; open decrypt in E#616
+protocol/v7-connector-payload-cipher.md	cited	2.10; E	2.10; E	E#616 / G028 partial: RSA container block signature-only (not AES wrap); payload cipher, plaintext and ?p= DES key remain open 2026-11-24.
+protocol/v7-connector-script-diff.md	cited	2.10; E	2.10; E	G246 partial 2026-11-24: outside-script 7.x vs 6.11 diffs settled; production script token/template/cipher uncompared (decrypt blocked — G156 + G028 residuals).
+protocol/v7-connector-trust-anchor.md	cited	2.10; E	2.10; E	E#616 / G156: stock v7 connector trust-anchor swap NO-GO; production plaintext/host/port/login remain Maybe never under G028 residuals 2026-11-24.
 protocol/v7-graal3d-chat-world-udp.md	cited	2.8; 2.9		v7 chat, world, UDP status
 protocol/v7-graal3d-discovery-extras.md	cited	E		v7 open-item status and extras
 protocol/v7-graal3d-file-and-packages.md	cited	2.7		v7 file and package transfer
@@ -738,12 +762,23 @@ server-notes/README.md	excluded		5	index of server-notes/; its notes are cited d
 server-notes/ash-identity-2026-11-20.md	cited	5	5	Owner statement: Ash was an early attempt at reproducing Graal, not Graal; settles App. E#400
 server-notes/ash-overview.md	cited	5; E	5	
 server-notes/baddies-serverside.md	cited	5	5	
+server-notes/file-cache-and-script-size-2026-11-23.md	cited	5	5	Versioned G070 file/checksum/cache and script input/output comparison; later modified source only, original 4.02 and old-engine/runtime questions remain open.
+server-notes/folder-configuration-routing-2026-11-22.md	cited	5	5	Setup options, retained patterns and indexed-file categories are separated from managed-root creation fallback; no runtime binding or original-server claim.
+server-notes/ghost-mode-options-2026-11-21.md	cited	5	5	Pinned reference-fork configuration consumption; original-server and client runtime behavior remain separate.
+server-notes/gs1-eight-server-commands-2026-11-22.md	cited	5	5	Complete eight-command later-fork registration/argument/delegate reference with typed-store and persistence limits; original-server G069 confirmation remains open.
 server-notes/gserver-1999-rules.md	cited	5; E	5.1; E	
 server-notes/hubserver-037-and-delteria-2026-11-18.md	cited	3.1; 6; 8.3	6; 3; 8; E	Hubserver v0.3.7 vs v0.3.6 in §6.2.4; Delteria layer counts and the GR-V1.05 negative in §3.1.3.2; script dialects in §8.3.1
 server-notes/lab-servers-2026-10-30.md	cited	5; 6; E	5	
+server-notes/language-options-and-fallback-2026-11-21.md	cited	5	5	Tracked/logged language keys are separated from registration metadata, player language and actual classic/modern lookup; no original/runtime equivalence.
+server-notes/level-persistence-options-2026-11-22.md	cited	5	5	Tile rewrite attempts, sublevel NPC sleep and DATABASE save requests are separated; no durable-output or original/runtime claim.
 server-notes/original-server-builds-1999-2007.md	cited	5; 7	5; 7	
+server-notes/player-z-policy-2026-11-22.md	cited	5	5	Pinned reference-fork Z update rejection, independent range conversion and conditional NPC-touch probe; direct state paths and original/runtime limits remain separate.
 server-notes/public-allowed-versions.md	cited	5; E	5	
+server-notes/script-engine-defaults-2026-11-22.md	cited	5	5	Pinned GPL default-engine alias and consumer classification; no original/runtime or fresh inventory claim.
 server-notes/setcharprop-hash-n.md	cited	5	5	
+server-notes/sync-distance-routing-2026-11-21.md	cited	5	5	Numeric synchronization queries are separated from ordinary data and send-method gates; no universal visibility, original-server or new runtime claim.
+server-notes/tile-category-options-2026-11-21.md	cited	5	5	Pinned GPL reference-fork category selection and consumers; original-server, client rendering and live-toggle effects remain unverified.
+server-notes/versioned-server-options-reference-2026-11-22.md	cited	5	5	Full retrospective documentary inventory and pinned source navigation; detailed99-row comparison, not an acceptance census or original/runtime claim.
 tools/README.md	excluded		11	index of the tools folder; the notes it lists are cited or excluded one by one
 tools/assimilator-batch-ops-2026-11-16.md	cited	11	11	
 tools/baddy-222/README.md	excluded		11	usage notes for the baddy gani generator and capture checker; the findings are in client-internals/baddies-222.md
@@ -755,6 +790,7 @@ tools/classic-tools/graal-level-gen.md	cited	11	6; 11	Part 6 not needed: the too
 tools/classic-tools/gserverstat.md	cited	5; 11	6; 11	Part 6 not needed: the tool does not contact a listserver (the note says so where it matters); carried in §11.7 (coverage audit 2026-11-04)
 tools/classic-tools/serverlist3.md	cited	6; 11	6; 11	
 tools/classic-tools/text-convert.md	cited	11	6; 11	Part 6 not needed: the tool does not contact a listserver (the note says so where it matters); carried in §11.7 (coverage audit 2026-11-04)
+tools/conformance/lab.example.toml	excluded			lab config template for the 3D conformance runner, not Graal
 tools/connfuzz/README.md	excluded			repository tooling for the notes (the loopback conf.gs fuzzer behind conf-gs-fuzzing.md), not Graal
 tools/generators-222/README.md	cited	11	11	
 tools/generators-222/gmap-terrain-stock-2026-11-16.md	cited	11; 3.2	11; 3.2	stock TerrainGenerator Delphi LCG; HEIGHTMAP/RANDOMSEEDS roles; writer vs 65x65 reader
@@ -781,6 +817,7 @@ tools/level-editor/seihai-tracking.md	excluded		11	reimplementation tracking che
 tools/level-editor/version-deltas.md	cited	11	11	
 tools/level-tools-gaps/README.md	cited	11	11	
 tools/levelfiller.md	cited	11	11	
+tools/manual/fixtures/source-fragments.md	excluded			authored Markdown parser fixture for source-fragment checks, not research evidence or manual facts
 tools/navigator/README.md	excluded			repository tooling for the notes, not Graal
 tools/npc-control.md	cited	6; 7; E	7	
 tools/npcserver-2001.md	cited	5; 7	7	
@@ -811,6 +848,77 @@ torque/304-draw.md	cited	10	10	§10.1.4 carries the type family in one row; gani
 torque/304-net.md	cited	10	10	§10.1.4 carries the Torque split and the login ids; file logs, the server-list fields and the profile rows stay in the note
 torque/304-npcs.md	cited	10	10	§10.1.4 carries the triggers in one row; baddy types, the weapon cut and the file-name rule stay in the note; selected304 local value-helper branches/limits carried in10.12
 torque/304-tile-types.md	cited	10; E	10; E	compiled-in 3.04 tile lists / sheet-type walk rules; 2026-11-24 loopback G3D03014 login showed no addtiledef on the wire (G344)
+torque/3d-2d-level-packets-420r6-2026-11-25.md	cited	8.5; 10	10.3	2D level packets in a 3D session (T3D-060), lab; carried into §8.5 and §10
+torque/3d-2d3d-crossview-flags-movetype-512-2026-11-26.md	pending		8	real 5.12 3D + real 2.22 2D same world (seihai-gserver #209): server flags reach 2D not the 3D GS2 script; cross-view presence+position both ways, chat/nick server-complete+script-readable but 5.12 draws neither, head/body/colours never cross; 2D observer sees rigid+list movetype as jumps; level timeouts run only on the level leader (T3D-069/133/054), lab; to carry into section 8
+torque/3d-archives-404r2-512-2026-11-25.md	cited	8.5; 10	10.3	Static read and Linux 4.20r6 lab run of 3D archive mounting (T3D-012); carried into §8.5 and §10
+torque/3d-audio-particles-404r2-2026-11-25.md	pending		10.3	3D audio + networked particles are 4.04r2-only and unplaceable; GS2 sound runs, script particles need a definition (T3D-061), lab+bin; to carry into §10
+torque/3d-authoring-surface-2026-11-25.md	pending		10.3	3D authoring surface: placeable keywords/fields and what draws per build (T3D-106), srv+lab; to carry into §10
+torque/3d-batch-w-rows-2026-11-26.md	pending	E	10.6	4.20r8 near-terrain crash on GDI GL, 5.12 typed GS2 calls, 5.12 editor classes (T3D-079/125/126), lab
+torque/3d-capability-board.md	cited	E; 8.5	10; E	2026-11-25 Torque-era 3D capability board: 64 claimable questions; to fold into Part 10 open points and App. E; scripting side carried into §8.5
+torque/3d-capability-board.tsv	cited	E; 8.5	10; E	data table for the 3D capability board; scripting side carried into §8.5
+torque/3d-capacity-budget-420r6-2026-11-26.md	pending		10.3	per-3D-player budget ~5 pk/s and ~50-60 B/s each way (idle=moving); client holds a stable ~141 MB with no leak (T3D-127/131), lab; to carry into §10
+torque/3d-client-events-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D client-to-server events (T3D-018), static and lab; carried into §8.5 and §10
+torque/3d-clientside-editor-gating-420r6-2026-11-26.md	pending		10.3	in-client 3D editors and script file-saves are gated off from a clientside weapon; editing/saving is server-side (T3D-020), lab; to carry into §10
+torque/3d-content-format-requests-420r6-2026-11-26.md	pending		10.3	5.12-class per-extension request map: .3ds/.dts/.dif shapes with ext, textures bare-named, .wav/.ttf with ext, rest never fetched (T3D-011), lab; to carry into §10
+torque/3d-dif-interiors-512-2026-11-25.md	pending	E	10.6	5.12 .dif interiors: a v44 interior draws (v43/v45 rejected); the server-positioned 3D player does not collide with it and has no gravity — interiors are visual geometry only
+torque/3d-dll-deadcode-vs-graal-2026-11-25.md	pending		10.3	5.12 DLL: stock-TGE content removed or dead, drawable frame + Graal additions live; boundary at the networked-content-class line (T3D-103), bin; to carry into §10
+torque/3d-dts-dif-reader-internals-2026-11-26.md	pending		10.3	The .dts/.dif body-read structure the renderer must match (three-stream DTS block, DIF v44 geometry lists) confirmed by the stock-TGE loader classes in 5.12, plus the rebuild's fidelity gaps (sorted meshes, DIF sub-objects/lightmaps), bin; to carry into Â§10.3
+torque/3d-engine-dll-interface-and-events-2026-11-26.md	pending		10.3	DLL-wide static reads of Graal3DEngine.dll (4.04r2/4.20r8/5.00r7=5.12): export entry points and host-callback table, the 28-class/9-event net table with per-event wire fields, error/crash paths, input-to-graalkeypressed handoff, and 4.20r8=5.00r7/5.12 for the 3D wire (T3D-094/097/099/102/104/002), bin; to carry into Â§10
+torque/3d-engine-static-reads-2026-11-25.md	cited	E; 8.5; 10	10.3; 10.6	Static reads of the 5.00r7 3D engine: sky functions, name HUD, protocol, loaders, input; carried into §8.5 and §10
+torque/3d-engines-5007-512-and-403-411-2026-11-25.md	cited	8.5; 10	10.3	Static 3D engine compare (T3D-005, T3D-003): protocol and class sets by build; to carry into §10
+torque/3d-fidelity-g3dreplay-vs-client-420r6-2026-11-26.md	pending		10.3	g3d-replay is a schematic box/grid positional view, not a pixel-faithful renderer; matches the real 5.12-class client on none of the five fidelity features (T3D-105), lab; to carry into §10
+torque/3d-file-loader-errors-420r6-2026-11-26.md	pending		10.3	5.12-class file-loader errors: malformed font crashes at startup; texture/sound robust (T3D-119), lab; to carry into §10
+torque/3d-file-preference-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D file preference (T3D-107), lab; carried into §8.5 and §10
+torque/3d-font-handling-420r6-2026-11-26.md	pending		10.3	showtext fonts: lowercase(family)+style+.ttf, TrueType only, missing->default, must be pre-placed to apply (T3D-120), lab; to carry into §10
+torque/3d-formats-renderer-camera-by-build.md	cited	E; 8.5	10.6	shape loaders, file-access gate, renderer prefs, camera classes and sound formats in 4.04r2 and 5.12; to fold into the formats section; scripting side carried into §8.5
+torque/3d-frame-rate-scaling-420r6-2026-11-25.md	pending		10.3	Client frame-rate scaling with ghosts and triangles, software GL (T3D-113), lab; to carry into §10
+torque/3d-frankenstein-6037-vs-600-2026-11-26.md	pending		10.3	our Frankenstein 6.037 is a from-source hybrid (6.03r7 Quattro host + 5.12 proto-24 link); gains real 3D capability stock 6.00 lacks, box-view only (T3D-122), bin; to carry into §10
+torque/3d-frankenstein-6037-vs-retail-6037-2026-11-26.md	pending		10.3	our Frankenstein 6.037 vs stock 6.03r7 retail: unpacked 3D-capable hybrid vs QPlay/CyaSSL-packed 2D Quattro; new axes packaging + secure transport, 3D verdict unchanged (T3D-132), bin; to carry into §10
+torque/3d-fuzz-content-512-2026-11-25.md	pending	E	10.6	5.12 content fuzzing: .3ds/.dts/PNG crash on unchecked fields, no PNG CRC check, .dif robust; damage stays in the one client
+torque/3d-fuzz-net-tier1-2026-11-25.md	cited	E; 8.5; 10	10.6	3D network fuzz tier 1: event-length and ghost-index crashes on 5.12 and 4.04r2; carried into §8.5 and §10
+torque/3d-fuzz-targets-by-build.md	pending	E	10.6	Fuzz target list for the 3D client inputs, ranked by reach
+torque/3d-fxsunlight-flagcount-512-2026-11-26.md	pending		10.3	fxSunLight has exactly 14 animation-switch flags not 16, settled from the engine field registration + live-accept check (T3D-047), bin+lab; to carry into §10
+torque/3d-gs2-functions-by-build-2026-11-25.md	pending		10.3	3D GS2/console functions across 4.04r2/5.00r7/5.12 (T3D-088), bin; to carry into §10
+torque/3d-gui-overlay-420r6-2026-11-25.md	pending		10.3	2D GUI layers over the 3D view; GS2 GUIs draw in 3D (T3D-058), lab+bin; to carry into §10
+torque/3d-legacy-anim-formats-420r6-2026-11-26.md	pending		10.3	.ifl/.dml ignored, standalone .dsq unreachable, .gft-as-shape not loaded; 3D text via showtext+.ttf on 5.12-class (T3D-034/035/036), lab; to carry into §10
+torque/3d-level-warp-per-player-replicator-208-512-2026-11-26.md	pending		8	seihai-gserver #208/#209 lab: level warp works on #209 both routes (no relink, BIG creates both ways), per-player objects scope per client, DynamicShapeReplicator first-visit scatter via #209 resend, grass classes want a texture not a shape (T3D-135/136/048), lab; to carry into section 8
+torque/3d-lighting-phase-timing-404r2-420r6-2026-11-26.md	pending		10.3	mission-lighting phase is a fixed handshake, not a per-object bake; no scaling with lit-object count on 4.04r2/4.20r6 (T3D-052), lab; to carry into §10
+torque/3d-lightscene-cache-2026-11-25.md	pending		10.3	lightScene/lightmap caching retained in 5.12 but interior content gone (T3D-092), lab+bin; to carry into §10
+torque/3d-link-drop-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D link loss behaviour (T3D-027), static and lab; carried into §8.5 and §10
+torque/3d-loader-validation-by-build-2026-11-26.md	pending		10.3	Per-loader validation in Graal3DEngine.dll: .dts 17-24 (4.04r2 <=24), .dif ==44, .3ds no gate, GameShapeFT = FreeType text, terrain 256x256x24 (T3D-098/029/030/036), bin; to carry into Â§10.3
+torque/3d-local-mis-vs-wire-420r6-2026-11-26.md	pending		10.3	5.12-class client never loads a local .mis; mission comes only over the wire (T3D-010), lab; to carry into §10
+torque/3d-look-props-512-2026-11-26.md	pending	E	10.6	5.12 cross-view of look props is asymmetric: a 3D player shows on 2D as a full 2D sprite+name tag; a 2D player shows on 3D as the 3D model, not the 2D look; 3D-side changes don't propagate (partial)
+torque/3d-mesh-size-limit-420r6-2026-11-26.md	pending		10.3	5.12 mesh limits: .3ds 16-bit cap (~65k faces/chunk) then per-shape draw ceiling (~265k-400k verts), never a crash (T3D-124), lab; to carry into §10
+torque/3d-movetype-rigid-list-512-2026-11-26.md	pending	E	10.6	5.12 movetype: a server g3dpos move lands per the world movetype — rigid glides (move-list events, transform unchanged), list jumps (transform carries the position)
+torque/3d-multi-client-lab-design.md	pending	E	10.3	plan for multi-client 3D labs (T3D-065 to T3D-076); to fold into the session section when results exist
+torque/3d-multi-client-scoping-512-2026-11-25.md	pending	E	10.6	5.12 multi-client scoping is flat: no ghost cap at 3, no distance scoping; the server relays every far player's position, far players only leave the camera frame
+torque/3d-multiclient-coexistence-066-072-211-512-2026-11-26.md	pending		8	multi-client 3D on seihai-gserver #209/#211: two 4.04r2 [proto 19] coexist server-clean (cross-ghost, moves, teardown) but draw inconclusive; a 19+24+24 mix coexists cleanly (protocol-correct ghosting, sync PASS, 5.12 sends 0 moves), full 19/21/24 needs the proto-21 Mac host; the T3D-069 level-leader timeout gotcha was a server gap fixed in #211 (PLO_ISLEADER to a 2D player), 2.22 timeouts run with a 5.12 in the level both join orders (T3D-066/072/069), lab; to carry into section 8
+torque/3d-object-classes-by-build-2026-11-25.md	pending		10.3	Networked object classes drawn by build; game layer 4.04r2-only (T3D-081), bin; to carry into §10
+torque/3d-partial-rows-closing-plan-2026-11-26.md	excluded			work plan for the partly answered 3D board rows, not a finding
+torque/3d-particles-512-vs-404r2-2026-11-25.md	cited	8.5; 10	10.3	Particles dropped from 5.12, GS2 TParticleEmitter replaces them (T3D-085), bin; carried into §8.5 and §10
+torque/3d-path-traversal-512-2026-11-25.md	pending	E	10.6	5.12 confines server-sent terrain-texture file names to its own folder (no path traversal); strips the directory part to the basename
+torque/3d-player-identity-420r6-2026-11-25.md	pending		10.3	3D player keeps the 2D identity (gani/head/body/nick/chat) alongside its 3D shape (T3D-056), lab+bin; to carry into §10
+torque/3d-prefix-dll-3153-exec-2026-11-26.md	pending	E	10.6	"3 " prefix and missing Graal3DEngine.dll on 4.20r8/5.00r7, 3.153 local .cs execution, batch-W blockers (T3D-059/006/072/066/089/067), lab
+torque/3d-recovery-420r6-2026-11-25.md	pending		10.3	3D client recovery from partial/bad data mid-session (T3D-108), lab; to carry into §10
+torque/3d-scoping-interiors-limits-512-2026-11-26.md	pending	E	10.6	5.12 scoping (draw horizon ~1000 units, no server distance scoping, hide flags inert), damaged-.dif matrix, 4.20r6/5.12 GameObject parity, 4096-ghost ceiling, 5.12 frame rate (T3D-075/083/087/030/026/037/113), lab
+torque/3d-server-entry-and-udp-port.md	cited	E; 8.5	10.3	the 3 list prefix and the 3D UDP port rule in 4.04r2 and 5.12; to fold into the session section; scripting side carried into §8.5
+torque/3d-server-time-timevar3-420r6-2026-11-26.md	pending		10.3	server time field drives timevar3, a synced Graal3D clock that animates smoothly and feeds day/night (T3D-024), lab; to carry into §10
+torque/3d-session-entry-route-420r6-2026-11-26.md	pending		10.3	5.12-class 3D entry over our gserver is the mission-phases route with GhostAlways nested in Phase 1; 3D GUI attaches at the control object (T3D-022), lab; to carry into §10
+torque/3d-session-file-footprint-420r6-2026-11-26.md	pending		10.3	5.12-class 3D session file footprint: the .graal/ cache tree, no script screenshot, no heights/lightmap cache (T3D-053/T3D-100), lab; to carry into §10
+torque/3d-session-lifecycle-420r6-2026-11-26.md	pending		10.3	5.12-class 3D session lifecycle: gen-5 login -> 3-prefixed 178 warp -> dual TCP+UDP link; position client-authoritative; drop is a 30s timeout with no resume (T3D-130/128/129), lab; to carry into §10
+torque/3d-shape-textures-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D shape texture handling and cache naming (T3D-090), lab; carried into §8.5 and §10
+torque/3d-shared-world-subset-2026-11-25.md	pending		10.3	Common 3D content subset across builds; one world, two protocol encodings (T3D-109), lab; to carry into §10
+torque/3d-sound-formats-420r6-2026-11-26.md	pending		10.3	5.12 sound formats are FMOD 3.70 set: WAV/OGG/MP3/MP2 play, WMA/ASF Windows-gated, FLAC/AAC dropped; unsupported silently no-op (T3D-123), lab+bin; to carry into §10
+torque/3d-sound-paths-2026-11-25.md	pending		10.3	3D sound on 5.12 is the GS2 play2/play3d path; Torque audio classes 4.04r2-only (T3D-084), lab+bin; to carry into §10
+torque/3d-state-authority-420r6-2026-11-25.md	pending		10.3	Which 3D state is server-authoritative vs client-trusts-self (T3D-111), lab; to carry into §10
+torque/3d-static-batch-closing-2026-11-26.md	pending		10.3	Static side of five 3D lab partials: 22 GS2 on* callbacks (T3D-021), GameObject draw-gated on server ghosting (T3D-016), properties sync as named TGameObjectVar (T3D-015), client moveMap2D keybinds (T3D-057), 4.04r2 MD3 LEGS_/TORSO_ animation via _animation.cfg (T3D-031), bin; to carry into Â§10.3
+torque/3d-terrain-water-sun-route-420r6-2026-11-26.md	pending		10.3	the networked terrain/water/replicator/sun-flag layer is unreachable over our lab-server route; GS2 terrain hooks no-op; closes T3D-042/045/050/078, documents T3D-047/048 blockers, lab; to carry into §10
+torque/3d-texture-formats-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D texture image formats, bit depths and sizes (T3D-077), lab; carried into §8.5 and §10
+torque/3d-texture-size-limit-420r6-2026-11-26.md	pending		10.3	5.12-class client draws textures to 8192px, crashes silently past ~10240; ceiling is 32-bit client memory not GL (T3D-118), lab; to carry into §10
+torque/3d-v6-quattro-vs-512-2026-11-26.md	pending		10.3	6.00 engine is the Quattro 2D lineage, not a 5.12-class 3D client; no GameObject/Torque layer/proto-24 (T3D-121), bin; to carry into §10
+torque/3d-weather-404r2-2026-11-25.md	pending		10.3	Precipitation/Lightning are 4.04r2-only client classes; our server has no emit path (T3D-049), lab+bin; to carry into §10
+torque/3d-win10-sky-prefs-scripting-512-2026-11-26.md	pending	E	10.6	5.12 on Windows 10: sky flags and FOV, shape limits, video prefs, two-client interaction, coordinates, callbacks, pose/HUD (T3D-086/037/051/074/070/116/134-140), lab
+torque/3d-world-limits-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D world-limit fuzz (T3D-091), lab; carried into §8.5 and §10
 torque/404r2-resource-filter.md	cited	10; E	10; E	filter and mission-path bounds carried; private retained-code mappings remain in source note
 torque/4208-engine.md	cited	10	10	§10.1.5 carries the session timer, TGraalVar kinds, the paused-script refusal and the absence of SimObject and .dso; key and mouse cases, show-image dispatch and the StartScript order stay in the note
 torque/4208-g3d.md	cited	10	10	§10.1.5 carries GameObject as a SceneObject, the login steps and the interior rejection; the property groups, the terrain-chunk send and the three host callbacks stay in the note
@@ -819,6 +927,39 @@ torque/5007-engine.md	cited	10	10	setter names and the script-machine steps stay
 torque/5007-g3d.md	cited	10	10	the property names and the unread packet layout stay in the note; §10.1.6 carries GameObject, the two mission phases, the chunk file, the protocol check and the interior reads
 torque/5007-launcher.md	cited	10	10	the per-job setter groups and the command-line switches stay in the note; §10.1.6 carries the 95-versus-94 difference, initialisation, and when each DLL loads
 torque/README.md	cited	10	10	
+torque/conformance/EXPECTED.md	excluded			generated table of the 3D conformance suite; the findings it tests are the board notes
+torque/conformance/README.md	excluded			the 3D conformance suite (test worlds and probes for board answers), not a finding
+torque/conformance/RESULTS.md	excluded			generated table of the 3D conformance suite; the findings it tests are the board notes
+torque/conformance/cases/c001-link-3prefix.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c002-no-prefix-stays-2d.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c003-no-sky.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c004-sky-faces.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c005-cube-red.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c006-texture-bare.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c007-no-script-files.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c008-weapon3d-runs.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c009-timevar3.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c010-gui-overlay.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c011-g3dpos-move.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c012-findobject.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c013-server-flag.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c014-new-object.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c015-server-drop.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c016-dts-version-bounds.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c017-dif-version-bounds.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c018-terrain-flat.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c019-water.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c020-two-players.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c021-malformed-world.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c022-out-of-range-objects.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c023-density-256.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c024-density-1024.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c025-junk-on-3d-ports.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c026-typed-members.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c027-udp-flood.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c028-cache-refetch.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c029-reconnect-churn.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/results.tsv	excluded			derived run log of the 3D conformance suite; findings go to the board notes
 torque/engine-304.md	cited	10	10	Graal pref names and the per-class method counts stay in the note; §10.1.4 carries the split, the GuiGraalCtrl methods, the type tree and what later builds drop
 torque/engine-4208.md	cited	10	10	callback names, class counts, phase-ack names and sub-object keys stay in the note; §10.1.5 carries the launcher / engine / 3D split
 torque/engine-5007.md	cited	10	10	static read of the 5.0.0.7 GraalEngine.dll; §10.1.6 carries the class split and who calls graal_set, and the setter groups stay in the note
@@ -826,15 +967,30 @@ torque/engine-530r3.md	cited	10	10	Static read of unpacked 5.30r3; §10.1.6 carr
 torque/engine-531r4.md	cited	10	10	static read of unpacked 5.31r4; §10.1.6 carries the single-exe shape, and the GUI name list and Adventure methods stay in the note
 torque/engine-and-formats.md	cited	10; E; 8.5	10	
 torque/freetype6-5007.md	cited	10	10	FreeType 2.1.10.2079 beside the 5.0.0.7 launcher; §10.1.6 carries the one-line identification
+torque/ft-trees-512.md	pending	E	10; E	2026-11-25 static read of 5.12 .ft procedural tree shapes (GameShapeFT seed/levels, gramma rules, term types, texture slots); to fold into §10 after the live run
+torque/fxsunlight-512.md	pending	E	10; E	2026-11-25 static read of the 5.12 fxSunLight ghost update (flare bitmaps, azimuth/elevation, colour, animation flags, keys, times); to fold into §10 after a live run
 torque/g3d-5007.md	cited	10	10	static read of the 5.0.0.7 Graal3DEngine.dll; §10.1.6 carries the GameObject-era facts, and the event names and setter calls stay in the note
+torque/gs2-3d-objects-404r2-512.md	cited	E; 8.5	10.5	script-creatable 3D classes in 4.04r2 and 5.12, 5.12 property names, getz in 3D mode, 3D event names; to fold into the object model; scripting side carried into §8.5
+torque/gs2-3d-typed-surface-512-2026-11-26.md	pending		10.3	The 5.12 GS2 3D scripting surface typed from the TGraalVar registry: 35 classes / 418 members with argument and return types, the 4.04r2 comparison and the global 3D functions (T3D-096), bin; to carry into Â§10.3
 torque/lab-2026-11-12-udp-trace.md	cited	10; E	10; E	
 torque/lab-2026-11-25-g3d-worlds.md	pending		10	Linux 4.206 one-change world lab (GameObject section 2 is the scale, malformed .3ds crashes, .dts/.dif version bounds); to fold into §10 beside wire-by-build.md
 torque/launcher-5007.md	cited	10	10	static read of the 5.0.0.7 Delphi launcher; §10.1.6 carries what it loads, and the setter split is cited from torque/engine-5007.md
 torque/linux-304-seven-operation-contract.md	cited	10	10	exact-input identities and static-derived vectors remain in source note; operation contract and limits carried
+torque/live-3153-and-404r2-sessions-2026-11-25.md	cited	E; 8.5; 10	10.3	3.153 and 4.04r2 against our 3D server: phases, requests, clientCmds, control object; carried into §8.5 and §10
+torque/live-512-gameobject-fields-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 GameObject update fields tested live: scale, rotation, flags, undrawn fields; carried into §8.5 and §10
+torque/live-512-gs2-3d-probe-2026-11-25.md	cited	E; 8.5; 10	10.3; 10.6	5.12 GS2 3D probe on our own server: events, script-made objects, terrain functions, sky functions, switchToOpenGL; scripting side carried into §8.5
+torque/live-512-lighting-and-sky-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 lighting probe and sky grid on Mesa: Sun as on/off brightness, rotation sense, FOV; carried into §8.5 and §10
+torque/live-512-own-server-textures-2026-11-25.md	cited	E; 8.5; 10	10.3; 10.6	5.12 against our graal3d server: texture naming and formats, control-object updates, sky; to fold into the session and formats sections; scripting side carried into §8.5
+torque/live-512-shapes-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 shapes: .3ds materials and collision meshes, .dts per-version behaviour, .dif, .ft; carried into §8.5 and §10
+torque/live-512-sun-replicators-2026-11-25.md	pending	E	10.3	5.12 fxSunLight draws nothing and crashes on all-flags+animation keys; replicators share one reader and need terrain; WaterBlock 6.0s oscillation
+torque/live-512-third-party-session-2026-11-24.md	pending	E	10.3	real 5.12 on a third-party 3D server: no mission phases, Camera control object, client strips .png; to fold into the session section
+torque/multi-client-3d-lab-2026-11-25.md	cited	E; 8.5; 10	10.3	First multi-client 3D lab pairs: 2D+3D and 3D+3D, what crosses between clients; carried into §8.5.11 and §10.3.11 as a state of the lab server build
 torque/network.md	cited	10	10	
 torque/open-source-lineage.md	cited	10	10	comparison with the open Torque2D, Torque3D, dso-sharp and Marble Blast code; §10.4.3 cites the v33 opcode match, the wire and format findings stay in the note
 torque/protocol19-server.md	cited	10; E	10; E	
 torque/rebuild-plan-3.04.md	excluded			rebuild plan, not a finding
+torque/replicators-512.md	pending	E	10; E	2026-11-25 static read of the 5.12 replicator ghost update (seed, shapefiles, radius cells, grid counts, box, scale/rotate ranges, allow flags, slope, alignment); to fold into §10 after a live run
+torque/script-and-terrain-tools-by-build.md	cited	E; 8.5	10.4; 10.6	TorqueScript compiler and terrain tools by build, 5.12 download filter; to fold into DSO and formats sections; scripting side carried into §8.5
 torque/scripting.md	cited	10	10	
 torque/skipped-v4-read.md	cited	10	10	§10.1.9 carries the single listing, the loader steps and the decoy DLLs; the block decoder stays in the note
 torque/skipped-v5-read.md	cited	10	10	§10.1.9 carries the 5.12 forms, the two later stubs and the FMOD export groups; the per-export names stay in the note
@@ -845,10 +1001,8 @@ torque/stub-5243.md	cited	10	10	packer stub; §10.1.6 carries the file version 5
 torque/stub-524r4.md	cited	10	10	packer stub; §10.1.6 carries the file version 5.244
 torque/stub-fmod-5007.md	cited	10	10	FMOD 3.75 version resource whose recovered code is a packer stub; §10.1.6 carries that one fact
 torque/study-torque-clients.md	cited	10	10	Part X opens with the study's three-program split (§10.0) and cites it through §10.1.8; the rebuild plan is excluded (#243)
-torque/ft-trees-512.md	pending	E	10; E	2026-11-25 static read of 5.12 .ft procedural tree shapes (GameShapeFT seed/levels, gramma rules, term types, texture slots); to fold into §10 after the live run
-torque/fxsunlight-512.md	pending	E	10; E	2026-11-25 static read of the 5.12 fxSunLight ghost update (flare bitmaps, azimuth/elevation, colour, animation flags, keys, times); to fold into §10 after a live run
-torque/replicators-512.md	pending	E	10; E	2026-11-25 static read of the 5.12 replicator ghost update (seed, shapefiles, radius cells, grid counts, box, scale/rotate ranges, allow flags, slope, alignment); to fold into §10 after a live run
 torque/terrain-512.md	cited	10; E; 8.5	10; E	2026-11-25 static read of 5.12 streamed terrain (TerrainBlock update, TerrainChunkEvent chunk data, TerrainRequestUpdatesEvent stamps, levels3d/heights cache) and the WaterBlock update; to fold into §10 with the live results; script-facing results carried into §8.5.8, wire layout in §10.5.4 and §10.5.5
+torque/terraingenerator-original-vs-servertools-2026-11-25.md	pending	E	10.6	Original TerrainGenerator output compared with servertools gen terrain and gen 3d
 torque/udp-session.md	cited	10; E	10; E	
 torque/v3-python-engines/combined/ROADMAP.md	excluded		1	weighed 2026-11-19: Python reproductions of the Mac 3.153 client and their teardown notes; their client facts (tokens G3D28015 and G3D30123newmain built one character at a time, the first flush in mode 3, the list name prefixes, the board and player parses) are already in §1.2, §1.8.4, §2.2 and §6 from the primary notes, and the rest describes the reproductions, not the original client
 torque/v3-python-engines/combined/STATUS.md	excluded		1	weighed 2026-11-19: Python reproductions of the Mac 3.153 client and their teardown notes; their client facts (tokens G3D28015 and G3D30123newmain built one character at a time, the first flush in mode 3, the list name prefixes, the board and player parses) are already in §1.2, §1.8.4, §2.2 and §6 from the primary notes, and the rest describes the reproductions, not the original client
@@ -868,15 +1022,6 @@ torque/v3-python-engines/tge-rewrite/used.md	excluded		1	weighed 2026-11-19: Pyt
 torque/v4-404r2-exe.md	cited	10; 1	10; 1	the historical exe export remains a packer stub; §1 distinguishes the later recovery inputs, not a gameplay result
 torque/v4-420r8-exe.md	cited	10	10	same export as torque/v4-404r2-exe.md; §10.1.5 names both
 torque/wire-by-build.md	cited	10; 8.5	10	
-torque/3d-capability-board.md	cited	E; 8.5	10; E	2026-11-25 Torque-era 3D capability board: 64 claimable questions; to fold into Part 10 open points and App. E; scripting side carried into §8.5
-torque/3d-capability-board.tsv	cited	E; 8.5	10; E	data table for the 3D capability board; scripting side carried into §8.5
-torque/3d-multi-client-lab-design.md	pending	E	10.3	plan for multi-client 3D labs (T3D-065 to T3D-076); to fold into the session section when results exist
-torque/3d-formats-renderer-camera-by-build.md	cited	E; 8.5	10.6	shape loaders, file-access gate, renderer prefs, camera classes and sound formats in 4.04r2 and 5.12; to fold into the formats section; scripting side carried into §8.5
-torque/3d-server-entry-and-udp-port.md	cited	E; 8.5	10.3	the 3 list prefix and the 3D UDP port rule in 4.04r2 and 5.12; to fold into the session section; scripting side carried into §8.5
-torque/gs2-3d-objects-404r2-512.md	cited	E; 8.5	10.5	script-creatable 3D classes in 4.04r2 and 5.12, 5.12 property names, getz in 3D mode, 3D event names; to fold into the object model; scripting side carried into §8.5
-torque/live-512-own-server-textures-2026-11-25.md	cited	E; 8.5; 10	10.3; 10.6	5.12 against our graal3d server: texture naming and formats, control-object updates, sky; to fold into the session and formats sections; scripting side carried into §8.5
-torque/live-512-third-party-session-2026-11-24.md	pending	E	10.3	real 5.12 on a third-party 3D server: no mission phases, Camera control object, client strips .png; to fold into the session section
-torque/script-and-terrain-tools-by-build.md	cited	E; 8.5	10.4; 10.6	TorqueScript compiler and terrain tools by build, 5.12 download filter; to fold into DSO and formats sections; scripting side carried into §8.5
 version-profiles/2.22-2.31.md	cited	2.4; 2.6; 2.7; 2.9; 8.2; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/2.22-2.31.toml	cited	2.4; 1	1; C	Appendix C not needed: App. C indexes eras and points to the canonical sections; this per-build file is carried in §1.8 (and the sections listed), and App. C points to §1.8.8 (coverage audit 2026-11-04)
 version-profiles/222-inferred-from-21-inventory.md	cited	1	1; C	carried into §1.8.3; App. C cells change only after the static pass it asks for
@@ -937,148 +1082,3 @@ version-profiles/version-token-map.tsv	excluded			Generated machine-readable ass
 version-profiles/version-tokens-by-build.tsv	cited	1	1.2	
 version-profiles/windows-404r2-teardown.md	cited	4.8; E	4.8; E	§4.8 carries bounded initialization results; export counts and private package retrieval are research status outside manual scope
 version-profiles/windows-v4-import-provenance.md	cited	1	1	Alias/resource/collection qualification carried in 1.11; exact evidence/report provenance remains in source note.
-client-internals/static-reads-appendix-e-2026-11-20-hostb-final.md	cited	2.4; 4.2; 8.2; 10; E	2.4; 4.2; 8.2; 10; E	Static reads and labs for App. E: bare #5/#6 scratch string (E#203), 3.04 global sheet type and type 5 (E#507), 2.22 prop 15/16 rounding (E#304), Graal 2002 send sets (E#15), 6.03r7 format floor and case-sensitive lookups (E#210)
-docs/releases/v0.0.8.md	excluded			release notes for the book's GitHub release, not Graal
-docs/releases/v0.0.9.md	excluded			release notes for the book's GitHub release, not Graal
-protocol/client-id-inference-scope.md	cited	2.4	2.4	Evidence limits and separate token association carried in section 2.4.
-formats/gr-v105-native603-2026-11-21.md	cited	3.1; 5	3.1; 5	Positive generated-layer delivery and drawing; deployment provenance and remaining checks are qualified in the note.
-protocol/probe-wine512-widths-2026-11-21.md	cited	2.6	2.6	Selected-payload alignment, non-exact case 76 and nonzero 77 follow-up limits carried in section 2.6.6.
-
-client-internals/214-216-feature-evidence.md	cited	1	1	Documentary feature and token limits carried in section 1.3; full attribution table stays in the note.
-protocol/probe-wine512-core-2026-11-21.md	cited	2.6	2.6	Controlled Windows 5.12 core slice and canary limits carried in section 2.6.6.
-formats/gr-v105-served-canary-links-2026-11-21.md	cited	3.1; 5	3.1; 5	Independent HUD/parser canary and one-direction physical return; deployment and scorer execution limits preserved.
-formats/height-transport-scope-2026-11-21.md	cited	3.1; 5	3.1; 5	Reference-fork source gates and serialization are separate from prior original 2.x receiver evidence and unmeasured modern transport.
-protocol/file-profile-evidence-2026-11-21.md	cited	2.7	2.7	Recorded 1.41r1 direct cases are distinct from raw/file handling; local shared defaults, server gates and directional captures retain their evidence limits.
-server-notes/ghost-mode-options-2026-11-21.md	cited	5	5	Pinned reference-fork configuration consumption; original-server and client runtime behavior remain separate.
-protocol/rc2005-linux-send-framing-2026-11-21.md	cited	7	7	Static enqueue and framing branches; indirect routing, outgoing-id census and runtime acceptance remain open.
-server-notes/tile-category-options-2026-11-21.md	cited	5	5	Pinned GPL reference-fork category selection and consumers; original-server, client rendering and live-toggle effects remain unverified.
-server-notes/language-options-and-fallback-2026-11-21.md	cited	5	5	Tracked/logged language keys are separated from registration metadata, player language and actual classic/modern lookup; no original/runtime equivalence.
-server-notes/sync-distance-routing-2026-11-21.md	cited	5	5	Numeric synchronization queries are separated from ordinary data and send-method gates; no universal visibility, original-server or new runtime claim.
-server-notes/level-persistence-options-2026-11-22.md	cited	5	5	Tile rewrite attempts, sublevel NPC sleep and DATABASE save requests are separated; no durable-output or original/runtime claim.
-server-notes/player-z-policy-2026-11-22.md	cited	5	5	Pinned reference-fork Z update rejection, independent range conversion and conditional NPC-touch probe; direct state paths and original/runtime limits remain separate.
-server-notes/script-engine-defaults-2026-11-22.md	cited	5	5	Pinned GPL default-engine alias and consumer classification; no original/runtime or fresh inventory claim.
-server-notes/folder-configuration-routing-2026-11-22.md	cited	5	5	Setup options, retained patterns and indexed-file categories are separated from managed-root creation fallback; no runtime binding or original-server claim.
-protocol/player-props-selected-backup-cursors-2026-11-22.md	cited	2.6	2.6	Complete selected own/shared nominal cursor census; different default, short-input, conditional-extent and prefix-copy behavior; not genuine 5.12, semantic completeness or runtime safety
-protocol/player-props-selected-backup-cursors-2026-11-22.tsv	cited	2.6	2.6	Numeric companion; section 2.6 carries the cursor conventions and distinctions while the full per-ID table remains external
-client-internals/gs2-wait-results-2026-11-22.md	cited	8.3; E	8.3; E	Separately identified static wait-result chains; preparation and deadline mutation are separated from conditional restoration, distinct return/resource policies and the still-open native timeout experiment
-client-internals/gs2-joined-function-lookup-2026-11-22.md	cited	8.3	8.3	Three selected ordinary-call paths reach joined functions; older integer entries and later receiver/function-object lookup, eligibility and alias-preparation limits remain distinct
-client-internals/gs2-event-handler-case-2026-11-22.md	cited	8.3	8.3	Selected event-specific name matching and Linux ASCII insertion/query consistency; Windows helper-state and the complete native spelling/runtime matrix remain open
-server-notes/versioned-server-options-reference-2026-11-22.md	cited	5	5	Full retrospective documentary inventory and pinned source navigation; detailed99-row comparison, not an acceptance census or original/runtime claim.
-server-notes/gs1-eight-server-commands-2026-11-22.md	cited	5	5	Complete eight-command later-fork registration/argument/delegate reference with typed-store and persistence limits; original-server G069 confirmation remains open.
-tools/manual/fixtures/source-fragments.md	excluded			authored Markdown parser fixture for source-fragment checks, not research evidence or manual facts
-server-notes/file-cache-and-script-size-2026-11-23.md	cited	5	5	Versioned G070 file/checksum/cache and script input/output comparison; later modified source only, original 4.02 and old-engine/runtime questions remain open.
-protocol/v7-connector-payload-cipher.md	cited	2.10; E	2.10; E	E#616 / G028 partial: RSA container block signature-only (not AES wrap); payload cipher, plaintext and ?p= DES key remain open 2026-11-24.
-protocol/v7-connector-trust-anchor.md	cited	2.10; E	2.10; E	E#616 / G156: stock v7 connector trust-anchor swap NO-GO; production plaintext/host/port/login remain Maybe never under G028 residuals 2026-11-24.
-protocol/v7-connector-script-diff.md	cited	2.10; E	2.10; E	G246 partial 2026-11-24: outside-script 7.x vs 6.11 diffs settled; production script token/template/cipher uncompared (decrypt blocked — G156 + G028 residuals).
-protocol/v7-connector-id-tables.md	cited	2.10; E	2.10; E	G332 partial 2026-11-24: remapper model + PLI slot names match 6.11; production 7.x pair lists uncompared (decrypt blocked — G156 + G028 residuals).
-protocol/v6113-capture-decrypt.md	cited	2.10; E	2.10; E	G334 partial 2026-11-24: clear prefix + RC4@287 reconfirmed on three Windows 6.113 capture streams; post-287 decrypt blocked (exact-session key never recorded; G335 not started).
-protocol/gen6-c2s-0xfc-padding.md	cited	2.10; E	2.10; E	G335 partial 2026-11-24: C→S 0xfc envelope settled (RSA to operator pubkey); exact EM padding blocked (operator private key unheld).
-client-internals/mac-ppc-machine-identity-property.md	cited	2.10; E	2.10; E	G129 partial 2026-11-24: Mac PPC IOMACAddress property-read + MD5-hex settled on 4.04r2/4.20r6/v5; login comma-list call graph still open.
-torque/live-512-gs2-3d-probe-2026-11-25.md	cited	E; 8.5; 10	10.3; 10.6	5.12 GS2 3D probe on our own server: events, script-made objects, terrain functions, sky functions, switchToOpenGL; scripting side carried into §8.5
-torque/terraingenerator-original-vs-servertools-2026-11-25.md	pending	E	10.6	Original TerrainGenerator output compared with servertools gen terrain and gen 3d
-torque/live-3153-and-404r2-sessions-2026-11-25.md	cited	E; 8.5; 10	10.3	3.153 and 4.04r2 against our 3D server: phases, requests, clientCmds, control object; carried into §8.5 and §10
-torque/3d-engine-static-reads-2026-11-25.md	cited	E; 8.5; 10	10.3; 10.6	Static reads of the 5.00r7 3D engine: sky functions, name HUD, protocol, loaders, input; carried into §8.5 and §10
-torque/3d-fuzz-targets-by-build.md	pending	E	10.6	Fuzz target list for the 3D client inputs, ranked by reach
-torque/multi-client-3d-lab-2026-11-25.md	cited	E; 8.5; 10	10.3	First multi-client 3D lab pairs: 2D+3D and 3D+3D, what crosses between clients; carried into §8.5.11 and §10.3.11 as a state of the lab server build
-torque/live-512-lighting-and-sky-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 lighting probe and sky grid on Mesa: Sun as on/off brightness, rotation sense, FOV; carried into §8.5 and §10
-torque/live-512-sun-replicators-2026-11-25.md	pending	E	10.3	5.12 fxSunLight draws nothing and crashes on all-flags+animation keys; replicators share one reader and need terrain; WaterBlock 6.0s oscillation
-torque/live-512-gameobject-fields-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 GameObject update fields tested live: scale, rotation, flags, undrawn fields; carried into §8.5 and §10
-torque/3d-fuzz-net-tier1-2026-11-25.md	cited	E; 8.5; 10	10.6	3D network fuzz tier 1: event-length and ghost-index crashes on 5.12 and 4.04r2; carried into §8.5 and §10
-torque/3d-fuzz-content-512-2026-11-25.md	pending	E	10.6	5.12 content fuzzing: .3ds/.dts/PNG crash on unchecked fields, no PNG CRC check, .dif robust; damage stays in the one client
-torque/3d-path-traversal-512-2026-11-25.md	pending	E	10.6	5.12 confines server-sent terrain-texture file names to its own folder (no path traversal); strips the directory part to the basename
-torque/3d-dif-interiors-512-2026-11-25.md	pending	E	10.6	5.12 .dif interiors: a v44 interior draws (v43/v45 rejected); the server-positioned 3D player does not collide with it and has no gravity — interiors are visual geometry only
-torque/3d-scoping-interiors-limits-512-2026-11-26.md	pending	E	10.6	5.12 scoping (draw horizon ~1000 units, no server distance scoping, hide flags inert), damaged-.dif matrix, 4.20r6/5.12 GameObject parity, 4096-ghost ceiling, 5.12 frame rate (T3D-075/083/087/030/026/037/113), lab
-torque/3d-win10-sky-prefs-scripting-512-2026-11-26.md	pending	E	10.6	5.12 on Windows 10: sky flags and FOV, shape limits, video prefs, two-client interaction, coordinates, callbacks, pose/HUD (T3D-086/037/051/074/070/116/134-140), lab
-torque/3d-prefix-dll-3153-exec-2026-11-26.md	pending	E	10.6	"3 " prefix and missing Graal3DEngine.dll on 4.20r8/5.00r7, 3.153 local .cs execution, batch-W blockers (T3D-059/006/072/066/089/067), lab
-torque/3d-multi-client-scoping-512-2026-11-25.md	pending	E	10.6	5.12 multi-client scoping is flat: no ghost cap at 3, no distance scoping; the server relays every far player's position, far players only leave the camera frame
-torque/3d-look-props-512-2026-11-26.md	pending	E	10.6	5.12 cross-view of look props is asymmetric: a 3D player shows on 2D as a full 2D sprite+name tag; a 2D player shows on 3D as the 3D model, not the 2D look; 3D-side changes don't propagate (partial)
-torque/3d-movetype-rigid-list-512-2026-11-26.md	pending	E	10.6	5.12 movetype: a server g3dpos move lands per the world movetype — rigid glides (move-list events, transform unchanged), list jumps (transform carries the position)
-torque/live-512-shapes-2026-11-25.md	cited	E; 8.5; 10	10.3	5.12 shapes: .3ds materials and collision meshes, .dts per-version behaviour, .dif, .ft; carried into §8.5 and §10
-torque/3d-engines-5007-512-and-403-411-2026-11-25.md	cited	8.5; 10	10.3	Static 3D engine compare (T3D-005, T3D-003): protocol and class sets by build; to carry into §10
-torque/3d-archives-404r2-512-2026-11-25.md	cited	8.5; 10	10.3	Static read and Linux 4.20r6 lab run of 3D archive mounting (T3D-012); carried into §8.5 and §10
-torque/3d-link-drop-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D link loss behaviour (T3D-027), static and lab; carried into §8.5 and §10
-torque/3d-client-events-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D client-to-server events (T3D-018), static and lab; carried into §8.5 and §10
-torque/3d-file-preference-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D file preference (T3D-107), lab; carried into §8.5 and §10
-torque/3d-shape-textures-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D shape texture handling and cache naming (T3D-090), lab; carried into §8.5 and §10
-torque/3d-2d-level-packets-420r6-2026-11-25.md	cited	8.5; 10	10.3	2D level packets in a 3D session (T3D-060), lab; carried into §8.5 and §10
-torque/3d-world-limits-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D world-limit fuzz (T3D-091), lab; carried into §8.5 and §10
-torque/3d-texture-formats-420r6-2026-11-25.md	cited	8.5; 10	10.3	3D texture image formats, bit depths and sizes (T3D-077), lab; carried into §8.5 and §10
-torque/3d-particles-512-vs-404r2-2026-11-25.md	cited	8.5; 10	10.3	Particles dropped from 5.12, GS2 TParticleEmitter replaces them (T3D-085), bin; carried into §8.5 and §10
-torque/3d-recovery-420r6-2026-11-25.md	pending		10.3	3D client recovery from partial/bad data mid-session (T3D-108), lab; to carry into §10
-torque/3d-object-classes-by-build-2026-11-25.md	pending		10.3	Networked object classes drawn by build; game layer 4.04r2-only (T3D-081), bin; to carry into §10
-torque/3d-shared-world-subset-2026-11-25.md	pending		10.3	Common 3D content subset across builds; one world, two protocol encodings (T3D-109), lab; to carry into §10
-torque/3d-state-authority-420r6-2026-11-25.md	pending		10.3	Which 3D state is server-authoritative vs client-trusts-self (T3D-111), lab; to carry into §10
-torque/3d-lightscene-cache-2026-11-25.md	pending		10.3	lightScene/lightmap caching retained in 5.12 but interior content gone (T3D-092), lab+bin; to carry into §10
-torque/3d-frame-rate-scaling-420r6-2026-11-25.md	pending		10.3	Client frame-rate scaling with ghosts and triangles, software GL (T3D-113), lab; to carry into §10
-torque/3d-gs2-functions-by-build-2026-11-25.md	pending		10.3	3D GS2/console functions across 4.04r2/5.00r7/5.12 (T3D-088), bin; to carry into §10
-torque/3d-authoring-surface-2026-11-25.md	pending		10.3	3D authoring surface: placeable keywords/fields and what draws per build (T3D-106), srv+lab; to carry into §10
-torque/3d-gui-overlay-420r6-2026-11-25.md	pending		10.3	2D GUI layers over the 3D view; GS2 GUIs draw in 3D (T3D-058), lab+bin; to carry into §10
-torque/3d-sound-paths-2026-11-25.md	pending		10.3	3D sound on 5.12 is the GS2 play2/play3d path; Torque audio classes 4.04r2-only (T3D-084), lab+bin; to carry into §10
-torque/3d-player-identity-420r6-2026-11-25.md	pending		10.3	3D player keeps the 2D identity (gani/head/body/nick/chat) alongside its 3D shape (T3D-056), lab+bin; to carry into §10
-torque/3d-weather-404r2-2026-11-25.md	pending		10.3	Precipitation/Lightning are 4.04r2-only client classes; our server has no emit path (T3D-049), lab+bin; to carry into §10
-torque/3d-audio-particles-404r2-2026-11-25.md	pending		10.3	3D audio + networked particles are 4.04r2-only and unplaceable; GS2 sound runs, script particles need a definition (T3D-061), lab+bin; to carry into §10
-torque/3d-dll-deadcode-vs-graal-2026-11-25.md	pending		10.3	5.12 DLL: stock-TGE content removed or dead, drawable frame + Graal additions live; boundary at the networked-content-class line (T3D-103), bin; to carry into §10
-torque/3d-engine-dll-interface-and-events-2026-11-26.md	pending		10.3	DLL-wide static reads of Graal3DEngine.dll (4.04r2/4.20r8/5.00r7=5.12): export entry points and host-callback table, the 28-class/9-event net table with per-event wire fields, error/crash paths, input-to-graalkeypressed handoff, and 4.20r8=5.00r7/5.12 for the 3D wire (T3D-094/097/099/102/104/002), bin; to carry into Â§10
-torque/gs2-3d-typed-surface-512-2026-11-26.md	pending		10.3	The 5.12 GS2 3D scripting surface typed from the TGraalVar registry: 35 classes / 418 members with argument and return types, the 4.04r2 comparison and the global 3D functions (T3D-096), bin; to carry into Â§10.3
-torque/3d-loader-validation-by-build-2026-11-26.md	pending		10.3	Per-loader validation in Graal3DEngine.dll: .dts 17-24 (4.04r2 <=24), .dif ==44, .3ds no gate, GameShapeFT = FreeType text, terrain 256x256x24 (T3D-098/029/030/036), bin; to carry into Â§10.3
-torque/3d-static-batch-closing-2026-11-26.md	pending		10.3	Static side of five 3D lab partials: 22 GS2 on* callbacks (T3D-021), GameObject draw-gated on server ghosting (T3D-016), properties sync as named TGameObjectVar (T3D-015), client moveMap2D keybinds (T3D-057), 4.04r2 MD3 LEGS_/TORSO_ animation via _animation.cfg (T3D-031), bin; to carry into Â§10.3
-torque/3d-dts-dif-reader-internals-2026-11-26.md	pending		10.3	The .dts/.dif body-read structure the renderer must match (three-stream DTS block, DIF v44 geometry lists) confirmed by the stock-TGE loader classes in 5.12, plus the rebuild's fidelity gaps (sorted meshes, DIF sub-objects/lightmaps), bin; to carry into Â§10.3
-torque/3d-texture-size-limit-420r6-2026-11-26.md	pending		10.3	5.12-class client draws textures to 8192px, crashes silently past ~10240; ceiling is 32-bit client memory not GL (T3D-118), lab; to carry into §10
-torque/3d-file-loader-errors-420r6-2026-11-26.md	pending		10.3	5.12-class file-loader errors: malformed font crashes at startup; texture/sound robust (T3D-119), lab; to carry into §10
-torque/3d-font-handling-420r6-2026-11-26.md	pending		10.3	showtext fonts: lowercase(family)+style+.ttf, TrueType only, missing->default, must be pre-placed to apply (T3D-120), lab; to carry into §10
-torque/3d-v6-quattro-vs-512-2026-11-26.md	pending		10.3	6.00 engine is the Quattro 2D lineage, not a 5.12-class 3D client; no GameObject/Torque layer/proto-24 (T3D-121), bin; to carry into §10
-torque/3d-frankenstein-6037-vs-600-2026-11-26.md	pending		10.3	our Frankenstein 6.037 is a from-source hybrid (6.03r7 Quattro host + 5.12 proto-24 link); gains real 3D capability stock 6.00 lacks, box-view only (T3D-122), bin; to carry into §10
-torque/3d-partial-rows-closing-plan-2026-11-26.md	excluded			work plan for the partly answered 3D board rows, not a finding
-torque/3d-sound-formats-420r6-2026-11-26.md	pending		10.3	5.12 sound formats are FMOD 3.70 set: WAV/OGG/MP3/MP2 play, WMA/ASF Windows-gated, FLAC/AAC dropped; unsupported silently no-op (T3D-123), lab+bin; to carry into §10
-torque/3d-mesh-size-limit-420r6-2026-11-26.md	pending		10.3	5.12 mesh limits: .3ds 16-bit cap (~65k faces/chunk) then per-shape draw ceiling (~265k-400k verts), never a crash (T3D-124), lab; to carry into §10
-torque/3d-frankenstein-6037-vs-retail-6037-2026-11-26.md	pending		10.3	our Frankenstein 6.037 vs stock 6.03r7 retail: unpacked 3D-capable hybrid vs QPlay/CyaSSL-packed 2D Quattro; new axes packaging + secure transport, 3D verdict unchanged (T3D-132), bin; to carry into §10
-torque/3d-local-mis-vs-wire-420r6-2026-11-26.md	pending		10.3	5.12-class client never loads a local .mis; mission comes only over the wire (T3D-010), lab; to carry into §10
-torque/3d-session-file-footprint-420r6-2026-11-26.md	pending		10.3	5.12-class 3D session file footprint: the .graal/ cache tree, no script screenshot, no heights/lightmap cache (T3D-053/T3D-100), lab; to carry into §10
-torque/3d-lighting-phase-timing-404r2-420r6-2026-11-26.md	pending		10.3	mission-lighting phase is a fixed handshake, not a per-object bake; no scaling with lit-object count on 4.04r2/4.20r6 (T3D-052), lab; to carry into §10
-torque/3d-content-format-requests-420r6-2026-11-26.md	pending		10.3	5.12-class per-extension request map: .3ds/.dts/.dif shapes with ext, textures bare-named, .wav/.ttf with ext, rest never fetched (T3D-011), lab; to carry into §10
-torque/3d-legacy-anim-formats-420r6-2026-11-26.md	pending		10.3	.ifl/.dml ignored, standalone .dsq unreachable, .gft-as-shape not loaded; 3D text via showtext+.ttf on 5.12-class (T3D-034/035/036), lab; to carry into §10
-torque/3d-terrain-water-sun-route-420r6-2026-11-26.md	pending		10.3	the networked terrain/water/replicator/sun-flag layer is unreachable over our lab-server route; GS2 terrain hooks no-op; closes T3D-042/045/050/078, documents T3D-047/048 blockers, lab; to carry into §10
-torque/3d-session-entry-route-420r6-2026-11-26.md	pending		10.3	5.12-class 3D entry over our gserver is the mission-phases route with GhostAlways nested in Phase 1; 3D GUI attaches at the control object (T3D-022), lab; to carry into §10
-torque/3d-server-time-timevar3-420r6-2026-11-26.md	pending		10.3	server time field drives timevar3, a synced Graal3D clock that animates smoothly and feeds day/night (T3D-024), lab; to carry into §10
-torque/3d-clientside-editor-gating-420r6-2026-11-26.md	pending		10.3	in-client 3D editors and script file-saves are gated off from a clientside weapon; editing/saving is server-side (T3D-020), lab; to carry into §10
-torque/3d-fidelity-g3dreplay-vs-client-420r6-2026-11-26.md	pending		10.3	g3d-replay is a schematic box/grid positional view, not a pixel-faithful renderer; matches the real 5.12-class client on none of the five fidelity features (T3D-105), lab; to carry into §10
-torque/3d-session-lifecycle-420r6-2026-11-26.md	pending		10.3	5.12-class 3D session lifecycle: gen-5 login -> 3-prefixed 178 warp -> dual TCP+UDP link; position client-authoritative; drop is a 30s timeout with no resume (T3D-130/128/129), lab; to carry into §10
-torque/3d-capacity-budget-420r6-2026-11-26.md	pending		10.3	per-3D-player budget ~5 pk/s and ~50-60 B/s each way (idle=moving); client holds a stable ~141 MB with no leak (T3D-127/131), lab; to carry into §10
-tools/conformance/lab.example.toml	excluded			lab config template for the 3D conformance runner, not Graal
-torque/conformance/EXPECTED.md	excluded			generated table of the 3D conformance suite; the findings it tests are the board notes
-torque/conformance/RESULTS.md	excluded			generated table of the 3D conformance suite; the findings it tests are the board notes
-torque/conformance/README.md	excluded			the 3D conformance suite (test worlds and probes for board answers), not a finding
-torque/conformance/results.tsv	excluded			derived run log of the 3D conformance suite; findings go to the board notes
-torque/conformance/cases/c001-link-3prefix.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c002-no-prefix-stays-2d.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c003-no-sky.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c004-sky-faces.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c005-cube-red.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c006-texture-bare.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c007-no-script-files.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c008-weapon3d-runs.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c009-timevar3.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c010-gui-overlay.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c011-g3dpos-move.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c012-findobject.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c013-server-flag.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c014-new-object.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c015-server-drop.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/3d-fxsunlight-flagcount-512-2026-11-26.md	pending		10.3	fxSunLight has exactly 14 animation-switch flags not 16, settled from the engine field registration + live-accept check (T3D-047), bin+lab; to carry into §10
-torque/conformance/cases/c016-dts-version-bounds.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c017-dif-version-bounds.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c018-terrain-flat.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c019-water.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c020-two-players.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c021-malformed-world.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c022-out-of-range-objects.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c023-density-256.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c024-density-1024.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c025-junk-on-3d-ports.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c026-typed-members.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c027-udp-flood.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c028-cache-refetch.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/conformance/cases/c029-reconnect-churn.toml	excluded			conformance case (a test world and its expectations), not a finding
-torque/3d-level-warp-per-player-replicator-208-512-2026-11-26.md	pending		8	seihai-gserver #208/#209 lab: level warp works on #209 both routes (no relink, BIG creates both ways), per-player objects scope per client, DynamicShapeReplicator first-visit scatter via #209 resend, grass classes want a texture not a shape (T3D-135/136/048), lab; to carry into section 8
-torque/3d-2d3d-crossview-flags-movetype-512-2026-11-26.md	pending		8	real 5.12 3D + real 2.22 2D same world (seihai-gserver #209): server flags reach 2D not the 3D GS2 script; cross-view presence+position both ways, chat/nick server-complete+script-readable but 5.12 draws neither, head/body/colours never cross; 2D observer sees rigid+list movetype as jumps; level timeouts run only on the level leader (T3D-069/133/054), lab; to carry into section 8
-torque/3d-multiclient-coexistence-066-072-211-512-2026-11-26.md	pending		8	multi-client 3D on seihai-gserver #209/#211: two 4.04r2 [proto 19] coexist server-clean (cross-ghost, moves, teardown) but draw inconclusive; a 19+24+24 mix coexists cleanly (protocol-correct ghosting, sync PASS, 5.12 sends 0 moves), full 19/21/24 needs the proto-21 Mac host; the T3D-069 level-leader timeout gotcha was a server gap fixed in #211 (PLO_ISLEADER to a 2D player), 2.22 timeouts run with a 5.12 in the level both join orders (T3D-066/072/069), lab; to carry into section 8
