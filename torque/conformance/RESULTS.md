@@ -10,32 +10,32 @@ blank (not run yet). Observed `?` values are listed under each run in
 
 | Case | What | 3.153 | 4.04r2 | 4.20r8 | 5.12 | 6.037 |
 |---|---|---|---|---|---|---|
-| [C001](cases/c001-link-3prefix.toml) | A "3 " server: TCP login, UDP link on port + 1, mission start, control object |  |  |  | FAIL: alive (2026-11-26) |  |
-| [C002](cases/c002-no-prefix-stays-2d.toml) | The same server without the "3 " tag: the client stays 2D and opens no UDP link |  |  |  | PASS (2026-11-26) |  |
-| [C003](cases/c003-no-sky.toml) | A world with no Sky: who survives, and what the background is |  |  |  | PASS (2026-11-26) | n/a |
-| [C004](cases/c004-sky-faces.toml) | A six-colour sky box: face order, and how each build asks for sky textures |  |  |  | FAIL: face_front (2026-11-26) | n/a |
-| [C005](cases/c005-cube-red.toml) | A .3ds cube with one red material at the spawn is fetched and drawn |  |  |  | PASS (2026-11-26) | n/a |
-| [C006](cases/c006-texture-bare.toml) | A textured .3ds: the material texture is asked for by bare name and drawn |  |  |  | PASS (2026-11-26) | n/a |
-| [C007](cases/c007-no-script-files.toml) | Shapes named .cs and .ter are never fetched (no build takes server TorqueScript or .ter) |  |  |  | PASS (2026-11-26) | n/a |
-| [C008](cases/c008-weapon3d-runs.toml) | A weapon3d GS2 script compiled by seihai-core runs in 3D mode and reports back |  |  |  | PASS (2026-11-26) |  |
-| [C009](cases/c009-timevar3.toml) | timevar3, the synced Graal3D clock, advances on the client |  |  |  | PASS (2026-11-26) | n/a |
-| [C010](cases/c010-gui-overlay.toml) | A GS2 showimg draws over the 3D view |  |  |  | PASS (2026-11-26) | n/a |
-| [C011](cases/c011-g3dpos-move.toml) | A script's g3dpos trigger moves the player's own object and the client reports the new place |  |  |  | PASS (2026-11-26) | n/a |
-| [C012](cases/c012-findobject.toml) | Can a client script reach its own 3D object, and a world object, by name? |  |  |  | PASS (2026-11-26) | n/a |
-| [C013](cases/c013-server-flag.toml) | A server. flag reaches a 3D client script (a known gap: a pass means it closed) |  |  |  | PASS (2026-11-26) | n/a |
-| [C014](cases/c014-new-object.toml) | A client script can create a GameObject and a TStaticVar in 3D mode |  |  |  | PASS (2026-11-26) | n/a |
-| [C015](cases/c015-server-drop.toml) | The server stops mid-session: the client drops to login and does not crash |  |  |  | PASS (2026-11-26) | n/a |
+| [C001](cases/c001-link-3prefix.toml) | A "3 " server: TCP login, UDP link on port + 1, mission start, control object |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  |
+| [C002](cases/c002-no-prefix-stays-2d.toml) | The same server without the "3 " tag: the client stays 2D and opens no UDP link |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  |
+| [C003](cases/c003-no-sky.toml) | A world with no Sky: who survives, and what the background is |  |  | PASS (2026-11-26) | PASS (2026-11-26) | n/a |
+| [C004](cases/c004-sky-faces.toml) | A six-colour sky box: face order, and how each build asks for sky textures |  |  | PASS (2026-11-26) | FAIL: face_front (2026-11-26) | n/a |
+| [C005](cases/c005-cube-red.toml) | A .3ds cube with one red material at the spawn is fetched and drawn |  |  | PASS (2026-11-26) | PASS (2026-11-26) | n/a |
+| [C006](cases/c006-texture-bare.toml) | A textured .3ds: the material texture is asked for by bare name and drawn |  |  | PASS (2026-11-26) | PASS (2026-11-26) | n/a |
+| [C007](cases/c007-no-script-files.toml) | Shapes named .cs and .ter are never fetched (no build takes server TorqueScript or .ter) |  |  | PASS (2026-11-26) | PASS (2026-11-26) | n/a |
+| [C008](cases/c008-weapon3d-runs.toml) | A weapon3d GS2 script compiled by seihai-core runs in 3D mode and reports back |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  |
+| [C009](cases/c009-timevar3.toml) | timevar3, the synced Graal3D clock, advances on the client |  |  | PASS (2026-11-26) | PASS (2026-11-26) | n/a |
+| [C010](cases/c010-gui-overlay.toml) | A GS2 showimg draws over the 3D view |  |  | PASS (2026-11-26) | PASS (2026-11-26) | n/a |
+| [C011](cases/c011-g3dpos-move.toml) | A script's g3dpos trigger moves the player's own object and the client reports the new place |  |  | PASS (2026-11-26) | PASS (2026-11-26) | n/a |
+| [C012](cases/c012-findobject.toml) | Can a client script reach its own 3D object, and a world object, by name? |  |  | PASS (2026-11-26) | PASS (2026-11-26) | n/a |
+| [C013](cases/c013-server-flag.toml) | A server. flag reaches a 3D client script (a known gap: a pass means it closed) |  |  | PASS (2026-11-26) | PASS (2026-11-26) | n/a |
+| [C014](cases/c014-new-object.toml) | A client script can create a GameObject and a TStaticVar in 3D mode |  |  | PASS (2026-11-26) | PASS (2026-11-26) | n/a |
+| [C015](cases/c015-server-drop.toml) | The server stops mid-session: the client drops to login and does not crash |  |  | PASS (2026-11-26) | PASS (2026-11-26) | n/a |
 | [C016](cases/c016-dts-version-bounds.toml) | A .dts with version 16 or 25 is refused with a console error; version 24 loads |  |  |  |  | n/a |
 | [C017](cases/c017-dif-version-bounds.toml) | A .dif with version 43 or 45 is refused; version 44 loads |  |  |  |  | n/a |
-| [C018](cases/c018-terrain-flat.toml) | A flat streamed terrain with one texture: chunks streamed, textures fetched, ground drawn |  |  |  | FAIL: ground_textured,ground_white (2026-11-26) | n/a |
-| [C019](cases/c019-water.toml) | A WaterBlock under the spawn: its surface texture is fetched and the client stays up |  |  |  | PASS (2026-11-26) | n/a |
-| [C020](cases/c020-two-players.toml) | Two clients of one build in one world: each links, and each sees the other's object | n/a | n/a |  | FAIL: c2_alive (2026-11-26) | n/a |
-| [C021](cases/c021-malformed-world.toml) | Broken graal3dworld lines are skipped and the rest of the world still links and draws |  |  |  | PASS (2026-11-26) |  |
-| [C022](cases/c022-out-of-range-objects.toml) | Objects the server takes but a client may not cope with: astronomical coordinates, zero and huge scale, a missing shape |  |  |  | PASS (2026-11-26) |  |
-| [C023](cases/c023-density-256.toml) | 256 red cubes in one world: does the client fetch, ghost and draw them all and keep its link? |  |  |  | PASS (2026-11-26) |  |
-| [C024](cases/c024-density-1024.toml) | 1024 red cubes in one world: does the client fetch, ghost and draw them all and keep its link? |  |  |  | PASS (2026-11-26) |  |
-| [C025](cases/c025-junk-on-3d-ports.toml) | Junk datagrams on the 3D UDP port and junk TCP connections mid-session: server and client survive |  |  |  | PASS (2026-11-26) |  |
-| [C026](cases/c026-typed-members.toml) | A slice of the typed GS2 3D member table called on a client-made GameObject: what each returns |  |  |  | PASS (2026-11-26) |  |
-| [C027](cases/c027-udp-flood.toml) | A 10-second flood of 2000 junk datagrams a second at the 3D port mid-session: server and client survive |  |  |  | PASS (2026-11-26) |  |
-| [C028](cases/c028-cache-refetch.toml) | A shape changed on the server between two visits, the client's cache kept: refetched (pink) or stale (red)? |  |  |  | PASS (2026-11-26) |  |
-| [C029](cases/c029-reconnect-churn.toml) | Five short visits in a row on one server run: each links, and the fifth still draws |  |  |  | PASS (2026-11-26) |  |
+| [C018](cases/c018-terrain-flat.toml) | A flat streamed terrain with one texture: chunks streamed, textures fetched, ground drawn |  |  | FAIL: asks_info (2026-11-26) | FAIL: ground_textured,ground_white (2026-11-26) | n/a |
+| [C019](cases/c019-water.toml) | A WaterBlock under the spawn: its surface texture is fetched and the client stays up |  |  | PASS (2026-11-26) | PASS (2026-11-26) | n/a |
+| [C020](cases/c020-two-players.toml) | Two clients of one build in one world: each links, and each sees the other's object | n/a | n/a | PASS (2026-11-26) | PASS (2026-11-26) | n/a |
+| [C021](cases/c021-malformed-world.toml) | Broken graal3dworld lines are skipped and the rest of the world still links and draws |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  |
+| [C022](cases/c022-out-of-range-objects.toml) | Objects the server takes but a client may not cope with: astronomical coordinates, zero and huge scale, a missing shape |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  |
+| [C023](cases/c023-density-256.toml) | 256 red cubes in one world: does the client fetch, ghost and draw them all and keep its link? |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  |
+| [C024](cases/c024-density-1024.toml) | 1024 red cubes in one world: does the client fetch, ghost and draw them all and keep its link? |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  |
+| [C025](cases/c025-junk-on-3d-ports.toml) | Junk datagrams on the 3D UDP port and junk TCP connections mid-session: server and client survive |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  |
+| [C026](cases/c026-typed-members.toml) | A slice of the typed GS2 3D member table called on a client-made GameObject: what each returns |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  |
+| [C027](cases/c027-udp-flood.toml) | A 10-second flood of 2000 junk datagrams a second at the 3D port mid-session: server and client survive |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  |
+| [C028](cases/c028-cache-refetch.toml) | A shape changed on the server between two visits, the client's cache kept: refetched (pink) or stale (red)? |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  |
+| [C029](cases/c029-reconnect-churn.toml) | Five short visits in a row on one server run: each links, and the fifth still draws |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  |

@@ -26,3 +26,36 @@ C027	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		red_drawn=yes;ali
 C028	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		asked_twice=yes;pink_drawn=yes;red_drawn=no
 C029	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		five_links=yes;red_drawn=yes
 C024	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		red_drawn=yes;alive=yes
+C001	5.12	FAIL	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows	alive	activated=yes
+C020	5.12	FAIL	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows	c2_alive	
+C001	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		activated=yes
+C020	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C001	4.20r8	FAIL	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows	tcp_login,udp_link,protocol24,control	activated=no
+C001	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		activated=yes
+C002	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		
+C003	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		dark_red=yes;alive=yes
+C004	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		asks_bare=yes;face_front=no
+C005	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		
+C006	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		asks_bare=yes;asks_png=no;green_drawn=no
+C007	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		
+C008	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		ready=yes;tick=yes
+C009	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		tv3_advances=yes
+C010	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		shown=yes;asks_image=yes;magenta=yes
+C011	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		asked=yes;moved=yes
+C012	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		own_found=no;world_found=no
+C013	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		srvflag=no
+C014	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		new_gameobject=yes;new_staticvar=yes
+C018	4.20r8	FAIL	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows	asks_info	
+C015	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		alive=yes
+C019	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		asks_water=yes;water_drawn=yes
+C020	4.20r8	FAIL	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows	second_links	c1_sees_two=no;c2_sees_two=no;c1_alive=yes;c2_alive=yes
+C021	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		
+C022	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		asks_missing=yes;red_drawn=yes;alive=yes
+C023	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		red_drawn=yes;alive=yes
+C025	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		red_drawn=yes
+C026	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		made=yes;done=yes;setget_position=no;position_prop=no;scale=no;x_prop=yes;transform=no;alpha=yes;nickname=yes;ismounted=yes
+C027	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		red_drawn=yes;alive=yes
+C028	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		asked_twice=yes;pink_drawn=yes;red_drawn=no
+C029	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		five_links=yes;red_drawn=yes
+C024	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		red_drawn=yes;alive=yes
+C020	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		c1_sees_two=yes;c2_sees_two=yes;c1_alive=yes;c2_alive=yes
