@@ -60,3 +60,10 @@ compiled = false
 new_gameobject = "?"
 new_staticvar = true
 source = "[static] T3D-014 (GameObject is a script-creatable 5.12 class, torque/gs2-3d-objects-404r2-512.md); T3D-016 (a client-made GameObject is never drawn); TStaticVar is the base GS2 object"
+
+[expect."6.037F"]
+compiled = false
+new_gameobject = "?"
+new_staticvar = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

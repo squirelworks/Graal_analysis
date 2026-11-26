@@ -82,3 +82,11 @@ pink_drawn = false
 red_drawn = false
 alive = true
 source = "T3D-121 (2D-only Quattro build, no 3D link)"
+
+[expect."6.037F"]
+asked_twice = "?"
+pink_drawn = "?"
+red_drawn = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

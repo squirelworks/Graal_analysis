@@ -60,3 +60,10 @@ compiled = false
 own_found = false
 world_found = "?"
 source = "[lab] seihai-gserver-v2 bin/docs/graal3d.md (5.12: findobject returns nothing for its own 3D object); T3D-136 (client scripts cannot reach world objects, findobject NULL) is not yet run as a probe"
+
+[expect."6.037F"]
+compiled = false
+own_found = "?"
+world_found = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

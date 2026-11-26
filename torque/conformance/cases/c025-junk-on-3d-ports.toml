@@ -97,3 +97,13 @@ udp_link = false
 red_drawn = false
 alive = true
 source = "[srv] seihai-gserver src/graal3d/service.rs (Service::datagram: data packets from an address with no session are dropped, unknown kinds ignored); the client side is open (T3D-142); T3D-121 (no 3D link)"
+
+[expect."6.037F"]
+injected = "?"
+server_alive = "?"
+panic = "?"
+udp_link = "?"
+red_drawn = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

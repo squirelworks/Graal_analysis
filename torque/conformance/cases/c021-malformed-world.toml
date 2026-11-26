@@ -122,3 +122,15 @@ udp_link = false
 red_drawn = false
 alive = true
 source = "[srv] seihai-gserver src/graal3d/scene.rs (Scene::parse skips and reports each line it does not take, so the client only gets the good lines); T3D-121 (2D-only Quattro build, no 3D link)"
+
+[expect."6.037F"]
+skips_short = "?"
+skips_nan = "?"
+skips_inf = "?"
+skips_unknown = "?"
+skips_replicator = "?"
+udp_link = "?"
+red_drawn = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"
