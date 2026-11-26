@@ -352,3 +352,20 @@ def test_multi_session_cases_swap_served_files(cases):
         for b in c.between:
             assert b["swap"] in served and b["with"] in served, c.id
             assert any(f == b["with"] for f in c.files), f"{c.id}: {b['with']} is not served"
+
+
+def test_probe_values_with_spaces_come_back_whole():
+    log = ("Graal3D: player 3: trigger ignored (gui,ConfProbe,cf,getposition,2,3,4)\n"
+           "Graal3D: player 3: trigger sent (gui,ConfProbe,cf,x,2)\n"
+           "Graal3D: player 3: trigger sent (gui,ConfProbe,cf,x_gone,1)\n"
+           "Graal3D: player 3: trigger sent (gui,ConfProbe,cf,d_shape)\n")
+    assert cf.probe_values(log, "getposition") == ["2 3 4"]
+    assert cf.probe_values(log, "x") == ["2"]
+    assert cf.probe_values(log, "d_shape") == [""]
+
+
+def test_results_keep_a_probe_value_observed(tmp_path):
+    v = {"case": "C026", "build": "5.12", "verdict": "PASS", "mismatches": [],
+         "checks": {"p": {"expected": "?", "observed": True, "detail": "", "value": "2 3 4"}}}
+    cf.append_result(tmp_path / "r.tsv", v, "2026-11-26", "srv", "cli")
+    assert "p=yes(2 3 4)" in (tmp_path / "r.tsv").read_text()
