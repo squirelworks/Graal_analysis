@@ -205,7 +205,8 @@ the same update but do not draw a `.3ds` this way; what they draw is still open.
 classes replace the cell-filling and the grid-count setters (their counts are clamped to 0–100
 per cell instead of 0–20) and build their own geometry instead of placing shapes, so they expect textures rather than shape files.
 
-With a texture name (`lp_white.png`) in `shapefiles` and the same update, both grass classes
+With a texture name (`lp_white.png`) in `shapefiles` and a radius of at least ~8 cells (see the
+radius correction below), both grass classes
 **draw**: many small flat pieces lying on the ground, over the same area the shapes covered,
 denser at 50 per cell than at 5. Under the GDI renderer they showed untextured. A 64×64 RGBA
 texture that is almost all transparent drew nothing visible. Both textures were already cached,
@@ -224,6 +225,23 @@ frame; only the grass is added. So pre-loading the texture before mission load l
 pass at mission load draw it. **[lab]** Under a full OpenGL renderer (Mesa llvmpipe)
 the same runs draw a lit white patch with `lp_white.png`, and the nearly transparent texture
 draws as soft round glowing spots, so the empty GDI result was the renderer. A ground-level close-up shows the grass pieces are flat-to-tilted quads lying on the ground at per-piece random yaw and tilt (their top faces foreshorten), not upright or camera-facing cards; each is on the order of a metre across at scale 1, and raising the scale enlarges the quad in both width and height. **[lab]** An overhead shot with a 1-unit reference cube as a ruler confirms this: from straight above each piece is a filled rotated square (a diamond), not the thin line a vertical card would show edge-on, so the cards lie flat on the ground. A scale-2 piece measures about 1.8 × 1.55 units across its bounding box; since the square is rotated, its true edge is about that over √2, roughly 1.25 units at scale 2, so near 0.6 units at scale 1. The piece is roughly square (width ≈ height), not a wider-than-tall blade, and larger than earlier guessed. **[lab]** The per-piece orientation is an independent random, not driven by `shaperotatemin`/`shaperotatemax`: a patch with the rotation range pinned to 0 and one with the default 0–360 are essentially identical (about 0.7% of pixels differ, edge noise), with the cards fanned to varied yaw in both. So grass carries its own orientation and ignores the replicator's `shaperotate` range. **[lab]**
+
+**The drawing runs all used a radius of at least ~8 cells; on the radius-4 shape base the grass
+classes draw nothing.** A later exhaustive bisection (real 5.12 under Mesa against seihai-gserver
+#216/#218, both a `rawobject` replay of the exact create and plain `replicator` lines, the control
+object off the origin) settled why every radius-4 grass line here drew 0 px: the 5.12 grass
+classes build **no** quads below a radius of about 8 cells, while `DynamicShapeReplicator` scatters
+at radius 4. Stepping only the radius was decisive — radius 4 with any count (5 or 10) grew
+nothing, while radius 8 with 4, 5 or 20 per cell drew a full patch — and scale, the texture
+name/path/content, ghost order, `terrainalignment`, the allow flags, the box z-range, and the
+GameObject section set were each ruled out on their own, with the radius the one thing that
+mattered. So the grass that drew above was a radius-8 line (the C++ fork's
+`replicator DynamicGrass 128 -128 0 8 …`), not the radius-4 shape base. The exact threshold sits
+somewhere in 5–8 cells (not narrowed). End to end, a plain
+`replicator DynamicGrass 0 0 0 8 10 10 lp_white.png` draws while the same line at radius 4 draws
+nothing (tested with the camera 20 and 40 units up, so it is not view-distance culling).
+seihai-gserver #218 floors grass lines to 8 cells (shape replicators keep theirs) with a
+start-up warning, after which the original radius-4 line draws. **[lab]** (T3D-048.)
 
 On 4.20r8 the replicator ghost is created without a crash or error, but with the camera kept
 250 units up (to avoid 4.20r8's terrain crash) no cover was in frame. With the camera pitched down over the
