@@ -37,6 +37,15 @@ smp = 2
 nice = 10
 disk_if = "virtio"
 boot_seconds = 40
+# A Debian cloud kernel has no e1000 driver: give the lab NIC virtio, at a
+# PCI address after the management NIC's, so cloud-init brings that one up
+# first (and pass a seed with a network-config that DHCPs e* in `cdroms`).
+nic = "virtio-net-pci"
+lab_nic_addr = "0x10"
+mgmt_nic = "virtio-net-pci"
+# The management user network, off the subnet the lab link takes over.
+mgmt_net = "<a private /24 the lab link does not use>"
+# cdroms = ["<lab-home>/VMs/<linux-lab>/seed.iso"]
 lab_mac = "52:54:00:c0:00:01"
 lab_mac2 = "52:54:00:c0:00:11"     # a second lab NIC, bridged in the VM, for two-client cases
 ssh_host = "<host loopback address>"
