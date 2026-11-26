@@ -162,7 +162,7 @@ denser at 50 per cell than at 5. Under the GDI renderer they showed untextured. 
 texture that is almost all transparent drew nothing visible. Both textures were already cached,
 and grass never asked the server for its texture. Under a full OpenGL renderer (Mesa llvmpipe)
 the same runs draw a lit white patch with `lp_white.png`, and the nearly transparent texture
-draws as soft round glowing billboards, so the empty GDI result was the renderer. **[lab]**
+draws as soft round glowing spots (whether upright or flat is not yet seen), so the empty GDI result was the renderer. **[lab]**
 
 On 4.20r8 the replicator ghost is created without a crash or error, but with the camera kept
 250 units up (to avoid 4.20r8's terrain crash) no cover was in frame. With the camera pitched down over the
