@@ -41,5 +41,9 @@ A first live try with the transform's flag left out crashed the client while it 
 `Invalid Blend Mode` line for any blend mode other than 0, 1 or 2 (0 is additive). That line never
 appeared for blend mode 9, so the draw function was never called in these runs: the scene did not
 hand the object to the renderer at all **[bin]**. A likely cause is that the object's own
-position was out of view **[inf]**; a run with the object in front of the camera is next. A lab check would ghost one `fxSunLight` beside the terrain world and vary
+position was out of view **[inf]**; a run with the object 10 units in front of the camera at eye height (enable on, both flare bitmaps
+set, size 300, elevation 5) still drew no flare and still logged no `Invalid Blend Mode` line for
+blend mode 9, under Mesa. The ghost is created and the texture is cached, but the draw path is
+never entered, so our rawobject `fxSunLight` is missing a field or registration the real object
+needs beyond the update fields read here; it is not the position, the box or the renderer. **[lab]** A lab check would ghost one `fxSunLight` beside the terrain world and vary
 azimuth, elevation, size and colour.
