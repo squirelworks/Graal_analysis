@@ -57,3 +57,10 @@ asks_water = "?"
 water_drawn = "?"
 alive = true
 source = "[lab] T3D-045 predates the WaterBlock writer; the surface draw on 5.12 is unread (records it)"
+
+[expect."6.037F"]
+asks_water = "?"
+water_drawn = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

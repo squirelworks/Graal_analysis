@@ -1,3 +1,93 @@
 case	build	verdict	date	server	client	mismatches	observed
+C001	5.12	FAIL	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows	alive	activated=yes
+C002	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C003	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		dark_red=no
+C004	5.12	FAIL	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows	face_front	
+C005	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C006	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C007	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C008	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C009	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C010	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C011	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C012	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		world_found=no
+C013	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C014	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		new_gameobject=yes
+C018	5.12	FAIL	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows	ground_textured,ground_white	asks_info=no
+C015	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C019	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		asks_water=yes;water_drawn=no
+C020	5.12	FAIL	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows	c2_alive	
+C021	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C022	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		asks_missing=yes;red_drawn=yes;alive=yes
+C023	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		red_drawn=yes;alive=yes
+C025	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		red_drawn=yes
+C026	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		made=yes;done=yes;setget_position=no;position_prop=no;scale=no;x_prop=yes;transform=no;alpha=yes;nickname=yes;ismounted=yes
+C027	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		red_drawn=yes;alive=yes
+C028	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		asked_twice=yes;pink_drawn=yes;red_drawn=no
+C029	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		five_links=yes;red_drawn=yes
+C024	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		red_drawn=yes;alive=yes
+C001	5.12	FAIL	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows	alive	activated=yes
+C020	5.12	FAIL	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows	c2_alive	
+C001	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		activated=yes
+C020	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C001	4.20r8	FAIL	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows	tcp_login,udp_link,protocol24,control	activated=no
+C001	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		activated=yes
+C002	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		
+C003	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		dark_red=yes;alive=yes
+C004	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		asks_bare=yes;face_front=no
+C005	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		
+C006	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		asks_bare=yes;asks_png=no;green_drawn=no
+C007	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		
+C008	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		ready=yes;tick=yes
+C009	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		tv3_advances=yes
+C010	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		shown=yes;asks_image=yes;magenta=yes
+C011	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		asked=yes;moved=yes
+C012	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		own_found=no;world_found=no
+C013	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		srvflag=no
+C014	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		new_gameobject=yes;new_staticvar=yes
+C018	4.20r8	FAIL	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows	asks_info	
+C015	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		alive=yes
+C019	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		asks_water=yes;water_drawn=yes
+C020	4.20r8	FAIL	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows	second_links	c1_sees_two=no;c2_sees_two=no;c1_alive=yes;c2_alive=yes
+C021	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		
+C022	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		asks_missing=yes;red_drawn=yes;alive=yes
+C023	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		red_drawn=yes;alive=yes
+C025	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		red_drawn=yes
+C026	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		made=yes;done=yes;setget_position=no;position_prop=no;scale=no;x_prop=yes;transform=no;alpha=yes;nickname=yes;ismounted=yes
+C027	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		red_drawn=yes;alive=yes
+C028	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		asked_twice=yes;pink_drawn=yes;red_drawn=no
+C029	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		five_links=yes;red_drawn=yes
+C024	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		red_drawn=yes;alive=yes
+C020	4.20r8	PASS	2026-11-26	seihai-gserver 5cd9c15	4.20r8 Windows		c1_sees_two=yes;c2_sees_two=yes;c1_alive=yes;c2_alive=yes
+C001	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		tcp_login=no;udp_link=no;protocol19=no;protocol24=no;control=no;activated=no;alive=no
+C001	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		tcp_login=yes;udp_link=yes;protocol19=no;protocol24=yes;control=yes;activated=no;alive=yes
+C001	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		tcp_login=yes;udp_link=yes;protocol19=no;protocol24=yes;control=yes;activated=no;alive=yes
+C002	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		tcp_login=yes;udp_link=no;alive=yes
+C003	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		udp_link=yes;control=yes;dark_red=no;alive=yes
+C004	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		asks_bare=no;asks_gif=no;face_front=yes;alive=yes
+C005	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		asks_shape=no;red_drawn=yes;alive=yes
+C006	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		asks_bare=no;asks_png=yes;green_drawn=yes
+C007	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		asks_cs=yes;asks_ter=yes;ran_marker=no;alive=yes
+C008	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		ready=no;tick=no
+C009	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		tv3_advances=no
+C010	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		shown=no;asks_image=no;magenta=no
+C011	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		asked=no;moved=no
+C012	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		own_found=no;world_found=no
+C013	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		srvflag=no
+C014	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		new_gameobject=no;new_staticvar=no
+C018	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		terrain_request=yes;asks_info=no;ground_textured=yes;ground_white=no;alive=yes
+C030	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		made=no;d_position=no;d_scale=no;d_transform=no;d_rotation=no;d_euler=no;d_velocity=no;d_alpha=no;d_shape=no;d_solid=no;d_collision=no;d_forward=no;d_up=no;d_right=no;d_objectbox=no;d_drawn=no;p_get=no;p_prop=no;p_xyz=no;p_afterx=no;p_assigned=no;s_get=no;s_prop=no;s_worldbox=no;s_center=no;t_get=no;t_rotation=no;t_euler=no;t_forward=no;t_right=no;t_up=no;t_position=no;e_transform=no;e_forward=no;dir_forward=no;dir_euler=no;sh_shape=no;sh_objectbox=no;sh_drawn=no;n_nickname=no;n_alpha=no;f_byname=no;v_velocity=no;v_after1s=no;o_found=no;o_position=no;o_transform=no;o_scale=no;o_shape=no;o_nickname=no;o_box=no;o_dropz=no;x_gone=no;done=no
+C015	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		control=yes;alive=no
+C019	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		asks_water=no;water_drawn=yes;alive=yes
+C020	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		second_links=yes;c1_sees_two=yes;c2_sees_two=yes;c1_alive=yes;c2_alive=yes
+C021	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		skips_short=yes;skips_nan=yes;skips_inf=yes;skips_unknown=yes;skips_replicator=yes;udp_link=yes;red_drawn=yes;alive=yes
+C022	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		taken=no;asks_missing=yes;udp_link=yes;red_drawn=yes;alive=yes
+C023	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		udp_link=yes;asks_shape=no;red_drawn=yes;alive=yes
+C025	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		injected=yes;server_alive=yes;panic=no;udp_link=yes;red_drawn=yes;alive=yes
+C026	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		made=no;done=no;setget_position=no;position_prop=no;scale=no;x_prop=no;transform=no;alpha=no;nickname=no;ismounted=no
+C027	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		injected=yes;server_alive=yes;panic=no;udp_link=yes;red_drawn=yes;alive=yes
+C028	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		asked_twice=no;pink_drawn=no;red_drawn=yes;alive=yes
+C029	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		five_links=yes;five_logins=yes;panic=no;red_drawn=yes;alive=yes
+C024	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		udp_link=yes;asks_shape=no;red_drawn=yes;alive=yes
 C030	5.12	PASS	2026-11-26	seihai-gserver main 5cd9c15	5.12 Windows		made=yes(1);d_position=yes(0 0 0);d_scale=yes(1 1 1);d_transform=yes(0 0 0 1 0 0 0);d_rotation=yes(1 0 0 0);d_euler=yes(0 0 0);d_velocity=yes(0 0 0);d_alpha=yes(1);d_shape=yes();d_solid=yes(0);d_collision=yes(1);d_forward=yes(0 1 0);d_up=yes(0 0 1);d_right=yes(1 0 0);d_objectbox=yes(0 0 0 0 0 0);d_drawn=yes(0);p_get=yes(1.5 -2 3.25);p_prop=yes(1.5 -2 3.25);p_xyz=yes(1.5_-2_3.25);p_afterx=yes(7 -2 3.25);p_assigned=yes(4 5 6);s_get=yes(2 3 4);s_prop=yes(2 3 4);s_worldbox=yes(4 5 6 4 5 6);s_center=yes(4 5 6);t_get=yes(1 2 3 0 0 1 1.570685349);t_rotation=yes(0 0 1 1.570685349);t_euler=yes(0 0 -0.027415631);t_forward=yes(0.027412196 0.999624192 0);t_right=yes(0.999624192 -0.027412196 0);t_up=yes(0 0 1);t_position=yes(1 2 3);e_transform=yes(1 2 3 0 0 -1 116.62015253);e_forward=yes(-0.893996596 -0.448073625 0);dir_forward=yes(1 0 0);dir_euler=yes(0 0 -1.570796251);sh_shape=yes(conf_red.3ds);sh_objectbox=yes(0 0 0 0 0 0);sh_drawn=yes(0);n_nickname=yes(conf);n_alpha=yes(0.25);f_byname=yes(0);v_velocity=yes(0 0 0);v_after1s=yes(0 0 10);o_found=no(0);o_position=no;o_transform=no;o_scale=no;o_shape=no;o_nickname=no;o_box=no;o_dropz=no;x_gone=yes(1);done=yes(1)
 C026	5.12	PASS	2026-11-26	seihai-gserver main 5cd9c15	5.12 Windows		setget_position=yes(2 3 4);position_prop=yes(2 3 4);scale=yes(2 2 2);transform=yes(2 3 4 1 0 0 0)

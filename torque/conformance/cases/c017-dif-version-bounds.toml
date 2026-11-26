@@ -69,3 +69,10 @@ asks_v44 = true
 refuses_other = true
 alive = true
 source = "[lab] torque/lab-2026-11-25-g3d-worlds.md ('InteriorResource::read: incompatible file version found', the client stays up)"
+
+[expect."6.037F"]
+asks_v44 = "?"
+refuses_other = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

@@ -38,16 +38,20 @@ and scp on the lab host.
 from __future__ import annotations
 
 import argparse
+import base64
 import datetime as dt
 import json
+import re
 import os
 import shlex
 import socket
+import struct
 import subprocess
 import sys
 import tarfile
 import time
 import tomllib
+import zlib
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -240,8 +244,8 @@ class Vm:
 
     # SSH (server VM, or a Linux client VM with a management NIC)
     def ssh_opts(self) -> list[str]:
-        return ["-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=/dev/null", "-o", "LogLevel=ERROR",
-                "-i", self.conf["ssh_key"]]
+        return ["-o", "StrictHostKeyChecking=no", "-o", f"UserKnownHostsFile={os.devnull}", "-o", "LogLevel=ERROR",
+                "-o", "IdentitiesOnly=yes", "-i", self.conf["ssh_key"]]
 
     def ssh_base(self) -> list[str]:
         return self.ssh_opts() + ["-p", str(self.conf["ssh_port"])]
@@ -281,6 +285,342 @@ class Vm:
         raise RuntimeError(f"{self.name}: no SSH after {seconds} s")
 
 
+# ------------------------------------------------------------------ VirtualBox
+
+def png_to_ppm(data: bytes) -> bytes:
+    """An 8-bit RGB/RGBA PNG (VirtualBox's screenshotpng) as a binary PPM."""
+    if data[:8] != b"\x89PNG\r\n\x1a\n":
+        raise ValueError("not a PNG")
+    i, idat, hdr = 8, [], None
+    while i < len(data):
+        n = struct.unpack(">I", data[i:i + 4])[0]
+        kind, body = data[i + 4:i + 8], data[i + 8:i + 8 + n]
+        i += 12 + n
+        if kind == b"IHDR":
+            hdr = struct.unpack(">IIBBBBB", body)
+        elif kind == b"IDAT":
+            idat.append(body)
+        elif kind == b"IEND":
+            break
+    w, h, depth, ctype, _, _, interlace = hdr
+    if depth != 8 or ctype not in (2, 6) or interlace:
+        raise ValueError(f"PNG depth {depth} type {ctype} interlace {interlace}: not supported")
+    bpp = 3 if ctype == 2 else 4
+    raw = zlib.decompress(b"".join(idat))
+    stride = w * bpp
+    prev = bytearray(stride)
+    out = bytearray(b"P6\n%d %d\n255\n" % (w, h))
+    pos = 0
+    for _ in range(h):
+        f = raw[pos]
+        line = bytearray(raw[pos + 1:pos + 1 + stride])
+        pos += 1 + stride
+        if f == 1:
+            for x in range(bpp, stride):
+                line[x] = (line[x] + line[x - bpp]) & 255
+        elif f == 2:
+            line = bytearray((a + b) & 255 for a, b in zip(line, prev))
+        elif f == 3:
+            for x in range(stride):
+                left = line[x - bpp] if x >= bpp else 0
+                line[x] = (line[x] + ((left + prev[x]) >> 1)) & 255
+        elif f == 4:
+            for x in range(stride):
+                a = line[x - bpp] if x >= bpp else 0
+                b = prev[x]
+                c = prev[x - bpp] if x >= bpp else 0
+                p = a + b - c
+                pa, pb, pc = abs(p - a), abs(p - b), abs(p - c)
+                line[x] = (line[x] + (a if pa <= pb and pa <= pc else b if pb <= pc else c)) & 255
+        prev = line
+        if bpp == 3:
+            out += line
+        else:
+            rgb = bytearray(line)
+            del rgb[3::4]
+            out += rgb
+    return bytes(out)
+
+
+def _mb(size: str) -> int:
+    s = str(size).upper()
+    return int(float(s[:-1]) * 1024) if s.endswith("G") else int(s.rstrip("M"))
+
+
+class VBox:
+    """VBoxManage, as the lab config's [virtualbox] table names it."""
+
+    def __init__(self, conf: dict):
+        self.conf = conf
+        self.exe = conf.get("manage", "VBoxManage")
+
+    def __call__(self, *args, check=True, timeout=600) -> subprocess.CompletedProcess:
+        r = subprocess.run([self.exe] + [str(a) for a in args], capture_output=True, timeout=timeout)
+        if check and r.returncode:
+            raise RuntimeError(f"VBoxManage {' '.join(map(str, args[:3]))}: "
+                               f"{r.stderr.decode(errors='replace').strip()[-400:]}")
+        return r
+
+    def out(self, *args, **kw) -> str:
+        return self(*args, **kw).stdout.decode(errors="replace")
+
+    def exists(self, name: str) -> bool:
+        return f'"{name}"' in self.out("list", "vms")
+
+    def running(self, name: str) -> bool:
+        return f'"{name}"' in self.out("list", "runningvms")
+
+    def ensure_dhcp(self, net: dict):
+        """VirtualBox's own DHCP server on the internal network (it has no host
+        address and routes nowhere): a fixed lease for each lab MAC."""
+        v = self.conf
+        args = [f"--network={v['intnet']}", f"--server-ip={v['dhcp_ip']}", f"--netmask={v['netmask']}",
+                f"--lower-ip={v['dhcp_lower']}", f"--upper-ip={v['dhcp_upper']}", "--enable"]
+        if v["intnet"] in self.out("list", "dhcpservers"):
+            self("dhcpserver", "modify", *args)
+        else:
+            self("dhcpserver", "add", *args)
+        for mac, ip in net.items():
+            self("dhcpserver", "modify", f"--network={v['intnet']}", f"--mac-address={mac}",
+                 f"--fixed-address={ip}")
+
+
+class VboxVm(Vm):
+    """A lab VM as a throw-away VirtualBox linked clone of a base VM's
+    snapshot (`vbox_base`, `vbox_snapshot`); the base is only ever read. The
+    lab link is a VirtualBox internal network: VM-only, no host address. A
+    server VM adds a NAT NIC with one SSH forward on the host loopback (its
+    management channel). A Windows client is driven by guest control and the
+    guest's desktop agent; screenshots are VirtualBox's own."""
+
+    def __init__(self, name: str, conf: dict, work: Path, vb: VBox):
+        super().__init__(name, conf, work, (work / "unused", work / "unused"))
+        self.vb = vb
+        self.clone = f"{vb.conf.get('prefix', 'conf')}-{name}"
+
+    def running(self) -> bool:
+        return self.vb.running(self.clone)
+
+    def destroy(self):
+        if self.vb.exists(self.clone):
+            if self.running():
+                self.vb("controlvm", self.clone, "poweroff", check=False)
+                for _ in range(40):
+                    if not self.running():
+                        break
+                    time.sleep(0.5)
+                time.sleep(2)
+            self.vb("unregistervm", self.clone, "--delete")
+
+    def fresh_overlay(self):
+        c, vb = self.conf, self.vb
+        self.destroy()
+        vb("clonevm", c["vbox_base"], "--snapshot", c["vbox_snapshot"], "--options", "link",
+           "--name", self.clone, "--basefolder", vb.conf["basefolder"], "--register")
+        info = vb.out("showvminfo", self.clone, "--machinereadable")
+        if 'VMState="saved"' in info:
+            # a snapshot taken while running: the clone boots cold, so its
+            # NICs and memory can be set
+            vb("discardstate", self.clone)
+        for line in info.splitlines():       # the base's own port forwards are not ours
+            if line.startswith("Forwarding("):
+                for nic in ("natpf1", "natpf2"):
+                    vb("modifyvm", self.clone, f"--{nic}", "delete", line.split('"')[1].split(",")[0], check=False)
+        mac = c["lab_mac"].replace(":", "").upper()
+        intnet = vb.conf["intnet"]
+        a = ["modifyvm", self.clone, "--memory", _mb(c.get("mem", "2G")), "--cpus", c.get("smp", 2),
+             "--description", "conformance runner throw-away clone; deleted at the end of the run"]
+        if "ssh_port" in c:
+            a += ["--nic1", "nat", "--natpf1", f"conf-ssh,tcp,{c['ssh_host']},{c['ssh_port']},,22",
+                  "--nic2", "intnet", "--intnet2", intnet, "--macaddress2", mac, "--cableconnected2", "on"]
+        else:
+            a += ["--nic1", "intnet", "--intnet1", intnet, "--macaddress1", mac, "--cableconnected1", "on",
+                  "--nic2", "none"]
+        vb(*a)
+
+    def argv(self) -> list[str]:
+        return []
+
+    def start(self, fresh=False):
+        if self.running() and not fresh:
+            return
+        if fresh or not self.vb.exists(self.clone):
+            self.fresh_overlay()
+        log(f"boot {self.name}")
+        self.vb("startvm", self.clone, "--type", "headless")
+        if self.conf.get("os", "linux" if "ssh_port" in self.conf else "windows") == "windows":
+            self.boot_windows()
+
+    def stop(self):
+        self.destroy()
+
+    def screendump(self, out: Path):
+        png = out.with_suffix(".png")
+        self.vb("controlvm", self.clone, "screenshotpng", str(png.resolve()), check=False)
+        if out.suffix == ".ppm" and png.exists():
+            out.write_bytes(png_to_ppm(png.read_bytes()))
+
+    # Windows guest control
+    def auth(self) -> list[str]:
+        v = self.vb.conf
+        return [f"--username={v['guest_user']}", f"--passwordfile={v['guest_password_file']}"]
+
+    def run_exe(self, exe: str, args: list[str], timeout=120) -> bytes:
+        r = self.vb("guestcontrol", self.clone, "run", f"--exe={exe}", *self.auth(), f"--timeout={timeout * 1000}",
+                    "--wait-stdout", "--wait-stderr", "--", *args, check=False, timeout=timeout + 60)
+        return r.stdout
+
+    def gx(self, ps: str, timeout=120) -> str:
+        enc = base64.b64encode(("$ProgressPreference = 'SilentlyContinue'; " + ps).encode("utf-16-le")).decode()
+        return self.run_exe(r"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe",
+                            ["-NoLogo", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass",
+                             "-EncodedCommand", enc], timeout).decode(errors="replace")
+
+
+    def agent(self, *lines: str) -> str:
+        """The guest's desktop agent (it runs in the console session, so what it
+        launches is on the desktop): one command a line in cmd.txt."""
+        d = self.conf.get("agent", r"C:\Users\Public\tg")
+        body = "\n".join(lines).replace("'", "''")
+        return self.gx(f"$n=@(Get-Content {d}\\agent.txt -EA 0).Count; Set-Content -Encoding utf8 {d}\\cmd.txt '{body}'; "
+                       f"$t=0; while((Test-Path {d}\\cmd.txt) -and $t -lt 60){{ Start-Sleep -Milliseconds 250; $t++ }}; "
+                       f"Start-Sleep -Milliseconds 1500; Get-Content {d}\\agent.txt -EA 0 | Select-Object -Skip $n", 90)
+
+    SC = {"win_r": ["e0", "5b", "13", "93", "e0", "db"], "enter": ["1c", "9c"], "alt_y": ["38", "15", "95", "b8"],
+          "ctrl_shift_enter": ["1d", "2a", "1c", "9c", "aa", "9d"], "ctrl": ["1d", "9d"], "esc": ["01", "81"]}
+
+    def keys(self, name: str):
+        self.vb("controlvm", self.clone, "keyboardputscancode", *self.SC[name], check=False)
+
+    def type(self, text: str):
+        self.vb("controlvm", self.clone, "keyboardputstring", text, check=False)
+
+    MOUSE = """$v = New-Object -ComObject VirtualBox.VirtualBox; $s = New-Object -ComObject VirtualBox.Session
+$v.FindMachine('{vm}').LockMachine($s, 1)
+try {{ $m = $s.Console.Mouse; foreach ($b in 0, 1, 0) {{ $m.PutMouseEventAbsolute({x}, {y}, 0, 0, $b); Start-Sleep -Milliseconds 120 }} }}
+finally {{ $s.UnlockMachine() }}"""
+
+    def click(self, x: int, y: int):
+        """A left click at guest screen pixel (x, y) through VirtualBox's own
+        mouse (the VirtualBox COM API: VBoxManage has no mouse command, and
+        mouse_event inside the guest does not reach its windows)."""
+        ps = self.MOUSE.format(vm=self.clone, x=int(x), y=int(y))
+        enc = base64.b64encode(ps.encode("utf-16-le")).decode()
+        subprocess.run(["powershell", "-NoProfile", "-NonInteractive", "-EncodedCommand", enc],
+                       capture_output=True, timeout=60)
+
+    def win_run(self, line: str, elevated=False):
+        self.keys("esc")          # close a leftover dialog first
+        time.sleep(0.5)
+        self.keys("win_r")
+        time.sleep(3)
+        self.type(line)
+        time.sleep(0.7)
+        if elevated:
+            self.keys("ctrl_shift_enter")
+            time.sleep(6)
+            self.keys("alt_y")    # accept the UAC prompt
+        else:
+            self.keys("enter")
+
+    def boot_windows(self):
+        """Wait for the desktop, start the desktop agent, then run the prep
+        script elevated: the hosts file's loopback lines point at the server
+        VM, and the lab's own guest set-up (e.g. the clock hold) runs."""
+        c = self.conf
+        t0 = time.time()
+        while "explorer" not in self.gx("Get-Process explorer -EA 0 | % Name", 30):
+            if time.time() - t0 > float(c.get("boot_seconds", 300)):
+                raise RuntimeError(f"{self.name}: no desktop")
+            time.sleep(10)
+        if c.get("screen"):
+            w, h = c["screen"]
+            self.vb("controlvm", self.clone, "setvideomodehint", w, h, 32, check=False)
+        time.sleep(15)
+        d = c.get("agent", r"C:\Users\Public\tg")
+        def agent_alive() -> bool:
+            # a "wins" command is taken (cmd.txt removed) only by a running agent
+            return "gone" in self.gx(f"Set-Content -Encoding utf8 {d}\\cmd.txt 'wins'; Start-Sleep 5; "
+                                     f"if (Test-Path {d}\\cmd.txt) {{ Remove-Item {d}\\cmd.txt; 'left' }} else {{ 'gone' }}")
+        # Start it once and give it time: a second copy would run every
+        # command twice (two launches of the client).
+        for _ in range(3):
+            if agent_alive():
+                break
+            self.win_run(c.get("agent_start", d + "\\a.cmd"))
+            if any(agent_alive() for _ in range(6)):
+                break
+        else:
+            raise RuntimeError(f"{self.name}: the desktop agent did not start")
+        server = self.server_ip
+        # The lab's own elevated set-up first; it may write the hosts file
+        # itself a little later (the T3D guests' clock hold does), so the
+        # hosts edit is repeated for `prep_settle` seconds.
+        settle = int(c.get("prep_settle", 60 if c.get("elevated") else 0))
+        prep = ["Start-Transcript C:\\Users\\Public\\conf-prep.log"]
+        prep += [f"Start-Process -WindowStyle Minimized cmd.exe -ArgumentList '/c {x}'" for x in c.get("elevated", [])]
+        prep += [
+            "$h = 'C:\\Windows\\System32\\drivers\\etc\\hosts'",
+            f"for ($i = 0; $i -le {settle // 2}; $i++) {{",
+            "  $l = Get-Content $h | % { if ($_ -match '^\\s*127\\.0\\.0\\.1\\s+(.*)$' -and $Matches[1] -notmatch '^localhost') "
+            f"{{ '{server} ' + $Matches[1] }} else {{ $_ }} }}",
+            "  try { [IO.File]::WriteAllLines($h, [string[]]$l) } catch { \"hosts: $_\" }",
+            "  Start-Sleep 2",
+            "}",
+            "ipconfig /flushdns | Out-Null",
+        ]
+        if c.get("dhcp_reset"):
+            # A guest image left with a static address from another lab
+            # network takes the lab link's DHCP lease instead.
+            prep += [
+                "Get-NetAdapter -Physical | % { $i = $_.InterfaceAlias; "
+                "Get-NetIPAddress -InterfaceAlias $i -AddressFamily IPv4 -EA 0 | Remove-NetIPAddress -Confirm:$false -EA 0; "
+                "Remove-NetRoute -InterfaceAlias $i -Confirm:$false -EA 0; "
+                "Set-NetIPInterface -InterfaceAlias $i -Dhcp Enabled; "
+                "Set-DnsClientServerAddress -InterfaceAlias $i -ResetServerAddresses }",
+                "ipconfig /renew | Out-Null",
+            ]
+        prep += [
+            # A guest that blocks outbound traffic by default may reach
+            # the server VM, and only it.
+            f"New-NetFirewallRule -DisplayName conf-lab-server -Direction Outbound -RemoteAddress {server} "
+            "-Action Allow | Out-Null",
+            "Get-Content $h | Select-String -NotMatch '^#'",
+            "Stop-Transcript",
+        ]
+        prep.append("Set-Content C:\\Users\\Public\\conf-prep.ok ok")
+        self.gx("Remove-Item C:\\Users\\Public\\conf-prep.ok -EA 0; Set-Content -Encoding utf8 C:\\Users\\Public\\conf-prep.ps1 @'\n"
+                + "\n".join(prep) + "\n'@")
+        for _ in range(4):
+            self.win_run("powershell -ExecutionPolicy Bypass -WindowStyle Minimized -File C:\\Users\\Public\\conf-prep.ps1",
+                         elevated=True)
+            for _ in range(8 + settle // 5):
+                time.sleep(5)
+                if "ok" in self.gx("Get-Content C:\\Users\\Public\\conf-prep.ok -EA 0"):
+                    break
+                self.keys("alt_y")
+            else:
+                continue
+            break
+        else:
+            raise RuntimeError(f"{self.name}: the elevated prep did not run")
+        hosts = self.gx(r"Get-Content C:\Windows\System32\drivers\etc\hosts")
+        if server not in hosts:
+            raise RuntimeError(f"{self.name}: the hosts file does not name the server VM; prep log:\n"
+                               + self.gx(r"Get-Content C:\Users\Public\conf-prep.log -EA 0"))
+        want = c.get("wait_year")
+        if want:
+            for _ in range(12):
+                if str(want) in self.gx("(Get-Date).Year"):
+                    break
+                time.sleep(5)
+            else:
+                raise RuntimeError(f"{self.name}: the guest clock is not at {want}")
+        for line in c.get("guest_setup", []):   # PowerShell lines, run by guest control
+            self.gx(line, 600)
+        log(f"{self.name}: desktop, agent and prep ready")
+
+
 # ------------------------------------------------------------------ the lab
 
 class Lab:
@@ -288,6 +628,16 @@ class Lab:
         self.conf = conf
         self.work = work
         self.net = conf["net"]
+        self.root = conf["server_vm"].get("root", "conformance")
+        self.server_ready = False
+        self.vbox = None
+        if conf.get("hypervisor", "qemu") == "virtualbox":
+            self.vbox = VBox(conf["virtualbox"])
+            self.server = VboxVm("server", conf["server_vm"], work, self.vbox)
+            self.clients = {n: VboxVm(f"client-{n}", v, work, self.vbox) for n, v in conf["client_vms"].items()}
+            for v in self.clients.values():
+                v.server_ip = self.net["server_ip"]
+            return
         s, c = work / "srv.sock", work / "cli.sock"
         s2, c2 = work / "srv2.sock", work / "cli2.sock"
         for p in (s, c, s2, c2):
@@ -301,20 +651,41 @@ class Lab:
         self.server_ready = False
 
     # server VM
-    def prepare_server(self):
-        self.server.start(fresh=self.conf["server_vm"].get("fresh", False))
-        self.server.wait_ssh()
+    def prepare_server(self, reuse=False):
+        if self.vbox:
+            # Fixed leases for the server and every client MAC (VirtualBox's
+            # DHCP server on the internal network; labnet.py needs root).
+            leases = {self.conf["server_vm"]["lab_mac"]: self.net["server_ip"]}
+            for v in self.conf["client_vms"].values():
+                leases[v["lab_mac"]] = self.net.get("static", {}).get(v["lab_mac"], self.net["client_ip"])
+            self.vbox.ensure_dhcp(leases)
+        self.server.start(fresh=self.conf["server_vm"].get("fresh", bool(self.vbox)) and not reuse)
+        self.server.wait_ssh(int(self.conf["server_vm"].get("ssh_wait", 180)))
         R = self.root
         sv = self.conf["server_vm"]
         self.server.ssh(f"mkdir -p {R} && rm -rf {R}/guest {R}/base")
         self.server.scp_to([GUEST], f"{R}/")
         self.server.scp_to([Path(sv["base_world"])], f"{R}/base")
+        # A Windows checkout may have given the scripts CRLF line ends.
+        self.server.ssh(f"sed -i 's/\\r$//' {R}/guest/*")
         if sv.get("gserver_host"):
             self.server.scp_to([Path(sv["gserver_host"])], f"{R}/gserver")
             self.gsbin = f"{R}/gserver"
         else:
             self.gsbin = sv["gserver_vm"]
         n = self.net
+        if self.vbox:
+            # No root in the server VM: the guest's own network manager takes
+            # the fixed lease on the lab NIC; wait for it.
+            ip = n["server_ip"]
+            for _ in range(36):
+                if ip in self.server.ssh("ip -o -4 addr", check=False):
+                    break
+                time.sleep(5)
+            else:
+                raise RuntimeError(f"server VM: no {ip} on the lab link")
+            self.server_ready = True
+            return
         mac = self.conf["server_vm"]["lab_mac"]
         mac2 = self.conf["server_vm"].get("lab_mac2", "")
         addrs = " ".join(f"{a}/{n['prefix']}" for a in [n["server_ip"]] + n.get("aliases", []))
@@ -440,6 +811,172 @@ def run_windows(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path,
     win_cmd(q, "exit")
 
 
+def vbox_steps(vm: VboxVm, seq: list, subst: dict):
+    """UI steps on a VirtualBox Windows guest: ["sleep", s], ["click", x, y]
+    (VirtualBox's mouse, guest screen pixels), ["type", text], ["enter"],
+    ["agent", line]."""
+    for st in seq:
+        op, *a = st
+        a = [x.format(**subst) if isinstance(x, str) else x for x in a]
+        if op == "sleep":
+            time.sleep(float(a[0]))
+        elif op == "click":
+            vm.click(int(a[0]), int(a[1]))
+        elif op == "type":
+            vm.type(a[0])
+        elif op == "enter":
+            vm.keys("enter")
+        elif op == "agent":
+            vm.agent(a[0])
+        else:
+            raise ValueError(f"unknown step {op}")
+
+
+def run_windows_vbox(lab: Lab, vm: VboxVm, build: dict, case: cf.Case, rundir: Path, primary: bool = True,
+                     clean_cache: bool = True):
+    """A Windows client in a VirtualBox guest: guest control clears the
+    client's cache and reads its logs back, the desktop agent launches and
+    kills it, and VirtualBox takes the screenshots. Artefacts are written
+    straight to RUNDIR (no upload over the lab link)."""
+    rundir.mkdir(parents=True, exist_ok=True)
+    d, exe = build["dir"], build["exe"]
+    consoles = build.get("console", ["console.log"])
+    gone = ",".join(f"'{d}\\{x}'" for x in consoles + (build.get("clean", []) if clean_cache else []))
+    vm.gx(f"Remove-Item {gone} -Recurse -Force -EA 0")
+    subst = {"dir": d, "exe": exe, "args": build.get("args", ""), "server": lab.net["server_ip"]}
+    pid, proc = vbox_client(vm, build, vbox_launch(vm, d, exe))
+    vbox_steps(vm, build.get("vbox_postlaunch", []), subst)
+    t0 = time.time()
+    mid = False
+    every = float(lab.conf.get("shot_every", 10))
+    while time.time() - t0 < case.seconds:
+        time.sleep(every)
+        vm.screendump(rundir / f"t{int(time.time() - t0):03d}.png")
+        if primary and case.mid_action and not mid and time.time() - t0 > case.seconds / 2:
+            lab.mid_action(case, rundir)
+            mid = True
+    vm.screendump(rundir / "shot.ppm")
+    vbox_tasks(vm, pid, proc, rundir)
+    vm.agent(f"killname {proc.rsplit('.', 1)[0]}")
+    time.sleep(2)
+    vbox_logs(vm, build, d, rundir)
+
+
+def vbox_launch(vm: VboxVm, d: str, exe: str) -> int:
+    """Launch through the desktop agent and return the new process id, which
+    the agent writes to its log (agent.txt) as `launched <path> pid N`. Its
+    reply to the command can come too late to be read, so the log itself
+    is read until the line is there."""
+    log_path = vm.conf.get("agent", r"C:\Users\Public\tg") + "\\agent.txt"
+    count = f"@(Get-Content {log_path} -EA 0).Count"
+    seen = int((vm.gx(count).strip() or "0").splitlines()[-1])
+    vm.agent(f"launch {d} {exe}")
+    want = re.compile(r"launched " + re.escape(f"{d}\\{exe}") + r" pid (\d+)", re.I)
+    for _ in range(20):
+        new = vm.gx(f"Get-Content {log_path} -EA 0 | Select-Object -Skip {seen}")
+        found = want.findall(new)
+        if found:
+            return int(found[-1])
+        time.sleep(1)
+    log(f"{vm.name}: no pid for {d}\\{exe} in the agent log")
+    return 0
+
+
+def vbox_client(vm: VboxVm, build: dict, pid: int) -> tuple[int, str]:
+    """(pid, name) of the client process. A build launched through a wrapper
+    script names the real client in `process`: its pid is the wrapper's
+    child of that name."""
+    proc = build.get("process")
+    if not proc:
+        return pid, build["exe"]
+    for _ in range(20):
+        out = vm.gx(f"Get-CimInstance Win32_Process -Filter \"ParentProcessId={pid} AND Name='{proc}'\" | % ProcessId")
+        if out.strip().isdigit():
+            return int(out.strip()), proc
+        time.sleep(1)
+    log(f"{vm.name}: no {proc} under pid {pid}")
+    return 0, proc
+
+
+def vbox_tasks(vm: VboxVm, pid: int, exe: str, rundir: Path):
+    """Whether the process the agent launched is still running (the guest
+    control user cannot read the paths of the desktop user's processes, so
+    the launch's own pid tells two clients in one guest apart)."""
+    alive = pid and str(pid) in vm.gx(f"Get-Process -Id {pid} -EA 0 | % Id")
+    (rundir / "tasks.txt").write_text(f"{exe} pid {pid} running\n" if alive else f"pid {pid} gone\n",
+                                      encoding="utf-8")
+
+
+def vbox_logs(vm: VboxVm, build: dict, d: str, rundir: Path):
+    (rundir / "files.txt").write_text(
+        vm.gx(f"Get-ChildItem -LiteralPath '{d}' -Recurse -File -EA 0 | % FullName"), encoding="utf-8")
+    text = ""
+    for c in build.get("console", ["console.log"]):
+        text += vm.gx(f"$p = '{d}\\{c}'; if (Test-Path -LiteralPath $p) "
+                      "{ [IO.File]::ReadAllText($p, [Text.Encoding]::GetEncoding(28591)) }")
+    if text:
+        (rundir / "console.txt").write_text(text, encoding="utf-8")
+
+
+def vbox_desktop_cmd(vm: VboxVm, lines: list[str]):
+    """Run cmd lines as the desktop user (through the agent), e.g. to give
+    the second client of a pair its own account where both copies of a
+    build read one per-user registry key."""
+    if not lines:
+        return
+    body = "@echo off\r\n" + "\r\n".join(lines) + "\r\necho done> C:\\Users\\Public\\conf-desk.ok\r\n"
+    vm.gx("Remove-Item C:\\Users\\Public\\conf-desk.ok -EA 0; "
+          f"[IO.File]::WriteAllText('C:\\Users\\Public\\conf-desk.cmd', \"{body}\")")
+    vm.agent(r"launch C:\Users\Public conf-desk.cmd")
+    for _ in range(20):
+        if "done" in vm.gx(r"Get-Content C:\Users\Public\conf-desk.ok -EA 0"):
+            return
+        time.sleep(1)
+    log(f"{vm.name}: desktop command did not finish")
+
+
+def vbox_pair_one_guest(lab: Lab, vm: VboxVm, build: dict, case: cf.Case, rundir: Path):
+    """A two-client case with both clients in one guest (`pair_dir`: a second
+    copy of the build there), for a host without the memory for a second
+    client VM. One screenshot shows both windows, so both clients' screenshot
+    checks read the same desktop."""
+    d1, d2, exe = build["dir"], build["pair_dir"], build["exe"]
+    c2 = rundir / "c2"
+    c2.mkdir(parents=True, exist_ok=True)
+    gone = ",".join(f"'{d}\\{x}'" for d in (d1, d2)
+                    for x in build.get("console", ["console.log"]) + build.get("clean", []))
+    vm.gx(f"Remove-Item {gone} -Recurse -Force -EA 0")
+    post = build.get("vbox_postlaunch", [])
+    pid1, proc = vbox_client(vm, build, vbox_launch(vm, d1, exe))
+    vbox_steps(vm, post, {"dir": d1, "exe": exe})
+    time.sleep(float(build.get("pair_delay", 25)))
+    vbox_desktop_cmd(vm, build.get("pair_before", []))
+    pid2, _ = vbox_client(vm, build, vbox_launch(vm, d2, exe))
+    vbox_steps(vm, post, {"dir": d2, "exe": exe})
+    vbox_desktop_cmd(vm, build.get("pair_after", []))
+    t0 = time.time()
+    every = float(lab.conf.get("shot_every", 10))
+    while time.time() - t0 < case.seconds:
+        time.sleep(every)
+        vm.screendump(rundir / f"t{int(time.time() - t0):03d}.png")
+    vm.screendump(rundir / "shot.ppm")
+    (c2 / "shot.ppm").write_bytes((rundir / "shot.ppm").read_bytes())
+    vbox_tasks(vm, pid1, proc, rundir)
+    vbox_tasks(vm, pid2, proc, c2)
+    vm.agent(f"killname {proc.rsplit('.', 1)[0]}")
+    time.sleep(2)
+    vbox_logs(vm, build, d1, rundir)
+    vbox_logs(vm, build, d2, c2)
+
+
+def run_client(lab: Lab, vm, build: dict, case: cf.Case, rundir: Path, upload="guest.tar", primary=True,
+               clean_cache=True):
+    if isinstance(vm, VboxVm):
+        run_windows_vbox(lab, vm, build, case, rundir, primary, clean_cache=clean_cache)
+    else:
+        run_windows(lab, vm, build, case, rundir, upload=upload, primary=primary, clean_cache=clean_cache)
+
+
 def run_ssh_client(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path, primary: bool = True):
     """A Linux client VM with a management SSH NIC: the build's `launch` is a
     shell command run detached; the console log and listing are read back
@@ -474,18 +1011,21 @@ def run_ssh_client(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path, p
         vm.ssh(f"cd {shlex.quote(d)} && cat {' '.join(build.get('console', []))} 2>/dev/null", check=False))
 
 
-def run_pair(lab: Lab, vm: Vm, vm2: Vm, build: dict, case: cf.Case, rundir: Path):
+def run_pair(lab: Lab, vm: Vm, vm2: Vm | None, build: dict, case: cf.Case, rundir: Path):
     """A two-client case: the same build in two client VMs (the second on
     the server VM's second lab NIC), the second launched `pair_delay`
     seconds after the first so it joins a world that already has a player.
     Windows clients only. Client 2's artefacts go to RUNDIR/c2."""
     import threading
+    if vm2 is None:
+        vbox_pair_one_guest(lab, vm, build, case, rundir)
+        return
     vm2.start(fresh=not vm2.running())
     delay = float(build.get("pair_delay", 25))
-    second = threading.Thread(target=lambda: (time.sleep(delay), run_windows(
+    second = threading.Thread(target=lambda: (time.sleep(delay), run_client(
         lab, vm2, build, case, rundir / "c2", upload="guest2.tar", primary=False)))
     second.start()
-    run_windows(lab, vm, build, case, rundir)
+    run_client(lab, vm, build, case, rundir)
     second.join()
 
 
@@ -498,7 +1038,7 @@ def plan(conf: dict, cases: list[cf.Case], builds: list[str]) -> list[tuple[str,
             continue
         have = set(conf["builds"][b].get("packs", [])) | set(conf.get("packs", {}))
         for c in sorted(cases, key=lambda c: (c.priority, c.id)):
-            if c.clients == 2 and not conf["builds"][b].get("pair_vm"):
+            if c.clients == 2 and not (conf["builds"][b].get("pair_vm") or conf["builds"][b].get("pair_dir")):
                 continue   # a two-client case needs a second client VM for this build
             if b in c.expect and set(c.needs) <= have:
                 out.append((b, c))
@@ -512,6 +1052,7 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--build", default="")
     ap.add_argument("--record", action="store_true", help="append to results.tsv and rewrite RESULTS.md")
     ap.add_argument("--keep", action="store_true", help="leave the VMs running at the end")
+    ap.add_argument("--reuse", action="store_true", help="use VMs left running by --keep instead of fresh overlays")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args(argv)
 
@@ -536,14 +1077,14 @@ def main(argv: list[str]) -> int:
     stamp = dt.datetime.now().strftime("%Y-%m-%d")
     current_vm = None
     try:
-        lab.prepare_server()
+        lab.prepare_server(a.reuse)
         for b, case in todo:
             bc = conf["builds"][b]
             vm = lab.clients[bc["vm"]]
             if current_vm is not vm:
                 if current_vm:
                     current_vm.stop()
-                vm.start(fresh=True)
+                vm.start(fresh=not (a.reuse and vm.running()))
                 current_vm = vm
             rundir = work / "out" / b / case.id
             for d in (rundir, rundir / "c2"):
@@ -558,7 +1099,7 @@ def main(argv: list[str]) -> int:
             lab.case_up(case, overlay)
             try:
                 if case.clients == 2:
-                    run_pair(lab, vm, lab.clients[bc["pair_vm"]], bc, case, rundir)
+                    run_pair(lab, vm, lab.clients[bc["pair_vm"]] if bc.get("pair_vm") else None, bc, case, rundir)
                 else:
                     # A multi-session case relaunches the client on the same
                     # server run; the last session's artefacts are the ones
@@ -572,20 +1113,26 @@ def main(argv: list[str]) -> int:
                         if bc.get("control", "qmp") == "ssh":
                             run_ssh_client(lab, vm, bc, case, sdir, primary=last)
                         else:
-                            run_windows(lab, vm, bc, case, sdir, primary=last,
-                                        clean_cache=not (case.keep_cache and s))
+                            run_client(lab, vm, bc, case, sdir, primary=last,
+                                       clean_cache=not (case.keep_cache and s))
             finally:
                 time.sleep(2)
                 lab.case_down()
                 lab.pull(rundir)
-            v = cf.judge(case, b, rundir, bc.get("exe", ""))
+            v = cf.judge(case, b, rundir, bc.get("process", bc.get("exe", "")))
             (rundir / "verdict.json").write_text(json.dumps(v, indent=1) + "\n")
             log(f"{b} {case.id}: {v['verdict']} {' '.join(v.get('mismatches', []))}")
             if a.record:
                 cf.append_result(tsv, v, stamp, server_label, bc.get("label", b))
             # A run that never reached a console log, or failed, may have left
             # the guest in a bad state: start the next run on a fresh overlay.
-            if v["verdict"] != "PASS" or not (rundir / "console.txt").exists():
+            # A VirtualBox guest is re-cloned and re-prepared (minutes), so
+            # only when the client left no console log: its own clean-up
+            # step already resets the client folder between runs.
+            bad = not (rundir / "console.txt").exists()
+            if not lab.vbox:
+                bad = bad or v["verdict"] != "PASS"
+            if bad:
                 vm.stop()
                 vm.start(fresh=True)
         if a.record:

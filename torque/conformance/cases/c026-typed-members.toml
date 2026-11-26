@@ -154,3 +154,18 @@ alpha = false
 nickname = false
 ismounted = false
 source = "T3D-121 (no 3D link, so no weapon3d)"
+
+[expect."6.037F"]
+compiled = false
+made = "?"
+done = "?"
+setget_position = "?"
+position_prop = "?"
+scale = "?"
+x_prop = "?"
+transform = "?"
+alpha = "?"
+nickname = "?"
+ismounted = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"
