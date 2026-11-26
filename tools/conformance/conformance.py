@@ -308,7 +308,10 @@ def _read(rundir: Path, name: str) -> str | None:
 
 
 def probe_values(server_log: str, key: str) -> list[str]:
-    pat = re.compile(r"trigger ignored \(\"?gui\"?,\s*\"?" + PROBE_WEAPON + r"\"?,\s*\"?cf\"?,\s*\"?"
+    # "trigger ignored (...)" before seihai-gserver #214, which routes
+    # triggerserver("gui", ...) to the server weapon; any "trigger <word>
+    # (...)" line that carries the arguments is read the same way.
+    pat = re.compile(r"trigger \w+ \(\"?gui\"?,\s*\"?" + PROBE_WEAPON + r"\"?,\s*\"?cf\"?,\s*\"?"
                      + re.escape(key) + r"\"?,\s*\"?([^,)\"]*)")
     return pat.findall(server_log)
 
