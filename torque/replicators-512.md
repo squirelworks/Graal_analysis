@@ -114,36 +114,53 @@ read from its transform, not on the camera or the replicator. **[bin]** Live, on
 at (128, −128), at (104, 4) and at (−124, 132), whether the replicator object is next to the avatar, far away at (−300, −300), or hidden 500 units up. **[lab]**
 Two things stopped it in earlier runs:
 
-- **The avatar at (4, 4).** With the avatar spawned at (4, 4), nothing grows, wherever the replicator is. The likely cause is that (4, 4) snaps to grid cell (0, 0), the same cell the grid starts on, so the client never sees the avatar change cell and never fills the grid **[inf]**. Untested so far: other spots inside cell (0, 0), and walking into or out of it.
+- **The avatar in cell (0, 0).** With the avatar anywhere in the origin cell (−8 < x < 8 and −8 < y < 8, since cells cut toward zero), nothing grows, wherever the replicator is: (4, 4), (7, 7) and (−4, −4) are all bare. One cell out in any direction grows a full patch: (9, 4), (4, 9), (−9, 4) and (20, 20). Moving the avatar from (4, 4) to (40, 4) after spawn makes cover appear around the new spot. A likely reason is that the grid starts out centred on cell (0, 0), so an avatar that starts there never registers a cell change and the grid is never filled **[inf]**. **[lab]**
 - **The replicator object on the spot.** (−124, 132) stayed bare while the replicator object sat on it, and grew a full patch once the replicator moved to (104, 4). Why the replicator's own spot blocks cover is still open. **[lab]**
 
 A box of (−1,−1) to (1,1)
 allows only the one cell whose corner is at the world origin; a server wanting cover over an area
 must send that area as the box, in world units. **[bin]**
 
-Cover grows only in cells that are both within `radius` cells of the avatar and inside the
-**world-coordinate** box (corner x and y). An earlier reading of a "lower bound on the parameters"
-came from this. With the avatar at (128, −128) and a box of ±100, the avatar is outside the box,
-so only cells that `radius` reaches back into the box can grow. From the minimal line (radius 1,
-one object per cell, scale 1) at that spot **[lab]**:
+Cover grows only in cells inside the **world-coordinate** box (corner x and y). With the
+avatar inside the box, the avatar-centred grid holds exactly. In one run (±1024 box, avatar at
+(128, −128)), every cube at radius 1 and 2 sat within 0.4 units of the predicted cell
+positions, with none outside the predicted cells. With a ±512 box and the avatar at (128, −128),
+even the minimal line grows, and count and scale add cover as expected **[lab]**:
 
-| Change from the minimum | Cover (overhead pixels, marker excluded) |
+| Line, avatar inside the box | Cover (overhead pixels, marker excluded) |
 |---|---|
-| none | none |
-| radius 2 / 3 / 4 | about 660 / 3,500 / 4,700 |
-| per cell 2, 3 or 5 | none |
-| scale 2, 3 or 5 | none |
+| minimum (radius 1, 1 per cell, scale 1) | about 10k |
+| per cell 2 / 5 | about 20k / 47k |
+| scale 2 / 5 | about 39k / 206k |
 
-Only radius adds cover, gradually, as it reaches further into the box. Count and scale change
-density and size inside cells that are already reachable, but they don't extend the reach. But
-the reach doesn't match a plain "cells within `radius` of the avatar's cell" rule. At radius 3
-the cubes sat near world (88, −93), inside the box but about 53 units from the avatar, beyond a
-three-cell reach of 24 units. Radius 2 already grew one clump, and radius 1 grew none. How the
-grid centre and the box interact is still open; one untested guess is that the centre is clamped
-into the box first. **[lab][inf]** With the avatar inside the box the plain rule holds: in a run with a ±1024 box and the avatar at (128, −128), every cube at radius 1 and 2 sat within 0.4 units of the predicted cell positions, with none outside the predicted cells. So the open case is only an avatar outside the box. **[lab]** The earlier pair
-results (radius 1 with 1 per cell and scale 3, and so on) used the wider ±256 box with the
-avatar inside it, so they grew as expected. A clean count/scale check with the avatar inside the
-box is still to be run.
+The earlier "lower bound on the parameters" came from a ±100 box, which left the avatar at
+(128, −128) outside it. In that case cover doesn't grow around the avatar. It grows just inside
+the box corner nearest the avatar, and moves inward by about one cell per radius step
+(overhead at z 250, positions ±a few units) **[lab]**:
+
+| Radius, avatar outside a ±100 box | Cover | Where |
+|---|---|---|
+| 1 | none | — |
+| 2 | one clump | about (97, −97) |
+| 3 | a few clumps | about (88, −89) |
+| 4 | a few clumps | about (81, −80) |
+
+With the avatar outside the box, raising the count or scale at radius 1 still grows nothing.
+A follow-up run fits one rule: the clump sits at the cell corner **avatar − 8·(r + 2)** on each
+axis, and grows only if that corner is inside the box **[lab]**:
+
+| Avatar, box | Radius 2 | Radius 3 | Radius 4 | Radius 6 |
+|---|---|---|---|---|
+| (128, −128), ±100 | ~(97, −97) | ~(88, −89) | ~(81, −80) | ~(64, −63) |
+| (136, −136), ±100 | none (corner 104 is outside) | ~(93, −93) | ~(84, −84) | — |
+| (128, −128), ±90 | none (corner 96 is outside) | ~(83, −84) | — | — |
+
+Measured centres sit about 3–4 units inside the predicted corner, which fits copies scattered
+within ±4 units of it. Radius 1 predicts corner 104 for an avatar at 128, which is outside a
+±100 box, matching no growth. So the clump is tied to the avatar, not to the box corner: moving
+the avatar 8 units out moved it one cell, and radius 2 then grew nothing. Nothing grew nearer the
+avatar. Why the client grows this one far cell, rather than the in-range cells, is still open
+**[inf]**.
 
 ## Live
 
