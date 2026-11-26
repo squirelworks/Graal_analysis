@@ -113,9 +113,10 @@ is then placed by casting rays onto the allowed surfaces. **[bin]** Cover only f
 grew a full carpet at the control object's (128, −128) but nothing at (4, 4), with every other
 field held. It is not a terrain gap (terrain draws at both spots) and does not mirror across the
 grid: a control at (−124, 132) is as dead as (4, 4), and only the player's spawn position
-(128, −128) has ever grown cover, on both the Peaks and the flat terrain. The leading guess is
-that the grid centres on the networked control object (the player avatar at its spawn), not on
-the camera or the replicator, so cover grows where the avatar actually is **[inf]**. **[lab]** So a box of (−1,−1) to (1,1)
+(128, −128) has ever grown cover, on both the Peaks and the flat terrain. This matches the binary: each tick the grid is centred on the game connection's **control
+object** (the player avatar), read from its transform, not on the camera or the replicator, so
+cover grows where the avatar actually is, which in these tests was always the spawn (128, −128).
+**[bin][lab]** So a box of (−1,−1) to (1,1)
 allows only the one cell whose corner is at the world origin; a server wanting cover over an area
 must send that area as the box, in world units. **[bin]**
 
