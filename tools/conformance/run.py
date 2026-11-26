@@ -350,10 +350,11 @@ class Lab:
         """The case's action half way through a run."""
         if case.mid_action == "stop-server":
             self.stop_gserver()
-        elif case.mid_action == "inject-junk":
+        elif case.mid_action in ("inject-junk", "inject-flood"):
             port = self.conf.get("gserver_port", 14802)
+            mode = " flood" if case.mid_action == "inject-flood" else ""
             out = self.server.ssh(f"python3 -I -u {self.root}/guest/junk.py {self.net['server_ip']} {port} "
-                                  f"{self.root}/gserver.pid", check=False)
+                                  f"{self.root}/gserver.pid{mode}", check=False)
             (rundir / "inject.log").write_text(out)
 
     def stop_gserver(self):

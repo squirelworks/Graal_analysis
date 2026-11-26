@@ -50,7 +50,7 @@ import gen_content  # noqa: E402
 # others (e.g. "4.20r6L", the Linux 4.20 G3D22126); they get their own column.
 CORE_BUILDS = ["3.153", "4.04r2", "4.20r8", "5.12", "6.037"]
 CHECK_KINDS = {"trace", "server", "console", "files", "alive", "probe", "pixel", "blobs", "inject"}
-MID_ACTIONS = ("", "stop-server", "inject-junk")
+MID_ACTIONS = ("", "stop-server", "inject-junk", "inject-flood")
 # Expected value of a check: true, false, or "?" (observe and record only).
 OBSERVE = "?"
 PROBE_WEAPON = "ConfProbe"

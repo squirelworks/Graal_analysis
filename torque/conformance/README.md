@@ -50,7 +50,7 @@ lobby_name = "3 Conformance"               # the name the lobby warps to
 
 [run]
 seconds = 60
-mid_action = ""                            # or "stop-server" / "inject-junk" half way
+mid_action = ""                            # or "stop-server" / "inject-junk" / "inject-flood" half way
 
 [[check]]
 id = "red_drawn"
@@ -72,7 +72,7 @@ Check kinds, each reading one artefact of the run:
 | `probe` | the gserver log: a probe's `triggerserver("gui", "ConfProbe", "cf", key, value)` arrives as `trigger ignored (...)` | some report of `key` matches `value` |
 | `console` | the client's console log(s) | `pattern` matches |
 | `files` | a listing of the client folder after the run | `pattern` matches |
-| `inject` | the output of the case's `inject-junk` mid action (`guest/junk.py` in the server VM) | `pattern` matches |
+| `inject` | the output of the case's `inject-junk` or `inject-flood` mid action (`guest/junk.py` in the server VM) | `pattern` matches |
 | `alive` | the guest's process list just before the client is closed | the client's exe is still running (no crash) |
 | `pixel` | the last screenshot | at least `min_fraction` of the screen is within `tol` of `colour` |
 | `blobs` | the last screenshot | at least `count` separate regions of `colour`, each of `min_pixels` or more (e.g. two players' cubes) |
@@ -166,7 +166,7 @@ version bounds from a content pack (C016, C017), a flat streamed terrain
 from the T3D-142 to T3D-156 round: broken world lines (C021) and
 out-of-range objects (C022, T3D-154/146), 256 and 1024 objects (C023, C024,
 T3D-153/147), junk datagrams and connections on the 3D ports mid-session
-(C025, T3D-144/142) and a slice of the typed GS2 member table on a live
+(C025, T3D-144/142), a 10-second junk flood at the 3D port (C027, T3D-143) and a slice of the typed GS2 member table on a live
 object (C026, T3D-150/125). Their client-side answers are `?` until a lab
 run records them. See [`EXPECTED.md`](EXPECTED.md).
 
