@@ -15,14 +15,15 @@ position lands on the client depending on `movetype`.
 With `movetype rigid` in `graal3dworld.txt`, a `g3dpos` move goes out as a
 **stream of events** (~112 event/control lines for the move vs ~54 for
 list), and the control object's own transform **stays at the old position** —
-the control-object line keeps `at=30,-26,1` (section `0x8000e8`). The move is
+the control-object line keeps `at=30,-26,1` (its own move-data section, not
+the transform). The move is
 carried in the move data, not the object transform, so the client **glides**
 to the target with a small lag. No object section is echoed for the move.
 
 ## `movetype list` → jump (transform carries the position)
 
 With `movetype list`, the control object line goes **straight to the target**
-— `control object: sections 0x20, at 70.00,-26.00,1.00` — i.e. the object is
+— `control object: at 70.00,-26.00,1.00` in its transform section — i.e. the object is
 sent with the new transform carrying the position, so the client **jumps**
 exactly to the target (x 30 → 70 with no intermediate glide). Fewer events
 than rigid.
