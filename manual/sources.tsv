@@ -1070,5 +1070,11 @@ torque/conformance/cases/c017-dif-version-bounds.toml	excluded			conformance cas
 torque/conformance/cases/c018-terrain-flat.toml	excluded			conformance case (a test world and its expectations), not a finding
 torque/conformance/cases/c019-water.toml	excluded			conformance case (a test world and its expectations), not a finding
 torque/conformance/cases/c020-two-players.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c021-malformed-world.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c022-out-of-range-objects.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c023-density-256.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c024-density-1024.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c025-junk-on-3d-ports.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c026-typed-members.toml	excluded			conformance case (a test world and its expectations), not a finding
 torque/3d-level-warp-per-player-replicator-208-512-2026-11-26.md	pending		8	seihai-gserver #208/#209 lab: level warp works on #209 both routes (no relink, BIG creates both ways), per-player objects scope per client, DynamicShapeReplicator first-visit scatter via #209 resend, grass classes want a texture not a shape (T3D-135/136/048), lab; to carry into section 8
 torque/3d-2d3d-crossview-flags-movetype-512-2026-11-26.md	pending		8	real 5.12 3D + real 2.22 2D same world (seihai-gserver #209): server flags reach 2D not the 3D GS2 script; cross-view presence+position both ways, chat/nick server-complete+script-readable but 5.12 draws neither, head/body/colours never cross; 2D observer sees rigid+list movetype as jumps; level timeouts run only on the level leader (T3D-069/133/054), lab; to carry into section 8

@@ -1,0 +1,92 @@
+id = "C022"
+slug = "out-of-range-objects"
+title = "Objects the server takes but a client may not cope with: astronomical coordinates, zero and huge scale, a missing shape"
+rows = ["T3D-154", "T3D-146"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+playershape conf_nomat.3ds
+spawn 0 0 1
+object ConfCube conf_red.3ds 0 4 1
+object Far conf_red.3ds 1e30 -1e30 1e30
+object Flat conf_red.3ds 3 4 1 0 0 1 0 0 0 0
+object Huge conf_tex.3ds 0 -40 1 0 0 1 0 1000 1000 1000
+object Missing conf_missing.3ds -3 4 1
+"""
+files = ["conf_red.3ds", "conf_tex.3ds", "conf_tex.png", "conf_nomat.3ds", "conf_sky*"]
+
+[run]
+seconds = 60
+
+[[check]]
+id = "taken"
+kind = "server"
+pattern = "not understood"
+note = "the server takes all five object lines"
+
+[[check]]
+id = "asks_missing"
+kind = "server"
+pattern = "file conf_missing\\.3ds: "
+note = "the client asks for the shape the server does not have"
+
+[[check]]
+id = "udp_link"
+kind = "trace"
+pattern = "linked from"
+
+[[check]]
+id = "red_drawn"
+kind = "pixel"
+colour = [220, 0, 0]
+tol = 70
+min_fraction = 0.002
+note = "the in-range cube is still drawn beside the others"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+taken = false
+asks_missing = false
+udp_link = true
+red_drawn = false
+alive = true
+source = "[srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.04r2"]
+taken = false
+asks_missing = false
+udp_link = true
+red_drawn = false
+alive = true
+source = "[srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.20r8"]
+taken = false
+asks_missing = "?"
+udp_link = true
+red_drawn = "?"
+alive = "?"
+source = "open: T3D-154 (out-of-range lines) and T3D-146 (huge positions at an observer) are unanswered; recorded, not judged"
+
+[expect."5.12"]
+taken = false
+asks_missing = "?"
+udp_link = true
+red_drawn = "?"
+alive = "?"
+source = "open: T3D-154 (out-of-range lines) and T3D-146 (huge positions at an observer) are unanswered; recorded, not judged"
+
+[expect."6.037"]
+taken = false
+asks_missing = false
+udp_link = false
+red_drawn = false
+alive = true
+source = "T3D-121 (2D-only Quattro build, no 3D link)"
