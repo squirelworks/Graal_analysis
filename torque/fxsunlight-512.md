@@ -45,5 +45,10 @@ position was out of view **[inf]**; a run with the object 10 units in front of t
 set, size 300, elevation 5) still drew no flare and still logged no `Invalid Blend Mode` line for
 blend mode 9, under Mesa. The ghost is created and the texture is cached, but the draw path is
 never entered, so our rawobject `fxSunLight` is missing a field or registration the real object
-needs beyond the update fields read here; it is not the position, the box or the renderer. **[lab]** A lab check would ghost one `fxSunLight` beside the terrain world and vary
+needs beyond the update fields read here; it is not the position, the box or the renderer. **[lab]** Statically, the flare is drawn by a render-image callback in the object's render vtable, which
+the scene's render manager calls only for an object it has added to its visible set. The prep that
+registers that callback bails unless an internal flag is set; that flag is set by the routine that
+loads the flare bitmaps. The ghost's bitmaps were cached, yet neither the draw nor the blend
+validator ran, which points at the ghosted object not being added to the client's render set,
+rather than a missing update field. Pinning it down needs a debugger on the live client. **[bin][inf]** A lab check would ghost one `fxSunLight` beside the terrain world and vary
 azimuth, elevation, size and colour.
