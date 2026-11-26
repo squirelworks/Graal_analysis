@@ -38,3 +38,24 @@ under `levels3d`, or named by the server. Local files are only indexed into the 
 served script names are not fetched as shapes, and GS2 has no `exec`, `eval` or `loadMission` to
 reach them. This fits the static read that 5.12 ships no TorqueScript compiler. The 3.153 half
 of T3D-006 (Tiger VM) stays open.
+
+## T3D-071 (Windows half): 5.12 and 4.20r8 in one world
+
+Clients: real 5.12 Windows (`G3D14097`) on GDI GL, and 4.20r8 Windows (`G3D20126`) on a local
+32-bit Mesa `opengl32.dll` (llvmpipe), chosen to avoid the GDI near-terrain crash (T3D-079); the
+world has no terrain anyway. World: sky, a red world cube, and a green textured `playershape` so
+each player's object is visible; spawn 0 0 1, the second player on the ring point 2 units out.
+Four runs, both launch orders.
+
+- **Both link as protocol 24 in one world.** Neither client logged a ghost error, an unknown class
+  or a drop, and each link held to the end of the run.
+- **Each gets the other's `G3DPlayer_<acct>` ghost** once the other's 3D link is up (in one run:
+  5.12's player reached 4.20r8 as ghost 6, 4.20r8's reached 5.12 as ghost 3).
+- **Before the other's 3D link is up, it appears as a `G2DPlayer_<acct>` GameObject** (seen on
+  4.20r8 while 5.12 was still at the lobby/TCP stage). That stand-in is deleted when the 3D link
+  replaces it with the `G3DPlayer`.
+- **What each draws:** 5.12 draws both player objects as the green textured cube at the right
+  offsets. 4.20r8 draws both in the right places but **white** (untextured), its usual GameObject
+  drawing (now seen under Mesa too), not a cross-build effect.
+- So 5.12 and 4.20r8 share a world cleanly and differ only in texture drawing. The 4.20r6 and
+  4.04r2 legs (Wine) and the 3.153 leg were not run in this pass.
