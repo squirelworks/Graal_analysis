@@ -463,7 +463,7 @@ npc-library/gs1-object-members-205r2.md	cited	8.2	8.2; E	Bindings, getters, runt
 npc-library/gs1-per-build-2026-11-13.md	cited	8.2; C	8.2; C	
 npc-library/gs1-reference-205.md	cited	8; 8.1; 8.2; 8.4; E	8	
 npc-library/gs1-signatures-205-followup.md	cited	8.2; E	8.2; E	Input identity and validation metadata retained in source note; stored letters and semantic limits carried in 8.2 and E#201.
-npc-library/gs2-official-emit-spec-2026-11-26.md	pending		8.3	behavioural spec of the official server-side GS2 compiler's output (variable cache, function-table order, narrow jumps, logic chains, constant folding, conversions, old GS1 names, labeled loops), checked against 151 official captures; Seihai's compiler is written from it. To fold into 8.3 beside the strict-mode probes
+npc-library/gs2-official-emit-spec-2026-11-26.md	pending		8.3	behavioural spec of the official server-side GS2 compiler's output (variable cache, function-table order, narrow jumps, logic chains, constant folding, conversions, old GS1 names, labeled loops, lambda numbering, `=` in tests), checked against 151 official captures; Seihai's compiler is written from it. To fold into 8.3 beside the strict-mode probes
 npc-library/gs2-strict-probes-2026-11-13.md	cited	8.3	8.3	
 npc-library/gs2-weapon-corpus-2026-11-14.md	cited	8; 8.3; E	8.3; E	
 npc-library/gs2-world-corpus-2026-11-12.md	cited	E	E	Historical corpus aggregates separated from current form support and selected own-VM object/numeric/member assertions in App. E#207; broader host/native acceptance remains open
