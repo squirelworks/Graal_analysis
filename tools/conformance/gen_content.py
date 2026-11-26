@@ -11,6 +11,7 @@ Files (all under OUTDIR):
 
     conf_red.3ds       unit cube, one material "conf_red" with a red diffuse colour
     conf_nomat.3ds     the same cube with no material (5.12 and 4.20r6 draw none of it)
+    conf_red_v2.3ds    the red cube's material in pink, swapped in as conf_red.3ds (T3D-155)
     conf_tex.3ds       the cube with UVs and a material whose texture is conf_tex.png
     conf_tex.png       256x256 solid green
     conf_sky0..5.png   sky faces, each its own solid colour (SKY_COLOURS)
@@ -42,6 +43,7 @@ GREEN = (0, 200, 0)
 MAGENTA = (255, 0, 255)
 TAN = (200, 160, 90)
 WATER = (20, 40, 160)
+PINK = (255, 150, 200)
 # Sky faces in the order the world's sky line names them (face 0 to 5).
 SKY_COLOURS = [
     (255, 128, 0),    # 0 orange
@@ -223,6 +225,9 @@ def files() -> dict[str, bytes]:
     out = {
         "conf_red.3ds": cube_3ds("conf_red", RED),
         "conf_nomat.3ds": cube_3ds(None),
+        # The red cube's replacement for the cache cases: same material name,
+        # pink, swapped in under the name conf_red.3ds between sessions.
+        "conf_red_v2.3ds": cube_3ds("conf_red", PINK),
         "conf_tex.3ds": cube_3ds("conf_texmat", (255, 255, 255), texture="conf_tex.png"),
         "conf_tex.png": png(256, 256, GREEN),
         "conf_overlay.png": png(64, 64, MAGENTA),

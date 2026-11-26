@@ -357,6 +357,13 @@ class Lab:
                                   f"{self.root}/gserver.pid{mode}", check=False)
             (rundir / "inject.log").write_text(out)
 
+    def between_sessions(self, case: cf.Case):
+        """Swap served files between two sessions of a multi-session case."""
+        for b in case.between:
+            f = f"{self.root}/run/files"
+            self.server.ssh(f"cp {f}/{shlex.quote(b['with'])} {f}/{shlex.quote(b['swap'])} && "
+                            f"touch {f}/{shlex.quote(b['swap'])}")
+
     def stop_gserver(self):
         self.server.ssh(f"kill $(cat {self.root}/gserver.pid)", check=False)
 
@@ -390,7 +397,7 @@ def win_cmd(q: Qmp, line: str, wait=1.5):
 
 
 def run_windows(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path,
-                upload: str = "guest.tar", primary: bool = True):
+                upload: str = "guest.tar", primary: bool = True, clean_cache: bool = True):
     q = vm.qmp
     rundir.mkdir(parents=True, exist_ok=True)
     n = lab.net
@@ -398,7 +405,8 @@ def run_windows(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path,
     # The client's own download cache (5.12: levels3d and FILENAMECACHE.txt)
     # is removed before each launch, or a file fetched in one case is not
     # asked for again in the next and the `server` file checks miss it.
-    clean = "".join(f" & rmdir /s /q {x} 2>nul & del /f /q {x} 2>nul" for x in build.get("clean", []))
+    clean = "".join(f" & rmdir /s /q {x} 2>nul & del /f /q {x} 2>nul"
+                    for x in (build.get("clean", []) if clean_cache else []))
     subst = {"dir": build["dir"], "exe": build["exe"], "args": build.get("args", ""), "consoles": consoles,
              "server": n["server_ip"], "clean": clean}
     steps(q, build.get("launch", WIN_LAUNCH), subst)
@@ -427,7 +435,7 @@ def run_windows(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path,
     win_cmd(q, "exit")
 
 
-def run_ssh_client(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path):
+def run_ssh_client(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path, primary: bool = True):
     """A Linux client VM with a management SSH NIC: the build's `launch` is a
     shell command run detached; the console log and listing are read back
     over SSH, the screenshot by the build's `screenshot` command (PPM on
@@ -439,7 +447,7 @@ def run_ssh_client(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path):
     mid = False
     while time.time() - t0 < case.seconds:
         time.sleep(float(lab.conf.get("shot_every", 10)))
-        if case.mid_action and not mid and time.time() - t0 > case.seconds / 2:
+        if primary and case.mid_action and not mid and time.time() - t0 > case.seconds / 2:
             lab.mid_action(case, rundir)
             mid = True
 
@@ -546,10 +554,21 @@ def main(argv: list[str]) -> int:
             try:
                 if case.clients == 2:
                     run_pair(lab, vm, lab.clients[bc["pair_vm"]], bc, case, rundir)
-                elif bc.get("control", "qmp") == "ssh":
-                    run_ssh_client(lab, vm, bc, case, rundir)
                 else:
-                    run_windows(lab, vm, bc, case, rundir)
+                    # A multi-session case relaunches the client on the same
+                    # server run; the last session's artefacts are the ones
+                    # judged, earlier ones stay in s1, s2, ...
+                    for s in range(case.sessions):
+                        last = s == case.sessions - 1
+                        sdir = rundir if last else rundir / f"s{s + 1}"
+                        sdir.mkdir(parents=True, exist_ok=True)
+                        if s:
+                            lab.between_sessions(case)
+                        if bc.get("control", "qmp") == "ssh":
+                            run_ssh_client(lab, vm, bc, case, sdir, primary=last)
+                        else:
+                            run_windows(lab, vm, bc, case, sdir, primary=last,
+                                        clean_cache=not (case.keep_cache and s))
             finally:
                 time.sleep(2)
                 lab.case_down()

@@ -92,6 +92,9 @@ class Case:
     derive: list[dict]
     clients: int
     grid: list
+    sessions: int
+    keep_cache: bool
+    between: list
     checks: list[Check]
     expect: dict[str, dict]          # build -> {check id: True/False/"?", "source": str, "note": str}
     path: Path = field(default=Path())
@@ -154,6 +157,8 @@ def load_case(path: Path) -> Case:
             mid_action=r.get("mid_action", ""), needs=list(d.get("needs", [])),
             terrain=list(w.get("terrain", [])), derive=list(w.get("derive", [])),
             clients=int(r.get("clients", 1)), grid=list(w.get("grid", [])),
+            sessions=int(r.get("sessions", 1)), keep_cache=bool(r.get("keep_cache", False)),
+            between=list(r.get("between", [])),
             checks=checks, expect=expect, path=path)
     except KeyError as e:
         raise CaseError(f"{path.name}: missing {e}") from None
@@ -167,6 +172,11 @@ def load_case(path: Path) -> Case:
             raise CaseError(f"{path.name}: check {c.id}: client {c.client} of {case.clients}")
     if case.mid_action not in MID_ACTIONS:
         raise CaseError(f"{path.name}: run.mid_action: one of {', '.join(map(repr, MID_ACTIONS))}")
+    if not 1 <= case.sessions <= 8 or (case.sessions > 1 and case.clients != 1):
+        raise CaseError(f"{path.name}: run.sessions: 1 to 8, single-client cases only")
+    for b in case.between:
+        if set(b) != {"swap", "with"}:
+            raise CaseError(f"{path.name}: run.between: swap, with (served file names)")
     for g in case.grid:
         if set(g) - {"name", "shape", "nx", "ny", "step", "z"} or not {"name", "shape", "nx", "ny"} <= set(g):
             raise CaseError(f"{path.name}: world.grid: name, shape, nx, ny (step, z)")
@@ -243,7 +253,7 @@ def build_world(case: Case, out: Path, packs: dict[str, Path] | None = None) -> 
             (root / "conf" / s).write_bytes((SCRIPTS / s).read_bytes())
     meta = {"id": case.id, "slug": case.slug, "title": case.title, "rows": case.rows,
             "seconds": case.seconds, "mid_action": case.mid_action, "needs": case.needs,
-            "lobby_name": case.lobby_name, "clients": case.clients}
+            "lobby_name": case.lobby_name, "clients": case.clients, "sessions": case.sessions}
     (root / "CASE.json").write_text(json.dumps(meta, indent=1) + "\n", encoding="utf-8")
     return root
 
@@ -374,7 +384,10 @@ def observe(check: Check, rundir: Path, exe: str = "") -> tuple[bool | None, str
             return False, f"probe {check.key}: no report"
         ok = any(re.fullmatch(check.value, v) for v in vals)
         return ok, f"probe {check.key} = {','.join(vals[:4])}"
-    m = re.search(check.pattern, text, re.M)
+    found = list(re.finditer(check.pattern, text, re.M))
+    if check.count > 1:
+        return len(found) >= check.count, f"{len(found)} matches of {check.pattern!r} (want {check.count})"
+    m = found[0] if found else None
     return m is not None, (f"matched: {m.group(0)[:80]!r}" if m else f"no match for {check.pattern!r}")
 
 

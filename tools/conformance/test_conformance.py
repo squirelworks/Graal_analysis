@@ -336,3 +336,19 @@ def test_inject_checks_read_the_inject_log(tmp_path):
     assert cf.observe(chk, tmp_path)[0] is True
     (tmp_path / "inject.log").write_text("udp sent 706\ngserver gone\n")
     assert cf.observe(chk, tmp_path)[0] is False
+
+
+def test_count_checks_need_that_many_matches(tmp_path):
+    (tmp_path / "gserver.log").write_text("logged in as player\nlogged in as player\n")
+    two = cf.Check(id="a", kind="server", pattern="logged in as player", count=2)
+    three = cf.Check(id="b", kind="server", pattern="logged in as player", count=3)
+    assert cf.observe(two, tmp_path)[0] is True
+    assert cf.observe(three, tmp_path)[0] is False
+
+
+def test_multi_session_cases_swap_served_files(cases):
+    served = set(gen_content.files())
+    for c in cases:
+        for b in c.between:
+            assert b["swap"] in served and b["with"] in served, c.id
+            assert any(f == b["with"] for f in c.files), f"{c.id}: {b['with']} is not served"
