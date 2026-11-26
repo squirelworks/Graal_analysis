@@ -66,9 +66,19 @@ def test_probe_scripts_report_only_comma_free_values():
             assert "," not in m.group(1) + m.group(2), p.name
 
 
+def fake_pack(tmp_path):
+    """A stand-in content pack: a .dts (version 24, exporter word 7) and a .dif (44)."""
+    pack = tmp_path / "pack"
+    pack.mkdir()
+    (pack / "shape.dts").write_bytes(struct.pack("<HH", 24, 7) + b"body")
+    (pack / "room.dif").write_bytes(struct.pack("<I", 44) + b"body")
+    return {"mbg": pack}
+
+
 def test_build_world_writes_the_overlay(cases, tmp_path):
+    packs = fake_pack(tmp_path)
     for c in cases:
-        root = cf.build_world(c, tmp_path)
+        root = cf.build_world(c, tmp_path / "out", packs)
         world = (root / "config" / "graal3dworld.txt").read_text()
         for s in c.scripts:
             assert f"weapon3d {cf.PROBE_WEAPON} conf/{s}" in world
@@ -83,6 +93,13 @@ def test_build_world_writes_the_overlay(cases, tmp_path):
             if w and w[0] in ("object", "playershape"):
                 shape = w[2] if w[0] == "object" else w[1]
                 assert shape in served, f"{c.id}: {shape}"
+            if w and w[0] == "terrain":
+                assert len(list((root / w[1]).glob("heights*-*.dat"))) == 256, c.id
+                assert "heights.info" in served
+                for tex in (root / "files" / "heights.info").read_text().split():
+                    assert tex in served, f"{c.id}: {tex}"
+            if w and w[0] == "water" and len(w) > 7:
+                assert any(n.startswith(w[7]) for n in served), f"{c.id}: {w[7]}"
             if w and w[0] == "sky":
                 for t in w[1].split(","):
                     assert f"{t}.png" in served and f"{t}.gif" in served, f"{c.id}: {t}"
@@ -100,6 +117,18 @@ def test_results_table_is_current(cases):
     assert text == on_disk, "run: python3 tools/conformance/conformance.py table torque/conformance/results.tsv --write"
 
 
+def test_derived_versions(cases, tmp_path):
+    packs = fake_pack(tmp_path)
+    root = cf.build_world(case(cases, "C016"), tmp_path / "out", packs)
+    v = {n: struct.unpack("<HH", (root / "files" / n).read_bytes()[:4]) for n in
+         ("conf_v16.dts", "conf_v24.dts", "conf_v25.dts")}
+    assert v == {"conf_v16.dts": (16, 7), "conf_v24.dts": (24, 7), "conf_v25.dts": (25, 7)}
+    root = cf.build_world(case(cases, "C017"), tmp_path / "out", packs)
+    assert struct.unpack("<I", (root / "files" / "conf_v45.dif").read_bytes()[:4]) == (45,)
+    with pytest.raises(cf.CaseError):
+        cf.build_world(case(cases, "C016"), tmp_path / "out2", {})
+
+
 # ------------------------------------------------------------------ content
 
 def test_3ds_chunk_trees_are_well_formed():
@@ -111,6 +140,18 @@ def test_3ds_chunk_trees_are_well_formed():
     tex = gen_content.chunk_ids(files["conf_tex.3ds"])
     assert 0xA300 in tex and 0x4140 in tex
     assert b"conf_tex.png\0" in files["conf_tex.3ds"]
+
+
+def test_flat_terrain_chunk_decodes():
+    import zlib
+    raw = zlib.decompress(gen_content.flat_chunk())
+    bits = "".join(f"{b:08b}"[::-1] for b in raw)   # LSB first
+    def field(at, n):
+        return int(bits[at:at + n][::-1], 2)
+    assert field(0, 8) == 0 and field(8, 16) == 0          # mode, h0
+    assert set(bits[24:24 + 2048]) == {"0"}                # 256 zero deltas
+    assert field(24 + 2048, 6) == 1 and field(30 + 2048, 5) == 0  # one material, id 0
+    assert len(gen_content.flat_terrain()) == 256
 
 
 def test_images():
@@ -156,6 +197,30 @@ def _run(tmp_path, *, log="", trace="", console="", tasks="", shot=None):
 
 def case(cases, cid):
     return next(c for c in cases if c.id == cid)
+
+
+def test_colour_blobs(tmp_path):
+    p = tmp_path / "s.ppm"
+    w, h = 80, 60
+    pix = bytearray(bytes((0, 0, 0)) * (w * h))
+    for (x0, y0) in ((10, 10), (50, 30)):
+        for y in range(y0, y0 + 14):
+            for x in range(x0, x0 + 14):
+                pix[(y * w + x) * 3:(y * w + x) * 3 + 3] = bytes((220, 0, 0))
+    p.write_bytes(f"P6 {w} {h} 255\n".encode() + bytes(pix))
+    sizes = cf.colour_blobs(p, (220, 0, 0), 30, 10)
+    assert len(sizes) == 2 and sizes[0] == 49
+
+
+def test_two_client_checks_read_client_two(cases, tmp_path):
+    c = case(cases, "C020")
+    d = _run(tmp_path, trace="1\tpc:2\t24\tlinked from lab (5.x); 1 other 3D players; spawn 2,0,1\n",
+             tasks="Graal.exe\n")
+    (d / "c2").mkdir()
+    (d / "c2" / "tasks.txt").write_text("")
+    v = cf.judge(c, "5.12", d, "Graal.exe")
+    assert v["checks"]["second_links"]["observed"] is True
+    assert v["checks"]["c1_alive"]["observed"] is True and v["checks"]["c2_alive"]["observed"] is False
 
 
 def test_judge_link_pass_and_fail(cases, tmp_path):
@@ -218,6 +283,11 @@ def test_lab_example_parses_and_plans(cases):
     conf = tomllib.loads((HERE / "lab.example.toml").read_text())
     todo = run.plan(conf, cases, list(conf["builds"]))
     assert {b for b, _ in todo} == {"3.153", "4.04r2", "4.20r8", "5.12", "6.037"}
+    # two-client cases only where the build names a pair VM
+    assert {b for b, c in todo if c.clients == 2} == {"5.12"}
+    # pack cases only with the pack configured
+    no_packs = dict(conf, packs={})
+    assert not [c for _, c in run.plan(no_packs, cases, list(conf["builds"])) if c.needs]
     for b, c in todo:
         assert b in c.expect
         assert conf["builds"][b]["vm"] in conf["client_vms"]
@@ -237,6 +307,10 @@ def test_vm_command_lines_stay_on_the_lab_link(tmp_path):
     srv = run.Vm("s", conf["server_vm"], tmp_path, (tmp_path / "b.sock", tmp_path / "a.sock"))
     argv = " ".join(srv.argv())
     assert "user,id=mgmt,restrict=on,hostfwd=tcp:" in argv
+    assert "id=lab2" not in argv             # no second socket pair given
+    srv2 = run.Vm("s", conf["server_vm"], tmp_path, (tmp_path / "b.sock", tmp_path / "a.sock"),
+                  (tmp_path / "d.sock", tmp_path / "c.sock"))
+    assert "netdev=lab2,mac=" in " ".join(srv2.argv())
 
 
 def test_no_addresses_or_home_paths_in_the_suite():

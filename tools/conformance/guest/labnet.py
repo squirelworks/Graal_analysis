@@ -8,7 +8,10 @@ did: one DHCP lease (CLIENT), with ROUTER and DNS as the server's own
 addresses, and every DNS A query answered with ROUTER, so the client's
 listserver host name lands on this VM.
 
-    labnet.py IFACE CLIENT ROUTER DNS PREFIXLEN
+    labnet.py IFACE CLIENT ROUTER DNS PREFIXLEN [MAC=IP,...|-]
+
+CLIENT is the lease for any client; the optional MAC=IP list gives a
+second client VM (two-client cases) its own address.
 
 Addresses come from the lab's local config (never from the repo).
 Python 3 standard library only.
@@ -20,7 +23,8 @@ import sys
 import threading
 
 
-def dhcp(iface, client, router, dns, prefix):
+def dhcp(iface, client, router, dns, prefix, static=None):
+    static = {m.lower(): ip for m, ip in (static or {}).items()}
     mask = ipaddress.IPv4Network((0, prefix)).netmask.packed
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -46,7 +50,9 @@ def dhcp(iface, client, router, dns, prefix):
         r[0:4] = b"\x02\x01\x06\x00"
         r[4:8] = q[4:8]                      # xid
         r[10:12] = q[10:12]                  # flags
-        r[16:20] = socket.inet_aton(client)  # yiaddr
+        mac = ":".join(f"{b:02x}" for b in q[28:34])
+        lease = static.get(mac, client)
+        r[16:20] = socket.inet_aton(lease)   # yiaddr
         r[20:24] = socket.inet_aton(router)  # siaddr
         r[28:44] = q[28:44]                  # chaddr
         r[236:240] = b"\x63\x82\x53\x63"
@@ -55,7 +61,7 @@ def dhcp(iface, client, router, dns, prefix):
         o += bytes([1, 4]) + mask + bytes([3, 4]) + socket.inet_aton(router)
         o += bytes([6, 4]) + socket.inet_aton(dns) + b"\xff"
         s.sendto(bytes(r) + o, ("<broadcast>", 68))
-        print("dhcp", {1: "offer", 3: "ack"}[kind], client, flush=True)
+        print("dhcp", {1: "offer", 3: "ack"}[kind], mac, lease, flush=True)
 
 
 def dns(bind, answer):
@@ -77,8 +83,11 @@ def dns(bind, answer):
 
 def main():
     iface, client, router, dns_ip, prefix = sys.argv[1:6]
+    static = {}
+    if len(sys.argv) > 6 and sys.argv[6] != "-":
+        static = dict(pair.split("=", 1) for pair in sys.argv[6].split(","))
     threading.Thread(target=dns, args=(dns_ip, router), daemon=True).start()
-    dhcp(iface, client, router, dns_ip, int(prefix))
+    dhcp(iface, client, router, dns_ip, int(prefix), static)
 
 
 if __name__ == "__main__":

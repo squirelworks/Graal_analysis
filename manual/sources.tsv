@@ -1042,3 +1042,29 @@ torque/3d-clientside-editor-gating-420r6-2026-11-26.md	pending		10.3	in-client 3
 torque/3d-fidelity-g3dreplay-vs-client-420r6-2026-11-26.md	pending		10.3	g3d-replay is a schematic box/grid positional view, not a pixel-faithful renderer; matches the real 5.12-class client on none of the five fidelity features (T3D-105), lab; to carry into §10
 torque/3d-session-lifecycle-420r6-2026-11-26.md	pending		10.3	5.12-class 3D session lifecycle: gen-5 login -> 3-prefixed 178 warp -> dual TCP+UDP link; position client-authoritative; drop is a 30s timeout with no resume (T3D-130/128/129), lab; to carry into §10
 torque/3d-capacity-budget-420r6-2026-11-26.md	pending		10.3	per-3D-player budget ~5 pk/s and ~50-60 B/s each way (idle=moving); client holds a stable ~141 MB with no leak (T3D-127/131), lab; to carry into §10
+tools/conformance/lab.example.toml	excluded			lab config template for the 3D conformance runner, not Graal
+torque/conformance/EXPECTED.md	excluded			generated table of the 3D conformance suite; the findings it tests are the board notes
+torque/conformance/RESULTS.md	excluded			generated table of the 3D conformance suite; the findings it tests are the board notes
+torque/conformance/README.md	excluded			the 3D conformance suite (test worlds and probes for board answers), not a finding
+torque/conformance/results.tsv	excluded			derived run log of the 3D conformance suite; findings go to the board notes
+torque/conformance/cases/c001-link-3prefix.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c002-no-prefix-stays-2d.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c003-no-sky.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c004-sky-faces.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c005-cube-red.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c006-texture-bare.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c007-no-script-files.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c008-weapon3d-runs.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c009-timevar3.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c010-gui-overlay.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c011-g3dpos-move.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c012-findobject.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c013-server-flag.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c014-new-object.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c015-server-drop.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/3d-fxsunlight-flagcount-512-2026-11-26.md	pending		10.3	fxSunLight has exactly 14 animation-switch flags not 16, settled from the engine field registration + live-accept check (T3D-047), bin+lab; to carry into §10
+torque/conformance/cases/c016-dts-version-bounds.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c017-dif-version-bounds.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c018-terrain-flat.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c019-water.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c020-two-players.toml	excluded			conformance case (a test world and its expectations), not a finding
