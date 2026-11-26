@@ -1,0 +1,50 @@
+id = "C041"
+slug = "terrain-near-gdi"
+title = "4.20r8 on GDI Generic GL: an empty TerrainBlock drawn from far is fine, from near it is a null call"
+rows = ["T3D-079"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfCube conf_red.3ds 0 4 1
+playershape conf_nomat.3ds
+spawn 0 0 30
+terrain conf_ter 8
+"""
+files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*", "heights.info", "conf_ground.png"]
+terrain = ["conf_ter"]
+note = "The lab ran it with 256 flat chunks (conf_ter) and with an empty folder (the TerrainBlock alone): same result. A far variant sets spawn 0 0 300."
+
+[run]
+seconds = 75
+
+[[check]]
+id = "terrain_block"
+kind = "trace"
+pattern = "TerrainBlock"
+
+[[check]]
+id = "link_timed_out"
+kind = "server"
+pattern = "3D connection timed out"
+note = "the access-violation dialog stops the 3D side; TCP stays up"
+
+[[check]]
+id = "loading_terrain"
+kind = "console"
+pattern = "Loading terrain from terrain chunks"
+
+[expect."4.20r8"]
+terrain_block = true
+link_timed_out = true
+loading_terrain = true
+source = "[lab] batch W 2026-11-26 on GDI Generic 1.1.0 (VirtualBox 3D off): null-call access violation at spawn z 30 and 100, none at 200/300/600/3000; same with 256 chunks or no heights.info. On Mesa or a GL driver it does not happen (T3D-117; batch W Mesa run). torque/3d-batch-w-rows-2026-11-26.md"
+
+[expect."5.12"]
+terrain_block = true
+link_timed_out = false
+loading_terrain = "?"
+source = "[lab] batch W: 5.12 on the same GDI Generic GL draws the white streamed terrain for the whole run"

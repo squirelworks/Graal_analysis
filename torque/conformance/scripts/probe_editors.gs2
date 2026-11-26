@@ -1,0 +1,116 @@
+// Conformance probe (T3D-126): create the in-client editor classes WorldEditor,
+// TerrainEditor and EditManager from a weapon3d script on 5.12 and call their
+// typed methods; the lab watches the client folder (and a file trace) for
+// anything they save. One step a timer tick, so one failure does not hide the rest.
+//#CLIENTSIDE
+function onCreated() {
+  setTimer(5);
+}
+function onTimeout() {
+  this.n++;
+  if (this.n == 1) mk();
+  else if (this.n == 2) we1();
+  else if (this.n == 3) we2();
+  else if (this.n == 4) te1();
+  else if (this.n == 5) te2();
+  else if (this.n == 6) fin();
+  if (this.n < 6) setTimer(2);
+}
+function mk() {
+  this.we = new WorldEditor("t126_we");
+  cf("we", ov(this.we));
+  this.te = new TerrainEditor("t126_te");
+  cf("te", ov(this.te));
+  this.em = new EditManager("t126_em");
+  cf("em", ov(this.em));
+  this.go = new GameObject("t126_go");
+  cf("go", ov(this.go));
+}
+function we1() {
+  temp.w = this.we;
+  cf("we_mode", temp.w.getMode());
+  temp.w.setMode("move");
+  cf("we_mode2", temp.w.getMode());
+  cf("we_dirty", temp.w.isDirty);
+  cf("we_undolimit", temp.w.undoLimit);
+  cf("we_gridsize", temp.w.gridSize);
+  cf("we_selsize0", temp.w.getSelectionSize());
+  temp.w.selectObject(this.go);
+  cf("we_selsize1", temp.w.getSelectionSize());
+  cf("we_sel0", ov(temp.w.getSelectedObject(0)));
+  temp.w.selectObject(findobject("ConfCube"));
+  cf("we_selsize2", temp.w.getSelectionSize());
+  temp.w.selectObject(player);
+  cf("we_selsize3", temp.w.getSelectionSize());
+  cf("we_centroid", temp.w.getSelectionCentroid());
+}
+function we2() {
+  temp.w = this.we;
+  temp.w.addUndoState();
+  temp.w.dropSelection();
+  cf("we_dropped", "1");
+  temp.w.syncSelection();
+  temp.w.lightSelection();
+  temp.w.hideSelection(true);
+  temp.w.lockSelection(true);
+  temp.w.undo();
+  temp.w.redo();
+  cf("we_dirty2", temp.w.isDirty);
+  temp.w.unselectObject(player);
+  temp.w.deleteSelection();
+  cf("we_deleted", "1");
+  cf("we_selsize4", temp.w.getSelectionSize());
+  cf("go_after", ov(findobject("t126_go")));
+  temp.w.clearSelection();
+  temp.w.ignoreObjClass("GameObject");
+  temp.w.clearIgnoreList();
+}
+function te1() {
+  temp.t = this.te;
+  temp.t.attachTerrain("Terrain");
+  cf("te_numactions", temp.t.getNumActions());
+  temp.s = "";
+  for (temp.i = 0; temp.i < temp.t.getNumActions() && temp.i < 30; temp.i++) temp.s = temp.s @ temp.t.getActionName(temp.i) @ " ";
+  cf("te_actions", temp.s);
+  cf("te_curaction", temp.t.getCurrentAction());
+  cf("te_numtex", temp.t.getNumTextures());
+  cf("te_tex0", temp.t.getTextureName(0));
+  cf("te_mats", ov(temp.t.getTerrainMaterials()));
+  cf("te_dirty", temp.t.isDirty);
+  cf("te_mdirty", temp.t.isMissionDirty);
+}
+function te2() {
+  temp.t = this.te;
+  temp.t.setBrushType("box");
+  temp.t.setBrushSize(3, 3);
+  temp.t.setBrushPos("0 0 0");
+  cf("te_brushpos", temp.t.getBrushPos());
+  temp.t.setAction("raiseHeight");
+  cf("te_curaction2", temp.t.getCurrentAction());
+  temp.t.processAction("raiseHeight");
+  temp.t.processAction("");
+  cf("te_dirty2", temp.t.isDirty);
+  temp.t.buildMaterialMap();
+  temp.t.markEmptySquares();
+  temp.t.clearModifiedFlags();
+  temp.t.mirrorTerrain(0);
+  temp.t.undo();
+  temp.t.redo();
+  temp.t.setLoneBaseMaterial("conf_ground");
+  cf("te_dirty3", temp.t.isDirty);
+  cf("te_mdirty2", temp.t.isMissionDirty);
+}
+function fin() {
+  cf("em_name", this.em.name);
+  this.we.destroy();
+  this.te.destroy();
+  this.em.destroy();
+  cf("done", "1");
+}
+function ov(o) {
+  if (o == NULL) return "null";
+  return "obj:" @ o.name;
+}
+function cf(k, v) {
+  triggerserver("gui", "ConfProbe", "cf", k, v);
+}

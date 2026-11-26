@@ -44,3 +44,7 @@ blank (not run yet). Observed `?` values are listed under each run in
 | [C032](cases/c032-cover-follows-avatar.toml) | Ground cover around an avatar spawned away from the origin cell and the replicator: it grows around the avatar |  |  |  |  |  |  |
 | [C033](cases/c033-cover-outside-box-r3.toml) | Avatar outside the cover box, radius 3: a clump grows where the radius reaches back into the box |  |  |  |  |  |  |
 | [C034](cases/c034-cover-outside-box-r1.toml) | Avatar outside the cover box, radius 1: nothing grows |  |  |  |  |  |  |
+| [C041](cases/c041-terrain-near-gdi.toml) | 4.20r8 on GDI Generic GL: an empty TerrainBlock drawn from far is fine, from near it is a null call | n/a | n/a |  |  | n/a | n/a |
+| [C042](cases/c042-typed-gs2-512.toml) | The typed GS2 3D calls on 5.12: arity checked, types coerced; self-mount + move3d kills the client | n/a | n/a | n/a |  | n/a | n/a |
+| [C043](cases/c043-editors-512.toml) | WorldEditor/TerrainEditor/EditManager made by a 5.12 weapon: WorldEditor works on own objects, TerrainEditor cannot attach, nothing saved | n/a | n/a | n/a |  | n/a | n/a |
+| [C044](cases/c044-no-exec-512.toml) | 5.12 has no way to run TorqueScript from GS2: no exec/eval/loadMission, no marker runs | n/a | n/a | n/a |  | n/a | n/a |

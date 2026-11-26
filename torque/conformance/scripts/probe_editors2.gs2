@@ -1,0 +1,76 @@
+// Conformance probe (T3D-126, part 2): TerrainEditor attach by several names,
+// then its brush/action methods one report at a time; EditManager last.
+//#CLIENTSIDE
+function onCreated() {
+  setTimer(5);
+}
+function onTimeout() {
+  this.n++;
+  if (this.n == 1) att();
+  else if (this.n == 2) br();
+  else if (this.n == 3) act();
+  else if (this.n == 4) misc();
+  else if (this.n == 5) fin();
+  if (this.n < 5) setTimer(2);
+}
+function att() {
+  this.te = new TerrainEditor("t126_te");
+  cf("te", ov(this.te));
+  temp.names = {"Terrain", "terrain", "TerrainBlock", "MissionGroup/Terrain", "ServerConnection/Terrain", "conf_ter", "3"};
+  for (temp.nm : temp.names) {
+    this.te.attachTerrain(temp.nm);
+    cf("att_" @ temp.nm, this.te.getNumTextures());
+  }
+  this.te.attachTerrain();
+  cf("att_noarg", this.te.getNumTextures());
+}
+function br() {
+  temp.t = this.te;
+  temp.t.setBrushType("box");
+  cf("brushtype", "1");
+  temp.t.setBrushSize(3, 3);
+  cf("brushsize", "1");
+  temp.t.setBrushPos("0 0 0");
+  cf("brushpos", temp.t.getBrushPos());
+}
+function act() {
+  temp.t = this.te;
+  temp.t.setAction("raiseHeight");
+  cf("curaction", temp.t.getCurrentAction());
+  temp.t.processAction("raiseHeight");
+  cf("processed", "1");
+  cf("dirty", temp.t.isDirty);
+}
+function misc() {
+  temp.t = this.te;
+  temp.t.buildMaterialMap();
+  cf("bmm", "1");
+  temp.t.markEmptySquares();
+  cf("mes", "1");
+  temp.t.clearModifiedFlags();
+  cf("cmf", "1");
+  temp.t.mirrorTerrain(0);
+  cf("mirror", "1");
+  temp.t.undo();
+  temp.t.redo();
+  cf("undoredo", "1");
+  temp.t.setLoneBaseMaterial("conf_ground");
+  cf("lbm", "1");
+  cf("dirty2", temp.t.isDirty);
+  cf("mdirty2", temp.t.isMissionDirty);
+}
+function fin() {
+  this.em = new EditManager("t126_em");
+  cf("em", ov(this.em));
+  cf("em_type", this.em.objecttype());
+  this.te.destroy();
+  this.em.destroy();
+  cf("done", "1");
+}
+function ov(o) {
+  if (o == NULL) return "null";
+  return "obj:" @ o.name;
+}
+function cf(k, v) {
+  triggerserver("gui", "ConfProbe", "cf", k, v);
+}

@@ -1,0 +1,19 @@
+// Conformance probe (T3D-006): can a 5.12 weapon3d reach TorqueScript at all?
+// Tries exec/eval-style calls on the marker files; reports what came back.
+//#CLIENTSIDE
+function onCreated() {
+  setTimer(6);
+}
+function onTimeout() {
+  cf("exec_cs", exec("marker006.cs"));
+  cf("exec_l3d", exec("levels3d/marker006.cs"));
+  cf("exec_mis", exec("marker006.mis"));
+  cf("eval", eval("echo(\"MARKER006 eval\");"));
+  cf("loadmission", loadMission("marker006.mis"));
+  cf("isfile_cs", isfile("marker006.cs"));
+  cf("isfile_l3d", isfile("levels3d/marker006.cs"));
+  cf("done", "1");
+}
+function cf(k, v) {
+  triggerserver("gui", "ConfProbe", "cf", k, v);
+}
