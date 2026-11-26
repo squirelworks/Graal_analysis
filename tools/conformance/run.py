@@ -195,7 +195,8 @@ class Vm:
              "-m", c.get("mem", "2G"),
              "-drive", f"file={self.disk},if={c.get('disk_if', 'ide')},index=0,media=disk",
              "-netdev", f"dgram,id=lab,local.type=unix,local.path={local},remote.type=unix,remote.path={remote}",
-             "-device", f"{c.get('nic', 'e1000')},netdev=lab,mac={c['lab_mac']}",
+             "-device", f"{c.get('nic', 'e1000')},netdev=lab,mac={c['lab_mac']}"
+             + (f",addr={c['lab_nic_addr']}" if c.get("lab_nic_addr") else ""),
              "-vga", "std", "-usb", "-device", "usb-tablet", "-rtc", "base=localtime",
              "-display", "none", "-qmp", f"unix:{self.qmp.path},server,nowait",
              "-pidfile", str(self.pidfile), "-daemonize"]
@@ -209,7 +210,10 @@ class Vm:
             # Management only: restrict=on gives the guest no way out; the one
             # forward is bound to the host address the lab config names
             # (its loopback address, never an outside interface).
-            a += ["-netdev", f"user,id=mgmt,restrict=on,hostfwd=tcp:{c['ssh_host']}:{c['ssh_port']}-:22",
+            # `mgmt_net` moves the user network off a subnet the lab link
+            # uses (the client images dial QEMU's default user-net subnet).
+            net = f",net={c['mgmt_net']}" if c.get("mgmt_net") else ""
+            a += ["-netdev", f"user,id=mgmt,restrict=on{net},hostfwd=tcp:{c['ssh_host']}:{c['ssh_port']}-:22",
                   "-device", f"{c.get('mgmt_nic', 'e1000')},netdev=mgmt"]
         for cd in c.get("cdroms", []):
             a += ["-drive", f"file={cd},media=cdrom,readonly=on"]
@@ -326,7 +330,8 @@ class Lab:
         static = ",".join(f"{m}={ip}" for m, ip in n.get("static", {}).items())
         self.server.ssh(
             link + "sudo ip link set $IF up; for a in " + addrs + "; do sudo ip addr replace $a dev $IF; done; "
-            "sudo pkill -f guest/labnet.py; "
+            # Anchored, so it cannot match this SSH shell's own command line.
+            "sudo pkill -f '^python3 -I -u .*labnet[.]py'; "
             f"sudo sh -c 'nohup python3 -I -u {R}/guest/labnet.py '$IF' {n['client_ip']} {n['server_ip']} "
             f"{n.get('dns_ip', n['server_ip'])} {n['prefix']} {static or '-'} > {R}/labnet.log 2>&1 &'; echo $IF")
         self.server_ready = True

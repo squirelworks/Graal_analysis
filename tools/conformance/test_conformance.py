@@ -308,7 +308,7 @@ def test_vm_command_lines_stay_on_the_lab_link(tmp_path):
     assert "user," not in argv          # the Windows client has no other NIC
     srv = run.Vm("s", conf["server_vm"], tmp_path, (tmp_path / "b.sock", tmp_path / "a.sock"))
     argv = " ".join(srv.argv())
-    assert "user,id=mgmt,restrict=on,hostfwd=tcp:" in argv
+    assert re.search(r"user,id=mgmt,restrict=on(,net=[^,]*)?,hostfwd=tcp:", argv)
     assert "id=lab2" not in argv             # no second socket pair given
     srv2 = run.Vm("s", conf["server_vm"], tmp_path, (tmp_path / "b.sock", tmp_path / "a.sock"),
                   (tmp_path / "d.sock", tmp_path / "c.sock"))

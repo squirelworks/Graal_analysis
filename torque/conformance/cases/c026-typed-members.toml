@@ -129,17 +129,17 @@ source = "unread for 4.20r8"
 
 [expect."5.12"]
 compiled = false
-made = "?"
-done = "?"
+made = true
+done = true
 setget_position = "?"
 position_prop = "?"
 scale = "?"
-x_prop = "?"
+x_prop = true
 transform = "?"
-alpha = "?"
-nickname = "?"
-ismounted = "?"
-source = "[bin] T3D-096 types every member called here; open: T3D-150 / T3D-125 (whether they work live); C014 for new GameObject"
+alpha = true
+nickname = true
+ismounted = true
+source = "[lab] two 5.12 runs, 2026-11-26 (seihai-gserver 5cd9c15): made, done, x 2, alpha 0.5, nickname conf, isMounted 0. getPosition, position, getScale and getTransform began with 2, but the judge then kept only a vector's first word, so the full vectors are recorded on the next run. [bin] T3D-096 types every member called here"
 
 [expect."6.037"]
 compiled = false
