@@ -161,8 +161,10 @@ def steps(q: Qmp, seq: list, subst: dict):
 # ------------------------------------------------------------------ VMs
 
 class Vm:
-    def __init__(self, name: str, conf: dict, work: Path, lab_sock: tuple[Path, Path]):
+    def __init__(self, name: str, conf: dict, work: Path, lab_sock: tuple[Path, Path],
+                 lab_sock2: tuple[Path, Path] | None = None):
         self.name = name
+        self.lab_sock2 = lab_sock2
         self.conf = conf
         self.dir = work / "vm" / name
         self.dir.mkdir(parents=True, exist_ok=True)
@@ -197,6 +199,12 @@ class Vm:
              "-vga", "std", "-usb", "-device", "usb-tablet", "-rtc", "base=localtime",
              "-display", "none", "-qmp", f"unix:{self.qmp.path},server,nowait",
              "-pidfile", str(self.pidfile), "-daemonize"]
+        if self.lab_sock2 and c.get("lab_mac2"):
+            # The server VM's second lab NIC: the second client of a
+            # two-client case, on its own dgram pair, bridged in the VM.
+            l2, r2 = self.lab_sock2
+            a += ["-netdev", f"dgram,id=lab2,local.type=unix,local.path={l2},remote.type=unix,remote.path={r2}",
+                  "-device", f"{c.get('nic', 'e1000')},netdev=lab2,mac={c['lab_mac2']}"]
         if "ssh_port" in c:
             # Management only: restrict=on gives the guest no way out; the one
             # forward is bound to the host address the lab config names
@@ -277,11 +285,14 @@ class Lab:
         self.work = work
         self.net = conf["net"]
         s, c = work / "srv.sock", work / "cli.sock"
-        for p in (s, c):
+        s2, c2 = work / "srv2.sock", work / "cli2.sock"
+        for p in (s, c, s2, c2):
             if p.exists():
                 p.unlink()
-        self.server = Vm("server", conf["server_vm"], work, (s, c))
-        self.clients = {n: Vm(f"client-{n}", v, work, (c, s)) for n, v in conf["client_vms"].items()}
+        self.server = Vm("server", conf["server_vm"], work, (s, c), (s2, c2))
+        # A client VM with slot = 2 sits on the second link (two-client cases).
+        self.clients = {n: Vm(f"client-{n}", v, work, (c2, s2) if v.get("slot", 1) == 2 else (c, s))
+                        for n, v in conf["client_vms"].items()}
         self.root = conf["server_vm"].get("root", "conformance")
         self.server_ready = False
 
@@ -301,13 +312,23 @@ class Lab:
             self.gsbin = sv["gserver_vm"]
         n = self.net
         mac = self.conf["server_vm"]["lab_mac"]
+        mac2 = self.conf["server_vm"].get("lab_mac2", "")
         addrs = " ".join(f"{a}/{n['prefix']}" for a in [n["server_ip"]] + n.get("aliases", []))
+        find = "$(ip -o link | grep -i {} | awk -F': ' '{{print $2}}' | cut -d@ -f1)"
+        if mac2:
+            # Both lab NICs in one bridge, the addresses on the bridge.
+            link = (f"IF1={find.format(shlex.quote(mac))}; IF2={find.format(shlex.quote(mac2))}; "
+                    "sudo ip link add conf-br type bridge 2>/dev/null; "
+                    "sudo ip link set $IF1 master conf-br; sudo ip link set $IF2 master conf-br; "
+                    "sudo ip link set $IF1 up; sudo ip link set $IF2 up; IF=conf-br; ")
+        else:
+            link = f"IF={find.format(shlex.quote(mac))}; "
+        static = ",".join(f"{m}={ip}" for m, ip in n.get("static", {}).items())
         self.server.ssh(
-            "IF=$(ip -o link | grep -i " + shlex.quote(mac) + " | awk -F': ' '{print $2}'); "
-            "sudo ip link set $IF up; for a in " + addrs + "; do sudo ip addr replace $a dev $IF; done; "
+            link + "sudo ip link set $IF up; for a in " + addrs + "; do sudo ip addr replace $a dev $IF; done; "
             "sudo pkill -f guest/labnet.py; "
             f"sudo sh -c 'nohup python3 -I -u {R}/guest/labnet.py '$IF' {n['client_ip']} {n['server_ip']} "
-            f"{n.get('dns_ip', n['server_ip'])} {n['prefix']} > {R}/labnet.log 2>&1 &'; echo $IF")
+            f"{n.get('dns_ip', n['server_ip'])} {n['prefix']} {static or '-'} > {R}/labnet.log 2>&1 &'; echo $IF")
         self.server_ready = True
 
     def case_up(self, case: cf.Case, overlay: Path):
@@ -333,13 +354,14 @@ class Lab:
         self.server.scp_from(f"{R}/out/gserver.log", rundir / "gserver.log")
         self.server.scp_from(f"{R}/run/g3d.tsv", rundir / "g3d.tsv")
         self.server.scp_from(f"{R}/out/lobby.log", rundir / "lobby.log")
-        if self.server.scp_from(f"{R}/out/guest.tar", rundir / "guest.tar"):
-            with tarfile.open(rundir / "guest.tar") as t:
-                for m in t.getmembers():
-                    name = Path(m.name).name
-                    if m.isfile() and name in ("tasks.txt", "files.txt", "console.txt"):
-                        data = t.extractfile(m).read()
-                        (rundir / name).write_bytes(data)
+        for tar, into in (("guest.tar", rundir), ("guest2.tar", rundir / "c2")):
+            into.mkdir(exist_ok=True)
+            if self.server.scp_from(f"{R}/out/{tar}", into / tar):
+                with tarfile.open(into / tar) as t:
+                    for m in t.getmembers():
+                        name = Path(m.name).name
+                        if m.isfile() and name in ("tasks.txt", "files.txt", "console.txt"):
+                            (into / name).write_bytes(t.extractfile(m).read())
 
 
 # ------------------------------------------------------------------ clients
@@ -356,8 +378,10 @@ def win_cmd(q: Qmp, line: str, wait=1.5):
     time.sleep(wait)
 
 
-def run_windows(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path):
+def run_windows(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path,
+                upload: str = "guest.tar", primary: bool = True):
     q = vm.qmp
+    rundir.mkdir(parents=True, exist_ok=True)
     n = lab.net
     consoles = " ".join(build.get("console", ["console.log"]))
     subst = {"dir": build["dir"], "exe": build["exe"], "args": build.get("args", ""), "consoles": consoles,
@@ -372,7 +396,7 @@ def run_windows(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path):
         time.sleep(every)
         i += 1
         q.screendump(rundir / f"t{int(time.time() - t0):03d}.ppm")
-        if case.mid_action == "stop-server" and not mid and time.time() - t0 > case.seconds / 2:
+        if primary and case.mid_action == "stop-server" and not mid and time.time() - t0 > case.seconds / 2:
             lab.stop_gserver()
             mid = True
     q.screendump(rundir / "shot.ppm")
@@ -384,7 +408,7 @@ def run_windows(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path):
     win_cmd(q, "dir /s /b > %TEMP%\\files.txt", 3)
     win_cmd(q, f"type {consoles} > %TEMP%\\console.txt 2>nul")
     win_cmd(q, "tar -cf %TEMP%\\o.tar -C %TEMP% tasks.txt files.txt console.txt", 3)
-    win_cmd(q, f"curl -s -T %TEMP%\\o.tar http://{n['server_ip']}:{PUT_PORT}/guest.tar", 3)
+    win_cmd(q, f"curl -s -T %TEMP%\\o.tar http://{n['server_ip']}:{PUT_PORT}/{upload}", 3)
     win_cmd(q, "exit")
 
 
@@ -422,6 +446,21 @@ def run_ssh_client(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path):
         vm.ssh(f"cd {shlex.quote(d)} && cat {' '.join(build.get('console', []))} 2>/dev/null", check=False))
 
 
+def run_pair(lab: Lab, vm: Vm, vm2: Vm, build: dict, case: cf.Case, rundir: Path):
+    """A two-client case: the same build in two client VMs (the second on
+    the server VM's second lab NIC), the second launched `pair_delay`
+    seconds after the first so it joins a world that already has a player.
+    Windows clients only. Client 2's artefacts go to RUNDIR/c2."""
+    import threading
+    vm2.start(fresh=not vm2.running())
+    delay = float(build.get("pair_delay", 25))
+    second = threading.Thread(target=lambda: (time.sleep(delay), run_windows(
+        lab, vm2, build, case, rundir / "c2", upload="guest2.tar", primary=False)))
+    second.start()
+    run_windows(lab, vm, build, case, rundir)
+    second.join()
+
+
 # ------------------------------------------------------------------ main
 
 def plan(conf: dict, cases: list[cf.Case], builds: list[str]) -> list[tuple[str, cf.Case]]:
@@ -431,6 +470,8 @@ def plan(conf: dict, cases: list[cf.Case], builds: list[str]) -> list[tuple[str,
             continue
         have = set(conf["builds"][b].get("packs", [])) | set(conf.get("packs", {}))
         for c in sorted(cases, key=lambda c: (c.priority, c.id)):
+            if c.clients == 2 and not conf["builds"][b].get("pair_vm"):
+                continue   # a two-client case needs a second client VM for this build
             if b in c.expect and set(c.needs) <= have:
                 out.append((b, c))
     return out
@@ -477,16 +518,20 @@ def main(argv: list[str]) -> int:
                 vm.start(fresh=True)
                 current_vm = vm
             rundir = work / "out" / b / case.id
-            if rundir.exists():
-                for p in rundir.iterdir():
-                    if p.is_file():
-                        p.unlink()
+            for d in (rundir, rundir / "c2"):
+                if d.exists():
+                    for p in d.iterdir():
+                        if p.is_file():
+                            p.unlink()
             rundir.mkdir(parents=True, exist_ok=True)
-            overlay = cf.build_world(case, worlds)
+            packs = {k: Path(v) for k, v in conf.get("packs", {}).items()}
+            overlay = cf.build_world(case, worlds, packs)
             log(f"{b} {case.id} {case.slug}")
             lab.case_up(case, overlay)
             try:
-                if bc.get("control", "qmp") == "ssh":
+                if case.clients == 2:
+                    run_pair(lab, vm, lab.clients[bc["pair_vm"]], bc, case, rundir)
+                elif bc.get("control", "qmp") == "ssh":
                     run_ssh_client(lab, vm, bc, case, rundir)
                 else:
                     run_windows(lab, vm, bc, case, rundir)
@@ -508,8 +553,8 @@ def main(argv: list[str]) -> int:
             (cf.SUITE / "RESULTS.md").write_text(cf.results_table(tsv, cf.load_cases()), encoding="utf-8")
     finally:
         if not a.keep:
-            if current_vm:
-                current_vm.stop()
+            for v in lab.clients.values():
+                v.stop()
             lab.server.stop()
     return 0
 

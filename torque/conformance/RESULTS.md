@@ -25,3 +25,8 @@ blank (not run yet). Observed `?` values are listed under each run in
 | [C013](cases/c013-server-flag.toml) | A server. flag reaches a 3D client script (a known gap: a pass means it closed) |  |  |  |  | n/a |
 | [C014](cases/c014-new-object.toml) | A client script can create a GameObject and a TStaticVar in 3D mode |  |  |  |  | n/a |
 | [C015](cases/c015-server-drop.toml) | The server stops mid-session: the client drops to login and does not crash |  |  |  |  | n/a |
+| [C016](cases/c016-dts-version-bounds.toml) | A .dts with version 16 or 25 is refused with a console error; version 24 loads |  |  |  |  | n/a |
+| [C017](cases/c017-dif-version-bounds.toml) | A .dif with version 43 or 45 is refused; version 44 loads |  |  |  |  | n/a |
+| [C018](cases/c018-terrain-flat.toml) | A flat streamed terrain with one texture: chunks streamed, textures fetched, ground drawn |  |  |  |  | n/a |
+| [C019](cases/c019-water.toml) | A WaterBlock under the spawn: its surface texture is fetched and the client stays up |  |  |  |  | n/a |
+| [C020](cases/c020-two-players.toml) | Two clients of one build in one world: each links, and each sees the other's object | n/a | n/a |  |  | n/a |

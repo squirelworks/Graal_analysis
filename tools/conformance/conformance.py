@@ -49,7 +49,7 @@ import gen_content  # noqa: E402
 # The five builds the suite is written for, in table order. A case may name
 # others (e.g. "4.20r6L", the Linux 4.20 G3D22126); they get their own column.
 CORE_BUILDS = ["3.153", "4.04r2", "4.20r8", "5.12", "6.037"]
-CHECK_KINDS = {"trace", "server", "console", "files", "alive", "probe", "pixel"}
+CHECK_KINDS = {"trace", "server", "console", "files", "alive", "probe", "pixel", "blobs"}
 # Expected value of a check: true, false, or "?" (observe and record only).
 OBSERVE = "?"
 PROBE_WEAPON = "ConfProbe"
@@ -65,6 +65,9 @@ class Check:
     colour: tuple = ()     # pixel: RGB
     tol: int = 40          # pixel: per-channel tolerance
     min_fraction: float = 0.0
+    min_pixels: int = 40   # blobs: the smallest region that counts (in sampled pixels)
+    count: int = 1         # blobs: at least this many separate regions
+    client: int = 1        # which client's artefacts (2: the second client of a two-client case)
     note: str = ""
 
 
@@ -84,6 +87,9 @@ class Case:
     seconds: int
     mid_action: str
     needs: list[str]
+    terrain: list[str]
+    derive: list[dict]
+    clients: int
     checks: list[Check]
     expect: dict[str, dict]          # build -> {check id: True/False/"?", "source": str, "note": str}
     path: Path = field(default=Path())
@@ -113,7 +119,9 @@ def load_case(path: Path) -> Case:
                 id=c["id"], kind=c["kind"], pattern=c.get("pattern", ""),
                 key=c.get("key", ""), value=c.get("value", ".*"),
                 colour=tuple(c.get("colour", ())), tol=int(c.get("tol", 40)),
-                min_fraction=float(c.get("min_fraction", 0.0)), note=c.get("note", "")))
+                min_fraction=float(c.get("min_fraction", 0.0)), note=c.get("note", ""),
+                min_pixels=int(c.get("min_pixels", 40)), count=int(c.get("count", 1)),
+                client=int(c.get("client", 1))))
         ids = [c.id for c in checks]
         if len(ids) != len(set(ids)):
             raise CaseError(f"{path.name}: duplicate check id")
@@ -142,9 +150,19 @@ def load_case(path: Path) -> Case:
             server_options=list(s.get("options", [])), server_flags=list(s.get("flags", [])),
             lobby_name=s.get("lobby_name", "3 Conformance"), seconds=int(r.get("seconds", 60)),
             mid_action=r.get("mid_action", ""), needs=list(d.get("needs", [])),
+            terrain=list(w.get("terrain", [])), derive=list(w.get("derive", [])),
+            clients=int(r.get("clients", 1)),
             checks=checks, expect=expect, path=path)
     except KeyError as e:
         raise CaseError(f"{path.name}: missing {e}") from None
+    for dv in case.derive:
+        if set(dv) != {"pack", "pick", "out", "version"} or dv["pack"] not in case.needs:
+            raise CaseError(f"{path.name}: derive: pack (one of needs), pick, out, version")
+    if case.clients not in (1, 2):
+        raise CaseError(f"{path.name}: run.clients: 1 or 2")
+    for c in case.checks:
+        if c.client > case.clients:
+            raise CaseError(f"{path.name}: check {c.id}: client {c.client} of {case.clients}")
     if case.mid_action not in ("", "stop-server"):
         raise CaseError(f"{path.name}: run.mid_action: '' or stop-server")
     return case
@@ -164,7 +182,7 @@ def load_cases(only: set[str] | None = None) -> list[Case]:
 
 # ------------------------------------------------------------------ worlds
 
-def build_world(case: Case, out: Path) -> Path:
+def build_world(case: Case, out: Path, packs: dict[str, Path] | None = None) -> Path:
     """Write the case's world overlay under out/<id>/: config/graal3dworld.txt,
     config/server.add (lines appended to the base world's server.txt),
     config/serverflags.txt, files/<content> and conf/<scripts>. The runner
@@ -187,13 +205,26 @@ def build_world(case: Case, out: Path) -> Path:
             raise CaseError(f"{case.id}: no generated file matches {name}")
         for n in matches:
             (root / "files" / n).write_bytes(content[n])
+    for folder in case.terrain:
+        for rel, data in gen_content.flat_terrain(folder).items():
+            (root / rel).parent.mkdir(parents=True, exist_ok=True)
+            (root / rel).write_bytes(data)
+    for dv in case.derive:
+        pack = (packs or {}).get(dv["pack"])
+        if pack is None:
+            raise CaseError(f"{case.id}: needs content pack {dv['pack']} (lab config [packs])")
+        found = sorted(Path(pack).glob(dv["pick"]))
+        if not found:
+            raise CaseError(f"{case.id}: pack {dv['pack']} has no {dv['pick']}")
+        (root / "files" / dv["out"]).write_bytes(
+            gen_content.set_version(found[0].read_bytes(), int(dv["version"]), dv["out"]))
     if case.scripts:
         (root / "conf").mkdir(exist_ok=True)
         for s in case.scripts:
             (root / "conf" / s).write_bytes((SCRIPTS / s).read_bytes())
     meta = {"id": case.id, "slug": case.slug, "title": case.title, "rows": case.rows,
             "seconds": case.seconds, "mid_action": case.mid_action, "needs": case.needs,
-            "lobby_name": case.lobby_name}
+            "lobby_name": case.lobby_name, "clients": case.clients}
     (root / "CASE.json").write_text(json.dumps(meta, indent=1) + "\n", encoding="utf-8")
     return root
 
@@ -253,8 +284,47 @@ def probe_values(server_log: str, key: str) -> list[str]:
     return pat.findall(server_log)
 
 
+def colour_blobs(path: Path, rgb: tuple, tol: int, min_pixels: int) -> list[int]:
+    """Sizes of the separate regions of a colour (4-connected, on every second
+    pixel of every second row), largest first, ignoring regions under min_pixels."""
+    w, h, pix = read_ppm(path)
+    sw, sh = (w + 1) // 2, (h + 1) // 2
+    r0, g0, b0 = rgb
+    hit = bytearray(sw * sh)
+    for y in range(sh):
+        for x in range(sw):
+            i = ((2 * y) * w + 2 * x) * 3
+            if abs(pix[i] - r0) <= tol and abs(pix[i + 1] - g0) <= tol and abs(pix[i + 2] - b0) <= tol:
+                hit[y * sw + x] = 1
+    sizes = []
+    for start in range(sw * sh):
+        if hit[start] != 1:
+            continue
+        hit[start] = 2
+        stack, n = [start], 0
+        while stack:
+            k = stack.pop()
+            n += 1
+            y, x = divmod(k, sw)
+            for nk, ok in ((k - 1, x > 0), (k + 1, x < sw - 1), (k - sw, y > 0), (k + sw, y < sh - 1)):
+                if ok and hit[nk] == 1:
+                    hit[nk] = 2
+                    stack.append(nk)
+        if n >= min_pixels:
+            sizes.append(n)
+    return sorted(sizes, reverse=True)
+
+
 def observe(check: Check, rundir: Path, exe: str = "") -> tuple[bool | None, str]:
     """(value, detail). None: the artefact the check reads is missing."""
+    if check.client == 2 and check.kind in ("console", "files", "alive", "pixel", "blobs"):
+        rundir = rundir / "c2"   # the server log and trace are shared
+    if check.kind == "blobs":
+        shot = rundir / "shot.ppm"
+        if not shot.exists():
+            return None, "no screenshot"
+        sizes = colour_blobs(shot, check.colour, check.tol, check.min_pixels)
+        return len(sizes) >= check.count, f"{len(sizes)} regions of {check.colour} (sizes {sizes[:6]})"
     if check.kind == "pixel":
         shot = rundir / "shot.ppm"
         if not shot.exists():

@@ -18,6 +18,14 @@ Files (all under OUTDIR):
     conf_overlay.png   64x64 solid magenta, for GS2 showimg over the 3D view
     conf_marker.cs     a TorqueScript marker, which no read build should request
     conf_marker.ter    a .ter marker, likewise
+    conf_ground.png    256x256 solid tan: the flat terrain's one material
+    conf_water.png     64x64 solid deep blue: a water surface texture
+    heights.info       the terrain material list (conf_ground.png)
+    conf_ter/heights<x>-<y>.dat   a flat 256 x 256 streamed terrain at height 0, 256 chunks
+                       (torque/terrain-512.md: one zlib stream of the chunk bit stream each)
+
+Derived files (from a held content pack, made by `derive`): a copy of a
+.dts or .dif with its version word set, for the version-bound cases.
 
 Python 3 standard library only.
 """
@@ -32,6 +40,8 @@ from pathlib import Path
 RED = (220, 0, 0)
 GREEN = (0, 200, 0)
 MAGENTA = (255, 0, 255)
+TAN = (200, 160, 90)
+WATER = (20, 40, 160)
 # Sky faces in the order the world's sky line names them (face 0 to 5).
 SKY_COLOURS = [
     (255, 128, 0),    # 0 orange
@@ -155,6 +165,58 @@ def chunk_ids(data: bytes, start: int = 0, end: int | None = None) -> list[int]:
     return out
 
 
+# ------------------------------------------------------------------ terrain
+
+class BitWriter:
+    """Torque bit stream: least significant bit first within each byte."""
+
+    def __init__(self):
+        self.bits: list[int] = []
+
+    def write(self, value: int, n: int):
+        for i in range(n):
+            self.bits.append((value >> i) & 1)
+
+    def bytes(self) -> bytes:
+        out = bytearray((len(self.bits) + 7) // 8)
+        for i, b in enumerate(self.bits):
+            out[i // 8] |= b << (i % 8)
+        return bytes(out)
+
+
+def flat_chunk(height: int = 0, material: int = 0) -> bytes:
+    """One streamed terrain chunk (torque/terrain-512.md "Chunk data"), flat:
+    mode 0 (leave holes), h0, 256 zero deltas, one material. `height` is in
+    wire units (8 a world unit). Returned zlib-compressed, as the
+    heights<x>-<y>.dat cache file and the chunk event carry it."""
+    w = BitWriter()
+    w.write(0, 8)                 # mode
+    w.write(height & 0xFFFF, 16)  # h0
+    for _ in range(256):
+        w.write(0, 8)             # deltas
+    w.write(1, 6)                 # N = 1 material
+    w.write(material, 5)
+    return zlib.compress(w.bytes(), 9)
+
+
+def flat_terrain(folder: str = "conf_ter") -> dict[str, bytes]:
+    chunk = flat_chunk()
+    return {f"{folder}/heights{x}-{y}.dat": chunk for x in range(16) for y in range(16)}
+
+
+# ------------------------------------------------------------------ derived
+
+def set_version(data: bytes, version: int, name: str) -> bytes:
+    """A copy of a .dts or .dif with its version word set. A .dts starts with
+    a 16-bit version (the exporter version in the next 16 bits, kept); a
+    .dif starts with a 32-bit version."""
+    if name.lower().endswith(".dts"):
+        return struct.pack("<H", version) + data[2:]
+    if name.lower().endswith(".dif"):
+        return struct.pack("<I", version) + data[4:]
+    raise ValueError(f"{name}: only .dts and .dif have a version word here")
+
+
 # ------------------------------------------------------------------ all
 
 def files() -> dict[str, bytes]:
@@ -166,6 +228,9 @@ def files() -> dict[str, bytes]:
         "conf_overlay.png": png(64, 64, MAGENTA),
         "conf_marker.cs": b'echo("CONFORMANCE-MARKER-CS");\n',
         "conf_marker.ter": b"CONFORMANCE-MARKER-TER\n",
+        "conf_ground.png": png(256, 256, TAN),
+        "conf_water.png": png(64, 64, WATER),
+        "heights.info": b"conf_ground.png\n",
     }
     for i, c in enumerate(SKY_COLOURS):
         out[f"conf_sky{i}.png"] = png(64, 64, c)

@@ -1063,3 +1063,8 @@ torque/conformance/cases/c013-server-flag.toml	excluded			conformance case (a te
 torque/conformance/cases/c014-new-object.toml	excluded			conformance case (a test world and its expectations), not a finding
 torque/conformance/cases/c015-server-drop.toml	excluded			conformance case (a test world and its expectations), not a finding
 torque/3d-fxsunlight-flagcount-512-2026-11-26.md	pending		10.3	fxSunLight has exactly 14 animation-switch flags not 16, settled from the engine field registration + live-accept check (T3D-047), bin+lab; to carry into §10
+torque/conformance/cases/c016-dts-version-bounds.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c017-dif-version-bounds.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c018-terrain-flat.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c019-water.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c020-two-players.toml	excluded			conformance case (a test world and its expectations), not a finding

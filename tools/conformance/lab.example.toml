@@ -21,6 +21,13 @@ server_ip = "<user-net host address>"
 dns_ip = "<user-net DNS address>"
 client_ip = "<user-net guest address>"
 aliases = ["<user-net DNS address>", "<any guestfwd address the client image dials>"]
+# Two-client cases: the second client VM's lab MAC and the address it gets.
+static = { "52:54:00:c0:00:12" = "<a second guest address>" }
+
+# Held content packs (never committed), for cases with `needs`: the
+# version-bound cases take the first .dts / .dif found in "mbg".
+[packs]
+mbg = "<lab-home>/labs/<g3d-lab>/mbg"
 
 # The server VM: a Linux lab VM with python3 and passwordless sudo.
 [server_vm]
@@ -31,6 +38,7 @@ nice = 10
 disk_if = "virtio"
 boot_seconds = 40
 lab_mac = "52:54:00:c0:00:01"
+lab_mac2 = "52:54:00:c0:00:11"     # a second lab NIC, bridged in the VM, for two-client cases
 ssh_host = "<host loopback address>"
 ssh_port = 2251
 ssh_key = "<lab-home>/VMs/<linux-lab>/lab_key"
@@ -51,6 +59,17 @@ base = "<lab-home>/labs/<g3d-lab>/base-snap.qcow2"
 mem = "3G"
 nic = "e1000"
 lab_mac = "<the image's NIC MAC>"
+boot_seconds = 75
+screen = [1024, 768]
+
+# The second client of a two-client case: the same image on its own overlay,
+# on the second lab link (slot 2), with its own MAC.
+[client_vms.win10b]
+base = "<lab-home>/labs/<g3d-lab>/base-snap.qcow2"
+mem = "3G"
+nic = "e1000"
+lab_mac = "52:54:00:c0:00:12"
+slot = 2
 boot_seconds = 75
 screen = [1024, 768]
 
@@ -77,6 +96,8 @@ label = "5.12 Windows"
 dir = 'C:\g512'
 exe = "Graal.exe"
 console = ["console.log", "game_console.log"]
+pair_vm = "win10b"      # two-client cases run this build in win10 and win10b
+pair_delay = 25         # seconds between the two launches
 # 5.12 asks "stay in the tray?" on close: answer No.
 close = [["type", "taskkill /im {exe}"], ["enter"], ["sleep", 4], ["click", 967, 700], ["sleep", 4], ["click", 300, 300]]
 
