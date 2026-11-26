@@ -1,1 +1,28 @@
 case	build	verdict	date	server	client	mismatches	observed
+C001	5.12	FAIL	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows	alive	activated=yes
+C002	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C003	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		dark_red=no
+C004	5.12	FAIL	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows	face_front	
+C005	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C006	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C007	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C008	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C009	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C010	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C011	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C012	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		world_found=no
+C013	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C014	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		new_gameobject=yes
+C018	5.12	FAIL	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows	ground_textured,ground_white	asks_info=no
+C015	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C019	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		asks_water=yes;water_drawn=no
+C020	5.12	FAIL	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows	c2_alive	
+C021	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		
+C022	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		asks_missing=yes;red_drawn=yes;alive=yes
+C023	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		red_drawn=yes;alive=yes
+C025	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		red_drawn=yes
+C026	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		made=yes;done=yes;setget_position=no;position_prop=no;scale=no;x_prop=yes;transform=no;alpha=yes;nickname=yes;ismounted=yes
+C027	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		red_drawn=yes;alive=yes
+C028	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		asked_twice=yes;pink_drawn=yes;red_drawn=no
+C029	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		five_links=yes;red_drawn=yes
+C024	5.12	PASS	2026-11-26	seihai-gserver 5cd9c15	5.12 Windows		red_drawn=yes;alive=yes
