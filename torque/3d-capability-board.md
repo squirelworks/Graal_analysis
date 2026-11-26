@@ -36,6 +36,9 @@ to the client from our own server only.
 
 ## Results so far
 
+- [Closing plan for the partly answered rows](3d-partial-rows-closing-plan-2026-11-26.md): the
+  remaining gap, closing method and batch for each of the 39 partly answered rows (2026-11-26).
+
 - [Script and terrain tools by build](script-and-terrain-tools-by-build.md): 3.153 still carries the
   TorqueScript compiler and Torque's full terrain generator; 4.04r2 and 5.12 drop the compiler and
   keep only a four-function `Terraformer` and the stock `TerrainEditor`, both registered as script
