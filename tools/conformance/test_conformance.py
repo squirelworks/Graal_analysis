@@ -454,6 +454,8 @@ def test_served_name_takes_another_generated_file(cases, tmp_path):
     root = cf.build_world(case(cases, "C035"), tmp_path / "out")
     assert (root / "files" / "heights.info").read_bytes() == b"conf_ground.png\nconf_grass.png\n"
     assert not (root / "files" / "heights_grass.info").exists()
+    # the terrain folder carries the same heights.info (seihai-gserver #222 checks)
+    assert (root / "conf_ter" / "heights.info").read_bytes() == b"conf_ground.png\nconf_grass.png\n"
 
 
 def test_raw_grass_cases_carry_the_generated_line(cases):

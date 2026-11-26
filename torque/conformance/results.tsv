@@ -91,3 +91,28 @@ C029	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main 
 C024	6.037F	PASS	2026-11-26	seihai-gserver 5cd9c15	6.037 Frankenstein (gcr main ca85053a)		udp_link=yes;asks_shape=no;red_drawn=yes;alive=yes
 C030	5.12	PASS	2026-11-26	seihai-gserver main 5cd9c15	5.12 Windows		made=yes(1);d_position=yes(0 0 0);d_scale=yes(1 1 1);d_transform=yes(0 0 0 1 0 0 0);d_rotation=yes(1 0 0 0);d_euler=yes(0 0 0);d_velocity=yes(0 0 0);d_alpha=yes(1);d_shape=yes();d_solid=yes(0);d_collision=yes(1);d_forward=yes(0 1 0);d_up=yes(0 0 1);d_right=yes(1 0 0);d_objectbox=yes(0 0 0 0 0 0);d_drawn=yes(0);p_get=yes(1.5 -2 3.25);p_prop=yes(1.5 -2 3.25);p_xyz=yes(1.5_-2_3.25);p_afterx=yes(7 -2 3.25);p_assigned=yes(4 5 6);s_get=yes(2 3 4);s_prop=yes(2 3 4);s_worldbox=yes(4 5 6 4 5 6);s_center=yes(4 5 6);t_get=yes(1 2 3 0 0 1 1.570685349);t_rotation=yes(0 0 1 1.570685349);t_euler=yes(0 0 -0.027415631);t_forward=yes(0.027412196 0.999624192 0);t_right=yes(0.999624192 -0.027412196 0);t_up=yes(0 0 1);t_position=yes(1 2 3);e_transform=yes(1 2 3 0 0 -1 116.62015253);e_forward=yes(-0.893996596 -0.448073625 0);dir_forward=yes(1 0 0);dir_euler=yes(0 0 -1.570796251);sh_shape=yes(conf_red.3ds);sh_objectbox=yes(0 0 0 0 0 0);sh_drawn=yes(0);n_nickname=yes(conf);n_alpha=yes(0.25);f_byname=yes(0);v_velocity=yes(0 0 0);v_after1s=yes(0 0 10);o_found=no(0);o_position=no;o_transform=no;o_scale=no;o_shape=no;o_nickname=no;o_box=no;o_dropz=no;x_gone=yes(1);done=yes(1)
 C026	5.12	PASS	2026-11-26	seihai-gserver main 5cd9c15	5.12 Windows		setget_position=yes(2 3 4);position_prop=yes(2 3 4);scale=yes(2 2 2);transform=yes(2 3 4 1 0 0 0)
+C008	6.037F	PASS	2026-11-26	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		ready=yes(1);tick=yes(5)
+C011	6.037F	PASS	2026-11-26	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		asked=yes(1);moved=no
+C014	6.037F	PASS	2026-11-26	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		new_gameobject=yes(1);new_staticvar=yes(1)
+C030	6.037F	PASS	2026-11-26	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		made=yes(1);d_position=yes(0);d_scale=yes(0);d_transform=yes(0);d_rotation=yes(0);d_euler=yes(0);d_velocity=yes(0);d_alpha=yes(0);d_shape=yes(0);d_solid=yes(0);d_collision=yes(0);d_forward=yes(0);d_up=yes(0);d_right=yes(0);d_objectbox=yes(0);d_drawn=yes(0);p_get=yes(0);p_prop=yes(0);p_xyz=yes(0_0_0);p_afterx=yes(0);p_assigned=yes(0);s_get=yes(0);s_prop=yes(0);s_worldbox=yes(0);s_center=yes(0);t_get=yes(0);t_rotation=yes(0);t_euler=yes(0);t_forward=yes(0);t_right=yes(0);t_up=yes(0);t_position=yes(0);e_transform=yes(0);e_forward=yes(0);dir_forward=yes(0);dir_euler=yes(0 0 90);sh_shape=yes(conf_red.3ds);sh_objectbox=yes(0);sh_drawn=yes(0);n_nickname=yes(conf);n_alpha=yes(0.25);f_byname=yes(0);v_velocity=yes(1 0 0);v_after1s=yes(0);o_found=no(0);o_position=no;o_transform=no;o_scale=no;o_shape=no;o_nickname=no;o_box=no;o_dropz=no;x_gone=yes(1);done=yes(1)
+C015	6.037F	PASS	2026-11-26	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		control=yes;alive=yes
+C026	6.037F	PASS	2026-11-26	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		made=yes(1);done=yes(1);setget_position=no(0);position_prop=no(0);scale=no(0);x_prop=no(0);transform=no(0);alpha=yes(0.5);nickname=yes(conf);ismounted=yes(0)
+C028	6.037F	PASS	2026-11-26	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		asked_twice=yes;pink_drawn=yes;red_drawn=no;alive=yes
+C035	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		
+C036	5.12	FAIL	2026-11-27	seihai-gserver 833faba	5.12 Windows	grass_drawn	
+C037	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		
+C041	5.12	FAIL	2026-11-27	seihai-gserver 833faba	5.12 Windows	terrain_block	loading_terrain=yes
+C042	5.12	FAIL	2026-11-27	seihai-gserver 833faba	5.12 Windows	move3d_no_movetype	
+C044	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		
+C043	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		
+C038	5.12	FAIL	2026-11-27	seihai-gserver-v2 6aa382d2	5.12 Windows	server_alive,red_drawn	
+C039	5.12	PASS	2026-11-27	seihai-gserver-v2 6aa382d2	5.12 Windows		
+C040	5.12	PASS	2026-11-27	seihai-gserver-v2 6aa382d2	5.12 Windows		
+C045	5.12	PASS	2026-11-27	seihai-gserver-v2 6aa382d2	5.12 Windows		
+C035	6.037F	PASS	2026-11-27	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		grass_drawn=yes;alive=yes
+C036	6.037F	PASS	2026-11-27	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		raw_ghosted=yes;grass_drawn=yes;alive=yes
+C037	6.037F	PASS	2026-11-27	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		raw_ghosted=yes;grass_drawn=yes;alive=yes
+C038	6.037F	PASS	2026-11-27	seihai-gserver-v2 6aa382d2	6.037 Frankenstein (gcr main be493cb6)		injected=yes;server_alive=no;v2_link=no;red_drawn=no;alive=yes
+C039	6.037F	PASS	2026-11-27	seihai-gserver-v2 6aa382d2	6.037 Frankenstein (gcr main be493cb6)		injected=yes;server_alive=yes;flood_warned=yes;v2_link=no;red_drawn=no;alive=yes
+C040	6.037F	PASS	2026-11-27	seihai-gserver-v2 6aa382d2	6.037 Frankenstein (gcr main be493cb6)		five_links=no;red_drawn=no;alive=yes
+C045	6.037F	PASS	2026-11-27	seihai-gserver-v2 6aa382d2	6.037 Frankenstein (gcr main be493cb6)		v2_link=no;red_drawn=no;alive=yes

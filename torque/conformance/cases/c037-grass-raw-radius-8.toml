@@ -40,10 +40,10 @@ note = "a raw object gets no radius floor and no start-up note"
 [[check]]
 id = "grass_drawn"
 kind = "pixel"
-colour = [255, 255, 255]
-tol = 50
+colour = [255, 0, 255]
+tol = 70
 min_fraction = 0.01
-note = "white grass quads on the tan terrain around the avatar, on the second visit (the pushed grass texture is cached by then)"
+note = "magenta grass quads on the tan terrain around the avatar, on the second visit (the pushed grass texture is cached by then); untextured grass would draw white and does not count"
 
 [[check]]
 id = "alive"

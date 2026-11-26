@@ -22,7 +22,8 @@ Files (all under OUTDIR):
     conf_ground.png    256x256 solid tan: the flat terrain's one material
     conf_water.png     64x64 solid deep blue: a water surface texture
     heights.info       the terrain material list (conf_ground.png)
-    conf_grass.png     256x256 solid white: a grass texture
+    conf_grass.png     256x256 solid magenta: a grass texture (nothing else in a grass world is magenta;
+                       white was confounded by untextured white terrain)
     heights_grass.info heights.info with conf_grass.png as a second material, so that
                        graal3d_pushterrain pushes the grass texture too (served as heights.info)
     conf_huge.png      a 64x64 white PNG whose header claims 100000 x 100000 (T3D-146)
@@ -273,7 +274,7 @@ def files() -> dict[str, bytes]:
         "conf_ground.png": png(256, 256, TAN),
         "conf_water.png": png(64, 64, WATER),
         "heights.info": b"conf_ground.png\n",
-        "conf_grass.png": png(256, 256, WHITE),
+        "conf_grass.png": png(256, 256, MAGENTA),
         "heights_grass.info": b"conf_ground.png\nconf_grass.png\n",
         "conf_huge.png": huge_png(),
         "conf_huge.3ds": cube_3ds("conf_hugemat", WHITE, texture="conf_huge.png"),

@@ -616,6 +616,11 @@ finally {{ $s.UnlockMachine() }}"""
                 time.sleep(5)
             else:
                 raise RuntimeError(f"{self.name}: the guest clock is not at {want}")
+        for src, dest in c.get("guest_files", []):   # host files copied into the guest
+            # a target folder needs its trailing backslash, or VirtualBox
+            # takes it as the file name and refuses an existing folder
+            self.vb("guestcontrol", self.clone, "copyto", *self.auth(),
+                    "--target-directory=" + dest.rstrip("\\") + "\\", str(src))
         for line in c.get("guest_setup", []):   # PowerShell lines, run by guest control
             self.gx(line, 600)
         log(f"{self.name}: desktop, agent and prep ready")
@@ -671,6 +676,7 @@ class Lab:
         if sv.get("gserver_host"):
             self.server.scp_to([Path(sv["gserver_host"])], f"{R}/gserver")
             self.gsbin = f"{R}/gserver"
+            self.server.ssh(f"chmod +x {R}/gserver")   # scp from a Windows host drops the mode
         else:
             self.gsbin = sv["gserver_vm"]
         # seihai-gserver-v2 ([server] kind = "v2" cases): its gs2emu binary and
@@ -685,6 +691,7 @@ class Lab:
             if sv.get("gserver_v2_host"):
                 self.server.scp_to([Path(sv["gserver_v2_host"])], f"{R}/gs2emu")
                 self.gsbin_v2 = f"{R}/gs2emu"
+                self.server.ssh(f"chmod +x {R}/gs2emu")
             else:
                 self.gsbin_v2 = sv.get("gserver_v2_vm", "")
         n = self.net

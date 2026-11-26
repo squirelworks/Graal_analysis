@@ -51,7 +51,8 @@ pattern = "Not enough parameters for GameObject.getdropz \\(1 needed, 0 given\\)
 id = "move3d_no_movetype"
 kind = "probe"
 key = "pos2"
-value = "\"0,0,1\""
+value = "0 0 1"
+note = "the reported \"0,0,1\" arrives as three trigger parameters, joined with spaces (probe_values since #214)"
 
 [[check]]
 id = "done"
