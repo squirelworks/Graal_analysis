@@ -59,3 +59,43 @@ Four runs, both launch orders.
   drawing (now seen under Mesa too), not a cross-build effect.
 - So 5.12 and 4.20r8 share a world cleanly and differ only in texture drawing. The 4.20r6 and
   4.04r2 legs (Wine) and the 3.153 leg were not run in this pass.
+
+## T3D-133, T3D-069, T3D-110: a 2D 5.24r4 and a 3D 5.12 in one world
+
+Clients: real 5.24r4 Windows (`G3D15010`, 2D) in a second Win10 lab VM with its clock at 2012, and
+real 5.12 Windows (3D) in the first, clock at 2007; both on the same VM-only network.
+`serverflags.txt` holds `server.labflag=on` and `server.confflag=on`. The start level holds one
+clientside level NPC that, every 4 s, reads `server.`/`serverr.labflag` into its chat, changes
+head, body, colours, ani, nick and chat, fires `putexplosion2` and `triggeraction`, then reads the
+flag again. Two runs; the server logged every TCP body and UDP datagram.
+
+### T3D-133: why the server flag reads empty
+
+- The server sends PLO_FLAGSET `server.labflag=on` and `server.confflag=on` over TCP to **both**
+  clients at login (to 5.12 before it opens its 3D link).
+- **The 2D 5.24r4 reads it empty too.** Its own level-NPC script reads `server.labflag` and
+  `serverr.labflag` as empty, both 4 s and about 40 s after login.
+- So **the gap is not the 3D plug-in**: the 2D client receives the FLAGSET and its GS2 still reads
+  nothing. The cause is in how the flag is named or stored, not in 5.12's 3D side. The 5.12
+  `weapon3d` reads `server.confflag` empty as before.
+- 5.12 never runs the 2D level NPC's clientside script while in 3D, so a "pre-3D" read is not
+  possible that way (it would need a 2D weapon, which guest accounts do not hold).
+
+### T3D-069: 2D look props as seen from the 3D client
+
+- Body (`body2.png`), ani (`sit`) and chat set by the 5.24r4 script reach the server as
+  PLI_PLAYERPROPS and go to 5.12 as PLO_OTHERPLPROPS for its `G2DPlayer_<acct>` ghost (in one run
+  the `sit` ani was not seen going out).
+- **Head, colours and nick set by the script never leave 5.24r4** (it fetched `head2.png` but sent
+  no head prop), so there is nothing for 5.12 to show.
+- The 2D player is a `G2DPlayer_<acct>` GameObject ghost on 5.12, re-created when the 2D player
+  relogs. A per-prop screenshot of the 3D view was not captured (window capture), so the visual
+  half stays open.
+
+### T3D-110: game logic across 2D and 3D
+
+- The 5.24r4's `putexplosion2` and `triggeraction` go out over TCP (it also hurt itself, fetching
+  `bomb.wav`/`hurt.gani` and sending a hurt prop).
+- **The 3D 5.12 shows none of it**: 2D level NPCs are not ghosted to 3D (no GameObject for the
+  NPC) and the explosion has no 3D effect. The server forwards this 2D traffic on TCP only.
+- Flags behave as in T3D-133. 3D-to-2D weapon fire and 3D-side triggers were not exercised.
