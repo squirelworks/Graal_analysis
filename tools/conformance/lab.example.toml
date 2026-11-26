@@ -142,3 +142,46 @@ exe = "graal"
 launch = "DISPLAY=:1 ./graal"
 console = ["console.log"]
 screenshot = "xwd -root -display :1 | xwdtopnm 2>/dev/null"
+
+# ---------------------------------------------------------------- VirtualBox
+# A lab host with VirtualBox instead of QEMU (e.g. a Windows host): set
+#   hypervisor = "virtualbox"
+# at the top and fill in the table below. Every VM then runs as a throw-away
+# linked clone of a base VM's snapshot (`vbox_base`, `vbox_snapshot` in its
+# table; the base is only read), deleted at the end. The lab link is a
+# VirtualBox internal network (VM-only, no host address) with VirtualBox's
+# own DHCP server on it, which gives each lab MAC a fixed lease ([net]
+# server_ip, client_ip, static), so the server VM needs no root. The server
+# VM's management NIC is VirtualBox NAT with one SSH forward on the host
+# loopback. A Windows client is driven by guest control and the guest's own
+# desktop agent (launch, mclick, killname); at boot an elevated prep script
+# (Win+R, accepted UAC) runs the guest's own set-up commands (`elevated`)
+# and points the hosts file's loopback lines at the server VM.
+[virtualbox]
+manage = '<VirtualBox folder>\VBoxManage.exe'
+basefolder = '<lab-home>\VMs\conformance'   # where the clones go
+prefix = "conf"                             # clone names: <prefix>-server, <prefix>-client-<name>
+intnet = "conf-lab"                         # the internal network's name
+dhcp_ip = "<lab-link DHCP address>"
+netmask = "<lab-link netmask>"
+dhcp_lower = "<first pool address>"
+dhcp_upper = "<last pool address>"
+guest_user = "<Windows guest user>"
+guest_password_file = '<lab-home>\private\<guest password file>'
+
+# With hypervisor = "virtualbox" these keys are read in the VM tables above
+# (and `base`, `disk_if`, `nic`, `qemu` are not):
+#   server_vm:  vbox_base = "<Linux VM>", vbox_snapshot = "<snapshot>",
+#               gserver_vm = "<path under the VM user's home>"
+#   client_vms: vbox_base = "<Windows VM>", vbox_snapshot = "<snapshot>",
+#               screen = [1280, 800]      (a video mode hint at boot)
+#               agent = '<guest agent folder>'   (cmd.txt / agent.txt)
+#               elevated = ['<guest set-up command run as administrator>']
+#               wait_year = <the year the guest clock must show, if held>
+#               guest_setup = ['<PowerShell line run by guest control after boot>']
+#   builds:     pair_dir = '<a second copy of the build in the same guest>'
+#               (a two-client case with both clients in one guest, for a
+#               host without the memory for a second client VM; one
+#               screenshot then serves both clients' screenshot checks)
+# A build's `vbox_postlaunch` steps: ["sleep", s], ["click", x, y] (guest
+# pixels), ["type", text], ["enter"], ["agent", line].
