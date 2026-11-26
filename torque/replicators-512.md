@@ -146,7 +146,21 @@ the box corner nearest the avatar, and moves inward by about one cell per radius
 | 4 | a few clumps | about (81, −80) |
 
 With the avatar outside the box, raising the count or scale at radius 1 still grows nothing.
-Why the cover moves inward, away from the avatar, as radius grows is still open.
+A follow-up run fits one rule: the clump sits at the cell corner **avatar − 8·(r + 2)** on each
+axis, and grows only if that corner is inside the box **[lab]**:
+
+| Avatar, box | Radius 2 | Radius 3 | Radius 4 | Radius 6 |
+|---|---|---|---|---|
+| (128, −128), ±100 | ~(97, −97) | ~(88, −89) | ~(81, −80) | ~(64, −63) |
+| (136, −136), ±100 | none (corner 104 is outside) | ~(93, −93) | ~(84, −84) | — |
+| (128, −128), ±90 | none (corner 96 is outside) | ~(83, −84) | — | — |
+
+Measured centres sit about 3–4 units inside the predicted corner, which fits copies scattered
+within ±4 units of it. Radius 1 predicts corner 104 for an avatar at 128, which is outside a
+±100 box, matching no growth. So the clump is tied to the avatar, not to the box corner: moving
+the avatar 8 units out moved it one cell, and radius 2 then grew nothing. Nothing grew nearer the
+avatar. Why the client grows this one far cell, rather than the in-range cells, is still open
+**[inf]**.
 
 ## Live
 
