@@ -72,7 +72,7 @@ Check kinds, each reading one artefact of the run:
 |---|---|---|
 | `trace` | the gserver's `graal3d_trace` file | `pattern` (a regex) matches |
 | `server` | the gserver log (`--verbose`: logins, file requests, control object) | `pattern` matches |
-| `probe` | the gserver log: a probe's `triggerserver("gui", "ConfProbe", "cf", key, value)` arrives as `trigger ignored (...)` | some report of `key` matches `value` |
+| `probe` | the gserver log: a probe's `triggerserver("gui", "ConfProbe", "cf", key, value)` arrives as `trigger ignored (...)`, or on seihai-gserver #214 and later, which routes it to the server weapon, as `trigger sent (...)` (any `trigger <word> (...)` line with the arguments is read) | some report of `key` matches `value` |
 | `console` | the client's console log(s) | `pattern` matches |
 | `files` | a listing of the client folder after the run | `pattern` matches |
 | `inject` | the output of the case's `inject-junk` or `inject-flood` mid action (`guest/junk.py` in the server VM) | `pattern` matches |

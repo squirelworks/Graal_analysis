@@ -369,3 +369,10 @@ def test_results_keep_a_probe_value_observed(tmp_path):
          "checks": {"p": {"expected": "?", "observed": True, "detail": "", "value": "2 3 4"}}}
     cf.append_result(tmp_path / "r.tsv", v, "2026-11-26", "srv", "cli")
     assert "p=yes(2 3 4)" in (tmp_path / "r.tsv").read_text()
+
+
+def test_probe_reports_are_read_from_ignored_or_routed_trigger_lines():
+    log = ("Graal3D: player 3: trigger ignored (gui,ConfProbe,cf,made,1)\n"
+           "Graal3D: player 3: trigger sent (gui,ConfProbe,cf,done,1)\n")
+    assert cf.probe_values(log, "made") == ["1"]
+    assert cf.probe_values(log, "done") == ["1"]
