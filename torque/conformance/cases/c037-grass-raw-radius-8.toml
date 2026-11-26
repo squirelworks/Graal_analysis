@@ -14,7 +14,7 @@ rawobject DynamicGrass f1 f0 str:ConfGrassRaw f0 f0 f0 f1 f32:20 f32:20 f32:0 f3
 playershape conf_nomat.3ds
 spawn 20 20 1
 """
-files = ["conf_nomat.3ds", "conf_sky*", "conf_ground.png", "conf_grass.png", "heights.info=heights_grass.info"]
+files = ["conf_nomat.3ds", "conf_sky*", "conf_ground.png", "conf_grass.png", "heights.info"]
 terrain = ["conf_ter"]
 
 [server]
@@ -73,9 +73,10 @@ source = "[srv] gen_content.grass_rawobject: the replicator line's update bit fo
 [expect."5.12"]
 raw_ghosted = true
 floor_noted = false
-grass_drawn = true
+grass_drawn = "?"
 alive = true
 source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 8, sent as a rawobject, which the server does not floor; [lab] seihai-gserver #218: the same grass line at radius 8 drew a patch; if this case draws nothing, C036 says nothing about the radius"
+note = "grass_drawn is observed only: in the 2026-11-26 lab runs every frame was dominated by one colour (white, then the magenta grass texture over the whole ground once it was listed in heights.info), so the pixel check cannot yet tell grass from terrain"
 
 [expect."6.037"]
 raw_ghosted = false

@@ -451,11 +451,13 @@ def test_server_kind_is_checked(tmp_path):
 
 
 def test_served_name_takes_another_generated_file(cases, tmp_path):
-    root = cf.build_world(case(cases, "C035"), tmp_path / "out")
-    assert (root / "files" / "heights.info").read_bytes() == b"conf_ground.png\nconf_grass.png\n"
-    assert not (root / "files" / "heights_grass.info").exists()
+    src = case_path("C035").read_text(encoding="utf-8")
+    p = tmp_path / "c.toml"
+    p.write_text(src.replace('"heights.info"]', '"heights.info=conf_water.png"]'), encoding="utf-8")
+    root = cf.build_world(cf.load_case(p), tmp_path / "out")
+    assert (root / "files" / "heights.info").read_bytes() == gen_content.files()["conf_water.png"]
     # the terrain folder carries the same heights.info (seihai-gserver #222 checks)
-    assert (root / "conf_ter" / "heights.info").read_bytes() == b"conf_ground.png\nconf_grass.png\n"
+    assert (root / "conf_ter" / "heights.info").read_bytes() == (root / "files" / "heights.info").read_bytes()
 
 
 def test_raw_grass_cases_carry_the_generated_line(cases):
