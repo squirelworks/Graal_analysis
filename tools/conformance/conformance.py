@@ -213,7 +213,7 @@ def build_world(case: Case, out: Path, packs: dict[str, Path] | None = None) -> 
         pack = (packs or {}).get(dv["pack"])
         if pack is None:
             raise CaseError(f"{case.id}: needs content pack {dv['pack']} (lab config [packs])")
-        found = sorted(Path(pack).glob(dv["pick"]))
+        found = sorted(Path(pack).rglob(dv["pick"]))   # a pack is a tree (e.g. an unpacked game folder)
         if not found:
             raise CaseError(f"{case.id}: pack {dv['pack']} has no {dv['pick']}")
         (root / "files" / dv["out"]).write_bytes(
