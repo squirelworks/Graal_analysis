@@ -1019,4 +1019,5 @@ torque/3d-file-loader-errors-420r6-2026-11-26.md	pending		10.3	5.12-class file-l
 torque/3d-font-handling-420r6-2026-11-26.md	pending		10.3	showtext fonts: lowercase(family)+style+.ttf, TrueType only, missing->default, must be pre-placed to apply (T3D-120), lab; to carry into §10
 torque/3d-v6-quattro-vs-512-2026-11-26.md	pending		10.3	6.00 engine is the Quattro 2D lineage, not a 5.12-class 3D client; no GameObject/Torque layer/proto-24 (T3D-121), bin; to carry into §10
 torque/3d-frankenstein-6037-vs-600-2026-11-26.md	pending		10.3	our Frankenstein 6.037 is a from-source hybrid (6.03r7 Quattro host + 5.12 proto-24 link); gains real 3D capability stock 6.00 lacks, box-view only (T3D-122), bin; to carry into §10
+torque/3d-partial-rows-closing-plan-2026-11-26.md	excluded			work plan for the partly answered 3D board rows, not a finding
 torque/3d-sound-formats-420r6-2026-11-26.md	pending		10.3	5.12 sound formats are FMOD 3.70 set: WAV/OGG/MP3/MP2 play, WMA/ASF Windows-gated, FLAC/AAC dropped; unsupported silently no-op (T3D-123), lab+bin; to carry into §10
