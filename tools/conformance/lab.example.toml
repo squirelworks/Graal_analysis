@@ -1,0 +1,120 @@
+# Lab config for tools/conformance/run.py: a template. Copy it to a file of
+# your own on the lab host (e.g. <lab-home>/conformance/lab.toml), fill in the
+# angle brackets, and never commit the filled-in copy: it names the lab's VM
+# images, folders and addresses.
+
+# Where overlays, VM sockets, worlds and run artefacts (screenshots, logs)
+# go. Everything under it stays on the lab host.
+work = "<lab-home>/conformance/work"
+server_label = "seihai-gserver <commit>"   # goes into results.tsv
+gserver_port = 14802                       # the 3D UDP side is this + 1
+lobby_port = 14900                         # the port the client builds log in to first
+shot_every = 10                            # seconds between screenshots
+
+# The VM-only lab link. The client images were set up on QEMU user
+# networking, so the server VM takes the addresses that network had: its
+# host address (server_ip), its DNS address and any forward the image dials
+# directly (aliases), and DHCP hands the client its usual address.
+[net]
+prefix = 24
+server_ip = "<user-net host address>"
+dns_ip = "<user-net DNS address>"
+client_ip = "<user-net guest address>"
+aliases = ["<user-net DNS address>", "<any guestfwd address the client image dials>"]
+
+# The server VM: a Linux lab VM with python3 and passwordless sudo.
+[server_vm]
+base = "<lab-home>/VMs/<linux-lab>/<linux-lab>.qcow2"     # read only: runs on an overlay
+mem = "2G"
+smp = 2
+nice = 10
+disk_if = "virtio"
+boot_seconds = 40
+lab_mac = "52:54:00:c0:00:01"
+ssh_host = "<host loopback address>"
+ssh_port = 2251
+ssh_key = "<lab-home>/VMs/<linux-lab>/lab_key"
+user = "lab"
+root = "conformance"          # under the lab user's home in the VM
+# The base world every case overlays (levels, accounts, server.txt): one of
+# the lab threads' own worlds, e.g. the t3d lab's worlds/base.
+base_world = "<lab-home>/labs/<t3d-lab>/worlds/base"
+# A seihai-gserver binary built for the server VM (cargo build --release in
+# the VM), either copied in from the host or already in the VM:
+gserver_host = "<lab-home>/work/<build>/seihai-gserver"
+# gserver_vm = "seihai-gserver/target/release/seihai-gserver"   # relative to the VM user's home
+
+# Client VMs. A Windows VM has only the lab link and is driven over QMP. Keep
+# the image's own NIC model and MAC so the guest keeps its network adapter.
+[client_vms.win10]
+base = "<lab-home>/labs/<g3d-lab>/base-snap.qcow2"
+mem = "3G"
+nic = "e1000"
+lab_mac = "<the image's NIC MAC>"
+boot_seconds = 75
+screen = [1024, 768]
+
+# A Linux client VM (4.04r2 under Wine, Linux 4.20r6) adds a restricted
+# management NIC for SSH, like the server VM.
+[client_vms.linux]
+base = "<lab-home>/VMs/<linux-lab>/<linux-lab>.qcow2"
+mem = "2G"
+disk_if = "virtio"
+lab_mac = "52:54:00:c0:00:02"
+ssh_host = "<host loopback address>"
+ssh_port = 2252
+ssh_key = "<lab-home>/VMs/<linux-lab>/lab_key"
+user = "lab"
+boot_seconds = 40
+
+# One table per client build. `vm` names a client VM above. For a Windows
+# build: `dir`, `exe`, `args`, the console logs to collect, and optional UI
+# steps (`postlaunch`, `close`): ["sleep", s], ["click", x, y], ["type", text],
+# ["key", combo...], ["enter"]; {dir} {exe} {args} {server} are filled in.
+[builds."5.12"]
+vm = "win10"
+label = "5.12 Windows"
+dir = 'C:\g512'
+exe = "Graal.exe"
+console = ["console.log", "game_console.log"]
+# 5.12 asks "stay in the tray?" on close: answer No.
+close = [["type", "taskkill /im {exe}"], ["enter"], ["sleep", 4], ["click", 967, 700], ["sleep", 4], ["click", 300, 300]]
+
+[builds."4.20r8"]
+vm = "win10"
+label = "4.20r8 Windows"
+dir = 'C:\g420r8'
+exe = "Graal4.exe"
+console = ["console.log"]
+# fill in the guest account on the start screen and press Start
+postlaunch = [["sleep", 14], ["click", 818, 531], ["type", "guest"], ["click", 818, 555], ["type", "guest"], ["click", 696, 642]]
+
+[builds."6.037"]
+vm = "win10"
+label = "6.03r7 Windows (retail)"
+dir = 'C:\g6037'
+exe = "Graal.exe"
+console = ["console.log"]
+
+# Linux builds: `launch` is a shell command run in `dir`; `screenshot`
+# prints a binary PPM of the client's display on stdout (or leave it out
+# when the client draws on the VM's own screen: QMP screendump is used).
+[builds."4.04r2"]
+vm = "linux"
+control = "ssh"
+label = "4.04r2 Windows under Wine"
+dir = "g404r2"                  # relative to the VM user's home
+exe = "Graal.exe"
+launch = "DISPLAY=:1 wine Graal.exe"
+console = ["console.log"]
+screenshot = "xwd -root -display :1 | xwdtopnm 2>/dev/null"
+
+[builds."3.153"]
+vm = "linux"
+control = "ssh"
+label = "3.153-row Linux (G3D27015)"
+dir = "g3153"
+exe = "graal"
+launch = "DISPLAY=:1 ./graal"
+console = ["console.log"]
+screenshot = "xwd -root -display :1 | xwdtopnm 2>/dev/null"

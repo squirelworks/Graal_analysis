@@ -1,0 +1,248 @@
+"""Tests for the 3D conformance suite (no client, no VM): python3 -m pytest tools/conformance -q"""
+
+from __future__ import annotations
+
+import re
+import struct
+import sys
+import tomllib
+from pathlib import Path
+
+import pytest
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+import conformance as cf  # noqa: E402
+import gen_content  # noqa: E402
+import run  # noqa: E402
+
+KNOWN_EXTRA_BUILDS = {"4.20r6L"}
+
+
+@pytest.fixture(scope="module")
+def cases():
+    return cf.load_cases()
+
+
+def test_cases_load_and_have_unique_ids(cases):
+    assert len(cases) >= 15
+    assert len({c.id for c in cases}) == len(cases)
+    assert len({c.slug for c in cases}) == len(cases)
+
+
+def test_every_row_is_on_the_board(cases):
+    ids = cf.board_ids()
+    for c in cases:
+        for r in c.rows:
+            assert r in ids, f"{c.id}: {r} is not on the board"
+
+
+def test_builds_are_known(cases):
+    for c in cases:
+        for b in c.expect:
+            assert b in cf.CORE_BUILDS or b in KNOWN_EXTRA_BUILDS, f"{c.id}: unknown build {b}"
+
+
+def test_every_expectation_names_a_source(cases):
+    for c in cases:
+        for b, e in c.expect.items():
+            assert e["source"].strip(), f"{c.id} {b}"
+
+
+def test_scripts_exist_and_probe_cases_check_compilation(cases):
+    for c in cases:
+        for s in c.scripts:
+            assert (cf.SCRIPTS / s).exists(), s
+            assert "//#CLIENTSIDE" in (cf.SCRIPTS / s).read_text()
+        if c.scripts:
+            assert "compiled" in {k.id for k in c.checks}, c.id
+            for b, e in c.expect.items():
+                assert e.get("compiled") is False, f"{c.id} {b}: compiled must be false"
+
+
+def test_probe_scripts_report_only_comma_free_values():
+    for p in cf.SCRIPTS.glob("*.gs2"):
+        for m in re.finditer(r'cf\("([^"]+)",\s*"([^"]*)"\)', p.read_text()):
+            assert "," not in m.group(1) + m.group(2), p.name
+
+
+def test_build_world_writes_the_overlay(cases, tmp_path):
+    for c in cases:
+        root = cf.build_world(c, tmp_path)
+        world = (root / "config" / "graal3dworld.txt").read_text()
+        for s in c.scripts:
+            assert f"weapon3d {cf.PROBE_WEAPON} conf/{s}" in world
+            assert (root / "conf" / s).exists()
+        add = (root / "config" / "server.add").read_text()
+        assert "graal3d = true" in add and "graal3d_trace = g3d.tsv" in add
+        assert f"name = {c.lobby_name}" in add
+        # every shape and sky texture the world names is served
+        served = {p.name for p in (root / "files").iterdir()}
+        for line in world.splitlines():
+            w = line.split()
+            if w and w[0] in ("object", "playershape"):
+                shape = w[2] if w[0] == "object" else w[1]
+                assert shape in served, f"{c.id}: {shape}"
+            if w and w[0] == "sky":
+                for t in w[1].split(","):
+                    assert f"{t}.png" in served and f"{t}.gif" in served, f"{c.id}: {t}"
+
+
+def test_expected_table_is_current(cases):
+    text = cf.expected_table(cases)
+    on_disk = (cf.SUITE / "EXPECTED.md").read_text(encoding="utf-8")
+    assert text == on_disk, "run: python3 tools/conformance/conformance.py expected --write"
+
+
+def test_results_table_is_current(cases):
+    text = cf.results_table(cf.SUITE / "results.tsv", cases)
+    on_disk = (cf.SUITE / "RESULTS.md").read_text(encoding="utf-8")
+    assert text == on_disk, "run: python3 tools/conformance/conformance.py table torque/conformance/results.tsv --write"
+
+
+# ------------------------------------------------------------------ content
+
+def test_3ds_chunk_trees_are_well_formed():
+    files = gen_content.files()
+    red = gen_content.chunk_ids(files["conf_red.3ds"])
+    assert red[0] == 0x4D4D and 0xAFFF in red and 0x4130 in red and 0x4140 not in red
+    nomat = gen_content.chunk_ids(files["conf_nomat.3ds"])
+    assert 0xAFFF not in nomat and 0x4130 not in nomat and 0x4120 in nomat
+    tex = gen_content.chunk_ids(files["conf_tex.3ds"])
+    assert 0xA300 in tex and 0x4140 in tex
+    assert b"conf_tex.png\0" in files["conf_tex.3ds"]
+
+
+def test_images():
+    files = gen_content.files()
+    p = files["conf_tex.png"]
+    assert p[:8] == b"\x89PNG\r\n\x1a\n"
+    assert struct.unpack(">II", p[16:24]) == (256, 256)
+    g = files["conf_sky0.gif"]
+    assert g[:6] == b"GIF87a" and g[-1:] == b";"
+    assert g[13:16] == bytes(gen_content.SKY_COLOURS[0])
+    assert len({files[f"conf_sky{i}.png"] for i in range(6)}) == 6
+
+
+# ------------------------------------------------------------------ judging
+
+def ppm(path: Path, w: int, h: int, fill, box=None, box_colour=(0, 0, 0)):
+    pix = bytearray(bytes(fill) * (w * h))
+    if box:
+        x0, y0, x1, y1 = box
+        for y in range(y0, y1):
+            for x in range(x0, x1):
+                pix[(y * w + x) * 3:(y * w + x) * 3 + 3] = bytes(box_colour)
+    path.write_bytes(f"P6\n# test\n{w} {h}\n255\n".encode() + bytes(pix))
+
+
+def test_colour_fraction(tmp_path):
+    p = tmp_path / "s.ppm"
+    ppm(p, 100, 100, (10, 10, 10), (0, 0, 50, 100), (220, 0, 0))
+    assert abs(cf.colour_fraction(p, (220, 0, 0), 30) - 0.5) < 0.02
+    assert cf.colour_fraction(p, (0, 255, 0), 30) == 0.0
+
+
+def _run(tmp_path, *, log="", trace="", console="", tasks="", shot=None):
+    (tmp_path / "gserver.log").write_text(log)
+    if trace is not None:
+        (tmp_path / "g3d.tsv").write_text(trace)
+    (tmp_path / "console.txt").write_text(console)
+    (tmp_path / "tasks.txt").write_text(tasks)
+    if shot:
+        ppm(tmp_path / "shot.ppm", 64, 48, *shot)
+    return tmp_path
+
+
+def case(cases, cid):
+    return next(c for c in cases if c.id == cid)
+
+
+def test_judge_link_pass_and_fail(cases, tmp_path):
+    c = case(cases, "C001")
+    good = _run(tmp_path, log="[ 1.0] peer guest logged in as player 1\nGraal3D: pc:1: control object delivered (seq 3)\n",
+                trace="17636\tpc:1\t24\tlinked from lab (4.20r8, 5.x); 0 other 3D players\n",
+                console="Graal has been activated!\n", tasks="Graal.exe   1234 Console\n")
+    v = cf.judge(c, "5.12", good, "Graal.exe")
+    assert v["verdict"] == "PASS", v
+    assert v["checks"]["activated"]["expected"] == "?" and v["checks"]["activated"]["observed"] is True
+    v = cf.judge(c, "4.04r2", good, "Graal.exe")
+    assert v["verdict"] == "FAIL" and set(v["mismatches"]) == {"protocol19", "protocol24"}
+
+
+def test_judge_missing_artefact_is_error(cases, tmp_path):
+    c = case(cases, "C005")
+    d = _run(tmp_path, log="file conf_red.3ds: sent\n", tasks="Graal.exe\n")
+    v = cf.judge(c, "5.12", d, "Graal.exe")
+    assert v["verdict"] == "ERROR" and v["missing"] == ["red_drawn"]
+    ppm(d / "shot.ppm", 64, 48, (255, 255, 0), (20, 20, 30, 30), (220, 0, 0))
+    assert cf.judge(c, "5.12", d, "Graal.exe")["verdict"] == "PASS"
+
+
+def test_judge_probe(cases, tmp_path):
+    c = case(cases, "C008")
+    d = _run(tmp_path, log=("Graal3D: player 1: trigger ignored (gui,ConfProbe,cf,ready,1)\n"
+                            "Graal3D: player 1: trigger ignored (gui,ConfProbe,cf,tick,5)\n"))
+    assert cf.judge(c, "5.12", d)["verdict"] == "PASS"
+    (d / "gserver.log").write_text("Graal3D: weapon3d ConfProbe: not compiled (x); sending the source\n")
+    v = cf.judge(c, "5.12", d)
+    assert v["verdict"] == "FAIL" and set(v["mismatches"]) == {"compiled", "ready", "tick"}
+
+
+def test_probe_values_take_quoted_fields():
+    log = 'trigger ignored ("gui","ConfProbe","cf","tv3_delta","6")\ntrigger ignored (gui,ConfProbe,cf,tv3_delta,7)'
+    assert cf.probe_values(log, "tv3_delta") == ["6", "7"]
+
+
+def test_no_trace_file_means_no_link(cases, tmp_path):
+    c = case(cases, "C002")
+    d = _run(tmp_path, log="[1.0] peer guest logged in as player 1\n", trace=None, tasks="Graal.exe\n")
+    assert cf.judge(c, "5.12", d, "Graal.exe")["verdict"] == "PASS"
+
+
+def test_results_round_trip(cases, tmp_path):
+    tsv = tmp_path / "results.tsv"
+    c = case(cases, "C002")
+    d = _run(tmp_path, log="logged in as player 1\n", trace=None, tasks="Graal.exe\n")
+    cf.append_result(tsv, cf.judge(c, "5.12", d, "Graal.exe"), "2026-11-26", "gs", "5.12 Windows")
+    cf.append_result(tsv, cf.judge(c, "3.153", d, "Graal.exe"), "2026-11-26", "gs", "3.153")
+    table = cf.results_table(tsv, cases)
+    row = next(line for line in table.splitlines() if line.startswith("| [C002]"))
+    assert "PASS (2026-11-26)" in row
+    assert "udp_link=no" in tsv.read_text()   # the 3.153 "?" observation is recorded
+
+
+# ------------------------------------------------------------------ runner
+
+def test_lab_example_parses_and_plans(cases):
+    conf = tomllib.loads((HERE / "lab.example.toml").read_text())
+    todo = run.plan(conf, cases, list(conf["builds"]))
+    assert {b for b, _ in todo} == {"3.153", "4.04r2", "4.20r8", "5.12", "6.037"}
+    for b, c in todo:
+        assert b in c.expect
+        assert conf["builds"][b]["vm"] in conf["client_vms"]
+    # priority 1 cases first within each build
+    for b in conf["builds"]:
+        pr = [c.priority for bb, c in todo if bb == b]
+        assert pr == sorted(pr)
+
+
+def test_vm_command_lines_stay_on_the_lab_link(tmp_path):
+    conf = tomllib.loads((HERE / "lab.example.toml").read_text())
+    lab_conf = conf["client_vms"]["win10"]
+    vm = run.Vm("w", lab_conf, tmp_path, (tmp_path / "a.sock", tmp_path / "b.sock"))
+    argv = " ".join(vm.argv())
+    assert "dgram,id=lab,local.type=unix" in argv
+    assert "user," not in argv          # the Windows client has no other NIC
+    srv = run.Vm("s", conf["server_vm"], tmp_path, (tmp_path / "b.sock", tmp_path / "a.sock"))
+    argv = " ".join(srv.argv())
+    assert "user,id=mgmt,restrict=on,hostfwd=tcp:" in argv
+
+
+def test_no_addresses_or_home_paths_in_the_suite():
+    dotted = re.compile(r"\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
+    for p in list(HERE.rglob("*")) + list(cf.SUITE.rglob("*")):
+        if p.is_file() and p.suffix in (".py", ".toml", ".md", ".sh", ".gs2", ".tsv"):
+            text = p.read_text(encoding="utf-8")
+            assert not dotted.search(text), p
+            assert not re.search(r"/home/(?!user\b|runner\b|<)[a-z]", text), p
