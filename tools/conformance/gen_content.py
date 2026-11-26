@@ -22,6 +22,11 @@ Files (all under OUTDIR):
     conf_ground.png    256x256 solid tan: the flat terrain's one material
     conf_water.png     64x64 solid deep blue: a water surface texture
     heights.info       the terrain material list (conf_ground.png)
+    conf_grass.png     256x256 solid white: a grass texture
+    heights_grass.info heights.info with conf_grass.png as a second material, so that
+                       graal3d_pushterrain pushes the grass texture too (served as heights.info)
+    conf_huge.png      a 64x64 white PNG whose header claims 100000 x 100000 (T3D-146)
+    conf_huge.3ds      the cube with UVs and a material whose texture is conf_huge.png
     conf_ter/heights<x>-<y>.dat   a flat 256 x 256 streamed terrain at height 0, 256 chunks
                        (torque/terrain-512.md: one zlib stream of the chunk bit stream each)
 
@@ -43,6 +48,7 @@ GREEN = (0, 200, 0)
 MAGENTA = (255, 0, 255)
 TAN = (200, 160, 90)
 WATER = (20, 40, 160)
+WHITE = (255, 255, 255)
 PINK = (255, 150, 200)
 # Sky faces in the order the world's sky line names them (face 0 to 5).
 SKY_COLOURS = [
@@ -221,6 +227,37 @@ def set_version(data: bytes, version: int, name: str) -> bytes:
 
 # ------------------------------------------------------------------ all
 
+def huge_png(width: int = 100000, height: int = 100000) -> bytes:
+    """A small white PNG whose IHDR claims width x height (CRC kept valid):
+    seihai-gserver-v2 refuses any PNG over 8192 a side at start-up, and one
+    claiming 30000 x 30000 crashed a real 5.12."""
+    data = bytearray(png(64, 64, WHITE))
+    struct.pack_into(">II", data, 16, width, height)
+    struct.pack_into(">I", data, 29, zlib.crc32(bytes(data[12:29])))
+    return bytes(data)
+
+
+def grass_rawobject(name: str, x: float, y: float, z: float, radius: int, lo: int, hi: int,
+                    texture: str, seed: int = 1, box=(-1024, -1024, 1024, 1024), scale: float = 3) -> str:
+    """A `rawobject DynamicGrass ...` world line carrying the same update as
+    seihai-gserver's `replicator DynamicGrass` line (src/graal3d/ground.rs,
+    Replicator::write) but with the radius as given: the server's own line
+    raises a grass radius below 8 to 8 (#218), a raw object does not. Checked
+    bit for bit against Replicator::write at seihai-gserver 6c42a37."""
+    f = ["f1", "f0", f"str:{name}", "f0", "f0", "f0",                  # name; no scale, shape, skin
+         "f1", f"f32:{x:g}", f"f32:{y:g}", f"f32:{z:g}", "f32:0", "f32:0", "f32:1", "f32:0",  # transform
+         "f0", "f0", "f0", "f0", "f0", "f0", "f0", "f0",               # sections 6 to 13 clear
+         "f1", f"f32:{x:g}", f"f32:{y:g}", f"f32:{z:g}", "f32:0", "f32:0", "f32:0", "f0",  # position, quat
+         f"u32:{seed}", "f0", f"str:{texture}", f"u8:{radius}", f"u8:{lo}", f"u8:{hi}"]
+    x0, y0, x1, y1 = box
+    for v in (x0, y0, -32767, x1, y1, 32767):                         # signed int16s
+        f += ["f1" if v < 0 else "f0", f"i15:{abs(v)}"]
+    f += [f"f32:{scale:g}"] * 6 + ["f32:0"] * 5 + ["f32:360", "f32:0"]  # scale, rotation, offset z
+    f += ["f1", "f0", "f0", "f0", "f0",                                # terrain only
+          "f0", "i7:90", "f0", "f32:1", "f32:1", "f32:1", "f0", "f0", "i7:0", "f0"]
+    return "rawobject DynamicGrass " + " ".join(f)
+
+
 def files() -> dict[str, bytes]:
     out = {
         "conf_red.3ds": cube_3ds("conf_red", RED),
@@ -236,6 +273,10 @@ def files() -> dict[str, bytes]:
         "conf_ground.png": png(256, 256, TAN),
         "conf_water.png": png(64, 64, WATER),
         "heights.info": b"conf_ground.png\n",
+        "conf_grass.png": png(256, 256, WHITE),
+        "heights_grass.info": b"conf_ground.png\nconf_grass.png\n",
+        "conf_huge.png": huge_png(),
+        "conf_huge.3ds": cube_3ds("conf_hugemat", WHITE, texture="conf_huge.png"),
     }
     for i, c in enumerate(SKY_COLOURS):
         out[f"conf_sky{i}.png"] = png(64, 64, c)

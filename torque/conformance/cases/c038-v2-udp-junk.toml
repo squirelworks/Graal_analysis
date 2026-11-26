@@ -1,0 +1,102 @@
+id = "C038"
+slug = "v2-udp-junk"
+title = "seihai-gserver-v2: junk datagrams and connections on the 3D ports mid-session leave the server and the linked client running"
+rows = ["T3D-142", "T3D-144"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+playershape conf_nomat.3ds
+spawn 0 0 1
+object ConfCube conf_red.3ds 0 4 1
+"""
+files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*"]
+
+[server]
+kind = "v2"
+
+[run]
+seconds = 70
+mid_action = "inject-junk"
+
+[[check]]
+id = "injected"
+kind = "inject"
+pattern = "^udp sent [1-9][0-9]{2,}"
+note = "guest/junk.py ran in the server VM"
+
+[[check]]
+id = "server_alive"
+kind = "inject"
+pattern = "^gserver alive"
+note = "the gs2emu process outlives the junk"
+
+[[check]]
+id = "v2_link"
+kind = "server"
+pattern = "Graal3D: \\S+ linked from"
+note = "seihai-gserver-v2 logs each 3D link"
+
+[[check]]
+id = "red_drawn"
+kind = "pixel"
+colour = [220, 0, 0]
+tol = 70
+min_fraction = 0.002
+note = "the session still draws the cube after the injection (the last screenshot is taken after it)"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+injected = true
+server_alive = true
+v2_link = true
+red_drawn = false
+alive = "?"
+source = "[lab] seihai-gserver-v2 bin/docs/graal3d.md, Hostile and broken clients: the 2026-11-26 run with two real 5.12 clients linked (junk, cut-short connects, 65,507-byte datagrams: nothing logged, CPU at most 2%); [srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.04r2"]
+injected = true
+server_alive = true
+v2_link = true
+red_drawn = false
+alive = "?"
+source = "[lab] seihai-gserver-v2 bin/docs/graal3d.md, Hostile and broken clients: the 2026-11-26 run with two real 5.12 clients linked; [srv] T3D-106: protocol 19 gets no GameObjects, only Sky and the TGE Player/Camera"
+
+[expect."4.20r8"]
+injected = true
+server_alive = true
+v2_link = true
+red_drawn = "?"
+alive = "?"
+source = "[lab] seihai-gserver-v2 bin/docs/graal3d.md, Hostile and broken clients: the 2026-11-26 run with two real 5.12 clients linked; unread for 4.20r8 on v2"
+
+[expect."5.12"]
+injected = true
+server_alive = true
+v2_link = true
+red_drawn = true
+alive = true
+source = "[lab] seihai-gserver-v2 bin/docs/graal3d.md, Hostile and broken clients: the 2026-11-26 run with two real 5.12 clients linked: junk from another address is ignored and the linked clients kept drawing"
+
+[expect."6.037"]
+injected = true
+server_alive = true
+v2_link = false
+red_drawn = false
+alive = true
+source = "[lab] seihai-gserver-v2 bin/docs/graal3d.md, Hostile and broken clients: the 2026-11-26 run with two real 5.12 clients linked (server side); T3D-121 (2D-only Quattro build, no 3D link)"
+
+[expect."6.037F"]
+injected = "?"
+server_alive = "?"
+v2_link = "?"
+red_drawn = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

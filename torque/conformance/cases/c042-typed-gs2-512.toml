@@ -1,0 +1,70 @@
+id = "C042"
+slug = "typed-gs2-512"
+title = "The typed GS2 3D calls on 5.12: arity checked, types coerced; self-mount + move3d kills the client"
+rows = ["T3D-125", "T3D-096"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfCube conf_red.3ds 0 4 1
+playershape conf_red.3ds
+spawn 0 0 1
+"""
+files = ["conf_red.3ds", "conf_sky*"]
+scripts = ["probe_typed512.gs2"]
+
+[run]
+seconds = 60
+
+[[check]]
+id = "compiled"
+kind = "server"
+pattern = "weapon3d ConfProbe: not compiled"
+
+[[check]]
+id = "mount_ok"
+kind = "probe"
+key = "mount_ok"
+value = "1"
+
+[[check]]
+id = "mount_strobj"
+kind = "probe"
+key = "mount_strobj"
+value = "1"
+
+[[check]]
+id = "mount_strnode"
+kind = "probe"
+key = "mount_strnode"
+value = "0"
+
+[[check]]
+id = "arity_msg"
+kind = "console"
+pattern = "Not enough parameters for GameObject.getdropz \\(1 needed, 0 given\\)"
+
+[[check]]
+id = "move3d_no_movetype"
+kind = "probe"
+key = "pos2"
+value = "\"0,0,1\""
+
+[[check]]
+id = "done"
+kind = "probe"
+key = "done"
+value = "1"
+
+[expect."5.12"]
+compiled = false
+mount_ok = true
+mount_strobj = true
+mount_strnode = true
+arity_msg = true
+move3d_no_movetype = true
+done = true
+source = "[lab] batch W 2026-11-26 (no movetype line). With `movetype list` the same probe kills 5.12 after mountObject(player,0) + move3d; move3d alone moves the object by its offset. torque/3d-batch-w-rows-2026-11-26.md"

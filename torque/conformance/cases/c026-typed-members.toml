@@ -129,17 +129,17 @@ source = "unread for 4.20r8"
 
 [expect."5.12"]
 compiled = false
-made = "?"
-done = "?"
-setget_position = "?"
-position_prop = "?"
-scale = "?"
-x_prop = "?"
-transform = "?"
-alpha = "?"
-nickname = "?"
-ismounted = "?"
-source = "[bin] T3D-096 types every member called here; open: T3D-150 / T3D-125 (whether they work live); C014 for new GameObject"
+made = true
+done = true
+setget_position = true
+position_prop = true
+scale = true
+x_prop = true
+transform = true
+alpha = true
+nickname = true
+ismounted = true
+source = "[lab] 5.12 runs, 2026-11-26 (seihai-gserver 5cd9c15), recorded in results.tsv: getPosition and position 2 3 4, getScale 2 2 2, getTransform 2 3 4 1 0 0 0, x 2, alpha 0.5, nickname conf, isMounted 0. [bin] T3D-096 types every member called here"
 
 [expect."6.037"]
 compiled = false
