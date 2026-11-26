@@ -135,9 +135,12 @@ one object per cell, scale 1) at that spot **[lab]**:
 | scale 2, 3 or 5 | none |
 
 Only radius adds cover, gradually, as it reaches further into the box. Count and scale change
-density and size inside cells that are already reachable, but they don't extend the reach. A
-renderer should therefore grow cover only in cells within `radius` of the avatar's cell whose
-corner lies inside the box, with no extra parameter threshold. **[lab][inf]** The earlier pair
+density and size inside cells that are already reachable, but they don't extend the reach. But
+the reach doesn't match a plain "cells within `radius` of the avatar's cell" rule. At radius 3
+the cubes sat near world (88, −93), inside the box but about 53 units from the avatar, beyond a
+three-cell reach of 24 units. Radius 2 already grew one clump, and radius 1 grew none. How the
+grid centre and the box interact is still open; one untested guess is that the centre is clamped
+into the box first. **[lab][inf]** The earlier pair
 results (radius 1 with 1 per cell and scale 3, and so on) used the wider ±256 box with the
 avatar inside it, so they grew as expected. A clean count/scale check with the avatar inside the
 box is still to be run.
