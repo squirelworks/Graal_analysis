@@ -39,4 +39,8 @@ blank (not run yet). Observed `?` values are listed under each run in
 | [C027](cases/c027-udp-flood.toml) | A 10-second flood of 2000 junk datagrams a second at the 3D port mid-session: server and client survive |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  | PASS (2026-11-26) |
 | [C028](cases/c028-cache-refetch.toml) | A shape changed on the server between two visits, the client's cache kept: refetched (pink) or stale (red)? |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  | PASS (2026-11-26) |
 | [C029](cases/c029-reconnect-churn.toml) | Five short visits in a row on one server run: each links, and the fifth still draws |  |  | PASS (2026-11-26) | PASS (2026-11-26) |  | PASS (2026-11-26) |
-| [C030](cases/c030-gameobject-formats.toml) | Defaults and value formats of the core GameObject and SceneObject members, on a client-made object and the player's own |  |  |  |  |  | PASS (2026-11-26) |
+| [C030](cases/c030-gameobject-formats.toml) | Defaults and value formats of the core GameObject and SceneObject members, on a client-made object and the player's own |  |  |  | PASS (2026-11-26) |  | PASS (2026-11-26) |
+| [C031](cases/c031-cover-origin-cell.toml) | Ground cover with the avatar spawned in grid cell (0, 0): the origin-cell dead spot, nothing grows |  |  |  |  |  |  |
+| [C032](cases/c032-cover-follows-avatar.toml) | Ground cover around an avatar spawned away from the origin cell and the replicator: it grows around the avatar |  |  |  |  |  |  |
+| [C033](cases/c033-cover-outside-box-r3.toml) | Avatar outside the cover box, radius 3: a clump grows where the radius reaches back into the box |  |  |  |  |  |  |
+| [C034](cases/c034-cover-outside-box-r1.toml) | Avatar outside the cover box, radius 1: nothing grows |  |  |  |  |  |  |
