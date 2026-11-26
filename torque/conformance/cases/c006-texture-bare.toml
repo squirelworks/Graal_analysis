@@ -64,3 +64,10 @@ asks_bare = true
 asks_png = false
 green_drawn = "?"
 source = "[lab] T3D-011 (Linux 4.20r6: plain.png asked as plain); .3ds textures drew white on that VM's software GL (torque/lab-2026-11-25-g3d-worlds.md)"
+
+[expect."6.037F"]
+asks_bare = "?"
+asks_png = "?"
+green_drawn = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

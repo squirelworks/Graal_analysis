@@ -16,7 +16,7 @@ import conformance as cf  # noqa: E402
 import gen_content  # noqa: E402
 import run  # noqa: E402
 
-KNOWN_EXTRA_BUILDS = {"4.20r6L"}
+KNOWN_EXTRA_BUILDS = {"4.20r6L", "6.037F"}
 
 
 @pytest.fixture(scope="module")
@@ -313,6 +313,56 @@ def test_vm_command_lines_stay_on_the_lab_link(tmp_path):
     srv2 = run.Vm("s", conf["server_vm"], tmp_path, (tmp_path / "b.sock", tmp_path / "a.sock"),
                   (tmp_path / "d.sock", tmp_path / "c.sock"))
     assert "netdev=lab2,mac=" in " ".join(srv2.argv())
+
+
+def test_png_to_ppm_unfilters(tmp_path):
+    import zlib as z
+    w, h = 3, 2
+    rows = [bytes([1, 10, 20, 30, 255, 5, 5, 5, 0, 1, 1, 1, 0]),       # Sub, RGBA
+            bytes([2, 1, 1, 1, 0, 2, 2, 2, 0, 3, 3, 3, 0])]            # Up
+    def chunk(k, b):
+        return struct.pack(">I", len(b)) + k + b + struct.pack(">I", z.crc32(k + b))
+    png = (b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, 6, 0, 0, 0))
+           + chunk(b"IDAT", z.compress(b"".join(rows))) + chunk(b"IEND", b""))
+    ppm = run.png_to_ppm(png)
+    p = tmp_path / "s.ppm"
+    p.write_bytes(ppm)
+    w2, h2, pix = cf.read_ppm(p)
+    assert (w2, h2) == (3, 2)
+    assert pix[:9] == bytes([10, 20, 30, 15, 25, 35, 16, 26, 36])
+    assert pix[9:] == bytes([11, 21, 31, 17, 27, 37, 19, 29, 39])
+
+
+def test_virtualbox_lab_plans_and_clones_stay_on_the_internal_network(tmp_path, cases):
+    conf = tomllib.loads((HERE / "lab.example.toml").read_text())
+    conf["hypervisor"] = "virtualbox"
+    conf["work"] = str(tmp_path)
+    for v in [conf["server_vm"]] + list(conf["client_vms"].values()):
+        v.update(vbox_base="base", vbox_snapshot="snap")
+    lab = run.Lab(conf, tmp_path)
+    assert isinstance(lab.server, run.VboxVm)
+    assert all(isinstance(v, run.VboxVm) for v in lab.clients.values())
+    calls = []
+
+    class FakeVb(run.VBox):
+        def __call__(self, *args, check=True, timeout=600):
+            calls.append([str(a) for a in args])
+            out = b'Forwarding(0)="base-ssh,tcp,,2224,,22"\n' if args[0] == "showvminfo" else b""
+            return run.subprocess.CompletedProcess(args, 0, out, b"")
+    vb = FakeVb(conf["virtualbox"])
+    for vm in [lab.server, lab.clients["win10"]]:
+        vm.vb = vb
+        calls.clear()
+        vm.fresh_overlay()
+        clone = next(c for c in calls if c[0] == "clonevm")
+        assert clone[1:4] == ["base", "--snapshot", "snap"] and "link" in clone
+        assert ["modifyvm", vm.clone, "--natpf1", "delete", "base-ssh"] in calls
+        mod = " ".join(next(c for c in calls if c[0] == "modifyvm" and "--memory" in c))
+        if vm is lab.server:
+            assert "--nic1 nat --natpf1 conf-ssh,tcp," in mod and "--nic2 intnet --intnet2 conf-lab" in mod
+        else:
+            assert "--nic1 intnet --intnet1 conf-lab" in mod and "--nic2 none" in mod
+            assert "nat" not in mod.replace("--nic2 none", "")
 
 
 def test_no_addresses_or_home_paths_in_the_suite():
