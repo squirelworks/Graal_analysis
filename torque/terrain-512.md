@@ -376,6 +376,32 @@ logs are kept with the owner's lab material. **[lab]**
 No chunk or ghost case crashed the client; only the `loadGreyscale` cases above did. Corrections this run made to the static read: `heights.info` is
 one name per line; the folder-name escape; the canonical re-encoding before the stamp.
 
+### How the terrain is drawn (5.12, Mesa)
+
+Measured on the real 5.12 client under a full OpenGL renderer (Mesa llvmpipe), against the Seihai
+gserver with chunks built for each case, from overhead shots at square size 8 unless noted
+**[lab]**:
+
+- **Material edges are soft.** A hard switch from a red to a blue material between two columns
+  fades linearly over one square: the 10–90 % change takes about 0.76 squares, on both edges of
+  the strip. The 50 % line sits half a square before the boundary. So each square's material
+  seems to sit on its low corner and blend toward the next corner **[inf]**.
+- **Blend alpha weights by alpha/16.** Squares with the blend flag, the secondary on the other
+  material and alpha 8 draw as an even 50/50 mix (107, 0, 107 against pure 214), perfectly
+  uniform across the patch.
+- **One texture repeat covers 8 squares** at both square size 8 (measured 63.4 units) and square
+  size 2 (15.7 units). The texture tiles with the squares, not with world units.
+- **The texture is flipped on the ground.** Its columns run toward +x but its rows run toward
+  +y, so an arrow drawn pointing up in the image points to world −y. Seen from above, the image
+  is mirrored top-to-bottom.
+- **Slope shading is switched on by a `Sun` and fixed in direction.** With a `Sun` object,
+  faces looking −x and −y are bright (red 247), faces looking +x and +y are dark (156), and flat
+  ground is 214. A sun travelling +x and one travelling +y give pixel-identical shots, so the
+  light does not follow the sun; it always comes from the −x/−y diagonal, roughly 25° up
+  (estimate). With no `Sun` object there is no shading at all, and everything draws at one colour (247).
+- A newly fetched texture list is applied only on the client's next load, so a first visit
+  that also fetches `heights.info` draws white (see the next section).
+
 ### First-visit terrain texture depends on when the server sends the textures
 
 By default the client fetches only `heights.info` on the first visit and asks for each listed
