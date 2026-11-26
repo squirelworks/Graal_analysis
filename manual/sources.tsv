@@ -1010,3 +1010,4 @@ torque/3d-player-identity-420r6-2026-11-25.md	pending		10.3	3D player keeps the 
 torque/3d-weather-404r2-2026-11-25.md	pending		10.3	Precipitation/Lightning are 4.04r2-only client classes; our server has no emit path (T3D-049), lab+bin; to carry into §10
 torque/3d-audio-particles-404r2-2026-11-25.md	pending		10.3	3D audio + networked particles are 4.04r2-only and unplaceable; GS2 sound runs, script particles need a definition (T3D-061), lab+bin; to carry into §10
 torque/3d-dll-deadcode-vs-graal-2026-11-25.md	pending		10.3	5.12 DLL: stock-TGE content removed or dead, drawable frame + Graal additions live; boundary at the networked-content-class line (T3D-103), bin; to carry into §10
+torque/3d-texture-size-limit-420r6-2026-11-26.md	pending		10.3	5.12-class client draws textures to 8192px, crashes silently past ~10240; ceiling is 32-bit client memory not GL (T3D-118), lab; to carry into §10
