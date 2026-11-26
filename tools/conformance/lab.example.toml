@@ -154,7 +154,7 @@ screenshot = "xwd -root -display :1 | xwdtopnm 2>/dev/null"
 # server_ip, client_ip, static), so the server VM needs no root. The server
 # VM's management NIC is VirtualBox NAT with one SSH forward on the host
 # loopback. A Windows client is driven by guest control and the guest's own
-# desktop agent (launch, mclick, killname); at boot an elevated prep script
+# desktop agent (launch, killname) and VirtualBox's own mouse; at boot an elevated prep script
 # (Win+R, accepted UAC) runs the guest's own set-up commands (`elevated`)
 # and points the hosts file's loopback lines at the server VM.
 [virtualbox]
@@ -184,4 +184,7 @@ guest_password_file = '<lab-home>\private\<guest password file>'
 #               host without the memory for a second client VM; one
 #               screenshot then serves both clients' screenshot checks)
 # A build's `vbox_postlaunch` steps: ["sleep", s], ["click", x, y] (guest
-# pixels), ["type", text], ["enter"], ["agent", line].
+# pixels, VirtualBox's own mouse through its COM API), ["type", text],
+# ["enter"], ["agent", line]. E.g. a 4.x start form:
+#   vbox_postlaunch = [["sleep", 14], ["click", <password x>, <password y>],
+#                      ["type", "<any password>"], ["click", <Start x>, <Start y>]]

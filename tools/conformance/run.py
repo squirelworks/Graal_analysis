@@ -487,6 +487,20 @@ class VboxVm(Vm):
     def type(self, text: str):
         self.vb("controlvm", self.clone, "keyboardputstring", text, check=False)
 
+    MOUSE = """$v = New-Object -ComObject VirtualBox.VirtualBox; $s = New-Object -ComObject VirtualBox.Session
+$v.FindMachine('{vm}').LockMachine($s, 1)
+try {{ $m = $s.Console.Mouse; foreach ($b in 0, 1, 0) {{ $m.PutMouseEventAbsolute({x}, {y}, 0, 0, $b); Start-Sleep -Milliseconds 120 }} }}
+finally {{ $s.UnlockMachine() }}"""
+
+    def click(self, x: int, y: int):
+        """A left click at guest screen pixel (x, y) through VirtualBox's own
+        mouse (the VirtualBox COM API: VBoxManage has no mouse command, and
+        mouse_event inside the guest does not reach its windows)."""
+        ps = self.MOUSE.format(vm=self.clone, x=int(x), y=int(y))
+        enc = base64.b64encode(ps.encode("utf-16-le")).decode()
+        subprocess.run(["powershell", "-NoProfile", "-NonInteractive", "-EncodedCommand", enc],
+                       capture_output=True, timeout=60)
+
     def win_run(self, line: str, elevated=False):
         self.keys("esc")          # close a leftover dialog first
         time.sleep(0.5)
@@ -520,11 +534,14 @@ class VboxVm(Vm):
             # a "wins" command is taken (cmd.txt removed) only by a running agent
             return "gone" in self.gx(f"Set-Content -Encoding utf8 {d}\\cmd.txt 'wins'; Start-Sleep 5; "
                                      f"if (Test-Path {d}\\cmd.txt) {{ Remove-Item {d}\\cmd.txt; 'left' }} else {{ 'gone' }}")
-        for _ in range(6):
+        # Start it once and give it time: a second copy would run every
+        # command twice (two launches of the client).
+        for _ in range(3):
             if agent_alive():
                 break
             self.win_run(c.get("agent_start", d + "\\a.cmd"))
-            time.sleep(10)
+            if any(agent_alive() for _ in range(6)):
+                break
         else:
             raise RuntimeError(f"{self.name}: the desktop agent did not start")
         server = self.server_ip
@@ -774,15 +791,15 @@ def run_windows(lab: Lab, vm: Vm, build: dict, case: cf.Case, rundir: Path,
 
 def vbox_steps(vm: VboxVm, seq: list, subst: dict):
     """UI steps on a VirtualBox Windows guest: ["sleep", s], ["click", x, y]
-    (the guest agent's mclick, guest screen pixels), ["type", text],
-    ["enter"], ["agent", line]."""
+    (VirtualBox's mouse, guest screen pixels), ["type", text], ["enter"],
+    ["agent", line]."""
     for st in seq:
         op, *a = st
         a = [x.format(**subst) if isinstance(x, str) else x for x in a]
         if op == "sleep":
             time.sleep(float(a[0]))
         elif op == "click":
-            vm.agent(f"mclick {int(a[0])} {int(a[1])}")
+            vm.click(int(a[0]), int(a[1]))
         elif op == "type":
             vm.type(a[0])
         elif op == "enter":
@@ -824,19 +841,22 @@ def run_windows_vbox(lab: Lab, vm: VboxVm, build: dict, case: cf.Case, rundir: P
 
 
 def vbox_launch(vm: VboxVm, d: str, exe: str) -> int:
-    """Launch through the desktop agent; its reply names the new process id.
-    When the reply comes too late to be read, the one new process of that
-    name is taken."""
-    ids = f"Get-Process {exe.rsplit('.', 1)[0]} -EA 0 | % Id"
-    before = set(vm.gx(ids).split())
-    m = re.search(r"pid (\d+)", vm.agent(f"launch {d} {exe}"))
-    if m:
-        return int(m.group(1))
-    for _ in range(10):
-        new = set(vm.gx(ids).split()) - before
-        if len(new) == 1:
-            return int(new.pop())
+    """Launch through the desktop agent and return the new process id, which
+    the agent writes to its log (agent.txt) as `launched <path> pid N`. Its
+    reply to the command can come too late to be read, so the log itself
+    is read until the line is there."""
+    log_path = vm.conf.get("agent", r"C:\Users\Public\tg") + "\\agent.txt"
+    count = f"@(Get-Content {log_path} -EA 0).Count"
+    seen = int((vm.gx(count).strip() or "0").splitlines()[-1])
+    vm.agent(f"launch {d} {exe}")
+    want = re.compile(r"launched " + re.escape(f"{d}\\{exe}") + r" pid (\d+)", re.I)
+    for _ in range(20):
+        new = vm.gx(f"Get-Content {log_path} -EA 0 | Select-Object -Skip {seen}")
+        found = want.findall(new)
+        if found:
+            return int(found[-1])
         time.sleep(1)
+    log(f"{vm.name}: no pid for {d}\\{exe} in the agent log")
     return 0
 
 
@@ -871,9 +891,12 @@ def vbox_pair_one_guest(lab: Lab, vm: VboxVm, build: dict, case: cf.Case, rundir
     gone = ",".join(f"'{d}\\{x}'" for d in (d1, d2)
                     for x in build.get("console", ["console.log"]) + build.get("clean", []))
     vm.gx(f"Remove-Item {gone} -Recurse -Force -EA 0")
+    post = build.get("vbox_postlaunch", [])
     pid1 = vbox_launch(vm, d1, exe)
+    vbox_steps(vm, post, {"dir": d1, "exe": exe})
     time.sleep(float(build.get("pair_delay", 25)))
     pid2 = vbox_launch(vm, d2, exe)
+    vbox_steps(vm, post, {"dir": d2, "exe": exe})
     t0 = time.time()
     every = float(lab.conf.get("shot_every", 10))
     while time.time() - t0 < case.seconds:
