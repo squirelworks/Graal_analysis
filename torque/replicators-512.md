@@ -120,6 +120,17 @@ cover grows where the avatar actually is, which in these tests was always the sp
 allows only the one cell whose corner is at the world origin; a server wanting cover over an area
 must send that area as the box, in world units. **[bin]**
 
+Growth also has a lower bound on the parameters, separate from position. A minimal
+`DynamicShapeReplicator` — radius 1 cell, one object per cell, shape scale 1 — grows **no** visible
+cover anywhere: nothing at the avatar spawn (128, −128) and nothing at (4, 4), with the box at
+z ±10 and again at z ±100, leaving only the replicator's own marker shape. It is not a
+too-small-to-see artifact: forcing that same minimal line to scale 8 still grows only the marker.
+Yet relaxing any single one of those three fields against a baseline that does grow (radius 4,
+5 per cell, scale 3 at 128, −128) still grows — radius 1 alone, one-per-cell alone, scale 1 alone,
+and a wide box all still produce a carpet; only the three low values **together** yield nothing. So
+a renderer must not predict cubes for the all-minimum combination: the real client draws none,
+while the spawn position and any single relaxed field do draw. **[lab]**
+
 ## Live
 
 The real 5.12 client (GDI renderer) accepted this layout for all three classes: each ghost was
@@ -169,13 +180,19 @@ denser at 50 per cell than at 5. Under the GDI renderer they showed untextured. 
 texture that is almost all transparent drew nothing visible. Both textures were already cached,
 and grass never asked the server for its texture. When the server pushes the grass textures
 (`graal3dpushgrass`, on by default), the texture arrives over TCP right after the 3D link,
-quietly (no server log line); without it only `heights.info` is sent. Either way grass does not
+quietly (no server log line); without it only `heights.info` is sent. With this timing grass does not
 draw in the very first frame (that frame is untextured), only on a later visit once the texture
 is cached. Holding the grass ghosts back by up to 10 s after the rest of the world
 (`graal3dgrassdelay`) does not change this, which points at the client building its grass once at
-mission load **[inf]**. **[lab]** Under a full OpenGL renderer (Mesa llvmpipe)
+mission load **[inf]**. **[lab]** But when the server pushes the grass texture one channel earlier,
+over the TCP link at login rather than at the 3D link, grass **does** draw on the very first visit:
+on a fresh cache the texture lands in the client's cache before the 3D mission loads (it is not
+listed among the 3D file downloads), and the first frame then shows the full grass field that the
+later-push timing left blank. The terrain under the camera is still untextured white on that first
+frame; only the grass is added. So pre-loading the texture before mission load lets the one grass
+pass at mission load draw it. **[lab]** Under a full OpenGL renderer (Mesa llvmpipe)
 the same runs draw a lit white patch with `lp_white.png`, and the nearly transparent texture
-draws as soft round glowing spots, so the empty GDI result was the renderer. A ground-level close-up shows the grass pieces are flat-to-tilted quads lying on the ground at per-piece random yaw and tilt (their top faces foreshorten), not upright or camera-facing cards; each is on the order of a metre across at scale 1, and raising the scale enlarges the quad in both width and height. **[lab]**
+draws as soft round glowing spots, so the empty GDI result was the renderer. A ground-level close-up shows the grass pieces are flat-to-tilted quads lying on the ground at per-piece random yaw and tilt (their top faces foreshorten), not upright or camera-facing cards; each is on the order of a metre across at scale 1, and raising the scale enlarges the quad in both width and height. **[lab]** An overhead shot with a 1-unit reference cube as a ruler confirms this: from straight above each piece is a filled rotated square (a diamond), not the thin line a vertical card would show edge-on, so the cards lie flat on the ground. A scale-2 piece measures about 1.8 × 1.55 units across its bounding box; since the square is rotated, its true edge is about that over √2, roughly 1.25 units at scale 2, so near 0.6 units at scale 1. The piece is roughly square (width ≈ height), not a wider-than-tall blade, and larger than earlier guessed. **[lab]** The per-piece orientation is an independent random, not driven by `shaperotatemin`/`shaperotatemax`: a patch with the rotation range pinned to 0 and one with the default 0–360 are essentially identical (about 0.7% of pixels differ, edge noise), with the cards fanned to varied yaw in both. So grass carries its own orientation and ignores the replicator's `shaperotate` range. **[lab]**
 
 On 4.20r8 the replicator ghost is created without a crash or error, but with the camera kept
 250 units up (to avoid 4.20r8's terrain crash) no cover was in frame. With the camera pitched down over the

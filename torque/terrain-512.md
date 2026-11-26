@@ -374,3 +374,25 @@ logs are kept with the owner's lab material. **[lab]**
 
 No chunk or ghost case crashed the client; only the `loadGreyscale` cases above did. Corrections this run made to the static read: `heights.info` is
 one name per line; the folder-name escape; the canonical re-encoding before the stamp.
+
+### First-visit terrain texture depends on when the server sends the textures
+
+By default the client fetches only `heights.info` on the first visit and asks for each listed
+terrain texture (`Missing terrain texture`) only on the second visit, so a first visit shows
+untextured white ground (the rows above). A server can close that gap by pushing the terrain
+textures one channel earlier, over the TCP link at login, the same way the grass textures are
+pushed. Tested with the Seihai gserver's `graal3dpushterrain` flag (seihai-gserver-v2 PR #176) on
+a native `terrain` world of rolling hills whose `heights.info` lists four textures (water, sand,
+grass, rock), each run on a freshly wiped cache **[lab]**:
+
+| `graal3dpushterrain` | first-frame terrain | where the terrain files arrive |
+|---|---|---|
+| on | **textured** on the very first frame | `heights.info` and all four textures download and log **before** `MissionStartPhase1` (over the TCP link at login), so they are in the cache before the mission loads |
+| off (control) | **white** on the first frame | only `heights.info` arrives, and **after** `MissionStartPhase1` (at 3D-link/mission time); the terrain textures are not delivered on the first visit at all |
+
+So a first visit draws textured terrain only when the textures are already cached before mission
+load; pushing them at TCP login achieves that, matching the grass first-visit result in
+[`replicators-512.md`](replicators-512.md). The link-time push still happens as well, so a client
+that reconnects is unaffected. **[lab]** (Lab-world note: a world that serves two `heights.info`,
+one at `world/global` and one at `world/<terrain>`, makes the client take `world/global`'s; a lab
+terrain world should keep a single `heights.info`.)
