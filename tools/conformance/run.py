@@ -880,6 +880,23 @@ def vbox_logs(vm: VboxVm, build: dict, d: str, rundir: Path):
         (rundir / "console.txt").write_text(text, encoding="utf-8")
 
 
+def vbox_desktop_cmd(vm: VboxVm, lines: list[str]):
+    """Run cmd lines as the desktop user (through the agent), e.g. to give
+    the second client of a pair its own account where both copies of a
+    build read one per-user registry key."""
+    if not lines:
+        return
+    body = "@echo off\r\n" + "\r\n".join(lines) + "\r\necho done> C:\\Users\\Public\\conf-desk.ok\r\n"
+    vm.gx("Remove-Item C:\\Users\\Public\\conf-desk.ok -EA 0; "
+          f"[IO.File]::WriteAllText('C:\\Users\\Public\\conf-desk.cmd', \"{body}\")")
+    vm.agent(r"launch C:\Users\Public conf-desk.cmd")
+    for _ in range(20):
+        if "done" in vm.gx(r"Get-Content C:\Users\Public\conf-desk.ok -EA 0"):
+            return
+        time.sleep(1)
+    log(f"{vm.name}: desktop command did not finish")
+
+
 def vbox_pair_one_guest(lab: Lab, vm: VboxVm, build: dict, case: cf.Case, rundir: Path):
     """A two-client case with both clients in one guest (`pair_dir`: a second
     copy of the build there), for a host without the memory for a second
@@ -895,8 +912,10 @@ def vbox_pair_one_guest(lab: Lab, vm: VboxVm, build: dict, case: cf.Case, rundir
     pid1 = vbox_launch(vm, d1, exe)
     vbox_steps(vm, post, {"dir": d1, "exe": exe})
     time.sleep(float(build.get("pair_delay", 25)))
+    vbox_desktop_cmd(vm, build.get("pair_before", []))
     pid2 = vbox_launch(vm, d2, exe)
     vbox_steps(vm, post, {"dir": d2, "exe": exe})
+    vbox_desktop_cmd(vm, build.get("pair_after", []))
     t0 = time.time()
     every = float(lab.conf.get("shot_every", 10))
     while time.time() - t0 < case.seconds:

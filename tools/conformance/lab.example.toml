@@ -183,6 +183,10 @@ guest_password_file = '<lab-home>\private\<guest password file>'
 #               (a two-client case with both clients in one guest, for a
 #               host without the memory for a second client VM; one
 #               screenshot then serves both clients' screenshot checks)
+#               pair_before = ['<cmd line run as the desktop user before client 2>']
+#               pair_after = ['<cmd line run after client 2 has started>']
+#               (e.g. reg add lines giving client 2 its own account where
+#               both copies read one per-user registry key, as 4.x does)
 # A build's `vbox_postlaunch` steps: ["sleep", s], ["click", x, y] (guest
 # pixels, VirtualBox's own mouse through its COM API), ["type", text],
 # ["enter"], ["agent", line]. E.g. a 4.x start form:
