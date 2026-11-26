@@ -131,15 +131,15 @@ source = "unread for 4.20r8"
 compiled = false
 made = true
 done = true
-setget_position = "?"
-position_prop = "?"
-scale = "?"
+setget_position = true
+position_prop = true
+scale = true
 x_prop = true
-transform = "?"
+transform = true
 alpha = true
 nickname = true
 ismounted = true
-source = "[lab] two 5.12 runs, 2026-11-26 (seihai-gserver 5cd9c15): made, done, x 2, alpha 0.5, nickname conf, isMounted 0. getPosition, position, getScale and getTransform began with 2, but the judge then kept only a vector's first word, so the full vectors are recorded on the next run. [bin] T3D-096 types every member called here"
+source = "[lab] 5.12 runs, 2026-11-26 (seihai-gserver 5cd9c15), recorded in results.tsv: getPosition and position 2 3 4, getScale 2 2 2, getTransform 2 3 4 1 0 0 0, x 2, alpha 0.5, nickname conf, isMounted 0. [bin] T3D-096 types every member called here"
 
 [expect."6.037"]
 compiled = false
