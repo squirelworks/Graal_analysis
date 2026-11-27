@@ -47,6 +47,15 @@ min_fraction = 0.02
 note = "the lower half of the final screenshot differs from C046's (the same world, spawn and camera without the grass line) on at least 2% of its pixels; colour-blind, so untextured or textured grass both count"
 
 [[check]]
+id = "grass_magenta"
+kind = "hue"
+colour = [255, 0, 255]
+region = [0.0, 0.5, 1.0, 1.0]
+tol = 40
+min_fraction = 0.02
+note = "at least 2% of the lower half is magenta at any brightness: the grass drawn with its conf_grass.png texture, not untextured white (6.037F before graal-client-repro #473)"
+
+[[check]]
 id = "alive"
 kind = "alive"
 
@@ -54,6 +63,7 @@ kind = "alive"
 raw_ghosted = false
 floor_noted = false
 grass_drawn = false
+grass_magenta = false
 alive = "?"
 source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 4, sent as a rawobject, which the server does not floor; a raw object goes only to builds whose class table has DynamicGrass, and protocol 19's has none"
 
@@ -61,6 +71,7 @@ source = "[srv] gen_content.grass_rawobject: the replicator line's update bit fo
 raw_ghosted = false
 floor_noted = false
 grass_drawn = false
+grass_magenta = false
 alive = "?"
 source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 4, sent as a rawobject, which the server does not floor; a raw object goes only to builds whose class table has DynamicGrass, and protocol 19's has none"
 
@@ -68,6 +79,7 @@ source = "[srv] gen_content.grass_rawobject: the replicator line's update bit fo
 raw_ghosted = "?"
 floor_noted = false
 grass_drawn = false
+grass_magenta = false
 alive = "?"
 source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 4, sent as a rawobject, which the server does not floor; [lab] torque/replicators-512.md: 4.20r8 takes a replicator ghost but grows no cover (GDI and Mesa)"
 
@@ -75,13 +87,15 @@ source = "[srv] gen_content.grass_rawobject: the replicator line's update bit fo
 raw_ghosted = true
 floor_noted = false
 grass_drawn = false
+grass_magenta = "?"
 alive = true
-source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 4, sent as a rawobject, which the server does not floor; [lab] seihai-gserver #218: a 5.12 builds no grass quads at a radius under 8 cells (radius 4 drew nothing)"
+source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 4, sent as a rawobject, which the server does not floor; [lab] seihai-gserver #218: a 5.12 builds no grass quads at a radius under 8 cells (radius 4 drew nothing); [lab] graal-client-repro #472 lab rerun (Win10 VM, seihai-gserver 833faba, fresh cache): the real 5.12 asked for conf_grass.png and drew the grass magenta"
 
 [expect."6.037"]
 raw_ghosted = false
 floor_noted = false
 grass_drawn = false
+grass_magenta = false
 alive = true
 source = "T3D-121 (2D-only Quattro build, no 3D link)"
 
@@ -89,6 +103,7 @@ source = "T3D-121 (2D-only Quattro build, no 3D link)"
 raw_ghosted = "?"
 floor_noted = false
 grass_drawn = "?"
+grass_magenta = "?"
 alive = "?"
-source = "unread: first live run of our Frankenstein build (T3D-152)"
+source = "unread: first live run of our Frankenstein build (T3D-152); [lab] graal-client-repro #472 lab rerun: grass grew but untextured white, conf_grass.png never asked for; #473 asks for the grass texture when missing"
 note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

@@ -49,7 +49,7 @@ import gen_content  # noqa: E402
 # The five builds the suite is written for, in table order. A case may name
 # others (e.g. "4.20r6L", the Linux 4.20 G3D22126); they get their own column.
 CORE_BUILDS = ["3.153", "4.04r2", "4.20r8", "5.12", "6.037"]
-CHECK_KINDS = {"trace", "server", "console", "files", "alive", "probe", "pixel", "blobs", "inject", "diff"}
+CHECK_KINDS = {"trace", "server", "console", "files", "alive", "probe", "pixel", "blobs", "inject", "diff", "hue"}
 MID_ACTIONS = ("", "stop-server", "inject-junk", "inject-flood")
 # [server] kind: which server runs the case. seihai: seihai-gserver (the default);
 # v2: seihai-gserver-v2, for its own 3D defences (lab.toml gserver_v2_*).
@@ -134,6 +134,8 @@ def load_case(path: Path) -> Case:
                 min_pixels=int(c.get("min_pixels", 40)), count=int(c.get("count", 1)),
                 client=int(c.get("client", 1)), against=c.get("against", ""),
                 region=tuple(float(v) for v in c.get("region", (0.0, 0.0, 1.0, 1.0)))))
+            if c["kind"] == "hue" and (len(checks[-1].colour) != 3 or len(checks[-1].region) != 4):
+                raise CaseError(f"{path.name}: check {c['id']}: a hue check needs a colour and a 4-value region")
             if c["kind"] == "diff" and (not checks[-1].against or len(checks[-1].region) != 4):
                 raise CaseError(f"{path.name}: check {c['id']}: a diff check needs against and a 4-value region")
         ids = [c.id for c in checks]
@@ -325,6 +327,33 @@ def colour_fraction(path: Path, rgb: tuple, tol: int) -> float:
     return hit / n if n else 0.0
 
 
+def _normalised(rgb: tuple) -> tuple:
+    top = max(rgb)
+    return tuple(c * 255 // top for c in rgb) if top else (0, 0, 0)
+
+
+def hue_fraction(path: Path, rgb: tuple, tol: int, region: tuple, floor: int = 32) -> float:
+    """The share of sampled pixels inside `region` whose colour, scaled so its
+    brightest channel is 255, is within tol of `rgb` scaled the same way: the
+    colour whatever its lighting, so lit or shaded magenta counts and white,
+    grey or tan does not. Pixels darker than `floor` in every channel are
+    left out of the match (black has no colour) but still counted."""
+    w, h, pix = read_ppm(path)
+    x0, y0, x1, y1 = (int(region[0] * w), int(region[1] * h), int(region[2] * w), int(region[3] * h))
+    want = _normalised(rgb)
+    hit = n = 0
+    for y in range(max(0, y0), min(h, y1), 2):
+        row = y * w * 3
+        for x in range(max(0, x0), min(w, x1), 2):
+            px = tuple(pix[row + 3 * x:row + 3 * x + 3])
+            n += 1
+            if max(px) < floor:
+                continue
+            if all(abs(a - b) <= tol for a, b in zip(_normalised(px), want)):
+                hit += 1
+    return hit / n if n else 0.0
+
+
 def diff_fraction(path: Path, base: Path, tol: int, region: tuple) -> float:
     """The share of sampled pixels inside `region` (fractions of the screen)
     where any channel differs from the baseline screenshot by more than tol."""
@@ -399,7 +428,7 @@ def colour_blobs(path: Path, rgb: tuple, tol: int, min_pixels: int) -> list[int]
 
 def observe(check: Check, rundir: Path, exe: str = "") -> tuple[bool | None, str]:
     """(value, detail). None: the artefact the check reads is missing."""
-    if check.client == 2 and check.kind in ("console", "files", "alive", "pixel", "blobs", "diff"):
+    if check.client == 2 and check.kind in ("console", "files", "alive", "pixel", "blobs", "diff", "hue"):
         rundir = rundir / "c2"   # the server log and trace are shared
     if check.kind == "diff":
         shot = rundir / "shot.ppm"
@@ -422,6 +451,15 @@ def observe(check: Check, rundir: Path, exe: str = "") -> tuple[bool | None, str
             return None, "no screenshot"
         sizes = colour_blobs(shot, check.colour, check.tol, check.min_pixels)
         return len(sizes) >= check.count, f"{len(sizes)} regions of {check.colour} (sizes {sizes[:6]})"
+    if check.kind == "hue":
+        shot = rundir / "shot.ppm"
+        if not shot.exists():
+            return None, "no screenshot"
+        try:
+            f = hue_fraction(shot, check.colour, check.tol, check.region)
+        except ValueError as e:
+            return None, str(e)
+        return f >= check.min_fraction, f"{f:.4f} of {check.region} has the hue of {check.colour} (within {check.tol})"
     if check.kind == "pixel":
         shot = rundir / "shot.ppm"
         if not shot.exists():

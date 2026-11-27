@@ -81,6 +81,7 @@ Check kinds, each reading one artefact of the run:
 | `alive` | the guest's process list just before the client is closed | the client's exe is still running (no crash) |
 | `pixel` | the last screenshot | at least `min_fraction` of the screen is within `tol` of `colour` |
 | `blobs` | the last screenshot | at least `count` separate regions of `colour`, each of `min_pixels` or more (e.g. two players' cubes) |
+| `hue` | the last screenshot | at least `min_fraction` of the sampled pixels in `region` have the hue of `colour`: each pixel and `colour` are scaled so their brightest channel is 255, then compared within `tol` per channel, so lit or shaded colour counts and white, grey or tan does not (pixels under 32 in every channel never match) |
 | `diff` | the last screenshot and the `against` case's, from the same batch and build | at least `min_fraction` of the pixels in `region` (x0, y0, x1, y1 as fractions) differ by more than `tol` in some channel; the runner runs the baseline case first |
 
 A text check (`trace`, `server`, `console`, `files`, `inject`) with `count = N`
