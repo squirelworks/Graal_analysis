@@ -1,0 +1,29 @@
+// Conformance probe (T3D-030, T3D-087): hold the camera outside the front of
+// our generated house interior (world 0 2 2, looking +y at the front wall 10
+// units away) so the screenshot shows what the client draws from the outside
+// zone. The house GameObject stands at 0 12 0 (tools/dif/difgen.py house()).
+//#CLIENTSIDE
+function onCreated() {
+  this.n = 0;
+  setTimer(1);
+}
+function onTimeout() {
+  temp.cam = ServerConnection.camera;
+  if (temp.cam == NULL) {
+    cf("cam", "0");
+  } else {
+    temp.cam.cameramode = "free";
+    temp.cam.position = "0 2 2";
+    temp.cam.eulerrotation = "0 0 0";
+    temp.cam.updatePosition();
+    this.n++;
+    if (this.n == 8) {
+      cf("cam", "1");
+      cf("cam_pos", temp.cam.position);
+    }
+  }
+  setTimer(0.25);
+}
+function cf(k, v) {
+  triggerserver("gui", "ConfProbe", "cf", k, v);
+}

@@ -1,0 +1,170 @@
+id = "C054"
+slug = "dif-house-collision"
+title = "Client collision against our generated interior: castray at its walls, through its doors and onto roof and floor; getdropz over the roof; isInInterior inside and outside"
+rows = ["T3D-030", "T3D-087"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfHouse conf_dif_house.dif 0 12 0
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_nomat.3ds", "conf_sky*", "conf_dif_out.png", "conf_dif_floor.png", "conf_dif_a.png", "conf_dif_b.png", "conf_dif_house.dif"]
+scripts = ["probe_difcollide.gs2"]
+
+[run]
+seconds = 50
+
+[[check]]
+id = "compiled"
+kind = "server"
+pattern = "weapon3d ConfProbe: not compiled"
+
+[[check]]
+id = "asks_dif"
+kind = "server"
+pattern = "file conf_dif_house\\.dif: "
+
+[[check]]
+id = "asks_tex"
+kind = "server"
+pattern = "file conf_dif_a"
+note = "a texture of the interior is asked for (with or without extension)"
+
+[[check]]
+id = "refused"
+kind = "console"
+pattern = "incompatible file version|Unable to read detail level"
+
+[[check]]
+id = "lit"
+kind = "console"
+pattern = "lit in [0-9.]+ seconds|[Ll]ightmap"
+note = "the interior lighting line ('Room lit in ... seconds' on an MBG file)"
+
+[[check]]
+id = "ray_wall"
+kind = "probe"
+key = "ray_wall"
+value = ".*"
+note = "x 4 along +y: a hit at y 12 (front wall) if castray sees interiors"
+
+[[check]]
+id = "ray_door"
+kind = "probe"
+key = "ray_door"
+value = ".*"
+note = "x 0 along +y through both doors: a hit at y 23.5 (back wall inside face)"
+
+[[check]]
+id = "ray_wall_m0"
+kind = "probe"
+key = "ray_wall_m0"
+value = ".*"
+note = "the wall ray with type mask 0"
+
+[[check]]
+id = "ray_roof"
+kind = "probe"
+key = "ray_roof"
+value = ".*"
+note = "down at 4 15: the roof top, z 4.5"
+
+[[check]]
+id = "ray_floor"
+kind = "probe"
+key = "ray_floor"
+value = ".*"
+note = "down inside room A: the floor, z 0"
+
+[[check]]
+id = "ray_miss"
+kind = "probe"
+key = "ray_miss"
+value = ".*"
+note = "a ray that hits nothing"
+
+[[check]]
+id = "made"
+kind = "probe"
+key = "made"
+value = "1"
+
+[[check]]
+id = "dropz_roof"
+kind = "probe"
+key = "dropz_roof"
+value = ".*"
+note = "getdropz above the roof: 4.5 if interiors count"
+
+[[check]]
+id = "in_a"
+kind = "probe"
+key = "in_a"
+value = ".*"
+note = "isInInterior inside room A"
+
+[[check]]
+id = "in_a_obj"
+kind = "probe"
+key = "in_a_obj"
+value = ".*"
+note = "getInteriorObject inside room A"
+
+[[check]]
+id = "dropz_a"
+kind = "probe"
+key = "dropz_a"
+value = ".*"
+note = "getdropz inside room A: 0 (floor)"
+
+[[check]]
+id = "in_out"
+kind = "probe"
+key = "in_out"
+value = ".*"
+note = "isInInterior in front of the house"
+
+[[check]]
+id = "in_out_obj"
+kind = "probe"
+key = "in_out_obj"
+value = ".*"
+note = "getInteriorObject in front of the house"
+
+[[check]]
+id = "done"
+kind = "probe"
+key = "done"
+value = "1"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."5.12"]
+compiled = false
+asks_dif = true
+asks_tex = "?"
+refused = false
+lit = "?"
+ray_wall = "?"
+ray_door = "?"
+ray_wall_m0 = "?"
+ray_roof = "?"
+ray_floor = "?"
+ray_miss = "?"
+made = true
+dropz_roof = "?"
+in_a = "?"
+in_a_obj = "?"
+dropz_a = "?"
+in_out = "?"
+in_out_obj = "?"
+done = true
+alive = true
+source = "[gen] tools/dif/difgen.py; first live run (this PR)"

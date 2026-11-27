@@ -1,0 +1,43 @@
+// Conformance probe (T3D-030, T3D-087): does the client's collision see our
+// generated house interior? The house GameObject stands at 0 12 0
+// (tools/dif/difgen.py house(): front wall world y 12 .. 12.5 with a door at
+// x -1 .. 1, z 0 .. 2.5; middle wall y 18 .. 18.5 with the same door; back
+// wall y 23.5 .. 24; floor top z 0; roof z 4 .. 4.5). Values are recorded.
+//#CLIENTSIDE
+function onCreated() {
+  setTimer(6);
+}
+function onTimeout() {
+  // Rays along +y: beside the doors (stops at the front wall, y 12) and
+  // through both doors (stops at the back wall's inside face, y 23.5).
+  cf("ray_wall", castray("4 2 1.5", "4 30 1.5", -1));
+  cf("ray_door", castray("0 2 1.5", "0 30 1.5", -1));
+  cf("ray_wall_m0", castray("4 2 1.5", "4 30 1.5", 0));
+  // Down onto the roof (z 4.5) and, inside room A, onto the floor (z 0).
+  cf("ray_roof", castray("4 15 10", "4 15 -10", -1));
+  cf("ray_floor", castray("4 15 3", "4 15 -10", -1));
+  // A ray that misses everything, for the shape of an empty answer.
+  cf("ray_miss", castray("40 2 1.5", "40 30 1.5", -1));
+  temp.go = new GameObject("conf_probe_go");
+  if (temp.go == NULL) {
+    cf("made", "0");
+    return;
+  }
+  cf("made", "1");
+  // Above the roof: getdropz finds the roof if interiors count.
+  temp.go.setPosition("4 15 8");
+  cf("dropz_roof", temp.go.getdropz("4 15 8"));
+  // Inside room A, and outside in front of the house.
+  temp.go.setPosition("0 15 1.5");
+  cf("in_a", temp.go.isInInterior());
+  cf("in_a_obj", temp.go.getInteriorObject());
+  cf("dropz_a", temp.go.getdropz("0 15 1.5"));
+  temp.go.setPosition("0 2 1.5");
+  cf("in_out", temp.go.isInInterior());
+  cf("in_out_obj", temp.go.getInteriorObject());
+  temp.go.destroy();
+  cf("done", "1");
+}
+function cf(k, v) {
+  triggerserver("gui", "ConfProbe", "cf", k, v);
+}

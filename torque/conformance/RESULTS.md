@@ -58,3 +58,11 @@ blank (not run yet). Observed `?` values are listed under each run in
 | [C046](cases/c046-grass-baseline.toml) | The grass cases' world without a grass line: the baseline screenshot that C035 to C037 are compared with |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
 | [C047](cases/c047-grass-origin-cell.toml) | Grass with the avatar spawned in the origin cell (4, 4): a 5.12 grows none, at any radius |  |  |  |  |  |  |
 | [C048](cases/c048-grass-baseline-origin-cell.toml) | C046 with the avatar spawned at (4, 4): the no-grass baseline that C047 is compared with |  |  |  |  |  |  |
+| [C049](cases/c049-dif-house-front.toml) | Our generated enclosed two-room v44 interior (zones 0/1/2, two portals) loads and draws, seen from outside its front door | n/a | n/a | n/a |  | n/a | n/a |
+| [C050](cases/c050-dif-window-zones-outside.toml) | Zone culling from outside: the house with its front wall's surfaces removed (still solid, no portal into room A); a zone renderer shows nothing of room A | n/a | n/a | n/a |  | n/a | n/a |
+| [C051](cases/c051-dif-window-one-zone.toml) | Baseline for C050: the same windowed house with every surface in the outside zone and no portals | n/a | n/a | n/a |  | n/a | n/a |
+| [C052](cases/c052-dif-house-inside.toml) | Portal traversal from inside: camera in room A (zone 1) looking through the doorway into room B (zone 2, joined by portal 1) | n/a | n/a | n/a |  | n/a | n/a |
+| [C053](cases/c053-dif-noportal-inside.toml) | Zone culling from inside: the same view with the A-B doorway still splitting the zones but no portal written; a zone renderer cannot reach room B | n/a | n/a | n/a |  | n/a | n/a |
+| [C054](cases/c054-dif-house-collision.toml) | Client collision against our generated interior: castray at its walls, through its doors and onto roof and floor; getdropz over the roof; isInInterior inside and outside | n/a | n/a | n/a |  | n/a | n/a |
+| [C055](cases/c055-dif-house-nolightmap.toml) | The C049 house with no lightmap in the file (every surface names lightmap 0 of none): loaded, relit or refused? | n/a | n/a | n/a |  | n/a | n/a |
+| [C056](cases/c056-dif-rotc-eth3.toml) | A third-party zoned v44 interior built by map2dif (Revenge Of The Cats: Ethernet eth3/base.dif, CC BY 3.0: 2 zones, 1 portal) loads on 5.12 | n/a | n/a | n/a |  | n/a | n/a |

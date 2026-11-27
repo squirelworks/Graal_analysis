@@ -1,0 +1,56 @@
+id = "C056"
+slug = "dif-rotc-eth3"
+title = "A third-party zoned v44 interior built by map2dif (Revenge Of The Cats: Ethernet eth3/base.dif, CC BY 3.0: 2 zones, 1 portal) loads on 5.12"
+rows = ["T3D-030", "T3D-087"]
+priority = 2
+needs = ["rotc"]
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfRotc conf_rotc_eth3.dif 0 60 0
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_nomat.3ds", "conf_sky*", "conf_dif_out.png", "conf_dif_floor.png", "conf_dif_a.png", "conf_dif_b.png"]
+derive = [
+  { pack = "rotc", pick = "eth3/base.dif", out = "conf_rotc_eth3.dif", version = 44 },
+]
+scripts = ["probe_difcam_front.gs2"]
+
+[run]
+seconds = 60
+
+[[check]]
+id = "compiled"
+kind = "server"
+pattern = "weapon3d ConfProbe: not compiled"
+
+[[check]]
+id = "asks_dif"
+kind = "server"
+pattern = "file conf_rotc_eth3\\.dif: "
+
+[[check]]
+id = "refused"
+kind = "console"
+pattern = "incompatible file version|Unable to read detail level"
+
+[[check]]
+id = "lit"
+kind = "console"
+pattern = "lit in [0-9.]+ seconds|[Ll]ightmap"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."5.12"]
+compiled = false
+asks_dif = true
+refused = false
+lit = "?"
+alive = true
+source = "[gen] first live run (this PR); file: fr1tz/rotc-ethernet-game share/interiors/eth3/base.dif, sha256 d1a64380520c1d7a930987c1a94ecf0921a9af95e953a60a067e4c7c014587d9, CC BY 3.0 (C) 2008-2014 Michael Goldener; held in the lab pack, not committed"
