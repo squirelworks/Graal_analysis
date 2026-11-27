@@ -562,15 +562,7 @@ function s_Camera() {
 }
 function s_TGameObjectAttr() {
   cf("at", "TGameObjectAttr");
-  temp.o = new TGameObjectAttr("sw_tgameobjectattr");
-  temp.how = "new";
-  if (temp.o == NULL) {
-    temp.o = this.go.attrobjects[0];
-    temp.how = "this.go.attrobjects[0]";
-  }
-  if (temp.o == NULL) temp.how = "none";
-  cf("TGameObjectAttr.@inst", temp.how @ "|" @ temp.o.objecttype());
-  if (temp.o == NULL) return;
+  cf("TGameObjectAttr.@inst", "skip");
 }
 function ov(o) {
   if (o == NULL) return "null";

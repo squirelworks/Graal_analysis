@@ -166,6 +166,9 @@ FALLBACK = {
 SKIP = {
     "Terraformer.loadGreyscale": "T3D-050: crashes the client without a TerrainBlock",
     "Terraformer.loadGrayscale": "T3D-050: the same handler as loadGreyscale",
+    # `Class.@inst`: getting an instance at all ends the client; the class is not touched
+    "TGameObjectAttr.@inst": "T3D-150 sweep: ends the 5.12 client",
+    "TerrainEditor.@inst": "T3D-150 sweep: ends the 5.12 client",
 }
 
 # Arguments for particular functions where the declared type alone would make
@@ -230,6 +233,12 @@ def set_literal(m: Member) -> str:
 
 def gs2_class(cls: str, ms: list[Member]) -> str:
     """One function that gets an instance of `cls` and touches every member."""
+    if f"{cls}.@inst" in SKIP:
+        # getting an instance ends the client: report the class and its members as skipped
+        out = [f"function s_{cls}() {{", f'  cf("at", "{cls}");', f'  cf("{cls}.@inst", "skip");']
+        out += [f'  cf("{m.key}", "skip");' for m in ms]
+        out.append("}")
+        return "\n".join(out)
     out = [f"function s_{cls}() {{", f'  cf("at", "{cls}");', f'  temp.o = new {cls}("sw_{cls.lower()}");',
            '  temp.how = "new";']
     for fb in FALLBACK.get(cls, []):
@@ -473,6 +482,9 @@ def extract(runs: list[tuple[str, Path]]) -> tuple[list[dict], dict]:
             done = cf.probe_values(text, "done")
             if text and not done and gid in last_seen:
                 dead[gid] = last_seen[gid] + 1
+            elif text and not done and cf.probe_values(text, "made"):
+                # the probe started but died before its first member reported
+                dead[gid] = next(i for i, r in enumerate(rows) if r["group"] == gid)
         noinst = set()
         for i, r in enumerate(rows):
             if r["member"] == "@inst" and (vals[i] or "").startswith("none"):

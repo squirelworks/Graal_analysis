@@ -54,3 +54,25 @@ def test_extract_on_a_fake_run(tmp_path):
     alpha = [r for r in results if r["class"] == "GameObject" and r["member"] == "alpha"][0]
     assert alpha["verdict"] == "works"
     assert summary["5.12"]["works"] >= 1
+
+
+def test_extract_marks_a_crash_before_the_first_report(tmp_path):
+    out = tmp_path / "5.12"
+    d = out / "C054"
+    d.mkdir(parents=True)
+    d.joinpath("gserver.log").write_text('trigger sent ("gui", "ConfProbe", "cf", "made", "1")\n')
+    results, _summary = gs.extract([("5.12", out)])
+    c054 = [r for r in results if r["class"] == "TerrainEditor"]
+    assert c054[0]["member"] == "@inst" and c054[0]["verdict"] == "crash"
+    assert all(r["verdict"] == "unrun" for r in c054[1:])
+
+
+def test_a_skipped_instance_touches_no_member():
+    _p, members = gs.read_surface()
+    for key in gs.SKIP:
+        cls, member = key.split(".", 1)
+        if member != "@inst":
+            continue
+        text = gs.gs2_class(cls, members[cls])
+        assert "new " not in text and f'cf("{cls}.@inst", "skip");' in text
+        assert text.count('"skip");') == len(members[cls]) + 1
