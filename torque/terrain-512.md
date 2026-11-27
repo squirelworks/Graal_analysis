@@ -443,6 +443,41 @@ with zero chunks — and every `TerrainChunkEvent` sent in answer acked). Valida
 to the warm case, all chunks log before `Phase 2: Mission Lighting`, and Phase 2 still goes out
 well under its cap (~0.3 s after the Phase-1 ack here). **[lab]**
 
+### Near the camera only the first material draws (5.12, Mesa)
+
+Measured on the real 5.12 client under Mesa llvmpipe, against seihai-gserver 67b798c serving a
+`gen terrain --size 4x4 --3d --stream --playerworld` world (square size 2, four materials in
+`heights.info`: water, sand, grass, rock), five lab rounds on 2026-11-27 **[lab]**:
+
+- **Within about 70 units of the camera every square draws in the first `heights.info` texture**,
+  whatever the chunk gives it. From about 70 to 150 units the real materials fade in (a gradient,
+  not a sharp ring), and beyond about 150 units every material draws correctly with the soft edges
+  above. A camera sweep (offset `0 -k 1.5k` from the spawn): k = 10–40 all slot 0, k = 60 mixed,
+  k = 80 nearly right, k = 100 and up right.
+- **Swapping the first line swaps the colour**: with grass listed first the whole near ground is
+  grass. So the near path uses slot 0, not a missing or wrong texture.
+- **Batch K's red/blue world behaves the same**: from its overhead camera (about 150 up) the blue
+  strip draws; from 8 units up inside the patch it is 94 % red (slot 0). Batch K never looked at
+  terrain up close, which is why the rows above did not show this.
+- **Not the cause**, each tried and pixel-identical or unchanged up close: the `graal3dpushterrain`
+  push on or off; a fresh or a kept cache; texture names with or without a `g3d_` prefix (prefixed
+  names are cached under `levels3d/images/<prefix>/`); batch K's own solid PNGs in the list; chunks
+  re-encoded so each local index equals the global id; every square sent as a blend (alpha 15 or 8:
+  the far drawing follows the blend, the near one stays slot 0); a `sky` line and `sun 0 0 -1`;
+  non-empty names in the two TerrainBlock strings (stock TGE's detail and bump texture; the client
+  never requested either file); `detailfactor3D` 0.25, 1, 4 and 16 in `game_config.txt`. The 5.12
+  engine image holds no `$pref::Terrain::*` names and no `exec`, so no terrain pref can be set.
+  Hiding MMX or SSE from the guest CPU is not possible on the 64-bit Windows 10 lab VM (it does not
+  boot).
+- The chunks the client keeps are byte for byte the ones sent (only the zlib header differs), and
+  the fetched `heights.info` is cached at `levels3d/images/heights.info`, shared by every server.
+
+Reading: the near terrain textures come from a different build path than the far ones, and that
+path takes only material 0 here **[inf]**. Open: whether a real GPU driver or a 32-bit guest without
+SSE (the non-SSE blend path) draws the near terrain right, and a static read of the 5.12 terrain
+texture builder. Until then a world that must show its materials should be seen from about 150
+units or more. Captures and runs are kept with the owner's lab material.
+
 ### First-visit terrain texture depends on when the server sends the textures
 
 By default the client fetches only `heights.info` on the first visit and asks for each listed
