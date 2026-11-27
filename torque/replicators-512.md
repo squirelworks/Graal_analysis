@@ -248,6 +248,17 @@ pass at mission load draw it. **[lab]** Under a full OpenGL renderer (Mesa llvmp
 the same runs draw a lit white patch with `lp_white.png`, and the nearly transparent texture
 draws as soft round glowing spots, so the empty GDI result was the renderer. A ground-level close-up shows the grass pieces are flat-to-tilted quads lying on the ground at per-piece random yaw and tilt (their top faces foreshorten), not upright or camera-facing cards; each is on the order of a metre across at scale 1, and raising the scale enlarges the quad in both width and height. **[lab]** An overhead shot with a 1-unit reference cube as a ruler confirms this: from straight above each piece is a filled rotated square (a diamond), not the thin line a vertical card would show edge-on, so the cards lie flat on the ground. A scale-2 piece measures about 1.8 × 1.55 units across its bounding box; since the square is rotated, its true edge is about that over √2, roughly 1.25 units at scale 2, so near 0.6 units at scale 1. The piece is roughly square (width ≈ height), not a wider-than-tall blade, and larger than earlier guessed. **[lab]** The per-piece orientation is an independent random, not driven by `shaperotatemin`/`shaperotatemax`: a patch with the rotation range pinned to 0 and one with the default 0–360 are essentially identical (about 0.7% of pixels differ, edge noise), with the cards fanned to varied yaw in both. So grass carries its own orientation and ignores the replicator's `shaperotate` range. **[lab]**
 
+**Correction (2026-11-27): the radius-8 rule below was overstated.** Conformance case C036
+(`torque/conformance/`) sent a `DynamicGrass` object at radius 4, bit for bit what
+seihai-gserver writes apart from the radius, with 40 to 60 a cell; on a real 5.12 it drew as
+much grass as the radius-8 control C037. The failing radius-4 runs below used 5 or 10 a cell,
+had the ghost re-sent at 5, 15 and 30 s, and were not judged on a second, cached visit as
+C036 was. So radius alone is not the rule; which of count, re-send or
+visit is the cause is still open. seihai-gserver keeps its floor of 8 (harmless: a larger
+radius only widens the patch) and its notes no longer claim a 5.12 grows no grass below 8
+(seihai-gserver #223). Read the paragraph below as what those runs saw, not as a threshold.
+**[lab]**
+
 **The drawing runs all used a radius of at least ~8 cells; on the radius-4 shape base the grass
 classes draw nothing.** A later exhaustive bisection (real 5.12 under Mesa against seihai-gserver
 #216/#218, both a `rawobject` replay of the exact create and plain `replicator` lines, the control
