@@ -1,0 +1,11 @@
+# A sample world for g3dmini (a subset of seihai-gserver's graal3dworld.txt).
+# Make the terrain first: python3 g3dmini.py --make-terrain hills
+sun 0.5 0.5 -0.7 0.9 0.9 0.8 1 0.3 0.3 0.35 1
+sky sky_fr,sky_rt,sky_bk,sky_lf,sky_up,sky_dn 900 0.6 0.7 0.85
+terrain hills 8
+playershape player.3ds
+spawn 24 -24 40
+camera 0 -6 3
+# object <name> <shape> x y z [axis x y z, angle in radians]
+object tower tower.dts 40 -10 30 0 0 1 0.785398
+object cube redcube.3ds 30 -24 38
