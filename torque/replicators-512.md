@@ -268,9 +268,12 @@ grey and shows clearly on white terrain. A plain radius-4 `replicator DynamicGra
 once seihai-gserver's floor was removed. The radius-4 failures in the paragraph below most
 likely came from an avatar in the origin cell or from sparse grass that a pixel count missed.
 Neither explains radius 4 failing where radius 8 drew on the same spawn, and the sweep could not
-reproduce that. It ran on Windows, not Wine on Mesa, so a Wine/Mesa-only effect stays open
-**[inf]**. seihai-gserver #228 drops the floor and notes an origin-cell spawn. Read the
-paragraph below as what those runs saw, not as a rule. **[lab]**
+reproduce that. seihai-gserver #228 drops the floor and notes an origin-cell spawn. A later rerun of the old Wine setup found what those runs saw: a 5.12 fades grass out at about
+its reach (radius × 8 units) from the camera, and their camera was 20 and 40 units up. From 40
+up, radius 4 to 6 shows nothing and radius 8 a faint patch. From 20 up, radius 4 shows only
+faded cream pieces, which a white-pixel count reads as none. At the default camera any radius
+draws (sweep note, "Retest 2"). Read the paragraph below as what those runs saw, not as a rule.
+**[lab]**
 
 **The drawing runs all used a radius of at least ~8 cells; on the radius-4 shape base the grass
 classes draw nothing.** A later exhaustive bisection (real 5.12 under Mesa against seihai-gserver
