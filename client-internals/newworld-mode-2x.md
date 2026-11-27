@@ -73,8 +73,8 @@ recolour applies them, like a player's. Only client-side NPC changes would lose 
 send 8 in NW mode is possible, but it would also require servers to parse 8 there, so it is left out.
 
 A server that switches a client into NW mode must therefore send 8 COLORS bytes for players (prop 13) and NPCs
-(prop 19) from then on. A 5-byte value desynchronises the rest of that prop stream. It must also read 8 from the
-client.
+(prop 19) from then on. A 5-byte value desynchronises the rest of that prop stream. It must also read 8 in the
+player props the client sends, but 5 in its NPC props (below).
 
 ## Body recolour
 
