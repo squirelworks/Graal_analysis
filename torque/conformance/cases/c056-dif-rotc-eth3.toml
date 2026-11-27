@@ -53,4 +53,4 @@ asks_dif = true
 refused = false
 lit = "?"
 alive = true
-source = "[gen] first live run (this PR); file: fr1tz/rotc-ethernet-game share/interiors/eth3/base.dif, sha256 d1a64380520c1d7a930987c1a94ecf0921a9af95e953a60a067e4c7c014587d9, CC BY 3.0 (C) 2008-2014 Michael Goldener; held in the lab pack, not committed"
+source = "[gen] first live run (this PR); file: fr1tz/rotc-ethernet-game share/interiors/eth3/base.dif, sha256 d1a64380520c1d7a930987c1a94ecf0921a9af95e953a60a067e4c7c014587d9, Revenge Of The Cats: Ethernet by Michael Goldener (C) 2008-2014, https://github.com/fr1tz/rotc-ethernet-game, CC BY 3.0 https://creativecommons.org/licenses/by/3.0/; held in the lab pack, not committed"
