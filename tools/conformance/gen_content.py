@@ -28,6 +28,11 @@ Files (all under OUTDIR):
     conf_huge.3ds      the cube with UVs and a material whose texture is conf_huge.png
     conf_ter/heights<x>-<y>.dat   a flat 256 x 256 streamed terrain at height 0, 256 chunks
                        (torque/terrain-512.md: one zlib stream of the chunk bit stream each)
+    conf_dif_<scene>.dif   our own v44 interiors from tools/dif/difgen.py: an enclosed
+                       two-room house with zones and portals, and its variants for
+                       the zone tests (house, single, noportal, window, window1;
+                       *_nolm: the same with no lightmap)
+    conf_dif_out/floor/a/b.png   their textures, solid colours (difgen.COLOURS)
 
 Derived files (from a held content pack, made by `derive`): a copy of a
 .dts or .dif with its version word set, for the version-bound cases.
@@ -41,6 +46,9 @@ import struct
 import sys
 import zlib
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "dif"))
+import difgen  # noqa: E402  (tools/dif, standard library only)
 
 RED = (220, 0, 0)
 GREEN = (0, 200, 0)
@@ -276,6 +284,11 @@ def files() -> dict[str, bytes]:
         "conf_huge.png": huge_png(),
         "conf_huge.3ds": cube_3ds("conf_hugemat", WHITE, texture="conf_huge.png"),
     }
+    for name in difgen.SCENES:
+        out[f"conf_dif_{name}.dif"] = difgen.scene_bytes(name)
+        out[f"conf_dif_{name}_nolm.dif"] = difgen.scene_bytes(name, lightmaps="none")
+    for mat, c in difgen.COLOURS.items():
+        out[f"{mat}.png"] = png(64, 64, c)
     for i, c in enumerate(SKY_COLOURS):
         out[f"conf_sky{i}.png"] = png(64, 64, c)
         out[f"conf_sky{i}.gif"] = gif(16, 16, c)

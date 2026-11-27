@@ -72,7 +72,10 @@ def fake_pack(tmp_path):
     pack.mkdir()
     (pack / "shape.dts").write_bytes(struct.pack("<HH", 24, 7) + b"body")
     (pack / "room.dif").write_bytes(struct.pack("<I", 44) + b"body")
-    return {"mbg": pack}
+    rotc = tmp_path / "rotc" / "share" / "interiors" / "eth3"
+    rotc.mkdir(parents=True)
+    (rotc / "base.dif").write_bytes(struct.pack("<I", 44) + b"body")
+    return {"mbg": pack, "rotc": tmp_path / "rotc"}
 
 
 def test_build_world_writes_the_overlay(cases, tmp_path):

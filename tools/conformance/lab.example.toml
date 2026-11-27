@@ -29,6 +29,9 @@ static = { "52:54:00:c0:00:12" = "<a second guest address>" }
 # version-bound cases take the first .dts / .dif found in "mbg".
 [packs]
 mbg = "<lab-home>/labs/<g3d-lab>/mbg"
+# C056: a checkout of github.com/fr1tz/rotc-ethernet-game (its game content is
+# CC BY 3.0); the case takes share/interiors/eth3/base.dif from it.
+rotc = "<lab-home>/labs/<g3d-lab>/rotc-ethernet-game"
 
 # The server VM: a Linux lab VM with python3 and passwordless sudo.
 [server_vm]

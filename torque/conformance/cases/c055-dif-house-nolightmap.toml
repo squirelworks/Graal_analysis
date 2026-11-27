@@ -1,0 +1,87 @@
+id = "C055"
+slug = "dif-house-nolightmap"
+title = "The C049 house with no lightmap in the file (every surface names lightmap 0 of none): loaded, relit or refused?"
+rows = ["T3D-030", "T3D-087"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+object ConfHouse conf_dif_house_nolm.dif 0 12 0
+playershape conf_nomat.3ds
+spawn 0 0 1
+"""
+files = ["conf_nomat.3ds", "conf_sky*", "conf_dif_out.png", "conf_dif_floor.png", "conf_dif_a.png", "conf_dif_b.png", "conf_dif_house_nolm.dif"]
+scripts = ["probe_difcam_front.gs2"]
+
+[run]
+seconds = 60
+
+[[check]]
+id = "compiled"
+kind = "server"
+pattern = "weapon3d ConfProbe: not compiled"
+
+[[check]]
+id = "asks_dif"
+kind = "server"
+pattern = "file conf_dif_house_nolm\\.dif: "
+
+[[check]]
+id = "asks_tex"
+kind = "server"
+pattern = "file conf_dif_a"
+note = "a texture of the interior is asked for (with or without extension)"
+
+[[check]]
+id = "refused"
+kind = "console"
+pattern = "incompatible file version|Unable to read detail level"
+
+[[check]]
+id = "lit"
+kind = "console"
+pattern = "lit in [0-9.]+ seconds|[Ll]ightmap"
+note = "the interior lighting line ('Room lit in ... seconds' on an MBG file)"
+
+[[check]]
+id = "cam"
+kind = "probe"
+key = "cam"
+value = "1"
+note = "the probe holds ServerConnection.camera at its pose"
+
+[[check]]
+id = "outside_drawn"
+kind = "pixel"
+colour = [235, 235, 235]
+tol = 40
+min_fraction = 0.02
+note = "the near-white outside walls"
+
+[[check]]
+id = "same_as_lit"
+kind = "diff"
+against = "C049"
+region = [0.0, 0.0, 1.0, 1.0]
+tol = 40
+min_fraction = 0.05
+note = "the view differs from C049 (the same house with a white lightmap)"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."5.12"]
+compiled = false
+asks_dif = true
+asks_tex = "?"
+refused = false
+lit = "?"
+cam = true
+outside_drawn = "?"
+same_as_lit = "?"
+alive = true
+source = "[gen] tools/dif/difgen.py; first live run (this PR)"
