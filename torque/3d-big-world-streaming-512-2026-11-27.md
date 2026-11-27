@@ -1,7 +1,7 @@
 # 5.12 big worlds: whole-world at join, and how an Enigma-scale world can still work (T3D-166)
 
 Date: 2026-11-27. Lab: the real Windows **5.12** client (`G3D14097`, `Graal.exe` SHA-256
-`ece87e57…`) under Wine 10 with Mesa llvmpipe in the headless Debian lab VM on GwenTea2, one
+`ece87e57…`) under Wine 10 with Mesa llvmpipe in a headless Debian lab VM on lab host A, one
 private loopback network namespace, one Wine prefix per client, against **seihai-gserver PR #223
 head `126f946`** built from a local lab-only branch (`lab/bigworld-1127`, patch described below;
 not pushed). Worlds, terrain and shapes were generated for these runs. Derived numbers only;
