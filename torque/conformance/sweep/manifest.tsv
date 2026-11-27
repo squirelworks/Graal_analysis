@@ -1,0 +1,467 @@
+group	class	member	kind	declared
+C057	SimObject	@inst	instance	new SimObject / this.go
+C057	SimGroup	@inst	instance	new SimGroup / ServerConnection
+C057	SimGroup	addcontrol	func	(object) -> void
+C057	SceneObject	@inst	instance	new SceneObject / this.go
+C057	SceneObject	eulerrotation	prop	string rw
+C057	SceneObject	forwardVector	prop	string rw
+C057	SceneObject	objectBox	prop	string rw
+C057	SceneObject	position	prop	string rw
+C057	SceneObject	renderposition	prop	string rw
+C057	SceneObject	rightVector	prop	string rw
+C057	SceneObject	rotation	prop	string rw
+C057	SceneObject	scale	prop	string rw
+C057	SceneObject	scaledobjectbox	prop	string rw
+C057	SceneObject	transform	prop	string rw
+C057	SceneObject	upVector	prop	string rw
+C057	SceneObject	worldBox	prop	string rw
+C057	SceneObject	worldBoxCenter	prop	string rw
+C057	SceneObject	x	prop	float rw
+C057	SceneObject	y	prop	float rw
+C057	SceneObject	z	prop	float rw
+C057	SceneObject	light	func	() -> void
+C057	SceneObject	getForwardVector	func	() -> string
+C057	SceneObject	setForwardVector	func	(string) -> void
+C057	SceneObject	getObjectBox	func	() -> string
+C057	SceneObject	getPosition	func	() -> string
+C057	SceneObject	setPosition	func	(string) -> void
+C057	SceneObject	getRightVector	func	() -> string
+C057	SceneObject	setRightVector	func	(string) -> void
+C057	SceneObject	getScale	func	() -> string
+C057	SceneObject	setScale	func	(string) -> void
+C057	SceneObject	getTransform	func	() -> string
+C057	SceneObject	setTransform	func	(string) -> void
+C057	SceneObject	getUpVector	func	() -> string
+C057	SceneObject	setUpVector	func	(string) -> void
+C057	SceneObject	getWorldBox	func	() -> string
+C057	SceneObject	getWorldBoxCenter	func	() -> string
+C057	GameObject	@inst	instance	new GameObject / player
+C057	GameObject	alpha	prop	float rw
+C057	GameObject	attachedtoobject	prop	object rw
+C057	GameObject	attr	prop	object rw
+C057	GameObject	attrobjects	prop	object rw
+C057	GameObject	chat	prop	string rw
+C057	GameObject	collision	prop	bool rw
+C057	GameObject	iseditorobject	prop	bool rw
+C057	GameObject	liquidheight	prop	float rw
+C057	GameObject	liquidtype	prop	string rw
+C057	GameObject	movetype	prop	string rw
+C057	GameObject	nickcolor	prop	string rw
+C057	GameObject	nickname	prop	string rw
+C057	GameObject	position	prop	string rw
+C057	GameObject	scaledshapebox	prop	string rw
+C057	GameObject	shadow	prop	bool rw
+C057	GameObject	shape	prop	string rw
+C057	GameObject	shapebox	prop	string rw
+C057	GameObject	showterrain	prop	bool rw
+C057	GameObject	skin	prop	string rw
+C057	GameObject	solid	prop	bool rw
+C057	GameObject	transform	prop	string rw
+C057	GameObject	velocity	prop	string rw
+C057	GameObject	watercoverage	prop	float rw
+C057	GameObject	checkCollision	func	(string,string) -> object
+C057	GameObject	checkCollisionByBox	func	(string,string,string) -> object
+C057	GameObject	clipPolygons	func	(string) -> object
+C057	GameObject	findimg	func	(int) -> object
+C057	GameObject	getControllingClient	func	() -> object
+C057	GameObject	getControllingObject	func	() -> object
+C057	GameObject	getdropz	func	(string) -> float
+C057	GameObject	getInteriorObject	func	() -> object
+C057	GameObject	getMountedObject	func	(int) -> object
+C057	GameObject	getMountedObjectCount	func	() -> int
+C057	GameObject	getMountedObjectNode	func	(int) -> int
+C057	GameObject	getMountNodeObject	func	(int) -> object
+C057	GameObject	getMountTransform	func	(int) -> string
+C057	GameObject	getMountPosition	func	(int) -> string
+C057	GameObject	getNodeTransform	func	(string) -> string
+C057	GameObject	getNodePosition	func	(string) -> string
+C057	GameObject	getObjectMount	func	() -> object
+C057	GameObject	hideimg	func	(int) -> void
+C057	GameObject	hideimgs	func	(int,int) -> void
+C057	GameObject	isDrawn	func	() -> bool
+C057	GameObject	isInInterior	func	() -> bool
+C057	GameObject	isMounted	func	() -> bool
+C057	GameObject	mountObject	func	(object,int) -> bool
+C057	GameObject	setDirection	func	(string) -> void
+C057	GameObject	unmount	func	() -> void
+C057	GameObject	unmountObject	func	(object) -> bool
+C057	Camera	@inst	instance	new Camera / ServerConnection.camera / player.camera
+C057	Camera	cameramode	prop	string rw
+C057	Camera	eulerrotation	prop	string rw
+C057	Camera	followattachedobject	prop	object rw
+C057	Camera	lookatposition	prop	string rw
+C057	Camera	lookvector	prop	string rw
+C057	Camera	updatePosition	func	() -> void
+C057	TGameObjectAttr	@inst	instance	new TGameObjectAttr / this.go.attrobjects[0]
+C058	GameShape	@inst	instance	new GameShape / this.go.shapeobject / player.shapeobject
+C058	GameShape	vertexshader	prop	string rw
+C058	GameShape	pixelshader	prop	string rw
+C058	GameShapeDTS	@inst	instance	new GameShapeDTS / this.go.shapeobject / player.shapeobject
+C058	GameShapeDTS	materiallist	prop	object rw
+C058	GameShapeDTS	materials	prop	object rw
+C058	GameShapeDTS	forceAnimations	func	() -> void
+C058	GameShapeDTS	getAnimation	func	(int) -> object
+C058	GameShapeDTS	listNodes	func	() -> object
+C058	GameShapeDTS	pauseAnimation	func	(int) -> void
+C058	GameShapeDTS	playAnimation	func	(int,string,int) -> object
+C058	GameShapeDTS	playAnimation2	func	(int,string,int,float,float,float,float) -> object
+C058	GameShapeDTS	stopAnimation	func	(int) -> void
+C058	GameShapeDIF	@inst	instance	new GameShapeDIF / this.go.shapeobject
+C058	GameShapeDIF	activateLight	func	(string) -> void
+C058	GameShapeDIF	deactivateLight	func	(string) -> void
+C058	GameShapeFT	@inst	instance	new GameShapeFT / this.go.shapeobject
+C058	GameShapeFT	seed	prop	int rw
+C058	GameShapeFT	levels	prop	int rw
+C058	DTSAniThread	@inst	instance	new DTSAniThread / this.go.playAnimation("conf") / player.playAnimation("conf")
+C058	DTSAniThread	aniindex	prop	int rw
+C058	DTSAniThread	atend	prop	bool rw
+C058	DTSAniThread	attack	prop	bool rw
+C058	DTSAniThread	endpos	prop	float rw
+C058	DTSAniThread	hold	prop	bool rw
+C058	DTSAniThread	position	prop	float rw
+C058	DTSAniThread	sequence	prop	string rw
+C058	DTSAniThread	startpos	prop	float rw
+C058	DTSAniThread	state	prop	string rw
+C058	DTSAniThread	timescale	prop	float rw
+C058	DTSAniThread	transtitiontime	prop	float rw
+C058	DTSAniThread	play	func	() -> void
+C058	DTSAniThread	isintransition	func	() -> bool
+C058	TShapeMaterial	@inst	instance	new TShapeMaterial / this.go.shapeobject.getMaterial(0)
+C058	TShapeMaterial	specularpower	prop	int rw
+C058	GameMovementInterpolate	@inst	instance	new GameMovementInterpolate / this.go.movement / player.movement
+C058	GameMovementInterpolate	rigid	prop	object rw
+C058	GameMovementInterpolate	applyImpulse	func	(string,string) -> void
+C058	GameMovementList	@inst	instance	new GameMovementList / this.go.movement / player.movement
+C058	GameMovementList	move3d	func	(string,num,int) -> void
+C058	GameMovementList	finishMoves	func	() -> void
+C058	GameMovementRigid	@inst	instance	new GameMovementRigid / this.go.movement / player.movement
+C058	GameMovementRigid	addRigidMove	func	(string,string) -> void
+C058	TMovementRigid	@inst	instance	new TMovementRigid / this.go.movement / player.movement
+C058	TMovementRigid	mass	prop	float rw
+C058	GameConnection	@inst	instance	new GameConnection / ServerConnection
+C058	GameConnection	camera	prop	object rw
+C058	GameConnection	account	prop	string rw
+C058	GameConnection	nick	prop	string rw
+C058	GameConnection	objecttype	func	() -> string
+C058	GameConnection	showprofile	func	() -> void
+C058	ActionMap	@inst	instance	new ActionMap
+C058	ActionMap	bind	func	(string,string,string) -> void
+C058	ActionMap	getBinding	func	(string) -> string
+C058	ActionMap	getCommand	func	(string,string) -> string
+C058	ActionMap	load	func	() -> bool
+C058	ActionMap	pop	func	() -> void
+C058	ActionMap	push	func	() -> void
+C058	ActionMap	save	func	() -> void
+C058	ActionMap	unbind	func	(string,string) -> void
+C059	Sky	@inst	instance	new Sky / findobject("Sky")
+C059	Sky	cloudHeight1	prop	float rw
+C059	Sky	cloudHeight2	prop	float rw
+C059	Sky	cloudHeight3	prop	float rw
+C059	Sky	cloudSpeed1	prop	float rw
+C059	Sky	cloudSpeed2	prop	float rw
+C059	Sky	cloudSpeed3	prop	float rw
+C059	Sky	fogColor	prop	string rw
+C059	Sky	fogStorm1	prop	bool rw
+C059	Sky	fogStorm2	prop	bool rw
+C059	Sky	fogStorm3	prop	bool rw
+C059	Sky	fogVolume1	prop	string rw
+C059	Sky	fogVolume2	prop	string rw
+C059	Sky	fogVolume3	prop	string rw
+C059	Sky	fogVolumeColor1	prop	string rw
+C059	Sky	fogVolumeColor2	prop	string rw
+C059	Sky	fogVolumeColor3	prop	string rw
+C059	Sky	materialList	prop	string rw
+C059	Sky	norenderbans	prop	bool rw
+C059	Sky	renderbottomtexture	prop	bool rw
+C059	Sky	skyfadetime	prop	float rw
+C059	Sky	skysolidcolor	prop	string rw
+C059	Sky	useskytextures	prop	bool rw
+C059	Sky	windeffectprecipitation	prop	bool rw
+C059	Sky	windVelocity	prop	string rw
+C059	Sky	getWindowVelocity	func	() -> string
+C059	Sky	stormClouds	func	(bool,num) -> void
+C059	Sky	stormFog	func	(num,num) -> void
+C059	Sky	realFog	func	(bool,num,num,num) -> void
+C059	Sky	stormCloudsShow	func	(bool) -> void
+C059	Sky	stormFogShow	func	(bool) -> void
+C059	Sun	@inst	instance	new Sun / findobject("Sun")
+C059	Sun	direction	prop	string rw
+C059	Sun	color	prop	string rw
+C059	Sun	ambient	prop	string rw
+C059	fxSunLight	@inst	instance	new fxSunLight
+C059	fxSunLight	enable	prop	bool rw
+C059	fxSunLight	localflarebitmap	prop	string rw
+C059	fxSunLight	remoteflarebitmap	prop	string rw
+C059	fxSunLight	sunazimuth	prop	float rw
+C059	fxSunLight	sunelevation	prop	float rw
+C059	fxSunLight	flaretp	prop	bool rw
+C059	fxSunLight	colour	prop	string rw
+C059	fxSunLight	brightness	prop	float rw
+C059	fxSunLight	flaresize	prop	float rw
+C059	fxSunLight	fadetime	prop	float rw
+C059	fxSunLight	blendmode	prop	int rw
+C059	fxSunLight	animcolour	prop	bool rw
+C059	fxSunLight	animbrightness	prop	bool rw
+C059	fxSunLight	animrotation	prop	bool rw
+C059	fxSunLight	animsize	prop	bool rw
+C059	fxSunLight	animazimuth	prop	bool rw
+C059	fxSunLight	animelevation	prop	bool rw
+C059	fxSunLight	lerpcolour	prop	bool rw
+C059	fxSunLight	lerpbrightness	prop	bool rw
+C059	fxSunLight	lerprotation	prop	bool rw
+C059	fxSunLight	lerpsize	prop	bool rw
+C059	fxSunLight	lerpazimuth	prop	bool rw
+C059	fxSunLight	lerpelevation	prop	bool rw
+C059	fxSunLight	linkflaresize	prop	bool rw
+C059	fxSunLight	singlecolourkeys	prop	bool rw
+C059	fxSunLight	mincolour	prop	string rw
+C059	fxSunLight	maxcolour	prop	string rw
+C059	fxSunLight	minbrightness	prop	float rw
+C059	fxSunLight	maxbrightness	prop	float rw
+C059	fxSunLight	minrotation	prop	float rw
+C059	fxSunLight	maxrotation	prop	float rw
+C059	fxSunLight	minsize	prop	float rw
+C059	fxSunLight	maxsize	prop	float rw
+C059	fxSunLight	minazimuth	prop	float rw
+C059	fxSunLight	maxazimuth	prop	float rw
+C059	fxSunLight	minelevation	prop	float rw
+C059	fxSunLight	maxelevation	prop	float rw
+C059	fxSunLight	redkeys	prop	string rw
+C059	fxSunLight	greenkeys	prop	string rw
+C059	fxSunLight	bluekeys	prop	string rw
+C059	fxSunLight	brightnesskeys	prop	string rw
+C059	fxSunLight	rotationkeys	prop	string rw
+C059	fxSunLight	sizekeys	prop	string rw
+C059	fxSunLight	azimuthkeys	prop	string rw
+C059	fxSunLight	elevationkeys	prop	string rw
+C059	fxSunLight	colourtime	prop	float rw
+C059	fxSunLight	brightnesstime	prop	float rw
+C059	fxSunLight	rotationtime	prop	float rw
+C059	fxSunLight	sizetime	prop	float rw
+C059	fxSunLight	azimuthtime	prop	float rw
+C059	fxSunLight	elevationtime	prop	float rw
+C059	fxSunLight	reset	func	() -> void
+C059	WaterBlock	@inst	instance	new WaterBlock
+C059	WaterBlock	ignoreterrain	prop	bool rw
+C059	WaterBlock	useDepthMask	prop	bool rw
+C059	WaterBlock	surfaceTexture	prop	string rw
+C059	WaterBlock	shoreTexture	prop	string rw
+C059	WaterBlock	envMapOverTexture	prop	string rw
+C059	WaterBlock	envMapUnderTexture	prop	string rw
+C059	WaterBlock	submergeTexture0	prop	string rw
+C059	WaterBlock	submergeTexture1	prop	string rw
+C059	WaterBlock	specularMaskTex	prop	string rw
+C059	WaterBlock	liquidType	prop	string rw
+C059	WaterBlock	density	prop	float rw
+C059	WaterBlock	viscosity	prop	float rw
+C059	WaterBlock	waveMagnitude	prop	float rw
+C059	WaterBlock	surfaceOpacity	prop	float rw
+C059	WaterBlock	envMapIntensity	prop	float rw
+C059	WaterBlock	tessSurface	prop	float rw
+C059	WaterBlock	tessShore	prop	float rw
+C059	WaterBlock	surfaceParallax	prop	float rw
+C059	WaterBlock	flowAngle	prop	float rw
+C059	WaterBlock	flowRate	prop	float rw
+C059	WaterBlock	distortGridScale	prop	float rw
+C059	WaterBlock	distortMag	prop	float rw
+C059	WaterBlock	distortTime	prop	float rw
+C059	WaterBlock	shoreDepth	prop	float rw
+C059	WaterBlock	depthGradient	prop	float rw
+C059	WaterBlock	minAlpha	prop	float rw
+C059	WaterBlock	maxAlpha	prop	float rw
+C059	WaterBlock	removeWetEdges	prop	bool rw
+C059	WaterBlock	specularColor	prop	string rw
+C059	WaterBlock	specularPower	prop	float rw
+C060	DynamicShapeReplicator	@inst	instance	new DynamicShapeReplicator
+C060	DynamicShapeReplicator	allowedterrainslope	prop	int rw
+C060	DynamicShapeReplicator	allowonterrain	prop	bool rw
+C060	DynamicShapeReplicator	allowoninteriors	prop	bool rw
+C060	DynamicShapeReplicator	allowonstatics	prop	bool rw
+C060	DynamicShapeReplicator	allowonwater	prop	bool rw
+C060	DynamicShapeReplicator	allowwatersurface	prop	bool rw
+C060	DynamicShapeReplicator	aligntoterrain	prop	bool rw
+C060	DynamicShapeReplicator	boxmin	prop	string rw
+C060	DynamicShapeReplicator	boxmax	prop	string rw
+C060	DynamicShapeReplicator	hidereplications	prop	bool rw
+C060	DynamicShapeReplicator	mingridobjects	prop	int rw
+C060	DynamicShapeReplicator	maxgridobjects	prop	int rw
+C060	DynamicShapeReplicator	offsetz	prop	float rw
+C060	DynamicShapeReplicator	radius	prop	int rw
+C060	DynamicShapeReplicator	seed	prop	int rw
+C060	DynamicShapeReplicator	shapefiles	prop	string rw
+C060	DynamicShapeReplicator	shaperotatemin	prop	string rw
+C060	DynamicShapeReplicator	shaperotatemax	prop	string rw
+C060	DynamicShapeReplicator	shapescalemin	prop	string rw
+C060	DynamicShapeReplicator	shapescalemax	prop	string rw
+C060	DynamicShapeReplicator	surfaceexclusionmode	prop	bool rw
+C060	DynamicShapeReplicator	surfacetype	prop	int rw
+C060	DynamicShapeReplicator	terrainalignment	prop	string rw
+C060	DynamicGrass	@inst	instance	new DynamicGrass
+C060	DynamicGrassReplicator	@inst	instance	new DynamicGrassReplicator
+C060	GuiGraal3DCtrl	@inst	instance	new GuiGraal3DCtrl
+C060	GuiInputCtrl	@inst	instance	new GuiInputCtrl
+C060	GuiMapOverviewCtrl	@inst	instance	new GuiMapOverviewCtrl
+C060	GuiMapOverviewCtrl	mapalpha	prop	float rw
+C060	GuiMapOverviewCtrl	pointsize	prop	float rw
+C060	GuiPlayerView	@inst	instance	new GuiPlayerView
+C060	GuiPlayerView	ambientcolor	prop	string rw
+C060	GuiPlayerView	cameraz	prop	float rw
+C060	GuiPlayerView	lightcolor	prop	string rw
+C060	GuiPlayerView	lightdirection	prop	string rw
+C060	GuiPlayerView	modelrotx	prop	float rw
+C060	GuiPlayerView	modelrotz	prop	float rw
+C060	GuiPlayerView	shape	prop	string rw
+C060	GuiPlayerView	shapeobject	prop	object rw
+C060	GuiShapeNameHud	@inst	instance	new GuiShapeNameHud
+C060	GuiShapeNameHud	alignBottom	prop	bool rw
+C060	GuiShapeNameHud	chatprofile	prop	string rw
+C060	GuiShapeNameHud	damageAlignBottom	prop	bool rw
+C060	GuiShapeNameHud	damageOffset	prop	string rw
+C060	GuiShapeNameHud	damageTimeout	prop	float rw
+C060	GuiShapeNameHud	verticalDamageOffset	prop	float rw
+C060	GuiShapeNameHud	useShapeSize	prop	bool rw
+C060	GuiShapeNameHud	fillColor	prop	string rw
+C060	GuiShapeNameHud	frameColor	prop	string rw
+C060	GuiShapeNameHud	maxDistance	prop	float rw
+C060	GuiShapeNameHud	showFill	prop	bool rw
+C060	GuiShapeNameHud	showFrame	prop	bool rw
+C060	GuiShapeNameHud	verticalOffset	prop	float rw
+C060	GuiShapeNameHud	distanceFade	prop	float rw
+C061	EditManager	@inst	instance	new EditManager
+C061	WorldEditor	@inst	instance	new WorldEditor
+C061	WorldEditor	automaticsync	prop	bool rw
+C061	WorldEditor	isDirty	prop	bool rw
+C061	WorldEditor	planarMovement	prop	bool rw
+C061	WorldEditor	undoLimit	prop	int rw
+C061	WorldEditor	dropType	prop	string rw
+C061	WorldEditor	projectDistance	prop	float rw
+C061	WorldEditor	boundingBoxCollision	prop	bool rw
+C061	WorldEditor	renderPlane	prop	bool rw
+C061	WorldEditor	renderPlaneHashes	prop	bool rw
+C061	WorldEditor	gridColor	prop	string rw
+C061	WorldEditor	planeDim	prop	float rw
+C061	WorldEditor	gridSize	prop	string rw
+C061	WorldEditor	renderPopupBackground	prop	bool rw
+C061	WorldEditor	popupBackgroundColor	prop	string rw
+C061	WorldEditor	popupTextColor	prop	string rw
+C061	WorldEditor	objectTextColor	prop	string rw
+C061	WorldEditor	objectsUseBoxCenter	prop	bool rw
+C061	WorldEditor	axisGizmoMaxScreenLen	prop	int rw
+C061	WorldEditor	axisGizmoActive	prop	bool rw
+C061	WorldEditor	mouseMoveScale	prop	float rw
+C061	WorldEditor	mouseRotateScale	prop	float rw
+C061	WorldEditor	mouseScaleScale	prop	float rw
+C061	WorldEditor	minScaleFactor	prop	float rw
+C061	WorldEditor	maxScaleFactor	prop	float rw
+C061	WorldEditor	objSelectColor	prop	string rw
+C061	WorldEditor	objMouseOverSelectColor	prop	string rw
+C061	WorldEditor	objMouseOverColor	prop	string rw
+C061	WorldEditor	showMousePopupInfo	prop	bool rw
+C061	WorldEditor	dragRectColor	prop	string rw
+C061	WorldEditor	renderObjText	prop	bool rw
+C061	WorldEditor	renderObjHandle	prop	bool rw
+C061	WorldEditor	objTextFormat	prop	string rw
+C061	WorldEditor	faceSelectColor	prop	string rw
+C061	WorldEditor	renderSelectionBox	prop	bool rw
+C061	WorldEditor	selectionBoxColor	prop	string rw
+C061	WorldEditor	selectionLocked	prop	bool rw
+C061	WorldEditor	snapToGrid	prop	bool rw
+C061	WorldEditor	snapRotations	prop	bool rw
+C061	WorldEditor	rotationSnap	prop	float rw
+C061	WorldEditor	toggleIgnoreList	prop	bool rw
+C061	WorldEditor	renderNav	prop	bool rw
+C061	WorldEditor	selectHandle	prop	string ro
+C061	WorldEditor	defaultHandle	prop	string ro
+C061	WorldEditor	lockedHandle	prop	string ro
+C061	WorldEditor	nameMaxDistance	prop	float ro
+C061	WorldEditor	nameDistanceFade	prop	float ro
+C061	WorldEditor	ignoreObjClass	func	(string) -> void
+C061	WorldEditor	clearIgnoreList	func	() -> void
+C061	WorldEditor	getSelectedObject	func	(int) -> object
+C061	WorldEditor	getSelectionSize	func	() -> int
+C061	WorldEditor	undo	func	() -> void
+C061	WorldEditor	redo	func	() -> void
+C061	WorldEditor	clearSelection	func	() -> void
+C061	WorldEditor	selectObject	func	(object) -> void
+C061	WorldEditor	unselectObject	func	(object) -> void
+C061	WorldEditor	getSelectionCentroid	func	() -> string
+C061	WorldEditor	dropSelection	func	() -> void
+C061	WorldEditor	deleteSelection	func	() -> void
+C061	WorldEditor	getMode	func	() -> string
+C061	WorldEditor	setMode	func	(string) -> void
+C061	WorldEditor	hideSelection	func	(bool) -> void
+C061	WorldEditor	lockSelection	func	(bool) -> void
+C061	WorldEditor	addUndoState	func	() -> void
+C061	WorldEditor	lightSelection	func	() -> void
+C061	WorldEditor	syncSelection	func	() -> void
+C061	WorldEditor	reloadSelection	func	() -> void
+C062	TerrainEditor	@inst	instance	new TerrainEditor
+C062	TerrainEditor	isDirty	prop	bool rw
+C062	TerrainEditor	isMissionDirty	prop	bool rw
+C062	TerrainEditor	renderBorder	prop	bool rw
+C062	TerrainEditor	borderHeight	prop	float rw
+C062	TerrainEditor	borderFillColor	prop	string rw
+C062	TerrainEditor	borderFrameColor	prop	string rw
+C062	TerrainEditor	borderLineMode	prop	bool rw
+C062	TerrainEditor	selectionHidden	prop	bool rw
+C062	TerrainEditor	enableSoftBrushes	prop	bool rw
+C062	TerrainEditor	renderVertexSelection	prop	bool rw
+C062	TerrainEditor	processUsesBrush	prop	bool rw
+C062	TerrainEditor	brushPos	prop	string rw
+C062	TerrainEditor	adjustHeightVal	prop	float rw
+C062	TerrainEditor	setHeightVal	prop	float rw
+C062	TerrainEditor	scaleVal	prop	float rw
+C062	TerrainEditor	smoothFactor	prop	float rw
+C062	TerrainEditor	materialGroup	prop	int rw
+C062	TerrainEditor	softSelectRadius	prop	float rw
+C062	TerrainEditor	softSelectFilter	prop	string rw
+C062	TerrainEditor	softSelectDefaultFilter	prop	string rw
+C062	TerrainEditor	adjustHeightMouseScale	prop	float rw
+C062	TerrainEditor	paintMaterial	prop	string rw
+C062	TerrainEditor	attachTerrain	func	(string) -> void
+C062	TerrainEditor	getTerrainMaterials	func	() -> object
+C062	TerrainEditor	setTerrainMaterials	func	(string) -> void
+C062	TerrainEditor	setBrushType	func	(string) -> void
+C062	TerrainEditor	setBrushSize	func	(int,int) -> void
+C062	TerrainEditor	getBrushPos	func	() -> string
+C062	TerrainEditor	setBrushPos	func	(string) -> void
+C062	TerrainEditor	setAction	func	(string) -> void
+C062	TerrainEditor	getNumActions	func	() -> int
+C062	TerrainEditor	getActionName	func	(int) -> string
+C062	TerrainEditor	getCurrentAction	func	() -> string
+C062	TerrainEditor	resetSelWeights	func	(bool) -> void
+C062	TerrainEditor	undo	func	() -> void
+C062	TerrainEditor	redo	func	() -> void
+C062	TerrainEditor	clearSelection	func	() -> void
+C062	TerrainEditor	processAction	func	(string) -> void
+C062	TerrainEditor	buildMaterialMap	func	() -> void
+C062	TerrainEditor	getNumTextures	func	() -> int
+C062	TerrainEditor	getTextureName	func	(int) -> string
+C062	TerrainEditor	markEmptySquares	func	() -> void
+C062	TerrainEditor	clearModifiedFlags	func	() -> void
+C062	TerrainEditor	mirrorTerrain	func	(int) -> void
+C062	TerrainEditor	pushBaseMaterialInfo	func	() -> void
+C062	TerrainEditor	popBaseMaterialInfo	func	() -> void
+C062	TerrainEditor	setLoneBaseMaterial	func	(string) -> void
+C063	TerrainBlock	@inst	instance	new TerrainBlock
+C063	TerrainBlock	terrainFile	prop	string rw
+C063	TerrainBlock	squareSize	prop	int rw
+C063	TerrainBlock	repeatTerrain	prop	bool rw
+C063	Terraformer	@inst	instance	new Terraformer
+C063	Terraformer	loadGrayscale	func	(int,string) -> bool
+C063	Terraformer	loadGreyscale	func	(int,string) -> bool
+C063	Terraformer	saveGreyscale	func	(int,string) -> bool
+C063	Terraformer	setTerrain	func	(int) -> bool
+C063	@globals	castRay	global	castRay("0 0 50", "0 0 -50", -1)
+C063	@globals	get3Dobjectsbybox	global	get3Dobjectsbybox("-20 -20 -20", "20 20 20")
+C063	@globals	get3Dobjectsbyradius	global	get3Dobjectsbyradius("0 0 0", 20)
+C063	@globals	getz	global	getz(0, 0)
+C063	@globals	getTerrainTexture	global	getTerrainTexture(0, 0)
+C063	@globals	getTerrainTextureIndex	global	getTerrainTextureIndex(0, 0)
+C063	@globals	setSunColors	global	setSunColors({0, 1, 0.5, 0.5, 12, 1, 1, 1})
+C063	@globals	setFogColors	global	setFogColors({0, 0.5, 0.5, 0.5, 12, 0.6, 0.6, 0.6})
+C063	@globals	setSkyBandColors	global	setSkyBandColors({0, 0.2, 0.3, 0.9, 12, 0.3, 0.5, 1})
+C063	@globals	setSkyBandSizes	global	setSkyBandSizes({0, 0.3, 12, 0.5})
+C063	@globals	syncTimeOfDay	global	syncTimeOfDay()
+C063	@globals	updateVisibleDistance	global	updateVisibleDistance()
+C063	@globals	lightScene	global	lightScene()
