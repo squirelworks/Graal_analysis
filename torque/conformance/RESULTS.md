@@ -58,3 +58,10 @@ blank (not run yet). Observed `?` values are listed under each run in
 | [C046](cases/c046-grass-baseline.toml) | The grass cases' world without a grass line: the baseline screenshot that C035 to C037 are compared with |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
 | [C047](cases/c047-grass-origin-cell.toml) | Grass with the avatar spawned in the origin cell (4, 4): a 5.12 grows none, at any radius |  |  |  |  |  |  |
 | [C048](cases/c048-grass-baseline-origin-cell.toml) | C046 with the avatar spawned at (4, 4): the no-grass baseline that C047 is compared with |  |  |  |  |  |  |
+| [C049](cases/c049-sweep-gameobject.toml) | Every typed GS2 3D member of GameObject, SceneObject, SimObject, SimGroup, Camera, touched on a live client (full sweep) | n/a | n/a |  |  | n/a |  |
+| [C050](cases/c050-sweep-shape-anim.toml) | Every typed GS2 3D member of shapes, animation threads, materials and movement, touched on a live client (full sweep) | n/a | n/a |  |  | n/a |  |
+| [C051](cases/c051-sweep-sky-sun-water.toml) | Every typed GS2 3D member of Sky, Sun, fxSunLight and WaterBlock, touched on a live client (full sweep) | n/a | n/a |  |  | n/a |  |
+| [C052](cases/c052-sweep-replicators-gui.toml) | Every typed GS2 3D member of the shape replicators and the 3D GUI controls, touched on a live client (full sweep) | n/a | n/a |  |  | n/a |  |
+| [C053](cases/c053-sweep-worldeditor.toml) | Every typed GS2 3D member of WorldEditor and EditManager, touched on a live client (full sweep) | n/a | n/a |  |  | n/a |  |
+| [C054](cases/c054-sweep-terraineditor.toml) | Every typed GS2 3D member of TerrainEditor, touched on a live client (full sweep) | n/a | n/a |  |  | n/a |  |
+| [C055](cases/c055-sweep-terrain-globals.toml) | Every typed GS2 3D member of TerrainBlock, Terraformer and the global 3D functions, touched on a live client (full sweep) | n/a | n/a |  |  | n/a |  |
