@@ -14,7 +14,7 @@ rawobject DynamicGrass f1 f0 str:ConfGrassRaw f0 f0 f0 f1 f32:20 f32:20 f32:0 f3
 playershape conf_nomat.3ds
 spawn 20 20 1
 """
-files = ["conf_nomat.3ds", "conf_sky*", "conf_ground.png", "conf_grass.png", "heights.info=heights_grass.info"]
+files = ["conf_nomat.3ds", "conf_sky*", "conf_ground.png", "conf_grass.png", "heights.info"]
 terrain = ["conf_ter"]
 
 [server]
@@ -39,11 +39,12 @@ note = "a raw object gets no radius floor and no start-up note"
 
 [[check]]
 id = "grass_drawn"
-kind = "pixel"
-colour = [255, 255, 255]
-tol = 50
-min_fraction = 0.01
-note = "white grass quads on the tan terrain around the avatar, on the second visit (the pushed grass texture is cached by then)"
+kind = "diff"
+against = "C046"
+region = [0.0, 0.5, 1.0, 1.0]
+tol = 40
+min_fraction = 0.02
+note = "the lower half of the final screenshot differs from C046's (the same world, spawn and camera without the grass line) on at least 2% of its pixels; colour-blind, so untextured or textured grass both count"
 
 [[check]]
 id = "alive"
@@ -75,7 +76,7 @@ raw_ghosted = true
 floor_noted = false
 grass_drawn = true
 alive = true
-source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 8, sent as a rawobject, which the server does not floor; [lab] seihai-gserver #218: the same grass line at radius 8 drew a patch; if this case draws nothing, C036 says nothing about the radius"
+source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 8, sent as a rawobject, which the server does not floor; [lab] seihai-gserver #218: the same grass line at radius 8 drew a patch; with C036 it shows radius 4 and 8 draw alike (torque/grass-512-sweep-2026-11-27.md)"
 
 [expect."6.037"]
 raw_ghosted = false

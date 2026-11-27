@@ -616,6 +616,11 @@ finally {{ $s.UnlockMachine() }}"""
                 time.sleep(5)
             else:
                 raise RuntimeError(f"{self.name}: the guest clock is not at {want}")
+        for src, dest in c.get("guest_files", []):   # host files copied into the guest
+            # a target folder needs its trailing backslash, or VirtualBox
+            # takes it as the file name and refuses an existing folder
+            self.vb("guestcontrol", self.clone, "copyto", *self.auth(),
+                    "--target-directory=" + dest.rstrip("\\") + "\\", str(src))
         for line in c.get("guest_setup", []):   # PowerShell lines, run by guest control
             self.gx(line, 600)
         log(f"{self.name}: desktop, agent and prep ready")
@@ -671,6 +676,7 @@ class Lab:
         if sv.get("gserver_host"):
             self.server.scp_to([Path(sv["gserver_host"])], f"{R}/gserver")
             self.gsbin = f"{R}/gserver"
+            self.server.ssh(f"chmod +x {R}/gserver")   # scp from a Windows host drops the mode
         else:
             self.gsbin = sv["gserver_vm"]
         # seihai-gserver-v2 ([server] kind = "v2" cases): its gs2emu binary and
@@ -685,6 +691,7 @@ class Lab:
             if sv.get("gserver_v2_host"):
                 self.server.scp_to([Path(sv["gserver_v2_host"])], f"{R}/gs2emu")
                 self.gsbin_v2 = f"{R}/gs2emu"
+                self.server.ssh(f"chmod +x {R}/gs2emu")
             else:
                 self.gsbin_v2 = sv.get("gserver_v2_vm", "")
         n = self.net
@@ -1057,7 +1064,9 @@ def plan(conf: dict, cases: list[cf.Case], builds: list[str]) -> list[tuple[str,
         if b not in conf["builds"]:
             continue
         have = set(conf["builds"][b].get("packs", [])) | set(conf.get("packs", {}))
-        for c in sorted(cases, key=lambda c: (c.priority, c.id)):
+        # Baselines of diff checks run first, so their screenshots exist.
+        bases = {ch.against for c in cases for ch in c.checks if ch.kind == "diff"}
+        for c in sorted(cases, key=lambda c: (c.id not in bases, c.priority, c.id)):
             if c.clients == 2 and not (conf["builds"][b].get("pair_vm") or conf["builds"][b].get("pair_dir")):
                 continue   # a two-client case needs a second client VM for this build
             if b in c.expect and set(c.needs) <= have:
@@ -1080,6 +1089,9 @@ def main(argv: list[str]) -> int:
     work = Path(conf["work"]).expanduser()
     only = set(a.case.split(",")) - {""} or None
     cases = cf.load_cases(only)
+    # A diff check's baseline case runs too, even when --case leaves it out.
+    want = {ch.against for c in cases for ch in c.checks if ch.kind == "diff"} - {c.id for c in cases}
+    cases += cf.load_cases(want) if want else []
     builds = [b for b in a.build.split(",") if b] or list(conf["builds"])
     todo = plan(conf, cases, builds)
     if a.dry_run:

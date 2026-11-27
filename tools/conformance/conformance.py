@@ -49,7 +49,7 @@ import gen_content  # noqa: E402
 # The five builds the suite is written for, in table order. A case may name
 # others (e.g. "4.20r6L", the Linux 4.20 G3D22126); they get their own column.
 CORE_BUILDS = ["3.153", "4.04r2", "4.20r8", "5.12", "6.037"]
-CHECK_KINDS = {"trace", "server", "console", "files", "alive", "probe", "pixel", "blobs", "inject"}
+CHECK_KINDS = {"trace", "server", "console", "files", "alive", "probe", "pixel", "blobs", "inject", "diff"}
 MID_ACTIONS = ("", "stop-server", "inject-junk", "inject-flood")
 # [server] kind: which server runs the case. seihai: seihai-gserver (the default);
 # v2: seihai-gserver-v2, for its own 3D defences (lab.toml gserver_v2_*).
@@ -72,6 +72,8 @@ class Check:
     min_pixels: int = 40   # blobs: the smallest region that counts (in sampled pixels)
     count: int = 1         # blobs: at least this many separate regions
     client: int = 1        # which client's artefacts (2: the second client of a two-client case)
+    against: str = ""      # diff: the baseline case whose screenshot this one is compared with
+    region: tuple = (0.0, 0.0, 1.0, 1.0)   # diff: x0, y0, x1, y1 as fractions of the screen
     note: str = ""
 
 
@@ -130,7 +132,10 @@ def load_case(path: Path) -> Case:
                 colour=tuple(c.get("colour", ())), tol=int(c.get("tol", 40)),
                 min_fraction=float(c.get("min_fraction", 0.0)), note=c.get("note", ""),
                 min_pixels=int(c.get("min_pixels", 40)), count=int(c.get("count", 1)),
-                client=int(c.get("client", 1))))
+                client=int(c.get("client", 1)), against=c.get("against", ""),
+                region=tuple(float(v) for v in c.get("region", (0.0, 0.0, 1.0, 1.0)))))
+            if c["kind"] == "diff" and (not checks[-1].against or len(checks[-1].region) != 4):
+                raise CaseError(f"{path.name}: check {c['id']}: a diff check needs against and a 4-value region")
         ids = [c.id for c in checks]
         if len(ids) != len(set(ids)):
             raise CaseError(f"{path.name}: duplicate check id")
@@ -253,6 +258,11 @@ def build_world(case: Case, out: Path, packs: dict[str, Path] | None = None) -> 
         for rel, data in gen_content.flat_terrain(folder).items():
             (root / rel).parent.mkdir(parents=True, exist_ok=True)
             (root / rel).write_bytes(data)
+        # seihai-gserver (#222 on) wants the terrain folder's own heights.info
+        # to be the one the clients get by its bare name, or it logs an error.
+        served = root / "files" / "heights.info"
+        if served.exists():
+            (root / folder / "heights.info").write_bytes(served.read_bytes())
     for dv in case.derive:
         pack = (packs or {}).get(dv["pack"])
         if pack is None:
@@ -315,6 +325,24 @@ def colour_fraction(path: Path, rgb: tuple, tol: int) -> float:
     return hit / n if n else 0.0
 
 
+def diff_fraction(path: Path, base: Path, tol: int, region: tuple) -> float:
+    """The share of sampled pixels inside `region` (fractions of the screen)
+    where any channel differs from the baseline screenshot by more than tol."""
+    w, h, pix = read_ppm(path)
+    bw, bh, bpix = read_ppm(base)
+    if (w, h) != (bw, bh):
+        raise ValueError(f"screenshot sizes differ: {w}x{h} against {bw}x{bh}")
+    x0, y0, x1, y1 = (int(region[0] * w), int(region[1] * h), int(region[2] * w), int(region[3] * h))
+    hit = n = 0
+    for y in range(y0, y1, 2):
+        for x in range(x0, x1, 2):
+            i = (y * w + x) * 3
+            n += 1
+            if max(abs(pix[i] - bpix[i]), abs(pix[i + 1] - bpix[i + 1]), abs(pix[i + 2] - bpix[i + 2])) > tol:
+                hit += 1
+    return hit / n if n else 0.0
+
+
 def _read(rundir: Path, name: str) -> str | None:
     p = rundir / name
     if not p.exists():
@@ -371,8 +399,23 @@ def colour_blobs(path: Path, rgb: tuple, tol: int, min_pixels: int) -> list[int]
 
 def observe(check: Check, rundir: Path, exe: str = "") -> tuple[bool | None, str]:
     """(value, detail). None: the artefact the check reads is missing."""
-    if check.client == 2 and check.kind in ("console", "files", "alive", "pixel", "blobs"):
+    if check.client == 2 and check.kind in ("console", "files", "alive", "pixel", "blobs", "diff"):
         rundir = rundir / "c2"   # the server log and trace are shared
+    if check.kind == "diff":
+        shot = rundir / "shot.ppm"
+        # The baseline ran in the same batch, for the same build: work/out/<build>/<against>.
+        base = rundir.parent / check.against / "shot.ppm"
+        if check.client == 2:
+            base = rundir.parent.parent / check.against / "c2" / "shot.ppm"
+        if not shot.exists():
+            return None, "no screenshot"
+        if not base.exists():
+            return None, f"no {check.against} baseline screenshot"
+        try:
+            f = diff_fraction(shot, base, check.tol, check.region)
+        except ValueError as e:
+            return None, str(e)
+        return f >= check.min_fraction, f"{f:.4f} of {check.region} differs from {check.against} by more than {check.tol}"
     if check.kind == "blobs":
         shot = rundir / "shot.ppm"
         if not shot.exists():

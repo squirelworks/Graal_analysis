@@ -81,6 +81,7 @@ Check kinds, each reading one artefact of the run:
 | `alive` | the guest's process list just before the client is closed | the client's exe is still running (no crash) |
 | `pixel` | the last screenshot | at least `min_fraction` of the screen is within `tol` of `colour` |
 | `blobs` | the last screenshot | at least `count` separate regions of `colour`, each of `min_pixels` or more (e.g. two players' cubes) |
+| `diff` | the last screenshot and the `against` case's, from the same batch and build | at least `min_fraction` of the pixels in `region` (x0, y0, x1, y1 as fractions) differ by more than `tol` in some channel; the runner runs the baseline case first |
 
 A text check (`trace`, `server`, `console`, `files`, `inject`) with `count = N`
 is true when the pattern matches at least N times. In a multi-session case the
@@ -191,11 +192,17 @@ server between two visits with the cache kept (C028, T3D-155), and five
 visits in a row on one server run (C029, T3D-145). Ground cover (T3D-048,
 needs seihai-gserver #214 or later): the origin-cell dead spot (C031), cover
 around an avatar away from the replicator (C032), and an avatar outside the
-cover box at radius 3 and 1 (C033, C034). Grass (T3D-048, needs
-seihai-gserver #218): a radius-4 grass line still draws, since the server
-sends grass at radius 8 or more (C035), while the same grass object sent
-directly as a `rawobject` at radius 4 draws none (C036) and at radius 8 draws
-(C037, the control that shows the raw encoding is right). The raw line comes
+cover box at radius 3 and 1 (C033, C034). Grass (T3D-048): a radius-4 grass line on the server draws, and from
+seihai-gserver #228 it goes out at radius 4 with no floor note (C035). The
+same grass object sent directly as a `rawobject` draws at radius 4 (C036) and
+at radius 8 (C037, the control that shows the raw encoding is right). With
+the avatar spawned in the origin cell at (4, 4), no grass grows at any
+radius, and #228 notes that spawn at start-up (C047). C036 was first written
+expecting no grass, from a radius-8 rule that the 2026-11-27 sweep
+(`torque/grass-512-sweep-2026-11-27.md`) showed to be wrong: the origin cell,
+not the radius, is what stops grass. Grass is detected by
+comparing the lower half of the screen with C046, the same world without the
+grass line, because no grass colour could be told from the terrain. The raw line comes
 from `gen_content.grass_rawobject`, checked bit for bit against the server's
 own replicator encoder. seihai-gserver-v2's 3D defences (`[server] kind =
 "v2"`): junk on the 3D ports (C038, T3D-142/144), a flood cut by the

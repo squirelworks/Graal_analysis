@@ -23,8 +23,9 @@ seconds = 75
 
 [[check]]
 id = "terrain_block"
-kind = "trace"
-pattern = "TerrainBlock"
+kind = "server"
+pattern = "\\(TerrainBlock Terrain\\) created on the client"
+note = "the gserver logs the ghost create; the trace has no TerrainBlock line"
 
 [[check]]
 id = "link_timed_out"

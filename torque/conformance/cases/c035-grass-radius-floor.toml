@@ -1,6 +1,6 @@
 id = "C035"
 slug = "grass-radius-floor"
-title = "A radius-4 grass line on the server still draws grass: the server sends grass at radius 8 or more"
+title = "A radius-4 grass line on the server draws grass, sent at radius 4 (no floor since seihai-gserver #228)"
 rows = ["T3D-048"]
 priority = 2
 
@@ -14,7 +14,7 @@ replicator DynamicGrass 20 20 0 4 40 60 conf_grass.png 1 -1024 -1024 1024 1024
 playershape conf_nomat.3ds
 spawn 20 20 1
 """
-files = ["conf_nomat.3ds", "conf_sky*", "conf_ground.png", "conf_grass.png", "heights.info=heights_grass.info"]
+files = ["conf_nomat.3ds", "conf_sky*", "conf_ground.png", "conf_grass.png", "heights.info"]
 terrain = ["conf_ter"]
 
 [server]
@@ -35,15 +35,16 @@ note = "Needs seihai-gserver #218 or later (grass radius floor); an older server
 id = "floor_noted"
 kind = "server"
 pattern = "radius 4 goes out as 8"
-note = "the start-up check says the grass line goes out at radius 8"
+note = "seihai-gserver #218 to #227 floored grass to radius 8 and said so at start-up; #228 sends the line's own radius and says nothing (a 5.12 grows grass at any radius outside the origin cell)"
 
 [[check]]
 id = "grass_drawn"
-kind = "pixel"
-colour = [255, 255, 255]
-tol = 50
-min_fraction = 0.01
-note = "white grass quads on the tan terrain around the avatar, on the second visit (the pushed grass texture is cached by then)"
+kind = "diff"
+against = "C046"
+region = [0.0, 0.5, 1.0, 1.0]
+tol = 40
+min_fraction = 0.02
+note = "the lower half of the final screenshot differs from C046's (the same world, spawn and camera without the grass line) on at least 2% of its pixels; colour-blind, so untextured or textured grass both count"
 
 [[check]]
 id = "alive"
@@ -51,42 +52,42 @@ kind = "alive"
 
 [expect."3.153"]
 taken = false
-floor_noted = true
+floor_noted = false
 grass_drawn = false
 alive = "?"
-source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); [srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
+source = "[srv] seihai-gserver #228 (grass goes out at its own radius); [srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
 
 [expect."4.04r2"]
 taken = false
-floor_noted = true
+floor_noted = false
 grass_drawn = false
 alive = "?"
-source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); [srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
+source = "[srv] seihai-gserver #228 (grass goes out at its own radius); [srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
 
 [expect."4.20r8"]
 taken = false
-floor_noted = true
+floor_noted = false
 grass_drawn = false
 alive = "?"
-source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); [lab] torque/replicators-512.md: 4.20r8 takes a replicator ghost but grows no cover (GDI and Mesa)"
+source = "[srv] seihai-gserver #228 (grass goes out at its own radius); [lab] torque/replicators-512.md: 4.20r8 takes a replicator ghost but grows no cover (GDI and Mesa)"
 
 [expect."5.12"]
 taken = false
-floor_noted = true
+floor_noted = false
 grass_drawn = true
 alive = true
-source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); [lab] seihai-gserver #218: every grass line at radius 4 drew nothing and the same line at 8 drew a patch (Wine on Mesa)"
+source = "[srv] seihai-gserver #228 (grass goes out at its own radius); [lab] torque/grass-512-sweep-2026-11-27.md: radius 1 to 8 all draw with the avatar outside the origin cell; a plain radius-4 line drew with the floor removed (X151)"
 
 [expect."6.037"]
 taken = false
-floor_noted = true
+floor_noted = false
 grass_drawn = false
 alive = true
-source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); T3D-121 (2D-only Quattro build, no 3D link)"
+source = "[srv] seihai-gserver #228 (grass goes out at its own radius); T3D-121 (2D-only Quattro build, no 3D link)"
 
 [expect."6.037F"]
 taken = false
-floor_noted = true
+floor_noted = false
 grass_drawn = "?"
 alive = "?"
 source = "unread: first live run of our Frankenstein build (T3D-152)"

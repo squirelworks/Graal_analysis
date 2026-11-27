@@ -63,7 +63,8 @@ gserver_host = "<lab-home>/work/<build>/seihai-gserver"
 # gserver_vm = "seihai-gserver/target/release/seihai-gserver"   # relative to the VM user's home
 # Optional, for [server] kind = "v2" cases (seihai-gserver-v2's own 3D
 # defences): a v2 server folder to start from (a copy of bin/servers/default
-# with the lab accounts, foldersconfig "file 3d/*" and hq settings), and the
+# with the lab accounts, foldersconfig "file 3d/*", hq settings and
+# generation = modern: newmain refuses 5.12), and the
 # gs2emu binary built for the server VM, copied in or already there. The
 # runner merges each case's options into config/serveroptions.txt, puts its
 # files in world/3d/ and starts gs2emu in the folder.
@@ -197,6 +198,7 @@ guest_password_file = '<lab-home>\private\<guest password file>'
 #               agent = '<guest agent folder>'   (cmd.txt / agent.txt)
 #               elevated = ['<guest set-up command run as administrator>']
 #               wait_year = <the year the guest clock must show, if held>
+#               guest_files = [['<host file>', '<guest folder>']]  (copied in after boot, before guest_setup)
 #               guest_setup = ['<PowerShell line run by guest control after boot>']
 #               dhcp_reset = true  (the guest image has a static address from another network)
 #   builds:     pair_dir = '<a second copy of the build in the same guest>'
