@@ -11,7 +11,7 @@ betas as controls. It then describes a client patch that unlocks the dormant par
 | --- | --- |
 | 1. The 2.x clients have a New World mode switch, and a server packet turns it on | **True.** Server packet 177 (`PLO_NEWWORLDMODE`, no payload) sets it, from 2.1.0.4 v22 to 2.31. Nothing clears it again. **[bin]** |
 | 2. In NW mode the COLORS prop takes 8 colours instead of 5 | **True,** in both directions: the client reads 8 and sends 8. **[bin]** |
-| 3. …only for players, not NPCs | **False** for the wire. The NPC prop reader also reads 8 colours for NPC prop 19 (COLORS) in NW mode. Only the client's NPC prop *writer* stays at 5. **[bin]** |
+| 3. …only for players, not NPCs | **Half true.** Server to client, NPC COLORS (NPC prop 19) is read as 8 in NW mode too, so NPCs can have 8 colours. Client to server it is capped: the NPC props the client sends (`PLI_NPCPROPS`, 3) always carry 5. See [NPC props](#npc-props-the-5-colour-cap). **[bin]** |
 | 4. The code that recolours the body is hard-wired to the 5 classic colours, and the NW palette layout is different | **True.** The recolour routine always writes exactly 5 palette entries (5, 6, 4, 3, 1) and never looks at the mode. NW bodies use 8 slots with 3 shades each at different palette entries. The other 3 colours are stored and even copied to the draw buffer, but never applied. **[bin]** |
 | 5. "Probably an ifdef rather than a check on the flag" | **Consistent.** The NW recolour code (shade tables, `bodycolors.txt` loader) is simply absent from the main line, while the 8/5 width checks test the flag at run time. **[bin][inf]** |
 | 6. NW shields don't work because the client ignores the GANI for SHIELD sprites and uses its own configuration | **Partly true.** The GANI's SHIELD rect is used, but it is rescaled by (shield image width / 38, height / 20), a built-in classic 38×20 sheet size. NW shield sheets are 96×20 with frames past x = 38, so every rect lands in the wrong place. No NW-mode exception. **[bin]** |
@@ -50,6 +50,27 @@ In 2.1.0.4, 2.17.1, 2.22 and 2.31 the same "8 if NW mode, else 5" test appears a
 
 A character keeps 8 colour slots in all these builds. The GANI drawer copies all 8 into the body-draw buffer
 before every body sprite. **[bin]**
+
+### NPC props: the 5-colour cap
+
+The NPC side is asymmetric. **[bin]**
+
+- **Server to client:** in NW mode, NPC prop 19 is read as 8 values (2.1.0.4, 2.17.1, 2.22, 2.31). The NPC keeps them in
+  the same 8 slots a player uses, and the GANI drawer copies all 8 for NPC bodies as well, so a server-driven NPC can
+  carry 8 colours.
+- **Client to server:** the client builds a snapshot of an NPC's props with a writer that has no NW test and always
+  writes NPC prop 19 as exactly 5 values (a 6-byte record with its id). It compares the snapshot with the previous one
+  and sends the changed props to the server as `PLI_NPCPROPS` (3), prefixed with the NPC id. So colours 6–8 can never
+  leave the client, and a change confined to them is not even detected. Read in 2.17.1 and 2.22; the 2.31 writer was
+  not located.
+- That snapshot is the client-to-server sync of NPCs a client changes itself (client-side scripts on level NPCs). NPCs
+  whose looks come from the server are not affected.
+
+A server in NW mode therefore has to send 8 COLORS values for NPCs but still parse 5 in a client's `PLI_NPCPROPS`.
+
+The patch does **not** need to touch this path for display: server-sent NPC colours already arrive as 8 and the patched
+recolour applies them, like a player's. Only client-side NPC changes would lose slots 6–8. Extending the writer to
+send 8 in NW mode is possible, but it would also require servers to parse 8 there, so it is left out.
 
 A server that switches a client into NW mode must therefore send 8 COLORS bytes for players (prop 13) and NPCs
 (prop 19) from then on. A 5-byte value desynchronises the rest of that prop stream. It must also read 8 from the
@@ -118,7 +139,7 @@ Side effects:
 A server that wants NW looks on these clients needs to:
 
 1. send 177 once after login (or per level, if only some levels are NW);
-2. from then on send COLORS as 8 bytes, both player prop 13 and NPC prop 19, and accept 8 from the client;
+2. from then on send COLORS as 8 bytes, both player prop 13 and NPC prop 19; read 8 in the client's player props but 5 in its `PLI_NPCPROPS`;
 3. serve NW bodies, shield sheets and GANIs.
 
 Nothing in the stock 2.x client tells the server it supports NW mode, so the server has to know the client
@@ -152,7 +173,7 @@ as changed pixels in an 80×80 crop around the player; a repeat run of each buil
   but the client treats a different entry as clear. An asset or loader issue, not the patch.
 - Two of four patched launches did not log in within the timeout; both retries did. The login-click driver is the
   likely cause, but the screen was not recorded, so the patch is not ruled out.
-- The NPC 8-colour read was not tested live; only the player's own body was.
+- The NPC 8-colour read and the 5-colour `PLI_NPCPROPS` cap were not tested live; only the player's own body was.
 
 ## Open
 
