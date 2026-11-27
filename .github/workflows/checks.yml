@@ -81,6 +81,9 @@ jobs:
       - name: pytest 3D conformance suite
         run: python -m pytest tools/conformance -q
 
+      - name: pytest Graal 3D example server
+        run: python -m pytest graal3d/examples/g3dmini -q
+
       - name: pytest file-format decoders
         run: python -m pytest tools/file-formats -q
 

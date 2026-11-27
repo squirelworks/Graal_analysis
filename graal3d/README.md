@@ -9,6 +9,10 @@ No decompiler output is reproduced here.
 
 **Does it use a gserver?** Yes, its own: `GServer.exe` from the same archive (TCP 14901). It does not talk to the 2D GServer or the list server. Players also exchange position and chat directly over UDP once the server has told each client the others' addresses.
 
+> **Looking for the Torque-era 3D mode** (the 3.153 to 5.12 clients and Frankenstein 6.037)? Read the
+> [community guide](community-guide.md): what that 3D client can do, how to build worlds and scripts for it,
+> and how to write a server for it, with a runnable example server in [examples/g3dmini/](examples/g3dmini/).
+
 - [protocol.md](protocol.md): framing, login, packet ids, the player property table, peer-to-peer UDP, admin commands.
 - [formats.md](formats.md): config files, the registry password, `accounts.txt`, levels and models.
 - [client-behaviour.md](client-behaviour.md): controls, walking, running, jumping, camera and the chat log, for a per-version profile.

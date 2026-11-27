@@ -428,6 +428,9 @@ graal3d/beta3-genesis.md	cited	9; E	9
 graal3d/camera.md	cited	9	9	
 graal3d/client-behaviour.md	cited	9	9	
 graal3d/collision.md	cited	9	9	
+graal3d/community-guide.md	excluded			a user guide to the Torque-era 3D mode built from the torque/ notes, which the manual cites directly; introduces no new client-behaviour result
+graal3d/examples/g3dmini/README.md	excluded			an example protocol-24 server written from torque/udp-session.md and torque/terrain-512.md; introduces no client-behaviour result
+graal3d/examples/g3dmini/world.txt	excluded			sample world file for the example server
 graal3d/formats.md	cited	9	9	
 graal3d/g3d-version-tokens.md	cited	9; 10	9; 10	
 graal3d/lab-2026-10-30.md	cited	9	9	
