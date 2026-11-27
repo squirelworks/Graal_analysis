@@ -143,8 +143,24 @@ A server that wants NW looks on these clients needs to:
 3. serve NW bodies, shield sheets and GANIs.
 
 Nothing in the stock 2.x client tells the server it supports NW mode, so the server has to know the client
-(for example from its version token and a server option). GServer-v2 and Seihai's gserver do not send 177 today.
-For the lab the probe proxy injects 177 and 8-colour props ([`tools/probe/`](../tools/probe/README.md)).
+(for example from its version token and a server option).
+
+**GServer-v2 already does this** on its `beta4` branch (from the commit "feat: Kingdoms and New World modes",
+2026-08, plus "fix: New World mode packet corruption in NPC props"), when `serveroptions.txt` has
+`servermode = newworld` (`kingdoms` and `normal` are the other values). The `master` branch (2025-01) has no
+server mode. Read from the GPL source, not run yet: **[srv]**
+
+- the server sends 177 at login, right after the signature (`server/src/player/Player.cpp:763`);
+- player COLORS (prop 13) is read and written as 8 values (`server/include/utilities/PropertySerializers.h:797`);
+- NPC COLORS (NPC prop 19) is written as 8 but read as 5 (`server/include/object/NPC.h:664`, the colour
+  serializer's "only deserialize 5" flag), which matches the client's 5-value `PLI_NPCPROPS` above;
+- accounts and NPC files save 8 colours, and GS1 scripts get `#C5`–`#C7` for the extra slots
+  (`FlatFileAccountLoader.cpp:707`, `FlatFileNPCLoader.cpp:775`, `Player.cpp:1647`, `NPC.cpp:1930`).
+
+So with that option set, the server half of the rules above is already in place, and the patched client supplies the
+other half. Seihai's gserver has no server mode today. The first lab run below used a classic server with 177 injected
+by the probe proxy ([`tools/probe/`](../tools/probe/README.md)). That is why the server misread the client's 8
+colours there.
 
 ## Lab
 
@@ -167,7 +183,7 @@ as changed pixels in an 80×80 crop around the player; a repeat run of each buil
 - Neither build crashed. The patched exe's tamper-check value differs from stock; our server ignored it.
 - Right after 177 both builds send their own COLORS as 8 values. The classic GServer-v2 reads 5 and mis-parses
   the rest (the player's nickname came back as "unknown"), so a server must handle the 8-byte form before NW mode
-  is usable.
+  is usable. That server did not have `servermode = newworld` set.
 - NW mode hides the whole classic HUD (hearts, counts, A/S/D) in both builds.
 - In every NW shot the area behind the player is dark green in both builds: `bodynw.png`'s clear entry is index 8,
   but the client treats a different entry as clear. An asset or loader issue, not the patch.
