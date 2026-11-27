@@ -57,3 +57,4 @@ blank (not run yet). Observed `?` values are listed under each run in
 | [C045](cases/c045-v2-huge-png.toml) | seihai-gserver-v2: a .3ds whose texture claims 100000 x 100000 is refused at start-up; the client draws the rest and keeps running |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
 | [C046](cases/c046-grass-baseline.toml) | The grass cases' world without a grass line: the baseline screenshot that C035 to C037 are compared with |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
 | [C047](cases/c047-grass-origin-cell.toml) | Grass with the avatar spawned in the origin cell (4, 4): a 5.12 grows none, at any radius |  |  |  |  |  |  |
+| [C048](cases/c048-grass-baseline-origin-cell.toml) | C046 with the avatar spawned at (4, 4): the no-grass baseline that C047 is compared with |  |  |  |  |  |  |

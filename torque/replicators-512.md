@@ -20,9 +20,9 @@ section flags), then the replicator's own part **[bin]**:
 | 1 | transform | position 3 × raw 32 floats, then the rotation quaternion's x, y, z (3 × raw 32 floats) and a flag set when w is negative; the same encoding as `WaterBlock` and `fxSunLight` |
 | 2 | `seed` | int32 |
 | 3 | `shapefiles` | `pstring` |
-| 4 | `radius` | int8, in grid cells (the client multiplies by 8 and stores world units) |
-| 5 | `mingridobjects` | int8 |
-| 6 | `maxgridobjects` | int8 |
+| 4 | `radius` | int8 (plain 8 bits, no sign flag), in grid cells (the client multiplies by 8 and stores world units) |
+| 5 | `mingridobjects` | int8 (plain 8 bits) |
+| 6 | `maxgridobjects` | int8 (plain 8 bits) |
 | 7 | `boxmin` | 3 × signed int16 (whole numbers) |
 | 8 | `boxmax` | 3 × signed int16 (whole numbers) |
 | 9 | `shapescalemin` | 3 × raw 32 floats |
@@ -49,7 +49,9 @@ regrows its replications. **[bin]**
 ## What the client does with the values
 
 - `radius` is kept in cells, clamped to 1–64 cells (8 to 512 units). The client allocates a
-  (2r+1)² cell grid. **[bin]**
+  (2r+1)² cell grid. **[bin]** Live, cover reaches exactly `radius` cells from the avatar's cell
+  on each side, as read on the wire. A server that writes a sign flag before these three fields
+  doubles them: the client reads the whole byte. **[lab]**
 - `mingridobjects` and `maxgridobjects` are clamped to 0–20 per cell. Raising the minimum above
   the maximum raises the maximum, and lowering the maximum below the minimum lowers the
   minimum. **[bin]**
@@ -175,14 +177,21 @@ corners (about ±1 unit), and showed them to be small blocks of cells, not singl
 | (128, −128) | (−200, −120) to (200, 200) | 4 | one patch, cells x 64..192 (17 columns), y −120..−64 (8 rows) |
 | (128, −128) | (−200, −200) to (120, 200) | 4 | one patch, cells x 64..112 (7 columns), y −192..−128 (9 rows) |
 
-Five of the six fit one reading: cells within **2 × radius** cells of the avatar's cell, cut by
-the box. At radius 3 that reaches 48 units, so x 80..176 from an avatar at 128, which the box
-cuts to 80..96. At radius 4 it reaches 64 units, giving x 64..192. The clump direction mirrors
-with the avatar in three of four quadrants. Two results don't fit and are open. The (128, 128)
-quadrant grew nothing. The second partial box lacks the rows y −120..−64 that grew in the first.
-The 2 × radius reach also conflicts with the inside-box run above, which matched a reach of
-radius cells. Even at one object per cell, cells held 1 to 4 cubes at different spots (14 cubes
-in 9 cells), which looks like some cells being grown more than once **[inf]**.
+**Correction (2026-11-27): the "2 × radius" reach was an encoding slip in our lab worlds.** The
+lab's raw-object worlds wrote `radius`, `mingridobjects` and `maxgridobjects` as a sign flag plus
+7 bits. The client reads the plain byte, so every value went out doubled: radius 2, 3, 4 and 6 as
+4, 6, 8 and 12, and "1 per cell" as 2. Decoded from packet captures, the reach equals the wire
+byte in every case. Radius 4 on the wire gave a 9 × 9 block, 8 gave 17 × 17, and 6 was cut by the
+box consistently with ±6. That matches the renderer's run through our server's native line,
+which sends the plain byte: 18 and 50 cubes at radius 1 and 2 with 2 per cell. So the rule is
+**every cell within `radius` cells of the avatar's cell on each axis, centred on the avatar, then
+cut by the box**. It holds in every quadrant, and where the replicator object sits doesn't
+matter. The radius values in the outside-box and "threshold" tables above went through the same
+kind of raw-object harness, so they were probably doubled as well. Read with doubled values, the
+"avatar − 8·(r + 2)" clumps are simply the nearest cells of that block that fall inside the box.
+The "1 to 4 cubes per cell" came from the doubled count of 2 per cell, with touching cubes
+merging. The (128, 128) "nothing" and missing-row results didn't reproduce in five and three
+reruns, and remain a passing fault of unknown cause. **[lab]**
 
 ## Live
 

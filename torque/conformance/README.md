@@ -197,7 +197,8 @@ seihai-gserver #228 it goes out at radius 4 with no floor note (C035). The
 same grass object sent directly as a `rawobject` draws at radius 4 (C036) and
 at radius 8 (C037, the control that shows the raw encoding is right). With
 the avatar spawned in the origin cell at (4, 4), no grass grows at any
-radius, and #228 notes that spawn at start-up (C047). C036 was first written
+radius, and #228 notes that spawn at start-up (C047, compared with C048, its
+own no-grass baseline at that spawn). C036 was first written
 expecting no grass, from a radius-8 rule that the 2026-11-27 sweep
 (`torque/grass-512-sweep-2026-11-27.md`) showed to be wrong: the origin cell,
 not the radius, is what stops grass. Grass is detected by
