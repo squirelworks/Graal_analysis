@@ -472,27 +472,27 @@ Measured on the real 5.12 client under Mesa llvmpipe, against seihai-gserver 67b
 - The chunks the client keeps are byte for byte the ones sent (only the zlib header differs), and
   the fetched `heights.info` is cached at `levels3d/images/heights.info`, shared by every server.
 
-**Why (static read of the 5.12 engine, unpacked in memory, base 0x10000000) [bin]:** near the camera
+**Why (static read of the 5.12 engine, unpacked in memory) [bin]:** near the camera
 the 5.12 draws a second, per-square **tile layer** over the blended terrain, and that layer comes from a
 script hook. For each square it finds an object named **`TilesControl`** and calls
 **`getTilesForSpot("<x>,<y>")`** on it, expecting 4 texture names, one per quarter of the square
-(`0x100bf990`, cached per spot when it gets 4). With no such object it uses the **first material name
+(cached per spot when it gets 4). With no such object it uses the **first material name
 (`heights.info` line 1)** for all four, and does not cache that. The layer's vertex alpha is
-`fade(d)`: 0 below 75 units, `(d − 75) / 75` up to 150, 1 from 150 (`0x100bf840`). Texture unit 1 is set
-to `GL_COMBINE` / INTERPOLATE by the primary colour's alpha (`0x100c0920`), and chunks at 150 or more
-take the plain far path (`0x100bec40`). So up close the tile layer covers the blend completely, and it
+`fade(d)`: 0 below 75 units, `(d − 75) / 75` up to 150, 1 from 150. Texture unit 1 is set
+to `GL_COMBINE` / INTERPOLATE by the primary colour's alpha, and chunks at 150 or more
+take the plain far path. So up close the tile layer covers the blend completely, and it
 fades out to 150. A tile name that does not load gives handle 0, and that square's vertex alpha is
 1, which leaves only the blended texture **[bin]** (whether the client still requests the file is
 **[inf]**). The blended texture itself is right:
-- `Blender::blend` (`0x100a2a30`) mixes up to 4 materials per square from the alpha maps, using each
+- `Blender::blend` mixes up to 4 materials per square from the alpha maps, using each
   square's level-0 flags (bit `8 << i` per material).
-- The chunk decoder (`0x100b70b0`) writes the base material and all 32 alpha maps as §2 says.
-- `updateGridMaterials` (`0x100b34f0`) resets the flags, ORs them into level 1 and flushes the
+- The chunk decoder writes the base material and all 32 alpha maps as §2 says.
+- `updateGridMaterials` resets the flags, ORs them into level 1 and flushes the
   texture cache for the chunk.
 
 The same `TilesControl` / `getTilesForSpot` strings are in the 4.20r8 and 5.00r7 engines, and not in
-4.04. Material textures that fail to load fall back to a texture named `default`
-(`0x100b4a70`), which is the `default` file request seen in the lab.
+4.04. Material textures that fail to load fall back to a texture named `default`,
+which is the `default` file request seen in the lab.
 
 So no terrain data the server sends can change the near band. A client object `TilesControl` can.
 Captures and runs are kept with the owner's lab material.
