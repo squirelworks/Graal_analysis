@@ -60,6 +60,8 @@ The same selected backup's constructed connection decodes the logical message ID
 
 That route supplies no color-mode handler to connect with the separately examined five-value player-colors reader. It does not establish whole-client packet177 absence, another ID's equivalence, all connection subclasses or alternate paths, genuine 5.12, observed traffic, color rendering or runtime acceptance. P4–P6 remain open beyond this selected result. **[bin][inf]**
 
+For comparison, the 2.1.0.4 to 2.31 clients do have the P4 behaviour: 177 sets a New World flag and four COLORS readers and writers switch from 5 to 8 values on it ([newworld-mode-2x.md](../client-internals/newworld-mode-2x.md)). That is the 2.x line, not evidence for 5.x. **[bin]**
+
 ## Selected ordering and power-storage boundaries (2026-11-22)
 
 Further static reads of the same archive-labelled backup qualify P5/P6 (evidence `W500-PROP-ORDER-POWER-20261122`). They do not authenticate a distribution or transfer the result to genuine 5.12. **[bin]**

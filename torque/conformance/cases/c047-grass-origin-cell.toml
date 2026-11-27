@@ -1,0 +1,108 @@
+id = "C047"
+slug = "grass-origin-cell"
+title = "Grass with the avatar spawned in the origin cell (4, 4): a 5.12 grows none, at any radius"
+rows = ["T3D-048"]
+priority = 2
+
+[world]
+lines = """
+sun 0.57735 0.57735 -0.57735 0.8 0.8 0.8 1 0.3 0.3 0.35 1
+sky conf_sky0,conf_sky1,conf_sky2,conf_sky3,conf_sky4,conf_sky5 500
+skyoptions 1 0 0 0.4 0.6 0.9
+terrain conf_ter 8
+replicator DynamicGrass 20 20 0 8 40 60 conf_grass.png 1 -1024 -1024 1024 1024
+playershape conf_nomat.3ds
+spawn 4 4 1
+"""
+files = ["conf_nomat.3ds", "conf_sky*", "conf_ground.png", "conf_grass.png", "heights.info"]
+terrain = ["conf_ter"]
+
+[server]
+options = ["graal3d_pushterrain = true"]
+
+[run]
+seconds = 60
+sessions = 2
+keep_cache = true
+
+[[check]]
+id = "taken"
+kind = "server"
+pattern = "not understood"
+note = "Needs seihai-gserver #218 or later (grass radius floor); an older server sends radius 4 as is."
+
+[[check]]
+id = "origin_noted"
+kind = "server"
+pattern = "is in the origin cell"
+note = "seihai-gserver #228's start-up check notes a world with ground cover whose spawn is in the origin cell"
+
+[[check]]
+id = "magenta"
+kind = "pixel"
+colour = [255, 0, 255]
+tol = 60
+min_fraction = 0.005
+note = "the grass texture's magenta anywhere on the final screenshot"
+
+[[check]]
+id = "grass_drawn"
+kind = "diff"
+against = "C048"
+region = [0.0, 0.5, 1.0, 1.0]
+tol = 40
+min_fraction = 0.02
+note = "the lower half of the final screenshot differs from C048's (the same world, spawn (4, 4) and camera without the grass line) on at least 2% of its pixels; C046 spawns at (20, 20), so its camera differs (0.138 against it in the 2026-11-27 retest with no grass drawn)"
+
+[[check]]
+id = "alive"
+kind = "alive"
+
+[expect."3.153"]
+taken = false
+origin_noted = true
+magenta = false
+grass_drawn = false
+alive = "?"
+source = "[srv] seihai-gserver #228 (start-up origin-cell note); [srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
+
+[expect."4.04r2"]
+taken = false
+origin_noted = true
+magenta = false
+grass_drawn = false
+alive = "?"
+source = "[srv] seihai-gserver #228 (start-up origin-cell note); [srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
+
+[expect."4.20r8"]
+taken = false
+origin_noted = true
+magenta = false
+grass_drawn = false
+alive = "?"
+source = "[srv] seihai-gserver #228 (start-up origin-cell note); [lab] torque/replicators-512.md: 4.20r8 takes a replicator ghost but grows no cover (GDI and Mesa)"
+
+[expect."5.12"]
+taken = false
+origin_noted = true
+magenta = false
+grass_drawn = false
+alive = true
+source = "[srv] seihai-gserver #228 (start-up origin-cell note); [lab] torque/grass-512-sweep-2026-11-27.md: spawned at (4, 4) nothing grows at radius 4 or 8 (X141, X146), while (9, 4), (4, 20), (20, 4) and (8.5, 8.5) grow (X142-X147); torque/replicators-512.md: the same dead spot for DynamicShapeReplicator (C031)"
+
+[expect."6.037"]
+taken = false
+origin_noted = true
+magenta = false
+grass_drawn = false
+alive = true
+source = "[srv] seihai-gserver #228 (start-up origin-cell note); T3D-121 (2D-only Quattro build, no 3D link)"
+
+[expect."6.037F"]
+taken = false
+origin_noted = true
+magenta = false
+grass_drawn = "?"
+alive = "?"
+source = "unread: first live run of our Frankenstein build (T3D-152)"
+note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

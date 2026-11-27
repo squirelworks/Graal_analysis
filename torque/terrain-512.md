@@ -354,7 +354,7 @@ logs are kept with the owner's lab material. **[lab]**
 | Chunk edge cases (wrong stamp, modes 3/127/255, cut streams, trailing bytes, truncated zlib, duplicate chunk, ±127 deltas, `h0` 65535) | all accepted; results in §2 "Edge cases seen live" |
 | `setmaterials` then reconnect | list saved to the cache `heights.info` (32 CRLF lines) and reloaded |
 | 4.20r8 with the same `TerrainBlock` and chunk bytes | logs `Loading terrain from terrain chunks.`, requests with 256 zero stamps, saves the first chunks byte for byte as 5.12 does (same stamps), then crashes on a null call. Both crashing runs also had `GameObject`s at ground level (z near 0) and a low spawn; the same `TerrainBlock` with no objects and a high spawn ran 110 s without a crash, with or without textures, init 0, repeat 0 or 1. A `WaterBlock` alone is fine. Narrowed further: with only the `TerrainBlock`, the crash comes whenever the camera starts close to the terrain (about 60 units up), and never with the camera 200 units up, with or without objects. So it is tied to the camera being near the terrain. Height sweep (camera height above the local ground): on a hilly block (square size 2) it crashed at 2–80 units about 1 s after login, at 120 after 1.9 s and at 150 after 3.6 s, and did not crash at 180, 200 or 250. On a flat block with no chunks (square size 8) it crashed at 120 and did not at 180 or 210. So the threshold lies between 150 and 180 units in both worlds, and the higher the camera, the later the crash. It is not tied to view or visibility: at 80 units the crash time was unchanged (about 1.1 s) with the sky's visible distance at 50 or 100, and with the camera pitched straight up so that no terrain was in view. So it depends only on the camera's height above the ground, as a distance-based terrain detail or near-ground query would, not on what is drawn **[inf]**. **[lab]** The threshold does not scale with square size: with square size 32 (a terrain spanning ±4096) the camera crashed at 150 units and survived at 180, as with square size 2. **[lab]** It also needs terrain under or near the camera: at 80 units up (square size 8, terrain spanning ±1024) the client crashed with the spawn mid-terrain and at the far edge (x = 1000), but not 476 units past the edge (x = 1500). **[lab]** So the crash likely fires when terrain comes within roughly 150–180 units of the camera **[inf]**. Under a full OpenGL renderer (Mesa llvmpipe) the same client ran 114 s with the camera 80 units above the terrain, so the crash belongs to the bare GDI OpenGL 1.1 path. **[lab]** The lab VM's OpenGL is the bare Windows software 1.1 driver, so a missing GL extension that 4.20r8 calls without checking is likely **[inf]**; not yet tried on a full OpenGL driver. |
-| 4.20r8 under Mesa, native terrain world (four `heights.info` textures) plus a `WaterBlock`, cached and first visits, with and without the login push | all 256 chunks and both ghosts accepted, but no terrain or water texture is ever applied: flat terrain draws untextured white, the hilly world draws **black at any camera height** (even 250 up, so not the GDI near-terrain fault), and the `WaterBlock` draws untextured white. The terrain textures are cached without an extension in a `g3d` subfolder, while the water texture keeps its `.png`; without the push they download after `MissionStartPhase1`. The login push gives no textured first frame on 4.20r8. So the 5.12 first-visit and cached-texture behaviour does not carry over **[lab]** |
+| 4.20r8 under Mesa, native terrain world (four `heights.info` textures) plus a `WaterBlock`, cached and first visits, with and without the login push | all 256 chunks and both ghosts accepted, but no terrain or water texture is ever applied: flat terrain draws untextured white, the hilly world draws **black at any camera height** (even 250 up, so not the GDI near-terrain fault), and the `WaterBlock` draws untextured white. The terrain textures are cached without an extension in a `g3d` subfolder, while the water texture keeps its `.png`; without the push they download after `MissionStartPhase1`. The login push gives no textured first frame on 4.20r8. So the 5.12 first-visit and cached-texture behaviour does not carry over **[lab]**. **Correction from a later run:** the missing textures came from bare (extensionless) names. With `.png` names in `heights.info`, 4.20r8 draws white on the first visit. On the second it logs `Missing terrain texture: g3d_water.png` and the other three, fetches them into its `g3d` cache folder as `.png`, and draws the terrain fully textured on that same visit. From then on it textures from the cache, the same pattern as 5.12. With bare names it logs the Missing lines on every visit, caches the files with no extension, and never draws the terrain (the view is plain fog). Copying the cached files to `.png` or `.jpg` names doesn't help. The black hilly terrain didn't reproduce. A `Sun` object lights shapes on 4.20r8 but not the terrain: the textured terrain averages the same colour with and without one **[lab]** |
 | 5.00r7 | not run: its licence points the login at a fixed LAN address the isolated VM cannot answer; its terrain strings match 5.12 (static) |
 | Flat chunk (0, 0) at 3200 beside chunk (1, 0) at 0, `getdropz` every quarter square, square size 8 and 2 | 400 then 0: 8 wire units per world unit; terrain spans −128·sq…+128·sq on both axes; no seam (the last square of a chunk blends linearly into the next chunk's first vertex) |
 | `getdropz` at the far edge | the last square before +128·sq blends toward the opposite edge's first vertex (wraps); at or beyond +128·sq and below −128·sq it returns 0 (repeat 0: nothing tiles) |
@@ -405,7 +405,7 @@ gserver with chunks built for each case, from overhead shots at square size 8 un
 - **Slope shading comes from a fixed light the `Sun` only switches on.** With a `Sun` object the
   ground is shaded by one fixed directional light; a sun travelling +x and one travelling +y give
   pixel-identical shots, and the client ignores the world's own `sun 0 0 -1` direction for the
-  drawn shading. With no `Sun` object there is no shading at all and everything draws at one
+  drawn shading. Five `Sun` directions, including straight down, gave the same shading, so the direction is not used (decoded from captures, it is sent correctly) **[lab]**. With no `Sun` object there is no shading at all and everything draws at one
   colour. The brightness of a face with unit normal **n** fits
   **B = min(cap, A + D · max(0, n · L))** with ambient **A ≈ 0.615**, diffuse **D ≈ 0.96**, a
   highlight cap **≈ 0.99** of the texel, and the light direction (toward the light)
@@ -442,6 +442,80 @@ with zero chunks — and every `TerrainChunkEvent` sent in answer acked). Valida
 (seihai-gserver PR #223): with the chunk exchange gated in, a cold-cache load draws pixel-identical
 to the warm case, all chunks log before `Phase 2: Mission Lighting`, and Phase 2 still goes out
 well under its cap (~0.3 s after the Phase-1 ack here). **[lab]**
+
+### Near the camera only the first material draws (5.12, Mesa)
+
+Measured on the real 5.12 client under Mesa llvmpipe, against seihai-gserver 67b798c serving a
+`gen terrain --size 4x4 --3d --stream --playerworld` world (square size 2, four materials in
+`heights.info`: water, sand, grass, rock), five lab rounds on 2026-11-27 **[lab]**:
+
+- **Within about 70 units of the camera every square draws in the first `heights.info` texture**,
+  whatever the chunk gives it. From about 70 to 150 units the real materials fade in (a gradient,
+  not a sharp ring), and beyond about 150 units every material draws correctly with the soft edges
+  above. A camera sweep (offset `0 -k 1.5k` from the spawn): k = 10–40 all slot 0, k = 60 mixed,
+  k = 80 nearly right, k = 100 and up right.
+- **Swapping the first line swaps the colour**: with grass listed first the whole near ground is
+  grass. So the near path uses slot 0, not a missing or wrong texture.
+- **Batch K's red/blue world behaves the same**: from its overhead camera (about 150 up) the blue
+  strip draws; from 8 units up inside the patch it is 94 % red (slot 0). Batch K never looked at
+  terrain up close, which is why the rows above did not show this.
+- **Not the cause**, each tried and pixel-identical or unchanged up close: the `graal3dpushterrain`
+  push on or off; a fresh or a kept cache; texture names with or without a `g3d_` prefix (prefixed
+  names are cached under `levels3d/images/<prefix>/`); batch K's own solid PNGs in the list; chunks
+  re-encoded so each local index equals the global id; every square sent as a blend (alpha 15 or 8:
+  the far drawing follows the blend, the near one stays slot 0); a `sky` line and `sun 0 0 -1`;
+  non-empty names in the two TerrainBlock strings (stock TGE's detail and bump texture; the client
+  never requested either file); `detailfactor3D` 0.25, 1, 4 and 16 in `game_config.txt`. The 5.12
+  engine image holds no `$pref::Terrain::*` names and no `exec`, so no terrain pref can be set.
+  Hiding MMX or SSE from the guest CPU is not possible on the 64-bit Windows 10 lab VM (it does not
+  boot).
+- The chunks the client keeps are byte for byte the ones sent (only the zlib header differs), and
+  the fetched `heights.info` is cached at `levels3d/images/heights.info`, shared by every server.
+
+**Why (static read of the 5.12 engine, unpacked in memory) [bin]:** near the camera
+the 5.12 draws a second, per-square **tile layer** over the blended terrain, and that layer comes from a
+script hook. For each square it finds an object named **`TilesControl`** and calls
+**`getTilesForSpot("<x>,<y>")`** on it, expecting 4 texture names, one per quarter of the square
+(cached per spot when it gets 4). With no such object it uses the **first material name
+(`heights.info` line 1)** for all four, and does not cache that. The layer's vertex alpha is
+`fade(d)`: 0 below 75 units, `(d − 75) / 75` up to 150, 1 from 150. Texture unit 1 is set
+to `GL_COMBINE` / INTERPOLATE by the primary colour's alpha, and chunks at 150 or more
+take the plain far path. So up close the tile layer covers the blend completely, and it
+fades out to 150. A tile name that does not load gives handle 0, and that square's vertex alpha is
+1, which leaves only the blended texture **[bin]** (whether the client still requests the file is
+**[inf]**). The blended texture itself is right:
+- `Blender::blend` mixes up to 4 materials per square from the alpha maps, using each
+  square's level-0 flags (bit `8 << i` per material).
+- The chunk decoder writes the base material and all 32 alpha maps as §2 says.
+- `updateGridMaterials` resets the flags, ORs them into level 1 and flushes the
+  texture cache for the chunk.
+
+The same `TilesControl` / `getTilesForSpot` strings are in the 4.20r8 and 5.00r7 engines, and not in
+4.04. Material textures that fail to load fall back to a texture named `default`,
+which is the `default` file request seen in the lab.
+
+So no terrain data the server sends can change the near band. A client object `TilesControl` can,
+as the lab confirmed on the real 5.12 (camera `0 -40 60`, where the land had drawn all water) **[lab]**:
+
+| `TilesControl` | `getTilesForSpot` returns | Near the camera |
+|---|---|---|
+| none | – | every square in the first texture (water) |
+| a `weapon3d` named `TilesControl` | 4 × the grass texture | grass everywhere, fading to the blend by 150 units |
+| a `TStaticVar("TilesControl")` with a function member | 4 × grass | no change: the engine finds the weapon object by name, not this |
+| a `weapon3d` named `TilesControl` | 4 names that do not exist | **the correct blended terrain up to the camera** (grass, sand, rock); the client asks for the missing name once a session, not per square |
+| a `weapon3d` named `TilesControl` | 4 different textures | a 2 × 2 pattern in every near square: index = qx + 2·qy, so [0] is the low-x low-y quarter, [1] +x, [2] +y, [3] both |
+
+The working script, a `weapon3d TilesControl`:
+
+```
+//#CLIENTSIDE
+function getTilesForSpot(xy) {
+  return {"notile","notile","notile","notile"};
+}
+```
+
+A server should send such a weapon with any streamed terrain; seihai-gserver does.
+Captures and runs are kept with the owner's lab material.
 
 ### First-visit terrain texture depends on when the server sends the textures
 

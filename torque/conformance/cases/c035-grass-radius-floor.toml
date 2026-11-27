@@ -1,6 +1,6 @@
 id = "C035"
 slug = "grass-radius-floor"
-title = "A radius-4 grass line on the server still draws grass: the server sends grass at radius 8 or more"
+title = "A radius-4 grass line on the server draws grass, sent at radius 4 (no floor since seihai-gserver #228)"
 rows = ["T3D-048"]
 priority = 2
 
@@ -35,7 +35,7 @@ note = "Needs seihai-gserver #218 or later (grass radius floor); an older server
 id = "floor_noted"
 kind = "server"
 pattern = "radius 4 goes out as 8"
-note = "the start-up check says the grass line goes out at radius 8"
+note = "seihai-gserver #218 to #227 floored grass to radius 8 and said so at start-up; #228 sends the line's own radius and says nothing (a 5.12 grows grass at any radius outside the origin cell)"
 
 [[check]]
 id = "grass_drawn"
@@ -61,47 +61,47 @@ kind = "alive"
 
 [expect."3.153"]
 taken = false
-floor_noted = true
+floor_noted = false
 grass_drawn = false
 grass_magenta = false
 alive = "?"
-source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); [srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
+source = "[srv] seihai-gserver #228 (grass goes out at its own radius); [srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
 
 [expect."4.04r2"]
 taken = false
-floor_noted = true
+floor_noted = false
 grass_drawn = false
 grass_magenta = false
 alive = "?"
-source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); [srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
+source = "[srv] seihai-gserver #228 (grass goes out at its own radius); [srv] seihai-gserver docs/GRAAL3D.md: protocol 19 gets no terrain or replicators"
 
 [expect."4.20r8"]
 taken = false
-floor_noted = true
+floor_noted = false
 grass_drawn = false
 grass_magenta = false
 alive = "?"
-source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); [lab] torque/replicators-512.md: 4.20r8 takes a replicator ghost but grows no cover (GDI and Mesa)"
+source = "[srv] seihai-gserver #228 (grass goes out at its own radius); [lab] torque/replicators-512.md: 4.20r8 takes a replicator ghost but grows no cover (GDI and Mesa)"
 
 [expect."5.12"]
 taken = false
-floor_noted = true
+floor_noted = false
 grass_drawn = true
 grass_magenta = true
 alive = true
-source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); [lab] seihai-gserver #218: every grass line at radius 4 drew nothing and the same line at 8 drew a patch (Wine on Mesa); [lab] graal-client-repro #472 lab rerun (Win10 VM, seihai-gserver 833faba, fresh cache): the real 5.12 asked for conf_grass.png and drew the grass magenta"
+source = "[srv] seihai-gserver #228 (grass goes out at its own radius); [lab] torque/grass-512-sweep-2026-11-27.md: radius 1 to 8 all draw with the avatar outside the origin cell; a plain radius-4 line drew with the floor removed (X151); [lab] graal-client-repro #472 lab rerun (Win10 VM, seihai-gserver 833faba, fresh cache): the real 5.12 asked for conf_grass.png and drew the grass magenta (hue 0.13 on C035, 0.21 on C036)"
 
 [expect."6.037"]
 taken = false
-floor_noted = true
+floor_noted = false
 grass_drawn = false
 grass_magenta = false
 alive = true
-source = "[srv] seihai-gserver #218 (src/graal3d/ground.rs Replicator::sent_radius: grass goes out with at least 8 cells); T3D-121 (2D-only Quattro build, no 3D link)"
+source = "[srv] seihai-gserver #228 (grass goes out at its own radius); T3D-121 (2D-only Quattro build, no 3D link)"
 
 [expect."6.037F"]
 taken = false
-floor_noted = true
+floor_noted = false
 grass_drawn = "?"
 grass_magenta = true
 alive = "?"

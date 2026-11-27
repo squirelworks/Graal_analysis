@@ -1,6 +1,6 @@
 id = "C036"
 slug = "grass-raw-radius-4"
-title = "A grass object sent directly at radius 4, past the server's floor, draws no grass"
+title = "A grass object sent directly at radius 4 draws grass: a 5.12 has no grass radius threshold"
 rows = ["T3D-048"]
 priority = 2
 
@@ -86,10 +86,10 @@ source = "[srv] gen_content.grass_rawobject: the replicator line's update bit fo
 [expect."5.12"]
 raw_ghosted = true
 floor_noted = false
-grass_drawn = false
-grass_magenta = "?"
+grass_drawn = true
+grass_magenta = true
 alive = true
-source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 4, sent as a rawobject, which the server does not floor; [lab] seihai-gserver #218: a 5.12 builds no grass quads at a radius under 8 cells (radius 4 drew nothing); [lab] graal-client-repro #472 lab rerun (Win10 VM, seihai-gserver 833faba, fresh cache): the real 5.12 asked for conf_grass.png and drew the grass magenta"
+source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit at radius 4, sent as a rawobject; [lab] torque/grass-512-sweep-2026-11-27.md: radius 1, 2, 3, 4, 6 and 8 all draw with the avatar at (20, 20); this case drew as much as C037 (Graal_analysis #1008). It was first written expecting no grass, from the overstated radius-8 rule; [lab] graal-client-repro #472 lab rerun (Win10 VM, seihai-gserver 833faba, fresh cache): the real 5.12 asked for conf_grass.png and drew the grass magenta (hue 0.13 on C035, 0.21 on C036)"
 
 [expect."6.037"]
 raw_ghosted = false
@@ -103,7 +103,7 @@ source = "T3D-121 (2D-only Quattro build, no 3D link)"
 raw_ghosted = "?"
 floor_noted = false
 grass_drawn = "?"
-grass_magenta = "?"
+grass_magenta = true
 alive = "?"
 source = "unread: first live run of our Frankenstein build (T3D-152); [lab] graal-client-repro #472 lab rerun: grass grew but untextured white, conf_grass.png never asked for; #473 asks for the grass texture when missing"
 note = "the Frankenstein 6.037 client (gcr), its own column; 6.037 is the retail 2D-only 6.03r7"

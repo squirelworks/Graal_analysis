@@ -20,9 +20,9 @@ section flags), then the replicator's own part **[bin]**:
 | 1 | transform | position 3 × raw 32 floats, then the rotation quaternion's x, y, z (3 × raw 32 floats) and a flag set when w is negative; the same encoding as `WaterBlock` and `fxSunLight` |
 | 2 | `seed` | int32 |
 | 3 | `shapefiles` | `pstring` |
-| 4 | `radius` | int8, in grid cells (the client multiplies by 8 and stores world units) |
-| 5 | `mingridobjects` | int8 |
-| 6 | `maxgridobjects` | int8 |
+| 4 | `radius` | int8 (plain 8 bits, no sign flag), in grid cells (the client multiplies by 8 and stores world units) |
+| 5 | `mingridobjects` | int8 (plain 8 bits) |
+| 6 | `maxgridobjects` | int8 (plain 8 bits) |
 | 7 | `boxmin` | 3 × signed int16 (whole numbers) |
 | 8 | `boxmax` | 3 × signed int16 (whole numbers) |
 | 9 | `shapescalemin` | 3 × raw 32 floats |
@@ -49,7 +49,9 @@ regrows its replications. **[bin]**
 ## What the client does with the values
 
 - `radius` is kept in cells, clamped to 1–64 cells (8 to 512 units). The client allocates a
-  (2r+1)² cell grid. **[bin]**
+  (2r+1)² cell grid. **[bin]** Live, cover reaches exactly `radius` cells from the avatar's cell
+  on each side, as read on the wire. A server that writes a sign flag before these three fields
+  doubles them: the client reads the whole byte. **[lab]**
 - `mingridobjects` and `maxgridobjects` are clamped to 0–20 per cell. Raising the minimum above
   the maximum raises the maximum, and lowering the maximum below the minimum lowers the
   minimum. **[bin]**
@@ -114,7 +116,7 @@ read from its transform, not on the camera or the replicator. **[bin]** Live, on
 at (128, −128), at (104, 4) and at (−124, 132), whether the replicator object is next to the avatar, far away at (−300, −300), or hidden 500 units up. **[lab]**
 Two things stopped it in earlier runs:
 
-- **The avatar in cell (0, 0).** With the avatar anywhere in the origin cell (−8 < x < 8 and −8 < y < 8, since cells cut toward zero), nothing grows, wherever the replicator is: (4, 4), (7, 7) and (−4, −4) are all bare. One cell out in any direction grows a full patch: (9, 4), (4, 9), (−9, 4) and (20, 20). Moving the avatar from (4, 4) to (40, 4) after spawn makes cover appear around the new spot. A likely reason is that the grid starts out centred on cell (0, 0), so an avatar that starts there never registers a cell change and the grid is never filled **[inf]**. **[lab]**
+- **The avatar in cell (0, 0).** With the avatar anywhere in the origin cell (−8 < x < 8 and −8 < y < 8, since cells cut toward zero), nothing grows (shapes and, per the 2026-11-27 grass sweep, the grass classes too), wherever the replicator is: (4, 4), (7, 7) and (−4, −4) are all bare. One cell out in any direction grows a full patch: (9, 4), (4, 9), (−9, 4) and (20, 20). Moving the avatar from (4, 4) to (40, 4) after spawn makes cover appear around the new spot. A likely reason is that the grid starts out centred on cell (0, 0), so an avatar that starts there never registers a cell change and the grid is never filled **[inf]**. **[lab]**
 - **The replicator object on the spot.** (−124, 132) stayed bare while the replicator object sat on it, and grew a full patch once the replicator moved to (104, 4). Why the replicator's own spot blocks cover is still open. **[lab]**
 
 A box of (−1,−1) to (1,1)
@@ -175,14 +177,21 @@ corners (about ±1 unit), and showed them to be small blocks of cells, not singl
 | (128, −128) | (−200, −120) to (200, 200) | 4 | one patch, cells x 64..192 (17 columns), y −120..−64 (8 rows) |
 | (128, −128) | (−200, −200) to (120, 200) | 4 | one patch, cells x 64..112 (7 columns), y −192..−128 (9 rows) |
 
-Five of the six fit one reading: cells within **2 × radius** cells of the avatar's cell, cut by
-the box. At radius 3 that reaches 48 units, so x 80..176 from an avatar at 128, which the box
-cuts to 80..96. At radius 4 it reaches 64 units, giving x 64..192. The clump direction mirrors
-with the avatar in three of four quadrants. Two results don't fit and are open. The (128, 128)
-quadrant grew nothing. The second partial box lacks the rows y −120..−64 that grew in the first.
-The 2 × radius reach also conflicts with the inside-box run above, which matched a reach of
-radius cells. Even at one object per cell, cells held 1 to 4 cubes at different spots (14 cubes
-in 9 cells), which looks like some cells being grown more than once **[inf]**.
+**Correction (2026-11-27): the "2 × radius" reach was an encoding slip in our lab worlds.** The
+lab's raw-object worlds wrote `radius`, `mingridobjects` and `maxgridobjects` as a sign flag plus
+7 bits. The client reads the plain byte, so every value went out doubled: radius 2, 3, 4 and 6 as
+4, 6, 8 and 12, and "1 per cell" as 2. Decoded from packet captures, the reach equals the wire
+byte in every case. Radius 4 on the wire gave a 9 × 9 block, 8 gave 17 × 17, and 6 was cut by the
+box consistently with ±6. That matches the renderer's run through our server's native line,
+which sends the plain byte: 18 and 50 cubes at radius 1 and 2 with 2 per cell. So the rule is
+**every cell within `radius` cells of the avatar's cell on each axis, centred on the avatar, then
+cut by the box**. It holds in every quadrant, and where the replicator object sits doesn't
+matter. The radius values in the outside-box and "threshold" tables above went through the same
+kind of raw-object harness, so they were probably doubled as well. Read with doubled values, the
+"avatar − 8·(r + 2)" clumps are simply the nearest cells of that block that fall inside the box.
+The "1 to 4 cubes per cell" came from the doubled count of 2 per cell, with touching cubes
+merging. The (128, 128) "nothing" and missing-row results didn't reproduce in five and three
+reruns, and remain a passing fault of unknown cause. **[lab]**
 
 ## Live
 
@@ -227,8 +236,8 @@ the same update but do not draw a `.3ds` this way; what they draw is still open.
 classes replace the cell-filling and the grid-count setters (their counts are clamped to 0–100
 per cell instead of 0–20) and build their own geometry instead of placing shapes, so they expect textures rather than shape files.
 
-With a texture name (`lp_white.png`) in `shapefiles` and a radius of at least ~8 cells (see the
-radius correction below), both grass classes
+With a texture name (`lp_white.png`) in `shapefiles` (and the avatar outside the origin cell, see
+the resolution below), both grass classes
 **draw**: many small flat pieces lying on the ground, over the same area the shapes covered,
 denser at 50 per cell than at 5. Under the GDI renderer they showed untextured. A 64×64 RGBA
 texture that is almost all transparent drew nothing visible. Both textures were already cached,
@@ -248,15 +257,22 @@ pass at mission load draw it. **[lab]** Under a full OpenGL renderer (Mesa llvmp
 the same runs draw a lit white patch with `lp_white.png`, and the nearly transparent texture
 draws as soft round glowing spots, so the empty GDI result was the renderer. A ground-level close-up shows the grass pieces are flat-to-tilted quads lying on the ground at per-piece random yaw and tilt (their top faces foreshorten), not upright or camera-facing cards; each is on the order of a metre across at scale 1, and raising the scale enlarges the quad in both width and height. **[lab]** An overhead shot with a 1-unit reference cube as a ruler confirms this: from straight above each piece is a filled rotated square (a diamond), not the thin line a vertical card would show edge-on, so the cards lie flat on the ground. A scale-2 piece measures about 1.8 × 1.55 units across its bounding box; since the square is rotated, its true edge is about that over √2, roughly 1.25 units at scale 2, so near 0.6 units at scale 1. The piece is roughly square (width ≈ height), not a wider-than-tall blade, and larger than earlier guessed. **[lab]** The per-piece orientation is an independent random, not driven by `shaperotatemin`/`shaperotatemax`: a patch with the rotation range pinned to 0 and one with the default 0–360 are essentially identical (about 0.7% of pixels differ, edge noise), with the cards fanned to varied yaw in both. So grass carries its own orientation and ignores the replicator's `shaperotate` range. **[lab]**
 
-**Correction (2026-11-27): the radius-8 rule below was overstated.** Conformance case C036
-(`torque/conformance/`) sent a `DynamicGrass` object at radius 4, bit for bit what
-seihai-gserver writes apart from the radius, with 40 to 60 a cell; on a real 5.12 it drew as
-much grass as the radius-8 control C037. The failing radius-4 runs below used 5 or 10 a cell,
-had the ghost re-sent at 5, 15 and 30 s, and were not judged on a second, cached visit as
-C036 was. So radius alone is not the rule; which of count, re-send or
-visit is the cause is still open. seihai-gserver keeps its floor of 8 (harmless: a larger
-radius only widens the patch) and its notes no longer claim a 5.12 grows no grass below 8
-(seihai-gserver #223). Read the paragraph below as what those runs saw, not as a threshold.
+**Resolved (2026-11-27): there is no grass radius threshold, and the origin cell is what
+stops grass.** A 40-run, one-variable sweep on the real Windows 5.12
+([grass-512-sweep-2026-11-27.md](grass-512-sweep-2026-11-27.md)) drew grass at radius 1, 2, 3,
+4, 6 and 8 with the avatar at (20, 20). With the avatar spawned at (4, 4) or (7.5, 7.5) it drew
+none at radius 4 or 8, wherever the replicator was. That is the same origin-cell dead spot
+`DynamicShapeReplicator` has (above). Count and scale change only coverage. 5 a cell at scale 1
+covers about 2.5% of a ground-level view, so a pixel count can miss it, and white grass shades
+grey and shows clearly on white terrain. A plain radius-4 `replicator DynamicGrass` line drew
+once seihai-gserver's floor was removed. The radius-4 failures in the paragraph below most
+likely came from an avatar in the origin cell or from sparse grass that a pixel count missed.
+Neither explains radius 4 failing where radius 8 drew on the same spawn, and the sweep could not
+reproduce that. seihai-gserver #228 drops the floor and notes an origin-cell spawn. A later rerun of the old Wine setup found what those runs saw: a 5.12 fades grass out at about
+its reach (radius × 8 units) from the camera, and their camera was 20 and 40 units up. From 40
+up, radius 4 to 6 shows nothing and radius 8 a faint patch. From 20 up, radius 4 shows only
+faded cream pieces, which a white-pixel count reads as none. At the default camera any radius
+draws (sweep note, "Retest 2"). Read the paragraph below as what those runs saw, not as a rule.
 **[lab]**
 
 **The drawing runs all used a radius of at least ~8 cells; on the radius-4 shape base the grass

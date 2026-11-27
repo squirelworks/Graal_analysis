@@ -44,8 +44,8 @@ blank (not run yet). Observed `?` values are listed under each run in
 | [C032](cases/c032-cover-follows-avatar.toml) | Ground cover around an avatar spawned away from the origin cell and the replicator: it grows around the avatar |  |  |  |  |  |  |
 | [C033](cases/c033-cover-outside-box-r3.toml) | Avatar outside the cover box, radius 3: a clump grows where the radius reaches back into the box |  |  |  |  |  |  |
 | [C034](cases/c034-cover-outside-box-r1.toml) | Avatar outside the cover box, radius 1: nothing grows |  |  |  |  |  |  |
-| [C035](cases/c035-grass-radius-floor.toml) | A radius-4 grass line on the server still draws grass: the server sends grass at radius 8 or more |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
-| [C036](cases/c036-grass-raw-radius-4.toml) | A grass object sent directly at radius 4, past the server's floor, draws no grass |  |  |  | FAIL: grass_drawn (2026-11-27) |  | PASS (2026-11-27) |
+| [C035](cases/c035-grass-radius-floor.toml) | A radius-4 grass line on the server draws grass, sent at radius 4 (no floor since seihai-gserver #228) |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
+| [C036](cases/c036-grass-raw-radius-4.toml) | A grass object sent directly at radius 4 draws grass: a 5.12 has no grass radius threshold |  |  |  | FAIL: grass_drawn (2026-11-27) |  | PASS (2026-11-27) |
 | [C037](cases/c037-grass-raw-radius-8.toml) | The same direct grass object at radius 8 draws grass (the control for C036's raw encoding) |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
 | [C038](cases/c038-v2-udp-junk.toml) | seihai-gserver-v2: junk datagrams and connections on the 3D ports mid-session leave the server and the linked client running |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
 | [C039](cases/c039-v2-udp-flood.toml) | seihai-gserver-v2: a 2000-a-second flood at the 3D port is cut by the per-address budget, warned once, and the linked client keeps its link |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
@@ -56,3 +56,5 @@ blank (not run yet). Observed `?` values are listed under each run in
 | [C044](cases/c044-no-exec-512.toml) | 5.12 has no way to run TorqueScript from GS2: no exec/eval/loadMission, no marker runs | n/a | n/a | n/a | PASS (2026-11-27) | n/a | n/a |
 | [C045](cases/c045-v2-huge-png.toml) | seihai-gserver-v2: a .3ds whose texture claims 100000 x 100000 is refused at start-up; the client draws the rest and keeps running |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
 | [C046](cases/c046-grass-baseline.toml) | The grass cases' world without a grass line: the baseline screenshot that C035 to C037 are compared with |  |  |  | PASS (2026-11-27) |  | PASS (2026-11-27) |
+| [C047](cases/c047-grass-origin-cell.toml) | Grass with the avatar spawned in the origin cell (4, 4): a 5.12 grows none, at any radius |  |  |  |  |  |  |
+| [C048](cases/c048-grass-baseline-origin-cell.toml) | C046 with the avatar spawned at (4, 4): the no-grass baseline that C047 is compared with |  |  |  |  |  |  |
