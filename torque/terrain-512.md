@@ -494,7 +494,27 @@ The same `TilesControl` / `getTilesForSpot` strings are in the 4.20r8 and 5.00r7
 4.04. Material textures that fail to load fall back to a texture named `default`,
 which is the `default` file request seen in the lab.
 
-So no terrain data the server sends can change the near band. A client object `TilesControl` can.
+So no terrain data the server sends can change the near band. A client object `TilesControl` can,
+as the lab confirmed on the real 5.12 (camera `0 -40 60`, where the land had drawn all water) **[lab]**:
+
+| `TilesControl` | `getTilesForSpot` returns | Near the camera |
+|---|---|---|
+| none | – | every square in the first texture (water) |
+| a `weapon3d` named `TilesControl` | 4 × the grass texture | grass everywhere, fading to the blend by 150 units |
+| a `TStaticVar("TilesControl")` with a function member | 4 × grass | no change: the engine finds the weapon object by name, not this |
+| a `weapon3d` named `TilesControl` | 4 names that do not exist | **the correct blended terrain up to the camera** (grass, sand, rock); the client asks for the missing name once a session, not per square |
+| a `weapon3d` named `TilesControl` | 4 different textures | a 2 × 2 pattern in every near square: index = qx + 2·qy, so [0] is the low-x low-y quarter, [1] +x, [2] +y, [3] both |
+
+The working script, a `weapon3d TilesControl`:
+
+```
+//#CLIENTSIDE
+function getTilesForSpot(xy) {
+  return {"notile","notile","notile","notile"};
+}
+```
+
+A server should send such a weapon with any streamed terrain; seihai-gserver does.
 Captures and runs are kept with the owner's lab material.
 
 ### First-visit terrain texture depends on when the server sends the textures
