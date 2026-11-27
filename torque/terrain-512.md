@@ -429,11 +429,19 @@ world has a `Sun`. Two small points stay bounded-open: the −0.04 constant on t
 1/15 step itself is firm), and whether `L` can be moved from the world file (only `sun 0 0 -1` was
 tried, and it had no effect on the drawn shading).
 
-**A server-emit ordering caveat (relayed to the gserver work).** On the Rust gserver main the
-`TerrainBlock` ghost arrives **after** `MissionStartPhase2`, so the 5.12 computes the mission's
-lighting before the terrain exists and the terrain draws **unshaded** — the fixed-light shading
-above only appears once a lab build holds Phase 2 until the initial ghosts exist. The fix is to
-emit the `TerrainBlock` ghost before Phase 2. **[lab]**
+**A server-emit ordering caveat (fixed in the gserver work).** On the Rust gserver before this
+fix, the `TerrainBlock` ghost arrived **after** `MissionStartPhase2`, so the 5.12 computed the
+mission's lighting before the terrain existed and the terrain drew **unshaded**. Ghosting the
+`TerrainBlock` first is necessary but **not** sufficient: the heights still stream as
+`TerrainChunkEvent`s (§2), and if those arrive after lighting, the terrain is lit from the old
+cached heights — on a stale or empty cache a slice of the surface draws flat and dark with a hard
+straight edge, correct only after a relog. The complete fix is to hold `MissionStartPhase2` until
+**both** the initial scene creates (`TerrainBlock`, `WaterBlock`, `Sun`) are acked **and** the
+terrain chunk exchange has completed (the client's `TerrainRequestUpdatesEvent` answered — even
+with zero chunks — and every `TerrainChunkEvent` sent in answer acked). Validated on a real 5.12
+(seihai-gserver PR #223): with the chunk exchange gated in, a cold-cache load draws pixel-identical
+to the warm case, all chunks log before `Phase 2: Mission Lighting`, and Phase 2 still goes out
+well under its cap (~0.3 s after the Phase-1 ack here). **[lab]**
 
 ### First-visit terrain texture depends on when the server sends the textures
 
