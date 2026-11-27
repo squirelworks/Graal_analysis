@@ -1,6 +1,6 @@
 id = "C036"
 slug = "grass-raw-radius-4"
-title = "A grass object sent directly at radius 4, past the server's floor, draws no grass"
+title = "A grass object sent directly at radius 4 draws grass: a 5.12 has no grass radius threshold"
 rows = ["T3D-048"]
 priority = 2
 
@@ -74,9 +74,9 @@ source = "[srv] gen_content.grass_rawobject: the replicator line's update bit fo
 [expect."5.12"]
 raw_ghosted = true
 floor_noted = false
-grass_drawn = false
+grass_drawn = true
 alive = true
-source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 4, sent as a rawobject, which the server does not floor; [lab] seihai-gserver #218: a 5.12 builds no grass quads at a radius under 8 cells (radius 4 drew nothing)"
+source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit at radius 4, sent as a rawobject; [lab] torque/grass-512-sweep-2026-11-27.md: radius 1, 2, 3, 4, 6 and 8 all draw with the avatar at (20, 20); this case drew as much as C037 (Graal_analysis #1008). It was first written expecting no grass, from the overstated radius-8 rule"
 
 [expect."6.037"]
 raw_ghosted = false

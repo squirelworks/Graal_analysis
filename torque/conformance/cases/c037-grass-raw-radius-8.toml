@@ -76,7 +76,7 @@ raw_ghosted = true
 floor_noted = false
 grass_drawn = true
 alive = true
-source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 8, sent as a rawobject, which the server does not floor; [lab] seihai-gserver #218: the same grass line at radius 8 drew a patch; if this case draws nothing, C036 says nothing about the radius"
+source = "[srv] gen_content.grass_rawobject: the replicator line's update bit for bit (seihai-gserver 6c42a37) at radius 8, sent as a rawobject, which the server does not floor; [lab] seihai-gserver #218: the same grass line at radius 8 drew a patch; with C036 it shows radius 4 and 8 draw alike (torque/grass-512-sweep-2026-11-27.md)"
 
 [expect."6.037"]
 raw_ghosted = false
