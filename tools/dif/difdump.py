@@ -55,8 +55,8 @@ class R:
         """A map2dif index list: the count's top bit set means one extra byte
         and narrow entries; else wide entries."""
         n = self.u32()
-        if n & 0x80000000:
-            n ^= 0x80000000
+        if n & (1 << 31):
+            n ^= (1 << 31)
             self.u8()
             get = narrow
         else:
@@ -267,7 +267,7 @@ def check(I) -> list[str]:
     for s, c in I["solid_leaves"]:
         if s + c > len(I["solid_leaf_surfaces"]):
             bad.append("solid leaf surfaces out of range")
-    if any((x & 0x7FFFFFFF) >= ns for x in I["solid_leaf_surfaces"] if not x & 0x80000000):
+    if any((x & 0x7FFFFFFF) >= ns for x in I["solid_leaf_surfaces"] if not x & (1 << 31)):
         bad.append("solid leaf surface index out of range")
     for zi, (ps, pc, ss, sc, _fl) in enumerate(I["zones"]):
         if ps + pc > len(I["zone_portals"]) or ss + sc > len(I["zone_surfaces"]):
