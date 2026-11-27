@@ -1,7 +1,7 @@
 # Every typed GS2 3D member on a live client: 5.12 and 4.20r8 (T3D-150)
 
 Date: 2026-11-27. Lab, seihai-gserver 833faba, single client per build, in headless
-lab VMs on GwenTea2. Board row: [T3D-150](3d-capability-board.tsv). **[lab]**
+lab VMs on lab host A. Board row: [T3D-150](3d-capability-board.tsv). **[lab]**
 
 The 5.12 typed surface ([T3D-096](gs2-3d-typed-surface-512-2026-11-26.md): 35 classes,
 418 members) was turned into seven generated `weapon3d` probes, conformance cases
@@ -61,7 +61,7 @@ verdict as 5.12 on every member both reached; the only class-level difference is
 
 - 4.20r8: C062 (TerrainEditor) and C063 (TerrainBlock, Terraformer, globals).
 - 6.037F (our Frankenstein 6.037): all seven cases (`[expect."6.037F"]` is in each).
-- 4.04r2 (native Linux runs only, outside `run.py`) and 3.153 (Mac PPC, Mirae's Tiger VM):
+- 4.04r2 (native Linux runs only, outside `run.py`) and 3.153 (Mac PPC, the lab Tiger VM on lab host B):
   the runner has no backend for them yet.
 - The 35 no-instance members need a way to reach a `GameShape`/`DTSAniThread`/movement
   object first (a server-ghosted object with a `.dts`, or another accessor).
