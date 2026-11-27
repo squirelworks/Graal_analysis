@@ -3,7 +3,7 @@
 Checks a set of community claims about the "NW mode" left in the main-line 2.x client, against the
 Windows clients 2.1.0.4 (Graal 2002 v22), 2.17.1, 2.22 and 2.31, with 2.05 rev 2 and the two NewWorld
 betas as controls. It then describes a client patch that unlocks the dormant parts. Static reads are
-**[bin]**; lab results are **[lab]** and are in [Lab](#lab). Captures and client binaries stay with the owner.
+**[bin]**; lab results are **[lab]**, in [Lab](#lab). Captures and client binaries stay with the owner.
 
 ## Verdict
 
@@ -127,11 +127,37 @@ For the lab the probe proxy injects 177 and 8-colour props ([`tools/probe/`](../
 
 ## Lab
 
-Pending: unpatched versus patched 2.22 in the Windows 10 lab guest, with 177 and 8-colour props injected through
-`gen5probe.py`. Results will be added here.
+**[lab]** 2026-11-27. 2.22 under Wine in the Linux lab VM, loopback-only namespace, the GServer-v2 build
+(classic world) behind `gen5probe.py` and our listserver. Same plan (`nw-unlock.plan`, owner-held) on the stock exe
+and on the `nwunlock.py --bodycolors` exe: a classic look, then 177, then `bodynw.png`, the NW 96×20 shield sheet and
+the NW idle GANI with three 8-colour sets. The NW files were fetched from the server by the client. Screens compared
+as changed pixels in an 80×80 crop around the player; a repeat run of each build gave identical crops.
+
+| Step | Stock 2.22 | Patched 2.22 |
+| --- | --- | --- |
+| Classic look, no 177 | reference | identical to stock (0 px), also in a patched run that never sent 177 |
+| 177, NW body, colour set 1 | NW body drawn with the classic 5-entry mapping: mostly the picture's own dark colours | recoloured in all 8 slots (604 px from stock) |
+| Set 2: only slots 6–8 changed | no change at all (0 px) | body changes (339 px) |
+| Set 3: only slots 1–5 changed | partial change (208 px), wrong places | full change (608 px from set 1) |
+| Face left (shield visible) | wrong frame: the rescaled rect picks the large front-facing shield art | the narrow side frame at the GANI's offset |
+| 8-colour prop, then rupees | next prop applied: the 8-byte width is right | same |
+| 5-colour prop after 177, then a direction | the direction bytes are eaten as colours 6–7; the stream desyncs | same (and the eaten bytes show as colours) |
+
+- Neither build crashed. The patched exe's tamper-check value differs from stock; our server ignored it.
+- Right after 177 both builds send their own COLORS as 8 values. The classic GServer-v2 reads 5 and mis-parses
+  the rest (the player's nickname came back as "unknown"), so a server must handle the 8-byte form before NW mode
+  is usable.
+- NW mode hides the whole classic HUD (hearts, counts, A/S/D) in both builds.
+- In every NW shot the area behind the player is dark green in both builds: `bodynw.png`'s clear entry is index 8,
+  but the client treats a different entry as clear. An asset or loader issue, not the patch.
+- Two of four patched launches did not log in within the timeout; both retries did. The login-click driver is the
+  likely cause, but the screen was not recorded, so the patch is not ruled out.
+- The NPC 8-colour read was not tested live; only the player's own body was.
 
 ## Open
 
-- [ ] Lab result above.
+- [x] ~~Lab result.~~ [Lab](#lab).
+- [ ] Live check of the NPC 8-colour read and of other players' NW bodies.
+- [ ] Which palette entry 2.22 treats as clear on an NW body (the green background).
 - [ ] What the NW mode changes in the 2.x level loader (`GLEVNW01`) and HUD; only the colour, shield and sword paths were read here.
 - [ ] Day/night shading of NW bodies (the betas tint by light; the patch does not).
