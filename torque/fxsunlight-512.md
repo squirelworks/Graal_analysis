@@ -70,3 +70,23 @@ from the `Sun` object's direction (here (0, −0.71, −0.71)) or from a fixed d
 loading but removes the tint. So the fields after the colour gate the draw, and our layout is
 aligned as sent. With all animation flags on, with or without "AZ" key strings, the client stays
 up (no crash) and draws no tint. Under GDI nothing from `fxSunLight` draws at all.
+
+**What turns the flare on: a fixed direction in the sky (5.12, Mesa) [lab].** In 179 runs, the
+flare was on exactly when the camera faced toward one fixed point, at azimuth about 227° (toward
+−x/−y; 0° is +y, 90° is +x) and elevation about 76°. It was off otherwise, with a clean split
+over 107 sweep shots. Turning a level camera, it is fully off from 0° to 136° and switches fully
+on within one 2° step at about 137°. It stays on to about 316° and switches off by 318°, so the
+edges sit 180° apart and centred on 227°. It doesn't fade. In pitch it stays on while looking up
+or level, and goes off once the camera looks down far enough, by about 14° at a yaw of 225°. That
+is a hemisphere test against that fixed direction. It draws as part of the sky, behind the
+terrain. Nothing sent moves or resizes it:
+
+- the `Sun` object's direction (five tried), colour, or whether there is a `Sun` at all;
+- the flare's azimuth, elevation, size (20 to 1000 gave pixel-identical shots), alpha or enable.
+
+Only the colour × texture and the blend mode change how it looks. The `Sun` ghost was decoded from
+packet captures and matches its documented layout: a flag, the name, then direction, colour and
+ambient as plain floats. So the client receives the `Sun` direction correctly and doesn't use it
+here. A renderer matching 5.12 should draw the flare texture × colour as a screen-filling quad
+in the sky layer, with the sent blend mode, whenever the camera's forward vector points into the
+hemisphere around azimuth 227°, elevation 76°.

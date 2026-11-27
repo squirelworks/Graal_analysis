@@ -190,6 +190,21 @@ def test_colour_fraction(tmp_path):
     assert cf.colour_fraction(p, (0, 255, 0), 30) == 0.0
 
 
+def test_hue_fraction(tmp_path):
+    # Half the lower half dim magenta (lit grass), the rest white: only the
+    # magenta counts, whatever its brightness; white grass would not pass.
+    p = tmp_path / "s.ppm"
+    ppm(p, 100, 100, (255, 255, 255), (0, 50, 50, 100), (96, 0, 96))
+    assert abs(cf.hue_fraction(p, (255, 0, 255), 40, (0.0, 0.5, 1.0, 1.0)) - 0.5) < 0.02
+    assert cf.hue_fraction(p, (255, 0, 255), 40, (0.5, 0.5, 1.0, 1.0)) == 0.0
+    white = tmp_path / "w.ppm"
+    ppm(white, 100, 100, (255, 255, 255), (0, 0, 1, 1), (255, 255, 255))
+    assert cf.hue_fraction(white, (255, 0, 255), 40, (0.0, 0.0, 1.0, 1.0)) == 0.0
+    tan = tmp_path / "t.ppm"
+    ppm(tan, 100, 100, (210, 180, 140), (0, 0, 1, 1), (210, 180, 140))
+    assert cf.hue_fraction(tan, (255, 0, 255), 40, (0.0, 0.0, 1.0, 1.0)) == 0.0
+
+
 def _run(tmp_path, *, log="", trace="", console="", tasks="", shot=None):
     (tmp_path / "gserver.log").write_text(log)
     if trace is not None:

@@ -193,7 +193,7 @@ So sending the account to the list server begins with the 2.1 tests (September 2
 
 Both betas send client type 0, the key byte, `G2N15041`, the account and the password, then LANGUAGE (37) `English`. Their first props are the same six as 2.05: NICK (0), HEADGIF (11), COLORS (13), STATUS (18), UDPPORT (31) and ADDITFLAGS (33).
 
-- **COLORS has eight bytes** [lab], where 2.05 has five. Both betas send eight and their prop parsers read eight. The 2026-11-19 game-server lab saw eight from both betas. The "seven" in the 2026-10-30 runs was a misread, probably of an echoed prop. A server must take the length from the prop and send eight bytes back to a beta. What the last three bytes mean is not known.
+- **COLORS has eight bytes** [lab], where 2.05 has five. Both betas send eight and their prop parsers read eight. The 2026-11-19 game-server lab saw eight from both betas. The "seven" in the 2026-10-30 runs was a misread, probably of an echoed prop. A server must take the length from the prop and send eight bytes back to a beta. The 8 values are the 8 NW body colour slots; the main-line 2.x clients read the same 8 in New World mode but apply only 5 ([newworld-mode-2x.md](newworld-mode-2x.md)).
 - HEADGIF comes without an extension (`headalgo000`).
 - STATUS has a new bit, 0x20.
 - The first login sometimes stalled with the level drawn but no HUD or player and no props sent. Logging in again fixed it every time.

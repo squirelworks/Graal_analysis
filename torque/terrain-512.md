@@ -405,7 +405,7 @@ gserver with chunks built for each case, from overhead shots at square size 8 un
 - **Slope shading comes from a fixed light the `Sun` only switches on.** With a `Sun` object the
   ground is shaded by one fixed directional light; a sun travelling +x and one travelling +y give
   pixel-identical shots, and the client ignores the world's own `sun 0 0 -1` direction for the
-  drawn shading. With no `Sun` object there is no shading at all and everything draws at one
+  drawn shading. Five `Sun` directions, including straight down, gave the same shading, so the direction is not used (decoded from captures, it is sent correctly) **[lab]**. With no `Sun` object there is no shading at all and everything draws at one
   colour. The brightness of a face with unit normal **n** fits
   **B = min(cap, A + D · max(0, n · L))** with ambient **A ≈ 0.615**, diffuse **D ≈ 0.96**, a
   highlight cap **≈ 0.99** of the texel, and the light direction (toward the light)

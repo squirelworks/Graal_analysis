@@ -137,3 +137,17 @@ C046	6.037F	PASS	2026-11-27	seihai-gserver 833faba	6.037 Frankenstein (gcr main 
 C035	6.037F	PASS	2026-11-27	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		grass_drawn=no;alive=yes
 C036	6.037F	PASS	2026-11-27	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		raw_ghosted=yes;grass_drawn=no;alive=yes
 C037	6.037F	PASS	2026-11-27	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		raw_ghosted=yes;grass_drawn=no;alive=yes
+C057	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		made=yes(1);done=no
+C058	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		made=yes(1);done=yes(1)
+C059	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		made=yes(1);done=yes(1)
+C060	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		made=yes(1);done=yes(1)
+C061	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		made=yes(1);done=yes(1)
+C062	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		made=yes(1);done=no
+C063	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		made=yes(1);done=yes(1)
+C057	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		made=yes(1);done=yes(1)
+C062	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		made=yes(1);done=yes(1)
+C057	4.20r8	PASS	2026-11-27	seihai-gserver 833faba	4.20r8 Windows		made=yes(1);done=yes(1);alive=yes
+C058	4.20r8	PASS	2026-11-27	seihai-gserver 833faba	4.20r8 Windows		made=yes(1);done=yes(1);alive=yes
+C059	4.20r8	PASS	2026-11-27	seihai-gserver 833faba	4.20r8 Windows		made=yes(1);done=yes(1);alive=yes
+C060	4.20r8	PASS	2026-11-27	seihai-gserver 833faba	4.20r8 Windows		made=yes(1);done=yes(1);alive=yes
+C061	4.20r8	PASS	2026-11-27	seihai-gserver 833faba	4.20r8 Windows		made=yes(1);done=yes(1);alive=yes

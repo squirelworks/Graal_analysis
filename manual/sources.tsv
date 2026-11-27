@@ -248,6 +248,7 @@ client-internals/mac-ppc-runtime-surface-2026-11-09.md	cited	1; 10	1; 10	graphic
 client-internals/mac-ppc-startup-input-2026-11-09.md	cited	1; 4.1	1; 4.1	Start-up timer, engine lifecycle, input translation and event registration carried in 4.1.2 and 1.8.5; identities and unread consumers stay in the source note
 client-internals/macos-v5-animation-group-lifecycle.md	cited	3.3		static group construction and cleanup carried; runtime playback remains open
 client-internals/newworld-betas.md	cited	4.1; 8.2	4	
+client-internals/newworld-mode-2x.md	pending		2.6; 4.1	New World mode (177) in 2.1.0.4-2.31: flag, 8-colour COLORS for players and NPCs, 5-slot body recolour, 38x20 SHIELD rescale, nw-unlock patch; to fold into the body-colour and NewWorld sections
 client-internals/npcaction.md	cited	2.5	2.5	
 client-internals/offline-play.md	excluded		4.8	Seihai planning note for offline play; the client facts are in offline-tutorial-205.md and offline-training.md
 client-internals/offline-training.md	cited	4.8	4.8	
@@ -384,6 +385,7 @@ docs/releases/v0.0.6.md	excluded			release notes for the book's GitHub release, 
 docs/releases/v0.0.7.md	excluded			release notes for the book's GitHub release, not Graal
 docs/research-data-publication-plan.md	excluded			Editorial planning and proposed experiments; introduces no new client-behavior result or manual question closure.
 docs/research-plan.md	excluded			ordering of the open research issues; introduces no client-behaviour result
+docs/week-2026-11-20-to-27.md	excluded			weekly summary of merged work and links; introduces no client-behaviour result
 formats/arrays-and-signatures.md	cited	3.5	3.5	
 formats/arrays-membership-2026-11-09.md	cited	3.4; 3.5; E	3.4; 3.5; E	Private identity and validation metadata retained in source note; bounded membership, counts and runtime limitations carried in 3.4, 3.5 and Appendix E.
 formats/gani.txt	cited	3.3	3.3	
@@ -426,6 +428,9 @@ graal3d/beta3-genesis.md	cited	9; E	9
 graal3d/camera.md	cited	9	9	
 graal3d/client-behaviour.md	cited	9	9	
 graal3d/collision.md	cited	9	9	
+graal3d/community-guide.md	excluded			a user guide to the Torque-era 3D mode built from the torque/ notes, which the manual cites directly; introduces no new client-behaviour result
+graal3d/examples/g3dmini/README.md	excluded			an example protocol-24 server written from torque/udp-session.md and torque/terrain-512.md; introduces no client-behaviour result
+graal3d/examples/g3dmini/world.txt	excluded			sample world file for the example server
 graal3d/formats.md	cited	9	9	
 graal3d/g3d-version-tokens.md	cited	9; 10	9; 10	
 graal3d/lab-2026-10-30.md	cited	9	9	
@@ -785,6 +790,7 @@ tools/navigator/README.md	excluded			repository tooling for the notes, not Graal
 tools/npc-control.md	cited	6; 7; E	7	
 tools/npcserver-2001.md	cited	5; 7	7	
 tools/probe/README.md	excluded	2.2		repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal
+tools/nw-unlock/README.md	excluded			repository tooling for the notes (the New World unlock patch behind newworld-mode-2x.md), not Graal
 tools/probe/lab/cfg/11.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
 tools/probe/lab/cfg/119.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
 tools/probe/lab/cfg/14th.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
@@ -1027,6 +1033,7 @@ torque/3d-dll-deadcode-vs-graal-2026-11-25.md	pending		10.3	5.12 DLL: stock-TGE 
 torque/3d-engine-dll-interface-and-events-2026-11-26.md	pending		10.3	DLL-wide static reads of Graal3DEngine.dll (4.04r2/4.20r8/5.00r7=5.12): export entry points and host-callback table, the 28-class/9-event net table with per-event wire fields, error/crash paths, input-to-graalkeypressed handoff, and 4.20r8=5.00r7/5.12 for the 3D wire (T3D-094/097/099/102/104/002), bin; to carry into Â§10
 torque/3d-replica-wire-157-160-165-512-2026-11-26.md	pending		10	replica wire basis from one instrumented 5.12 session (seihai-gserver main + lab wire log): full packet inventory incl. ids the static baseline missed (TCP 24/37/46/152/154/157, UDP-BigData triggers, chat as 2D prop, NEWWORLDTIME keepalive, no client UDP Disconnect, RequestReload never sent); UDP = TGE NetConnection notify framing (9-bit seq/ack, 2-bit type, ack mask, no fragmentation); ghost indexes from 0, per-packet 4-bit index width, create=full/update=dirty/delete=kill-bit, reuse after delete-ack; connect-accept class table 19 entries (10 object+9 event)+u32 proto 24 bound by name; fetched .3ds/.png/.wav/.ttf byte-identical under the gen5 frame, no file wrapper (T3D-157/158/159/160/165), lab; to carry into section 10
 torque/gs2-3d-typed-surface-512-2026-11-26.md	pending		10.3	The 5.12 GS2 3D scripting surface typed from the TGraalVar registry: 35 classes / 418 members with argument and return types, the 4.04r2 comparison and the global 3D functions (T3D-096), bin; to carry into Â§10.3
+torque/gs2-3d-member-sweep-2026-11-27.md	pending		10.3	Every typed GS2 3D member touched on a live 5.12 and 4.20r8: works / inert / absent / no instance per member, the two instance crashers and value formats (T3D-150), lab; to carry into §10.3
 torque/3d-loader-validation-by-build-2026-11-26.md	pending		10.3	Per-loader validation in Graal3DEngine.dll: .dts 17-24 (4.04r2 <=24), .dif ==44, .3ds no gate, GameShapeFT = FreeType text, terrain 256x256x24 (T3D-098/029/030/036), bin; to carry into Â§10.3
 torque/3d-static-batch-closing-2026-11-26.md	pending		10.3	Static side of five 3D lab partials: 22 GS2 on* callbacks (T3D-021), GameObject draw-gated on server ghosting (T3D-016), properties sync as named TGameObjectVar (T3D-015), client moveMap2D keybinds (T3D-057), 4.04r2 MD3 LEGS_/TORSO_ animation via _animation.cfg (T3D-031), bin; to carry into Â§10.3
 torque/3d-dts-dif-reader-internals-2026-11-26.md	pending		10.3	The .dts/.dif body-read structure the renderer must match (three-stream DTS block, DIF v44 geometry lists) confirmed by the stock-TGE loader classes in 5.12, plus the rebuild's fidelity gaps (sorted meshes, DIF sub-objects/lightmaps), bin; to carry into Â§10.3
@@ -1039,6 +1046,7 @@ torque/3d-partial-rows-closing-plan-2026-11-26.md	excluded			work plan for the p
 torque/3d-sound-formats-420r6-2026-11-26.md	pending		10.3	5.12 sound formats are FMOD 3.70 set: WAV/OGG/MP3/MP2 play, WMA/ASF Windows-gated, FLAC/AAC dropped; unsupported silently no-op (T3D-123), lab+bin; to carry into §10
 torque/3d-mesh-size-limit-420r6-2026-11-26.md	pending		10.3	5.12 mesh limits: .3ds 16-bit cap (~65k faces/chunk) then per-shape draw ceiling (~265k-400k verts), never a crash (T3D-124), lab; to carry into §10
 torque/3d-frankenstein-6037-vs-retail-6037-2026-11-26.md	pending		10.3	our Frankenstein 6.037 vs stock 6.03r7 retail: unpacked 3D-capable hybrid vs QPlay/CyaSSL-packed 2D Quattro; new axes packaging + secure transport, 3D verdict unchanged (T3D-132), bin; to carry into §10
+torque/3d-frankenstein-6037-completeness-2026-11-27.md	pending		10.3	our Frankenstein 6.037 against what is settled about the 5.12 3D client: 36-row gap table, about 60% before graal-client-repro #477 and about 80% after; scored against the 5.12's own expectations its last lab runs matched in 23 of 36 cases; ranked remaining gaps (grass, server half of seihai3d, terrain cache, rest of the GS2 3D surface), lab+test; to carry into §10
 torque/3d-local-mis-vs-wire-420r6-2026-11-26.md	pending		10.3	5.12-class client never loads a local .mis; mission comes only over the wire (T3D-010), lab; to carry into §10
 torque/3d-session-file-footprint-420r6-2026-11-26.md	pending		10.3	5.12-class 3D session file footprint: the .graal/ cache tree, no script screenshot, no heights/lightmap cache (T3D-053/T3D-100), lab; to carry into §10
 torque/3d-lighting-phase-timing-404r2-420r6-2026-11-26.md	pending		10.3	mission-lighting phase is a fixed handshake, not a per-object bake; no scaling with lit-object count on 4.04r2/4.20r6 (T3D-052), lab; to carry into §10
@@ -1054,6 +1062,9 @@ torque/3d-capacity-budget-420r6-2026-11-26.md	pending		10.3	per-3D-player budget
 tools/conformance/lab.example.toml	excluded			lab config template for the 3D conformance runner, not Graal
 torque/conformance/EXPECTED.md	excluded			generated table of the 3D conformance suite; the findings it tests are the board notes
 torque/conformance/RESULTS.md	excluded			generated table of the 3D conformance suite; the findings it tests are the board notes
+torque/conformance/sweep/RESULTS.md	excluded			generated table of the typed GS2 3D member sweep; the findings are in the sweep write-up
+torque/conformance/sweep/manifest.tsv	excluded			generated member list of the typed GS2 3D member sweep probes
+torque/conformance/sweep/results.tsv	excluded			generated per-member, per-build table of the typed GS2 3D member sweep; the findings are in the sweep write-up
 torque/conformance/README.md	excluded			the 3D conformance suite (test worlds and probes for board answers), not a finding
 torque/conformance/results.tsv	excluded			derived run log of the 3D conformance suite; findings go to the board notes
 torque/conformance/cases/c001-link-3prefix.toml	excluded			conformance case (a test world and its expectations), not a finding
@@ -1115,7 +1126,15 @@ torque/3d-client-fonts-chrome-frankenstein-141-152-512-2026-11-26.md	pending		10
 torque/conformance/cases/c046-grass-baseline.toml	excluded			conformance case (a test world and its expectations), not a finding
 torque/conformance/cases/c047-grass-origin-cell.toml	excluded			conformance case (a test world and its expectations), not a finding
 torque/conformance/cases/c048-grass-baseline-origin-cell.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c057-sweep-gameobject.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c058-sweep-shape-anim.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c059-sweep-sky-sun-water.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c060-sweep-replicators-gui.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c061-sweep-worldeditor.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c062-sweep-terraineditor.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c063-sweep-terrain-globals.toml	excluded			conformance case (a test world and its expectations), not a finding
 torque/3d-worldswitch-terrain-lighting-512-2026-11-26.md	pending		10	terrain after a world switch (T3D-162 follow-up), real 5.12 Wine/Mesa vs seihai-gserver #223 and #224, loopback: a 5.12 lights terrain/water/Sun only at MissionStartPhase2, so after a no-relink g3dworld switch the new terrain draws flat unshaded all session (cold, warm, both ways); it accepts a second phase 2 (relights, acks, keeps link/view/weapons) and lightscene() also relights; phase 2 must follow the new TerrainBlock create and its re-requested chunk acks; gserver #224 does that, every switch pixel-identical to a first link by +2 s; open: a switch to a world with no terrain/water/Sun stalls the client on a sky-only frame on both heads; weapon3d switch fixture included, lab; to carry into section 10
+torque/3d-gserver-v2-phase2-hold-512-2026-11-27.md	pending		10	gserver-v2 #182 phase 2 hold (T3D-162 follow-up), real 5.12 Wine/Mesa and Windows 10, loopback: with #182 terrain lit and matching the reference cold, warm and after a restart onto a new world; without it unshaded all session; v2 has no runtime world switch; Windows cold phase 2 later and first drawn frame already lit; movement works on Windows
 torque/3d-next-client-server-plan-2026-11-27.md	excluded			planning note (roadmap for our own client and server), not a finding
 torque/seihai3d-ext-v1.md	excluded			our own protocol design, not a finding about a Graal build
 torque/3d-interiors-in-world-512-2026-11-27.md	pending	E	5.5	interiors in the overworld 3D world: doors as client-side moves with no world switch, portal prefetch under scoping, outdoor sky inside, proposed seihai3d spaces bit, lab
@@ -1129,3 +1148,4 @@ torque/conformance/cases/c054-dif-house-collision.toml	excluded			conformance ca
 torque/conformance/cases/c055-dif-house-nolightmap.toml	excluded			conformance case (a test world and its expectations), not a finding
 torque/conformance/cases/c056-dif-rotc-eth3.toml	excluded			conformance case (a test world and its expectations), not a finding
 torque/conformance/cases/c049-dif-house-front.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/3d-6x-2d-client-in-3d-world-151-603r7-2026-11-27.md	pending		8	stock 6.03r7 Linux 2D + real 5.12 3D same world (seihai-gserver main 0aff085), both join orders: coexists cleanly, G2DPlayer stand-in on 3D tracks the 6.x, 6.x draws the 3D player as a default sprite tracking g3dpos; 6.03r7 sends head/body/colours (5.24r4 did not) but they reach 5.12 only on TCP, not in G2DPlayer, so 3D never shows them; script-set nick never sent; chat script-readable, drawn by neither (T3D-151/069), lab; to carry into section 8
