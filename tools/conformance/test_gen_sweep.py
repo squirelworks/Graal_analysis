@@ -44,7 +44,7 @@ def test_classify():
 
 def test_extract_on_a_fake_run(tmp_path):
     out = tmp_path / "5.12"
-    d = out / "C049"
+    d = out / "C057"
     d.mkdir(parents=True)
     d.joinpath("gserver.log").write_text(
         'trigger sent ("gui", "ConfProbe", "cf", "made", "1")\n'
@@ -58,7 +58,7 @@ def test_extract_on_a_fake_run(tmp_path):
 
 def test_extract_marks_a_crash_before_the_first_report(tmp_path):
     out = tmp_path / "5.12"
-    d = out / "C054"
+    d = out / "C062"
     d.mkdir(parents=True)
     d.joinpath("gserver.log").write_text('trigger sent ("gui", "ConfProbe", "cf", "made", "1")\n')
     results, _summary = gs.extract([("5.12", out)])

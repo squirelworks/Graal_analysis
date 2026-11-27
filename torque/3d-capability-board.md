@@ -43,7 +43,7 @@ to the client from our own server only.
   80% after graal-client-repro #477; its last lab runs matched the 5.12 in 23 of 36 cases (2026-11-27).
 
 - [Every typed GS2 3D member on a live client](gs2-3d-member-sweep-2026-11-27.md): the 418-member
-  sweep (C049 to C055) on 5.12 and 4.20r8, per member works / inert / absent / no instance, with
+  sweep (C057 to C063) on 5.12 and 4.20r8, per member works / inert / absent / no instance, with
   the two instance crashers (T3D-150, 2026-11-27).
 
 - [Closing plan for the partly answered rows](3d-partial-rows-closing-plan-2026-11-26.md): the

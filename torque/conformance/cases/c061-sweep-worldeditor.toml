@@ -1,6 +1,6 @@
-id = "C050"
-slug = "sweep-shape-anim"
-title = "Every typed GS2 3D member of shapes, animation threads, materials and movement, touched on a live client (full sweep)"
+id = "C061"
+slug = "sweep-worldeditor"
+title = "Every typed GS2 3D member of WorldEditor and EditManager, touched on a live client (full sweep)"
 rows = ["T3D-150", "T3D-096"]
 priority = 3
 
@@ -17,10 +17,10 @@ playershape conf_nomat.3ds
 spawn 0 0 1
 """
 files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*"]
-scripts = ["sweep_shape_anim.gs2"]
+scripts = ["sweep_worldeditor.gs2"]
 
 [run]
-seconds = 52
+seconds = 45
 
 [[check]]
 id = "compiled"

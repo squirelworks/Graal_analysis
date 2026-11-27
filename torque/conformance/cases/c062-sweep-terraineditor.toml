@@ -1,6 +1,6 @@
-id = "C053"
-slug = "sweep-worldeditor"
-title = "Every typed GS2 3D member of WorldEditor and EditManager, touched on a live client (full sweep)"
+id = "C062"
+slug = "sweep-terraineditor"
+title = "Every typed GS2 3D member of TerrainEditor, touched on a live client (full sweep)"
 rows = ["T3D-150", "T3D-096"]
 priority = 3
 
@@ -17,7 +17,7 @@ playershape conf_nomat.3ds
 spawn 0 0 1
 """
 files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*"]
-scripts = ["sweep_worldeditor.gs2"]
+scripts = ["sweep_terraineditor.gs2"]
 
 [run]
 seconds = 45

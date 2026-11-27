@@ -1,6 +1,6 @@
-id = "C055"
-slug = "sweep-terrain-globals"
-title = "Every typed GS2 3D member of TerrainBlock, Terraformer and the global 3D functions, touched on a live client (full sweep)"
+id = "C060"
+slug = "sweep-replicators-gui"
+title = "Every typed GS2 3D member of the shape replicators and the 3D GUI controls, touched on a live client (full sweep)"
 rows = ["T3D-150", "T3D-096"]
 priority = 3
 
@@ -17,7 +17,7 @@ playershape conf_nomat.3ds
 spawn 0 0 1
 """
 files = ["conf_red.3ds", "conf_nomat.3ds", "conf_sky*"]
-scripts = ["sweep_terrain_globals.gs2"]
+scripts = ["sweep_replicators_gui.gs2"]
 
 [run]
 seconds = 45
