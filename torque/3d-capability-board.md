@@ -38,6 +38,9 @@ to the client from our own server only.
 
 - [Conformance suite](conformance/README.md): each answer as a repeatable lab case (a world, a GS2
   probe, the expected result per build), with a VM runner and a derived results table (2026-11-26).
+- [How complete our Frankenstein 6.037 is](3d-frankenstein-6037-completeness-2026-11-27.md): a
+  36-row gap table against the 5.12 and the Seihai 3D server features, scored about 60% before and
+  80% after graal-client-repro #477; its last lab runs matched the 5.12 in 23 of 36 cases (2026-11-27).
 
 - [Closing plan for the partly answered rows](3d-partial-rows-closing-plan-2026-11-26.md): the
   remaining gap, closing method and batch for each of the 39 partly answered rows (2026-11-26).
