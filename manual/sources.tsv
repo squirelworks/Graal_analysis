@@ -248,6 +248,7 @@ client-internals/mac-ppc-runtime-surface-2026-11-09.md	cited	1; 10	1; 10	graphic
 client-internals/mac-ppc-startup-input-2026-11-09.md	cited	1; 4.1	1; 4.1	Start-up timer, engine lifecycle, input translation and event registration carried in 4.1.2 and 1.8.5; identities and unread consumers stay in the source note
 client-internals/macos-v5-animation-group-lifecycle.md	cited	3.3		static group construction and cleanup carried; runtime playback remains open
 client-internals/newworld-betas.md	cited	4.1; 8.2	4	
+client-internals/newworld-mode-2x.md	pending		2.6; 4.1	New World mode (177) in 2.1.0.4-2.31: flag, 8-colour COLORS for players and NPCs, 5-slot body recolour, 38x20 SHIELD rescale, nw-unlock patch; to fold into the body-colour and NewWorld sections
 client-internals/npcaction.md	cited	2.5	2.5	
 client-internals/offline-play.md	excluded		4.8	Seihai planning note for offline play; the client facts are in offline-tutorial-205.md and offline-training.md
 client-internals/offline-training.md	cited	4.8	4.8	
@@ -786,6 +787,7 @@ tools/navigator/README.md	excluded			repository tooling for the notes, not Graal
 tools/npc-control.md	cited	6; 7; E	7	
 tools/npcserver-2001.md	cited	5; 7	7	
 tools/probe/README.md	excluded	2.2		repository tooling for the notes (the packet probe harness behind probe-targets-2026-11-18.md), not Graal
+tools/nw-unlock/README.md	excluded			repository tooling for the notes (the New World unlock patch behind newworld-mode-2x.md), not Graal
 tools/probe/lab/cfg/11.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
 tools/probe/lab/cfg/119.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
 tools/probe/lab/cfg/14th.txt	excluded			probe input: the start-form game mode for one early build in the lab driver, not Graal
