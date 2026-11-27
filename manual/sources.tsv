@@ -384,6 +384,7 @@ docs/releases/v0.0.6.md	excluded			release notes for the book's GitHub release, 
 docs/releases/v0.0.7.md	excluded			release notes for the book's GitHub release, not Graal
 docs/research-data-publication-plan.md	excluded			Editorial planning and proposed experiments; introduces no new client-behavior result or manual question closure.
 docs/research-plan.md	excluded			ordering of the open research issues; introduces no client-behaviour result
+docs/week-2026-11-20-to-27.md	excluded			weekly summary of merged work and links; introduces no client-behaviour result
 formats/arrays-and-signatures.md	cited	3.5	3.5	
 formats/arrays-membership-2026-11-09.md	cited	3.4; 3.5; E	3.4; 3.5; E	Private identity and validation metadata retained in source note; bounded membership, counts and runtime limitations carried in 3.4, 3.5 and Appendix E.
 formats/gani.txt	cited	3.3	3.3	

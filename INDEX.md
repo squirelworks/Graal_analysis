@@ -323,6 +323,7 @@ When you add a note, add a line for it here in the same pull request.
 - [Official GS2 variable-cache opcodes on the full 19](protocol/gs2-official-varcache-19-2026-11-16.md) — full 19-body deepen: 403×45/1703×46/403×47, temp.* slots, dense 0..n, 190 rare; five-use rule still open; 199 non-official control has none.
 - [Official GS2 segment-2 function-table order (full 19)](protocol/gs2-official-functable-order-2026-11-16.md) — dotted/qualified names always last; slot ids dense 0..n; hash-bucket order refuted as the official rule.
 - [Research plan, November 2026](docs/research-plan.md) — the open research issues in order, what each unblocks, and what waits on the owner.
+- [The week of 2026-11-20 to 2026-11-27](docs/week-2026-11-20-to-27.md) — what was built and merged across the suite (Graal3D servers, Frankenstein 6.037, playerworld converter, 3D editor, GS2 parity), the findings to build on, what is in flight and the next steps; summary.
 - [Research-data publication plan](docs/research-data-publication-plan.md) — completed-intake triage, versioned evidence comparisons, authored fixtures and focused follow-up experiments.
 
 - [Bound Linux 4.20r6 clock updates and advertised 3D-state predicate](client-internals/linux-420r6-clock-property.md) — Tie six observed updater returns to a directly registered state predicate without inferring frame cadence or live 3D.
