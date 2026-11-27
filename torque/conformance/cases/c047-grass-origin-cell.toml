@@ -48,11 +48,11 @@ note = "the grass texture's magenta anywhere on the final screenshot"
 [[check]]
 id = "grass_drawn"
 kind = "diff"
-against = "C046"
+against = "C048"
 region = [0.0, 0.5, 1.0, 1.0]
 tol = 40
 min_fraction = 0.02
-note = "the lower half of the final screenshot differs from C046's (the same world and camera without the grass line, spawned at (20, 20) on flat terrain, so the view matches; sweep X141 differed by 0.001) on at least 2% of its pixels"
+note = "the lower half of the final screenshot differs from C048's (the same world, spawn (4, 4) and camera without the grass line) on at least 2% of its pixels; C046 spawns at (20, 20), so its camera differs (0.138 against it in the 2026-11-27 retest with no grass drawn)"
 
 [[check]]
 id = "alive"
