@@ -38,6 +38,9 @@ to the client from our own server only.
 
 - [Conformance suite](conformance/README.md): each answer as a repeatable lab case (a world, a GS2
   probe, the expected result per build), with a VM runner and a derived results table (2026-11-26).
+- [How complete our Frankenstein 6.037 is](3d-frankenstein-6037-completeness-2026-11-27.md): a
+  36-row gap table against the 5.12 and the Seihai 3D server features, scored about 60% before and
+  80% after graal-client-repro #477; its last lab runs matched the 5.12 in 23 of 36 cases (2026-11-27).
 
 - [Closing plan for the partly answered rows](3d-partial-rows-closing-plan-2026-11-26.md): the
   remaining gap, closing method and batch for each of the 39 partly answered rows (2026-11-26).
@@ -112,3 +115,13 @@ the client; whether a server-sent name can make a client write outside its folde
 against content size; and a ranked fuzz target list per build. Overlapping questions already on
 the board are not repeated: mixed-build worlds (T3D-072), 2D views of 3D players (T3D-073), ghost
 scoping (T3D-075, T3D-083) and hard limits (T3D-037, T3D-091).
+
+## Status on 2026-11-27 (T3D-001 to T3D-167)
+
+167 rows: 157 answered (two with a small bounded leg left: T3D-072's 3.153 leg and T3D-162's
+blend-weight offset), 6 partial, 1 assigned to the gserver 3D lab, 3 open. This week added
+the 5.12 grass origin-cell rule (T3D-048), the near-camera first-material band from about 70 to 150
+units (T3D-162), the fxSunLight flare as a screen-filling quad (T3D-047), whole-world join and the
+sliding terrain window for big worlds (T3D-166, which also settles T3D-148), and interiors placed
+in the same world so doors need no world switch (new row T3D-167,
+[3d-interiors-in-world-512-2026-11-27.md](3d-interiors-in-world-512-2026-11-27.md)).

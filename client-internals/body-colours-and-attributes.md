@@ -15,6 +15,8 @@ client unless marked otherwise.
 | The stock bodies follow that palette layout, and entry 2 is the clear colour | checked on the 2.22 `body.png` and `body13.png` |
 | Graal Reborn's GServer gives a new account 2, 0, 10, 4, 18 instead | read from GServer-v2 beta4 source |
 
+New World bodies (8 slots × 3 shades) and how 2.1x–2.3x handle them in New World mode: [newworld-mode-2x.md](newworld-mode-2x.md).
+
 ## Looks commands
 
 | Fact | Status |
