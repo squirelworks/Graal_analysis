@@ -1119,3 +1119,13 @@ torque/3d-worldswitch-terrain-lighting-512-2026-11-26.md	pending		10	terrain aft
 torque/3d-next-client-server-plan-2026-11-27.md	excluded			planning note (roadmap for our own client and server), not a finding
 torque/seihai3d-ext-v1.md	excluded			our own protocol design, not a finding about a Graal build
 torque/3d-interiors-in-world-512-2026-11-27.md	pending	E	5.5	interiors in the overworld 3D world: doors as client-side moves with no world switch, portal prefetch under scoping, outdoor sky inside, proposed seihai3d spaces bit, lab
+tools/dif/README.md	excluded		11	usage notes for our own .dif generator and reader; the findings are in torque/3d-dif-generator-and-zoned-files-2026-11-27.md
+torque/3d-dif-generator-and-zoned-files-2026-11-27.md	pending	E	5.5	v44 interiors we can test with: our own zoned/portaled generator, the map2dif zone record and tail, open-licensed zoned ROTC interiors; lab cases written, not yet run
+torque/conformance/cases/c050-dif-window-zones-outside.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c051-dif-window-one-zone.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c052-dif-house-inside.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c053-dif-noportal-inside.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c054-dif-house-collision.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c055-dif-house-nolightmap.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c056-dif-rotc-eth3.toml	excluded			conformance case (a test world and its expectations), not a finding
+torque/conformance/cases/c049-dif-house-front.toml	excluded			conformance case (a test world and its expectations), not a finding
