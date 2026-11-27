@@ -54,3 +54,19 @@ rather than a missing update field. Pinning it down needs a debugger on the live
 azimuth, elevation, size and colour.
 
 **Follow-up run (5.12, Mesa) [lab].** The client does fetch the flare texture: on the first visit it requests exactly the name in the object (tried as `.png`, `.jpg` and a bare name), caches it in its images folder, and loads it from there on later visits. Nothing about the flare is logged. Even so, no flare drew in any case: 64 × 64 and 256 × 256 PNGs with transparency, a 256 × 256 JPG and a bare name, freshly pushed or cached, with 0 flare-coloured pixels in 8 shots toward the sun direction. So the texture loading works, and the draw is still never reached. A side effect appeared: with a yellow colour set, the sky behind and to the left of the camera, toward −y and −x, turns solid yellow, while the +x and +y sides stay normal. This happens with the flare switched off and at flare size 20 as well as 300. A blue colour changes nothing, and with no `fxSunLight` there is no tint. The tinted sides match the fixed −x/−y light direction the terrain shows (see `terrain-512.md`). Either our field layout is a few bytes off, so the colour bytes land in another field, or the client tints the sky on the sun's side. That isn't settled yet **[inf]**.
+
+**The yellow "sky tint" is the flare (5.12, Mesa) [lab].** Shot with one camera looking straight up
+at a 150° field of view, so each frame shows every side of the sky. The tint follows the flare's
+colour channel by channel. Yellow adds about +127 to +250 to red and green on every side and
+leaves blue alone. Red alone adds only red, green alone adds only green, and blue alone changes
+nothing, because the flare texture used has no blue. So it is the flare texture multiplied by the
+colour. Blend mode 1 turns the whole screen opaque yellow, and mode 2 is additive like mode 0.
+Alpha, enable, azimuth (0, 90, 180, 270) and elevation (5, 45, 85) change nothing. So the client
+draws the flare as a screen-filling quad and does not place it with the azimuth and elevation we
+send. With a level camera it shows when looking toward −x or −y and is gone toward +x or +y, the
+same side as the fixed terrain light in `terrain-512.md`. That suggests the client positions it
+from the `Sun` object's direction (here (0, −0.71, −0.71)) or from a fixed direction
+**[inf]**. Adding or removing one or eight bits right after the colour fields keeps the ghost
+loading but removes the tint. So the fields after the colour gate the draw, and our layout is
+aligned as sent. With all animation flags on, with or without "AZ" key strings, the client stays
+up (no crash) and draws no tint. Under GDI nothing from `fxSunLight` draws at all.
