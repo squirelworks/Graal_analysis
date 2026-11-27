@@ -192,16 +192,15 @@ server between two visits with the cache kept (C028, T3D-155), and five
 visits in a row on one server run (C029, T3D-145). Ground cover (T3D-048,
 needs seihai-gserver #214 or later): the origin-cell dead spot (C031), cover
 around an avatar away from the replicator (C032), and an avatar outside the
-cover box at radius 3 and 1 (C033, C034). Grass (T3D-048, needs
-seihai-gserver #218): a radius-4 grass line still draws, since the server
-sends grass at radius 8 or more (C035); the same grass object sent directly
-as a `rawobject` at radius 4 (C036) and at radius 8 (C037, the control that
-shows the raw encoding is right). C036 was written expecting no grass, from
-the radius-8 rule in `torque/replicators-512.md`; on a real 5.12 it drew as
-much as C037 (2026-11-27, 40 to 60 a cell), so that rule was overstated:
-radius alone does not decide whether grass draws, and the cause of the
-earlier radius-4 failures (5 or 10 a cell, re-sent ghosts, no cached second visit) is
-still being pinned down. C036's expectation stays as written until it is. Grass is detected by
+cover box at radius 3 and 1 (C033, C034). Grass (T3D-048): a radius-4 grass line on the server draws, and from
+seihai-gserver #228 it goes out at radius 4 with no floor note (C035). The
+same grass object sent directly as a `rawobject` draws at radius 4 (C036) and
+at radius 8 (C037, the control that shows the raw encoding is right). With
+the avatar spawned in the origin cell at (4, 4), no grass grows at any
+radius, and #228 notes that spawn at start-up (C047). C036 was first written
+expecting no grass, from a radius-8 rule that the 2026-11-27 sweep
+(`torque/grass-512-sweep-2026-11-27.md`) showed to be wrong: the origin cell,
+not the radius, is what stops grass. Grass is detected by
 comparing the lower half of the screen with C046, the same world without the
 grass line, because no grass colour could be told from the terrain. The raw line comes
 from `gen_content.grass_rawobject`, checked bit for bit against the server's
