@@ -129,3 +129,11 @@ C038	6.037F	PASS	2026-11-27	seihai-gserver-v2 d273525e	6.037 Frankenstein (gcr m
 C039	6.037F	PASS	2026-11-27	seihai-gserver-v2 d273525e	6.037 Frankenstein (gcr main be493cb6)		injected=yes;server_alive=yes;flood_warned=yes;v2_link=yes;red_drawn=yes;alive=yes
 C040	6.037F	PASS	2026-11-27	seihai-gserver-v2 d273525e	6.037 Frankenstein (gcr main be493cb6)		five_links=yes;red_drawn=yes;alive=yes
 C045	6.037F	PASS	2026-11-27	seihai-gserver-v2 d273525e	6.037 Frankenstein (gcr main be493cb6)		v2_link=yes;red_drawn=yes;alive=yes
+C046	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		terrain_drawn=no
+C035	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		
+C036	5.12	FAIL	2026-11-27	seihai-gserver 833faba	5.12 Windows	grass_drawn	
+C037	5.12	PASS	2026-11-27	seihai-gserver 833faba	5.12 Windows		
+C046	6.037F	PASS	2026-11-27	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		terrain_drawn=yes;alive=yes
+C035	6.037F	PASS	2026-11-27	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		grass_drawn=no;alive=yes
+C036	6.037F	PASS	2026-11-27	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		raw_ghosted=yes;grass_drawn=no;alive=yes
+C037	6.037F	PASS	2026-11-27	seihai-gserver 833faba	6.037 Frankenstein (gcr main be493cb6)		raw_ghosted=yes;grass_drawn=no;alive=yes
