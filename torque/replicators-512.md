@@ -49,7 +49,9 @@ regrows its replications. **[bin]**
 ## What the client does with the values
 
 - `radius` is kept in cells, clamped to 1–64 cells (8 to 512 units). The client allocates a
-  (2r+1)² cell grid. **[bin]**
+  (2r+1)² cell grid. **[bin]** Live, though, cover reaches 2 × radius cells from the avatar's cell
+  on each side, a (4r+1)² block (see "Where cover grows"), so the grid's cells may be 4 units
+  apart, or each slot may cover two cells. Not settled **[lab][inf]**.
 - `mingridobjects` and `maxgridobjects` are clamped to 0–20 per cell. Raising the minimum above
   the maximum raises the maximum, and lowering the maximum below the minimum lowers the
   minimum. **[bin]**
@@ -175,14 +177,21 @@ corners (about ±1 unit), and showed them to be small blocks of cells, not singl
 | (128, −128) | (−200, −120) to (200, 200) | 4 | one patch, cells x 64..192 (17 columns), y −120..−64 (8 rows) |
 | (128, −128) | (−200, −200) to (120, 200) | 4 | one patch, cells x 64..112 (7 columns), y −192..−128 (9 rows) |
 
-Five of the six fit one reading: cells within **2 × radius** cells of the avatar's cell, cut by
-the box. At radius 3 that reaches 48 units, so x 80..176 from an avatar at 128, which the box
-cuts to 80..96. At radius 4 it reaches 64 units, giving x 64..192. The clump direction mirrors
-with the avatar in three of four quadrants. Two results don't fit and are open. The (128, 128)
-quadrant grew nothing. The second partial box lacks the rows y −120..−64 that grew in the first.
-The 2 × radius reach also conflicts with the inside-box run above, which matched a reach of
-radius cells. Even at one object per cell, cells held 1 to 4 cubes at different spots (14 cubes
-in 9 cells), which looks like some cells being grown more than once **[inf]**.
+Five of the six fit one reading, and a follow-up batch settled it **[lab]**: cover grows in every
+cell within **2 × radius** cells of the avatar's cell, the same on both axes and centred on the
+avatar, then cut by the box. With the avatar inside a ±512 box, radius 2 grew a 9 × 9 block
+(cells 96..160 from an avatar at 128) and radius 4 a 17 × 17 block (64..192), in both the
+(128, 128) and (128, −128) quadrants. With the avatar at (128, 128) and a ±100 box, radius 3, 4
+and 6 grew cells 80..96, 64..96 and 32..96 on both axes, and an avatar at (136, 136) at radius 3
+grew 88..96. All fit the rule. Moving the replicator object to (−104, −4) changed nothing. The two
+misfits above didn't reproduce. The (128, 128) quadrant grew in five tries over two VM boots,
+and the second partial box grew all 17 rows (−192 to −64) in three runs, even from identical
+world files. So those two results were a passing fault whose cause is unknown. A box edge at
+y −60 gives the same patch, since the patch already stops at −64. Even at one object per cell,
+cells held 1 to 4 cubes at different spots, which looks like some cells being grown more than
+once **[inf]**. The 2 × radius reach disagrees with the inside-box match "within 0.4 units at
+radius 1 and 2" quoted above, which assumed a reach of radius cells. That earlier comparison
+should be rechecked.
 
 ## Live
 
