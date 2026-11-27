@@ -26,7 +26,7 @@ Board rows T3D-030 / T3D-087 were blocked on "no enclosed, zoned v44 interior". 
 ## Not yet run (exercise for the handover)
 
 Conformance cases C049 to C056 ([cases](conformance/cases/)) play these on the real 5.12. A first run was
-started on the Mirae VirtualBox lab host (seihai-gserver 833faba, VMs on reduced memory) but no results were
+started on the VirtualBox lab host (seihai-gserver 833faba, VMs on reduced memory) but no results were
 recorded before research was paused. To finish:
 
 1. `python tools/conformance/run.py --lab <lab.toml> --build 5.12 --case C049,C050,C051,C052,C053,C054,C055,C056 --record`
