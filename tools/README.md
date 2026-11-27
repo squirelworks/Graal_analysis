@@ -27,6 +27,7 @@ See the individual files for the measured contracts. `tools-coverage-2026-11-14.
 - `lab-setup.md` — the offline Wine + GServer + listserver-stub lab used for the [cap] captures.
 - `relay-bridge/` — `room_bridge.py` (logging proxy for the 1998 GServ relay that can rename join rooms), `AppletRun.java` (runs the Java Graal / Zelda Online applets in a frame), `pcap_lines.py` (prints the relay lines in a capture). See `../client-internals/relay-room-bridge.md`.
 - `lab-servers/` — our lab listserver (version 2, with tests), `run-lab.sh` and the gs2lib patch our GServer build carries. See `../server-notes/lab-servers-2026-10-30.md` for what our servers are and how they compare with GServer-v2 beta4.
+- `nw-unlock/` — `nwunlock.py`, a client patch for 2.17.1, 2.22 and 2.31 that applies 8-colour New World bodies and NW shield rects while the server has sent id 177, with a self-test. See `../client-internals/newworld-mode-2x.md`.
 - `probe/` — `gen5probe.py`, a lab-only gen-5 proxy that injects chosen packets or props into a live session between a real client and our own gserver, plus a plan runner and a self-test. Targets and pilot results: `../protocol/probe-targets-2026-11-18.md`, `../protocol/probe-results.tsv`.
 - `conformance/` — the 3D client conformance suite: content generator, judge, the two-VM lab runner and tests. Cases, probes and the derived tables: `../torque/conformance/README.md`.
 - `navigator/` — local browser for the markdown notes in this repo. It listens on the loopback address (port 8765) and does not phone home. See `navigator/README.md`.
