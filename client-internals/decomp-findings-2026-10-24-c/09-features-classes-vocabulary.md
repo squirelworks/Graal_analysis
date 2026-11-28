@@ -15,7 +15,7 @@ Tables: `classes_by_build.tsv`, `script_vocab_deltas.tsv`. Vendor source: `newfe
 | 2.1 test | new tile art, new start/server-list window (F8), new image engine, `ascii()`, `tiles[x,y]`, predefined-npc editor with `#COMMENTS`/`#EDIT`, smilies in PMs, tabbed editor | PLO 49 and 169; TPageControl/TTabSheet/TMemo added, person/show-code windows removed |
 
 ## Classes
-- 186 classes in 2.00 through 2.03. +1 in 2.04 (an object-set class; matches "support for object sets"). +1 in 2.05 (class TADP; purpose not identified). 2.1 test swaps 4 editor classes for 4 tabbed ones (188 total).
+- 186 classes in 2.00 through 2.03. +1 in 2.04 (an object-set class; matches "support for object sets"). +1 in 2.05 (class TADP, identified in the [existing 2.04/2.05 comparison](../build-diff-204-205.md#anti-debug-component-adp-new-in-205) as an anti-debug component). 2.1 test swaps 4 editor classes for 4 tabbed ones (188 total). This corrects the old unidentified-purpose wording using that published study; it is not a new native read.
 - NewWorld beta1 = 186 classes, the same set as the 2.0x line (without the 2.04 and 2.05 additions); beta2 changes the editor windows like 2.1 test. NewMain has 193 (adds DDE classes, chest/baddy editors).
 
 ## Vocabulary (script/identifier strings, resources excluded)
