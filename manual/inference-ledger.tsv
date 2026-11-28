@@ -57,7 +57,7 @@ manual/04-behaviour/02-movement-collision.md	Left over	client-internals/static-r
 manual/04-behaviour/02-movement-collision.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-f.md#cell-coordinates-on-a-gmap	A lab crossing on 2.22 with a big map installed by 171, and the meaning of the scrambled play-mode value that gates the gmap reload
 manual/04-behaviour/04-death-respawn.md	Open: the respawn heart value, the probe numbers, the one-heart baddy type, and 	version-profiles/matrix/rules-132.md#still-open	
 manual/04-behaviour/04-death-respawn.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-b.md#level-entry-save-in-the-21-test-builds-e315	NewWorld beta 2, which also lacks the constant, was not read
-manual/04-behaviour/05-items-board.md	Open: a lab capture of the 12 bytes and following props on 2.05 and 2.22, the 2.	client-internals/laying-items-and-hiding.md#open	—
+manual/04-behaviour/05-items-board.md	Open: 3.04's cost table line by line. The selected 2.22 feature gates are static	client-internals/laying-items-and-hiding.md#open	—
 manual/04-behaviour/05-items-board.md	Left over	client-internals/static-reads-appendix-e-2026-11-20-g.md#the-pickup-test-again	What sets the busy flag that makes the test skip an item
 manual/04-behaviour/06-hud-ui.md	missing faces	client-internals/chat-text.md#font-per-build	`Dialog` does not exist on Windows and is mapped to a sans serif, normally Arial; `Helvetica` maps to Arial; neither was checked on real Windows
 manual/04-behaviour/06-hud-ui.md	bold	client-internals/chat-text.md#font-per-build	Tempus Sans ITC has only a regular face, so Windows emboldens it: each glyph smeared one pixel right, each advance one pixel wider

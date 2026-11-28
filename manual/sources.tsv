@@ -215,7 +215,7 @@ client-internals/items-603r7-black-box.md	cited	4.5	4.5	Wire/screen behavior and
 client-internals/lab-captures-2026-10-25/01-damage-chest-respawn-weapons.md	cited	4; 4.3; 4.4; 4.5; E	4	
 client-internals/lab-cells-200-205-2026-11-13.md	cited	4.2; 4.5	4.2; 4.5	
 client-internals/launchers-420r8-500r7-512.md	cited	1; 2.3	1; 2.3	Component identity in §1.8.9 and login attribution in §2.3.5. Detailed modifications, scanner counts and companion comparison mechanics stay in the source; no operational policy or new protocol profile is inferred.
-client-internals/laying-items-and-hiding.md	cited	4.5	4.5	
+client-internals/laying-items-and-hiding.md	cited	4.5	4.5	§4.5.2.2 carries the selected 2.22 command-mask/reset and bit 0x10/0x20 gates, including cycle-bit fallback; runtime, other builds and the 3.04 cost table remain separate.
 client-internals/ledges-push-pull.md	cited	4.2; 4.5	4.2	
 client-internals/level-editor-205.md	cited	4.9; 8.1	4.9	
 client-internals/linux-304-executable-build.md	cited	1; 10	1; 10	Build/dependency evidence in §1.8.4 and §10.1.10; voice/OpenAL questions remain explicit. Detailed sizes, banner stamps and installer naming stay in the source.
