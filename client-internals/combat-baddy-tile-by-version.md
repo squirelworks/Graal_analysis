@@ -104,9 +104,21 @@ attacker is known. The victim must be in the normal play state (not paused or de
 (mode 3), not swimming (mode 10), with hearts above 0. The guild-tag test must pass. It then calls
 the shared hurt routine, and when the hearts reach 0 it claims the kill, as the sword path does. It
 has **no range test and no AP test** **[bin]**. 1.41 rev 1 decodes the same fields and reads more
-when the body is 6 bytes or longer. That extra part was not traced **[bin]**. seihai-core's U7
+when the post-attacker body is 6 bytes or longer; the selected follow-up below traces that extra part **[bin]**. seihai-core's U7
 reads put the first id 40 handler at 1.31 (no cap), the one-heart cap at 1.35 to 1.39, and the 2.00
 handler (range and cap) at 1.41 rev 1. 1.31 to 1.38 were not re-read here.
+
+### Selected 1.41 rev 1 extra hit fields
+
+A 2026-11-28 static follow-up examined one retained 1.41 rev 1-labelled input with FileVersion 1.4.1.1; this identifies the selected copy, not every release or variant. Evidence: V141-HIT-OBJECT-FIELDS-20261128 **[bin]**.
+
+The receive case removes the two attacker-id bytes before calling the hurt reader. Its length-six branch therefore means at least eight bytes after the message id: attacker (two), knockback (two), power (one), then NPC identifier (three). The extra bytes encode one identifier, with weights 16384, 128 and 1 after subtracting 32 from each byte. They are not three independent combat settings **[bin]**.
+
+The reader searches the current level's NPC list by that identifier; the level-text loader's NPC construction and list append independently bind this list's role. No matching object means no hurt call on this path. With a match, the range check uses the NPC position plus half its dimensions in tile units: width and height getters divided by 32. The local comparison point is (x + 1.5, y + 2). With only the three to five post-attacker bytes, the range check instead compares the attacker's position with the local position. Both branches reject squared separation above 100, then call the shared hurt routine with the decoded knockback and one-heart-capped power **[bin]**.
+
+The original attacker must still be known, and the level, victim-state and guild gates precede either branch. The NPC identifier does not make this an attacker-free hit. After the hurt call, the matched-NPC branch skips the subsequent attacker-id kill-credit send; the short branch sends message 14 with that attacker id when the local hearts getter is at most zero **[bin]**.
+
+This settles the selected extra field and its normal consumers. It does not establish all identifier producers or lifetimes, complete malformed-byte validation, exception behavior, other 1.41 variants, or runtime hit acceptance. No client was run **[bin]**.
 
 ## Death
 
@@ -140,7 +152,7 @@ watched in the running game.
 - [x] ~~Player mode 7 in 1.34 to 1.41.~~ Attached to another local player: carried, or a horse passenger (→ [The sword box](#the-sword-box-the-victim-judging-another-players-swing)).
 - [x] ~~The extra victim test in 2.17.1, 2.22 and 2.31.~~ Ghost mode (170), plus the Kingdoms/New World mode gate (176/177) (→ [Sword judge gates](#sword-judge-gates)).
 - [x] ~~The respawn AP bands before 2.x.~~ From 1.41 rev 1 (→ [Death](#death)).
-- [ ] The extra fields of the 1.41 rev 1 id 40 handler (body of 6 bytes or more).
+- [x] ~~The extra fields of the 1.41 rev 1 id 40 handler (body of 6 bytes or more).~~ The selected copy reads one NPC identifier and changes the range-check source and kill-credit tail (→ [selected follow-up](#selected-141-rev-1-extra-hit-fields)); other variants and runtime remain untested.
 - [x] ~~The 2-tile sideways edge live.~~ Two real 1.35 online: hit at ±2 tiles, miss at ±2.5
   (→ [live-runs/sword-edge-2026-11-18](../live-runs/sword-edge-2026-11-18/README.md)).
 - [x] ~~2.05 control.~~ Real 2.05r2 offline on GR-V1.03 scenes: 17 archer and 8 gray-soldier kills, no item
