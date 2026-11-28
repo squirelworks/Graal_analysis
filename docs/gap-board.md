@@ -15,6 +15,8 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 
 ## Columns
 
+2026-11-28 update: G099 is answered for the [selected 2.22 input paths](../client-internals/laying-items-and-hiding.md#selected-222-feature-mask-follow-up): item selection checks bit 0x10 and weapon cycling bit 0x20 of the command-written mask. A clear cycle bit leaves ordinary weapon handling available. Runtime, other inputs and G100's 3.04 cost table remain separate; all 426 IDs remain.
+
 2026-11-28 update: G097 is partial. The [selected F2 guard follow-up](../client-internals/gui-windows-fkeys.md#selected-f2-null-form-guard-follow-up) binds null-form behavior in 2.22 and a modified 2.31 input, plus selected 2.22 receive-179 creation. The 2.17 comparison, other creation paths and runtime behavior remain open; all 426 IDs remain.
 
 2026-11-28 update: G076 remains partial. The [v22 rejection-status follow-up](../client-internals/graal2002-level-open.md#v22-rejection-status-and-warning-text-boundary) traces gated `failed` text submission and localization of the separate warning string; it does not identify the v22 warning-dialog caller or establish runtime display. All 426 IDs remain.

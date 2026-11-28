@@ -7,7 +7,7 @@ The "lay-down mode" in `decomp-findings-2026-10-28/01-sword-while-carrying.md` i
 1. **D while carrying** a bush, a light stone, a black stone or an NPC is **hiding** (mode 14), already described for 2.05 in `carry-hide-and-glove.md`. Nothing is put down.
 2. **Laying an item** (putting a rupee, bombs, a heart, a sword and so on on the floor) is **S held + A**, a separate mode 9. The 1.21 readme names it: "Laying Items: Select Item: hold Attack Button (S) + press Action Button (A); Lay Item: Action Button (A)". This is how a player drops a rupee.
 
-Both work the same way in 2.05, 2.22, 3.04 (Linux) and 3.153 (Mac). 3.x adds one gate: the `enablefeatures` flags.
+The action and table comparisons below cover 2.05, 2.22, 3.04 (Linux) and 3.153 (Mac). The selected 2.22 and 3.04 paths also gate item selection and weapon cycling with `enablefeatures`; the mask is not a 3.x-only addition.
 
 Tags: **[2.05]** read in the 2.05 rev 2 binary · **[2.22]** / **[3.153]** the same tables found in that binary · **[3.04]** read in the unpacked 3.04 Linux binary · **[doc]** readme · **[inf]** inferred.
 
@@ -38,7 +38,7 @@ Same in 2.05 and 3.04 **[2.05][3.04]**; the hide table is in 2.22 and 3.153 too 
 ### Picking
 
 - A with S held, when A has nothing else to do (not carrying, nothing to grab or lift), and the point in front of the player is neither blocking nor water (tile type 11). The test point by facing is `(x + 1.5, y)` north, `(x - 0.5, y + 2)` west, `(x + 1.5, y + 4)` south, `(x + 3.5, y + 2)` east **[2.05][2.22][3.153]**.
-- **3.x only:** also needs `enablefeatures` bit 0x10 **[3.04]**. The flags start at 0xFFFF (all on) and reset to that with the player, so this only matters when a script turns it off. `enablefeatures` exists from 2.17.1 (`version-profiles/141-217.toml` lists "S+A"), so 2.22 likely has the same gate **[inf]**; 2.05 has no such flag.
+- The selected 2.22 input checks `enablefeatures` bit 0x10 before calling the item-selection helper; 3.04 checks that bit too. The selected 2.22 reset stores 0xFFFF in the mask. The earlier 3.04 read also records 0xFFFF initially and at reset. This follow-up does not measure startup or a live script changing the mask. 2.05 has no such flag **[bin][3.04][2.05]**.
 - The first item the player has, in the **lay order**, is picked. None: nothing happens.
 - The player enters **mode 9** with the `idle` gani (in 3.x the replaceable `idle` slot, so a `replaceani` of idle applies), and `item2.wav` plays at `(x + 1.5, y + 2)`.
 
@@ -82,10 +82,18 @@ A custom sword or shield image can be laid as item 10 or 9 at any power; the flo
 
 ## S held + D: next weapon
 
-With S held and empty hands, D selects the next weapon (the one after the selected, wrapping) instead of firing **[3.04]**. 3.x needs `enablefeatures` bit 0x20 ("S+D"). Not read in 2.05.
+With S held and empty hands, D selects the next weapon (the one after the selected, wrapping) instead of firing **[3.04]**. The selected 2.22 path and the earlier 3.04 read both require `enablefeatures` bit 0x20 for this cycle. In the selected 2.22 path, a clear bit skips the cycle and falls through to the ordinary weapon path; it is not a general refusal of D. Not read in 2.05 **[bin][3.04]**.
+
+## Selected 2.22 feature-mask follow-up
+
+This follow-up uses the selected 2.22 image with embedded version 2.2.2.0, distinguished from its separately modified sibling. The command-registration record binds `enablefeatures` to a handler which converts its argument, accepts a converted integer from 0 through 65535, and stores it in the controller mask. A selected reset writes 0xFFFF to that same field. This is a static store/range result, not a runtime conversion or startup test. **[bin]**
+
+Using the logical action labels already used in this note, the examined item-selection and next-weapon paths read that mask before the two actions. Item selection requires bit 0x10 as well as the held-sword state and the preceding action/state and space checks; its helper selects an eligible item and enters mode 9 when selection succeeds. Weapon cycling requires bit 0x20, the held-sword state and a nonempty weapon list; it starts from the selected index plus one modulo the list size and calls the selection helper. That helper can skip entries whose names start with `-`. Clearing the cycle bit leaves the ordinary weapon path available, subject to its own checks. The mask tests do not bypass earlier gates or guarantee either action. **[bin]**
+
+This settles G099's selected 2.22 gate question. The correspondence to configurable physical/default A, D and S bindings was not independently re-established in this follow-up. It does not re-measure every input route, visible behavior, packet effects, other executables or the separate 3.04 cost table. The retained static receipt is indexed as `V222-LAY-CYCLE-FEATURE-GATES-20261128` in the [evidence index](../docs/evidence-index.tsv). **[bin]**
 
 ## Open
 
 - [x] ~~A lab run on 2.05 rev 2 and 2.22 (hold S, press A, A) to capture the `PLI_ITEMADD` bytes and see which props follow.~~ [Captured](spin-lay-205-2026-11-14.md): `PLI_ITEMADD` then `RUPEESCOUNT` in one frame, and the four facing landings.
-- [ ] Whether 2.22's lay and S+D paths check `enablefeatures` (2.22 has the command; the check was read in 3.04 only).
+- [x] ~~Whether 2.22's lay and S+D paths check `enablefeatures`.~~ The [selected 2.22 follow-up](#selected-222-feature-mask-follow-up) binds the command store, reset and bit 0x10/0x20 gates; runtime and other-build coverage remain separate.
 - [ ] 3.04's cost table was not read line by line; its pick, lay and send paths match 2.05's, and its tables match 2.22 and 3.153.
