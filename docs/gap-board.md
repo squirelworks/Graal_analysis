@@ -15,6 +15,8 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 
 ## Columns
 
+2026-11-28 update: G076 remains partial. The [v22 rejection-status follow-up](../client-internals/graal2002-level-open.md#v22-rejection-status-and-warning-text-boundary) traces gated `failed` text submission and localization of the separate warning string; it does not identify the v22 warning-dialog caller or establish runtime display. All 426 IDs remain.
+
 2026-11-28 update: G078/G141 share one [selected local-entry helper comparison](../client-internals/v21-local-enter.md#name-matched-helper-selected-static-comparison). The public image, v22 and 2.05 revision 2 pass two doubles equal to 31 to a record-construction/list-append path; v22 adds a two-byte guard. This answers the selected state-effect questions, not rendered/gameplay meaning, callback/error behavior or all builds. The earlier lab's visible-no-difference result remains separate from internal state. All 426 IDs remain.
 
 2026-11-24 update: G147 now has a [three-input reader comparison](../client-internals/v2100-gani-reader.md#selected-reader-comparison-with-ver7-and-v22-2026-11-24). The selected public image, ver7 and v22 agree on the documented normal storage contracts, with separate reader/data/helper checks. This closes only that finite comparison; whole-reader/callee/runtime equivalence, malformed/error behavior and other builds are not established. All 426 IDs remain.
