@@ -5890,4 +5890,5 @@ client-internals/laying-items-and-hiding.md	V222-LAY-CYCLE-FEATURE-GATES-2026112
 client-internals/decomp-findings-2026-10-25-g/03-id178-comma-text.md	V222-SERVERWARP-PORT-BOUNDARY-20261128	Owner-held evidence identifier for selected static conversion-boundary receipts; not a message field or API name.
 client-internals/combat-baddy-tile-by-version.md	V141-HIT-OBJECT-FIELDS-20261128	Owner-held evidence identifier for selected static hit-field receipts; not a wire field or native enum.
 client-internals/early-windows-callback-variants.md	EARLY-LOGIN-DISPATCH-20261128	Owner-held evidence identifier for selected structural/table receipts; not a login token or wire field.
+client-internals/early-form-timers-2026-11-09.md	EARLY-TIMER-INTERVAL-WRITE-20261128	Owner-held evidence identifier for selected static timer-setting receipts; not a timer property or native callback name.
 client-internals/decomp-findings-2026-10-24-c/07-udp-channel.md	UDP-RECEIVE-PRELUDE-20261128	Owner-held evidence identifier for selected static wrapper receipts; not a datagram field or timer name.

@@ -46,3 +46,13 @@ The 5th Graal alpha run used the 5th Graal assets and level as donors, so it did
 `[lab]` This proves that the configured callbacks execute. About 20 hits per second is consistent with the serialized 50 ms timer, but it is not a cadence measurement: a breakpoint adds overhead, and three seconds is a short window. It is not a general 50 ms or 20 Hz claim. Runtime changes to timer settings and idle callbacks were not tested.
 
 `[lab]` The same campaign recorded 60 timer hits in 3 s for the 1st Graal, with the player starting at (24.5, 30); a held Right reached (29.5, 30) and Left returned to the start, over 700 valid player-state snapshots. That run is reported in the same source summary and was not repackaged separately.
+
+## Selected form-creation interval write
+
+A 2026-11-28 static follow-up freshly matched the three selected executable identities above to retained extraction records and read their form resources, published component/method metadata and selected code paths. This follow-up inspected the artifacts themselves; it does not upgrade the original publication editor's review of the earlier handoff. Evidence: EARLY-TIMER-INTERVAL-WRITE-20261128 **[bin]**.
+
+All three forms still serialize the same enabled, 50 ms DelphiX timer and named callback. Their creation callbacks also contain the same conditional assignment: if an unnamed stored flag byte is nonzero, the form passes zero to that component's Interval setter. Published component fields bind the receiver to the timer, and the timer's property metadata binds the called method to Interval, not Enabled **[bin]**.
+
+The selected setter updates the stored Interval to the greater of the requested integer and zero, and a separate internal field to the greater of that integer and one, when the request differs from the stored Interval. When that setter update occurs, requesting zero stores zero and derives one for that other field. This is not evidence that Enabled becomes false, that the observed frame period is zero or one millisecond, or that a busy loop occurs **[bin]**.
+
+The condition's meaning and writers, other timer-setting paths, programmatically installed idle callbacks, scheduler use of the derived field and runtime behavior under this condition remain open. The selected code read is not a complete writer or indirect-call census. The later [elapsed-frame lab](../protocol/lab-appe-hostb-2026-11-20c.md#frame-timing-of-the-early-builds-e300) is separate prior evidence for its tested runs; this static follow-up neither repeats it nor identifies the condition's state in those runs. No original executable was run for this follow-up **[bin][doc]**.
