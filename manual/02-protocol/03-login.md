@@ -234,6 +234,8 @@ The two 1.40 inputs carry `GNW23090`; the token's date digits read 23 September 
 
 A lab run captured the `GNW23090` 1.40 login: the start form has no host field, One Player Online fetches a server list from the built-in list host on port 14910, and the login is type 0, generation 3, answered with a level name and one full board that the client draws and walks. The v22 capture is still open (→ App. E#15). [lab] (protocol/lab-appe-hostb-2026-11-20b.md#login-of-the-140-build-e15)
 
+For the separately identified early inputs with FileVersion 1.3.8.0 and 1.3.9.1, the selected connection/login builders match in instruction structure and non-address constants after PE-address canonicalization. This does not establish corresponding global values, external helper equivalence, endpoint selection, framing or runtime login; the token was already published [bin] (client-internals/early-windows-callback-variants.md#selected-139-connection-and-receive-comparison).
+
 ## 2.3.4 2.22, 2.31 and 3.x login (generation 5, type 5)
 
 The fields are those of → §2.3.3 with client type 5. The message travels in the fixed mode-3 login frame (→ §2.2.4) [bin] (protocol/client-versions.md#game-server-login); [bin] (protocol/v3x-clients.md#game-server-login-and-cipher).

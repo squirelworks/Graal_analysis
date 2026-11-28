@@ -30,6 +30,8 @@ For the six checked Windows x86 2.02/2.05 revisions, the corroborated entries me
 
 Builds before 2.00 are in → App. C.2. *Bound* is the highest id the receive switch tests, written as in the source.
 
+The separately identified early inputs with FileVersion 1.3.8.0 and 1.3.9.1 both have 45 selected static receive cases: 0–41, 43, 75 and 100, with unsigned bound 100. Matching case sets do not establish identical handler bodies, widths or runtime acceptance [bin] (client-internals/early-windows-callback-variants.md#selected-139-connection-and-receive-comparison).
+
 | Build | Count | Ids handled | Source |
 | --- | ---: | --- | --- |
 | NewMain 24, 26 | 51 | 0–45, 75, 100, 150, 151, 153 (bound `0x99`) | [bin] (version-profiles/plo-handled-ids-by-build.tsv) |
