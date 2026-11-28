@@ -181,3 +181,4 @@ LOCAL-ENTRY-HELPER-20261128	windows	three-input-native-static-caller-stack-class
 V22-ENTRY-MODE-WRITERS-20261128	windows	selected-native-static-integer-stores-and-distinct-receive-byte
 V22-FILE-FAILURE-STATE-20261128	windows	selected-native-static-rejection-status-drawing-and-localization-reference-boundary
 F2-RPG-NULL-GUARD-20261128	windows	selected-two-input-native-static-key-guards-and-one-input-receive-creation
+EARLY-RECEIVE-20261128	windows	selected-two-client-static-receive-table-handler-and-literal-review

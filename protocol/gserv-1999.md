@@ -147,6 +147,8 @@ The 1.21 handlers line up with the later names: 1 links (`TEditorLink`), 2 baddy
 
 The client-to-server ids visible as constants are 0 and 10 to 26 in 1.21, and 0 and 10 to 30 in 1.32. Other sends pass the id in a register, so these lists are not complete.
 
+The [selected 1.25/1.27 follow-up](../client-internals/gserv-125-127-builds.md#selected-receive-handlers-35-to-38) describes four normal receive branches: administrator text (35), an effect helper plus bomb sound (36), player-keyed incoming text (37), and paired numeric components (38). It records the early guards and fields without assigning recovered native enum names or transferring later layouts. Full consumers, runtime effects and the remaining ids stay open. **[bin]**
+
 ## Props by build
 
 | | 1.21 | 1.28 b2 | 1.3 test | 1.31 | 1.32 |
@@ -174,5 +176,5 @@ Real 1.28 beta 2, 1.3 test and 1.31–1.39 behind the probe proxy: how unknown p
 
 ## Open questions
 
-- The meanings of ids 35 to 41 and the full client-to-server list. A diff against the 1.39 Dhrake names would settle most of them.
+- Finish the meanings of ids 35 to 41 and the full client-to-server list. Selected 1.25/1.27 normal branches for 35–38 are compared above; original names, full consumers and the remaining ids stay open.
 - Whether RemoteControl uses the same framing. It probably does, since the server code path is shared, but it hasn't been checked.

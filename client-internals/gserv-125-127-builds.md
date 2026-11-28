@@ -71,7 +71,7 @@ reproduce the 1.21 and 1.28 beta 2 rows exactly, so the two new rows are compara
 4. **The 1999-10-20 GServer is the 1.27 server.** The 1.27 package's `GServer.exe` is byte-identical to the standalone
    "GServer with RC, 1999-10-20" found in the same hunt, so that build needs no separate identification.
 5. **Server messages 35–38 arrived by 1.25.** 1.21 handles 0–34 except 30; 1.25 already handles 0–38 and 100, the same set
-   as 1.27 and 1.28 beta 2. The new range is still unnamed (see [`gserv-1999.md`](../protocol/gserv-1999.md#open-questions)).
+   as 1.27 and 1.28 beta 2. The selected 1.25/1.27 handler behavior is compared below; original enum names and the broader list remain open.
 6. **Two features move earlier or later.**
    - `nodecompressionerror=` (hide the inflate error) first appears in 1.27, not 1.28 beta 2. The 1.27 notes list it as the
      new "don't show decompression errors" option in Graal → F1 → More **[bin][doc]**.
@@ -83,6 +83,21 @@ reproduce the 1.21 and 1.28 beta 2 rows exactly, so the two new rows are compara
    finds the client in a few common install folders (or asks for it), and has buttons to start `Graal.exe`, open the
    readme and the Character Designer, and load or save `.chr`/`.chi` character files to the client's character list. Its
    only outside link is a browser opened over DDE **[bin]**.
+
+## Selected receive handlers 35 to 38
+
+Follow-up: 2026-11-28. Only the client executables were statically extracted from the two identity-bound packages with the existing InstallShield reader; no installer or original program was run. The first message byte is decoded by subtracting 32, then checked against the receive bound before the selector and target tables. Both selected tables bind ids 35–38 to the branches below. These are descriptive labels for observed code paths, not recovered native enum names. Evidence: EARLY-RECEIVE-20261128. **[file][bin]**
+
+Here `c` means one byte decoded by subtracting 32. Lengths describe the payload after the message id; they are selected branch guards, not a complete malformed-input contract. **[bin]**
+
+| Id | Descriptive role | Selected normal branch in both inputs |
+|---:|---|---|
+| 35 | Administrator text | Requires nonempty text and replaces each section-sign byte with a newline. The 1.25 path supplies the caption `Administrator Message`; 1.27 additionally submits an `(Admin)` log entry. |
+| 36 | Effect request with bomb sound | After a state-pointer equality guard and a three-byte minimum, passes the first `c` as an unnamed integer argument and the next two as `c / 2` coordinates to the selected effect helper, then requests `sounds\bomb.wav`. No damage or first-argument meaning is established here. |
+| 37 | Player-keyed incoming text | Requires one key byte, decodes it as `c`, and scans the listed-player records for that key. The remaining text may be empty. The normal queue path initializes or newline-appends the matched record's text. The selected 1.27 branch also has a separate ignore path; it is not identical to the 1.25 queue path. |
+| 38 | Two numeric motion components | After a state-pointer equality guard and a two-byte minimum, stores each component as `c / 16 - 4`. Selected later consumers conditionally add the stored pair to another pair of doubles before calling update helpers; this is not a measurement of displacement or timing. |
+
+G093 remains partial. These selected handlers and literal/scalar operands do not establish original symbol names, full helper behavior, all UI effects or runtime acceptance. In particular, the early one-byte key and three-byte effect record must not be replaced by a later build's layout merely because a descriptive role looks familiar. Other builds, indirect effects and exceptional paths remain open. **[bin]**
 
 ## The bundled GServers
 
@@ -127,6 +142,6 @@ or protocol:
 
 - [ ] Player, NPC and baddy prop ranges for 1.25 and 1.27 (the [`gserv-1999.md`](../protocol/gserv-1999.md#props-by-build)
   table has 1.21 and 1.28 beta 2 only). 1.27's `save[0]`–`save[9]` NPC variables should show up as new NPC props.
-- [ ] Names for server messages 35–38.
+- [ ] Finish names for server messages 35–38. The selected 1.25/1.27 branch descriptions and normal field handling are compared above; original enum names and full consumer behavior remain open.
 - [x] The minimum token the 1.25 and 1.27 servers accept for players (see [The bundled GServers](#the-bundled-gservers)).
 - [ ] A lab login of both clients on a loopback GServer.

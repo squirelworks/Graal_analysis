@@ -201,7 +201,7 @@ client-internals/gs2-vm-by-version.md	cited	8.4; C; E	8.4; C; E
 client-internals/gs2-vm-from-engines.md	cited	8; 8.3; 8.4; E	8.3	§8.3.3 carries objects, lookup, events, clock and segments; §8.4 carries selected backup call/context/callback findings and separate official call/formal/normal-closure limits. Detailed signatures, fusion numbers and per-version cases stay in the note
 client-internals/gs2-vm-loader-diff.md	cited	8.4; C; E	8.4; C; E	loader, slots, opcodes, maths, event names and clock by build; settled, partial or open
 client-internals/gs2-vm-quirks-by-version.md	cited	8.4; 4.1; C	8.4; 4.1; C; E	compact quirks table; 6.03r7 timer ceil lab; event-casing risk; compile vs runtime
-client-internals/gserv-125-127-builds.md	cited	1	1; 2.3; 2.4; 8	Graal 1.25 and 1.27 (InstallShield 3 packages): GSERV tokens cited in §1; GS1 dating and receive-dispatch rows still to be folded into the login and scripting sections
+client-internals/gserv-125-127-builds.md	cited	1; 2.5	1; 2.3; 2.4; 2.5; 8	GSERV tokens cited in §1; selected 1.25/1.27 normal receive branches 35–38 and their early-field limits carried in §2.5.1. Original enum names, full consumers and runtime remain open; GS1 dating remains to be folded into scripting.
 client-internals/gui-windows-fkeys.md	cited	4.6; 4.10	4.6	§4.6.6 carries the selected 2.22/modified-2.31 F2 null-form guards and selected 2.22 receive-179 creation; 2.17, other creation paths and runtime behavior remain open.
 client-internals/handoff-argon-grok-2026-11-07.md	excluded			critique of one handoff archive; the client facts it keeps are already in the notes the manual cites
 client-internals/how-139-gets-online.md	cited	1	1; C	carried into §1.8.1; the App. C row already says 1.39 has no listserver
