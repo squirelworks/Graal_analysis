@@ -7,6 +7,8 @@ This chapter gives how the client places, limits and triggers sounds while playi
 
 For a separately identified early 1.40 comparison input, class metadata binds a `TWinamp` published method named `ID3Tag` to a helper that calls `SetForegroundWindow`, then submits Alt down, 3 down, 3 up and Alt up through `keybd_event`, with scan codes from `MapVirtualKeyA`. This is selected static component evidence, not proof of application invocation, successful focus, an observed dialog, audio playback or first appearance. [bin][doc] (client-internals/early-windows-callback-variants.md#selected-140-added-import-bindings)
 
+Across that comparison input and the separately identified 1.40 rev 1 input, this complete method body, its method table, selected class metadata and declared PE import-directory byte span match. This does not establish equal stored-handle values, external callees, matching callers, runtime effects or whole-client equivalence. [bin] (client-internals/early-windows-callback-variants.md#selected-140-revision-resource-and-method-comparison)
+
 ## 4.7.1 Placing a sound (2.05)
 
 Every sound goes through one entry point, called from about two dozen places: GS1 commands, gani `PLAYSOUND`, pickups, bombs, swords and baddies (→ §3.10.3 for the loop prefix, missing files and dispatch):

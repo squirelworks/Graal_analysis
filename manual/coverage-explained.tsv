@@ -5894,3 +5894,4 @@ client-internals/early-form-timers-2026-11-09.md	EARLY-TIMER-INTERVAL-WRITE-2026
 client-internals/decomp-findings-2026-10-24-c/07-udp-channel.md	UDP-RECEIVE-PRELUDE-20261128	Owner-held evidence identifier for selected static wrapper receipts; not a datagram field or timer name.
 client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md	TEST-WARP-FIELD-READS-20261128	Owner-held evidence identifier for selected test-build field-read receipts; not a wire field or native type.
 client-internals/early-windows-callback-variants.md	EARLY-IMPORT-HELPERS-20261128	Owner-held evidence identifier for selected static import/helper bindings; not a native type or protocol field.
+client-internals/early-windows-callback-variants.md	EARLY-REVISION-RESOURCE-METHOD-20261129	Owner-held evidence identifier for selected static resource/method receipts; not a native type or protocol field.
