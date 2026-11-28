@@ -24,6 +24,16 @@ Consequence: a server name that contains a space must be quoted by the sender. `
 - Items 2 and 3 are stored as the host and the port, both as text first.
 - The routine then reconnects to the host and port. The name is not used to connect, which agrees with the lab (a made-up name connected normally; reordered host and port failed to connect).
 
+## Selected 2.22 port-conversion boundary
+
+The selected follow-up uses the 2.22 image with embedded version 2.2.2.0, distinguished from its separately modified sibling. Its receive-178 case requires at least four comma-text items and passes items 1, 2 and 3 onward. The selected server-switch routine copies item 3 into the stored port string. A guarded connection-construction path reads that same string; it requires the host and port strings to be nonempty before calling the lower-level connection routine. These are static data-flow and branch observations, not a connection test. **[bin]**
+
+In the lower-level routine, the selected normal sequence calls an integer-conversion wrapper with the port string, passes its returned integer directly to the imported `htons` boundary, and writes the returned word into the socket-address port field. There is no intervening application-level comparison against a port range such as 1 through 65535 in that sequence. The underlying 32-bit integer parser has parse-error and overflow checks; those are not a separate validation of the 16-bit port domain. The wrapper's successful integer return was checked in the return-tail instructions as well as at its caller. **[bin]**
+
+The conversion/store sequence has a local exception frame. This follow-up does not establish the resulting port value or recovery outcome when conversion fails, the complete accepted text grammar, or the behavior of the external networking implementation. No malformed port was submitted, no connection was attempted, and no wraparound or runtime-acceptance result is claimed. **[bin]**
+
+G050 remains partial: this answers the selected 2.22 normal conversion/range-check question, not the real service's text or item 0, the other two historical inputs, all paths or runtime behavior. The static receipt is indexed as `V222-SERVERWARP-PORT-BOUNDARY-20261128` in the [evidence index](../../docs/evidence-index.tsv). **[bin]**
+
 ## What the writers send
 
 - GServer-v2: forwards the listserver's answer to `PLI_SERVERWARP` (41) as 178, unchanged, and only to clients from 2.1 on. The server's own code calls this a hack to let the new clients serverwarp.

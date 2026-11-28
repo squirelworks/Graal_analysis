@@ -5887,3 +5887,4 @@ client-internals/gui-windows-fkeys.md	F2-RPG-NULL-GUARD-20261128	Owner-held evid
 client-internals/gserv-125-127-builds.md	EARLY-RECEIVE-20261128	Owner-held evidence identifier for selected early receive branches; not a protocol token or native enum name.
 client-internals/gserv-125-127-builds.md	EARLY-PROP-CASES-20261128	Owner-held evidence identifier for selected static decoder receipts; not a property name or wire field.
 client-internals/laying-items-and-hiding.md	V222-LAY-CYCLE-FEATURE-GATES-20261128	Owner-held evidence identifier for selected static gate receipts; not a feature bit or script term.
+client-internals/decomp-findings-2026-10-25-g/03-id178-comma-text.md	V222-SERVERWARP-PORT-BOUNDARY-20261128	Owner-held evidence identifier for selected static conversion-boundary receipts; not a message field or API name.
