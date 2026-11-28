@@ -179,8 +179,16 @@ The browser's command-state events turn Back and Forward on and off as history a
 
 `[bin]` The player list's History item and the message editor's History button both open `TServerMessage` in rich-text mode. The client reads the stored conversation with that player and writes it out in pairs of lines: a header line, then the message. A header starting "You:" is drawn in purple with the player's own name; one starting "Opposite:" is drawn in red with the other player's name; anything else is drawn in red as "unknown:". Message lines are indented. The caption is the History menu text without its `&`, followed by the other player's name.
 
+## Selected F2 null-form guard follow-up
+
+The selected 2.22 input (embedded version 2.2.2.0) and selected 2.31 input (embedded version 2.3.1.0) mask the key to its low sixteen bits and test the F2 value. In both examined branches, the call to the existing-form helper is conditional on a non-null stored form pointer. With a null pointer, that branch does not call that helper or allocate a form. This is a selected static branch result, not a live key test. **[bin]**
+
+In the selected 2.22 receive table, message 179 reaches a branch which creates the RPG form into the pointer tested by its F2 branch only when it is null, then passes the remaining message text to the form's payload routine. An existing form skips creation and still receives that text. This binds one creation path to the F2 guard; it does not establish that every possible alias or indirect creation path has been identified. **[bin]**
+
+The 2.22 input was distinguished from its separately modified sibling. The selected 2.31 package is explicitly a modified, unpacked package; its result is not a claim about every stock 2.31 executable. This follow-up does not independently establish the selected 2.31 pointer's class or receive-side creation branch, nor a 2.17 input. Consequently it answers what the examined F2 branches do while the pointer is null, not an unconditional cross-build assertion about all time before message 179. G097 remains partial. The static receipts are indexed as `F2-RPG-NULL-GUARD-20261128` in the [evidence index](../docs/evidence-index.tsv). **[bin]**
+
 ## Open
 
 - [ ] 2.05 rev2 and 2.22 live: both need their list host to resolve to the loopback address inside the Windows guest, which takes an administrator edit of the guest's hosts file. The clients are staged in the guest.
 - [ ] Why 1.39 closes on F6 when the server is the loopback address.
-- [ ] Whether the 2.17 to 2.31 F2 does anything before the server has sent 179.
+- [ ] Finish the cross-build F2-before-179 question. The [selected null-form guard comparison](#selected-f2-null-form-guard-follow-up) binds 2.22 and the selected modified 2.31 input; 2.17, broader creation paths and runtime behavior remain open.
