@@ -427,3 +427,5 @@ from the Share, or on either host.
 - The Mac 6.11r1 handler-table extent and opcode 7 (`NEXT.md` line 288).
 
 2026-11-28 update: **G139** and **G140** are answered for the selected binary readers in the [level-record comparison](../client-internals/v21-level-record-gate.md). The chest gate uses a fresh header comparison, and the examined ver8–ver13 subset matches ver7 in the two selected scan loops.
+
+2026-11-28 update: G042 is partial. The [selected test-build id 49 read](../client-internals/decomp-findings-2026-10-24-c/08-test-builds-newworld-newmain.md#selected-test-build-id-49-field-reads) binds direct payload reads and tail-copy arguments; the other handler comparisons, helper effects and runtime remain open. All 426 IDs remain.

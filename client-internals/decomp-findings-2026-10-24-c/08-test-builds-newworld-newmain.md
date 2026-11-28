@@ -8,6 +8,19 @@
 - Editor classes changed: the person/NPC/show-code windows were merged into a tabbed editor (class list in `classes_by_build.tsv`).
 - Script additions (strings): `ascii`, `defnpc` (predefined npcs from `defnpc*.txt`), `playeronline`, `startinfullscreen`, `tiles` (test2); `groundheights`, `waterheight`, `playerhp`, `playermaxhp`, `smiliesdef.txt` (test3). Also see `script_vocab_deltas.tsv`.
 
+### Selected test-build id 49 field reads
+
+[bin] A follow-up instruction read of two selected inputs bearing the 2.1.0.0 version resource binds logical id 49 through each receiver's raw selector and target tables. These are the retained inputs labelled test2 and test3; this does not identify every build carrying that resource or establish runtime acceptance. Owner-held evidence: `TEST-WARP-FIELD-READS-20261128`.
+
+Offsets below are zero-based within the payload after removing the message-id byte. In both selected branches:
+
+- Payload bytes 0 and 1 are separately read unsigned, reduced by 32 and divided by the stored floating-point constant 2.0. Each result is stored in a double field, the same pair written by the selected id 14 branch.
+- The string-copy call receives one-based start 6 and length minus 5, selecting the tail from payload offset 5. That result is passed through another string helper before storage; this is a call-boundary result, not a complete specification of that helper's transformations.
+- After further string, lookup and collection-count gates, bytes 3 and 4 are separately read unsigned, reduced by 32 and stored in two integer fields. Their later consumers and bounds are not established here.
+- Byte 2 has no direct read in these selected branches. This does not give it a reserved-field meaning or prove it has no indirect effect.
+
+The direct reads establish more than the old lossy-decompile summary for id 49. They do not establish safe handling of short or malformed payloads, all helper effects, or runtime behaviour. The argument-level comparison of changes to ids 0, 6 and 14 remains a separate open part of G042; later-build field names and validation rules are not transferred to these inputs.
+
 ## NewWorld beta1 / beta2
 - Token G2N15041. Branch point: the 2.02 code line (token digits, class list with the old person-editor windows, same PLO bound as 2.05 for beta1).
 - Beta1 server-to-client set: 53 ids. Compared with 2.05 rev2 it lacks 2 (BADDYPROPS), 4 (LEVELCHEST), 17/18 (HORSEADD/DEL), 154/155 (freeze/unfreeze), 49 and 169, and (like 2.04+) 26; it still has 156, 165, 166, 168.
