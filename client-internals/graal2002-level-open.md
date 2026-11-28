@@ -72,3 +72,7 @@ A strings pass over the public image found neither literal. ver7's inventory has
 - [ ] Read the effect of the helper called for `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda`. The public 2.1.0.0 image and v22 pass the level and two floating-point values of 31. What it changes was not read.
 - [ ] Follow the v22 helper after a `Control-NPC` name match, including any packet it sends.
 - [ ] Find what writes v22's mode field, and whether receive id 177 is that writer.
+
+## Selected invalid-header paths
+
+Ver7's local-file entry uses `Unsupported file type!` with a `Warning` caption after all recognized headers fail. The selected v22 rejection path sets a failure flag and stores 40 before returning. The same warning text is present in v22. Its observed assignment and cleanup do not identify a dialog caller. **[bin]**
