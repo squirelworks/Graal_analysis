@@ -8,7 +8,7 @@ Each build's save routine for a downloaded file was read (static). The table is 
 - **2.00 (all four revisions) and 2.01 (both)**: `sounds` for `.wav`. Under `levels`: `bomys` for names starting `bomy` or `b_`, `ganis` for `.gani`, `emoticons` for names starting `emoticon`, `heads`, `bodies`, `swords`, `shields` for names containing those words, else `webgifs`. There is no `hats` folder: a `hat0.png` goes to `webgifs`. There is no `maps` folder.
 - **2.02 (all three revisions), 2.03, 2.04, 2.05 rev 1 and 2, both 2.1 test builds**: the same list plus `hats` (name starts `hat`, fourth character a digit, in the builds that test it). Still no `maps`.
 - **2.17.1, 2.22, 2.31**: the same, plus `maps` for `.gmap` and for `.txt`, `.gif`, `.png`, `.mng` names containing `map`.
-- 2.1 to 2.16 have no binary: when `maps` arrived between the 2.1 test builds and 2.17.1 is unknown.
+- **Seven examined 2.1-family images**: the new-file classifier routes `.gmap` and `.txt`, `.gif`, `.png` or `.mng` names containing `map` to `maps` in the public-labelled 2.1.0.0, ver9, ver10, ver13 and v22 images. That branch is absent in the examined ver7 and ver8 classifiers. The branch precedes the generic `levels` selection. The existing-file path bypasses this classifier. This establishes a difference within the examined family. The earliest introduction and the 2.12–2.16 routines remain open. **[bin]**
 
 ## The guard
 Every build read (1.39, 2.00, 2.05 rev 2, 2.17.1, 2.22, 2.31) begins the save routine with: the stream exists and its size is above zero. Otherwise the routine returns: nothing is written, an existing copy is not deleted, the modification time is not touched and the file is not announced to the loaders. A stream left empty by a failed send is therefore never saved.
