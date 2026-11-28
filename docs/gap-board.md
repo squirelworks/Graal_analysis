@@ -15,6 +15,8 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 
 ## Columns
 
+2026-11-28 update: G050 remains partial. The [selected 2.22 port-conversion follow-up](../client-internals/decomp-findings-2026-10-25-g/03-id178-comma-text.md#selected-222-port-conversion-boundary) traces normal integer conversion directly to the imported 16-bit boundary without an intervening port-domain comparison. Real-service text/item 0, conversion-failure recovery, other inputs and runtime remain open; all 426 IDs remain.
+
 2026-11-28 update: G099 is answered for the [selected 2.22 input paths](../client-internals/laying-items-and-hiding.md#selected-222-feature-mask-follow-up): item selection checks bit 0x10 and weapon cycling bit 0x20 of the command-written mask. A clear cycle bit leaves ordinary weapon handling available. Runtime, other inputs and G100's 3.04 cost table remain separate; all 426 IDs remain.
 
 2026-11-28 update: G097 is partial. The [selected F2 guard follow-up](../client-internals/gui-windows-fkeys.md#selected-f2-null-form-guard-follow-up) binds null-form behavior in 2.22 and a modified 2.31 input, plus selected 2.22 receive-179 creation. The 2.17 comparison, other creation paths and runtime behavior remain open; all 426 IDs remain.

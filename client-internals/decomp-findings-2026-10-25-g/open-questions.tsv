@@ -6,4 +6,4 @@ id	question	what would settle it
 5	answered for 2.05: the same tagged image list, UDP id 15 twin (see ../id24-205.md); builds before 2.05 not read	a read of a 2.00-2.04 sender
 6	what a real service does with id 46	a capture against a non-GServer-v2 service
 7	what a real list service sends for 178 (item 0 in particular)	a capture of a serverwarp on a real list service (public-server checks)
-8	how the port item becomes a number and whether it is range-checked	a read of the connect routine's port use; a lab run with a port over 65535 or text
+8	partial: selected 2.22 successful integer conversion reaches the imported 16-bit boundary without an intervening port-domain comparison; conversion-failure recovery, other inputs and runtime remain open	selected static follow-up in 03-id178-comma-text.md; remaining error/runtime behavior requires separate evidence
