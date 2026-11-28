@@ -33,7 +33,7 @@ A UDP datagram is a stripped-down TCP message under a one-byte XOR. The rules be
 | In a three-player capture (ids 2, 3, 4) every datagram to player 2 used key 3, to player 3 key 2 and to player 4 key 5, whoever sent it | 2.05 | [cap] (protocol/udp-p2p.md#datagram) |
 | `seq` counts from 0 per sender–recipient pair and wraps mod 256; a duplicate `seq` is dropped | 2.05, 3.04 | [2.05][cap] (protocol/udp-p2p.md#datagram) |
 | 1.28 beta 2 sends single, uncompressed, unframed messages straight to another player's address and port | 1.28 beta 2 | [cap] (protocol/gserv-1999.md#udp-128-beta-2-on) |
-| The 2.05 receive wrapper drops a bit test on a length value and moves a field offset compared with 2.00–2.04; the datagram layout does not change | 2.00 to 2.05 | [bin] (client-internals/decomp-findings-2026-10-24-c/07-udp-channel.md) |
+| Selected 2.04 prelude refreshes CRC-32 over a fixed `CODE` span when a stored object integer is divisible by 16, before the UDP guard and `recvfrom`; a separate consumer compares it with a saved value and conditionally sets a byte flag. The selected 2.05 wrapper omits the prelude, while a nearby CRC helper remains. This is not a test of the current returned datagram length; field identity, later flag effects, other callers and runtime frequency remain open | selected 2.04/2.05 inputs | [bin] (client-internals/decomp-findings-2026-10-24-c/07-udp-channel.md#selected-204205-pre-receive-predicate) |
 
 ## 2.9.3 Routing
 

@@ -4,7 +4,20 @@ Compare with `Graal_analysis_draft/protocol/udp-p2p.md` (2.05 rev2).
 
 - Every one of the 20 builds imports the same socket calls (socket, bind, sendto, recvfrom, ioctlsocket, getsockname, inet_addr, gethostbyname). The UDP channel therefore exists from 2.00 on, in NewWorld and NewMain too.
 - Per build there is one send wrapper and one receive wrapper. The send wrapper has the same shape (about 40 normalized statements) in every build. The receive wrapper has the same shape (about 82 statements) from 2.00 to 2.04 and NewMain, shrinks to 74 in 2.05 and NewWorld beta1, and to 72 in 2.1 test2/test3 and NewWorld beta2.
-- The 2.05 change is a removed bit-test on a length value (alignment or sanity step, purpose unresolved) and a field offset; nothing about the datagram layout changes. Datagram shape in 2.00-2.04 is still seq byte + XORed payload [structure confirmed on 2.00-2.04 by the same call structure, not by per-id decode].
+- The earlier shape comparison reported a removed test and a field-offset change in 2.05. The selected native follow-up below locates a pre-receive predicate which refreshes a fixed-span CRC, rather than testing the current datagram's returned length. The tested field and later flag effects remain unresolved. The earlier datagram-shape result is separate: seq byte + XORed payload in 2.00-2.04 [structure confirmed by the same call structure, not by per-id decode].
+
+## Selected 2.04/2.05 pre-receive predicate
+
+A 2026-11-28 follow-up read two separately identified retained inputs associated with the published 2.04 and 2.05 tokens. Both report FileVersion 2.0.4.0, so resource version alone does not distinguish them. The selected 2.05 file also matches the earlier [revision-0 identity record](../receive-dispatch-revision-boundaries-2026-11-09.md#distinct-receive-routes). This does not establish stock lineage or identity with every file used in the earlier batch. Evidence: UDP-RECEIVE-PRELUDE-20261128. No client was run. **[file][bin]**
+
+In the selected 2.04 routine, an integer loaded through an existing global object pointer is tested before the UDP guard and before the imported `recvfrom` call. A zero signed remainder modulo 16 selects a helper call. The current receive result is stored separately only after `recvfrom` returns. This predicate therefore does not test that call's returned datagram length; the earlier alignment/sanity interpretation was not established. The selected 2.05 routine proceeds from setup directly to its UDP guard without that prelude. **[bin]**
+
+The earlier helper calculates a table-driven CRC-32 over a fixed span within the PE's `CODE` section and stores the result through a global slot. The checksum chain's table generation, byte loop and initial/final all-ones operations were read separately. A selected consumer initializes a saved comparison value when it is zero; otherwise it compares the current result with that value and sets a byte flag on a difference, preserving an already-set flag on that branch. This binds checksum bookkeeping, not the later effects of that flag. **[bin]**
+
+A nearby helper in the selected 2.05 input also calculates CRC-32, over a different fixed `CODE` span, and stores its result. The wrapper's omitted call therefore does not establish global removal of the operation. The tested field's meaning and writers, other callers and any relocation of the operation were not established here. Divisibility does not show one call per 16 datagrams, a timer interval or runtime frequency. **[bin]**
+
+G041 remains partial. This identifies the selected predicate's checksum operation and comparison consumer; the tested field's meaning, later flag consumers and reason for changing the caller remain open. It does not revalidate the downstream decoder, datagram layout, malformed-input behavior, other revisions or runtime acceptance. **[bin]**
+
 ## UDP ids sent per build (constant-id call sites of the peer-send wrapper)
 | build | ids found |
 |---|---|
