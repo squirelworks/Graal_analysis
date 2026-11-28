@@ -189,3 +189,4 @@ V141-HIT-OBJECT-FIELDS-20261128	windows	selected-native-static-receive-case-npc-
 EARLY-LOGIN-DISPATCH-20261128	windows	selected-two-input-static-connection-builder-structure-and-receive-table-comparison
 EARLY-TIMER-INTERVAL-WRITE-20261128	windows	selected-three-input-static-form-component-property-and-creation-assignment
 UDP-RECEIVE-PRELUDE-20261128	windows	selected-two-input-static-pre-receive-predicate-crc-and-comparison-consumer
+TEST-WARP-FIELD-READS-20261128	windows	selected-two-input-static-receive-table-field-read-and-copy-call-boundary
