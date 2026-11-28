@@ -97,7 +97,31 @@ and the remaining changed routines keep G054 partial. **[bin]**
   comparison client, including registry operations and a keyboard-event API.
   Import presence does not establish how or whether the program uses them.
 - [ ] Next: trace the changed call sites and message layouts, separating new
-  behaviour from layout and relocation differences.
+  behaviour from layout and relocation differences. The selected added-import
+  bindings below fill one part; application invocation and message layouts remain open.
+
+### Selected 1.40 added-import bindings
+
+An exact-input follow-up compares the preceding `GNW07080` input with the selected
+`GNW23090` input, both bearing FileVersion 1.3.9.1. Their identities were checked
+separately; this does not establish stock lineage or a feature's first appearance.
+The added import names are `RegQueryInfoKeyA`, `RegEnumValueA`, `RegDeleteValueA`
+and `keybd_event`. Selected instruction bodies call the corresponding import
+thunks: the first three occur in registry helper bodies, without establishing
+the application paths that invoke them. Evidence: `EARLY-IMPORT-HELPERS-20261128`.
+No original client was run. **[file][bin]**
+
+The keyboard-event helper has a stronger local name binding: a self-consistent
+class metadata record names `TWinamp`, and its published method table maps
+`ID3Tag` to that body. The body calls `SetForegroundWindow` using a stored handle,
+then calls `keybd_event` four times: Alt down, 3 down, 3 up, Alt up, with scan codes
+obtained through `MapVirtualKeyA`. This describes the calls, not successful focus,
+an observed Winamp dialog, or proof that the application invokes this method.
+The key and release labels follow Microsoft's [virtual-key table](https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes)
+and [`keybd_event` contract](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-keybd_event). **[bin][doc]**
+
+These selected bindings do not prove unused status, full registry caller coverage,
+changed packet layouts or runtime effects. G055 remains partial. **[bin]**
 
 ### 1.40 rev 1: FileVersion 1.4.0.1, token GNW23090
 
