@@ -273,7 +273,7 @@ The shapes above stay. This row is only which image stores a baddy or a chest. I
 | v22 | stored only when two flag bytes are both clear | the same two flags | [bin] (client-internals/v21-level-record-gate.md) |
 | ver7, ver8, ver9, ver10 and ver13 | lines consumed, no record constructed | `GR-V1.01`–`GR-V1.03` lines consumed, no record constructed | [bin] (client-internals/v21-level-record-gate.md) |
 
-In the selected public 2.1.0.0, ver7 and v22 readers, a fresh header comparison gates the binary chest section. `GR-V1.00` skips that section. The two v22 storage flags remain unidentified [bin] (client-internals/v21-level-record-gate.md).
+In the selected public 2.1.0.0, ver7 and v22 readers, a fresh header comparison gates the binary chest section. `GR-V1.00` skips that section. The two v22 storage flags are Kingdoms mode and New World mode [bin] (client-internals/v21-level-record-gate.md).
 
 ### 3.1.2.11 GR-V1.05: one board per layer (5.00r7 and later)
 
