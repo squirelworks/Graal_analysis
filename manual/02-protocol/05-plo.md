@@ -511,7 +511,7 @@ Subtype 1 was set to 0, then 1, 5, 30 and 300. Each value was followed by 60 s w
 
 On this build, in these windows, the subtype-1 value had no visible effect on ping answers, on that 5.1 s traffic, or on staying connected. The run does not show the client enforcing the value as a timeout inside 60 s, at 1 or at 5, whether those numbers are seconds or units of 5 s. The value may be unused, as the static read found, or longer than this test, or read on a path the lab did not trigger. [lab] (live-runs/open-issues-2026-11-14/README.md#3-254-sc-108-sub-1-on-603r7)
 
-Id 168 sets a one-shot flag on the local player in every client from 2.05 (high confidence); "login done" is the best name for it, with medium confidence. Who reads the stored 108 subtype-1 value outside the ping path on 4.20r8 and 6.03r7 is still unread. [bin][lab] (protocol/plo108-168-focus-status.md)
+Id 168 reads no payload. The existing study records a local-player routine called with flag 1 in 2.05–2.31, and a player-object byte set in 4.20r8, Mac 4.20r6 and 6.03r7; this does not make the exact implementation identical across those builds. "Login done" remains a medium-confidence interpretation. The lab server's send order is not evidence of an official server's meaning. Who reads the stored 108 subtype-1 value outside the ping path on 4.20r8 and 6.03r7 is still unread. [bin][lab] (protocol/unknown-ids-2026-11-06.md#plo-168-logged-in-flag); [bin][lab] (protocol/plo108-168-focus-status.md)
 
 ## 2.5.14 Server-side names for ids the clients barely use
 
