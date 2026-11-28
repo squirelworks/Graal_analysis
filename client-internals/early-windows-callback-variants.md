@@ -131,7 +131,38 @@ changed packet layouts or runtime effects. G055 remains partial. **[bin]**
   this client identical to the preceding 1.40 comparison client; code and three
   resource payloads differ.
 - [ ] Next: compare matched changed routines and the three resource differences
-  to distinguish functional revision changes from presentation changes.
+  to distinguish functional revision changes from presentation changes. The
+  selected resource and method comparison below fills part of that question.
+
+### Selected 1.40 revision resource and method comparison
+
+The separately identified comparison and revision inputs have version resources
+1.3.9.1 and 1.4.0.1 respectively. A fresh resource-tree read finds the same 111
+resource keys in both, with exactly three changed payloads: package information,
+the main form and version information. Evidence:
+`EARLY-REVISION-RESOURCE-METHOD-20261129`. This is an exact-input static result,
+not a stock-lineage or runtime claim. **[file][bin]**
+
+Both complete main-form streams parse to the same properties except
+`VertScrollBar.Left`, which changes from 398 to 406. Their raw form payloads
+differ in one byte, so binary properties hidden by the text rendering are not
+additional differences. These are serialized property values, not an observed
+screen displacement under runtime scaling. **[file]**
+
+The package-information payloads decode to the same multiset of 123 named
+records with their two leading bytes, in a different order; both have only
+two zero padding bytes after the records. This does not establish initialization
+order or explain the changed code. The version-information resource also differs;
+the version reader reports FileVersion 1.3.9.1 → 1.4.0.1 and ProductVersion
+1.39 → 1.4. Other version-information fields are not fully interpreted here. **[file]**
+
+For one named routine, the selected `TWinamp.ID3Tag` method body, its published
+method table, selected class metadata and declared PE import-directory byte span
+match exactly across the pair. This is a selected byte comparison; it does
+not establish matching stored-handle values, external callees, application callers or runtime
+effects. Other changed routines and the cause of their differences remain open,
+so G056 stays partial; the pair is not classified as wholly presentation-only
+or behaviourally equivalent. **[bin]**
 
 ### 1.41 rev 1: binding to the handler body
 
