@@ -181,7 +181,7 @@ client-internals/feature-specs/14-friends-ignore.md	cited	4.10; 2.8	4.10
 client-internals/feature-specs/README.md	cited	4.10	4.10	
 client-internals/feature-timeline.md	cited	8; 8.1; 8.2; 8.3; 4.11	4	
 client-internals/first-graal-death-counter-2026-11-09.md	cited	4.4	4.4	Static counter transition and timing limits carried in 4.4; exact-input identity and validation bookkeeping remain in source note.
-client-internals/first-graal-movement-2026-11-09.md	cited	4.2	4.2; E	Movement geometry and limits carried in 4.2 and E#307; exact-input identity and verification bookkeeping remain in source note.
+client-internals/first-graal-movement-2026-11-09.md	cited	4.2	4.2; E	Movement geometry, selected count-28 grid transition and helper-owned coordinate commits carried in 4.2; prior geometry in E#307. Exact identity and verification bookkeeping remain in source; full state/object identities and cadence stay open.
 client-internals/foot-test.md	excluded		4	superseded single-point wall test measured in an outside reimplementation; the real clients use the box test of §4.2.2
 client-internals/gameboy-demo.md	cited	1; 4.11	4	
 client-internals/graal-2.3-unpacked-package.md	cited	1	1	Client and companion-component identity comparisons carried in 1.8.3; no official-release, whole-executable integrity or original 2.3 runtime claim follows from the repack label.
