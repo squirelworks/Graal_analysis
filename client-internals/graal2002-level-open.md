@@ -42,7 +42,7 @@ The public image then stores five sections, in order:
 
 ver7's traced body stores the whole lines of step 1, the link records of step 3, and the sign records of step 5. Its scan of the baddy end condition does not construct a baddy object. It does not construct the four-field chest records. The receive ids for baddies and chests on ver7 remain the lab question in [`graal2002-and-140-builds.md`](graal2002-and-140-builds.md). This paragraph is the file reader only. **[bin]**
 
-The one-character marker was not recovered as text. The 2.05 reader uses `#` for these sections (`formats/level-binary-client.md`). This read does not re-prove that character.
+A follow-up static read binds the marker to the entire one-character line `#` in the selected text-record, link-record and chest loops of the public 2.1.0.0, ver7 and v22 binary readers. The equality branch exits the section. This matches the delimiter documented for 2.05 rev 2 ([binary level format](../formats/level-binary-client.md)). Baddies use a separate binary termination rule. Section order, record support and NW behavior are outside this comparison. **[bin]**
 
 ## v22 when the file is missing
 
@@ -66,7 +66,7 @@ A strings pass over the public image found neither literal. ver7's inventory has
 
 ## Open points
 
-- [ ] Read the one-character marker as text, and compare it with the 2.05 `#` terminator.
+- [x] Read the one-character marker as text and compare it with the 2.05 rev 2 delimiter. See the comparison above.
 - [x] Find the ver7 `Unsupported file type!` caller. See the follow-up below.
 - [ ] Identify a v22 caller for the same warning.
 - [ ] Read the level bodies in ver8, ver9, ver10 and ver13.
