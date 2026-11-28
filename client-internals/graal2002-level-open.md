@@ -16,7 +16,7 @@ A match clears a 64 by 64 area, rewinds the stream to the start, parses it, and 
 
 The 2.05 editor accepts the same seven magics and uses the same rejection text (`client-internals/level-editor-205.md`). The 2.22 and 2.31 string tables contain `Unsupported file type!`, and the exported 2.22 code still has no caller for it (`tools/level-editor/222-reference.md`). This read is the caller in the public 2.1.0.0 image.
 
-ver7 and v22 both contain the string `Unsupported file type!`. The functions read in those two images do not show the dialog. **[bin]**
+Ver7 and v22 both contain `Unsupported file type!`. The follow-up below identifies the ver7 caller. The v22 caller remains open. **[bin]**
 
 ## Local enter
 
@@ -35,7 +35,7 @@ The public image then stores five sections, in order:
 1. Lines until a one-character marker. Each other line is stored whole.
 2. Records read up to a newline after at least three bytes. The section ends on a record shorter than three bytes, or on a record whose first byte is at least 128. The first two bytes are raw coordinates. The third byte is the type. A longer tail is split on `\` into at most three fields. That is the baddy record in manual §3.1.2.4.
 3. When the magic is `GR-V1.00`, `GR-V1.01`, `GR-V1.02` or `GR-V1.03`: lines until a one-character marker. The x and y are the first two bytes minus 32, stored as floats. The text from the third character is split on `#` into two fields.
-4. Reached from the `GR-V1.01`, `GR-V1.02` and `GR-V1.03` tests: lines until a one-character marker, four values of byte-minus-32 (two coordinates, an item, and a sign index), then a zero flag. That is the chest record in manual §3.1.2.5. `GR-V1.00` also enters the link loop in step 3. Whether it then enters this loop depends on a flag that loop leaves behind. That flag was not separated from the magic tests, so this note does not say that `GR-V1.00` skips chests.
+4. Reached from the `GR-V1.01`, `GR-V1.02` and `GR-V1.03` tests: lines until a one-character marker, four values of byte-minus-32 (two coordinates, an item, and a sign index), then a zero flag. That is the chest record in manual §3.1.2.5. `GR-V1.00` also enters the link loop in step 3. A [follow-up comparison](v21-level-record-gate.md) confirms that a fresh header check skips this chest section for `GR-V1.00`.
 5. Remaining lines. The x and y are byte-minus-32 integers, and the text from the third character is a string. That is the sign record in manual §3.1.2.6.
 
 **[bin]**
@@ -67,8 +67,13 @@ A strings pass over the public image found neither literal. ver7's inventory has
 ## Open points
 
 - [ ] Read the one-character marker as text, and compare it with the 2.05 `#` terminator.
-- [ ] Find the `Unsupported file type!` caller in ver7 and in v22. The string is present in both.
+- [x] Find the ver7 `Unsupported file type!` caller. See the follow-up below.
+- [ ] Identify a v22 caller for the same warning.
 - [ ] Read the level bodies in ver8, ver9, ver10 and ver13.
 - [ ] Read the effect of the helper called for `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda`. The public 2.1.0.0 image and v22 pass the level and two floating-point values of 31. What it changes was not read.
 - [ ] Follow the v22 helper after a `Control-NPC` name match, including any packet it sends.
 - [ ] Find what writes v22's mode field, and whether receive id 177 is that writer.
+
+## Selected invalid-header paths
+
+Ver7's local-file entry uses `Unsupported file type!` with a `Warning` caption after all recognized headers fail. The selected v22 rejection path sets a failure flag and stores 40 before returning. The same warning text is present in v22. Its observed assignment and cleanup do not identify a dialog caller. **[bin]**

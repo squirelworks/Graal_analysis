@@ -1,6 +1,6 @@
 # Local-enter arguments on the public 2.1.0.0 image and on v22
 
-Date: 2026-11-15. Static read of the local-level enter path in the public 2.1.0.0 image and in Graal 2002 v22. Nothing was run. No packet was read. ver7's enter body was not this read. The literal `Player enters local level ` is absent from ver7's string table. That absence is not a reading of ver7's enter body.
+Date: 2026-11-15. Static read of the local-level enter path in the public 2.1.0.0 image and in Graal 2002 v22. Nothing was run. No packet was read. The initial read did not include ver7. The follow-up below traces its local entry. The literal `Player enters local level ` is absent from ver7's string table. That absence is not a reading of ver7's enter body.
 
 ## Two values of 31
 
@@ -22,8 +22,12 @@ A header that is not one of `Z3-V1.03`, `Z3-V1.04`, `GR-V1.00`, `GR-V1.01`, `GR-
 
 On v22, when the name is not already resident, a second lookup is empty, and the same integer field equals 2, the client writes a stream of exactly eight bytes, `GLEVNW01`, and enters with that stream. Another value of the field does not write the stream. The field equaling 2 is the same test as above, and it is not receive id 177. This path sends no packet. **[bin]**
 
+## Ver7 local entry
+
+The local-file wrapper loads the named file into a memory stream and installs a level object before validating the header. The entry body accepts the seven headers listed above. On acceptance, it rewinds the stream, calls the level reader and reports `Level loaded`. A rejected header takes the warning path before the reader. The earlier assignment leaves rollback unverified. **[bin]**
+
 ## Open
 
 - [ ] Read the helper that receives the two 31 values, on these images and on 2.05.
 - [ ] Find what writes v22's integer field.
-- [ ] Read ver7's enter body. The log literal is absent; that does not show the body.
+- [x] Read ver7's enter body. See the static entry sequence above.
