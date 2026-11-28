@@ -60,9 +60,17 @@ The public image's gani reader starts a step at four direction rows. `SINGLEDIRE
 
 ## Weapon name on v22
 
-v22 contains the literal `Control-NPC`. It does not contain `controlnpc.txt`. The one reference compares a list item's name with `Control-NPC`. When the names match and a flag byte on that object is clear, it calls a helper. The helper's effect was not read, and no packet from that helper was read. **[bin]**
+v22 contains the literal `Control-NPC`. It does not contain `controlnpc.txt`. The one reference compares a list item's name with `Control-NPC`. When the names match and a flag byte on that object is clear, it calls a helper. The initial read stopped at that call; the selected follow-up below traces the helper. **[bin]**
 
 A strings pass over the public image found neither literal. ver7's inventory has both, next to each other. The body that installs a weapon from `controlnpc.txt` on ver10 is a different read and is not repeated here. **[bin]**
+
+### v22 event helper: selected follow-up
+
+The examined caller requires its stored mode to equal 2 and a current level object. It walks that level's list, compares each non-null item's decoded name with `Control-NPC`, and calls the helper only while the item's initialization byte is clear. The arguments include the literal `playerenters` and the current level. The mode's writer and meaning are not identified by this call. **[bin]**
+
+The helper copies the pending string-list contents and saves an auxiliary string and integer. It clears the working list and string, sets the integer to -1, adds `playerenters`, and calls the shared script executor. On normal return it copies back the saved list contents and restores the string and integer. The executor's initialization path adds `created` through a separate working-list reference and sets the initialization byte before command execution; identity with the wrapper's pending list is not established. These steps do not establish an ordering of executed event handlers, a complete object rollback or restoration after an exception. **[bin]**
+
+The selected wrapper does not assemble a fixed outgoing packet. It invokes script dispatch; effects of the executed commands, including possible network output, were not followed through the full interpreter. No packet format or runtime result is established for this `Control-NPC` path. G079 therefore remains partial. The retained static receipt is owner-held under `V2104-CONTROLNPC-EVENT-20261128` in the [evidence index](../docs/evidence-index.tsv). **[bin]**
 
 ## Open points
 
