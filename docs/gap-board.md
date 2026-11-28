@@ -15,6 +15,8 @@ probe coverage). Four `open-questions.tsv` rows already closed by a later batch 
 
 ## Columns
 
+2026-11-28 update: G097 is partial. The [selected F2 guard follow-up](../client-internals/gui-windows-fkeys.md#selected-f2-null-form-guard-follow-up) binds null-form behavior in 2.22 and a modified 2.31 input, plus selected 2.22 receive-179 creation. The 2.17 comparison, other creation paths and runtime behavior remain open; all 426 IDs remain.
+
 2026-11-28 update: G076 remains partial. The [v22 rejection-status follow-up](../client-internals/graal2002-level-open.md#v22-rejection-status-and-warning-text-boundary) traces gated `failed` text submission and localization of the separate warning string; it does not identify the v22 warning-dialog caller or establish runtime display. All 426 IDs remain.
 
 2026-11-28 update: G078/G141 share one [selected local-entry helper comparison](../client-internals/v21-local-enter.md#name-matched-helper-selected-static-comparison). The public image, v22 and 2.05 revision 2 pass two doubles equal to 31 to a record-construction/list-append path; v22 adds a two-byte guard. This answers the selected state-effect questions, not rendered/gameplay meaning, callback/error behavior or all builds. The earlier lab's visible-no-difference result remains separate from internal state. All 426 IDs remain.

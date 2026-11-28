@@ -288,6 +288,8 @@ Every Windows client opens its side windows from the function keys, but the set 
 | NewWorld beta 1 and 2 | as 2.02 | nothing | as before | as 2.02; F9 moves the game clock on one hour, offline only | [bin] (client-internals/gui-windows-fkeys.md#newworld-beta-1-and-2) |
 | 2.17, 2.22, 2.31 | Options/Help; 2.31 hides Edit level and Debugger | F2 shows the RPG window from 179; F3 nothing | F4 editor (not 2.31), F5 Load level filled with the current position | F6 debugger (not 2.31), F7 player list, F8 server list while online, F10 border | [bin][cap] (client-internals/gui-windows-fkeys.md#217-222-and-231) |
 
+In the selected 2.22 (2.2.2.0) and modified-package 2.31 (2.3.1.0) inputs, F2 calls an existing-form helper only when its stored form pointer is non-null; the null branch does not call that helper or allocate a form. The selected 2.22 receive-179 path creates the RPG form into its F2-tested pointer when absent. The selected 2.31 pointer's class and creation path, other creation paths, 2.17 behavior and runtime results remain unproved [bin] (client-internals/gui-windows-fkeys.md#selected-f2-null-form-guard-follow-up).
+
 1.39 was run online against the lab server. Each key behaved as the static read says, with one exception: F6 closed the client [lab] (client-internals/gui-windows-fkeys.md#128-beta-2-to-139).
 
 | Key (1.39, online) | Seen | Source |
