@@ -23,7 +23,7 @@ modification times of the files shipped with each build. The PE link stamps are 
 | Build | FileVersion | Size (bytes) | Token [bin] | GS1 commands | Server messages handled |
 |---|---|---|---|---|---|
 | 1.39 (already catalogued) | 1.3.8.0 | 1,448,960 | `GNW07080` | 111 | 45 (`0x64`) |
-| 1.39 "duplicate" build | 1.3.9.1 | 1,450,496 | `GNW07080` | 111 | — |
+| 1.39 "duplicate" build | 1.3.9.1 | 1,450,496 | `GNW07080` | 111 | 45 (`0x64`), [selected follow-up](early-windows-callback-variants.md#selected-139-connection-and-receive-comparison) |
 | 1.40 | 1.3.9.1 | 1,488,384 | `GNW23090` | 125 | 45 (`0x64`) |
 | 1.40 rev 1 | 1.4.0.1 | 1,488,384 | `GNW23090` | 125 | 45 (`0x64`) |
 | 1.41 rev 1, two more copies | 1.4.1.1 | 1,506,816 | `GNW13110` | 126 | 45 (`0x64`) |

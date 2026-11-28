@@ -61,9 +61,33 @@ copy is an unmodified release. Artifact identities remain in owner-held evidence
 - [x] This comparison: the import sequence matches that baseline, while code and
   some resource payloads differ. This is not a version-resource-only change.
 - [ ] Next: compare matched changed routines, beginning with login construction
-  and receive-dispatch destinations. Resolve the earlier note's unfilled
-  per-input handler-count entry without presenting its published token or
-  command count as new research.
+  and receive-dispatch destinations beyond the selected follow-up below. The
+  per-input receive-case count is now filled; helper/data equivalence and the
+  remaining handler bodies are still open.
+
+### Selected 1.39 connection and receive comparison
+
+The selected catalogued baseline has FileVersion 1.3.8.0; the comparison input
+has FileVersion 1.3.9.1. Their file identities were checked separately before
+reading. This is an exact-input comparison, not a claim that the version label
+establishes an unmodified release or common lineage. Evidence:
+`EARLY-LOGIN-DISPATCH-20261128`. No client was run. **[file][bin]**
+
+Both examined receive prefixes decode the first byte by subtracting 32 and use
+an unsigned upper bound of 100 before the selector and target tables. Raw table
+reads give the same 45 explicit ids in each: 0–41, 43, 75 and 100. This fills the
+comparison input's earlier missing count; matching case sets do not establish
+matching handler bodies, value widths or runtime acceptance. **[bin]**
+
+The selected connection/login-building routines also have matching instruction
+structure: operations, internal branch offsets and non-address constants agree
+after addresses within the loaded PE sections are canonicalized. Literal stack
+adjustments and control constants are retained, rather than treating every
+large integer as an address. The already published token is assembled one
+character at a time; it is not a new token finding. This structural comparison
+does not bind the values in corresponding global slots or establish equivalent
+external callees, endpoint selection, framing or successful login. Those limits
+and the remaining changed routines keep G054 partial. **[bin]**
 
 ### 1.40 comparison client: FileVersion 1.3.9.1, token GNW23090
 
