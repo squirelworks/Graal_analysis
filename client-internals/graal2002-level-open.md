@@ -32,7 +32,7 @@ In both the public image and ver7, `GLEVNW01` goes to a text loader and that fun
 
 The public image then stores five sections, in order:
 
-1. Lines until a one-character marker. Each other line is stored whole.
+1. Lines until a one-character marker. Each other line is passed to a helper before the resulting record is inserted.
 2. Records read up to a newline after at least three bytes. The section ends on a record shorter than three bytes, or on a record whose first byte is at least 128. The first two bytes are raw coordinates. The third byte is the type. A longer tail is split on `\` into at most three fields. That is the baddy record in manual §3.1.2.4.
 3. When the magic is `GR-V1.00`, `GR-V1.01`, `GR-V1.02` or `GR-V1.03`: lines until a one-character marker. The x and y are the first two bytes minus 32, stored as floats. The text from the third character is split on `#` into two fields.
 4. Reached from the `GR-V1.01`, `GR-V1.02` and `GR-V1.03` tests: lines until a one-character marker, four values of byte-minus-32 (two coordinates, an item, and a sign index), then a zero flag. That is the chest record in manual §3.1.2.5. `GR-V1.00` also enters the link loop in step 3. A [follow-up comparison](v21-level-record-gate.md) confirms that a fresh header check skips this chest section for `GR-V1.00`.
@@ -72,12 +72,18 @@ The helper copies the pending string-list contents and saves an auxiliary string
 
 The selected wrapper does not assemble a fixed outgoing packet. It invokes script dispatch; effects of the executed commands, including possible network output, were not followed through the full interpreter. No packet format or runtime result is established for this `Control-NPC` path. G079 therefore remains partial. The retained static receipt is owner-held under `V2104-CONTROLNPC-EVENT-20261128` in the [evidence index](../docs/evidence-index.tsv). **[bin]**
 
+## Selected ver8, ver9, ver10 and ver13 readers
+
+The four examined readers match ver7 in the selected normal top-level paths. `GLEVNW01` goes to a separate reader. The binary board call selects 13 bits for `GR-V1.02` and `GR-V1.03`, and 12 bits on its other path. The opening record section passes each complete line to a helper that tokenizes it before the reader inserts the resulting object. **[bin]**
+
+For `GR-V1.00` through `GR-V1.03`, the link section converts the first two bytes minus 32 to floating-point coordinates and splits the remaining text on `#`. The final sign loop inserts records with integer coordinates decoded by subtracting 32 and a processed text tail. The [previous record-gate comparison](v21-level-record-gate.md) covers the baddy and chest loops. This comparison covers selected normal branches and helper prefixes. The separate NW reader, complete helper equivalence and runtime behavior remain open. **[bin]**
+
 ## Open points
 
 - [x] Read the one-character marker as text and compare it with the 2.05 rev 2 delimiter. See the comparison above.
 - [x] Find the ver7 `Unsupported file type!` caller. See the follow-up below.
 - [ ] Identify a v22 caller for the same warning.
-- [ ] Read the level bodies in ver8, ver9, ver10 and ver13.
+- [x] Compare the selected level readers in ver8, ver9, ver10 and ver13. See the static comparison above.
 - [x] ~~Read the effect of the helper called for `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda`.~~ Selected record construction/field stores/list append and the v22 guard are traced in the [helper comparison](v21-local-enter.md#name-matched-helper-selected-static-comparison); runtime meaning remains separate.
 - [ ] Follow the v22 helper after a `Control-NPC` name match, including any packet it sends.
 - [ ] Finish identifying v22's mode field. The [selected writer follow-up](v21-local-enter.md#selected-v22-integer-field-writers) traces two stores of 2 and three zero stores, distinct from receive 177's global-byte write; full writer coverage and value meanings remain open.
