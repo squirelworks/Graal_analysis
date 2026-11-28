@@ -29,7 +29,19 @@ The Windows x86 input is 654,336 bytes, with researcher-supplied SHA-256 `03d812
 
 `[bin]` For nonnegative coordinates, let trunc mean truncation toward zero. On refusal, up changes fractional Y to trunc(Y); down changes fractional Y to trunc(Y + 1). Left, when X + 0.5 has a positive fractional part, sets X to trunc(X + 0.5) − 0.5; right uses trunc(X + 1.5) − 0.5 under that same predicate. This snaps the stepped axis, correcting the earlier free-axis description. The rounding helpers explicitly select truncation.
 
-`[bin]` Push counts of 38 or more become 18. At 18 a passing ledge predicate selects an eight-tick hop. A helper reached at count 28 can prevent position commits; its complete meaning remains untraced.
+`[bin]` Push counts of 38 or more become 18. At 18 a passing ledge predicate selects an eight-tick hop. The count-28 helper can suppress the caller's normal position commits, but the [selected helper path below](#selected-count-28-grid-transition) performs its own coordinate updates; suppression does not mean no movement.
+
+## Selected count-28 grid transition
+
+`[bin]` A later instruction read checked the selected executable against the identity above and followed this helper and its caller directly. It is separate from the original editor's prose-only review. Owner-held evidence: `FIRST-GRID-TRANSITION-20261129`. No original client was run.
+
+At the selected blocked-movement gate, when the current count is 28 and the sideways-nudge flag is clear, the caller invokes the helper and saves its return byte. A nonzero return skips the caller's later normal X/Y setter calls.
+
+The helper converts a facing-dependent sample point to an integer grid query, rejects that point outside 0–63 on either axis, and reads indexed storage using a 64-column stride. It searches a nested 2×2 pattern for a match to that one sampled value; this is not a check that the whole original 2×2 region matches a pattern. Two further point-test calls must both return false to reach the selected success path.
+
+On that path, let `a` be the anchor derived from the matched pattern position and `d` the facing vector: up (0, −1), left (−1, 0), down (0, 1), right (1, 0). In the first nested 2×2 loop, the helper saves each old cell value at `a` and immediately replaces that cell with the value read at the corresponding position at `a + 2d`. A second nested loop writes the saved values at `a + d`. It also calls another helper whose effects are not fully traced here. The accessors read and write a 32-bit field in selected records; this does not identify the pattern or storage object's class.
+
+The same success path calls both coordinate setters with the current coordinates plus `d`, then returns 1. Thus the caller omits its normal coordinate commits after the helper has performed its own. This is a normal-path static result, not a runtime observation or a complete account of all callee effects, exceptional state gates, object identities or input-to-update cadence. G064 remains partial.
 
 ## Verification and limits
 
@@ -37,6 +49,6 @@ The Windows x86 input is 654,336 bytes, with researcher-supplied SHA-256 `03d812
 
 - [x] ~~Recover the exact 1st Graal step, probe and corner-nudge constants.~~
 - [x] ~~Recover the 1.39 tables separately.~~ The [later published comparison](static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307) supplies the 1.39 step, probe and nudge tables separately; this earlier exact-input read did not establish them. The later comparison does not compare the 1.39 branch code instruction by instruction.
-- [ ] Establish complete exceptional state gates, object-list identities and input-to-update cadence.
+- [ ] The selected count-28 helper/caller path is followed above; complete exceptional state gates, object-list identities and input-to-update cadence remain open.
 
 The same retained record also contains a death-counter observation. That independent finding is outside this movement note; it must not be inferred from the geometry or converted to a wall-clock death duration.
