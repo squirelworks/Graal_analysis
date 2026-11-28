@@ -40,6 +40,8 @@ The tick is the same everywhere, but what drives it changes. Each row gives a gr
 | Settled | Each frame ends with one front-buffer blit: 20.3, 19.6 and 20.2 a second for 4th Graal alpha, 5th Graal and 5th Graal alpha, median gap 50.0 ms in each | [lab] (protocol/lab-appe-hostb-2026-11-20c.md#frame-timing-of-the-early-builds-e300) |
 | Verdict | Verified: the frames follow the declared 50 ms interval in elapsed time. The busy idle loop seen before is the DelphiX timer polling, which draws only when 50 ms have passed | [lab] (protocol/lab-appe-hostb-2026-11-20c.md#frame-timing-of-the-early-builds-e300) |
 
+The selected three early forms also have a conditional creation-time write of zero to the timer's Interval setter. Its stored Interval and separate derived minimum-one field do not themselves establish frame cadence or disable Enabled. The condition's meaning, other setting writes and programmatic idle installation remain open; this static path does not identify the condition's state in the elapsed-frame lab above [bin] (client-internals/early-form-timers-2026-11-09.md#selected-form-creation-interval-write).
+
 ### 4.1.2.1 The frame function (idle-driven builds)
 
 In the idle-driven builds one function runs each frame. The rules below give its order and two consequences a remake must copy: no catch-up after a stall, and input read once per tick [live] (client-internals/rendering-observations.md#frame-loop).
