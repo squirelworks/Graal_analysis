@@ -158,8 +158,10 @@ The [selected 1.25/1.27 follow-up](../client-internals/gserv-125-127-builds.md#s
 | NPC props | 0–17 | 0–32 | 0–34 | 0–34 | 0–34 |
 | Baddy props | 0–10 | 0–10 | 0–10 | 0–10 | 0–10 |
 
-The prop numbers grow at the end, so a decoder can use the later tables (`player-props.md`) and stop at the build's last id.
+The table above records the ranges from those earlier per-build reads; it does not establish identical value layouts across builds or contiguous coverage in every property stream.
 Per-build values, and the client-to-server ids, are in `client-internals/version-profiles/v121-v132.toml`.
+
+The [selected 1.25/1.27 static case sets](../client-internals/gserv-125-127-builds.md#selected-property-decoder-case-sets) distinguish own-player cases 0–24 and 26 from sparse other-player cases 0, 2, 8–13, 15–21, 24, 50 and 51 in both inputs. Their NPC cases grow from 0–22 to 0–32; both baddy readers have cases 0–10. These dispatch results do not establish all value widths or runtime acceptance, and must not be read as a single contiguous player range. **[bin]**
 
 ## UDP (1.28 beta 2 on)
 

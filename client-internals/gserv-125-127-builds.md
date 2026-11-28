@@ -138,10 +138,26 @@ or protocol:
   `save[0]`–`save[9]` NPC variables that are sent to the server and other players; `hurtdx`/`hurtdy` from `hitplayer` on
   character NPCs; jailed players cannot send toall or private messages.
 
+## Selected property decoder case sets
+
+The selected 1.25 and 1.27 client receive tables route ids 2, 3, 8 and 9 to the baddy, NPC, other-player and own-player property readers respectively. Reading each reader's byte-minus-32 dispatch and its raw selector/target table gives the explicit cases below. These are static case sets, not complete value-width tables or successful runtime acceptance tests. Evidence: EARLY-PROP-CASES-20261128. **[file][bin]**
+
+| Selected reader | 1.25 explicit cases | 1.27 explicit cases |
+|---|---|---|
+| Own player | 0–24, 26 | 0–24, 26 |
+| Other player | 0, 2, 8–13, 15–21, 24, 50, 51 | 0, 2, 8–13, 15–21, 24, 50, 51 |
+| NPC | 0–22 | 0–32 |
+| Baddy | 0–10 | 0–10 |
+
+Own-player id 25 takes the shared default path in both readers. The other-player bound reaches 51, but the intervening ids not listed above also select its default path; the bound alone must not be treated as a contiguous supported range. **[bin]**
+
+In 1.27, NPC ids 23–32 share a branch which decodes the following byte by subtracting 32, converts that integer to a double, and passes index `id - 23` to an indexed-storage helper. The helper writes eight bytes only when the index is nonnegative, below its stored count and the storage is enabled. The branch also continues into a separate conditional path. This identifies ten indexed numeric inputs without independently binding their storage to the readme's `save[0]`–`save[9]` names or establishing every downstream effect. **[bin]**
+
+G092 remains partial: value widths for the other cases, malformed or truncated streams, server-side acceptance and a lab login were not measured here. The selected decoder tables must not be substituted for those runtime questions or extended to later builds. **[bin]**
+
 ## Open
 
-- [ ] Player, NPC and baddy prop ranges for 1.25 and 1.27 (the [`gserv-1999.md`](../protocol/gserv-1999.md#props-by-build)
-  table has 1.21 and 1.28 beta 2 only). 1.27's `save[0]`–`save[9]` NPC variables should show up as new NPC props.
+- [ ] Complete the player, NPC and baddy property comparison for 1.25 and 1.27: [selected static case sets](#selected-property-decoder-case-sets) and the ten added 1.27 NPC inputs are traced; their `save[]` binding, remaining value widths and runtime acceptance need separate evidence.
 - [ ] Finish names for server messages 35–38. The selected 1.25/1.27 branch descriptions and normal field handling are compared above; original enum names and full consumer behavior remain open.
 - [x] The minimum token the 1.25 and 1.27 servers accept for players (see [The bundled GServers](#the-bundled-gservers)).
 - [ ] A lab login of both clients on a loopback GServer.

@@ -22,6 +22,8 @@ Before the per-message tables, the rules below say how a client treats any serve
 
 Selected 1.25/1.27 normal receive branches describe administrator text at 35, an effect helper with bomb sound at 36, player-keyed incoming text at 37 and two converted components at 38. The early key is one decoded byte and its text tail may be empty; the effect branch's selected minimum is three payload bytes. These descriptive roles do not recover native enum names or establish later layouts, full consumers or runtime effects [bin] (client-internals/gserv-125-127-builds.md#selected-receive-handlers-35-to-38).
 
+Selected 1.25/1.27 property readers have distinct own-player and sparse other-player case sets. NPC cases expand from 0–22 to 0–32, while both baddy readers have 0–10. The ten added NPC cases attempt gated indexed numeric storage at index `id - 23`; their `save[]` names, remaining value widths and runtime acceptance remain open [bin] (client-internals/gserv-125-127-builds.md#selected-property-decoder-case-sets).
+
 ## 2.5.2 Ids handled by build
 
 For the six checked Windows x86 2.02/2.05 revisions, the corroborated entries mean distinct static receive routes, not successful runtime handling; payloads and effects require separate evidence [bin] (client-internals/receive-dispatch-revision-boundaries-2026-11-09.md#validation-and-limits).
