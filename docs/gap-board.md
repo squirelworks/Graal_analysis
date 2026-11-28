@@ -411,3 +411,5 @@ from the Share, or on either host.
   (`v21-level-record-gate` line 21).
 - Events, flags, variables and functions per 1.x build (`NEXT.md` line 219).
 - The Mac 6.11r1 handler-table extent and opcode 7 (`NEXT.md` line 288).
+
+2026-11-28 update: **G139** and **G140** are answered for the selected binary readers in the [level-record comparison](../client-internals/v21-level-record-gate.md). The chest gate uses a fresh header comparison, and the examined ver8–ver13 subset matches ver7 in the two selected scan loops.
