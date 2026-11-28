@@ -190,3 +190,4 @@ EARLY-LOGIN-DISPATCH-20261128	windows	selected-two-input-static-connection-build
 EARLY-TIMER-INTERVAL-WRITE-20261128	windows	selected-three-input-static-form-component-property-and-creation-assignment
 UDP-RECEIVE-PRELUDE-20261128	windows	selected-two-input-static-pre-receive-predicate-crc-and-comparison-consumer
 TEST-WARP-FIELD-READS-20261128	windows	selected-two-input-static-receive-table-field-read-and-copy-call-boundary
+EARLY-IMPORT-HELPERS-20261128	windows	selected-two-input-static-import-delta-and-component-method-binding
