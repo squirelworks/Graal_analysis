@@ -22,7 +22,7 @@ Ver7 and v22 both contain `Unsupported file type!`. The follow-up below identifi
 
 The public function logs `Player enters local level ` plus the level name, then tests a supplied stream against the same seven magics. A mismatch stores a flag byte and the constant 40, and does not swap the level. A match, or a call with no stream, continues into the swap. **[bin]**
 
-The swap compares the level name with three literals: `level1.graal`, `YoshiClanR2.zelda` and `YoshiClanFields.zelda`. On the public 2.1.0.0 image and on v22, a match calls a helper with the level and two floating-point values, each 31. What that helper changes was not read. **[bin]**
+The swap compares the level name with three literals: `level1.graal`, `YoshiClanR2.zelda` and `YoshiClanFields.zelda`. On the public 2.1.0.0 image and on v22, a match calls a helper with the level and two floating-point values, each 31. The [selected helper comparison](v21-local-enter.md#name-matched-helper-selected-static-comparison) now traces record construction and append, including the conditional v22 path. This is not a player-position or rendering test. **[bin]**
 
 Linux 3.04 uses the same seven magics and the same constant 40. Its note says the enter line is logged when there is no game connection, and a rejected magic does not log (`torque/304-adventure.md`). In the public function, the log is emitted and the magic test follows it. A connection test around this call was not read. A strings pass over ver7 did not find `Player enters local level `. **[bin]**
 
@@ -78,7 +78,7 @@ The selected wrapper does not assemble a fixed outgoing packet. It invokes scrip
 - [x] Find the ver7 `Unsupported file type!` caller. See the follow-up below.
 - [ ] Identify a v22 caller for the same warning.
 - [ ] Read the level bodies in ver8, ver9, ver10 and ver13.
-- [ ] Read the effect of the helper called for `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda`. The public 2.1.0.0 image and v22 pass the level and two floating-point values of 31. What it changes was not read.
+- [x] ~~Read the effect of the helper called for `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda`.~~ Selected record construction/field stores/list append and the v22 guard are traced in the [helper comparison](v21-local-enter.md#name-matched-helper-selected-static-comparison); runtime meaning remains separate.
 - [ ] Follow the v22 helper after a `Control-NPC` name match, including any packet it sends.
 - [ ] Find what writes v22's mode field, and whether receive id 177 is that writer.
 

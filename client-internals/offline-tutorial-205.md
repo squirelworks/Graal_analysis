@@ -49,7 +49,7 @@ All 13 are `GR-V1.03` binary levels (see `formats/level-binary.md`).
 
 ### Special level names
 
-Three level names trigger an extra setup step when loaded: `level1.graal`, `YoshiClanR2.zelda`, and `YoshiClanFields.zelda`. These are the original single-player start levels. What the step does has not been traced. **[2.05]**
+Three level names trigger an extra setup step when loaded: `level1.graal`, `YoshiClanR2.zelda`, and `YoshiClanFields.zelda`. These are the original single-player start levels. The [selected static follow-up](v21-local-enter.md#name-matched-helper-selected-static-comparison) binds revision 2's two double arguments and the construction and append of a `TAdventureBall` record. It does not establish that record's rendering or gameplay effects. **[2.05][bin]**
 
 ## The tutorial world
 
