@@ -176,3 +176,4 @@ MAC-PPC-V5-IDENTITY-PROPERTY-20261124-R1	macos	researcher-static-summary
 LOGIN-PROBE-G002-20261124	windows	lab
 LIST-PROBE-G019-20261124	windows	lab
 LIST-PROBE-G020-20261124	windows	lab
+LOCAL-ENTRY-HELPER-20261128	windows	three-input-native-static-caller-stack-class-constructor-and-list-append
