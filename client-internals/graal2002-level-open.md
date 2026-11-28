@@ -80,7 +80,7 @@ The selected wrapper does not assemble a fixed outgoing packet. It invokes scrip
 - [ ] Read the level bodies in ver8, ver9, ver10 and ver13.
 - [x] ~~Read the effect of the helper called for `level1.graal`, `YoshiClanR2.zelda` or `YoshiClanFields.zelda`.~~ Selected record construction/field stores/list append and the v22 guard are traced in the [helper comparison](v21-local-enter.md#name-matched-helper-selected-static-comparison); runtime meaning remains separate.
 - [ ] Follow the v22 helper after a `Control-NPC` name match, including any packet it sends.
-- [ ] Find what writes v22's mode field, and whether receive id 177 is that writer.
+- [ ] Finish identifying v22's mode field. The [selected writer follow-up](v21-local-enter.md#selected-v22-integer-field-writers) traces two stores of 2 and three zero stores, distinct from receive 177's global-byte write; full writer coverage and value meanings remain open.
 
 ## Selected invalid-header paths
 

@@ -24,9 +24,17 @@ The two 31s therefore reach fields on a newly appended record. This is not evide
 
 The public enter body has no 3 by 3 walk.
 
-v22, after the level is swapped, walks a 3 by 3 table of earlier level pointers when an integer field equals 2 and further object tests pass. The integer field equal to 2 is the test in this body. It is not receive id 177. Rows and columns are 0, 1 and 2. A matching slot adds `(row - 1) * 64` and `(column - 1) * 64` to coordinate pairs, so the shifts are -64, 0 and +64. A table with no match clears the coordinate list those shifts would have updated. The integer field was not identified. What writes it was not read. **[bin]**
+v22, after the level is swapped, walks a 3 by 3 table of earlier level pointers when an integer field equals 2 and further object tests pass. The integer field equal to 2 is the test in this body. It is not receive id 177. Rows and columns are 0, 1 and 2. A matching slot adds `(row - 1) * 64` and `(column - 1) * 64` to coordinate pairs, so the shifts are -64, 0 and +64. A table with no match clears the coordinate list those shifts would have updated. The initial read did not follow the field's writers; selected stores are traced below. **[bin]**
 
-Receipt. The public 2.1.0.0 image and v22 were the bodies read. The 3 by 3 loop and the shifts of -64, 0 and +64 are that read. The integer field's writer was not read. **[bin]**
+Receipt. The public 2.1.0.0 image and v22 were the bodies read. The 3 by 3 loop and the shifts of -64, 0 and +64 are that read. The writer follow-up below is limited to the selected v22 input. **[bin]**
+
+### Selected v22 integer-field writers
+
+Follow-up: 2026-11-28. In the same identity-bound v22 input, two examined setup paths store 2 in the integer field used by the local-entry tests. One installs a newly allocated level object before the store. The other resets fields on the current level, stores 2, and clears its 3 by 3 table. Three selected reset paths store zero in the same field; one also clears the current-level pointer. These are direct four-byte field stores, not inferred names for a mode enumeration. Evidence: V22-ENTRY-MODE-WRITERS-20261128. No original program was run. **[bin]**
+
+The [separately traced receive-177 handler](v21-level-record-gate.md#v22-storage-modes) sets the New World global byte. That is different storage and width from this object's integer field, so it is not the direct writer under comparison. This does not rule out later indirect effects of receiving the message. **[bin]**
+
+G080/G142 remain partial: the selected setup/reset stores are identified, but this is not an exhaustive writer or alias census. The complete meanings of the integer values, caller/UI attribution, exceptional paths and runtime transitions remain unproved. **[bin]**
 
 ## Widths beside that call
 
@@ -41,5 +49,5 @@ The local-file wrapper loads the named file into a memory stream and installs a 
 ## Open
 
 - [x] ~~Read the helper that receives the two 31 values, on these images and on 2.05.~~ Selected public/v22/2.05 revision-2 construction, field stores, append and v22 guard paths are compared [above](#name-matched-helper-selected-static-comparison); rendering and wider behavior remain unproved.
-- [ ] Find what writes v22's integer field.
+- [ ] Finish identifying v22's integer field. The selected two stores of 2, three zero stores and distinction from receive 177 are traced above; full writer coverage and value meanings remain open.
 - [x] Read ver7's enter body. See the static entry sequence above.
