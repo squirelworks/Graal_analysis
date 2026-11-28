@@ -20,6 +20,8 @@ Before the per-message tables, the rules below say how a client treats any serve
 | The receive dispatcher takes the id as the first byte minus 32, checks it against a bound, and goes through an index table; the bound is id 185 in 2.17.1, 186 in 2.22 and 189 in 2.31 | 2.17.1, 2.22, 2.31 | [bin] (client-internals/decomp-findings-2026-10-24-b/02-server-to-client-layouts.md#dispatcher-shape-all-builds) |
 | 4.20r6 and 4.20r8 take 100 and 108 before the main switch | 4.20r6, 4.20r8 | [bin] (protocol/v4x-clients.md#server--client-ids) |
 
+Selected 1.25/1.27 normal receive branches describe administrator text at 35, an effect helper with bomb sound at 36, player-keyed incoming text at 37 and two converted components at 38. The early key is one decoded byte and its text tail may be empty; the effect branch's selected minimum is three payload bytes. These descriptive roles do not recover native enum names or establish later layouts, full consumers or runtime effects [bin] (client-internals/gserv-125-127-builds.md#selected-receive-handlers-35-to-38).
+
 ## 2.5.2 Ids handled by build
 
 For the six checked Windows x86 2.02/2.05 revisions, the corroborated entries mean distinct static receive routes, not successful runtime handling; payloads and effects require separate evidence [bin] (client-internals/receive-dispatch-revision-boundaries-2026-11-09.md#validation-and-limits).
