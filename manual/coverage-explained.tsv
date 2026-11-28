@@ -5882,3 +5882,4 @@ client-internals/showimg-particles-and-gs2-format.md	LNX603-LIST-FORMAT-20261122
 client-internals/showimg-particles-and-gs2-format.md	LNX603-FORMAT-COERCION-20261122	Owner-held selected static evidence ID; section 8.3 and E#210 carry the conversion, string gates and remaining limits, not a script term.
 client-internals/graal2002-level-open.md	V2104-CONTROLNPC-EVENT-20261128	Owner-held evidence identifier for the selected static receipt; not an executable keyword or file-format field.
 client-internals/v21-local-enter.md	V22-ENTRY-MODE-WRITERS-20261128	Owner-held evidence identifier for selected integer-field stores; not a script term or value-enumeration name.
+client-internals/graal2002-level-open.md	V22-FILE-FAILURE-STATE-20261128	Owner-held evidence identifier for the selected static receipt; not a script term or file-format field.

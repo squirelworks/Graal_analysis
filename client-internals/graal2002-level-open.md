@@ -18,6 +18,16 @@ The 2.05 editor accepts the same seven magics and uses the same rejection text (
 
 Ver7 and v22 both contain `Unsupported file type!`. The follow-up below identifies the ver7 caller. The v22 caller remains open. **[bin]**
 
+## v22 rejection status and warning-text boundary
+
+The selected v22 local-entry path rejects an unrecognized header by setting a failure byte and storing the integer 40 before returning without swapping the level. A selected drawing path reads that same failure byte and selects the literal `failed`, then submits nonempty selected text to a text-drawing helper. The file-entry and drawing routes obtain their controller from the same owner field. This is a static path comparison, not an observed display. **[bin]**
+
+The drawing wrapper requires its separate owner mode integer to equal zero before it calls that drawing body. Inside the body, earlier status-priority gates can select other text instead. Consequently this does not establish that every rejected local entry displays `failed`, including entries through other mode paths. No duration, frame count or runtime timing is established for the stored 40. **[bin]**
+
+The separate `Unsupported file type!` string is an initial global message value. Initialization builds a localization lookup key ending in `-Error6` and replaces that value when the lookup returns a nonempty string; cleanup releases it. The examined direct references and a completed exact-address search across initialized image memory found those setup and cleanup sites. This bounds the direct-reference result only: aliases, computed references and runtime use remain unproved. It does not identify a v22 dialog caller or equate the message with the selected `failed` status. **[bin]**
+
+G076 remains partial: the ver7 warning caller is identified, but the v22 warning-dialog caller, broader rollback behavior and runtime display remain open. The selected static receipt is indexed as `V22-FILE-FAILURE-STATE-20261128` in the [evidence index](../docs/evidence-index.tsv). **[bin]**
+
 ## Local enter
 
 The public function logs `Player enters local level ` plus the level name, then tests a supplied stream against the same seven magics. A mismatch stores a flag byte and the constant 40, and does not swap the level. A match, or a call with no stream, continues into the swap. **[bin]**
