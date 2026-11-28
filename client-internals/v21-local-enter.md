@@ -1,6 +1,6 @@
 # Local-enter arguments on the public 2.1.0.0 image and on v22
 
-Date: 2026-11-15. Static read of the local-level enter path in the public 2.1.0.0 image and in Graal 2002 v22. Nothing was run. No packet was read. ver7's enter body was not this read. The literal `Player enters local level ` is absent from ver7's string table. That absence is not a reading of ver7's enter body.
+Date: 2026-11-15. Static read of the local-level enter path in the public 2.1.0.0 image and in Graal 2002 v22. Nothing was run. No packet was read. The initial read did not include ver7. The follow-up below traces its local entry. The literal `Player enters local level ` is absent from ver7's string table. That absence is not a reading of ver7's enter body.
 
 ## Two values of 31
 
