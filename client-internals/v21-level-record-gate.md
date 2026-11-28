@@ -2,7 +2,7 @@
 
 Date: 2026-11-15. Static read of the level-file reader in the public 2.1.0.0 image, in Graal 2002 ver7, and in Graal 2002 v22. Nothing was run. A follow-up read compared the selected binary record loops in ver8, ver9, ver10 and ver13. No packet was read.
 
-The record shapes are the ones already in the manual: a baddy is three raw bytes and a `\`-separated tail, and it stops when the line is shorter than three bytes or the first byte is at least 128; a chest is four byte-minus-32 values. This note is only which of these three images stores them.
+The record shapes are the ones already in the manual: a baddy is three raw bytes and a `\`-separated tail, and it stops when the line is shorter than three bytes or the first byte is at least 128; a chest is four byte-minus-32 values. This note is only which of the examined images store them.
 
 | Image | Baddy records | Chest records |
 | --- | --- | --- |
