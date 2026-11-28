@@ -36,7 +36,7 @@ The Windows x86 input is 654,336 bytes, with researcher-supplied SHA-256 `03d812
 `[bin]` The researcher asserted the executable digest before reading, decoded the referenced step/probe/nudge values as little-endian IEEE-754 doubles, and checked their consuming instructions. Candidate construction, branch conditions, counters and setters were reviewed against x86 instructions independently of recovered pseudocode. No client or server ran for this inspection.
 
 - [x] ~~Recover the exact 1st Graal step, probe and corner-nudge constants.~~
-- [ ] Recover the 1.39 tables separately; these values do not settle that half of E#307.
+- [x] ~~Recover the 1.39 tables separately.~~ The [later published comparison](static-reads-appendix-e-2026-11-20-b.md#139-movement-tables-e307) supplies the 1.39 step, probe and nudge tables separately; this earlier exact-input read did not establish them. The later comparison does not compare the 1.39 branch code instruction by instruction.
 - [ ] Establish complete exceptional state gates, object-list identities and input-to-update cadence.
 
 The same retained record also contains a death-counter observation. That independent finding is outside this movement note; it must not be inferred from the geometry or converted to a wall-clock death duration.

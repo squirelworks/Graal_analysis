@@ -3,7 +3,7 @@
 
 This chapter gives the walking step, the wall test, what blocks a point, the blocked-step counter and the actions that hang off it (push pose, ledge jump, pushing blocks and NPCs), grab and pull, water and lava, link following, and the gates that stop movement. Tile type values and the `arrays.dat` lists are defined in → §3.5; this chapter only says how movement uses them. Units are tiles and 50 ms ticks (→ §4.1.1). Facings are 0 up, 1 left, 2 down, 3 right.
 
-> Status: draft. The rule is read in full for 2.05, 2.17.1, 2.22 and 2.31; the exact 1st Graal geometry is now read statically, while 1.39 still lacks its numeric tables; 3.x and 4.x are not in the notes. E#304 is settled in → §4.2.4; E#303, E#305, E#306 and E#307 are settled in → §4.2.3, §4.2.5, §4.2.8 and §4.2.2.2, E#308 in → §4.2.11 and E#309 in → §4.3.7.2.
+> Status: draft. The rule is read in full for 2.05, 2.17.1, 2.22 and 2.31; the exact 1st Graal geometry is read statically, and the later published 1.39 numeric-table comparison is carried in §4.2.2.2. That comparison does not read the 1.39 branch code instruction by instruction; 3.x and 4.x are not in the notes. E#304 is settled in → §4.2.4; E#303, E#305, E#306 and E#307 are settled in → §4.2.3, §4.2.5, §4.2.8 and §4.2.2.2, E#308 in → §4.2.11 and E#309 in → §4.3.7.2.
 
 ## 4.2.1 The step
 
